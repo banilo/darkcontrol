@@ -1,0 +1,118 @@
+\documentclass{article} % For LaTeX2e
+\usepackage{nips14submit_e,times}
+\usepackage{hyperref}
+\usepackage{url}
+\usepackage{amsmath,amsfonts,amsthm}
+\usepackage{bbm}
+\usepackage{algorithm,algorithmic}
+\usepackage{graphicx}
+\usepackage{bm}
+\usepackage{bbm}
+\usepackage[titletoc]{appendix}
+\usepackage{wrapfig}
+\usepackage{afterpage}
+\usepackage{amssymb}
+\usepackage{booktabs}
+\usepackage{ulem}
+\usepackage{multirow}
+
+\def\B#1{\bm{#1}}
+%\def\B#1{\mathbf{#1}}
+\def\trans{\mathsf{T}}
+
+%\renewcommand{\labelitemi}{--}
+
+\newtheorem{theorem}{Theorem} \newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{proposition}[theorem]{Proposition}
+\newtheorem{corollary}[theorem]{Corollary}
+\newtheorem{definition}[theorem]{Definition}
+\newtheorem{remark}{Remark}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\title{The Default Mode of Brain Function\\ Viewed By Control Theory}
+
+\newcommand{\fix}{\marginpar{FIX}}
+\newcommand{\new}{\marginpar{NEW}}
+\DeclareMathOperator{\proj}{proj}
+\DeclareMathOperator{\softmax}{softmax}
+\DeclareMathOperator{\prox}{prox}
+\DeclareMathOperator{\Prox}{Prox}
+\DeclareMathOperator{\im}{im}
+
+% macros from michael's .tex
+\DeclareMathOperator{\dist}{dist} % The distance.
+\DeclareMathOperator{\argmin}{argmin}
+\DeclareMathOperator{\argmax}{argmax}
+\DeclareMathOperator{\Id}{Id}
+\DeclareMathOperator{\abs}{abs}
+\newcommand{\R}{\mathbb{R}}
+\newcommand{\N}{\mathbb{N}}
+\newtheorem{thm}{Theorem}[section]
+\newtheorem{prop}[thm]{Proposition}
+\newtheorem{lem}[thm]{Lemma}
+\newtheorem{cor}[thm]{Corollary}
+
+
+\newcommand{\suggestadd}[1]{{\color{blue} #1}}
+\newcommand{\suggestremove}[1]{{\color{red} \sout{#1}}}
+
+% \nipsfinalcopy % Uncomment for camera-ready version
+\nipsfinaltrue
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{document}
+
+\author{Elvis Dohmatob, (Bert Kappen), Danilo Bzdok\\
+  INRIA, Parietal team, Saclay, France\\
+  CEA, Neurospin, Gif-sur-Yvette, France\\
+  firstname.lastname@inria.fr}
+
+\maketitle
+
+\begin{abstract}
+ABC
+%
+
+% OUR keywords
+%\textbf{\\keywords}: curse of dimensionality; semi-supervised learning;
+%fMRI; systems neuroscience
+
+% official NIPS keywords
+\textbf{\\keywords}: Systems Biology, Cognitive Science, Autonomous Learning Systems
+
+\end{abstract}
+
+\section{Introduction}
+%
+abc
+
+
+
+\section{Methods}
+%
+\paragraph{Data.}
+
+
+\section{Experimental Results}
+\paragraph{Serial versus parallel structure discovery and classification.}
+
+
+\section{Discussion and Conclusion}
+
+
+
+\paragraph{Acknowledgment}
+{\small The research leading to these results has received funding from the
+European Union Seventh Framework Programme (FP7/2007-2013)
+under grant agreement no. 604102 (Human Brain Project).
+Data were provided by the Human Connectome Project.
+Further support was received from
+the German National Academic Foundation (D.B.).
+}
+
+\small
+\bibliographystyle{splncs03}
+\bibliography{nips_refs}
+
+\end{document}
