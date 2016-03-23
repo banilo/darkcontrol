@@ -25,3 +25,5 @@ pdflatex -interaction=nonstopmode -file-line-error-style -synctex=1 paper
 # makeindex -s paper.idx -t paper.glsdef -o paper.acr paper.acn
 makeglossaries paper
 pdflatex -interaction=nonstopmodxe -file-line-error-style -synctex=1 paper
+
+open paper.pdf
