@@ -53,6 +53,27 @@
 \newtheorem{lem}[thm]{Lemma}
 \newtheorem{cor}[thm]{Corollary}
 
+\def\Id{\mathbf{I}}
+\def\1{\mathbf{1}}
+\def\X{\mathbf{X}}
+\def\U{\mathbf{U}}
+\def\V{\mathbf{V}}
+\def\v{\mathbf{v}}
+\def\u{\mathbf{u}}
+\def\z{\mathbf{z}}
+\def\Y{\mathbf{Y}}
+\def\A{\mathbf{A}}
+\def\B{\mathbf{B}}
+\def\C{\mathbf{C}}
+\def\N{\mathbf{N}}
+\def\R{\mathbf{R}}
+\def\Q{\mathbf{Q}}
+\def\P{\mathbf{P}}
+\def\K{\mathbf{K}}
+\def\a{\mathbf{a}}
+\def\b{\mathbf{b}}
+\def\s{\mathbf{s}}
+\def\x{\mathbf{x}}
 
 \newcommand{\suggestadd}[1]{{\color{blue} #1}}
 \newcommand{\suggestremove}[1]{{\color{red} \sout{#1}}}
@@ -71,7 +92,7 @@
 \maketitle
 
 \begin{abstract}
-ABC
+We use linear time-varying dynamic control theory to study the infamous (human)  Default Mode Network.
 %
 
 % OUR keywords
@@ -118,7 +139,7 @@ ABC
   unable to bind various individual features of the visual
   environment into an integrated whole (i.e., simultanagnosia)
   as well as unable to navigate hand movement to a targeted
-  object helped by vision (i.e., optic ataxia). 
+  object helped by vision (i.e., optic ataxia).
   difficulty avoiding running into objects placed ahead;
   challenged in estimating distances as well as perceiving
   spatial depth, object sizes and object orientation
@@ -160,9 +181,76 @@ feedback loops that produce error signals for adaptation
 
 
 \section{Methods}
-%
-\paragraph{Data.}
+\subsection{Linear control network model for brain organization}
+Consider the following linear time-invariant (LTI) dynamical system as a (toy) model for high-level brain function
+\begin{equation}
+  \dot{\x}(t) = \A\x(t) + \B\u(t)
+\end{equation}
+Here, the $n$-by-$n$ matrix $\A$ denotes a model of the brain's wiring (for example a resting state connectome computed from an anatomical atlas), while the $n$-by-$k$ ``input matrix'' $\B$ describes which nodes can be controlled by us, an external \textit{controller}, via medical intervention or a careful choice of stimulus presentation, for example. 
+At time $t \ge 0$, let  the $n$-vector  $\x(t) := (\x_1(t),\ldots,\x_n(t))$ describe the state of the network (one value for each node). The aim is to supply values of $\u_1(t),\ldots,\u_k(t)$ for $k \le n$ controls as a function of the time $t$,  take the system from any prescribed initial state $\x(0) = \x^{\text{init}} \in \mathbb R^n$ to any prescribed final state $\x(\tau) = \x^{\text{fin}} \in \mathbb R^n$ in finite time $\tau < \infty$.
+When such a controlling is possible, we say that the system $(\A,\B)$ is \textit{controllable}. A precise sufficient and necessary condition for such controllability is the Kalman condition: $(\A,\B)$ is controllable iff the $n \times nk$ \textit{controllability matrix}
+\begin{equation}
+  \C := (\B|\A\B|\ldots|\A^{n-1}\B)
+\end{equation}
+has full rank, i.e
+\begin{equation}
+  rank(\C) = n.
+\end{equation}
 
+\paragraph{How many controls do we need at best ?}
+In the thermodynamic limit ($n \rightarrow \infty$), statistical physics \textcolor{blue}{[Liu et al. 2011]} gives the extremely good estimate
+\begin{equation}
+  n_0(\langle k\rangle, \gamma) \approx e^{-\frac{1}{2}\left(\frac{\gamma-2}{\gamma - 1}\right)\langle k \rangle},
+\end{equation}
+where $\gamma \ge 1$ is the \textit{scale-free} parameter for the node-degree distribution of the network described by $\A$, and $\langle k \rangle$ is the mean degree. Letting $\gamma \rightarrow \infty$, one recovers the Erdos-Renyi value
+\begin{equation}
+  n_0(\langle k\rangle) = e^{-\frac{1}{2}\langle k\rangle},
+\end{equation}
+which agrees perfectly with its known analytic value. One identifies two radically different regimes:
+\begin{itemize}
+  \item the manageable regime $\gamma > \gamma_c := 2$, in which $n_0 < 1$, and so we only need fewer controls than total number of nodes, and
+\item the unmanageable regime ``$\gamma \le \gamma_c$'', in which  $n_0 = 1$, where each node must be controlled explicitly.
+\end{itemize}
+
+\paragraph{Why linear dynamics ?}
+As explained in \textcolor{blue}{[Liu et al. 2011]}, the choice of linear dynamics over a more general nonlinear dynamics can be justified as follows:
+\begin{itemize}
+  \item  Conclusions drawn from linear dynamics can be
+extended to nonlinear systems
+\item If the controllability matrix of the linearized system
+has full rank at all points, then it is sufficient for most
+systems to say that the actual nonlinear system is
+controllable (i.e. small signal model)
+\end{itemize}
+
+\subsection{Optimal control: an LQR feedback controller}
+We propose to use a linear quadratic regulator (LQR) for the feedback controller. Thus consider the time-varying \text{value function} $V: [0, \tau] \times \mathbb R^n \rightarrow \mathbb R$, defined by
+\begin{equation}
+  \begin{split}
+    &V(t, \z) := \min_{\u} \frac{1}{2}\x_{\text{fin}}^T\Q_{\text{fin}}\x_{\text{fin}} + \int_{0}^\tau\left(\frac{1}{2}\x(t)^T\Q\x(t) + \frac{1}{2}\u(t)^T\R\u(t)\right)dt,\\
+    &\text{subject to } \x(t) = \z, \dot{\x}(t) = \A\x(t) + \B\u(t),
+  \end{split}
+  \label{eq:hj}
+\end{equation}
+where the matrices $\Q$ and $\R$, specified with design considerations, are restricted to be positive semi-definite and positive definite, respectively. A classical calculation (remnicent of the \textit{Pontryagin minimization principle}) reveals that the optimal feedback control in \eqref{eq:hj} is given by
+\begin{equation}
+  \u(t) = -\K(t)\x(t),
+\end{equation}
+where
+\begin{equation}
+  \K(t) := \R^{-1}\B^T\P(t)
+\end{equation}
+and the time-varying matrix $\P(t)$ solves following matricial Riccati equation
+\begin{equation}
+\begin{split}
+&-\dot{\P}(t) = \A^T\P(t) + \P(t)\A - \P(t)\B\R^{-1}\B^T\P(t) + \Q\\
+&\text{subject to }\P(\tau) = \Q_{\text{fin}}.
+\end{split}
+\end{equation}
+
+\paragraph{Meta brain.}
+
+\paragraph{Data.}
 
 \section{Experimental Results}
 \paragraph{Serial versus parallel structure discovery and classification.}
