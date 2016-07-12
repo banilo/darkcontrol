@@ -184,11 +184,11 @@ feedback loops that produce error signals for adaptation
 \subsection{Linear control network model for brain organization}
 Consider the following linear time-invariant (LTI) dynamical system as a (toy) model for high-level brain function
 \begin{equation}
-  \dot{\x}(t) = \A\x(t) + \B\u(t)
+  \dot{\x}(t) = \A\x(t) + \B\u(t).
   \label{eq:lti}
 \end{equation}
 Here, the $n$-by-$n$ matrix $\A$ denotes a model of the brain's wiring (for example a resting state connectome computed from an anatomical atlas), while the $n$-by-$k$ ``input matrix'' $\B$ describes which nodes can be controlled by us, an external \textit{controller}, via medical intervention or a careful choice of stimulus presentation, for example. 
-At time $t \ge 0$, let  the $n$-vector  $\x(t) := (\x_1(t),\ldots,\x_n(t))$ describe the state of the network (one value for each node). The aim is to supply values of $\u_1(t),\ldots,\u_k(t)$ for $k \le n$ controls as a function of the time $t$,  take the system from any prescribed initial state $\x(0) = \x^{\text{init}} \in \mathbb R^n$ to any prescribed final state $\x(\tau) = \x^{\text{fin}} \in \mathbb R^n$ in finite time $\tau < \infty$.
+At time $t \ge 0$, let  the $n$-vector  $\x(t) := (\x_1(t),\ldots,\x_n(t))$ encodes the state of the network (one value for each node). The aim is to supply values of $\u_1(t),\ldots,\u_k(t)$ for $k \le n$ controls as a function of the time $t$,  to take the system from any prescribed initial state $\x(0) = \x^{\text{init}} \in \mathbb R^n$ to any prescribed final state $\x(\tau) = \x^{\text{fin}} \in \mathbb R^n$ in finite time $\tau < \infty$.
 When such a controlling is possible, we say that the system $(\A,\B)$ is \textit{controllable}. A precise sufficient and necessary condition for such controllability is the Kalman condition: $(\A,\B)$ is controllable iff the $n \times nk$ \textit{controllability matrix}
 \begin{equation}
   \C := (\B|\A\B|\ldots|\A^{n-1}\B)
