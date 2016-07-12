@@ -121,7 +121,7 @@ We use linear time-varying dynamic control theory to study the infamous (human) 
   \item the DMN's conceivable key role in the continuous environmental
   tracking in a generative, integrative process might explain both its highest energy consumption in the brain and its intimate coupling with conscious awareness
   \item Indeed, patients with right IPL (=DMN) damage have particular difficulties
-  with multistep actions (Hartmann et al. 2005)
+  with multistory actions (Hartmann et al. 2005)
   and with imagined action (Sirigu et al. 1996).
   \item Lesion of the hippocampus, feeding memory and spatial information, to the
   DMN impairs future and hypothetical thinking (cf. Hassabis PNAS)
@@ -159,7 +159,7 @@ We use linear time-varying dynamic control theory to study the infamous (human) 
   \item in case of a mismatch, back-projections top-down modulate
   input processing
   \item ‘contextual integration’ for top-down modulation of sensorimotor
-  processing by context-specific a-priori information.
+  processing by context-specific a priori information.
   \item Closely related to Friston's free-energy principle: brain as inference engine
   biological systems, including brains, must minimize the long-term average of surprise;
   formulate perception as a constructive process based on internal or generative models
@@ -185,6 +185,7 @@ feedback loops that produce error signals for adaptation
 Consider the following linear time-invariant (LTI) dynamical system as a (toy) model for high-level brain function
 \begin{equation}
   \dot{\x}(t) = \A\x(t) + \B\u(t)
+  \label{eq:lti}
 \end{equation}
 Here, the $n$-by-$n$ matrix $\A$ denotes a model of the brain's wiring (for example a resting state connectome computed from an anatomical atlas), while the $n$-by-$k$ ``input matrix'' $\B$ describes which nodes can be controlled by us, an external \textit{controller}, via medical intervention or a careful choice of stimulus presentation, for example. 
 At time $t \ge 0$, let  the $n$-vector  $\x(t) := (\x_1(t),\ldots,\x_n(t))$ describe the state of the network (one value for each node). The aim is to supply values of $\u_1(t),\ldots,\u_k(t)$ for $k \le n$ controls as a function of the time $t$,  take the system from any prescribed initial state $\x(0) = \x^{\text{init}} \in \mathbb R^n$ to any prescribed final state $\x(\tau) = \x^{\text{fin}} \in \mathbb R^n$ in finite time $\tau < \infty$.
@@ -198,7 +199,7 @@ has full rank, i.e
 \end{equation}
 
 \paragraph{How many controls do we need at best ?}
-In the thermodynamic limit ($n \rightarrow \infty$), statistical physics \textcolor{blue}{[Liu et al. 2011]} gives the extremely good estimate
+In the thermodynamic limit ($n \rightarrow \infty$), statistical physics \cite{Liu2011} gives the extremely good estimate
 \begin{equation}
   n_0(\langle k\rangle, \gamma) \approx e^{-\frac{1}{2}\left(\frac{\gamma-2}{\gamma - 1}\right)\langle k \rangle},
 \end{equation}
@@ -213,18 +214,22 @@ which agrees perfectly with its known analytic value. One identifies two radical
 \end{itemize}
 
 \paragraph{Why linear dynamics ?}
-As explained in \textcolor{blue}{[Liu et al. 2011]}, the choice of linear dynamics over a more general nonlinear dynamics can be justified as follows:
+As explained in \cite{liu2011}, the choice of linear dynamics over a more general nonlinear dynamics can be justified as follows:
 \begin{itemize}
   \item  Conclusions drawn from linear dynamics can be
-extended to nonlinear systems
+extended to nonlinear systems.
 \item If the controllability matrix of the linearized system
 has full rank at all points, then it is sufficient for most
 systems to say that the actual nonlinear system is
-controllable (i.e. small signal model)
+controllable (i.e. small signal model).
 \end{itemize}
 
+\paragraph{A note on stability.}
+For stability in the LTI model \eqref{eq:lti} and hence in the constrained path integral \eqref{eq:hj} below, a sufficient (and necessary ?) condition is that all eigenvalues of the $A$ have negative real-part. One way to impose this is to add self-loops with a small negative weight.
+\paragraph{Meta brain.}
+
 \subsection{Optimal control: an LQR feedback controller}
-We propose to use a linear quadratic regulator (LQR) for the feedback controller. Thus consider the time-varying \text{value function} $V: [0, \tau] \times \mathbb R^n \rightarrow \mathbb R$, defined by
+We propose to use a linear quadratic regulator (LQR) for the feedback controller. Thus, consider the time-varying \text{value function} $V: [0, \tau] \times \mathbb R^n \rightarrow \mathbb R$, defined by the following Hamilton-Jacobi cost-to-go
 \begin{equation}
   \begin{split}
     &V(t, \z) := \min_{\u} \frac{1}{2}\x_{\text{fin}}^T\Q_{\text{fin}}\x_{\text{fin}} + \int_{0}^\tau\left(\frac{1}{2}\x(t)^T\Q\x(t) + \frac{1}{2}\u(t)^T\R\u(t)\right)dt,\\
@@ -232,23 +237,24 @@ We propose to use a linear quadratic regulator (LQR) for the feedback controller
   \end{split}
   \label{eq:hj}
 \end{equation}
-where the matrices $\Q$ and $\R$, specified with design considerations, are restricted to be positive semi-definite and positive definite, respectively. A classical calculation (remnicent of the \textit{Pontryagin minimization principle}) reveals that the optimal feedback control in \eqref{eq:hj} is given by
+where the matrices $\Q$ and $\R$, precised by design considerations and subject to meta-optimization, are restricted to be positive semi-definite and positive definite, respectively. A classical calculation (reminiscent of the \textit{Pontryagin minimization principle}) reveals that the optimal feedback control in \eqref{eq:hj} is given by
 \begin{equation}
   \u(t) = -\K(t)\x(t),
 \end{equation}
 where
 \begin{equation}
-  \K(t) := \R^{-1}\B^T\P(t)
+  \K(t) := \R^{-1}\B^T\P(t)\text{ (Kalman gain matrix)}
 \end{equation}
-and the time-varying matrix $\P(t)$ solves following matricial Riccati differential equation
+and the time-varying positive semi-definite matrix $\P(t)$ solves following differential Riccati equation (DRE)
 \begin{equation}
 \begin{split}
 &-\dot{\P}(t) = \A^T\P(t) + \P(t)\A - \P(t)\B\R^{-1}\B^T\P(t) + \Q\\
 &\text{subject to }\P(\tau) = \Q_{\text{fin}}.
 \end{split}
 \end{equation}
-
-\paragraph{Meta brain.}
+\subsection{Minimal control energy controller}
+\subsection{Related works}
+The model proposed in \cite{betzel2016} can be cast in the form \eqref{eq:hj}, with the choice $\Q_{\text{fin}} = \R = \textbf{I}$ and $\Q = \textbf{0}$, but with rather ad-hoc handle on stability issues and driver nodes...
 
 \paragraph{Data.}
 
