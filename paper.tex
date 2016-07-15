@@ -634,12 +634,12 @@ Given a utility function $U$ on a probability space $(\Omega, \mathcal F, *)$, t
   \paragraph{The free-energy / utility principle (of Friston ?).}
   We are now in shape to introduce the notion of free-energy for model transitions, and a variational principle for optimizing it. Consider thus an initial system described by a conjugate pair $(U_{\text{ini}}, P_{\text{ini}})$ at temperature $\alpha > 0$. We want to transform this to a new model by adding constraints represented by the utility function $\Delta U$.  The resulting system has final utility $U_{\text{fin}} = U_{\text{ini}} + \Delta U$. The difference in free-utility is then
   \begin{equation}
-    \Delta J_{(U_{\text{ini}}, P_{\text{ini}}) \rightarrow P_{\text{fin}}} := J_{\text{fin}} - J_{\text{ini}} = \underbrace{\mathbb E_{P_{\text{fin}}}(\Delta U)}_{\textbf{expected gain in utility}} + \alpha \underbrace{D_{\text{KL}}(P_{\text{ini}}\|P_{\text{fin}})}_{\textbf{complexity of change}},
+    \Delta J_{(U_{\text{ini}}, P_{\text{ini}}) \rightarrow P_{\text{fin}}} := J_{\text{fin}} - J_{\text{ini}} = \underbrace{\mathbb E_{P_{\text{fin}}}(\Delta U)}_{\textbf{accuracy}} + \alpha \underbrace{D_{\text{KL}}(P_{\text{ini}}\|P_{\text{fin}})}_{\textbf{complexity}},
     \label{eq:free}
   \end{equation}
   where $D_{\text{KL}}(P_{\text{ini}}\|P_{\text{fin}})$ is the Kullback-Leibler divergence.
   In the above formula, we've extensively used the fact that $(U_{\text{ini}}, P_{\text{ini}})$ is a congugate pair and so $U_{\text{ini}}(\omega) \equiv \alpha \log(P_{\text{ini}}(\omega))$ by virtue of \eqref{eq:boltzmann}.
-  The two terms in \eqref{eq:free} (expected gain in utility or negative workdone, and the complexity of the transition) can be viewed as dertiminants of bounded rational decision-making. They formalize
+  The two terms in \eqref{eq:free} (accuracy or expected gain in utility, and the complexity of the transition) can be viewed as dertiminants of bounded rational decision-making. They formalize
 a trade-off between an expected utility $\Delta U$ (first term) and
 the information cost of transforming Pi
 into $P_{\text{fin}}$ (second
