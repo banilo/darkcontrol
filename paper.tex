@@ -622,9 +622,7 @@ Given a utility function $U$ on a probability space $(\Omega, \mathcal F, *)$, t
       J(P'|U, P) = \mathbb E_{P'}(U) + \alpha \mathbb H(P'),
     \label{eq:free_u}
     \end{equation}
-    where $\mathbb H(P') := -\sum_{\omega \in \Omega}P'(\omega)\log(P'(\omega))$ is the entropy of $P'$.
-
-  It's not difficult to show that
+    where $\mathbb H(P') := -\sum_{\omega \in \Omega}P'(\omega)\log(P'(\omega))$ is the \textit{entropy} of $P'$ (measured in the Naperian base $e \approx 2.73$). It's not difficult to establish the upper bound
   \begin{equation}
     J(P'|U,P) \le J(P|U,P) = \sum_{\omega \in \Omega}U(\omega) =: U(\Omega).
   \end{equation}
