@@ -481,6 +481,8 @@ In fact, phase-locked hippocampal?<80><93>cortical loops have been proposed t
 formation of mnemonic neuronal representations
 **a large body of animal and human literature relates
 hippocampal-prefrontal theta to memory and memory to the DMN**
+<<<<<<< HEAD
+=======
 
 \item 
 A special case is the hippocampus whose highly recursive connection matrix is thought to function as a large ‘autoassocia- tor’, allowing the reconstruction of entire episodes from remembered fragments.
@@ -518,17 +520,8 @@ This emerging picture of hippocampal dy- namics suggests that neurons at the opp
 this minority provides the “best guess” of the hippocampus and offers “good enough” solutions to get by. On the other hand, the majority of less active neurons constitute a large reservoir that can be mobilized (7) to precisely distinguish one situation from an- other and incorporate novel ones as distinct.
 
 
-
 \end{itemize}
-
-
-
-
-
-
-
-
-
+\end{itemize}
 
 
 \section{Methods}
@@ -607,6 +600,70 @@ and the time-varying positive semi-definite matrix $\P(t)$ solves following diff
 \subsection{Related works}
 The model proposed in \cite{betzel2016} can be cast in the form \eqref{eq:hj}, with the particular choice $\Q = \textbf{I} = \rho^{-1}\R$ and $\Q_{\text{fin}} = \textbf{0}$, but with a rather ad-hoc handle on stability issues and choice driver nodes...
 
+\subsection{A thermodynamic model for bounded rationality, aka robust optimality}
+\begin{itemize}
+  \item Recall that an agent is said to have \textit{bounded rationality} if they must take into account the cost of finding solutions to problems, and not just the utility of the final state.
+  \item For example, consider an agent that must operate under a limited lifetime and/or computation cost.
+  \item This is in contrast to agents with \textit{unbounded rationality} considered in classical game theory.
+    \end{itemize}
+
+\paragraph{Utility functions and conjugate pairs.}
+  Let $(\Omega, \mathcal F, \P)$ be a probablity space. A function $\U: \mathcal F \rightarrow \mathbb R$ is said to be a \textit{utility function} for this space if the conditional utility $\U(A|B) := \U(A \cap B) - \U(B)$ has the following propertites:
+  \begin{itemize}
+  \item additivity: $\U(A_1 \cap A_2 | B) = \U(A_1|B) + \U(A_2|B)$, for all events $A_1, A_2, B \in \mathcal F$.    
+  \item statistic: there exists a function $f_{\U} :\mathbb R_+ \rightarrow \mathbb R$ such that $\U(A|B) = f(\P(A|B))$, for all events
+    $A,B \in \mathcal F$.
+  \item monotonicity: $f_{\U}$ is strictly increasing.
+    \end{itemize}
+
+\begin{theorem}
+  The only functions $f: \mathbb R_+ \rightarrow \mathbb R$ which is such that $\U(A|B) \equiv f(\P(A|B))$ any probability space $(\Omega, \mathcal F, \P)$ and utility function $\U$ thereupon are of the form
+  \begin{equation}
+    f = \alpha \log(.),
+    \label{eq:boltzmann}
+  \end{equation}
+  where $\alpha > 0$.
+\end{theorem}
+
+\textbf{XXX: equation \eqref{eq:boltzmann} above looks like Boltzmann's formula (on his gravestone...)!}
+
+Such $\U$ and $\P$ are said to form a \textit{conjugate pair} at temperator $\alpha$.
+
+
+\paragraph{Example.}
+Given utility function $U$ a probability space $(\Omega, \mathcal F, *)$, the \textit{Gibbs measure} at temperature $\alpha > 0$ and energy levels $(-\U(\omega))_{\omega \in \Omega}$ is defined to be probability measure (on thesame measurable space)
+  \begin{equation}
+    \P_{\U}(A) = \sum_{\omega \in A}\frac{1}{Z(\alpha)}\exp\left(\frac{1}{\alpha}\U(\omega)\right), \; \forall A \in \mathcal F.
+  \end{equation}
+$Z(\alpha)$ is a normalization constant such that $\P_{\U}(\Omega) = 1$.  It's not hard to see that $\U$ and $\P_{\U}$  form a conjugate pair.
+
+  \paragraph{Free-utility functional.}
+    Let $(\U, \P)$ be a conjugate pair at temperature $\alpha > 0$  on a measurable space $(\Omega, \mathcal F)$. Given another probability measure $\P'$ on the same space, define it's \textit{free utility} as
+    \begin{equation}
+      J(\P'|\U, \P) = \mathbb E_{\P'}(\U) + \alpha \mathbb H(\P'),
+    \label{eq:free_u}
+    \end{equation}
+    where $\mathbb H(\P') := -\sum_{\omega \in \Omega}\P'(\omega)\log(\P'(\omega))$ is the entropy of $\P'$.
+
+  It's not difficult to show that
+  \begin{equation}
+    J(\P'|\U,\P) \le J(\P|\U,\P) = \sum_{\omega \in \Omega}\U(\omega) =: \U(\Omega).
+  \end{equation}
+  In particular, if $\P = \P_{\U}$ the Gibbs measure, then the upper bound above reduces to the \textit{log-partition function}
+  \begin{equation}
+    J(\P'|\U,\P) \le \U(\Omega) = -\alpha \log\left(\sum_{\omega \in \Omega}e^{\frac{1}{\alpha}\U(\omega)}\right).
+    \end{equation}
+
+  \paragraph{The free-energy / utility principle.}
+  We are now in shape to introduce the notion of free-energy for transition of priors, and a variational principle for optimizing it. Consider thus an initial system described by a conjugate pair $(\U_{\text{ini}}, \P_{\text{ini}}) \rightarrow \P_{\text{fin}}$ at temperature $\alpha > 0$. We want to transform this to a new one by adding constraints represented by the utility function $\delta \U$.  The resulting system has final utility $\U_{\text{fin}} = \U_{\text{ini}} + \delta\U$. The difference in free-utility is then
+  \begin{equation}
+    \delta J = J_{\text{fin}} - J_{\text{ini}} = \underbrace{\mathbb E_{\P_{\text{fin}}}(\delta \U)}_{\textbf{expected gain in utility}} + \alpha \underbrace{D_{\text{KL}}(\P_{\text{ini}}\|\P_{\text{fin}})}_{\textbf{complexity of change}},
+    \label{eq:free}
+  \end{equation}
+  where $D_{\text{KL}}(\P_{\text{ini}}\|\P_{\text{fin}})$ is the Kullback-Leibler divergence.
+  In the above formula, we've extensively used the fact that $(\U_{\text{ini}}, \P_{\text{ini}})$ is a congugate pair and so $\U_{\text{ini}}(\omega) \equiv \alpha \log(\P_{\text{ini}}(\omega))$ by virtue of \eqref{eq:boltzmann}.
+  The two terms in \eqref{eq:free} (expected gain in utility or negative workdone, and the complexity of the transition) 
+  
 \section{Experimental Results}
 \paragraph{Serial versus parallel structure discovery and classification.}
 
