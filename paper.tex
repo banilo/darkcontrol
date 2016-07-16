@@ -481,6 +481,7 @@ pRTPJ cluster was also functionally associated with deception tasks
 
 qualify RTPJ as a po- tential switch between exteroceptive and interoceptive mind sets implemented by their networks. The reciprocal nature of those mind sets is well illustrated by consistent reports of continuous shifting be- tween externally (i.e., sensory) and internally (i.e., self- and presumably social/memory-) oriented processing in controlled laboratory settings and daily routine (Smallwood et al., 2007).
 
+\item LTPJ:
 
 \item
 the difference between the two task groups could be parsimoniously explained by the required atten- tion to either the external world or self.
@@ -519,20 +520,13 @@ the left and right TPJ further differ according to their cytoarchitectonic borde
 
 
 
-
-
-\item
-  PMC:
+\item PMC:
   \begin{itemize}
     \item
 covert reallocation of spatial attention (Gitelman et al., 1999), mediation between internal and external focus (Leech and Sharp, 2014), computation of environmental statistics (Pearson et al., 2009), and self-referential visuospatial imagery (Cavanna and Trimble, 2006)
   \end{itemize}
 
-
-
-
-\item
-HC:
+\item HC:
 \begin{itemize}
   \item
 The HC, in turn, is well known to be involved in memory and spatial navigation in animals and humans (von Bechterew, 1900; Scoville and Milner, 1957; O’Keefe and Dostrovsky, 1971; Maguire et al., 2000).
@@ -583,6 +577,7 @@ information
 This emerging picture of hippocampal dy- namics suggests that neurons at the opposite ends of the distributions may convey differ- ent but complementary types of information. The ever-active minority of place cells may be responsible for generalizing across envi- ronments and affords the brain the capacity to regard no situation as completely un- known because every alley, mountain, river, or room has elements of previously experi- enced similar situations. In many situations,
 this minority provides the “best guess” of the hippocampus and offers “good enough” solutions to get by. On the other hand, the majority of less active neurons constitute a large reservoir that can be mobilized (7) to precisely distinguish one situation from an- other and incorporate novel ones as distinct.
 
+
 \item
 damage to even the hippocampus alone is sufficient to cause amnesia +
 envisoning themselves in future and even hypothetical scenarios/mentally constructing new experiences
@@ -596,6 +591,7 @@ Recollection of these rich autobiographical or episodic memories has been likene
 In fact, episodic memory and imagining or constructing events share striking similarities in terms of the psychological processes engaged (19–21). These include imagery (22), sense of presence (1), retrieval of semantic information and multimodal details (23), and narrative structure (22).
 
 visual imagery itself is not believed to be realized in the HC
+
 
 
 \end{itemize}
@@ -622,11 +618,11 @@ has full rank, i.e
 \paragraph{How many controls do we need at best ?}
 In the thermodynamic limit ($n \rightarrow \infty$), statistical physics \cite{Liu2011} gives the extremely good estimate
 \begin{equation}
-  n_0(\langle k\rangle, \gamma) \approx e^{-\frac{1}{2}\left(\frac{\gamma-2}{\gamma - 1}\right)\langle k \rangle},
+  n_0(\langle k\rangle, \gamma) \approx \exp\left(-\frac{1}{2}\left(\frac{\gamma-2}{\gamma - 1}\right)\langle k \rangle\right),
 \end{equation}
 where $\gamma \ge 1$ is the \textit{scale-free} parameter for the node-degree distribution of the network described by $\A$, and $\langle k \rangle$ is the mean degree. Letting $\gamma \rightarrow \infty$, one recovers the Erdos-Renyi value
 \begin{equation}
-  n_0(\langle k\rangle) = e^{-\frac{1}{2}\langle k\rangle},
+  n_0(\langle k\rangle) = \exp\left(-\frac{1}{2}\langle k\rangle\right),
 \end{equation}
 which agrees perfectly with its known analytic value. One identifies two radically different regimes:
 \begin{itemize}
@@ -683,18 +679,18 @@ The model proposed in \cite{betzel2016} can be cast in the form \eqref{eq:hj}, w
   \item For example, consider an agent that must operate under a limited lifetime and/or computation cost.
   \item This is in contrast to agents with \textit{unbounded rationality} considered in classical game theory.
     \end{itemize}
-
+The material presented is a revisit of \textcolor{blue}{[Braun 2011]}.
 \paragraph{Utility functions and conjugate pairs.}
-  Let $(\Omega, \mathcal F, \P)$ be a probablity space. A function $\U: \mathcal F \rightarrow \mathbb R$ is said to be a \textit{utility function} for this space if the conditional utility $\U(A|B) := \U(A \cap B) - \U(B)$ has the following propertites:
+  Let $(\Omega, \mathcal F, P)$ be a probablity space. A function $U: \mathcal F \rightarrow \mathbb R$ is said to be a \textit{utility function} for this space if the conditional utility $U(A|B) := U(A \cap B) - U(B)$ has the following propertites:
   \begin{itemize}
-  \item additivity: $\U(A_1 \cap A_2 | B) = \U(A_1|B) + \U(A_2|B)$, for all events $A_1, A_2, B \in \mathcal F$.    
-  \item statistic: there exists a function $f_{\U} :\mathbb R_+ \rightarrow \mathbb R$ such that $\U(A|B) = f(\P(A|B))$, for all events
+  \item additivity: $U(A_1 \cap A_2 | B) = U(A_1|B) + U(A_2|B)$, for all events $A_1, A_2, B \in \mathcal F$.    
+  \item statistic: there exists a function $f_{U} :\mathbb R_+ \rightarrow \mathbb R$ such that $U(A|B) = f(P(A|B))$, for all events
     $A,B \in \mathcal F$.
-  \item monotonicity: $f_{\U}$ is strictly increasing.
+  \item monotonicity: $f_{U}$ is strictly increasing.
     \end{itemize}
 
 \begin{theorem}
-  The only functions $f: \mathbb R_+ \rightarrow \mathbb R$ which is such that $\U(A|B) \equiv f(\P(A|B))$ any probability space $(\Omega, \mathcal F, \P)$ and utility function $\U$ thereupon are of the form
+  The only functions $f: \mathbb R_+ \rightarrow \mathbb R$ which is such that $U(A|B) \equiv f(P(A|B))$ any probability space $(\Omega, \mathcal F, P)$ and utility function $U$ thereupon are of the form
   \begin{equation}
     f = \alpha \log(.),
     \label{eq:boltzmann}
@@ -704,46 +700,77 @@ The model proposed in \cite{betzel2016} can be cast in the form \eqref{eq:hj}, w
 
 \textbf{XXX: equation \eqref{eq:boltzmann} above looks like Boltzmann's formula (on his gravestone...)!}
 
-Such $\U$ and $\P$ are said to form a \textit{conjugate pair} at temperator $\alpha$.
+Such $U$ and $P$ are said to form a \textit{conjugate pair} at temperature $\alpha$.
 
 
 \paragraph{Example.}
-Given utility function $U$ a probability space $(\Omega, \mathcal F, *)$, the \textit{Gibbs measure} at temperature $\alpha > 0$ and energy levels $(-\U(\omega))_{\omega \in \Omega}$ is defined to be probability measure (on thesame measurable space)
+Given a utility function $U$ on a probability space $(\Omega, \mathcal F, *)$, the \textit{Gibbs measure} at temperature $\alpha > 0$ and energy levels $(-U(\omega))_{\omega \in \Omega}$ is defined to be the probability measure (on thesame measurable space)
   \begin{equation}
-    \P_{\U}(A) = \sum_{\omega \in A}\frac{1}{Z(\alpha)}\exp\left(\frac{1}{\alpha}\U(\omega)\right), \; \forall A \in \mathcal F.
+    P(\omega) = \frac{1}{Z_{U}(\alpha)}\exp\left(\frac{1}{\alpha}U(\omega)\right), \; \forall \omega \in \Omega,
   \end{equation}
-$Z(\alpha)$ is a normalization constant such that $\P_{\U}(\Omega) = 1$.  It's not hard to see that $\U$ and $\P_{\U}$  form a conjugate pair.
+  where
+  $Z_{U}(\alpha) := \sum_{\omega \in \Omega}\exp\left(\frac{1}{\alpha}U(\omega)\right)$ is a normalization constant called the \textit{partition function} of $U$.
+  It's not hard to see that $U$ and the $P$ above form a conjugate pair.
 
   \paragraph{Free-utility functional.}
-    Let $(\U, \P)$ be a conjugate pair at temperature $\alpha > 0$  on a measurable space $(\Omega, \mathcal F)$. Given another probability measure $\P'$ on the same space, define it's \textit{free utility} as
+    Let $(U, P)$ be a conjugate pair at temperature $\alpha > 0$  on a measurable space $(\Omega, \mathcal F)$. Given another probability measure $P'$ on the same space, define it's \textit{free utility} as
     \begin{equation}
-      J(\P'|\U, \P) = \mathbb E_{\P'}(\U) + \alpha \mathbb H(\P'),
+      J(P'|U, P) = \mathbb E_{P'}(U) + \alpha \mathbb H(P'),
     \label{eq:free_u}
     \end{equation}
-    where $\mathbb H(\P') := -\sum_{\omega \in \Omega}\P'(\omega)\log(\P'(\omega))$ is the entropy of $\P'$.
-
-  It's not difficult to show that
+    where $\mathbb H(P') := -\sum_{\omega \in \Omega}P'(\omega)\log(P'(\omega))$ is the \textit{entropy} of $P'$ (measured in the Naperian base $e \approx 2.73$). It's not difficult to establish the upper bound
   \begin{equation}
-    J(\P'|\U,\P) \le J(\P|\U,\P) = \sum_{\omega \in \Omega}\U(\omega) =: \U(\Omega).
+    J(P'|U) \le J(P|U) = \sum_{\omega \in \Omega}U(\omega) =: U(\Omega).
   \end{equation}
-  In particular, if $\P = \P_{\U}$ the Gibbs measure, then the upper bound above reduces to the \textit{log-partition function}
+  In particular, if $P$ is the Gibbs measure corresponding to $U$, then the upper bound above reduces to the \textit{log-partition function}
   \begin{equation}
-    J(\P'|\U,\P) \le \U(\Omega) = -\alpha \log\left(\sum_{\omega \in \Omega}e^{\frac{1}{\alpha}\U(\omega)}\right).
+    J(P'|U) \le U(\Omega) = -\alpha \log(Z_{U}(\alpha)).
     \end{equation}
 
-  \paragraph{The free-energy / utility principle.}
-  We are now in shape to introduce the notion of free-energy for transition of priors, and a variational principle for optimizing it. Consider thus an initial system described by a conjugate pair $(\U_{\text{ini}}, \P_{\text{ini}}) \rightarrow \P_{\text{fin}}$ at temperature $\alpha > 0$. We want to transform this to a new one by adding constraints represented by the utility function $\delta \U$.  The resulting system has final utility $\U_{\text{fin}} = \U_{\text{ini}} + \delta\U$. The difference in free-utility is then
+  \paragraph{The free-energy / utility principle (of Friston ?).}
+  We are now in shape to introduce the notion of free-energy for model transitions, and a variational principle for optimizing it. Consider thus an initial system described by a conjugate pair $(U_{\text{ini}}, P_{\text{ini}})$ at temperature $\alpha > 0$. We want to transform this to a new model by adding constraints represented by the utility function $\Delta U$.  The resulting system has final utility $U_{\text{fin}} = U_{\text{ini}} + \Delta U$. The difference in free-utility is then
   \begin{equation}
-    \delta J = J_{\text{fin}} - J_{\text{ini}} = \underbrace{\mathbb E_{\P_{\text{fin}}}(\delta \U)}_{\textbf{expected gain in utility}} + \alpha \underbrace{D_{\text{KL}}(\P_{\text{ini}}\|\P_{\text{fin}})}_{\textbf{complexity of change}},
+    \Delta J_{(U_{\text{ini}}, P_{\text{ini}}) \rightarrow P_{\text{fin}}} := J_{\text{fin}} - J_{\text{ini}} = \underbrace{\mathbb E_{P_{\text{fin}}}(\Delta U)}_{\textbf{accuracy}} -  \underbrace{\alpha D_{\text{KL}}(P_{\text{ini}}\|P_{\text{fin}})}_{\textbf{complexity}},
     \label{eq:free}
   \end{equation}
-  where $D_{\text{KL}}(\P_{\text{ini}}\|\P_{\text{fin}})$ is the Kullback-Leibler divergence.
-  In the above formula, we've extensively used the fact that $(\U_{\text{ini}}, \P_{\text{ini}})$ is a congugate pair and so $\U_{\text{ini}}(\omega) \equiv \alpha \log(\P_{\text{ini}}(\omega))$ by virtue of \eqref{eq:boltzmann}.
-  The two terms in \eqref{eq:free} (expected gain in utility or negative workdone, and the complexity of the transition) 
-  
+  where
+  \begin{equation}
+    D_{\text{KL}}(P_{\text{fin}}\|P_{\text{ini}}) := \sum_{\omega \in \Omega}\P_{\text{fin}}(\omega)\log(\P_{\text{fin}}(\omega)/\P_{\text{ini}}(\omega))
+  \end{equation}
+  is the Kullback-Leibler divergence, and represents the information cost (measured in energy units) of changing the initial system.
+In the above formula, we've extensively used the fact that $(U_{\text{ini}}, P_{\text{ini}})$ is a congugate pair and so $U_{\text{ini}}(\omega) \equiv \alpha \log(P_{\text{ini}}(\omega))$ by virtue of \eqref{eq:boltzmann}.
+  The two terms in \eqref{eq:free} (accuracy or expected gain in utility, and the complexity of the transition) can be viewed as dertiminants of bounded rational decision-making. They formalize
+a trade-off between an expected utility $\Delta U$ (first term) and
+the information cost of transforming Pi
+into $P_{\text{fin}}$ (second
+term). In this interpretation $P_{\text{ini}}$ represents an initial choice
+probability or policy, which includes the special case of the
+uniform distribution where the decision-maker has initially no
+preferences between the different choices. The probability measure $P_{\text{fin}}$ is the final choice probability that we are looking for since it
+considers the utility constraint U∗
+that we want to optimize. We can then formulate a variational principle for bounded rationality in the probabilities $P_{\text{fin}}(\omega)$
+\begin{equation}
+P^*_{\text{fin}} := \underset{P_{\text{fin}}}{\text{argmax }} \Delta J_{(U_{\text{ini}}, P_{\text{ini}}) \rightarrow P_{\text{fin}}}
+  \end{equation}
+
+By differentiating the RHS of \eqref{eq:free} w.r.t $P_{\text{fin}}$ and setting to zero, we obtain the closed-form solution
+
+\begin{equation}
+  P^*_{\text{fin}}(\omega) \propto P_{\text{ini}}(\omega)\exp\left(\frac{1}{\alpha}\Delta U(\omega)\right).
+\end{equation}
+
+Two limit cases are worth considering.
+\begin{itemize}
+\item \textbf{Low-temperature regime $\alpha \approx 0$:} Here $\Delta J_{(U_{\text{ini}}, P_{\text{ini}}) \rightarrow P_{\text{fin}}} \approx \mathbb E_{P'_{\text{fin}}}(\Delta U)$, and so it's optimal to take
+  $$P^*_{\text{fin}}(\omega) \equiv \text{dirac}(\omega - \omega^*) = \begin{cases}1, &\mbox{if }\omega = \omega^*,\\0, &\mbox{ otherwise,}\end{cases}$$
+  where $\omega^* := \argmax_{\omega \in \Omega}U(\omega)$. This corresponds to unbounded rational decision-making, in which the cost of transition / problem-solving is completely disregarded.
+  \item \textbf{High-temperature regime $\alpha \rightarrow +\infty$:} In this limiting case, it's optimal to take $P^*_{\text{fin}}(\omega) \equiv P_{\text{ini}}(\omega)$, i.e the change is so costly that it's optimal to maintain the current choice probabilities.
+\end{itemize}
+
+To conclude this section, let's note that \textcolor{blue}{[Braun 2011]} show how their free-energy framework (on paths) links with the well-known Hamilton-Jacobi-Bellman optimal control framework. For example, one can re-derive the Linear Quadratic Gaussian (LQG) controller, which is a generalization of the LQR in \eqref{eq:hj}...
+
 \section{Experimental Results}
 \paragraph{Serial versus parallel structure discovery and classification.}
-
 
 \section{Discussion and Conclusion}
 
