@@ -725,7 +725,11 @@ Given a utility function $U$ on a probability space $(\Omega, \mathcal F, *)$, t
     P(\omega) = \frac{1}{Z_{U}(\alpha)}\exp\left(\frac{1}{\alpha}U(\omega)\right), \; \forall \omega \in \Omega,
   \end{equation}
   where
-  $Z_{U}(\alpha) := \sum_{\omega \in \Omega}\exp\left(\frac{1}{\alpha}U(\omega)\right)$ is a normalization constant called the \textit{partition function} of $U$.
+
+  \begin{equation}
+    Z_{U}(\alpha) := \sum_{\omega \in \Omega}\exp\left(\frac{1}{\alpha}U(\omega)\right)
+  \end{equation}
+  is a normalization constant called the \textit{partition function} of $U$.
   It's not hard to see that $U$ and the $P$ above form a conjugate pair.
 
   \paragraph{Free-utility functional.}
