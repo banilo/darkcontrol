@@ -793,7 +793,7 @@ where $E_G(\psi, \zeta)$ is the energy of an fictive thermodynamic system define
 %% In the above, the variable $\psi$ is a hidden variable, and can / should be interpreted as the unobservable state of the external world.
 The last quantity $F_G(\zeta) := \langle E_G(., \zeta) \rangle_{p_G(. |\zeta)} - \mathcal H(p_G(. |\zeta))$ in \eqref{eq:helm} is nothing other than the Helmholtz free-energy for the physical system correspond to the external world, prescribed by the generative density $p_G(\psi|\zeta)$ for the occupation of \textit{macrostates} $\psi$. Thus generative surprise and generative Helmholtz free-energy are different views on exactly the same object.
 
-The goal of the agent is then to optimize over the generative model $G$ (i.e over the generative density $p_G(.|s)$, so as to minimize their surprise. It turns out that a direct attempt to attack this optimization problem by gradient descent on the free-energy $F_G(s)$ is furtile: the parameter update steps are not ``very clean'', and require rather cumbersome and heavy computations. A workaround is then to introduce a second density $p_R(.|\zeta)$ called a \textit{recognition} density to work in tandem with the generative density $p_G(.|\zeta)$: the former dreams / fantacizes whilst the latter tries to generate sensations which match these dreams! This primal-dual idea, first proposed in Hinton et al. 1995, is at the heart ot the general free-energy principle that we'll introduce shortly.
+The goal of the brain is then to optimize over the generative model $G$ (to iteratively or analytically modify the generative density $p_G(.|s)$, so as to minimize their surprise. It turns out that a direct attempt to attack this optimization problem by gradient descent on the free-energy $F_G(s)$ is furtile: the parameter update steps are not ``very clean'', and require rather cumbersome and heavy computations. A workaround is then to introduce a second density $p_R(.|\zeta)$ called a \textit{recognition} density to work in tandem with the generative density $p_G(.|\zeta)$: the former dreams / fantacizes whilst the latter tries to generate sensations which match these dreams! This primal-dual idea, first proposed in Hinton et al. 1995, is at the heart ot the general free-energy principle that we'll introduce shortly.
 
 \subsubsection{Variational Helmholtz free-energy and the recognition density}
 In this subsection we'll develop a very insightful upper bound for the generative surprise (i.e generate Helmholtz free-energy), called the \textit{variational} (Helmholtz) free-energy. As an avant-gout of what is to come shorty, let's just that the well-known \textit{free-energy principle} is simply a workaround whereby the minimization surprise (intractable) is replaced with the  minimization a carefully chosen upper bound thereof.
@@ -847,115 +847,128 @@ where we have used the fact that KL divergence is always nonnegative. In fact, w
 \end{theorem}
 
 \subsubsection{Helmholtz machines}
-...
+% \begin{mdframed}
+  \textbf{Assumption:} In both generative and recognition components of the network, there is conditional independence of  neurons in the same layer, given the data. Precisely
+$$
+p_G(\psi^{(l)}|\zeta) = \Pi_{k=1}^{h_l}p_G(\psi_k^{(l)} | \zeta),\hspace{1cm}
+p_R(\psi^{(l)}|\zeta) = \Pi_{k=1}^{h_l}p_R(\psi_k^{(l)} |\zeta)
+$$
+% \end{mdframed}
 \subsection{The wake-sleep algorithm}
 ...
-\subsection{Friston's active-inference: an application of the Dayan's wake-sleep algorithm for training a Helmholtz machine model for the brain}
-...
+\subsection{Friston's active-inference}
+This is nothing but an application of the Dayan's wake-sleep algorithm for training a Helmholtz machine model of the brain...
 
-%% \subsection{A thermodynamic model for bounded rationality, aka robust optimality}
-%% \begin{itemize}
-%%   \item Recall that an agent is said to have \textit{bounded rationality} if they must take into account the cost of finding solutions to problems, and not just the utility of the final state.
-%%   \item For example, consider an agent that must operate under a limited lifetime and/or computation cost.
-%%   \item This is in contrast to agents with \textit{unbounded rationality} considered in classical game theory.
-%%     \end{itemize}
-%% The material presented is a revisit of \cite{braun2011path}. See also \cite{ortega2013thermodynamics}
-%% \paragraph{Utility functions and conjugate pairs.}
-%%   Let $(\Omega, \mathcal F, P)$ be a probablity space. A function $U: \mathcal F \rightarrow \mathbb R$ is said to be a \textit{utility function} for this space if the conditional utility $U(A|B) := U(A \cap B) - U(B)$ has the following propertites:
-%%   \begin{itemize}
-%%   \item additivity: $U(A_1 \cap A_2 | B) = U(A_1|B) + U(A_2|B)$, for all events $A_1, A_2, B \in \mathcal F$.    
-%%   \item statistic: there exists a function $f_{U} :\mathbb R_+ \rightarrow \mathbb R$ such that $U(A|B) = f(P(A|B))$, for all events
-%%     $A,B \in \mathcal F$.
-%%   \item monotonicity: $f_{U}$ is strictly increasing.
-%%     \end{itemize}
-
-%% \begin{theorem}
-%%   The only functions $f: \mathbb R_+ \rightarrow \mathbb R$ which is such that $U(A|B) \equiv f(P(A|B))$ any probability space $(\Omega, \mathcal F, P)$ and utility function $U$ thereupon are of the form
-%%   \begin{equation}
-%%     f = \alpha \log(.),
-%%     \label{eq:boltzmann}
-%%   \end{equation}
-%%   where $\alpha > 0$.
-%% \end{theorem}
-
-%% \textbf{XXX: equation \eqref{eq:boltzmann} above looks like Boltzmann's formula (on his gravestone...)!}
-
-%% Such $U$ and $P$ are said to form a \textit{conjugate pair} at temperature $\alpha$.
+The following critics can be made:
+\begin{itemize}
+  \item 
+    As noted by Dayan et al. (\textit{Variants of Helmholtz machines}), the inter-neuronal intra-layer independence which is at the center of the HM becomes severely problematic as it is agnostic to the known organization of cortical layers...
+    \end{itemize}
 
 
-%% \paragraph{Example.}
-%% Given a utility function $U$ on a probability space $(\Omega, \mathcal F, *)$, the \textit{Gibbs measure} at temperature $\alpha > 0$ and energy levels $(-U(\omega))_{\omega \in \Omega}$ is defined to be the probability measure (on thesame measurable space)
-%%   \begin{equation}
-%%     P(\omega) = \frac{1}{Z_{U}(\alpha)}\exp\left(\frac{1}{\alpha}U(\omega)\right), \; \forall \omega \in \Omega,
-%%   \end{equation}
-%%   where
+\subsection{A thermodynamic model for bounded rationality, aka robust optimality}
+\begin{itemize}
+  \item Recall that an agent is said to have \textit{bounded rationality} if they must take into account the cost of finding solutions to problems, and not just the utility of the final state.
+  \item For example, consider an agent that must operate under a limited lifetime and/or computation cost.
+  \item This is in contrast to agents with \textit{unbounded rationality} considered in classical game theory.
+    \end{itemize}
+The material presented is a revisit of \cite{braun2011path}. See also \cite{ortega2013thermodynamics}
+\paragraph{Utility functions and conjugate pairs.}
+  Let $(\Omega, \mathcal F, P)$ be a probablity space. A function $U: \mathcal F \rightarrow \mathbb R$ is said to be a \textit{utility function} for this space if the conditional utility $U(A|B) := U(A \cap B) - U(B)$ has the following propertites:
+  \begin{itemize}
+  \item additivity: $U(A_1 \cap A_2 | B) = U(A_1|B) + U(A_2|B)$, for all events $A_1, A_2, B \in \mathcal F$.    
+  \item statistic: there exists a function $f_{U} :\mathbb R_+ \rightarrow \mathbb R$ such that $U(A|B) = f(P(A|B))$, for all events
+    $A,B \in \mathcal F$.
+  \item monotonicity: $f_{U}$ is strictly increasing.
+    \end{itemize}
 
-%%   \begin{equation}
-%%     Z_{U}(\alpha) := \sum_{\omega \in \Omega}\exp\left(\frac{1}{\alpha}U(\omega)\right)
-%%   \end{equation}
-%%   is a normalization constant called the \textit{partition function} of $U$.
-%%   It's not hard to see that $U$ and the $P$ above form a conjugate pair.
+\begin{theorem}
+  The only functions $f: \mathbb R_+ \rightarrow \mathbb R$ which is such that $U(A|B) \equiv f(P(A|B))$ any probability space $(\Omega, \mathcal F, P)$ and utility function $U$ thereupon are of the form
+  \begin{equation}
+    f = \alpha \log(.),
+    \label{eq:boltzmann}
+  \end{equation}
+  where $\alpha > 0$.
+\end{theorem}
 
-%%   \paragraph{Free-utility functional.}
-%%     Let $(U, P)$ be a conjugate pair at temperature $\alpha > 0$  on a measurable space $(\Omega, \mathcal F)$. Given another probability measure $P'$ on the same space, define it's \textit{free utility} as
-%%     \begin{equation}
-%%       J(P'|U, P) = \langle U \rangle_{P'} + \alpha \mathcal H(P'),
-%%     \label{eq:free_u}
-%%     \end{equation}
-%%     where
-%%     \begin{equation}
-%%       \mathcal H(P') := \langle \log(P') \rangle_{P'} := -\sum_{\omega \in \Omega}P'(\omega)\log(P'(\omega))
-%%     \end{equation}
-%%     is the \textit{entropy} of $P'$ (measured in the Naperian base $e \approx 2.73$). It's not difficult to establish the upper bound
-%%   \begin{equation}
-%%     J(P'|U) \le J(P|U) = \sum_{\omega \in \Omega}U(\omega) =: U(\Omega).
-%%   \end{equation}
-%%   In particular, if $P$ is the Gibbs measure at temperature $\alpha$ corresponding to $U$, then the upper bound above reduces to the \textit{log-partition function}
-%%   \begin{equation}
-%%     J(P'|U) \le U(\Omega) = -\alpha \log(Z_{U}(\alpha)).
-%%     \end{equation}
+\textbf{XXX: equation \eqref{eq:boltzmann} above looks like Boltzmann's formula (on his gravestone...)!}
 
-%%   \paragraph{The free-energy / utility principle (of Friston ?).}
-%%   We are now in shape to introduce the notion of free-energy for model transitions, and a variational principle for optimizing it. Consider thus an initial system described by a conjugate pair $(U_{\text{ini}}, P_{\text{ini}})$ at temperature $\alpha > 0$. We want to transform this to a new model by adding constraints represented by the utility function $\Delta U$.  The resulting system has final utility $U_{\text{fin}} = U_{\text{ini}} + \Delta U$. The difference in free-utility is then
-%%   \begin{equation}
-%%     \Delta J_{(U_{\text{ini}}, P_{\text{ini}}) \rightarrow P_{\text{fin}}} := J_{\text{fin}} - J_{\text{ini}} = \underbrace{\langle \Delta U\rangle_{P_{\text{fin}}}}_{\textbf{accuracy}} -  \underbrace{\alpha D_{\text{KL}}(P_{\text{ini}}\|P_{\text{fin}})}_{\textbf{complexity}},
-%%     \label{eq:free}
-%%   \end{equation}
-%%   where
-%%   \begin{equation}
-%%     D_{\text{KL}}(P_{\text{fin}}\|P_{\text{ini}}) := \langle \log(\P_{\text{fin}}/\P_{\text{ini}})\rangle_{\P_{\text{fin}}} := \sum_{\omega \in \Omega}\P_{\text{fin}}(\omega)\log(\P_{\text{fin}}(\omega)/\P_{\text{ini}}(\omega))
-%%   \end{equation}
-%%   is the Kullback-Leibler divergence, and represents the information cost (measured in energy units) of changing the initial system.
-%% In the above formula, we've extensively used the fact that $(U_{\text{ini}}, P_{\text{ini}})$ is a congugate pair and so $U_{\text{ini}}(\omega) \equiv \alpha \log(P_{\text{ini}}(\omega))$ by virtue of \eqref{eq:boltzmann}.
-%%   The two terms in \eqref{eq:free} (accuracy or expected gain in utility, and the complexity of the transition) can be viewed as dertiminants of bounded rational decision-making. They formalize
-%% a trade-off between an expected utility $\Delta U$ (first term) and
-%% the information cost of transforming Pi
-%% into $P_{\text{fin}}$ (second
-%% term). In this interpretation $P_{\text{ini}}$ represents an initial choice
-%% probability or policy, which includes the special case of the
-%% uniform distribution where the decision-maker has initially no
-%% preferences between the different choices. The probability measure $P_{\text{fin}}$ is the final choice probability that we are looking for since it
-%% considers the utility constraint U∗
-%% that we want to optimize. We can then formulate a variational principle for bounded rationality in the probabilities $P_{\text{fin}}(\omega)$
-%% \begin{equation}
-%% P^*_{\text{fin}} := \underset{P_{\text{fin}}}{\text{argmax }} \Delta J_{(U_{\text{ini}}, P_{\text{ini}}) \rightarrow P_{\text{fin}}}
-%%   \end{equation}
+Such $U$ and $P$ are said to form a \textit{conjugate pair} at temperature $\alpha$.
 
-%% By differentiating the RHS of \eqref{eq:free} w.r.t $P_{\text{fin}}$ and setting to zero, we obtain the closed-form solution
 
-%% \begin{equation}
-%%   P^*_{\text{fin}}(\omega) \propto P_{\text{ini}}(\omega)\exp\left(\frac{1}{\alpha}\Delta U(\omega)\right).
-%% \end{equation}
+\paragraph{Example.}
+Given a utility function $U$ on a probability space $(\Omega, \mathcal F, *)$, the \textit{Gibbs measure} at temperature $\alpha > 0$ and energy levels $(-U(\omega))_{\omega \in \Omega}$ is defined to be the probability measure (on thesame measurable space)
+  \begin{equation}
+    P(\omega) = \frac{1}{Z_{U}(\alpha)}\exp\left(\frac{1}{\alpha}U(\omega)\right), \; \forall \omega \in \Omega,
+  \end{equation}
+  where
 
-%% Two limit cases are worth considering.
-%% \begin{itemize}
-%% \item \textbf{Low-temperature regime $\alpha \approx 0$:} Here $\Delta J_{(U_{\text{ini}}, P_{\text{ini}}) \rightarrow P_{\text{fin}}} \approx \langle \Delta U\rangle_{P'_{\text{fin}}}$, and so it's optimal to take
-%%   $$P^*_{\text{fin}}(\omega) \equiv \text{dirac}(\omega - \omega^*) = \begin{cases}1, &\mbox{if }\omega = \omega^*,\\0, &\mbox{ otherwise,}\end{cases}$$
-%%   where $\omega^* := \argmax_{\omega \in \Omega}U(\omega)$. This corresponds to unbounded rational decision-making, in which the cost of transition / problem-solving is completely disregarded.
-%%   \item \textbf{High-temperature regime $\alpha \rightarrow +\infty$:} In this limiting case, it's optimal to take $P^*_{\text{fin}}(\omega) \equiv P_{\text{ini}}(\omega)$, i.e the change is so costly that it's optimal to maintain the current choice probabilities.
-%% \end{itemize}
+  \begin{equation}
+    Z_{U}(\alpha) := \sum_{\omega \in \Omega}\exp\left(\frac{1}{\alpha}U(\omega)\right)
+  \end{equation}
+  is a normalization constant called the \textit{partition function} of $U$.
+  It's not hard to see that $U$ and the $P$ above form a conjugate pair.
 
-%% To conclude this section, let's note that \cite{braun2011path} show how their free-energy framework (on paths) links with the well-known Hamilton-Jacobi-Bellman optimal control framework. For example, one can re-derive the Linear Quadratic Gaussian (LQG) controller, which is a generalization of the LQR in \eqref{eq:hj}...
+  \paragraph{Free-utility functional.}
+    Let $(U, P)$ be a conjugate pair at temperature $\alpha > 0$  on a measurable space $(\Omega, \mathcal F)$. Given another probability measure $P'$ on the same space, define it's \textit{free utility} as
+    \begin{equation}
+      J(P'|U, P) = \langle U \rangle_{P'} + \alpha \mathcal H(P'),
+    \label{eq:free_u}
+    \end{equation}
+    where
+    \begin{equation}
+      \mathcal H(P') := \langle \log(P') \rangle_{P'} := -\sum_{\omega \in \Omega}P'(\omega)\log(P'(\omega))
+    \end{equation}
+    is the \textit{entropy} of $P'$ (measured in the Naperian base $e \approx 2.73$). It's not difficult to establish the upper bound
+  \begin{equation}
+    J(P'|U) \le J(P|U) = \sum_{\omega \in \Omega}U(\omega) =: U(\Omega).
+  \end{equation}
+  In particular, if $P$ is the Gibbs measure at temperature $\alpha$ corresponding to $U$, then the upper bound above reduces to the \textit{log-partition function}
+  \begin{equation}
+    J(P'|U) \le U(\Omega) = -\alpha \log(Z_{U}(\alpha)).
+    \end{equation}
+
+  \paragraph{The free-energy / utility principle (of Friston ?).}
+  We are now in shape to introduce the notion of free-energy for model transitions, and a variational principle for optimizing it. Consider thus an initial system described by a conjugate pair $(U_{\text{ini}}, P_{\text{ini}})$ at temperature $\alpha > 0$. We want to transform this to a new model by adding constraints represented by the utility function $\Delta U$.  The resulting system has final utility $U_{\text{fin}} = U_{\text{ini}} + \Delta U$. The difference in free-utility is then
+  \begin{equation}
+    \Delta J_{(U_{\text{ini}}, P_{\text{ini}}) \rightarrow P_{\text{fin}}} := J_{\text{fin}} - J_{\text{ini}} = \underbrace{\langle \Delta U\rangle_{P_{\text{fin}}}}_{\textbf{accuracy}} -  \underbrace{\alpha D_{\text{KL}}(P_{\text{ini}}\|P_{\text{fin}})}_{\textbf{complexity}},
+    \label{eq:free}
+  \end{equation}
+  where
+  \begin{equation}
+    D_{\text{KL}}(P_{\text{fin}}\|P_{\text{ini}}) := \langle \log(\P_{\text{fin}}/\P_{\text{ini}})\rangle_{\P_{\text{fin}}} := \sum_{\omega \in \Omega}\P_{\text{fin}}(\omega)\log(\P_{\text{fin}}(\omega)/\P_{\text{ini}}(\omega))
+  \end{equation}
+  is the Kullback-Leibler divergence, and represents the information cost (measured in energy units) of changing the initial system.
+In the above formula, we've extensively used the fact that $(U_{\text{ini}}, P_{\text{ini}})$ is a congugate pair and so $U_{\text{ini}}(\omega) \equiv \alpha \log(P_{\text{ini}}(\omega))$ by virtue of \eqref{eq:boltzmann}.
+  The two terms in \eqref{eq:free} (accuracy or expected gain in utility, and the complexity of the transition) can be viewed as dertiminants of bounded rational decision-making. They formalize
+a trade-off between an expected utility $\Delta U$ (first term) and
+the information cost of transforming Pi
+into $P_{\text{fin}}$ (second
+term). In this interpretation $P_{\text{ini}}$ represents an initial choice
+probability or policy, which includes the special case of the
+uniform distribution where the decision-maker has initially no
+preferences between the different choices. The probability measure $P_{\text{fin}}$ is the final choice probability that we are looking for since it
+considers the utility constraint U∗
+that we want to optimize. We can then formulate a variational principle for bounded rationality in the probabilities $P_{\text{fin}}(\omega)$
+\begin{equation}
+P^*_{\text{fin}} := \underset{P_{\text{fin}}}{\text{argmax }} \Delta J_{(U_{\text{ini}}, P_{\text{ini}}) \rightarrow P_{\text{fin}}}
+  \end{equation}
+
+By differentiating the RHS of \eqref{eq:free} w.r.t $P_{\text{fin}}$ and setting to zero, we obtain the closed-form solution
+
+\begin{equation}
+  P^*_{\text{fin}}(\omega) \propto P_{\text{ini}}(\omega)\exp\left(\frac{1}{\alpha}\Delta U(\omega)\right).
+\end{equation}
+
+Two limit cases are worth considering.
+\begin{itemize}
+\item \textbf{Low-temperature regime $\alpha \approx 0$:} Here $\Delta J_{(U_{\text{ini}}, P_{\text{ini}}) \rightarrow P_{\text{fin}}} \approx \langle \Delta U\rangle_{P'_{\text{fin}}}$, and so it's optimal to take
+  $$P^*_{\text{fin}}(\omega) \equiv \text{dirac}(\omega - \omega^*) = \begin{cases}1, &\mbox{if }\omega = \omega^*,\\0, &\mbox{ otherwise,}\end{cases}$$
+  where $\omega^* := \argmax_{\omega \in \Omega}U(\omega)$. This corresponds to unbounded rational decision-making, in which the cost of transition / problem-solving is completely disregarded.
+  \item \textbf{High-temperature regime $\alpha \rightarrow +\infty$:} In this limiting case, it's optimal to take $P^*_{\text{fin}}(\omega) \equiv P_{\text{ini}}(\omega)$, i.e the change is so costly that it's optimal to maintain the current choice probabilities.
+\end{itemize}
+
+To conclude this section, let's note that \cite{braun2011path} show how their free-energy framework (on paths) links with the well-known Hamilton-Jacobi-Bellman optimal control framework. For example, one can re-derive the Linear Quadratic Gaussian (LQG) controller, which is a generalization of the LQR in \eqref{eq:hj}...
 
 
 \section{Relation to Other Cognitive Models (Danilo)}
