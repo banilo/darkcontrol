@@ -757,9 +757,9 @@ and the time-varying positive semi-definite matrix $\P(t)$ solves following diff
 The model proposed in \cite{betzel2016} can be cast in the form \eqref{eq:hj}, with the particular choice $\Q = \textbf{I} = \rho^{-1}\R$ and $\Q_{\text{fin}} = \textbf{0}$, but with a rather ad-hoc handle on stability issues and choice driver nodes...
 
 \subsection{Demystifying the free-energy principle and active-inference}
-The free-energy principle in it's present form (including notions like ``generative density'', ``recognition density'', etc.) can be traceback to works of Dayan \& Hinton \cite{dayan1995helmholtz} in which the introduced the so-called Helmholtz machine...
+The free-energy principle in it's present form (including notions like ``generative density'', ``recognition density'', etc.) can be traced back to works of Dayan \& Hinton \cite{dayan1995helmholtz} in which they introduced the so-called \textit{Helmholtz machine}, a hierarchical factorial directional deep belief-net.
 
-In this section we will develop from first-principles, the bare-bones minimalistic ideas needed to build a free-energy principle for general decision-making. This ideas were first developed by Hinton et al. in the early 90s in the form of the so-called  \textit{Helmholtz machine}, a hierarchical factorial directional deep-belief net. Theories like Friston's free-energy principle and active-inference will then emerge as particular instances of this general framework, with particular design choises. For example the Friston theory axiomatizes that the brain uses a (problematic, as it implicitly assumes that posterior of each hidden unit is factorial, e.g) wake-sleep algorithm to train the underlying Helmholtz machine, etc.
+In this section we will develop from first-principles, the bare-bones minimalistic ideas needed to build a free-energy principle for general decision-making. This ideas were first developed by Hinton et al. in the early 90s in building their Helmholtz machine. Theories like Friston's free-energy principle and active-inference will then emerge as particular instances of this general framework, with particular design choises. For example the Friston theory axiomatizes that the brain uses a (problematic, as it implicitly assumes that posterior of each hidden unit is factorial, e.g) wake-sleep algorithm to train the underlying Helmholtz machine, etc.
 \begin{table}[H]
   \begin{tabular}{p{2cm}|p{11cm}}
          \hline
@@ -792,7 +792,7 @@ Our starting point will be to build an approximation $p_G$ for the true density 
   \end{split}
   \label{eq:helm}
 \end{eqnarray}
-where $E_G(\psi, \zeta)$ is the energy of a fictive thermodynamic system defined by setting
+where $E_G(\psi, \zeta)$ is the energy at \textit{macrostate} $\psi$ of a fictive thermodynamic system defined by setting
 \begin{equation}
   E_G(\psi, \zeta) := -\log(p_G(\psi, \zeta)).
   \label{eq:gibbs}
@@ -802,12 +802,12 @@ The last quantity in \eqref{eq:helm} defined formally as
 \begin{equation}
   F_G(\zeta) := \langle E_G(., \zeta) \rangle_{p_G(. |\zeta)} - \mathcal H(p_G(. |\zeta))
 \end{equation}
-is the \textit{Helmholtz free-energy} of the external world, modelled as the physical system for which $p_G(\psi|\zeta)$ dictates the occupation probabilities of \textit{macrostates} $\psi$.
+is the \textit{Helmholtz free-energy} of the external world, modelled as the physical system for which $p_G(\psi|\zeta)$ dictates the occupation probabilities of macrostates $\psi$.
 Thus generative surprise and generative Helmholtz free-energy are different views on exactly the same object.
 
-The goal of the brain is then to optimize over the generative model $G$ (to iteratively or analytically modify the generative density $p_G(.|s)$, so as to minimize their surprise. It turns out that a direct attempt to attack this optimization problem by gradient descent on the free-energy $F_G(s)$ is furtile: the parameter update steps are not ``very clean'', and require rather cumbersome and heavy computations. A workaround is then to introduce a second density $p_R(.|\zeta)$ called a \textit{recognition} density to work in tandem with the generative density $p_G(.|\zeta)$: the former dreams / fantacizes whilst the latter tries to generate sensations which match these dreams! This primal-dual idea, first proposed in Hinton et al. 1995, is at the heart ot the general free-energy principle that we'll introduce shortly.
+The goal of the brain is then to optimize over the generative model $G$ (to iteratively or analytically modify the generative density $p_G(.|s)$, so as to minimize their surprise. It turns out that a direct attempt to attack this optimization problem by gradient descent on the free-energy $F_G(s)$ is furtile: the parameter update steps are not ``very clean'', and require rather cumbersome and heavy computations. A workaround is then to introduce a second density $p_R(.|\zeta)$ called a \textit{recognition} density to work in tandem with the generative density $p_G(.|\zeta)$: the former dreams / fantacizes whilst the latter tries to generate sensations which match these dreams! This primal-dual idea, first proposed in Hinton et al. 1995, is at the heart of the general free-energy principle that we'll introduce shortly.
 
-\subsubsection{Variational Helmholtz free-energy and the recognition density}
+\subsubsection{Variational Helmholtz free-energy and the bottom-up recognition sub-model}
 In this subsection we'll develop a very insightful upper bound for the generative surprise (i.e generate Helmholtz free-energy), called the \textit{variational} (Helmholtz) free-energy. As an avant-gout of what is to come shorty, let's just that the well-known \textit{free-energy principle} is simply a workaround whereby the minimization surprise (intractable) is replaced with the  minimization a carefully chosen upper bound thereof.
 
 Now, invoking \eqref{eq:gibbs} and applying Bayes rule, we get the Gibbs
@@ -879,7 +879,7 @@ The following critics can be made:
     \end{itemize}
 
 
-\subsection{SGVB: an algorithm which truely minimizes the free-energy bound}
+\subsection{Free-energy minimization via bayesian auto-encoders}
 Following Kingma et al. 2014 \cite{kingma2013auto}, define the data-dependent auxiliary random function
 \begin{eqnarray}
   f_{G,R}(., \zeta) :\psi \mapsto \log(p_G(\psi,\zeta)) - \log(p_R(\psi|\zeta)).
@@ -1114,6 +1114,6 @@ From the perspective of the human condition, it remains unclear what the nature 
 
 \small
 \bibliographystyle{splncs03}
-\bibliography{nips_refs}
+\bibliography{refs}
 
 \end{document}
