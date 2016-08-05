@@ -17,13 +17,10 @@ rm *.lof
 rm *.toc
 rm *.run.xml
 rm *.synctex.gz
-pdflatex -interaction=nonstopmode -file-line-error-style -synctex=1 paper.tex
 
+pdflatex paper
 bibtex paper
-pdflatex -interaction=nonstopmode -file-line-error-style -synctex=1 paper
-pdflatex -interaction=nonstopmode -file-line-error-style -synctex=1 paper
-# makeindex -s paper.idx -t paper.glsdef -o paper.acr paper.acn
+pdflatex paper
+pdflatex paper
 makeglossaries paper
-pdflatex -interaction=nonstopmodxe -file-line-error-style -synctex=1 paper
-
-open paper.pdf
+pdflatex paper
