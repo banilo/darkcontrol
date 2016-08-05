@@ -759,11 +759,12 @@ In this section we will develop from first-principles, the bare-bones minimalist
 \begin{table}[H]
   \begin{tabular}{p{2cm}|p{11cm}}
          \hline
-         \textbf{variable}    & \textbf{short description}  \\ \hline
+         \textbf{symbol}    & \textbf{description}  \\ \hline
          $\langle E\rangle_p$ & Expectation (a.k.a average) of the
-         random quantity $E$ w.r.t to the probability density $p$.\\ \hline
-         $\mathcal H$ & The usual information-theoretic entropy operator.\\ \hline
-         $D_{KL}(p||q)$ & The Kullback-Leibler divergence between the probability densities $p$ and $q$. \\ \hline
+         random quantity $E$ w.r.t to the probability density $p$, formally defined by $\langle E\rangle_p := \sum_{z}p(z)E(z)$.\\ \hline
+         $\mathcal H(p)$ & Information-theoretic entropy of a probability density $p$, formally defined by $\mathcal H(p) := -\sum_{z}p(z)\log(p(z))$,
+          with the usual convention $0 \log(0) := 0$.\\ \hline
+         $D_{KL}(q||p)$ & The Kullback-Leibler divergence between the probability densities $q$ and $p$ respectively, formally defined by $D_{KL}(q||p) := \sum_{z}q(z)\log(q(z)/p(z))$.\\ \hline
              $\zeta$ & Observations. In Friston's free-energy principle this has a decomposition in to two terms: the brain's internal state $b$ and sensory inputs $s$, i.e $\zeta = (s, b).$ \\ \hline
              $\psi$ & Hidden variables. This should be understood as the unobservable states of the external environment (to which the brain is trying to adapt by learning).\\ \hline
              $p_G(.|\zeta)$ & Generative density for ...\\ \hline
@@ -854,7 +855,7 @@ where we have used the fact that KL divergence is always nonnegative.
 %%     \end{equation}
 %% \end{theorem}
 
-\subsubsection{Helmholtz machines}
+\subsubsection{Helmholtz machines and the wake-sleep algorithm}
 % \begin{mdframed}
   \textbf{Assumption:} In both generative and recognition components of the network, there is conditional independence of  neurons in the same layer, given the data. Precisely
 $$
@@ -862,9 +863,8 @@ p_G(\psi^{(l)}|\zeta) = \Pi_{k=1}^{h_l}p_G(\psi_k^{(l)} | \zeta),\hspace{1cm}
 p_R(\psi^{(l)}|\zeta) = \Pi_{k=1}^{h_l}p_R(\psi_k^{(l)} |\zeta)
 $$
 % \end{mdframed}
-\subsection{The wake-sleep algorithm}
-...
-\subsection{Friston's active-inference}
+
+\subsubsection{Friston's active-inference}
 This is nothing but an application of the Dayan's wake-sleep algorithm for training a Helmholtz machine model of the brain...
 
 The following critics can be made:
@@ -875,19 +875,31 @@ The following critics can be made:
     \end{itemize}
 
 
-\subsubsection{Free-energy minimization via a stochastic gradient variation bayes estimator}
-\textbf{XXX see Kingma 2014 -- 2014: the poor boy is minimizing FE without knowing!}
-\begin{equation}
+\subsection{SGVB: an algorithm which truely minimizes the free-energy bound}
+Following Kingma et al. 2014 \cite{kingma2013auto}, define the data-dependent auxiliary random function
+\begin{eqnarray}
+  f_{G,R}(., \zeta) :\psi \mapsto \log(p_G(\psi,\zeta)) - \log(p_R(\psi|\zeta)).
+\end{eqnarray}
+Then we can rewrite the
+variational free-energy as
+\begin{eqnarray*}
   \begin{split}
-    F_G^R(\zeta) &:= \langle E_G(., \zeta) \rangle_{p_R(. |\zeta)} - \mathcal H(p_R(. |\zeta)) = \langle E_G(., \zeta) - \log(p_R(.|\zeta))\rangle_{P_R(.|\zeta)}\\
-    &=\langle \Delta E_{G \rightarrow R}(., \zeta)\rangle_{P_R(.|\zeta)}
+    F_G^R(\zeta) &:= \langle E_G(., \zeta) \rangle_{p_R(. |\zeta)} - \mathcal H(p_R(. |\zeta)) = \langle E_G(., \zeta) + \log(p_R(.|\zeta))\rangle_{P_R(.|\zeta)}\\
+    &=\langle -\log(p_G(.,\zeta)) + \log(p_R(.|\zeta))\rangle_{P_R(.|\zeta)}\\
+    &= -\langle f_{G,R}\rangle_{P_R(.|\zeta)} \approx -\frac{1}{M}\sum_{m=1}^Mf_{G,R}(\psi^{(m)}), \text{ with }\psi^{(1)},\ldots,\psi^{(M)} \sim p_R(.|\zeta), \text{ and }M \rightarrow \infty.
     \end{split}
-\end{equation}
+\end{eqnarray*}
 
-For fixed $p_G(.|\zeta)$, the optimal choice for $p_R(.|\zeta)$ is given analytically by
-\begin{equation}
-  p_R(\psi|\zeta) \propto p_G(\psi|\zeta)\exp(-\Delta E_{G \rightarrow R}(\psi, \zeta)).
-\end{equation}
+\begin{mdframed}
+  \textbf{Problem:} How do we sample from the recognition density $p_R(.|\zeta)$ in such a way that the sampling process is differentiable w.r.t the weights of the recognition network $\textbf{W}^R$ ?
+\end{mdframed}
+\paragraph{Solution: The reparametrization trick.}
+
+
+%% For fixed $p_G(.|\zeta)$, the optimal choice for $p_R(.|\zeta)$ is given analytically by
+%% \begin{equation}
+%%   p_R(\psi|\zeta) \propto p_G(\psi|\zeta)\exp(-\Delta E_{G \rightarrow R}(\psi, \zeta)).
+%% \end{equation}
 
 %% \subsection{A thermodynamic model for bounded rationality, aka robust
 %%   optimality}
