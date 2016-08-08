@@ -753,19 +753,19 @@ and the time-varying positive semi-definite matrix $\P(t)$ solves following diff
 \end{split}
 \end{equation}
 %% \subsection{Minimal control energy controller}
-\subsubsection{Related works}
-The model proposed in \cite{betzel2016} can be cast in the form \eqref{eq:hj}, with the particular choice $\Q = \textbf{I} = \rho^{-1}\R$ and $\Q_{\text{fin}} = \textbf{0}$, but with a rather ad-hoc handle on stability issues and choice driver nodes...
 
 \subsection{Demystifying the free-energy principle and active-inference}
 The free-energy principle in it's present form (including notions like ``generative density'', ``recognition density'', etc.) can be traced back to works of Dayan \& Hinton \cite{dayan1995helmholtz} in which they introduced the so-called \textit{Helmholtz machine}, a hierarchical factorial directional deep belief-net.
 
 In this section we will develop from first-principles, the bare-bones minimalistic ideas needed to build a free-energy principle for general decision-making. This ideas were first developed by Hinton et al. in the early 90s in building their Helmholtz machine. Theories like Friston's free-energy principle and active-inference will then emerge as particular instances of this general framework, with particular design choises. For example the Friston theory axiomatizes that the brain uses a (problematic, as it implicitly assumes that posterior of each hidden unit is factorial, e.g) wake-sleep algorithm to train the underlying Helmholtz machine, etc.
+
+\subsubsection{Helmholtz free-energy and the generative model}
 \begin{table}[H]
   \begin{tabular}{p{2cm}|p{11cm}}
          \hline
          \textbf{symbol}    & \textbf{description}  \\ \hline
-         $\langle E\rangle_p$ & Expectation (a.k.a average) of the
-         random quantity $E$ w.r.t to the probability density $p$, formally defined by $\langle E\rangle_p := \sum_{z}p(z)E(z)$.\\ \hline
+         $\langle X\rangle_p$ & Expectation (a.k.a average, a.k.a mean value) of the
+         random quantity $X$ w.r.t to the probability density $p$, formally defined by $\langle E\rangle_p := \sum_{z}p(z)X(z)$.\\ \hline
          $\mathcal H(p)$ & Information-theoretic entropy of a probability density $p$, formally defined by $\mathcal H(p) := -\sum_{z}p(z)\log(p(z))$,
           with the usual convention $0 \log(0) := 0$.\\ \hline
          $D_{KL}(q||p)$ & The Kullback-Leibler divergence between the probability densities $q$ and $p$ respectively, formally defined by $D_{KL}(q||p) := \sum_{z}q(z)\log(q(z)/p(z))$.\\ \hline
@@ -779,7 +779,6 @@ In this section we will develop from first-principles, the bare-bones minimalist
   \end{tabular}
   \caption{Table of notations.}
 \end{table}
-\subsubsection{Helmholtz free-energy and the generative model}
 Our starting point will be to build an approximation $p_G$ for the true density $p$ of the observations, so that this approximate density corresponds to the partition function of thermodynamic system. So,
 \begin{eqnarray}
   \begin{split}
@@ -802,20 +801,20 @@ The last quantity in \eqref{eq:helm} defined formally as
 \begin{equation}
   F_G(\zeta) := \langle E_G(., \zeta) \rangle_{p_G(. |\zeta)} - \mathcal H(p_G(. |\zeta))
 \end{equation}
-is the \textit{Helmholtz free-energy} of the external world, modelled as the physical system for which $p_G(\psi|\zeta)$ dictates the occupation probabilities of macrostates $\psi$.
+is the \textit{Helmholtz free-energy}. %% , modelled as the physical system for which $p_G(\psi|\zeta)$ dictates the occupation probabilities of macrostates $\psi$
 Thus generative surprise and generative Helmholtz free-energy are different views on exactly the same object.
 
-The goal of the brain is then to optimize over the generative model $G$ (to iteratively or analytically modify the generative density $p_G(.|s)$, so as to minimize their surprise. It turns out that a direct attempt to attack this optimization problem by gradient descent on the free-energy $F_G(s)$ is furtile: the parameter update steps are not ``very clean'', and require rather cumbersome and heavy computations. A workaround is then to introduce a second density $p_R(.|\zeta)$ called a \textit{recognition} density to work in tandem with the generative density $p_G(.|\zeta)$: the former dreams / fantacizes whilst the latter tries to generate sensations which match these dreams! This primal-dual idea, first proposed in Hinton et al. 1995, is at the heart of the general free-energy principle that we'll introduce shortly.
+The goal of the brain is then to optimize over the generative model $G$ (to iteratively or analytically modify the generative density $p_G(.|s)$, so as to minimize their surprise. It turns out that a direct attempt to attack this optimization problem by gradient descent on the free-energy $F_G(s)$ is furtile: the parameter update steps are not ``very clean'', and require rather cumbersome and heavy computations. A workaround is then to introduce a second density $p_R(.|\zeta)$ called a \textit{recognition} density to work in tandem with the generative density $p_G(.|\zeta)$, as a trick for doing approximate inference. The former dreams / fantacizes whilst the latter tries to generate sensations which match these dreams! This primal-dual idea, first proposed in Hinton et al. 1995, is at the heart of the general free-energy principle that we'll introduce shortly.
 
 \subsubsection{Variational Helmholtz free-energy and the bottom-up recognition sub-model}
-In this subsection we'll develop a very insightful upper bound for the generative surprise (i.e generate Helmholtz free-energy), called the \textit{variational} (Helmholtz) free-energy. As an avant-gout of what is to come shorty, let's just that the well-known \textit{free-energy principle} is simply a workaround whereby the minimization surprise (intractable) is replaced with the  minimization a carefully chosen upper bound thereof.
+In this subsection we'll develop a very insightful upper bound for the generative surprise (i.e generate Helmholtz free-energy), called the \textit{variational} (Helmholtz) free-energy. As an avant-gout of what is to come shorty, let's just note that the well-known \textit{free-energy principle} is simply a workaround whereby the minimization surprise (intractable) is replaced with the  minimization a carefully chosen upper bound thereof.
 
 Now, invoking \eqref{eq:gibbs} and applying Bayes rule, we get the Gibbs
 distribution
 \begin{equation}
   p_G(\psi|\zeta) = \frac{p_G(\psi|\zeta)}{p_G(\zeta)} = \frac{\exp(-E_G(\psi, \zeta))}{Z_G(\zeta)} = \frac{\exp(-E_G(\psi, \zeta))}{Z_G(\zeta)},
 \end{equation}
-where $Z_G(\zeta) := \log(p_G(\zeta)) = \sum_{\psi'}\exp(-E_G(\psi',\zeta))$, the normalizing partition function for the model \ref{eq:gibbs}.
+where $Z_G(\zeta) := \log(p_G(\zeta)) = \sum_{\psi'}\exp(-E_G(\psi',\zeta))$, the normalizing \textit{partition function} for the model \ref{eq:gibbs}.
 Whence $\forall \psi$, $p_G(\zeta) = Z_G(\zeta) = \exp(-E_G(\psi, \zeta)) / p_G(\psi|\zeta)$, and so we have the invariance relation
 \begin{equation}
 F_G(\zeta)\overset{\eqref{eq:helm}}{=} -\log(p_G(\zeta)) = -\log(Z_G(\zeta)) = E_G(\psi, \zeta) + \log(p_G(\psi|\zeta)).
@@ -840,8 +839,8 @@ We can resume the situation as follows:
 \begin{mdframed}
 \begin{equation}
   \begin{split}
-    \text{generative surprise } &:= -\log(p_G(\zeta)) = \underbrace{F_G(\zeta)}_{\text{generative free-energy}} \\
-    &=\underbrace{F^R_G(\zeta)}_{\text{variational free-energy}} - \underbrace{D_{KL}(P_R(.|\zeta) || P_G(.|\zeta))}_{\text{complexity}} \\
+    \text{generative surprise } &:= -\log(p_G(\zeta)) = F_G(\zeta) \\
+    &=\underbrace{F^R_G(\zeta)}_{\text{accuracy}} - \underbrace{D_{KL}(P_R(.|\zeta) || P_G(.|\zeta))}_{\text{complexity}} \\
     &\le F^R_G(\zeta),
     \text{ with equalitity if }p_R(.|\zeta) = p_G(.|\zeta),
     \end{split}
@@ -861,7 +860,7 @@ where we have used the fact that KL divergence is always nonnegative.
 
 \subsubsection{Helmholtz machines and the wake-sleep algorithm}
 % \begin{mdframed}
-  \textbf{Assumption:} In both generative and recognition components of the network, there is conditional independence of  neurons in the same layer, given the data. Precisely
+  \textbf{Assumption:} In both generative and recognition components of the network, there is conditional independence of  neurons in the same layer, given the data (i.e input from lower more primitive layers). Precisely
 $$
 p_G(\psi^{(l)}|\zeta) = \Pi_{k=1}^{h_l}p_G(\psi_k^{(l)} | \zeta),\hspace{1cm}
 p_R(\psi^{(l)}|\zeta) = \Pi_{k=1}^{h_l}p_R(\psi_k^{(l)} |\zeta)
@@ -874,7 +873,7 @@ This is nothing but an application of the Dayan's wake-sleep algorithm for train
 The following critics can be made:
 \begin{itemize}
   \item 
-    As noted by Dayan et al. (\textit{Variants of Helmholtz machines}), the inter-neuronal intra-layer independence which is at the center of the HM becomes severely problematic as it is agnostic to the known organization of cortical layers...
+    As noted by Dayan et al. (\textit{Variants of Helmholtz machines}), the inter-neuronal intra-layer independence assumption which is at the center of the HM becomes severely problematic as it is agnostic to the known organization of cortical layers...
     \item A drawback of the wake-sleep algorithm is that it requires a concurrent models (generative and recognitiion), which together do not correspond to optimization of (a bound of) the marginal likelihood (because of the incorrect KL used therein, etc.).
     \end{itemize}
 
@@ -1074,7 +1073,9 @@ Our computational account can explain why the DMN is implicated in both a goal-d
 
 \section{Relation to Other Statistical Models (Elvis)}
 \paragraph{Control Theory.}
-abc
+\begin{itemize}
+  \item The model proposed in \cite{betzel2016} can be cast in the form \eqref{eq:hj}, with the particular choice $\Q = \textbf{I} = \rho^{-1}\R$ and $\Q_{\text{fin}} = \textbf{0}$, but with a rather ad-hoc handle on stability issues and choice driver nodes...
+\end{itemize}
 
 \paragraph{Reinforcement Learning.}
 abc
