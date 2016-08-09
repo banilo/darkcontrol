@@ -70,6 +70,7 @@
 \def\R{\mathbf{R}}
 \def\Q{\mathbf{Q}}
 \def\P{\mathbf{P}}
+\def\W{\mathbf{W}}
 \def\K{\mathbf{K}}
 \def\a{\mathbf{a}}
 \def\b{\mathbf{b}}
@@ -755,7 +756,7 @@ and the time-varying positive semi-definite matrix $\P(t)$ solves following diff
 %% \subsection{Minimal control energy controller}
 
 \subsection{Demystifying the free-energy principle and active-inference}
-The free-energy principle in it's present form (including notions like ``generative density'', ``recognition density'', etc.) can be traced back to works of Dayan \& Hinton \cite{dayan1995helmholtz} in which they introduced the so-called \textit{Helmholtz machine}, a hierarchical factorial directional deep belief-net.
+The so-called free-energy principle in its present form (including notions like ``generative density'', ``recognition density'', etc.) can be traced back to works of Dayan \& Hinton \cite{dayan1995helmholtz} in which they introduced the so-called \textit{Helmholtz machine}, a hierarchical factorial directional deep belief-net.
 
 In this section we will develop from first-principles, the bare-bones minimalistic ideas needed to build a free-energy principle for general decision-making. This ideas were first developed by Hinton et al. in the early 90s in building their Helmholtz machine. Theories like Friston's free-energy principle and active-inference will then emerge as particular instances of this general framework, with particular design choises. For example the Friston theory axiomatizes that the brain uses a (problematic, as it implicitly assumes that posterior of each hidden unit is factorial, e.g) wake-sleep algorithm to train the underlying Helmholtz machine, etc.
 
@@ -809,7 +810,7 @@ The goal of the brain is then to optimize over the generative model $G$ (to iter
 \subsubsection{Variational Helmholtz free-energy and the bottom-up recognition sub-model}
 In this subsection we'll develop a very insightful upper bound for the generative surprise (i.e generate Helmholtz free-energy), called the \textit{variational} (Helmholtz) free-energy. As an avant-gout of what is to come shorty, let's just note that the well-known \textit{free-energy principle} is simply a workaround whereby the minimization surprise (intractable) is replaced with the  minimization a carefully chosen upper bound thereof.
 
-Now, invoking \eqref{eq:gibbs} and applying Bayes rule, we get the Gibbs
+Invoking \eqref{eq:gibbs} and applying Bayes rule, we get the Gibbs
 distribution
 \begin{equation}
   p_G(\psi|\zeta) = \frac{p_G(\psi|\zeta)}{p_G(\zeta)} = \frac{\exp(-E_G(\psi, \zeta))}{Z_G(\zeta)} = \frac{\exp(-E_G(\psi, \zeta))}{Z_G(\zeta)},
@@ -894,9 +895,30 @@ variational free-energy as
 \end{eqnarray*}
 
 \begin{mdframed}
-  \textbf{Problem:} How do we sample from the recognition density $p_R(.|\zeta)$ in such a way that the sampling process is differentiable w.r.t the weights of the recognition network $\textbf{W}^R$ ?
+  \textbf{Problem:} How do we sample from the recognition density $p_R(.|\zeta)$ in such a way that the sampling process is differentiable w.r.t the weights of the recognition network $\W^R$ ?
 \end{mdframed}
 \paragraph{Solution: The reparametrization trick.}
+\begin{itemize}
+\item Choose $\epsilon \sim p_{\text{noise}}$ (noise distribution, independent of $\W^R$!)
+\item Set $\phi = g(\W^{R}, \zeta, \epsilon)$, where $g$ is an appropriate smooth function
+  \begin{itemize}
+  \item results in a sample $\phi \sim p_R(.|\zeta)$, from the correct
+    posterior
+    \end{itemize}
+\end{itemize}
+
+\paragraph{Examples.}
+\begin{table}[H]
+  \begin{tabular}{p{2cm}|p{1.5cm}|p{1.5cm}|p{2.2cm}|p{5cm}}
+         \hline
+         Example & $p_R(.|\zeta)$ & $p_{\text{noise}}$ & $g(\W^R,\zeta,\epsilon)$ & Also \\ \hline
+         Normal dist. & $\mathcal N(\mu,\sigma)$ & $\mathcal N(0, 1)$ & $\mu + \sigma \odot \epsilon$ & Location-scale family: Laplace, Elliptical,
+         Student’s t, Logistic, Uniform, Triangular, ... \\ \hline
+         Exponential & $\mathcal \exp(\lambda)$ & $\mathcal U(0, 1)$ & $-\log(1-\epsilon)/\lambda$ & Invertible CDF: Cauchy, Logistic, Rayleigh, Pareta, Weibull, Reciprocal, Gompert, Gumbel, Erlan, ... \\ \hline
+         Other & $\log\mathcal N(\mu,\sigma)$ & $\mathcal N(0, 1)$ & $\exp(\mu + \sigma \odot \epsilon)$ & Gamma, Dirichlet, Beta, Chi-squared, F, ... \\ \hline
+  \end{tabular}
+  \caption{Reparametrization trick for a variety of models. Kingma et al. 2014 \cite{kingma2013auto}.}
+\end{table}
 
 
 %% For fixed $p_G(.|\zeta)$, the optimal choice for $p_R(.|\zeta)$ is given analytically by
