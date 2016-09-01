@@ -31,7 +31,7 @@
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-\title{A Computational Account of Default-Mode Function\\by Control Theory and Reinforcement Learning}
+\title{A toy computational account of default-mode function by control theory and reinforcement learning}
 
 \newcommand{\fix}{\marginpar{FIX}}
 \newcommand{\new}{\marginpar{NEW}}
@@ -756,9 +756,9 @@ and the time-varying positive semi-definite matrix $\P(t)$ solves following diff
 %% \subsection{Minimal control energy controller}
 
 \subsection{Demystifying the free-energy principle and active-inference}
-The so-called free-energy principle in its present form (including notions like ``generative density'', ``recognition density'', etc.) can be traced back to works of Dayan \& Hinton \cite{dayan1995helmholtz} in which they introduced the so-called \textit{Helmholtz machine}, a hierarchical factorial directional deep belief-net.
+The so-called free-energy principle in its present form (including notions like ``generative density'', ``recognition density'', etc.) can be traced back to works of Dayan \& Hinton \cite{dayan1995helmholtz} in which they introduced the so-called \textit{Helmholtz machine}, a hierarchical factorial directional deep belief-net (DBN).
 
-In this section we will develop from first-principles, the bare-bones minimalistic ideas needed to build a free-energy principle for general decision-making. This ideas were first developed by Hinton et al. in the early 90s in building their Helmholtz machine. Theories like Friston's free-energy principle and active-inference will then emerge as particular instances of this general framework, with particular design choises. For example the Friston theory axiomatizes that the brain uses a (problematic, as it implicitly assumes that posterior of each hidden unit is factorial, e.g) wake-sleep algorithm to train the underlying Helmholtz machine, etc.
+In this section, we will develop from first-principles, the bare-bones minimalistic ideas needed to build a free-energy principle for general decision-making. This ideas were first developed by Hinton et al. in the early 90s in building their Helmholtz machine. Theories like Friston's free-energy principle and active-inference will then emerge as particular instances of this general framework, with particular design choises. For example the Friston theory axiomatizes that the brain uses a (problematic, as it implicitly assumes that posterior of each hidden unit is factorial, e.g) wake-sleep algorithm to train the underlying Helmholtz machine, etc.
 
 \subsubsection{Helmholtz free-energy and the generative model}
 \begin{table}[H]
@@ -802,13 +802,13 @@ The last quantity in \eqref{eq:helm} defined formally as
 \begin{equation}
   F_G(\zeta) := \langle E_G(., \zeta) \rangle_{p_G(. |\zeta)} - \mathcal H(p_G(. |\zeta))
 \end{equation}
-is the \textit{Helmholtz free-energy}. %% , modelled as the physical system for which $p_G(\psi|\zeta)$ dictates the occupation probabilities of macrostates $\psi$
+is the \textit{Helmholtz free-energy} (at unit temperature!). %% , modelled as the physical system for which $p_G(\psi|\zeta)$ dictates the occupation probabilities of macrostates $\psi$
 Thus generative surprise and generative Helmholtz free-energy are different views on exactly the same object.
 
-The goal of the brain is then to optimize over the generative model $G$ (to iteratively or analytically modify the generative density $p_G(.|s)$, so as to minimize their surprise. It turns out that a direct attempt to attack this optimization problem by gradient descent on the free-energy $F_G(s)$ is furtile: the parameter update steps are not ``very clean'', and require rather cumbersome and heavy computations. A workaround is then to introduce a second density $p_R(.|\zeta)$ called a \textit{recognition} density to work in tandem with the generative density $p_G(.|\zeta)$, as a trick for doing approximate inference. The former dreams / fantacizes whilst the latter tries to generate sensations which match these dreams! This primal-dual idea, first proposed in Hinton et al. 1995, is at the heart of the general free-energy principle that we'll introduce shortly.
+The goal of the brain is then to optimize over the generative model $G$: to iteratively or analytically modify the generative density $p_G(.|s)$, so as to minimize surprise. It turns out that a direct attempt to attack this optimization problem by gradient descent on the free-energy $F_G(s)$ is furtile: the parameter update steps are not ``very clean'', and require rather cumbersome and heavy computations. A workaround is then to introduce a second density $p_R(.|\zeta)$ called a \textit{recognition} density to work in tandem with the generative density $p_G(.|\zeta)$, as a trick for doing approximate inference. The former dreams / fantacizes whilst the latter tries to generate sensations which match these dreams! This primal-dual idea, first proposed in Hinton et al. 1995, is at the heart of the general free-energy principle that we'll introduce shortly.
 
 \subsubsection{Variational Helmholtz free-energy and the bottom-up recognition sub-model}
-In this subsection we'll develop a very insightful upper bound for the generative surprise (i.e generate Helmholtz free-energy), called the \textit{variational} (Helmholtz) free-energy. As an avant-gout of what is to come shorty, let's just note that the well-known \textit{free-energy principle} is simply a workaround whereby the minimization surprise (intractable) is replaced with the  minimization a carefully chosen upper bound thereof.
+In this subsection, we'll present an insightful upper bound for the generative surprise (i.e generate Helmholtz free-energy), called the \textit{variational} (Helmholtz) free-energy. As an avant-gout of what is to come shorty, let's just note that the well-known \textit{free-energy principle} is simply a workaround whereby the minimization surprise (intractable) is replaced with the  minimization a carefully chosen upper bound thereof.
 
 Invoking \eqref{eq:gibbs} and applying Bayes rule, we get the Gibbs
 distribution
@@ -877,10 +877,9 @@ The following critics can be made:
     As noted by Dayan et al. (\textit{Variants of Helmholtz machines}), the inter-neuronal intra-layer independence assumption which is at the center of the HM becomes severely problematic as it is agnostic to the known organization of cortical layers...
   \item A drawback of the wake-sleep algorithm is that it requires a concurrent models (generative and recognitiion), which together do not correspond to optimization of (a bound of) the marginal likelihood (because of the incorrect KL used therein, etc.).
   \item Also, note that the wake-sleep algorithm doesn't do backprop! This is due to
-    echnical difficulty in getting derivatives of loss function w.r.t
-    recognition wieghts $\W^R$).
-  \item This difficulty was removed in the 2010s by Kingma et al., an other groups, via some kind of ``reparametrization trick''.
-
+    technical difficulty in getting derivatives of loss function w.r.t
+    recognition weights $\W^R$).
+  \item This difficulty was removed in the 2010s by Kingma et al., an other groups, via a ``reparametrization trick''.
     \end{itemize}
 
 
@@ -1037,7 +1036,7 @@ The result is a scheme for training DBNs via good-old backprop!
 %% To conclude this section, let's note that \cite{braun2011path} show how their free-energy framework (on paths) links with the well-known Hamilton-Jacobi-Bellman optimal control framework. For example, one can re-derive the Linear Quadratic Gaussian (LQG) controller, which is a generalization of the LQR in \eqref{eq:hj}...
 
 
-\section{Relation to Other Cognitive Models (Danilo)}
+\section{Relation to other cognitive models (Danilo)}
 \paragraph{Predictive Coding and Bayesian Brain Hypothesis}
 abc
 The Predictive Coding Framework.
@@ -1098,8 +1097,8 @@ How can a same neurobiological circuit be equally important for baseline house-k
 Our computational account can explain why the DMN is implicated in both a goal-directed task and an idlying rest cognitive set? -> task is policy/value updates to optmize short-term action / rest updates for mid- and long-term action
 
 
-\section{Relation to Other Statistical Models (Elvis)}
-\paragraph{Control Theory.}
+\section{Relation to other statistical models (Elvis)}
+\paragraph{Control theory.}
 \begin{itemize}
   \item The model proposed in \cite{betzel2016} can be cast in the form \eqref{eq:hj}, with the particular choice $\Q = \textbf{I} = \rho^{-1}\R$ and $\Q_{\text{fin}} = \textbf{0}$, but with a rather ad-hoc handle on stability issues and choice driver nodes...
 \end{itemize}
