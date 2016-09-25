@@ -31,8 +31,7 @@
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-\title{A Computational Account of Default-Mode Function\\
-by Control Theory and Reinforcement Learning}
+\title{A Computational Account of Default-Mode Function\\by Control Theory and Reinforcement Learning}
 
 \newcommand{\fix}{\marginpar{FIX}}
 \newcommand{\new}{\marginpar{NEW}}
@@ -42,7 +41,7 @@ by Control Theory and Reinforcement Learning}
 \DeclareMathOperator{\Prox}{Prox}
 \DeclareMathOperator{\im}{im}
 
-% some useful macros
+% macros from michael's .tex
 \DeclareMathOperator{\dist}{dist} % The distance.
 \DeclareMathOperator{\argmin}{argmin}
 \DeclareMathOperator{\argmax}{argmax}
@@ -71,7 +70,6 @@ by Control Theory and Reinforcement Learning}
 \def\R{\mathbf{R}}
 \def\Q{\mathbf{Q}}
 \def\P{\mathbf{P}}
-\def\W{\mathbf{W}}
 \def\K{\mathbf{K}}
 \def\a{\mathbf{a}}
 \def\b{\mathbf{b}}
@@ -100,8 +98,7 @@ The default mode network (DMN) is the neural representation of the human
 baseline mental activity.
 %
 Many research streams agree on its likely role in evolutionarily adaptive envisioning of past and hypothetical scenarios to predict the environment.
-The DMN would hence be dedicated to continuous autobiographical memory retrieval,
-generation of hypothetical outcomes,
+The DMN would hence be dedicated to continuous autobiographical memory retrieval, generate hypothetical outcomes,
 and reward contingency evaluation when letting the mind go.
 It explains its highest energy consumption in the brain and its intimate coupling with conscious awareness.
 %
@@ -122,9 +119,7 @@ could offer statistical control of predictive human behavior.
 \end{abstract}
 
 % official NIPS keywords
-\textbf{\\keywords}: Systems Biology, mind wandering, cognitive science,
-autonomous learning systems
-\textbf{\\Get opinion from}: Danielle Bassett, Kai Vogeley, Mohammad Shakir
+\textbf{\\keywords}: Systems Biology, Cognitive Science, Autonomous Learning Systems
 
 \tableofcontents
 
@@ -232,324 +227,476 @@ feedback loops that produce error signals for adaptation
 
 
 
-\section{Known Neurobiological Properties of the Default-Mode Network}
+\section{The Neurobiological Properties of the Default-Mode Network}
+ involvement of the PMC across the boundaries of classical cognitive domains
 mPFC and PCC = highest metabolic consumption in the brain/highest level of basal glucose energy consumption in humans
-
-scene con- struction processes when envisioning past, fictitious, and future events (Hassabis et al., 2007; Spreng et al., 2009; Bzdok et al., 2013).
-it is not random but purposeful
-draws on conceptual knowledge acquired through experience
-operating on internal sources of information
-Computational processes with a focus on the internal world,
-when the environment is highly predictable and
-external stimuli are irrelevant.
-involvement of the PMC across the boundaries of classical cognitive domains
-
-mechanistic relevance of each node -> we deconstruct
 
 PFC
 Patients with prefrontal lesions have problems in adapting to novel situations and stimuli
 Stuss, D. T. \& Benson, D. F. The Frontal Lobes (Raven, New York, 1986).
 
-vmPFC regions respond more to the value difference that will be acted on in the current trial (executed in red), and dmPFC to the currently irrelevant value difference (modeled in blue) {Nicolle, 2012 \#3750} individual. Instead activity in vmPFC reflects a choice preference that is executed and rostral dmPFC a choice preference that is modeled. Thus, dorsal regions of rostral mPFC contain value representations in the frame of reference of a modeled (as opposed to an actuated) preference irrespective of whether this applies to another’s or to one’s own likely actions and goals. Likewise, ventral mPFC contains a representation of value in the frame of reference of an executed choice, even if this executed choice reflects one’s own or another’s preferences. dmPFC that reflects the values and preferences of another individual (here temporally discounted at a rate specific to the individual), even when they are not directly relevant to the task at hand.
+vmPFC regions respond more to the value difference that will be acted on in the current trial (executed in red), and dmPFC to the currently irrelevant value difference (modeled in blue) {Nicolle, 2012 \#3750} individual. Instead activity in vmPFC reflects a choice preference that is executed and rostral dmPFC a choice preference that is modeled. Thus, dorsal regions of rostral mPFC contain value representations in the frame of reference of a modeled (as opposed to an actuated) preference irrespective of whether this applies to another’s or to one’s own likely actions and goals. Likewise, ventral mPFC contains a representation of value in the frame of reference of an executed choice, even if this executed choice reflects one’s own or another’s preferences. dmPFC that reflects the values and preferences of another individual (here temporally discounted at a rate specific to the individual), even when they are not directly relevant to the task at hand. Critically, we also show this activity. While the simplest interpretation of this effect is that the region is simulating one’s own, currently irrelevant, preferences an alternative possibility is that the activity is projec- ting one’s own values into the mind of the partner, while simu- lating the partner’s choices. In essence, estimating the extent to which my own values would influence my partner, if they were making the choice. This iterated reasoning would be.
+
+mechanistic relevance of each node -> we deconstruct
+
+DMN function has been linked to the recollection of past episodes and the simulation of future episodes
 
 Simony 2016
 This implies that the processing timescale of the DMN is longer than the length of single paragraphs (B40s) and that information accumulated from prior paragraphs can affect ongoing processing in this system
 Our results suggest that the DMN accumulates and integrates information over minutes. Stimulus-induced correlation patterns in the DMN were largest for the intact story, greatly decreased in the paragraph scramble condition, and were almost entirely abolished in the word scramble condition.
 
 
+\begin{itemize}
+  \item
+    vmPFC:
+    \begin{itemize}
+    \item
+the vmPFC sub- serves predominantly non-ambiguous subjective-value-related evaluative processes driven by bottom-up pathways
+memory-informed reward and risk estimation of self-relevant environmental stimuli.
+\item
+the vmPFC might be more closely associated with orches- trating adapted behavior by bottom-up-driven processing of “what matters now”
+
+\item
+the vmPFC to monitoring others’ (Lotze et al., 2007) and one’s own (Lane et al., 1997; Phan et al., 2004) emotional responses, that is, other’s (external) emotional reac- tions and one’s own (visceral) arousal. Such real or imagined bodily states, believed to be represented in the vmPFC, proba- bly operate as a bioregulatory disposition governing cognition and decision making (Damasio, 1996; Nauta, 1971), in line with the vmPFC’s functional association with general cognition and reward processing.
+
+\item
+Most importantly, independent whole-brain analyses from structural neuroimaging studies related the gray-matter volume (GMV) of the vmPFC to indices of social competence and social network complex- ity in both humans and monkeys (Lebreton et al., 2009; Powell et al., 2010; Lewis et al., 2011; Sallet et al., 2011). To our knowl- edge, none of these four correlations have been found yet for the dmPFC. Consequently, vmPFC, rather than dmPFC, anatomy appears to predict an individual’s social behavioral dispositions and social network properties,
+
+\item
+With respect to our seeds, inter-individual differences in social skills or social networks were most often related to morphological differences in the human and monkey vmPFC, in stark contrast to the dmPFC
+
+\item
+self-related behavior guided by stimulus evalua- tion and reward-learning, a voxel-based lesion-symptom map- ping (VLSM) study in 344 neurological patients demonstrated functional-anatomical specificity of the vmPFC for value-based decision-making (Gläscher et al., 2012).
+
+
+\item
+As to the vmPFC subnetwork, the GMV of the vmPFC and VS correlated with indices of social reward attitudes and behavior (Lebreton et al., 2009), concur- ring with vmPFC’s relation to the NAc and reward-related tasks.
+
+\item
+In studies of decision making and neuroeconomics, ventromedial prefrontal cortex (vmPFC) con- sistently reflects an individual’s subjective valuation (Behrens et al., 2008; Boorman et al., 2009; Knutson et al., 2005; Plass- mann et al., 2007). By contrast, its dorsomedial neighbor (rostral
+
+\item
+NAC was proposed to subserve model-free reinforcement learning in humans
+(O'Doherty 2015)
+
+\item
+In both MACM and RS analy- ses, the vmPFC was more strongly connected with the nucleus accumbens (NAc), hippocampus (HC), posterior cingulate cor- tex (PCC), and retrosplenial cortex (RSC)
+In both functional decoding analyses, the vmPFC was selectively associated with reward related tasks
+
+\item
+processing approach- and avoidance-relevant stimuli
+
+\item
+Glaescher: lesions -> value-based decision making  in 344 individuals
+based decision-making, which included the orbitofrontal, ventro- medial, and frontopolar cortex.
+
+\item
+Indeed, the vmPFC, but not dmPFC, has been observed to have monosynap- tical connections with the ventral striatum (VS, which anatom- ically includes the NAc) in axonal tracing studies in monkeys (Haber et al., 1995; Ferry et al., 2000).
+This is consistent with our results and probabilistic diffusion tensor imaging (DTI) trac- tography in humans and monkeys (Croxson et al., 2005) that quantified the VS to be substantially more likely connected to the vmPFC than dmPFC in both species.
+
+\item
+the vmPFC is preferentially connected with limbic and reward-related medial brain areas.
+The NAc is thought to be linked to reward mechanisms that may not only modulate motivated behavior towards basic survival needs
+
+\item
+Such real or imagined bodily states, believed to be represented in the vmPFC, proba- bly operate as a bioregulatory disposition governing cognition and decision making (Damasio, 1996; Nauta, 1971),
+
+\item
+\end{itemize}
 
 
 
-The PMC myelinates relatively late during postnatal development in monkeys
-(Goldman-Rakic, 1987), generally considered to
-be a sign of phylogenetic sophistication (Flechsig, 1920).
-Physiological and disturbed metabolic fluctuations in the
-human PMC have been repeated related to
-phenomena of changed conscious awareness,
-including anesthesia (Fiset et al., 1999),
-sleep (Maquet, 2000), and forms of coma (Laureys et al., 1999).      
-%
-The PMC has long been speculated to reflect constant computation of
-the (external) environmental statistics and its (internal) representation
-as an "inner minds eye" (Cavanna et al., 2006).
-For instance, Bálint's syndrome is a neurological disorder of conscious
-awareness that resulting from damage in the bilateral parietal cortex.
-Patients are plaigued by an
-inability to bind various individual features of the visual
+\item
+  dmPFC:
+  \begin{itemize}
+    \item
+dmPFC subserves predominantly ambiguous amodal metacogni- tive processes driven by top-down pathways
+
+\item
+A class of neurons in macaque dorsomedial frontal cortex, including the presupplementary area, responds preferentially to the actions that another macaque makes rather than their own actions (Yoshida et al., 2011)
+Many of the same neurons differentiate between another macaque’s actions that were unsuccessful, because the circumstances changed, and actions that were unsuccessful because the other macaque did not make the best choice given the circum- stances. The macaques adjusted their own subsequent actions in different ways after these two types of obser- vations. There is also activity in human dorsomedial prefrontal cortex that reflects expectations about what an observed person will do and errors in such predictions (Suzuki et al., 2012; van Schie et al., 2004)
+
+
+\item
+largely sensory-independent, highly abstract (hence, less tangible) processes across time, space, and content domains.
+might be top-down modulated by more dmPFC subserved higher reflective and hypothetical processing.
+consistent with present functional decoding, neural activity in the dmPFC, rather than vmPFC, has been con- sistently interpreted to underlie inference, representation, and assessment of one’s own and others’ mental states in functional neuroimaging research
+
+\item
+ dmPFC (but not vmPFC) activity was related to the proficiency decline of mental state inference in elderly (Moran et al., 2012), cognitive regulation of one’s own emotional states (Ochsner et al., 2004b) and inference of another person’s emotional states (Ochsner et al., 2004a), as well as self-reported (Wagner et al., 2011) and experimentally measured (Zaki et al., 2009) proficiency in emotional state inference.
+
+ \item
+Thus, mental state inference necessarily relies on the generation of probabilistic internal information. Supported by dmPFC’s functional association with episodic memory retrieval, such prima vista non-mnemonic construction processes are likely to be subserved by the neural network underlying retrieval of past and imagination of future scenes as indicated by recent neu- roimaging experiments and meta-analyses
+
+\item
+congruently characterizes the dmPFC as a “mental sketchpad” (Goldman-Rakic, 1996) potentially impli- cated in modeling and binding plausible self- and other-related scenarios instructed by semantic concepts
+
+\item
+ sensory-independent de novo generation of mean- ing representations can only be expected from highly associative, integrative brain areas such as those of the dmPFC subnetwork
+
+\item
+the dmPFC subserves a domain-independent neural process
+
+\item
+the present results support the dmPFC’s possible involvement in domain-overarching computational mechanisms given its connections to highly associative brain areas and function- ally relation to different complex psychological processes.
+
+\item
+the dmPFC was more strongly connected with the inferior frontal gyrus (IFG), temporo-parietal junction (TPJ), and middle temporal gyrus (MTG)
+
+\item
+Concluding from previous and present connectivity findings, the dmPFC is preferentially connected with high association and heteromodal cortical areas of the lateral frontal, temporal, and parietal lobe.
+
+\item
+it is interesting to note that the vmPFC is more strongly con- nected to medial components of the default mode network (i.e., HC, PCC, RSC), whereas the dmPFC is more strongly con- nected to its lateral components (i.e., IFG, TPJ, and MTG). This dmPFC subnetwork was repeatedly related to self-focused reflec- tion (Andrews-Hanna et al., 2010), contemplation of others’ (Mar, 2011) and one’s own (Lombardo et al., 2009) mental states, mental navigation of the body in space (Maguire et al., 1997), semantic processing (Binder et al., 2009), as well as scene con- struction processes when envisioning past, fictitious, and future events (Hassabis et al., 2007; Spreng et al., 2009; Bzdok et al., 2013).
+
+
+\item
+a VLSM study on disturbed sleep (i.e., a state of mind independent of sensory stimulation but dependent on internally generated informa- tion) exclusively identified the dmPFC (Koenigs et al., 2010).
+-> experience replay during sleep
+
+\end{itemize}
+
+  \item
+    PCC (gradients):
+    \begin{itemize}
+      \item rewards (exploitation) and gathering information about alter- native options (exploration)
+Such strategic decisions should incorporate not only recent reward history, but also opportunity costs and environmental statistics
+
+\item
+covert reallocation of spatial attention (Gitelman et al., 1999), mediation between internal and external focus (Leech and Sharp, 2014), computation of environmental statistics (Pearson et al., 2009), and self-referential visuospatial imagery (Cavanna and Trimble, 2006)
+
+
+\item
+single-cell recordings in the monkey PCC demonstrated this brain region's sensitivity to subjective target utility (McCoy and Platt, 2005) and integration across individual outcomes in decision making (Pearson et al., 2009).
+ng attraction or aversion to options with uncertain or risky rewards
+. CGp activation was better predicted by the
+subjective salience of a chosen target than by its actual value.
+
+\item
+experimental psychologists and behavioral ecologists
+have long argued that decision making depends on the conversion
+of external variables into a common internal currency of value.
+
+\item
+electrophys- iological research in animals implicated the PCC in strategic selection (Pearson et al., 2009), risk assessment (McCoy and Platt, 2005), and outcome-contingent behavioral modulation (Hayden et al., 2008), while the RSC was implicated in nav- igation and approach-avoidance behavior (Vann et al., 2009).
+
+\item
+(McCoy and Platt, 2005):
+t internal representations of value lie at the very core of
+decision making,
+visual gambling task used in the current study affords a unique
+opportunity to examine neural activity under conditions in which
+subjective value, but not objective value, varied, as indicated by
+subjects’ choices
+-> value matrix is not the same in each agent
+h the direction of impending
+Our data extend those
+findings, demonstrating a direct relationship between subjective preferences
+for uncertain rewards, or the opportunity to harvest a
+relatively large reward, and the activity of neurons thought to participate
+in the allocation of attention
+movement, as shown previously24,30, and the uncertainty of rewards
+associated with this movement
+CGp appears to carry spatial information that is scaled by
+subjective preferences for particular patterns of reward outcome.
+Our data indicate that CGp
+neurons signal subjective biases for uncertain rewards (or, perhaps, the
+potential to receive a large reward) rather than objective target value.
+the spatial sensitivity of CGp neurons was enhanced under
+conditions of high risk.
+-> delay discounting / non-immediate reward -> reinforcement learning
+
+\item
+Pearson2009:
+balance. Here we show that CGp neurons distinguish be- tween exploratory and exploitative decisions made by mon- keys in a dynamic foraging task.
+ option switching [11] and integrate this information across multiple trials [11], but the present
+
+ \item
+ Together, these results invite the hypothesis that CGp is part of a network that monitors the outcomes of individual deci- sions and integrates that information into higher-level strate- gies spanning multiple choices
+
+ \item
+keys in a dynamic foraging task. Moreover, firing rates of these neurons predict in graded fashion the strategy most likely to be selected on upcoming trials. This encoding is distinct from switching between targets and is independent of the absolute magnitudes of rewards. These observations implicate CGp in the integration of individual outcomes across decision making and the modification of strategy in dynamic environments.
+recorded the activity of single cingulate cortex (CGp) neurons
+
+\item
+choosing among multiple tar-
+gets whose relative values changed dynamically,
+neurons in posterior cingulate cortex signaled the distinction between trials on which monkeys pursued an exploratory rather than an exploitative strategy.
+**learn its current value and integrate this information with their statistical knowledge of the environment to predict its relative value on upcoming trials.**
+
+
+\item
+Hayden2008: adapativity of subjective reward schedules tht impact the action choices
+ lesion (Gabriel, 1990) studies strongly implicate CGp in working mem- ory, attention, and general arousal (Raichle and Mintun, 2006)— all processes that contribute to adaptive decision making. -> gradient defect
+
+\item
+corded activity of single neurons in monkeys per- forming a gambling task in which the reward outcome of each choice strongly influenced subsequent choices.
+choices. We found that CGp neurons signaled reward outcomes in a nonlinear fashion and that outcome- contingent modulations in firing rate persisted into subsequent trials. Moreover, firing rate on any one trial predicted switching to the alternative option on the next trial. Finally, microstimulation in CGp follow- ing risky choices promoted a preference reversal for the safe option on the following trial. Collectively, these results demonstrate that CGp directly contrib- utes to the evaluative processes that support dynamic changes in decision making in volatile environments.
+
+\item
+ these observations suggest the hypothesis that CGp contributes to the integration of actions and their out- comes and thereby influences subsequent changes in behavior.
+ We confirmed a causal role for CGp in outcome evaluation and behavioral adjustment by showing that microstimulation following the most desired reward out- come increased the likelihood of exploring the alternative on the next trial.
+
+ \item
+signal decision outcomes in a nonlinear fashion, maintain this information in a buffer between trials, and predict future changes in behavior. Moreover, microstimulation in CGp promotes explo- ration of the previously antipreferred option.
+
+\item
+highlight the dynamic nature of information processing in CGp, which is not restricted to any single epoch or aspect of task performance but instead continuously adapts to changes in both the external environment and internal milieu.
+
+
+\item
+(Patho-)Physiologically, meta- bolic fluctuations in the human PMC have been closely related to vari- ous instances of altered conscious awareness, including anesthesia (Fiset et al., 1999), sleep (Maquet, 2000), and restoration from vegeta- tive states (Laureys et al., 1999).
+
+  \item
+Electrophysiologically, gamma band re- cordings in humans (Dastjerdi et al., 2011) and single-cell recordings in monkeys (Hayden et al., 2009) revealed activity reductions in the PMC during attentionally demanding tasks compared to rest.
+
+\item
+ have long been speculated to reflect constant contemplation of (external) environment and (internal) memory
+
+ \item
+   xons in parts of the PMC myelinate comparatively late during postnatal development in monkeys (Goldman- Rakic, 1987). Such late postnatal myelination is generally believed to occur in the phylogenetically most developed associations regions (Flechsig, 1920), t
+
+\item
+only cluster 2 was congruently coupled (across MACM and RSFC) with the amygdala (involved in significance evaluation) and the nucleus accumbens (involved in reward evaluation)
+s well as exclusively functionally asso- ciated with facial appraisal. Similarly, the human vPCC was the only PMC region connected to the laterobasal (rather than centromedial or superficial) nuclei group of the amygdala (Bzdok et al., 2013b), which is an amygdalar subregion probably devoted to continuously scanning environmental input for biological significance (Adolphs, 2010; Aggleton et al., 1980; Bzdok et al., 2011; Ghods-Sharifi et al., 2009; LeDoux, 2007).
+
+\item Bálint's syndrome: neurological disorder of conscious
+awareness resulting from damage in bilateral parietal cortex;
+"psychic paralysis of gaze", that is, the inability for internally
+motivated, targeted saccades hindering fixation of currently not
+attended features in the field of view (i.e., oculomotor apraxia).
+unable to bind various individual features of the visual
 environment into an integrated whole (i.e., simultanagnosia)
-as well as inability to direct action towards 
-current unattended environmental objects
-(i.e., optic ataxia).
-This can be viewed as a high-level impairment in the gathering
-of information about alternative objects (i.e., exploration) as well as
-leveraging these environmental opportunities (i.e., exploitation).
-The human PMC was congruently coupled in two functional connectivity modalities
-with the amygdala
-(involved in significance evaluation) and
-the nucleus accumbens (involved in reward evaluation).
-Specifically, the human ventral posterior cingulate cortex was
-the PMC region most connected to the laterobasal
-(rather than centromedial or superficial) nuclei group
-of the amygdala (Bzdok et al., 2013b),
-which is an amygdalar subregion probably devoted to
-continuously scanning environmental input
-for biological significance assessment
-(Adolphs, 2010; Aggleton et al., 1980; Bzdok et al., 2011; Ghods-Sharifi et al., 2009; LeDoux, 2007).
-%
-Indeed,
-electrophysiological recordings in animals implicated the PMC in
-strategic selection (Pearson et al., 2009), risk assessment (McCoy and Platt, 2005), and outcome-contingent behavioral modulation (Hayden et al., 2008),
-while its retrosplenial portion was
-more specifically implicated in approach-avoidance behavior (Vann et al., 2009).
-Neuron spiking activity in the PMC allowed distinguishing
-whether a monkey would persue an exploratory or exploitative
-behavioral strategy in a complex food foraging task (Pearson2009).
-Single-cell recordings in the monkey PMC
-demonstrated this brain region's sensitivity to
-subjective target utility (McCoy and Platt, 2005) and integration
-across individual decision-making instances (Pearson et al., 2009).
-This DMN node encoded the
-preference or aversion to options with uncertain reward outcomes
-and its spiking activity was more associated with
-subjectively perceived relevance of a chosen object
-than by its factual value, based on an internal currency of value
-In fact, direct stimulation of PMC neurons
-promoted exploratory action towards options
-with unsafe reward outcomes that were previously shunned.
-Graded changes in firing rates of PMC neurons
-that indicated changes in upcoming trials were
-distinct from neuronal firing indicating switching between choices.
-%
-The retrosplenial portion of the PMC can subserve evaluation of reward
-contingencies and action possibilities by integrating these with
-information from memory and altered perspective frames.
-Regarding memory retrieval, retrosplenial lesions have been
-consistently associated with anterograde and retrograde memory impairments
-of various kinds of sensory information
-in rabbits (Gabriel and Talk, 2001) and humans
-(Rudge and Warrington, 1991; Valenstein et al., 1987).
-Regarding perspective frames, this PMC subregion has been
-proposed to mediates between the organism's egocentric
-(i.e., focused on sensory input) and
-allocentric (i.e., focused on world knowledge) viewpoints
-in animals and humans
-(Burgess, 2008; Epstein, 2008; Valiquette and McNamara, 2007).
-%
-The PCC may consequently monitor the subjective outcomes
-of possible decisions and integrates that information
-with memory, perspective frames, and
-reward schedules into higher-level strategies. 
-Perceived value that differs across individuals updates
-statistical knowledge of the environment
-to predict delayed reward opportunities in the future.
-In doing so, the PMC continuously adapts to changes
-in both the external environment and internal milieu
-that modulate strategic behavioral adjustment in volatile environments
-to map possiblity spaces.
+as well as unable to navigate hand movement to a targeted
+object helped by vision (i.e., optic ataxia).
+difficulty avoiding running into objects placed ahead;
+challenged in estimating distances as well as perceiving
+spatial depth, object sizes and object orientation
+
+
+  \item
+    vPCC:
+the ventral visual stream—the “what” system for object process- ing (Ungerleider and Haxby, 1994; Ungerleider and Mishkin, 1982; Vogt et al., 2006), contrary to the dPCC's conceivable relation to the dorsal “where” system
+\item
+  dPCC:
+This view is in line with the well-known integration of the dPCC in the dorsal visual stream—the “where” system for spatial processing (Ungerleider and Haxby, 1994; Ungerleider and Mishkin, 1982; Vogt et al., 2006), in contrast to vPCC's relation to the ventral “what” system
+\end{itemize}
 
 
 
-The dmPFC subserves predominantly ambiguous amodal processes
-across time, space, and content domains in
-sensory-independent top-down pathways.
-This DMN node has been described as a “mental sketchpad” (Goldman-Rakic, 1996),
-potentially implicated in de-novo generation and binding
-of meaning representations instructed by stored semantics and memories.
-%
-The dmPFC may thus enable inference, representation, and assessment
-of one's own and other individuals' action and thoughts.
-For instance, neural activity in human dmPFC
-reflected expectations about other peoples actions and errors thereof
-(Suzuki et al., 2012; van Schie et al., 2004).
-dmPFC activity indeed explained the proficiency decline
-of inferring other peoples thoughts in the elderly (Moran et al., 2012).
-Some dmPFC neurons in macaque monkeys exhibited a preference
-for processing others', rather than own, behavior
-with fine-grained adjustment of contextual circumstances (Yoshida et al., 2011).
-%
-Such highly abstract neural computations necessarily rely on the
-generation of probabilistic internal information drawing from
-episodic memory retrieval, non-mnemonic scene construction processes,
-and explicit knowledge of the external world.
+\item RSC:
+  \begin{itemize}
+\item
+Regarding memory processing, lesions in the RSC, as compared to other PMC regions, is most consistently associated with anterograde and retrograde memory impairments of different types of sensory infor- mation in rabbits (Gabriel and Talk, 2001) and humans (Rudge and Warrington, 1991; Valenstein et al., 1987).
+current findings and earlier lesion reports can be parsimoniously reconciled by the previously proposed notion that the RSC mediates between the organism's egocentric (i.e., focused on sensory input) and allocentric (i.e., focused on world knowledge) perspective frames (Burgess, 2008; Epstein, 2008; Valiquette and McNamara, 2007).
 
+\item
+the left and right TPJ further differ according to their cytoarchitectonic borders and gyral pattern (Caspers et al., 2008; Caspers et al., 2006)
 
-
-The vmPFC subserves less ambiguous subjective-value-related evaluative processes
-reward-informed and risk estimation of self-relevant environmental stimuli.
-This DMN node is more closely associated with
-orchestrating adapted behavior by bottom-up-driven
-processing of “what matters now”.
-Quantative lesion findings across  344 human individuals confirmed
-a gross impairment in value-based decision making
-(Glaescher et al., 2016).
-The vmPFC is preferentially connected with limbic and reward-related areas.
-The vmPFC has been observed to have monosynap- tical connections with the ventral striatum (VS, which anatom- ically includes the NAc) in axonal tracing studies in monkeys (Haber et al., 1995; Ferry et al., 2000).
-The NAc is thought to be linked to reward mechanisms that may not only modulate motivated behavior towards basic survival needs, but also
-subserve model-free reinforcement learning in humans more broadly
-(O'Doherty 2015).
-This is consistent with diffusion MRI (dMRI) tractography in humans and monkeys (Croxson et al., 2005) that quantified the VS to be substantially more likely connected to the vmPFC than dmPFC in both species.
-Two functional connectivity modalities in humans strongly connected
-the vmPFC with the nucleus accumbens (NAc), hippocampus (HC),
-posterior cingulate cortex (PCC), and retrosplenial cortex (RSC).
-%
-The vmPFC is often proposed to be involved in (external) emotional
-reactions and own (visceral) arousal.
-Real or imaginged bodily states could be mapped in the vmPFC
-as a bioregulatory disposition governing cognition
-and decision making (Damasio, 1996; Nauta, 1971)
-In studies of decision making and neuroeconomics, ventromedial prefrontal cortex (vmPFC) con- sistently reflects an individual’s subjective valuation (Behrens et al., 2008; Boorman et al., 2009; Knutson et al., 2005; Plass- mann et al., 2007)
-This may be why performance within and across participants
-was related to state encoding in OFC.
-Such a “cognitive map” of action space was argued to encode
-the current task state even when states are unobservable from sensory input,
-which was shown to be critical for behavior.
-The GMV of the vmPFC and VS correlated with indices of social reward attitudes and value-guided behavior (Lebreton et al., 2009).
-Additionally,
-independent whole-brain analyses from structural
-neuroimaging studies related the gray-matter volume (GMV) of the vmPFC
-(more consistently than any other
-brain region) to indices of
-social competence and social network complexity,
-among the most complicated decision that humans and monkeys take
-(Lebreton et al., 2009; Powell et al., 2010; Lewis et al., 2011; Sallet et al., 2011).
-%
+\item
+Neuroscientific investigations on hemispheric specialization have converged to the left cerebral hemisphere as dominant for language functions (Broca 1865, Wernicke 1874, Lichtheim 1885) and the right hemisphere as dominant for attention functions (Gazzaniga, Bogen et al. 1965, Sperry 1982, Stephan, Marshall et al. 2003). 
+  \end{itemize}
 
 
 
 
 
-The HC is well known to be involved in memory and
-spatial navigation in animals and humans
-(von Bechterew, 1900; Scoville and Milner, 1957; O’Keefe and Dostrovsky, 1971; Maguire et al., 2000).
-Its highly recursive anatomical architecture
-may be specifically designed to allowing reconstruction
-whole episode of experience from memory fragments.
-%
-While the HC in the medial temporal lobe system
-is traditionally believed to allow remembering the past,
-there is now increasing evidence for a role
-in constructing mental models in general (Schachter/Buckner).
-Indeed,
-hippocampal damage [21,38–40] is
-not only associated with an impairment in reexperiencing the past (i.e., amnesia),
-but also thinking about one’s own future and
-imagining new fictitious experiences more broadly (Hassabis/PNAS).
-Mental scenes created by hippocampus-lesioned patients exposed a lack of
-spatial integrity, richness in detail, and overall coherence.
-%
-Single-cell recordings in the animal hippocampus revealed
-some constantly active neuronal ensembles whose firing coincided with
-distinct locations in space while the animal navigated through its surroundings.
-London taxi drivers, individuals with high performance in spatial navigation,
-were shown to exhibit increased grey matter volume in the
-posterior hippocampus (Maguire et al. 2006b).
-But encoding and generative reconstruction in the hippocampus extends
-beyond mere spatial knowledge of the environment.
-Based on large-scale recordings of hippocampal neuronal populations,
-complex spiking patterns can be followed across extended periods including
-their modification of input-free self-generated patterns
-after environmental events (buszaki2004 theta oscillations).
-Specific spiking sequences, that were elicited in experimental task conditions,
-have been shown to be reenacted spontaneously during sleep.
-Moreover, spike sequences measured in hippocampal place cells of rats
-featured reoccurred directly after experimental trials
-as well as directly before upcoming experimental trials (Diba + Buzsaki 2007).
-Such hippocampal ensemble burts during rest and sleep
-have been proposed to be critical in communicating local information
-to the neocortex for long-term storage, which includes the DMN.
-These mechanisms of the hippocampus probably make important contributions to the
-recollection of autobiographical memory episodes and other
-reexperienced or newly generated mental scenarios (Hassabias2007).
-%
-The HC thus orchestrates elements of experienced environmental aspects for
-consolidations based on reenactment and for integration into 
-rich mental scene construction. In this view, the HC my even influence
-ongoing perception in the current environment (Maguire 2016).
--> self-play in deepmind Go
--> Kai had an interesting idea: the deja-vu effect could be when you already accidentally perturbed past such that it really occures in reality later
 
 
-Finally,
-the right and left TPJ are known to have hemispheric differences
-according to their cytoarchitectonic borders and gyrification pattern
-(Caspers et al., 2008; Caspers et al., 2006).
-Neuroscientific investigations on hemispheric functional specialization
-have converged to the right versus left cerebral hemisphere as dominant for
-attention versus language functions (Broca 1865, Wernicke 1874, Lichtheim 1885;
-Gazzaniga, Bogen et al. 1965, Sperry 1982, Stephan, Marshall et al. 2003).
-%
-The aRTPJ is a key node network is central for
-action initiation during externally structured tasks and
-sensorimotor control by integrating supramodal stimulus-guided attention
-(Corbetta et al., 2002).
-Involvement of this DMN node was repeatedly reported in
-visuo-proprioceptive conflict (Balslev et al., 2005) and
-multi-modal detection of sensory changes across
-visual, auditory, or tactile stimulation in a multi-modal fMRI study
-(Downar et al., 2000).
-In humans, direct electrical stimulation of the
-RTPJ during neurosurgery was associated with altered perception
-and stimulus awareness (Blanke et al., 2002).
-%
-Importantly, the RTPJ has been shown to be intimately related to
-supramodal prediction error signaling.
-Neural activity in the RTPJ has been argued to be responsible 
-for stimulus-driven attentional reallocation to 
-salient and surprising sources of information
-as a ‘‘circuit breaker’’ that recalibrates control and maintenance systems
-(Bzdok et al., 2013; Corbetta et al., 2008).
-In the face of large discrepancies between actual and previously predicted
-environmental events the RTPJ acts a potential switch between
-externally-oriented mind sets focussed on the
-sensory world and internally-oriented mind sets focussed
-on self-relevant mind-wandering of possible mental scenarios.
-Transient RTPJ in humans for instance disrupted the
-impact of predicted intentions of other individuals (Young et al. 2010b),
-a capacity believed to be subserved by the DMN.
-The RTPJ might hence be an important player that shifts away
-from the default active ‘‘internally directed’’ processes
-to deal instead with immediate environmental objects and contexts.
--> (slow) endogeneous changes in state transitions by the policy and value matrices
-For example, the alarm at the museum is not part of the task set of listening to the guide’s discussion of Hieronymous Bosch, but it is clearly a behaviourally relevant stimulus. <=> MCMC in HC / PCC
 
 
-The left TPJ in turn exhibits a close topographical relationship to
-Wernicke's area
-involved in the comprehension or understanding of written and spoken language.
-Neurological patients with damage caused to Wernicke's area
-have a major impairment of language comprehension
-when listening to others or reading a book.
-Their speech
-preserves natural rhythm and about normal syntax, yet the
-voiced sentences are devoid of meaning (i.e., aphasia).
-Abstracting from the typical semantic interpretations in linguistics
-and neuropsychology,
-the LTPJ probably mediates access to and integrating of world knowlege.
-For instance, LTPJ lesions also entail problems in recognizing
-others' pantomimed action towards objects
-without obvious relation to processing any language content
-(Varney and Damasio 1987; Rothi et al. 1991; Buxbaum et al. 2005).
-%
-Also inner speech hinges on knowledge retrieval of statistical structure
-about the physical and inter-personal world.
-Multivariate volumetric analyses showed that the internal production of
-formulated thought ("language of the mind") is closely related to the left TPJ
-(Geva et al., 2011).
-A number of neuroimaging studies demonstrated LTPJ activity responses
-to sementically aberrant words in sentences, which suggests a role
-in binding a given semantic concept into an integrated whole.
-Further,
-episodic memory recall and imagination strongly draws on
-complex world knowledge.
-Isolated building blocks of world statistics probably get reassembled
-in internally generated visual scenarios that
-navigate present action, weigh hypothetical possibilities, and forcast the future.
-%
-The LTPJ may hence facilitate the automated prediction of events
-by incorporating experience-derived models of the world
-into ongoing action, planning, and problem solving.
+
+
+  \item
+    RTPJ:
+    \begin{itemize}
+\item
+Corbetta2008:
+Although both attentional networks have been most exten- sively investigated in vision, the available evidence indicates a supramodal function (Driver and Spence, 1998; Macaluso et al., 2002). The ventral network (right TPJ, right IFG) registers salient events in the environment not only in the visual but also in the auditory and tactile modalities (Downar et al., 2000)
+Several lines of evidence indicate that two cortico-cortical neural systems are involved in attending to environmental stimuli (Corbetta and Shulman, 2002). A dorsal frontoparietal network. A second system, the ventral frontoparietal network, is not ac- tivated by expectations or task preparation but responds along with the dorsal network when behaviorally relevant objects (or targets) are detected (Corbetta et al., 2000). Both dorsal and ventral networks are also activated during reorienting, with en- hanced responses during the detection of targets that appear at unattended locations. For example, enhanced responses are observed when subjects are cued to expect a target at one location but it unexpectedly appears at another (i.e., ‘‘invalid’’ targets in the Posner spatial cueing paradigm)
+or when a target appears infre- quently, as in ‘‘oddball’’ paradigms.
+
+Intimately related to prediction error signaling:
+An early theory of how the two networks interact (Corbetta and Shulman, 2002) proposed that when attention is reoriented to a new source 
+of information (stimulus-driven reorienting), output from the ven- tral network interrupts (as a ‘‘circuit breaker’’) ongoing selection in the dorsal network, which in turn shifts attention toward the novel object of interest.
+
+relevance is the critical factor that determines whether an object activates the ventral network (Downar et al., 2001). The ventral network might be considered a prime candi-date for mediating orienting to salient but unimportant stimuli, i.e., exogenous attention (Posner and Cohen, 1984), be- cause under passive conditions it is highly responsive to distinctive sensory
+events in all modalities (Downar et al., 2000). The ventral network is well activated by stimuli that are important, even if they are not very distinctive. 
+CURRENT OPINION: VA network does underlie  stimulus-driven reorienting to environmental stimuli based on their task relevance. An important conclusion from these neuroimaging studies is that the psychological dis- tinction between exogenous and endogenous orienting (Jo- nides, 1981) may not map onto different neural systems. "changing the control of behavior from one environ- mental input to another". Similar reorienting mechanisms may also be involved in shifting from a broad range of ‘‘internally directed’’ processes in order to deal with environmental events, as when interrupting memory retrieval (‘‘did I lock the car door?’’) to respond to a sudden stimulus (‘‘is that my cell phone ring- ing?’’). -> medites between the Default-Mode function and other more environmentally directed processing goals.
+inducing network reconfiguration
+
+\item
+blanke:
+the core region of the human vestibular cortex is situated close to the angular gyrus10. It is possible that the experience of dissociation of self from the body is a result of failure to integrate complex somatosensory and vestibular information.
+Initial stimulations (n 3; 2.0–3.0 mA) induced vestibular responses, in which the patient reported that she was “sinking into the bed” or “falling from a height”.
+
+\item
+high-level social cognition also engenerded expectation violations
+-> that's why coincides with "agency" meta-analytic location
+(Decety 2007):
+suggest that activation in the TPJ during social cognition may therefore rely on a lower-level computational mech- anism involved in generating, testing, and correcting internal predictions about external sensory events.
+
+
+\item
+Sridharan: RTPJ involved in bottom-up saliency detection
+
+
+\item
+Corbetta2002:
+ We suggest that the TPJ is also strongly engaged by stimuli that are behaviourally relevant but require a change in the current task set. 
+ -> exogeneously induced state transition?
+ <=> MCMC in HC / PCC -> slow? endogeneous changes in state transitions by the policy and value matrices
+ For example, the alarm at the museum is not part of the task set of listening to the guide’s discussion of Hieronymous Bosch, but it is clearly a behaviourally relevant stimulus.
+
+\item
+visuo- proprioceptive conflict (Balslev et al., 2005), and multi-modal detection of sensory changes (Downar et al., 2000)
+brain areas connected to aRTPJ further responded to all changes of visual, auditory, or tactile stimulation in a multi-modal fMRI study (Downar et al., 2000).
+
+\item
+direct electrical stimulation of the RTPJ during neurosurgery was associated with altered perception and stimulus awareness (Blanke et al., 2002).
+
+\item
+the aRTPJ network is central for sensorimotor control by integrating supramodal stimulus-guided attention and action initia- tion during externally structured tasks.
+
+\item
+Bzdok2013
+
+pRTPJ cluster was also functionally associated with deception tasks
+
+qualify RTPJ as a po- tential switch between exteroceptive and interoceptive mind sets implemented by their networks. The reciprocal nature of those mind sets is well illustrated by consistent reports of continuous shifting be- tween externally (i.e., sensory) and internally (i.e., self- and presumably social/memory-) oriented processing in controlled laboratory settings and daily routine (Smallwood et al., 2007).
+\end{itemize}
+
+
+
+\item
+  LTPJ
+  \begin{itemize}
+\item
+the difference between the two task groups could be parsimoniously explained by the required atten- tion to either the external world or self.
 world -> policy matrix driven computation
 self -> value matrix driven computation
+
+\item
+significantly reduced impact of intentions after transient TPJ disruption (Young et al. 2010b)
+
+\item
+complex conceptual linguistic functions are proposed to be more strongly left-lateralized -> in line with overall left-lateralization of human language
+
+
+\item
+Episodic and explicit memory retrieval strongly draws on complex semantic processing and contributes to social cognitive processes (see section 4.4.). Syntactic processing, on the other hand, is a core language process that is closely intermingled with semantic processing. It refers to the hierarchical sequencing of words and their meanings (Price, 2010) and is mandatory for sentence processing in both social cognitive and language tasks.
+
+\item
+only the left TPJ was associated with language processes, whereas only the right TPJ was functionally associated with attention processes
+
+\item 
+Wernicke's area:
+involved in accessing and integrating world knowlege.
+involved in the comprehension or understanding of written and spoken language Damage caused to Wernicke's area results in receptive, fluent aphasia. This means that the person with aphasia will be able to fluently connect words, but the phrases will lack meaning.
+A major impairment of language comprehension, while speech retains a natural-sounding rhythm and a relatively normal syntax. Language as a result is largely meaningless. difficulty finding words, putting words in the wrong order, substituting sounds and/or words, difficulty understanding spoken utterances, difficulty recognizing some words by sight, difficulty writting letters
+
+
+
+\item a lesion study on disturbed sleep (i.e., a state of mind
+independent of sensory stimulation but dependent on
+internally generated information) exclusively identified
+the dmPFC (Koenigs et al., 2010). Third, another VLSM study exclusively
+related the IFG and TPJ, both more strongly connected to the
+dmPFC in our study, to inner speech
+\end{itemize}
+
+
+
+
+
+
+\item HC:
+\begin{itemize}
+  \item
+The HC, in turn, is well known to be involved in memory and spatial navigation in animals and humans (von Bechterew, 1900; Scoville and Milner, 1957; O’Keefe and Dostrovsky, 1971; Maguire et al., 2000).
+
+\item
+Kai had an interesting idea: the deja-vu effect could be when you already accidentally perturbed past such that it really occures in reality later
+
+\item
+hippocampal damage [21,38–40] is associated with an impairment in thinking about one’s personal future
+
+\item
+They found that amnesic patients with bilateral hippocampal damage were markedly impaired relative to matched control subjects at imagining new fictitious experiences (Figure 1). Moreover, Hassabis et al. [21] identified a possible source for this deficit. Although patients were able to produce considerable detail when asked to imagine fictitious new experiences, their descriptions lacked spatial coherence and were instead fragmented and considerably less rich [21].
+
+\item
+ empirical evidence hinting at a two-process function of the hippocampus comes from structural MRI studies of expert navigators (London taxi drivers) who show increased grey matter volume in posterior hippocampus seemingly at the expense of reduced grey matter volume in anterior hippocampus (Maguire et al. 2006b). Moreover, their increased spatial knowledge appears to come at a cost to the acquisition of new visual associative information (Maguire et al. 2006b; Woollett \& Maguire 2009). 
+
+\item
+Schachter/Buckner:
+The network described here is tied to the medial temporal lobe system, which is traditionally considered almost exclusively in the context of remembering the past. We suspect the adaptive value of
+episodic memory is not solely in its ability to afford mental reconstruction of the past but rather in its contribution to building mental models – simulations – of what might happen next or other perspectives on the immediate envir- onment, such as what others are thinking (see Ref. [63]). As
+
+\item
+the GMV of the entorhinal cortex (connectionally and functionally closely coupled with the HC) correlated with social network size (Kanai et al., 2012)
+
+
+\item 
+In fact, phase-locked hippocampal?<80><93>cortical loops have been proposed t
+formation of mnemonic neuronal representations
+**a large body of animal and human literature relates
+hippocampal-prefrontal theta to memory and memory to the DMN**
+
+
+\item 
+A special case is the hippocampus whose highly recursive connection matrix is thought to function as a large ‘autoassocia- tor’, allowing the reconstruction of entire episodes from remembered fragments.
+
+\item
+hippocampal pyramidal cells during rest and sleep produce strongly coherent ensemble bursts believed to be critical in transferring information to the neocortex.
+
+\item
+sequential single- cell recording could reveal such cooperative patterns
+
+\item
+buszaki2004 theta oscillations:
+Using large-scale recordings, researchers can follow complex patterns for extended time periods and determine whether their modification by experience will influence self-generated patterns in the absence of envi- ronmental inputs. Spike sequences, imposed upon the network by behavioral manipulations, recur spontaneously during subsequent sleep
+indicating that neurons organize themselves into preferred cell assemblies, and the seeds of emergence stem from experi- ence-related activity.
+ Such internally driven, self-organized assemblies may reflect mechanisms that give rise to cognitive phenomena
+ Sharp-wave ripples are believed to be the transfer mechanism of information from the hippocampus to neocortex during off-line (eg, sleep) states.
+Neurons, mostly studied in the hippocampus, which fire action potentials only when the animal is in a specific place in a given environment (that place where a cell fires is called the “place field” of that cell).
+-> self-play in deepmind Go
+
+\item
+statistical structure of hippocampal activity ->
+spatial maps of surroundings are encoded
+
+\item
+Numerous experiments have demonstrated that hippocampal neurons show place-related firing while the rat explores or traverses its environment so that each assembly of hippocampal principal cells defines a particular position of space 
+
+\item
+Diba + Buzsaki 2007
+We report that temporal spike sequences from hippocampal place neurons of rats on an elevated track recurred in reverse order at the end of a run, but in forward order in anticipation of the run, coinciding with sharp waves. Vector distances between the place fields were reflected in the temporal structure of these sequences. This bidirectional re-enactment of temporal sequences may contribute to the establishment of higher-order associations in episodic memory.
+
+\item
+coding, transfer, and consolidation of
+information
+This emerging picture of hippocampal dy- namics suggests that neurons at the opposite ends of the distributions may convey differ- ent but complementary types of information. The ever-active minority of place cells may be responsible for generalizing across envi- ronments and affords the brain the capacity to regard no situation as completely un- known because every alley, mountain, river, or room has elements of previously experi- enced similar situations. In many situations,
+this minority provides the “best guess” of the hippocampus and offers “good enough” solutions to get by. On the other hand, the majority of less active neurons constitute a large reservoir that can be mobilized (7) to precisely distinguish one situation from an- other and incorporate novel ones as distinct.
+
+
+\item
+damage to even the hippocampus alone is sufficient to cause amnesia +
+envisoning themselves in future and even hypothetical scenarios/mentally constructing new experiences
+
+The HC, in turn, is well known to be involved in memory and spatial navigation in animals and humans (von Bechterew, 1900; Scoville and Milner, 1957; O’Keefe and Dostrovsky, 1971; Maguire et al., 2000). 
+
+\item
+Hassabias2007:
+Recollection of these rich autobiographical or episodic memories has been likened to mentally traveling back in time and re-experiencing one’s past (1). It has long been known that the hippocampus and related medial temporal lobe structures play a critical role in supporting episodic memory
+
+In fact, episodic memory and imagining or constructing events share striking similarities in terms of the psychological processes engaged (19–21). These include imagery (22), sense of presence (1), retrieval of semantic information and multimodal details (23), and narrative structure (22).
+
+visual imagery itself is not believed to be realized in the HC
+
+  \end{itemize}
+\end{itemize}
+
+
 
 
 \section{Methods}
@@ -626,19 +773,19 @@ and the time-varying positive semi-definite matrix $\P(t)$ solves following diff
 \end{split}
 \end{equation}
 %% \subsection{Minimal control energy controller}
+\subsubsection{Related works}
+The model proposed in \cite{betzel2016} can be cast in the form \eqref{eq:hj}, with the particular choice $\Q = \textbf{I} = \rho^{-1}\R$ and $\Q_{\text{fin}} = \textbf{0}$, but with a rather ad-hoc handle on stability issues and choice driver nodes...
 
 \subsection{Demystifying the free-energy principle and active-inference}
-The so-called free-energy principle in its present form (including notions like ``generative density'', ``recognition density'', etc.) can be traced back to works of Dayan \& Hinton \cite{dayan1995helmholtz} in which they introduced the so-called \textit{Helmholtz machine}, a hierarchical factorial directional deep belief-net (DBN).
+The free-energy principle in it's present form (including notions like ``generative density'', ``recognition density'', etc.) can be traced back to works of Dayan \& Hinton \cite{dayan1995helmholtz} in which they introduced the so-called \textit{Helmholtz machine}, a hierarchical factorial directional deep belief-net.
 
-In this section, we will develop from first-principles, the bare-bones minimalistic ideas needed to build a free-energy principle for general decision-making. This ideas were first developed by Hinton et al. in the early 90s in building their Helmholtz machine. Theories like Friston's free-energy principle and active-inference will then emerge as particular instances of this general framework, with particular design choises. For example the Friston theory axiomatizes that the brain uses a (problematic, as it implicitly assumes that posterior of each hidden unit is factorial, e.g) wake-sleep algorithm to train the underlying Helmholtz machine, etc.
-
-\subsubsection{Helmholtz free-energy and the generative model}
+In this section we will develop from first-principles, the bare-bones minimalistic ideas needed to build a free-energy principle for general decision-making. This ideas were first developed by Hinton et al. in the early 90s in building their Helmholtz machine. Theories like Friston's free-energy principle and active-inference will then emerge as particular instances of this general framework, with particular design choises. For example the Friston theory axiomatizes that the brain uses a (problematic, as it implicitly assumes that posterior of each hidden unit is factorial, e.g) wake-sleep algorithm to train the underlying Helmholtz machine, etc.
 \begin{table}[H]
   \begin{tabular}{p{2cm}|p{11cm}}
          \hline
          \textbf{symbol}    & \textbf{description}  \\ \hline
-         $\langle X\rangle_p$ & Expectation (a.k.a average, a.k.a mean value) of the
-         random quantity $X$ w.r.t to the probability density $p$, formally defined by $\langle E\rangle_p := \sum_{z}p(z)X(z)$.\\ \hline
+         $\langle E\rangle_p$ & Expectation (a.k.a average) of the
+         random quantity $E$ w.r.t to the probability density $p$, formally defined by $\langle E\rangle_p := \sum_{z}p(z)E(z)$.\\ \hline
          $\mathcal H(p)$ & Information-theoretic entropy of a probability density $p$, formally defined by $\mathcal H(p) := -\sum_{z}p(z)\log(p(z))$,
           with the usual convention $0 \log(0) := 0$.\\ \hline
          $D_{KL}(q||p)$ & The Kullback-Leibler divergence between the probability densities $q$ and $p$ respectively, formally defined by $D_{KL}(q||p) := \sum_{z}q(z)\log(q(z)/p(z))$.\\ \hline
@@ -647,11 +794,12 @@ In this section, we will develop from first-principles, the bare-bones minimalis
              $p_G(.|\zeta)$ & Generative density for ...\\ \hline
          $p_R(.|\zeta)$ & Recognition density for ... Does some kind of predictive coding (?).\\ \hline
          $F_G(\zeta)$ & Helmholtz free-energy for a model $p_G$ of generating the observation $\zeta$. This measures the surprise incured upon observing $\zeta$ generated by the model $G$.\\ \hline
-         $F^R_G(\zeta)$ & Variational Helmholtz free-energy from model $G$
-          to $R$.  Note that $F^G_G = F_G$.\\ \hline
+         $F^R_G(\zeta)$ & Variational Helmholtz free-energy from model $R$
+         to $G$.  Note that $F^G_G = F_G$.\\ \hline
   \end{tabular}
   \caption{Table of notations.}
 \end{table}
+\subsubsection{Helmholtz free-energy and the generative model}
 Our starting point will be to build an approximation $p_G$ for the true density $p$ of the observations, so that this approximate density corresponds to the partition function of thermodynamic system. So,
 \begin{eqnarray}
   \begin{split}
@@ -674,20 +822,20 @@ The last quantity in \eqref{eq:helm} defined formally as
 \begin{equation}
   F_G(\zeta) := \langle E_G(., \zeta) \rangle_{p_G(. |\zeta)} - \mathcal H(p_G(. |\zeta))
 \end{equation}
-is the \textit{Helmholtz free-energy} (at unit temperature!). %% , modelled as the physical system for which $p_G(\psi|\zeta)$ dictates the occupation probabilities of macrostates $\psi$
+is the \textit{Helmholtz free-energy} of the external world, modelled as the physical system for which $p_G(\psi|\zeta)$ dictates the occupation probabilities of macrostates $\psi$.
 Thus generative surprise and generative Helmholtz free-energy are different views on exactly the same object.
 
-The goal of the brain is then to optimize over the generative model $G$: to iteratively or analytically modify the generative density $p_G(.|s)$, so as to minimize surprise. It turns out that a direct attempt to attack this optimization problem by gradient descent on the free-energy $F_G(s)$ is furtile: the parameter update steps are not ``very clean'', and require rather cumbersome and heavy computations. A workaround is then to introduce a second density $p_R(.|\zeta)$ called a \textit{recognition} density to work in tandem with the generative density $p_G(.|\zeta)$, as a trick for doing approximate inference. The former dreams / fantacizes whilst the latter tries to generate sensations which match these dreams! This primal-dual idea, first proposed in Hinton et al. 1995, is at the heart of the general free-energy principle that we'll introduce shortly.
+The goal of the brain is then to optimize over the generative model $G$ (to iteratively or analytically modify the generative density $p_G(.|s)$, so as to minimize their surprise. It turns out that a direct attempt to attack this optimization problem by gradient descent on the free-energy $F_G(s)$ is furtile: the parameter update steps are not ``very clean'', and require rather cumbersome and heavy computations. A workaround is then to introduce a second density $p_R(.|\zeta)$ called a \textit{recognition} density to work in tandem with the generative density $p_G(.|\zeta)$: the former dreams / fantacizes whilst the latter tries to generate sensations which match these dreams! This primal-dual idea, first proposed in Hinton et al. 1995, is at the heart of the general free-energy principle that we'll introduce shortly.
 
 \subsubsection{Variational Helmholtz free-energy and the bottom-up recognition sub-model}
-In this subsection, we'll present an insightful upper bound for the generative surprise (i.e generate Helmholtz free-energy), called the \textit{variational} (Helmholtz) free-energy. As an avant-gout of what is to come shorty, let's just note that the well-known \textit{free-energy principle} is simply a workaround whereby the minimization surprise (intractable) is replaced with the  minimization a carefully chosen upper bound thereof.
+In this subsection we'll develop a very insightful upper bound for the generative surprise (i.e generate Helmholtz free-energy), called the \textit{variational} (Helmholtz) free-energy. As an avant-gout of what is to come shorty, let's just that the well-known \textit{free-energy principle} is simply a workaround whereby the minimization surprise (intractable) is replaced with the  minimization a carefully chosen upper bound thereof.
 
-Invoking \eqref{eq:gibbs} and applying Bayes rule, we get the Gibbs
+Now, invoking \eqref{eq:gibbs} and applying Bayes rule, we get the Gibbs
 distribution
 \begin{equation}
   p_G(\psi|\zeta) = \frac{p_G(\psi|\zeta)}{p_G(\zeta)} = \frac{\exp(-E_G(\psi, \zeta))}{Z_G(\zeta)} = \frac{\exp(-E_G(\psi, \zeta))}{Z_G(\zeta)},
 \end{equation}
-where $Z_G(\zeta) := \log(p_G(\zeta)) = \sum_{\psi'}\exp(-E_G(\psi',\zeta))$, the normalizing \textit{partition function} for the model \ref{eq:gibbs}.
+where $Z_G(\zeta) := \log(p_G(\zeta)) = \sum_{\psi'}\exp(-E_G(\psi',\zeta))$, the normalizing partition function for the model \ref{eq:gibbs}.
 Whence $\forall \psi$, $p_G(\zeta) = Z_G(\zeta) = \exp(-E_G(\psi, \zeta)) / p_G(\psi|\zeta)$, and so we have the invariance relation
 \begin{equation}
 F_G(\zeta)\overset{\eqref{eq:helm}}{=} -\log(p_G(\zeta)) = -\log(Z_G(\zeta)) = E_G(\psi, \zeta) + \log(p_G(\psi|\zeta)).
@@ -712,10 +860,10 @@ We can resume the situation as follows:
 \begin{mdframed}
 \begin{equation}
   \begin{split}
-    \text{generative surprise } &:= -\log(p_G(\zeta)) = F_G(\zeta) \\
-    &=\underbrace{F^R_G(\zeta)}_{\text{accuracy}} - \underbrace{D_{KL}(P_R(.|\zeta) || P_G(.|\zeta))}_{\text{complexity}} \\
+    \text{generative surprise } &:= -\log(p_G(\zeta)) = \underbrace{F_G(\zeta)}_{\text{generative free-energy}} \\
+    &=\underbrace{F^R_G(\zeta)}_{\text{variational free-energy}} - \underbrace{D_{KL}(P_R(.|\zeta) || P_G(.|\zeta))}_{\text{complexity}} \\
     &\le F^R_G(\zeta),
-    \text{ with equality if }p_R(.|\zeta) = p_G(.|\zeta),
+    \text{ with equalitity if }p_R(.|\zeta) = p_G(.|\zeta),
     \end{split}
 \end{equation}
 \end{mdframed}
@@ -733,7 +881,7 @@ where we have used the fact that KL divergence is always nonnegative.
 
 \subsubsection{Helmholtz machines and the wake-sleep algorithm}
 % \begin{mdframed}
-  \textbf{Assumption:} In both generative and recognition components of the network, there is conditional independence of  neurons in the same layer, given the data (i.e input from lower more primitive layers). Precisely
+  \textbf{Assumption:} In both generative and recognition components of the network, there is conditional independence of  neurons in the same layer, given the data. Precisely
 $$
 p_G(\psi^{(l)}|\zeta) = \Pi_{k=1}^{h_l}p_G(\psi_k^{(l)} | \zeta),\hspace{1cm}
 p_R(\psi^{(l)}|\zeta) = \Pi_{k=1}^{h_l}p_R(\psi_k^{(l)} |\zeta)
@@ -746,16 +894,12 @@ This is nothing but an application of the Dayan's wake-sleep algorithm for train
 The following critics can be made:
 \begin{itemize}
   \item 
-    As noted by Dayan et al. (\textit{Variants of Helmholtz machines}), the inter-neuronal intra-layer independence assumption which is at the center of the HM becomes severely problematic as it is agnostic to the known organization of cortical layers...
-  \item A drawback of the wake-sleep algorithm is that it requires a concurrent models (generative and recognitiion), which together do not correspond to optimization of (a bound of) the marginal likelihood (because of the incorrect KL used therein, etc.).
-  \item Also, note that the wake-sleep algorithm doesn't do backprop! This is due to
-    technical difficulty in getting derivatives of loss function w.r.t
-    recognition weights $\W^R$).
-  \item This difficulty was removed in the 2010s by Kingma et al., an other groups, via a ``reparametrization trick''.
+    As noted by Dayan et al. (\textit{Variants of Helmholtz machines}), the inter-neuronal intra-layer independence which is at the center of the HM becomes severely problematic as it is agnostic to the known organization of cortical layers...
+    \item A drawback of the wake-sleep algorithm is that it requires a concurrent models (generative and recognitiion), which together do not correspond to optimization of (a bound of) the marginal likelihood (because of the incorrect KL used therein, etc.).
     \end{itemize}
 
 
-\subsection{Free-energy minimization via variational auto-encoders}
+\subsection{Free-energy minimization via bayesian auto-encoders}
 Following Kingma et al. 2014 \cite{kingma2013auto}, define the data-dependent auxiliary random function
 \begin{eqnarray}
   f_{G,R}(., \zeta) :\psi \mapsto \log(p_G(\psi,\zeta)) - \log(p_R(\psi|\zeta)).
@@ -771,31 +915,10 @@ variational free-energy as
 \end{eqnarray*}
 
 \begin{mdframed}
-  \textbf{Problem:} How do we sample from the recognition density $p_R(.|\zeta)$ in such a way that the sampling process is differentiable w.r.t the weights of the recognition network $\W^R$ ?
+  \textbf{Problem:} How do we sample from the recognition density $p_R(.|\zeta)$ in such a way that the sampling process is differentiable w.r.t the weights of the recognition network $\textbf{W}^R$ ?
 \end{mdframed}
 \paragraph{Solution: The reparametrization trick.}
-\begin{itemize}
-\item Choose $\epsilon \sim p_{\text{noise}}$ (noise distribution, independent of $\W^R$!)
-\item Set $\phi = g(\W^{R}, \zeta, \epsilon)$, where $g$ is an appropriate class $\mathcal C^1$ function
-  \begin{itemize}
-  \item results in a sample $\phi \sim p_R(.|\zeta)$, from the correct
-    posterior
-    \end{itemize}
-\end{itemize}
 
-\begin{table}[H]
-  \begin{tabular}{p{1.7cm}|p{1.5cm}|p{1.9cm}|p{2.1cm}|p{5cm}}
-         \hline
-         Posterior & $p_R(.|\zeta)$ & noise & $g(\W^R,\zeta,\epsilon)$ & Also \\ \hline
-         Normal & $\mathcal N(\mu,\sigma)$ & $\epsilon \sim \mathcal N(0, 1)$ & $\mu + \sigma \odot \epsilon$ & Location-scale family: Laplace, Elliptical,
-         Student’s t, Logistic, Uniform, Triangular, ... \\ \hline
-         Exponential & $\mathcal \exp(\lambda)$ & $\epsilon \sim \mathcal U([0, 1))$ & $-\log(1-\epsilon)/\lambda$ & Invertible CDF: Cauchy, Logistic, Rayleigh, Pareta, Weibull, Reciprocal, Gompert, Gumbel, Erlan, ... \\ \hline
-         Other & $\log\mathcal N(\mu,\sigma)$ & $\epsilon \sim \mathcal N(0, 1)$ & $\exp(\mu + \sigma \odot \epsilon)$ & Gamma, Dirichlet, Beta, Chi-squared, F, ... \\ \hline
-  \end{tabular}
-  \caption{Reparametrization trick for a variety of models. Kingma et al. 2014 \cite{kingma2013auto}.}
-\end{table}
-
-The result is a scheme for training DBNs via good-old backprop!
 
 %% For fixed $p_G(.|\zeta)$, the optimal choice for $p_R(.|\zeta)$ is given analytically by
 %% \begin{equation}
@@ -908,7 +1031,7 @@ The result is a scheme for training DBNs via good-old backprop!
 %% To conclude this section, let's note that \cite{braun2011path} show how their free-energy framework (on paths) links with the well-known Hamilton-Jacobi-Bellman optimal control framework. For example, one can re-derive the Linear Quadratic Gaussian (LQG) controller, which is a generalization of the LQR in \eqref{eq:hj}...
 
 
-\section{Relation to other cognitive models (Danilo)}
+\section{Relation to Other Cognitive Models (Danilo)}
 \paragraph{Predictive Coding and Bayesian Brain Hypothesis}
 abc
 The Predictive Coding Framework.
@@ -969,11 +1092,9 @@ How can a same neurobiological circuit be equally important for baseline house-k
 Our computational account can explain why the DMN is implicated in both a goal-directed task and an idlying rest cognitive set? -> task is policy/value updates to optmize short-term action / rest updates for mid- and long-term action
 
 
-\section{Relation to other statistical models (Elvis)}
-\paragraph{Control theory.}
-\begin{itemize}
-  \item The model proposed in \cite{betzel2016} can be cast in the form \eqref{eq:hj}, with the particular choice $\Q = \textbf{I} = \rho^{-1}\R$ and $\Q_{\text{fin}} = \textbf{0}$, but with a rather ad-hoc handle on stability issues and choice driver nodes...
-\end{itemize}
+\section{Relation to Other Statistical Models (Elvis)}
+\paragraph{Control Theory.}
+abc
 
 \paragraph{Reinforcement Learning.}
 abc
