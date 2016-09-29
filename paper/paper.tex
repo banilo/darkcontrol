@@ -907,6 +907,142 @@ The result is a scheme for training DBNs via good-old backprop!
 
 %% To conclude this section, let's note that \cite{braun2011path} show how their free-energy framework (on paths) links with the well-known Hamilton-Jacobi-Bellman optimal control framework. For example, one can re-derive the Linear Quadratic Gaussian (LQG) controller, which is a generalization of the LQR in \eqref{eq:hj}...
 
+\section{Reinforcement-Learning (RL) as a computational model for DMN function}
+\subsection{General RL theory}
+In a general reinforcement-learning (RL) framework, an \textit{agent} interacts with an unknown
+environment by taking \textit{actions / decisions} $a_t$ which trigger changes in the
+\textit{state} of the environment
+$s_t \rightarrow s_{t+1}$, accompanied with a real-valued \textit{reward} $r_t$ (or regret!,
+since it can be
+negative). This should be thought of as an instantaneous satisfaction accompanying the execution of
+an action. Here the subscript $t$ denotes time, and can be discrete or continuous.
+%% The unknown environment $\mathcal E$ is generally taken as stochastic, but having some kind of
+%% memory.
+A popular abstract model for the scenario are so-called \textit{Markov Decision Processes (MDPs)}.
+This is simply a quintuplet $(\mathcal S, \mathcal A, r, \rho, \mu)$ where
+\begin{itemize}
+\item $\mathcal S$ is the set of states, e.g $\mathcal S = \{\text{happy}, \text{sad}\}$.
+\item $\mathcal A$ is the set of actions, e.g $\mathcal A = \{\text{read}, \text{run},
+  \text{laugh}, \text{empathize}, \text{empathize}\}.$
+\item $r : \mathcal S \times \mathcal A \rightarrow \mathbb R$, so that $r(s, a)$ is the instant reward for taken action $a$ at state $s$.
+\item $\mu: \mathcal S \rightarrow [0, 1]$ is the prior probability on the states so that
+  $\mu(s)$ is the probability that the environment starts-off in state $s$.
+  \item $\rho : \mathcal S \times \mathcal A \times \mathcal S \rightarrow [0, 1]$, so that
+    $\rho(s,a,s') = \mathbb P(s'|s, a)$ is the probability of moving to state $s'$ if action $a$ is taken from state $s$. In addition, one requires that such transitions be Markovian.
+\end{itemize}
+
+\begin{remark}
+  Given a system $(\mathcal S, \mathcal A, r, \rho, \mu)$ satisfying all the axioms for an MDP
+  except the Markov property, we can always transform it into an MDP by considering a compounded
+  version of the states
+  $$s_t \leftarrow (s_0,a_0,r_0,s_1,a_1,s_2\ldots,s_t,a_{t-1},r_{t-1},s_{t})$$ made of the systems
+  trajectory up to an including the last time window.
+\end{remark}
+
+The behavior of the agent is governed by some kind of policy, which maps states to sampling probabilities over candidate actions to perform from that state. The  goal of RL is then adapt this policy so as to  maximize the cumulative rewards.
+
+Since an action taken now might have repacautions long into the feature, it turns out that the
+quantity to optimize is not the instantaneous rewards $r(s_t, a_t)$, a cumulative version which
+takes into account the future. A standard for modeling this accumulation is the so-called
+time-discounted \textit{cumulative reward} function
+\begin{equation}
+  \label{eq:cumr}
+  R(s_t, a_t) = r(s_t, s_t) + \gamma r(s_{t+1}, s_{t+1}) +\ldots + \gamma^Tr(s_{t+T}, s_{t+T})
+  = r(s_t, s_t) + \gamma \sum_{\tau=1}^{T}\gamma^{\tau-1}r(s_{t+\tau},a_{t+\tau}),
+  \end{equation}
+for some \textit{discount factor} $\gamma \in [0, 1]$, and horizon $T$. The choice $\gamma = 0$ (or $T=0$)  corresponds to a perfectly myopic agent who is solely concerned about their immediate rewards and have no regards for the future. For there to be any learning at all, a technical requirement is that $\gamma < 1$ \footnote{In which case we can take $T \rightarrow +\infty$, provided the reward function $r$ is bounded.}.
+Thus the agent is positively biased towards considering rewards which are will
+come soon. Note that $R(s_t, a_t)$ defined above is a stochastic quantity which depends on the
+trajectory of a policy $\pi$,
+\begin{eqnarray*}
+  \begin{split}
+    s_0 &\sim \mu\\
+    a_0 &\sim \pi(.|s_0)\\
+    s_1 &\sim \rho(.|s_0) \text{ and collect rewards }r(s_0, a_0)\\
+    a_1 &\sim \pi(.|s_1)\\
+    s_2 &\sim \rho(.|s_1) \text{ and collect rewards }r(s_1, a_1)\\
+    \ldots\\
+    a_t &\sim \pi(.|s_t)\\
+    s_{t+1} &\sim \rho(.|s_t) \text{ and collect rewards }r(s_t, a_t)\\
+    \ldots
+  \end{split}
+\end{eqnarray*}
+
+The goal is then to sample from a policy $a_t \sim \pi$ so that on average, $R(s_t, a_t)$ is maximized. Formally, the agent's goal is to maximize the $Q$-value at $(s_t, a_t)$, defined by
+\begin{equation}
+  \label{eq:qval}
+  Q^{\pi}(s_t,a_t) = \mathbb E [R(s_t, a_t)]
+\end{equation}
+
+where the expectation is over all possible trajectories from $(s_t, a_t)$, under the policy $\pi$.
+
+By construction, in general, maximizing the expectation in  \eqref{eq:qval} is intractable due to
+the enormous number of possible trajectories to consider.
+One popular simplification that removes this issue is to only consider the sub-family of \textit{deterministic policies}, which map each state to the best single best action which should be taken at that state, and therefore define \textbf{functions from states to actions}.
+
+Q-learning (Watkins \& Dayan, 1992), a commonly used off-policy algorithm, uses the
+\textit{greedy policy}
+\begin{equation}
+  \pi(s) = \pi_{\tilde{Q}}(s) = \argmax_{a \in \mathcal A}\tilde{Q}(s, a),
+\end{equation}
+where $\tilde{Q}(s, a)$ is the current estimate of the state-action value table. In the sequel, except otherwise stated, the policies discussed will be of this form.
+The hallmark of this trick wherein one only considers deterministic policies is the so-called
+\textit{Bellman's equation}
+\begin{equation}
+  Q^\pi(s_t, a_t) = \mathbb E_{s_{t+1} \sim \rho(.|s_t)} [r(s_t,a_t) + \gamma Q^\pi(s_{t+1}, \pi(s_{t+1}))]
+  \label{eq:bellman}
+\end{equation}
+which is a fixed-point equation for the $Q$-value operator of a deterministic policy $\pi$.
+Notice that in the expectation in \eqref{eq:bellman}, the sampling is done over only things which
+depend on the environment, and so can be learned off-policy by observing state-transitions
+triggered by another behavioral policy, which can be stochastic. 
+
+\section{Q-learning with value approximation}
+At state $s \in \mathcal S$, the DMN agent takes an action $a \in \mathcal A$ (for example,
+$a$ = ``Read'', or ``Run'', or ``Laugh'', or ``Sympathize'', or ``Empathize'', etc.) by sampling
+from its current policy matrix, and collects a reward $r$ (measured on their internal currency of
+worldly values ?), and the environment transitions to a new $s' \in \mathcal S$. At the end of
+this cycle, a new \textit{experience} $e = (s,a,r,s')$ is produced: this represents an exemplar
+behavior of the agent in such a situation, and is recorded in replay memory:
+$\mathcal D \leftarrow \mathcal D \cup \{e\}$.
+Now, replay consists in sampling (uniform or importance-weighted ?)  mini-batches of experiences
+$e = (s, a, r, s') \sim \mathcal D$ from the replay memory $\mathcal D$ and trying to approximate
+the would-be $Q$-value at $(s, a)$ as predicted by Bellman's equation \eqref{eq:bellman}, namely
+$r + \gamma \max_{a'} Q(s', a'|\theta^Q)$, with the output of a parametrized regression model $(s,a,r,s') \mapsto {Q}(s, a|\theta^Q)$, where $Q(.|\theta^Q)$ is an approximator for the $Q$-value operator,  parameterized by $\theta^Q$. Computing an optimal policy then corresponds to finding the parameters $\theta^Q$ which minimize the following loss function
+\begin{equation}
+  \mathcal L(\theta^Q)
+  % = \mathbb E_{(s, a, r, s') \sim U(\mathcal D)}[(Q(s, a|\theta^Q) - Q(s',a'|\theta^Q))^2]
+  = \mathbb E_{(s, a, r, s') \sim U(\mathcal D)}[(Q(s, a|\theta^Q) - y)^2],
+  \label{eq:oracle}
+  \end{equation}
+where
+$ y = r + \gamma \max_{a'} Q(s', a'|\theta^Q) = r + \gamma Q(s', \pi(s')|\theta^Q)$ is the prediction target.
+% While $y_t$ is also dependent on $\theta^Q$, this is typically ignored.
+
+For example, a general regression model with a kernel $(s, a) \mapsto \phi(s, a)$ would be of the
+form
+
+$${Q}(s, a|\theta^Q) = \phi(s,a)^T\theta^Q.$$
+$\phi$ would represent a high-level hand-crafted representation of the state-action pairs into an appropriate feature space. Such are the techniques that have been proposed by [sutton et al. xyzw, Song et al. 2016 (NIPS), and Parr et al. 2003 (JMLR)].
+A breakthrough alternative proposed by Google DeepMind [Minh et al. 2014, Silver et al 2015] is to learn this representation using a deep neural net, leading to the so-called \textit{Deep Q-learning} family of methods which are by far the current state-of-the-art in RL.
+
+The entire model can then be effectively trained via \textit{backprop} wherein online stochastic
+gradient descent is used to minimize the variational objective \eqref{eq:oracle}.
+
+\begin{remark}
+Note that most RL algorithms, including \textit{Temporal Difference (TD)} learning [Sutton et al.,
+  Bertsekas] can be cast in this general variational framework.
+\end{remark}
+
+\subsection{A Deep Q-learning for DMN function}
+\textbf{XXX Put the diagrams and process charts here.}
+
+\paragraph*{Some notes:}
+\begin{itemize}
+\item The brain does backprop (see Hinton's recent talk at Stanford)
+\item ...
+\end{itemize}
+  
 
 \section{Relation to other cognitive models (Danilo)}
 \paragraph{Predictive Coding and Bayesian Brain Hypothesis}
