@@ -980,12 +980,13 @@ By construction, in general, maximizing the expectation in  \eqref{eq:qval} is i
 the enormous number of possible trajectories to consider.
 One popular simplification that removes this issue is to only consider the sub-family of \textit{deterministic policies}, which map each state to the best single best action which should be taken at that state, and therefore define \textbf{functions from states to actions}.
 
-Q-learning (Watkins \& Dayan, 1992), a commonly used off-policy algorithm, uses the
+\textit{Q-learning} (Watkins \& Dayan, 1992), a commonly used off-policy algorithm, uses the
 \textit{greedy policy}
 \begin{equation}
   \pi(s) = \pi_{\tilde{Q}}(s) = \argmax_{a \in \mathcal A}\tilde{Q}(s, a),
+  \label{eq:qlearning}
 \end{equation}
-where $\tilde{Q}(s, a)$ is the current estimate of the state-action value table. In the sequel, except otherwise stated, the policies discussed will be of this form.
+where $\tilde{Q}(s, a)$ is the current estimate of the state-action value table.
 The hallmark of this trick wherein one only considers deterministic policies is the so-called
 \textit{Bellman's equation}
 \begin{equation}
@@ -997,16 +998,20 @@ Notice that in the expectation in \eqref{eq:bellman}, the sampling is done over 
 depend on the environment, and so can be learned off-policy by observing state-transitions
 triggered by another behavioral policy, which can be stochastic. 
 
-\section{Q-learning with value approximation}
-At state $s \in \mathcal S$, the DMN agent takes an action $a \in \mathcal A$ (for example,
+\subsection{Q-learning with value approximation}
+As already mentioned in the previous section, Q-learning optimizes over the class of
+deterministic policies of the form \eqref{eq:qlearning}.
+At state $s \in \mathcal S$, the agent takes an action $a \in \mathcal A$ (for example,
 $a$ = ``Read'', or ``Run'', or ``Laugh'', or ``Sympathize'', or ``Empathize'', etc.) by sampling
-from its current policy matrix, and collects a reward $r$ (measured on their internal currency of
-worldly values ?), and the environment transitions to a new $s' \in \mathcal S$. At the end of
+from its current policy matrix, and collects a reward $r$,
+% (measured on their internal currency of worldly values ?),
+and the environment transitions to a new $s' \in \mathcal S$. At the end of
 this cycle, a new \textit{experience} $e = (s,a,r,s')$ is produced: this represents an exemplar
 behavior of the agent in such a situation, and is recorded in replay memory:
 $\mathcal D \leftarrow \mathcal D \cup \{e\}$.
 Now, replay consists in sampling (uniform or importance-weighted ?)  mini-batches of experiences
-$e = (s, a, r, s') \sim \mathcal D$ from the replay memory $\mathcal D$ and trying to approximate
+$e = (s, a, r, s') \sim \mathcal U(D)$ from the replay memory $\mathcal D$ and trying to
+approximate
 the would-be $Q$-value at $(s, a)$ as predicted by Bellman's equation \eqref{eq:bellman}, namely
 $r + \gamma \max_{a'} Q(s', a'|\theta^Q)$, with the output of a parametrized regression model $(s,a,r,s') \mapsto {Q}(s, a|\theta^Q)$, where $Q(.|\theta^Q)$ is an approximator for the $Q$-value operator,  parameterized by $\theta^Q$. Computing an optimal policy then corresponds to finding the parameters $\theta^Q$ which minimize the following loss function
 \begin{equation}
@@ -1024,7 +1029,7 @@ form
 
 $${Q}(s, a|\theta^Q) = \phi(s,a)^T\theta^Q.$$
 $\phi$ would represent a high-level hand-crafted representation of the state-action pairs into an appropriate feature space. Such are the techniques that have been proposed by [sutton et al. xyzw, Song et al. 2016 (NIPS), and Parr et al. 2003 (JMLR)].
-A breakthrough alternative proposed by Google DeepMind [Minh et al. 2014, Silver et al 2015] is to learn this representation using a deep neural net, leading to the so-called \textit{Deep Q-learning} family of methods which are by far the current state-of-the-art in RL.
+A breakthrough alternative proposed by Google DeepMind [Minh et al. 2014, Silver et al 2015] is to learn this representation using a deep neural net, leading to the so-called \textit{Deep Q-learning} family of methods which are by far the current state-of-the-art in RL. In such a case, $\theta^Q$ would correspond to ..
 
 The entire model can then be effectively trained via \textit{backprop} wherein online stochastic
 gradient descent is used to minimize the variational objective \eqref{eq:oracle}.
