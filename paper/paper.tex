@@ -1021,8 +1021,8 @@ $\mathcal D \leftarrow \mathcal D \cup \{e\}$.
 Now, replay consists in sampling (uniform or importance-weighted ?)  mini-batches of experiences
 $(s, a, r, s') \sim \mathcal U(D)$ from the replay memory $\mathcal D$ and trying to
 approximate
-the would-be $Q$-value at $(s, a)$ as predicted by Bellman's equation \eqref{eq:bellman}, namely
-$r + \gamma \max_{a'} Q(s', a'|\theta^Q)$, with the output of a parametrized regression model $(s,a,r,s') \mapsto {Q}(s, a|\theta^Q)$, where $Q(.|\theta^Q)$ is an approximator for the $Q$-value operator,  parameterized by $\theta^Q$. Computing an optimal policy then corresponds to finding the parameters $\theta^Q$ which minimize the following loss function
+the would-be $Q$-value for the state-action pair $(s,a)$ as predicted by Bellman's equation \eqref{eq:bellman}, namely
+$r + \gamma \max_{a'} Q(s', a'|\theta^Q)$, with the output of a parametrized regression model $(s,a,r,s') \mapsto {Q}(s, a|\theta^Q)$, where $Q(.,.|\theta^Q)$ is an approximator for the $Q$-value operator,  parameterized by $\theta^Q$. Computing an optimal policy then corresponds to finding the parameters $\theta^Q$ which minimize the following loss function
 \begin{equation}
   \mathcal L(\theta^Q)
   % = \mathbb E_{(s, a, r, s') \sim U(\mathcal D)}[(Q(s, a|\theta^Q) - Q(s',a'|\theta^Q))^2]
