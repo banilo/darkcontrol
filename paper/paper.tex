@@ -930,7 +930,7 @@ This is simply a quintuplet $(\mathcal S, \mathcal A, r, \rho, \mu)$ where
 \item $\mathcal S$ is the set of states, e.g $\mathcal S = \{\text{happy}, \text{sad}\}$.
 \item $\mathcal A$ is the set of actions, e.g $\mathcal A = \{\text{read}, \text{run},
   \text{laugh}, \text{empathize}, \text{empathize}\}.$
-\item $r : \mathcal S \times \mathcal A \rightarrow \mathbb R$, so that $r(s, a)$ is the instant reward for taking action $a$ at state $s$.
+\item $r : \mathcal S \times \mathcal A \rightarrow \mathbb R$, so that $r(s, a)$ is the instant reward for taking action $a$ in state $s$.
 \item $\mu: \mathcal S \rightarrow [0, 1]$ is the prior probability on the states so that
   $\mu(s)$ is the probability that the environment starts-off in state $s$.
   \item $\rho : \mathcal S \times \mathcal A \times \mathcal S \rightarrow [0, 1]$, so that
@@ -946,7 +946,7 @@ This is simply a quintuplet $(\mathcal S, \mathcal A, r, \rho, \mu)$ where
 \end{remark}
 
 The behavior of the agent is governed by some kind of \textit{policy}, which maps states to
-sampling probabilities over candidate actions to perform from that state. The  goal of RL is then
+sampling probabilities over candidate actions to perform from thin state. The  goal of RL is then
 adapt this policy so as to  maximize the cumulative rewards.
 
 Since an action taken now might have repercussions long into the feature, it turns out that the
@@ -988,7 +988,7 @@ trajectories of state $s_t$.
 
 By construction, in general, maximizing the expectation in  \eqref{eq:qval} is intractable due to
 the enormous number of possible trajectories to consider.
-One popular simplification that removes this issue is to only consider the sub-family of \textit{deterministic policies}, which map each state to the best single best action which should be taken at that state, and therefore define functions from states to actions.
+One popular simplification that removes this issue is to only consider the sub-family of \textit{deterministic policies}, which map each state to the best single best action which should be taken at thin state, and therefore define functions from states to actions.
 
 \textit{Q-learning} (Watkins \& Dayan, 1992), a commonly used off-policy \textit{critic-only} algorithm, uses the
 \textit{greedy policy}
@@ -1011,7 +1011,7 @@ triggered by another behavioral policy, which can be stochastic.
 \subsection{Q-learning with value approximation and replay}
 As already mentioned in the previous section, Q-learning optimizes over the class of
 deterministic policies of the form \eqref{eq:qlearning}.
-At state $s \in \mathcal S$, the agent takes an action $a \in \mathcal A$
+in state $s \in \mathcal S$, the agent takes an action $a \in \mathcal A$
 % (for example, $a$ = ``Read'', or ``Run'', or ``Laugh'', or ``Sympathize'', or ``Empathize'', etc.)
 by sampling from its current policy matrix, and collects a reward $r$,
 % (measured on their internal currency of worldly values ?),
