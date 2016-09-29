@@ -912,17 +912,18 @@ The main idea is to show that the DMN has biological substrates (gradient
 computation, backprop, experience replay, etc.) for all the
 major components of an efficient RL algorithm, and all these components
 integrate in a plausible way.
-\subsection{General Reinforcment-Learning (RL) theory}
+\subsection{Markov Decision Processes}
 In a general reinforcement-learning (RL) framework, an \textit{agent}
-interacts with an unknown environment in trial-and-error fashion by taking
-\textit{actions / decisions} $a_t$ which trigger changes in the
+interacts with an  environment in a trial-by-error fashion by taking
+actions / decisions $a$, which trigger changes in the
 \textit{state} of the environment
-$s_t \rightarrow s_{t+1}$, accompanied with a real-valued \textit{reward}
-$r_t$ (or regret!, since it can be negative). This reward should be thought
+$s \rightarrow s'$, accompanied with a real-valued \textit{reward}
+$r = r(s, a)$ (or regret!, since it can be negative) collected by the
+agent. This reward should be thought
 of as an instantaneous satisfaction accompanying the execution of
 an action. Here the subscript $t$ denotes time, and can be discrete or
 continuous.
-%% The unknown environment $\mathcal E$ is generally taken as stochastic, but having some kind of
+%% The environment $\mathcal E$ is generally taken as stochastic, but having some kind of
 %% memory.
 A popular abstract model for the scenario are so-called \textit{Markov Decision Processes (MDPs)}.
 This is simply a quintuplet $(\mathcal S, \mathcal A, r, \rho, \mu)$ where
@@ -933,8 +934,7 @@ This is simply a quintuplet $(\mathcal S, \mathcal A, r, \rho, \mu)$ where
 \item $r : \mathcal S \times \mathcal A \rightarrow \mathbb R$, so that $r(s, a)$ is the instant reward for taking action $a$ in state $s$.
 \item $\mu: \mathcal S \rightarrow [0, 1]$ is the prior probability on the states so that
   $\mu(s)$ is the probability that the environment starts-off in state $s$.
-  \item $\rho : \mathcal S \times \mathcal A \times \mathcal S \rightarrow [0, 1]$, so that
-    $\rho(s,a,s') = \mathbb P(s'|s, a)$ is the probability of moving to state $s'$ if action $a$ is taken from state $s$. In addition, one requires that such transitions be Markovian.
+  \item $\rho : \mathcal S \times \mathcal A \times \mathcal S \rightarrow [0, 1],\; (s,a,s') \mapsto \rho(s'|s,a)$, the probability of moving to state $s'$ if action $a$ is taken from state $s$. In addition, one requires that such transitions be Markovian.
 \end{itemize}
 
 \begin{remark}
@@ -945,6 +945,18 @@ This is simply a quintuplet $(\mathcal S, \mathcal A, r, \rho, \mu)$ where
   history up to an including time $t$.
 \end{remark}
 
+\paragraph{A note on model-based RL.}
+Knowledge the agent has about the environment can be encoded in the
+functions $r$, $\mu$, $\rho$, and / or $\pi$, as is done in
+\textit{model-based} RL. For example if a rat in a maze knows, for sure,
+that staying still will produce no change in the environment, and in particular will not eventually lead to finding the food, they can assume:
+\begin{itemize}
+\item $r(s, \text{``stand still''}) = 0$ if $s$ does not correspond to a cell / chamber containing food.
+\item $\rho(s'|s,\text{``stand still''}) = 1$ if $s'=s$ and $0$ otherwise.
+\item etc.
+\end{itemize}
+
+\subsection{Value functions and policies}
 The behavior of the agent is governed by some kind of \textit{policy}, which maps states to
 sampling probabilities over candidate actions to perform from thin state. The  goal of RL is then
 adapt this policy so as to  maximize the cumulative rewards.
@@ -990,15 +1002,15 @@ By construction, in general, maximizing the expectation in  \eqref{eq:qval} is i
 the enormous number of possible trajectories to consider.
 One popular simplification that removes this issue is to only consider the sub-family of \textit{deterministic policies}, which map each state to the best single best action which should be taken at thin state, and therefore define functions from states to actions.
 
-\textit{Q-learning} (Watkins \& Dayan, 1992), a commonly used off-policy \textit{critic-only} algorithm, uses the
+\textit{Q-learning} (Watkins \& Dayan, 1992), a commonly used off-policy algorithm, uses the
 \textit{greedy policy}
 \begin{equation}
-  \pi(s) = \pi_{\tilde{Q}}(s) = \argmax_{a \in \mathcal A}\tilde{Q}(s, a),
+  \pi(s) = \argmax_{a \in \mathcal A}{Q}(s, a).
   \label{eq:qlearning}
 \end{equation}
-where $\tilde{Q}(s, a)$ is the current estimate of the state-action value table.
-The hallmark of this trick wherein one only considers deterministic policies is the so-called
-\textit{Bellman's equation} [Sutton and Barto 1998]
+% where $\tilde{Q}(s, a)$ is the current estimate of the state-action value
+% table.
+The celebrated \textit{Bellman's equation} [Sutton and Barto 1998] then takes the simple form
 \begin{equation}
   Q^\pi(s_t, a_t) = \mathbb E_{s_{t+1} \sim \rho(.|s_t)} [r(s_t,a_t) + \gamma Q^\pi(s_{t+1}, \pi(s_{t+1}))]
   \label{eq:bellman}
@@ -1008,7 +1020,7 @@ Notice that in the expectation in \eqref{eq:bellman}, the sampling is done over 
 depend on the environment, and so can be learned off-policy by observing state-transitions
 triggered by another behavioral policy, which can be stochastic. 
 
-\subsection{Q-learning with value approximation and replay}
+\subsection{Efficient RL with value approximation and replay}
 As already mentioned in the previous section, Q-learning optimizes over the class of
 deterministic policies of the form \eqref{eq:qlearning}.
 in state $s \in \mathcal S$, the agent takes an action $a \in \mathcal A$
@@ -1016,9 +1028,9 @@ in state $s \in \mathcal S$, the agent takes an action $a \in \mathcal A$
 by sampling from its current policy matrix, and collects a reward $r$,
 % (measured on their internal currency of worldly values ?),
 and the environment transitions to a new $s' \in \mathcal S$. At the end of
-this cycle, a new \textit{experience} $e = (s,a,r,s')$ is produced; this represents an exemplar behavior of the agent and is recorded in replay memory:
+this step, a new \textit{experience} $e = (s,a,r,s')$ is produced; this represents an exemplar behavior of the agent and is recorded in replay memory:
 $\mathcal D \leftarrow \mathcal D \cup \{e\}$.
-Now, replay consists in sampling (uniform or importance-weighted ?)  mini-batches of experiences
+Now, replay consists in sampling (uniform or importance-weighted\footnote{e.g weighted by TD error of the state transition $s \overset{a}{\rightarrow} s'$.} ?)  mini-batches of experiences
 $(s, a, r, s') \sim \mathcal U(D)$ from the replay memory $\mathcal D$ and trying to
 approximate
 the would-be $Q$-value for the state-action pair $(s,a)$ as predicted by Bellman's equation \eqref{eq:bellman}, namely
