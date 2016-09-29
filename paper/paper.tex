@@ -924,7 +924,7 @@ This is simply a quintuplet $(\mathcal S, \mathcal A, r, \rho, \mu)$ where
 \item $\mathcal S$ is the set of states, e.g $\mathcal S = \{\text{happy}, \text{sad}\}$.
 \item $\mathcal A$ is the set of actions, e.g $\mathcal A = \{\text{read}, \text{run},
   \text{laugh}, \text{empathize}, \text{empathize}\}.$
-\item $r : \mathcal S \times \mathcal A \rightarrow \mathbb R$, so that $r(s, a)$ is the instant reward for taken action $a$ at state $s$.
+\item $r : \mathcal S \times \mathcal A \rightarrow \mathbb R$, so that $r(s, a)$ is the instant reward for taking action $a$ at state $s$.
 \item $\mu: \mathcal S \rightarrow [0, 1]$ is the prior probability on the states so that
   $\mu(s)$ is the probability that the environment starts-off in state $s$.
   \item $\rho : \mathcal S \times \mathcal A \times \mathcal S \rightarrow [0, 1]$, so that
@@ -993,7 +993,7 @@ The hallmark of this trick wherein one only considers deterministic policies is 
   Q^\pi(s_t, a_t) = \mathbb E_{s_{t+1} \sim \rho(.|s_t)} [r(s_t,a_t) + \gamma Q^\pi(s_{t+1}, \pi(s_{t+1}))]
   \label{eq:bellman}
 \end{equation}
-which is a fixed-point equation for the $Q$-value operator of a deterministic policy $\pi$.
+which is a fixed-point equation for the deterministic policy $\pi$.
 Notice that in the expectation in \eqref{eq:bellman}, the sampling is done over only things which
 depend on the environment, and so can be learned off-policy by observing state-transitions
 triggered by another behavioral policy, which can be stochastic. 
