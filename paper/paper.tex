@@ -908,6 +908,10 @@ The result is a scheme for training DBNs via good-old backprop!
 %% To conclude this section, let's note that \cite{braun2011path} show how their free-energy framework (on paths) links with the well-known Hamilton-Jacobi-Bellman optimal control framework. For example, one can re-derive the Linear Quadratic Gaussian (LQG) controller, which is a generalization of the LQR in \eqref{eq:hj}...
 
 \section{Reinforcement-Learning as a computational model for DMN function}
+The main idea is to show that the DMN has biological substrates (gradient
+computation, backprop, experience replay, etc.) for all the
+major components of an efficient RL algorithm, and all these components
+integrate in a plausible way.
 \subsection{General Reinforcment-Learning (RL) theory}
 In a general reinforcement-learning (RL) framework, an \textit{agent}
 interacts with an unknown environment in trial-and-error fashion by taking
@@ -986,7 +990,7 @@ By construction, in general, maximizing the expectation in  \eqref{eq:qval} is i
 the enormous number of possible trajectories to consider.
 One popular simplification that removes this issue is to only consider the sub-family of \textit{deterministic policies}, which map each state to the best single best action which should be taken at that state, and therefore define functions from states to actions.
 
-\textit{Q-learning} (Watkins \& Dayan, 1992), a commonly used off-policy algorithm, uses the
+\textit{Q-learning} (Watkins \& Dayan, 1992), a commonly used off-policy \textit{critic-only} algorithm, uses the
 \textit{greedy policy}
 \begin{equation}
   \pi(s) = \pi_{\tilde{Q}}(s) = \argmax_{a \in \mathcal A}\tilde{Q}(s, a),
@@ -1004,19 +1008,18 @@ Notice that in the expectation in \eqref{eq:bellman}, the sampling is done over 
 depend on the environment, and so can be learned off-policy by observing state-transitions
 triggered by another behavioral policy, which can be stochastic. 
 
-\subsection{Q-learning with value approximation}
+\subsection{Q-learning with value approximation and replay}
 As already mentioned in the previous section, Q-learning optimizes over the class of
 deterministic policies of the form \eqref{eq:qlearning}.
-At state $s \in \mathcal S$, the agent takes an action $a \in \mathcal A$ (for example,
-$a$ = ``Read'', or ``Run'', or ``Laugh'', or ``Sympathize'', or ``Empathize'', etc.) by sampling
-from its current policy matrix, and collects a reward $r$,
+At state $s \in \mathcal S$, the agent takes an action $a \in \mathcal A$
+% (for example, $a$ = ``Read'', or ``Run'', or ``Laugh'', or ``Sympathize'', or ``Empathize'', etc.)
+by sampling from its current policy matrix, and collects a reward $r$,
 % (measured on their internal currency of worldly values ?),
 and the environment transitions to a new $s' \in \mathcal S$. At the end of
-this cycle, a new \textit{experience} $e = (s,a,r,s')$ is produced: this represents an exemplar
-behavior of the agent in such a situation, and is recorded in replay memory:
+this cycle, a new \textit{experience} $e = (s,a,r,s')$ is produced; this represents an exemplar behavior of the agent and is recorded in replay memory:
 $\mathcal D \leftarrow \mathcal D \cup \{e\}$.
 Now, replay consists in sampling (uniform or importance-weighted ?)  mini-batches of experiences
-$e = (s, a, r, s') \sim \mathcal U(D)$ from the replay memory $\mathcal D$ and trying to
+$(s, a, r, s') \sim \mathcal U(D)$ from the replay memory $\mathcal D$ and trying to
 approximate
 the would-be $Q$-value at $(s, a)$ as predicted by Bellman's equation \eqref{eq:bellman}, namely
 $r + \gamma \max_{a'} Q(s', a'|\theta^Q)$, with the output of a parametrized regression model $(s,a,r,s') \mapsto {Q}(s, a|\theta^Q)$, where $Q(.|\theta^Q)$ is an approximator for the $Q$-value operator,  parameterized by $\theta^Q$. Computing an optimal policy then corresponds to finding the parameters $\theta^Q$ which minimize the following loss function
@@ -1027,7 +1030,7 @@ $r + \gamma \max_{a'} Q(s', a'|\theta^Q)$, with the output of a parametrized reg
   \label{eq:oracle}
   \end{equation}
 where
-$ y = r + \gamma \max_{a'} Q(s', a'|\theta^Q) = r + \gamma Q(s', \pi(s')|\theta^Q)$ is the prediction target.
+$ y = r + \gamma \max_{a' \in \mathcal A} Q(s', a'|\theta^Q) = r + \gamma Q(s', \pi(s')|\theta^Q)$ is the prediction target.
 % While $y_t$ is also dependent on $\theta^Q$, this is typically ignored.
 
 For example, a general regression model with a kernel $(s, a) \mapsto \phi(s, a)$ would be of the
@@ -1042,7 +1045,7 @@ gradient descent is used to minimize the variational objective \eqref{eq:oracle}
 
 \begin{remark}
 Note that most RL algorithms, including \textit{Temporal Difference (TD)} learning [Sutton et al.,
-  Bertsekas] can be cast in this general variational framework.
+  Bertsekas] and SARSA can be cast in this general variational framework.
 \end{remark}
 
 \subsection{A Deep Q-learning for DMN function}
@@ -1050,7 +1053,7 @@ Note that most RL algorithms, including \textit{Temporal Difference (TD)} learni
 
 \paragraph*{Some notes:}
 \begin{itemize}
-  \item Actions are continuous
+  \item Actions are continuous, whilst states are continuous.
   \item The brain does backprop (see Hinton's recent talk at Stanford)
   \item model weights $\theta^Q$ should correspond to connections between neurons
 \item humm, looks like such a knowledge would simply translate into constraints on the DqN weights $\theta^Q$ (... at least, part of such knowledge)
