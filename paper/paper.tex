@@ -1076,11 +1076,12 @@ gradient descent is used to minimize the variational objective \eqref{eq:oracle}
 
 \paragraph{Link to classical RL algorithms.}
 Note that most RL algorithms, including \textit{Temporal Difference (TD)} learning [Sutton et al.,
-  Bertsekas] and SARSA can be cast in this general variational framework. For example TD can corresponds
-to the above framework with a linear value approximator with feature encoding $\phi(s,a) = \delta_{(s,a)} =  \text{ point mass at }(s,a)$
-on the grid $\mathcal S \times \mathcal A$,
-and so $$\nabla_{\theta^Q_{k+1}}Q(s, a|\theta^Q_{k+1}) = \phi(s, a) = \delta_{(s,a)}$$
-...
+  Bertsekas] and SARSA can be cast in this general variational framework. For example TD corresponds
+to the above framework using a linear value approximator with feature encoding
+$\phi(s,a) = \delta_{(s,a)} =  \text{ point mass at }(s,a)$ on the grid $\mathcal S \times \mathcal A$,
+and so $$\nabla_{\theta^Q_{k+1}}Q(s, a|\theta^Q_{k+1}) = \phi(s, a) = \delta_{(s,a)}.$$
+%% Whence, the gradient update due to the sample $(s,a,r,s') \in \mathcal D$ is
+%% $$\theta^Q(s,a) \leftarrow \theta^Q(s,a) + (Q(s, a|\theta^Q_{k+1}) - y)$$ ??
 
 
 
