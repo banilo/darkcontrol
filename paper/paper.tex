@@ -923,7 +923,9 @@ actions / decisions $a$, which trigger changes in the
 \textit{state} of the environment
 $s \rightarrow s'$, accompanied with a real-valued \textit{reward}
 $r = r(s, a)$ (or regret!, since it can be negative) collected by the
-agent. This reward should be thought
+agent. In this view, the environmental is partially controlled by
+the action of the agent.
+This reward should be thought
 of as an instantaneous satisfaction accompanying the execution of
 an action. Here the subscript $t$ denotes time, and can be discrete or
 continuous.
@@ -1146,6 +1148,12 @@ and so $$\nabla_{\theta^Q_{k+1}}Q(s, a|\theta^Q_{k+1}) = \phi(s, a) = \delta_{(s
   \textit{Inference} in the human brain reduces to generalization of
   policy and value adaptations from sampled experiences to
   successful action choices and reward predictions in future states.
+  \item In the RL view, plasticity in the DMN arises naturally.
+  If an agent behaving optimally in a given environment moves
+  to novel, yet unexperienced environments, reward prediction errors will
+  massively increase. This will lead to adaptation of the policy matrix
+  and value function until the system converges to a
+  new steady-state of optimal action decisions given certain states.
   
 \end{itemize}
 
