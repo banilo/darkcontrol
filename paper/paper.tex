@@ -1111,8 +1111,39 @@ and so $$\nabla_{\theta^Q_{k+1}}Q(s, a|\theta^Q_{k+1}) = \phi(s, a) = \delta_{(s
 
 
 
-\subsection{A Deep Q-learning for DMN function}
+\subsection{Correspondence between DMN function and RL framework}
 \textbf{XXX Put the diagrams and process charts here.}
+\begin{itemize}
+  \item The policy matrix represent the repertoire of possible actions
+  on the world given a current state. It represents the probabilites of
+  choosing actions to be executed in a certain situation.
+  \item Given a state, the value function represents the estimated utility of
+  being in that state, which is subjective to the agent. 
+  For state s there is set of actions a.
+  It provides a quantitative answer to the question:
+  \"What state is desirable for a specific agent.\"
+  For all actions being in one of the states s,
+  the Q value function provides the subjective utility
+  of executing a specific action.
+  It provides a quantitative answer to the question:
+  \"Which is the best action to take in the current situation.\"
+  \item The DMN may subserve
+  constant exploration of possible future actions and their
+  cumulative outcomes. Implicit computation of future choices 
+  provides an explanation for purposeful mind-wandering.
+  \item hippocampus -> provides perturbed action-transition-state-reward samples
+  as a block of "imagined", "hypothesized", "recalled" experience;
+  the small variations in these experience blocks allow searching
+  a larger space of parameters and possible experiences.
+  In the absence of environmental input and feedback
+  (e.g., mind-wandering or sleep) pseudo-experiencing possible
+  future scenarios and action outcomes.
+  
+\end{itemize}
+
+
+
+
 
 \paragraph*{Some notes:}
 \begin{itemize}
