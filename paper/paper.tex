@@ -467,8 +467,8 @@ The HC thus orchestrates elements of experienced environmental aspects for
 consolidations based on reenactment and for integration into 
 rich mental scene construction. In this view, the HC my even influence
 ongoing perception in the current environment (Maguire 2016).
-$\implies$ self-play in deepmind Go
-$\implies$ Kai had an interesting idea: the deja-vu effect could be when you already accidentally perturbed past such that it really occures in reality later
+-> self-play in deepmind Go
+-> Kai had an interesting idea: the deja-vu effect could be when you already accidentally perturbed past such that it really occures in reality later
 
 
 Finally,
@@ -935,7 +935,9 @@ In RL, MDPs are the mathematical instantiation of the environment model,
 which generally can incorporate action probabilities (policy matrix)
 and/or value function given a state.
 (Silver: The environment can be fully defined by state space and
-transition probability matrix.)
+transition probability matrix.
+Across lifetime, the MDP naturally incorporates always better
+models of the environment due to \points.)
 This is simply a quintuplet $(\mathcal S, \mathcal A, r, \rho, \mu)$ where
 \begin{itemize}
 \item $\mathcal S$ is any function of the history.
@@ -1005,6 +1007,8 @@ Note that $R(s_t, a_t)$ defined above is a stochastic quantity which depends on 
   \end{split}
 \end{eqnarray*}
 
+($\mu$ gives the initially random distributions over the states,
+the initially chaotic model of the agent at birth.)
 %% The goal is then to sample from a policy $a_t \sim \pi$ so that the expected
 %% value of $R(s_t, a_t)$ is maximized.
 Formally, the agent's goal is then to maximize the state-action value for
@@ -1114,19 +1118,19 @@ and so $$\nabla_{\theta^Q_{k+1}}Q(s, a|\theta^Q_{k+1}) = \phi(s, a) = \delta_{(s
 \subsection{Correspondence between DMN function and RL framework}
 \textbf{XXX Put the diagrams and process charts here.}
 \begin{itemize}
-  \item The policy matrix represent the repertoire of possible actions
-  on the world given a current state. It represents the probabilites of
+  \item The policy matrix represents the repertoire of possible actions
+  on the world given a current state. It encodes the probabilites of
   choosing actions to be executed in a certain situation.
   \item Given a state, the value function represents the estimated utility of
   being in that state, which is subjective to the agent. 
   For state s there is set of actions a.
   It provides a quantitative answer to the question:
-  "What state is desirable for a specific agent."
+  \"What state is desirable for a specific agent.\"
   For all actions being in one of the states s,
   the Q value function provides the subjective utility
   of executing a specific action.
   It provides a quantitative answer to the question:
-  "Which is the best action to take in the current situation."
+  \"Which is the best action to take in the current situation.\"
   \item The DMN may subserve
   constant exploration of possible future actions and their
   cumulative outcomes. Implicit computation of future choices 
@@ -1138,6 +1142,10 @@ and so $$\nabla_{\theta^Q_{k+1}}Q(s, a|\theta^Q_{k+1}) = \phi(s, a) = \delta_{(s
   In the absence of environmental input and feedback
   (e.g., mind-wandering or sleep) pseudo-experiencing possible
   future scenarios and action outcomes.
+  \item
+  \textit{Inference} in the human brain reduces to generalization of
+  policy and value adaptations from sampled experiences to
+  successful action choices and reward predictions in future states.
   
 \end{itemize}
 
@@ -1227,6 +1235,10 @@ abc
 
 \paragraph{Free Energy Principle.}
 \begin{itemize}
+  \item A common point between the Free Energy principle and our framework
+  is placing the minimization of suprise at the core of brain function.
+  In RL, surprise minimization reduces to accurate prediction of 
+  rewarding outcomes in the future.
   \item Ortega et al. 2013 \cite{ortega2013thermodynamics} ``Thermodynamics as a theory of decision-making with information-processing costs''
 \item Friston's critic of RL \cite{fristonAIorRL} (he proposes "active inference''): "This equation (equation 18) comes from the theory of dynamic programming,
 pioneered in the 1950s by Richard Bellman and colleagues [2]. To
