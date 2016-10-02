@@ -1016,9 +1016,16 @@ taking action $a_t$ and state $s_t$ defined by
 
 where the expectation is over all possible trajectories successor
 trajectories of state $s_t$.
+Given that each $\pi$ correspondence to an exhaustive description of
+behavioral patterns, $Q^{\pi}(s_t,a_t)$ corresponds to the epistemic value of
+the set of actions given states in finite time.
+
 
 By construction, in general, maximizing the expectation in  \eqref{eq:qval} is intractable due to
 the enormous number of possible trajectories to consider.
+(If the Bellman-based computational ideas have a corresponding
+neurobiological implementation, this provides a framework of how
+optimal behavior could be computable in the human brain.)
 One popular simplification that removes this issue is to only consider the sub-family of
 \textit{deterministic policies}, which map each state to the best single best action which
 should be taken at thin state, and therefore define functions from states to actions.
@@ -1039,7 +1046,7 @@ The celebrated \textit{Bellman's equation} [Sutton and Barto 1998] then takes th
 which is a fixed-point equation for the deterministic policy $\pi$.
 Notice that in the expectation in \eqref{eq:bellman}, the sampling is done over only things which
 depend on the environment, and so can be learned off-policy by observing state-transitions
-triggered by another behavioral policy, which can be stochastic. 
+triggered by another behavioral policy, which can be stochastic.
 
 \subsection{Efficient RL with value approximation and replay}
 %As already mentioned in the previous section, Q-learning optimizes over the class of
@@ -1200,6 +1207,8 @@ or some approximation scheme like reinforcement-learning [4–6].
 The free-energy formulation circumvents these problems by
 prescribing the policy in terms of free-energy, which encodes
 optimal control (Equation 6)"
+\item It is difficult to compute the free energy principle
+in practice, which makes it physiologically less plausible.
   \end{itemize}
 
 \section{Conclusion}
