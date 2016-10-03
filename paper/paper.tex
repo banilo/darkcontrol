@@ -1179,52 +1179,102 @@ and so $$\nabla_{\theta^Q_{k+1}}Q(s, a|\theta^Q_{k+1}) = \phi(s, a) = \delta_{(s
 
 \section{Relation to other cognitive models (Danilo)}
 \paragraph{Predictive Coding and Bayesian Brain Hypothesis}
-abc
-The Predictive Coding Framework.
-construction of detached probabilistic scenes has been argued to influence ongoing decision-making by estimating outcomes of behavioral choices.
+The predictive coding framework 
+is one of the most frequently evoked hypotheses of default mode function.
+Cortical responses emerge from a functional network of continuously interacting high and low hierarchical levels,
+with a dynamic intercourse that performs inference on the world by reconciling gaps between sensory input and prior information. 
+Feed-forward sensory experience is constantly modulated by
+modulatory top-down modulation at various hierarchical processing levels.
+At each stage of processing abstraction level,
+an internally generated prediction of the sensory input is
+directly compared against actual external input.
+A prediction error, i.e. the difference between sensory input
+and internal prediction,
+occurring at one of the processing levels
+incurs plasticity changes of neuronal back-projections (i.e., model parameters)
+for gradually improved future prediction of the environment.
+Indeed,
+back projection outnumber by far the input projection in the brain
+Salin, P.A. and Bullier, J. (1995) Corticocortical connections in the visual system: structure and function. Physiol. Rev. 75, 107–154.
+This process permits updates of beliefs about the world
+to best fit the incoming sensory examples (Friston2014).
+The generative model of how data are generated in the
+world would hence be incorporated by
+the current neuronal wiring.
+Contextual integration is maintained by top-down modulation of sensorimotor
+processing by context-specific a-priori information.
+formulate perception as a constructive process
+based on internal or generative models.
+
+
+
 
 \begin{itemize}
-  \item It is one of the most frequently cited hypotheses of default mode function
-  \item Within this model the brain is conceptualized as a Bayesian machine
-  \item Predictive coding is a framework that, in a hierarchical setting,
-  is equivalent to empirical Bayesian inference
-  \item External sensory input is feed-forward/bottom-up processed in the brain
-  \item Their processing is compared against expected input
-  \item The prediction error, i.e. the difference between sensory input
-  and internal prediction, is computed at each level and passed to
-  higher levels via forward connections
-  \item in case of a mismatch, back-projections top-down modulate
-  input processing
-  \item ‘contextual integration’ for top-down modulation of sensorimotor
-  processing by context-specific a-priori information.
-  \item Closely related to Friston's free-energy principle: brain as inference engine
-  biological systems, including brains, must minimize the long-term average of surprise;
-  formulate perception as a constructive process based on internal or generative models
-  \item A generative model of the world
+  \item Both accounts are process theories, supported by
+  neurobiological evidence, that
+  view the brain as a \"statistical organ\" (Friston 2014).
+  \item Both have a notion of brain plasticity with increased
+  adaption of neuronal wiring when faced by unprecedented environmental
+  challenges.
+  \item hierarchical aspects from predictive coding in RL lies in the
+  nested prediction of probable upcoming actions and rewards
+  \item Both model consequences of action. In RL, the horizon of that
+  look into the future is manifest in the $\gamma$ parameter, but not
+  explicitly modeled in the PC account.
+  \item mismatch negativity of PC is immanent in reward prediction error
+  by the difference between actually predicted reward of an action given
+  a state and the reward predicted by non-linear regression with graded
+  discounting of future rewards
+  \item Sensory experience is a generative process from both views.
+  In predictive coding sensory perception of the external world
+  is a generative experience due to modulatory top down experience at
+  various hierarchical levels of sensory input processing.
+  In RL, the environmental model is incorporated in the Markov decision
+  process, \textit{which can be fully recovered based on the last
+  state alone}.
+  \item Both provide a parsimoneous explanation why
+  humans seem to minimize processing of incoming information
+  when the environment is predictable and allocate attention when
+  novel stimuli are encountered.
+  Similarly, the both propose explanations why
+  predicting the future is inherently
+  linked to information from the past; similarly for independence across
+  geographical spaces.
 \end{itemize}
-
-Friston2014:
-
-This perspective shifts away from the brain as a passive filter of sensations (or an elaborate stimulus– response link) towards a view of the brain as a statistical organ that generates hypotheses or fantasies that are tested against sensory evidence. In short, the brain is now considered a phantastic organ (from Greek phantastikos, the ability to create mental images). For many people, this perspective can be traced back to Hermann von Helmholtz and the notion of unconscious inference: that is, a pre-rational mechanism by which visual impressions are formed (eg, the seemingly automatic but erroneous belief that the sun rises and sets in the sky, as opposed to the truth that the Earth rotates around it).
-
-Predictive coding is not a normative or descriptive scheme, it is a process theory with a biologically plausible basis—there is now much circumstantial anatomical and physiological evidence for predictive coding in the brain.12–16 In this scheme, neuronal representations in higher levels of cortical hierarchies generate predictions of representations in lower levels. These top-down predictions are compared with representations at the lower level to form a prediction
-error (associated with the activity of superficial pyramidal cells). This mismatch signal is passed back up the hierarchy, to update higher representations (associated with the activity of deep pyramidal cells).
-
-A description of biological processes as minimising (variational) free energy—a statistical measure of the surprise or improbability of sensory data, under a model of how those data were generated.
-
-predictive coding represents a biologically plausible scheme that enables the brain to update beliefs about the world with sensory samples
-
- individuals spend most of their time predicting the internal (proprioceptive) and external (exteroceptive) consequences of behaviour (both their own and that of others). To fully appreciate the bilateral nature of these predictions, inference can be considered in an embodied context. In this setting, perception can be understood as resolving exteroceptive prediction errors by selecting the predictions that best explain sensations. Conversely, behaviour suppresses pro- prioceptive prediction error by changing proprioceptive sensations. This suppression relies on classic reflexes, in which equilibrium points are set by descending proprioceptive predictions (figure 1).15 This process is called active inference
-
-providing a rich dynamical repertoire that enables the brain to respond quickly to changing inputs
-
-the formal constraints implicit in predictive coding mandate modulatory gain control for ascending prediction errors
-
 
 
 
 \paragraph{Semantic Hypothesis}
-abc
+
+The proposal promoted here is that the brain is continually engaged in generating predictions, and that these predictions rely on associative activation. 
+what people do when their mental capacity is not completely consumed by a specific task is to generate associations
+Traditionally this process has been considered as recognition, classification, or even a type of memory retrie- val, but in the present context I treat this process as analogy- making instead. 
+in analogy, the emphasis is on ‘what is it like?
+Analogy- based mappings of properties manifest themselves in processes ranging from perception and memory [17] to stereotypic judgments and prejudice
+While our existing memories are used to derive analo- gies and activate predictions, they are constantly being updated. The analogical process, in addition to affording the interpretation of our environment, subsequently aug- ments previous representations in a way that fosters increasingly flexible future analogies.
+(Bar)
+
+phantastic organ (from Greek phantastikos, the ability to create mental images)
+Friston2014
+
+this perspective can be traced back to Hermann von Helmholtz and the notion of unconscious inference: that is, a pre-rational mechanism by which visual impressions are formed (eg, the seemingly automatic but erroneous belief that the sun rises and sets in the sky, as opposed to the truth that the Earth rotates around it).
+
+mem- ory-based predictions, and these predictions are generated continually either based on gist information gleaned from the senses or driven by thought. The emphasis in this.
+The proposed account integrates three primary components. The first is associations, which are formed by a lifetime of extracting repeating patterns and statisti- cal regularities from our environment, and storing them in memory. The second is the concept of analogies, whereby
+Corresponding author: Bar, M. (bar@nmr.mgh.harvard.edu). Available online 4 June 2007.
+we seek correspondence between a novel input and existing representations in memory (e.g. ‘what does this look like?’). Finally, these analogies activate associated representa- tions that translate into predictions 
+(Bar)
+
+
+A second important functional account of the DMN is the 'semantic hypothesis'. It holds that retrieval of building blocks of world knowledge enables language and other high-level faculties. The DMN central involvement in semantic processing results in its implication in many a-priori unrelated aspects of human behavior, such as reasoning, planning, problem solving and decision making (Binder, Desai, Graves, & Conant, 2009; Schilbach et al., 2008; Suddendorf & Corballis, 2007). This is also illustrated by the substantial relationship between semantic knowledge and words (Binder et al., 2009). The engagement of DMN in language processing matches the observation that the large majority of the DMN regions such as TPJ receive no direct input from primary sensory areas acting more as a “hermeneutic hub” (Binder et al., 2009; Seghier, 2013). The DMN activation rather enables the organization and processing of internally generated information in absence of stimulus presentation (Binder et al., 1999). The proposed role of the DMN in semantic processing is further highlighted by the convergence of these regions in a reciprocal relationship as an interface between the allocentric (bird’s eye view) and egocentric (first person view) perspective; in this way self-reflection, social knowledge, and autobiographical memories are integrated. Moreover, the semantic account exquisitely explains the engagement of DMN in both recalling past and envisioning future (Demblon, Bahri, & D'Argembeau, 2016; Hassabis, Kumaran, Vann, & Maguire, 2007; Schacter et al., 2007; Spreng, Mar, & Kim, 2009), in that the internally stored in language world knowledge may lay the contextual foundations for envisioning future events as well as memory processes (Bzdok et al., 2012). Hence, the reported retrograde amnesia and the simultaneous impairment of imagining novel experience across patients with hippocampus lesions ties in well with this model (Hassabis & Maguire, 2007). In other words, DMN activation might underlie a time dimension independent cognitive process of constructing contextual scenarios out of detached memories (Buckner & Carroll, 2007; Gaesser, Spreng, McLelland, Addis, & Schacter, 2013; Hassabis & Maguire, 2007). Summing up the 'semantic account', DMN offers the conceptual framework that underlies not only language but also other major high-level functions of human behavior.
+
+\begin{itemize}
+  \item The notion of semantic or knowledge association is
+  incorporated into the MDP as a function of the state and action
+  history.
+  \item Both: there is no evidence to indicate that predictions of various levels of complexity, abstraction, timescale and purpose use mech- anisms that are qualitatively different
+\end{itemize}
+
 
 \paragraph{Sentinel Hypothesis}
 many investigators speculate that this central neural network reflects the brain’s relentless tracking and prediction of environmental events to adaptively optimize the organism's future action (Schacter et al., 2007).
@@ -1238,6 +1288,11 @@ How can a same neurobiological circuit be equally important for baseline house-k
 Our computational account can explain why the DMN is implicated in both a goal-directed task and an idlying rest cognitive set? -> task is policy/value updates to optmize short-term action / rest updates for mid- and long-term action
 
 
+ The 'sentinel hypothesis' is a major functional account to explain DMN activity that this canonical network acts as a cohesive unit. This coherent neurobiological network would be prominently engaged as a “radar” as well as in self-referential information processing including mind wandering, autobiographical recall, mentalizing, reflection about past and future (Buckner, Andrews-Hanna, & Schacter, 2008; Schilbach, Eickhoff, Rotarska-Jagiela, Fink, & Vogeley, 2008). Acting as a sentinel, DMN functions as a broad focus manager that performs continuous environmental tracking for salient and unexpected events (Buckner et al., 2008). This default activity may allow the detection of possible predators and potentially serves an evolutionarily conserved purpose by means of attention allocation (Raichle et al., 2001). The “radar” function may be efficiently supported by the activation patterns of DMN in diffuse attention condition tasks with targets appearing in various locations (Hahn, Ross, & Stein, 2007). On the other hand, the salient information perceived from the external environment activates self-referential information processing (Krienen, Tu, & Buckner, 2010). A conceptualization of these functions suggests two highly adaptive interacting DMN subsystems (Andrews-Hanna, Saxe, & Yarkoni, 2014; Schacter, Addis, & Buckner, 2007). However, the sentinel hypothesis may not exhaustively explain the variety of findings on the DMN connectivity with memory-related structures such as hippocampus (Giugni, Vadala, De Vincentiis, Colica, & Bastianello, 2010; McCormick et al., 2014). Summing up this first candidate account for DMN function, the sentinel hypothesis heavily emphasizes on the DMN as a single structure with a continuous sentinel role increasing during self-referential tasks.
+
+
+
+
 \section{Relation to other statistical models (Elvis)}
 \paragraph{Control theory.}
 \begin{itemize}
@@ -1249,6 +1304,8 @@ abc
 
 \paragraph{Free Energy Principle.}
 \begin{itemize}
+  \item Closely related to Friston's free-energy principle: brain as inference engine
+  biological systems, including brains, must minimize the long-term average of surprise;
   \item A common point between the Free Energy principle and our framework
   is placing the minimization of suprise at the core of brain function.
   In RL, surprise minimization reduces to accurate prediction of 
