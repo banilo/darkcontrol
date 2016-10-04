@@ -948,7 +948,8 @@ is simply a quintuplet $(\mathcal S, \mathcal A, r, \rho, \mu)$ where
   transitions be Markovian. Consequently, the future states are independent of past states and only depend on the present.  
 \item $\mathcal A$ is the set of actions, e.g $\mathcal A = \{\text{read}, \text{run},
   \text{laugh}, \text{sympathize}, \text{empathize}\}.$
-\item $r : \mathcal S \times \mathcal A \rightarrow \mathbb R$, so that $r(s, a)$ is the instant reward for taking action $a$ in state $s$.
+\item $r : \mathcal S \times \mathcal A \rightarrow \mathbb R$ is the \textit{reward function},
+  so that $r(s, a)$ is the instant reward for taking action $a$ in state $s$.
 \item $\mu: \mathcal S \rightarrow [0, 1]$ is the prior probability on the states so that
   $\mu(s)$ is the probability that the environment starts-off in state $s$.
 \end{itemize}
