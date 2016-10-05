@@ -195,7 +195,7 @@ It is known that, the more the external world is predictable,
 the more mental activity becomes detached from the actual sensory environment
 and the more stimulus-independent thoughts occur
 (Mason et al., 2007).
-These "offline" processes may however contribute to optimized control of the organism.
+These \"offline\" processes may however contribute to optimized control of the organism.
 We formalize
 a policy matrix to capture the space of possible actions that can be performed
 on the environment given the current state. A value matrix 
@@ -218,7 +218,10 @@ thus maximizing reward outcome at various time scales.
 Such a purposeful optimization objective
 may be solved by a stochastic approximation
 based on a brain implementation of Markov Chain Monte Carlo sampling
-(Tenenbaum2011Science). Even (necessarily imperfect) memories
+(Tenenbaum2011Science).
+\textit{Control} refers to the influences an agent exterts when interacting
+with the environment to encourage preferred states.
+Even (necessarily imperfect) memories
 of past experience, random mind-wandering and dreams during sleep
 may provide meanginful building blocks to iteratively improve
 the predictive DMN machinery to optimize the behavior of the organism.
@@ -1014,7 +1017,8 @@ taking action $a_t$ and state $s_t$ defined by
 In \eqref{eq:cumr}, the constant $\gamma \in [0, 1]$ is the \textit{discount factor}. The choice $\gamma = 0$   corresponds to a perfectly myopic agent who is solely concerned about their immediate rewards and have no regards for the future. For there to be any learning at all, a technical requirement is that $\gamma < 1$.
 % \footnote{In which case we can take $T \rightarrow +\infty$, provided the reward function $r$ is bounded.}.
 Thus the agent is positively biased towards considering rewards which are will
-come soon. The reward importance hence decays with distance in the future,
+come soon. The reward importance hence decays exponentially
+with distance in the future,
 given that there is more uncertainty in the farsighted future.
 The reward discount factor $\gamma$ can thus be seen as calibrating
 the delay discounting behavior of the intelligent agent.
@@ -1057,7 +1061,10 @@ The celebrated \textit{Bellman's equation} [Sutton and Barto 1998] then takes th
   Q^\pi(s, a) = \mathbb E_{s' \sim \rho(.|s,a)} [r(s,a) + \gamma Q^\pi(s', \pi(s'))]
   \label{eq:bellman}
 \end{equation}
-which is a fixed-point equation for the deterministic policy $\pi$.
+which provides a recursive decomposition of optimal behavior.
+A complicated dynamic programming optimization can be
+broken into simpler subproblems at different time points.
+It is a fixed-point equation for the deterministic policy $\pi$.
 Notice that in the expectation in \eqref{eq:bellman}, the sampling is done over only things which
 depend on the environment, and so can be learned off-policy by observing state-transitions
 triggered by another behavioral policy, which can be stochastic.
@@ -1160,6 +1167,12 @@ and so $$\nabla_{\theta^Q_{k+1}}Q(s, a|\theta^Q_{k+1}) = \phi(s, a) = \delta_{(s
   massively increase. This will lead to adaptation of the policy matrix
   and value function until the system converges to a
   new steady-state of optimal action decisions given certain states.
+  \item The DMN is today known to consistently increase in neural
+  activity when engaging cognitive processes that are detached from
+  current sensory environment. DMN involvement in thinking about the past,
+  the future, and hypothetical possibilities ties in with the
+  MDP's implicit computation of action and state cascades as a function
+  of what happened in the past.
   
 \end{itemize}
 
@@ -1257,6 +1270,8 @@ While our existing memories are used to derive analo- gies and activate predicti
 phantastic organ (from Greek phantastikos, the ability to create mental images)
 Friston2014
 
+as showing that animals could learn a “cognitive map of the environment” in the absence of rewards or penalties, and that they could use the map later when they were motivated to reach a goal (Tolman, 1948). 
+
 this perspective can be traced back to Hermann von Helmholtz and the notion of unconscious inference: that is, a pre-rational mechanism by which visual impressions are formed (eg, the seemingly automatic but erroneous belief that the sun rises and sets in the sky, as opposed to the truth that the Earth rotates around it).
 
 mem- ory-based predictions, and these predictions are generated continually either based on gist information gleaned from the senses or driven by thought. The emphasis in this.
@@ -1282,8 +1297,13 @@ many investigators speculate that this central neural network reflects the brain
 Cognitive neuroimaging studies linked the DMN to the contemplation of others’ (Mar, 2011) and one’s thoughts (Lombardo et al., 2009) mental states, 
 
 DMN does social cognition -> but it exists in rats and monkeys with much more poorly developped social capacities
+-> our computational framework can be equally applied to humans
+and other primates.
 
 How can a same neurobiological circuit be equally important for baseline house-keeping functions and specific task performance?
+
+Humans have learned to solve ecological problems
+by social means.
 
 Our computational account can explain why the DMN is implicated in both a goal-directed task and an idlying rest cognitive set? -> task is policy/value updates to optmize short-term action / rest updates for mid- and long-term action
 
@@ -1327,7 +1347,17 @@ in practice, which makes it physiologically less plausible.
 
 \section{Conclusion}
 What single brain function could be most important for existence and survival of the species?
+Estimating quantities that depend on how features of an agent’s environment are expected to unfold over the future.
 From the perspective of the human condition, it remains unclear what the nature and purpose of a domain-overarching computational mechanism implemented in the high association cortex could be to warriant the high energetic costs.
+
+Obtain reward and avoid pain.
+
+The idealized computational framework explains previous observations about the
+DMN in a simple in conception but non-trivially links
+together disparate functional hypotheses in the DMN literature.
+
+biological plausibility of dynamic optimization in
+optimal substructure
 
 ; formalize and predict; offer statistical control on the brain's default function/operations
 
