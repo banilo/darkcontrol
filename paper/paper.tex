@@ -914,61 +914,60 @@ The result is a scheme for training DBNs via good-old backprop!
 
 %% To conclude this section, let's note that \cite{braun2011path} show how their free-energy framework (on paths) links with the well-known Hamilton-Jacobi-Bellman optimal control framework. For example, one can re-derive the Linear Quadratic Gaussian (LQG) controller, which is a generalization of the LQR in \eqref{eq:hj}...
 
-\section{Reinforcement-Learning as a computational model for DMN function}
-The main idea is to show that the DMN has biological substrates (gradient
+\section{Reinforcement Learning as a computational model for DMN function}
+The main idea of this section is to argue that the DMN has biological substrates (gradient
 computation, backprop, experience replay, etc.) for all the
-major components of an efficient RL algorithm, and all these components
-integrate in a plausible way.
-\subsection{Markov Decision Processes}
-In a general reinforcement-learning (RL) framework, an \textit{agent}
+major components of an efficient \textit{Reinforcement Learning} algorithm, and all these
+components integrate in a plausible way.
+Reinforcement Learning (RL) is learning to achieve a goal by interacting with an external
+environment. In a general RL framework, an \textit{agent}
 interacts with an  environment in a trial-by-error fashion by taking
 actions / decisions $a$, which trigger changes in the
 \textit{state} of the environment
-$s \rightarrow s'$, accompanied with a real-valued \textit{reward}
+$s \rightarrow s'$, accompanied by a real-valued \textit{reward}
 $r = r(s, a)$ (or regret!, since it can be negative) collected by the
 agent. In this view, the environmental is partially controlled by
 the action of the agent.
 This reward should be thought
 of as an instantaneous satisfaction accompanying the execution of
-an action. Here the subscript $t$ denotes time, and can be discrete or
-continuous.
+an action.
+%% Here the subscript $t$ denotes time, and can be discrete or
+%% continuous.
 The environment $\mathcal E$ is generally taken as stochastic,
-is partially observed and 
-has some kind of memory.
+is partially observed, in the sense that only part of the current state is observed by
+the agent.
+\subsection{Markov Decision Processes}
 A popular abstract model for the scenario are so-called \textit{Markov Decision Processes (MDPs)}.
-In RL, MDPs are the mathematical instantiation of the environment model,
-which generally can incorporate action probabilities (policy matrix)
-and/or value function given a state.
-(Silver: The environment can be fully defined by state space and
-transition probability matrix.
-Across lifetime, the MDP naturally incorporates always better
-models of the environment due to \points.)
-This is simply a quintuplet $(\mathcal S, \mathcal A, r, \rho, \mu)$ where
+%% In RL, MDPs are the mathematical instantiation of the environment model,
+%% which generally can incorporate action probabilities (policy matrix)
+%% and/or value function given a state.
+%% (Silver: The environment can be fully defined by state space and
+%% transition probability matrix.)
+is simply a quintuplet $(\mathcal S, \mathcal A, r, \rho, \mu)$ where
 \begin{itemize}
-\item $\mathcal S$ is any function of the history.
-The state exhibits the Markov property
-$\mathbb{P}(S_{t+1}|S_{t})=\mathbb{P}(S_{t+1}|S_{1}, \dots, S_{t})$.
-Consequently, the future states are independent of past states and only depend on the present.
-% \item $\mathcal S$ is the set of states, e.g $\mathcal S = \{\text{happy}, \text{sad}\}$.
+\item $\mathcal S$ is the set of states, e.g $\mathcal S = \{\text{happy}, \text{sad}\}$.
+\item $\rho : \mathcal S \times \mathcal A \times \mathcal S \rightarrow [0, 1],\; (s,a,s') \mapsto \rho(s'|s,a)$,
+  the probability of moving to state $s'$ if action $a$ is taken from state $s$. In addition, one requires that such
+  transitions be Markovian. Consequently, the future states are independent of past states and only depend on the present.  
 \item $\mathcal A$ is the set of actions, e.g $\mathcal A = \{\text{read}, \text{run},
   \text{laugh}, \text{sympathize}, \text{empathize}\}.$
-\item $r : \mathcal S \times \mathcal A \rightarrow \mathbb R$, so that $r(s, a)$ is the instant reward for taking action $a$ in state $s$.
+\item $r : \mathcal S \times \mathcal A \rightarrow \mathbb R$ is the \textit{reward function},
+  so that $r(s, a)$ is the instant reward for taking action $a$ in state $s$.
 \item $\mu: \mathcal S \rightarrow [0, 1]$ is the prior probability on the states so that
   $\mu(s)$ is the probability that the environment starts-off in state $s$.
-  \item $\rho : \mathcal S \times \mathcal A \times \mathcal S \rightarrow [0, 1],\; (s,a,s') \mapsto \rho(s'|s,a)$, the probability of moving to state $s'$ if action $a$ is taken from state $s$. In addition, one requires that such transitions be Markovian.
 \end{itemize}
 
 \begin{remark}
   Given a system $(\mathcal S, \mathcal A, r, \rho, \mu)$ satisfying all the axioms for an MDP
   except the Markov property, we can always transform it into an MDP by considering a compounded
   version of the states
-  $$s_t \leftarrow (s_0,a_0,r_0,s_1,a_1,s_2\ldots,s_t,a_{t-1},r_{t-1},s_{t})$$ made of the system's
+  $$S_t \leftarrow (S_0,A_0,R_0,S_1,A_1,S_2\ldots,S_t,A_{t-1},R_{t-1},S_{t})$$ made of the system's
   history up to an including time $t$.
 \end{remark}
 
 \paragraph{A note on model-based RL.}
 Knowledge the agent has about the environment can be encoded in the
-functions $r$, $\mu$, $\rho$, and / or $\pi$, as is done in
+functions $r$, $\mu$, $\rho$, and / or $\mu$, as is done in
 \textit{model-based} RL. For example if a rat in a maze knows, for sure,
 that staying still will produce no change in the environment, and in particular will not eventually lead to finding the food, they can assume:
 \begin{itemize}
@@ -979,9 +978,19 @@ that staying still will produce no change in the environment, and in particular 
 
 \subsection{Value functions and policies}
 The behavior of the agent is governed by some kind of \textit{policy}, which maps states to
-sampling probabilities over candidate actions to perform from thin state. The  goal of RL is then
-adapt this policy so as to  maximize the cumulative rewards.
-
+sampling probabilities over candidate actions to perform from this state. Starting a time $t=0$,
+a policy $\pi$ generates a trajectory as follows
+\begin{eqnarray*}
+  \begin{split}
+    S_1 &\sim \rho(.|S_0,A_0), \text{ collect rewards }R_0 = r(S_0, A_0)\\
+    A_1 &\sim \pi(.|S_1)\\
+    S_2 &\sim \rho(.|S_1,A_1), \text{ collect rewards }R_1 = r(S_1, A_1)\\
+    \ldots\\
+    A_{t} &\sim \pi(.|S_{t})\\
+    S_{t+1} &\sim \rho(.|S_{t},A_{t}), \text{ collect rewards }R_{t} = r(S_{t}, A_{t})\\
+    \ldots
+  \end{split}
+\end{eqnarray*}
 Since an action taken now might have repercussions long into the feature, it turns out that the
 quantity to optimize is not the instantaneous rewards $r(s, a)$, but a
 cumulative version which takes into account the future. A standard for
@@ -989,32 +998,13 @@ modeling this accumulation is the so-called
 time-discounted \textit{cumulative reward} function
 \begin{equation}
   \label{eq:cumr}
-  R^\pi(s_0, a_0) = r(s_0, s_0) + \gamma r(s_1, a_1) + \ldots + 
-  = \sum_{t=0}^{\infty}\gamma^{t}r(s_{t},a_{t}),
+  G^\pi = \sum_{t=0}^{\infty}\gamma^{t}R_t.
 \end{equation}
-which measures the cumulative reward of starting off at state $s_0$ taking action $a_0$, then following a policy $\pi$ for choosing actions henceforth,
-i.e
-
-\begin{eqnarray*}
-  \begin{split}
-    s_0, a_0 &\leftarrow s, a\\
-    s_1 &\sim \rho(.|s_0,a_0) \text{ and collect rewards }r(s_0, a_0)\\
-    a_1 &\sim \pi(.|s_1)\\
-    s_2 &\sim \rho(.|s_1,a_1) \text{ and collect rewards }r(s_1, a_1)\\
-    \ldots\\
-    a_{t-1} &\sim \pi(.|s_{t-1})\\
-    s_{t} &\sim \rho(.|s_{t-1},a_{t-1}) \text{ and collect rewards }r(s_{t-1}, a_{t-1})\\
-    \ldots
-  \end{split}
-\end{eqnarray*}
-
-($\mu$ gives the initially random distributions over the states,
-the initially chaotic model of the agent at birth.)
-%% The goal is then to sample from a policy $a_t \sim \pi$ so that the expected
-%% value of $R(s_t, a_t)$ is maximized.
-Formally, the agent's goal is then to maximize the state-action value for
-taking action $a_t$ and state $s_t$ defined by
-In \eqref{eq:cumr}, the constant $\gamma \in [0, 1]$ is the \textit{discount factor}. The choice $\gamma = 0$   corresponds to a perfectly myopic agent who is solely concerned about their immediate rewards and have no regards for the future. For there to be any learning at all, a technical requirement is that $\gamma < 1$.
+This random variable\footnote{Random as it depends both on the environment's dynamic and the
+  policy $\pi$ being played (which can be stochastic).}  measures the cumulative reward of
+following a
+policy $\pi$. The  goal of RL is then adapt this policy so as to  maximize the cumulative rewards.
+In the definition of $G^\pi$ above, the constant $\gamma \in [0, 1]$ is the \textit{discount factor}. The choice $\gamma = 0$   corresponds to a perfectly myopic agent who is solely concerned about their immediate rewards and have no regards for the future. For there to be any learning at all, a technical requirement is that $\gamma < 1$.
 % \footnote{In which case we can take $T \rightarrow +\infty$, provided the reward function $r$ is bounded.}.
 Thus the agent is positively biased towards considering rewards which are will
 come soon. The reward importance hence decays exponentially
@@ -1023,19 +1013,16 @@ given that there is more uncertainty in the farsighted future.
 The reward discount factor $\gamma$ can thus be seen as calibrating
 the delay discounting behavior of the intelligent agent.
 
-Note that $R^\pi(s_0, a_0)$ defined above is a stochastic quantity which depends on the trajectory generated by the policy $\pi$ from state $s$ onwards.
-The agent's goal is find a polyciy $\pi$ which maximizes the expected cumulative value of state-stat-pairs $(a_0,s_0)$, namely
-
+The agent's goal can then be formulated as being that of finding policy $\pi$ which maximizes the
+expected cumulative value of state-stat-pairs $(A_0,S_0)$, namely
 \begin{equation}
   \label{eq:qval}
-  Q^{\pi}(s_0,a_0) = \mathbb E [R(s_0, a_0)]
+  Q^{\pi}(s,a) = \mathbb E [G^\pi|S_0=s,A_0=a,A_1 \sim \pi,A_2 \sim \pi,\ldots].
 \end{equation}
-
-where the expectation is over all possible trajectories generate by the
-policy $\pi$, starting from state $s_0$ and action $a_0$ taken at this
-state.
+That is, the expectated future reward over all possible trajectories in which we start at $s$ take
+action $a$ and then follow the policy $\pi$ thereafter to select future actions.
 %% Given that each $\pi$ correspondence to an exhaustive description of
-%% behavioral patterns, $Q^{\pi}(s_t,a_t)$ corresponds to the epistemic value of
+%% behavioral patterns, $Q^{\pi}(S_t,A_t)$ corresponds to the epistemic value of
 %% the set of actions given states in finite time.
 
 By construction, in general, maximizing the expectation in  \eqref{eq:qval} is intractable due to
@@ -1047,7 +1034,6 @@ optimal behavior could be computable in the human brain.)
 One popular simplification that removes this issue is to only consider the sub-family of
 \textit{deterministic policies}, which map each state to the best single best action which
 should be taken at thin state, and therefore define functions from states to actions.
-
 \textit{Q-learning} (Watkins \& Dayan, 1992), a commonly used off-policy algorithm, uses the
 \textit{greedy policy}
 \begin{equation}
@@ -1058,7 +1044,8 @@ should be taken at thin state, and therefore define functions from states to act
 % table.
 The celebrated \textit{Bellman's equation} [Sutton and Barto 1998] then takes the simple form
 \begin{equation}
-  Q^\pi(s, a) = \mathbb E_{s' \sim \rho(.|s,a)} [r(s,a) + \gamma Q^\pi(s', \pi(s'))]
+  Q^\pi(s, a) = \mathbb E_{s' \sim \rho(.|s,a)} [r(s,a) + \gamma \max_{a' \in \mathcal A}Q^\pi(s', a')]
+  = \mathbb E_{s' \sim \rho(.|s,a)} [r(s,a) + \gamma Q^\pi(s', \pi(s'))]
   \label{eq:bellman}
 \end{equation}
 which provides a recursive decomposition of optimal behavior.
@@ -1081,7 +1068,7 @@ by sampling from its current policy matrix, and collects a reward $r$,
 and the environment transitions to a new state $s' \in \mathcal S$. At the end of
 this step, a new \textit{experience} $e = (s,a,r,s')$ is produced; this represents an exemplar
 behavior of the agent and is recorded in replay memory buffer:
-$\mathcal D \leftarrow \mathcal D \cup \{e\}$ (possibly discarding the oldest entries to make space).
+$D \leftarrow D \cup \{e\}$ (possibly discarding the oldest entries to make space).
 Now, at iteration $k+1$, replay consists in sampling (uniform or importance-weighted
 \footnote{e.g weighted by TD error of the state transition $s \overset{a}{\rightarrow} s'$.} ?)  mini-batches of experiences
 $(s, a, r, s') \sim \mathcal U(D)$ from the replay memory $\mathcal D$ and trying to
@@ -1092,8 +1079,8 @@ $r + \gamma \max_{a'} Q(s', a'|\theta^Q_k)$, with the output of a parametrized r
 Computing an optimal policy then corresponds to finding the parameters $\theta^Q_{k+1}$ which minimize the following mean-squared loss function
 \begin{equation}
   \mathcal L(\theta^Q_{k+1})
-  % = \mathbb E_{(s, a, r, s') \sim U(\mathcal D)}[(Q(s, a|\theta^Q) - Q(s',a'|\theta^Q_{k+1}))^2]
-  = \mathbb E_{(s, a, r, s') \sim U(\mathcal D)}\left[\frac{1}{2}(Q(s, a|\theta^Q_{k+1}) - y)^2\right],
+  % = \mathbb E_{(s, a, r, s') \sim \mathcal U(D)}[(Q(s, a|\theta^Q) - Q(s',a'|\theta^Q_{k+1}))^2]
+  = \mathbb E_{(s, a, r, s') \sim \mathcal U(D)}\left[\frac{1}{2}(Q(s, a|\theta^Q_{k+1}) - y)^2\right],
   \label{eq:oracle}
 \end{equation}
 where
@@ -1107,30 +1094,32 @@ feature space. Such are the techniques that have been proposed by [sutton et al.
   and Parr et al. 2003 (JMLR)].
 A breakthrough alternative proposed by Google DeepMind [Minh et al. 2014, Silver et al 2015] is to learn this
 representation using a deep neural net, leading to the so-called \textit{Deep Q-learning} family of methods which
-are by far the current state-of-the-art in RL. In such a case, $\theta^Q$ would correspond to ..
+are by far the current state-of-the-art in RL. In such a case, $\theta^Q$
+would correspond to ..
 
-The entire model can then be effectively trained via \textit{backprop} wherein online stochastic
-gradient descent is used to minimize the variational objective \eqref{eq:oracle}.
+The entire model can then be effectively trained via \textit{backprop}
+wherein online stochastic gradient descent is used to minimize the
+variational objective \eqref{eq:oracle}.
 
 \paragraph{Parameter update.}
 \begin{equation}
   \nabla_{\theta^Q_{k+1}}\mathcal L(\theta^Q_{k+1})
   % = \mathbb E_{(s, a, r, s') \sim U(\mathcal D)}[(Q(s, a|\theta^Q) - Q(s',a'|\theta^Q_{k+1}))^2]
-  = \mathbb E_{(s, a, r, s') \sim U(\mathcal D)}\left[\underbrace{(Q(s, a|\theta^Q_{k+1}) - y)}_{\text{regret}}
+  = \mathbb E_{(s, a, r, s') \sim \mathcal U(D)}\left[\underbrace{(Q(s, a|\theta^Q_{k+1}) - y)}_{\text{regret}}
     \underbrace{\nabla_{\theta^Q_{k+1}}Q(s, a|\theta^Q_{k+1})}_{\text{???}}\right],
   \label{eq:oracle}
 \end{equation}
 
 \paragraph{Link to classical RL algorithms.}
-Note that most RL algorithms, including \textit{Temporal Difference (TD)} learning [Sutton et al.,
-  Bertsekas] and SARSA can be cast in this general variational framework. For example TD corresponds
-to the above framework using a linear value approximator with feature encoding
-$\phi(s,a) = \delta_{(s,a)} =  \text{ point mass at }(s,a)$ on the grid $\mathcal S \times \mathcal A$,
-and so $$\nabla_{\theta^Q_{k+1}}Q(s, a|\theta^Q_{k+1}) = \phi(s, a) = \delta_{(s,a)}.$$
+Note that most RL algorithms, including \textit{Temporal Difference (TD)}
+learning [Sutton et al., Bertsekas], REINFORCE [William], and SARSA can be
+cast in this general variational framework. For example TD corresponds to
+the above framework using a linear value approximator with feature encoding
+$\phi(s,a) = \delta_{(s,a)} =  \text{ point mass at }(s,a)$ on the grid
+$\mathcal S \times \mathcal A$, and so
+$$\nabla_{\theta^Q_{k+1}}Q(s, a|\theta^Q_{k+1}) = \phi(s, a) = \delta_{(s,a)}.$$
 %% Whence, the gradient update due to the sample $(s,a,r,s') \in \mathcal D$ is
 %% $$\theta^Q(s,a) \leftarrow \theta^Q(s,a) + (Q(s, a|\theta^Q_{k+1}) - y)$$ ??
-
-
 
 \subsection{Correspondence between DMN function and RL framework}
 \textbf{XXX Put the diagrams and process charts here.}
@@ -1281,7 +1270,7 @@ we seek correspondence between a novel input and existing representations in mem
 (Bar)
 
 
-A second important functional account of the DMN is the 'semantic hypothesis'. It holds that retrieval of building blocks of world knowledge enables language and other high-level faculties. The DMN central involvement in semantic processing results in its implication in many a-priori unrelated aspects of human behavior, such as reasoning, planning, problem solving and decision making (Binder, Desai, Graves, & Conant, 2009; Schilbach et al., 2008; Suddendorf & Corballis, 2007). This is also illustrated by the substantial relationship between semantic knowledge and words (Binder et al., 2009). The engagement of DMN in language processing matches the observation that the large majority of the DMN regions such as TPJ receive no direct input from primary sensory areas acting more as a “hermeneutic hub” (Binder et al., 2009; Seghier, 2013). The DMN activation rather enables the organization and processing of internally generated information in absence of stimulus presentation (Binder et al., 1999). The proposed role of the DMN in semantic processing is further highlighted by the convergence of these regions in a reciprocal relationship as an interface between the allocentric (bird’s eye view) and egocentric (first person view) perspective; in this way self-reflection, social knowledge, and autobiographical memories are integrated. Moreover, the semantic account exquisitely explains the engagement of DMN in both recalling past and envisioning future (Demblon, Bahri, & D'Argembeau, 2016; Hassabis, Kumaran, Vann, & Maguire, 2007; Schacter et al., 2007; Spreng, Mar, & Kim, 2009), in that the internally stored in language world knowledge may lay the contextual foundations for envisioning future events as well as memory processes (Bzdok et al., 2012). Hence, the reported retrograde amnesia and the simultaneous impairment of imagining novel experience across patients with hippocampus lesions ties in well with this model (Hassabis & Maguire, 2007). In other words, DMN activation might underlie a time dimension independent cognitive process of constructing contextual scenarios out of detached memories (Buckner & Carroll, 2007; Gaesser, Spreng, McLelland, Addis, & Schacter, 2013; Hassabis & Maguire, 2007). Summing up the 'semantic account', DMN offers the conceptual framework that underlies not only language but also other major high-level functions of human behavior.
+A second important functional account of the DMN is the 'semantic hypothesis'. It holds that retrieval of building blocks of world knowledge enables language and other high-level faculties. The DMN central involvement in semantic processing results in its implication in many a-priori unrelated aspects of human behavior, such as reasoning, planning, problem solving and decision making (Binder, Desai, Graves, \& Conant, 2009; Schilbach et al., 2008; Suddendorf \& Corballis, 2007). This is also illustrated by the substantial relationship between semantic knowledge and words (Binder et al., 2009). The engagement of DMN in language processing matches the observation that the large majority of the DMN regions such as TPJ receive no direct input from primary sensory areas acting more as a “hermeneutic hub” (Binder et al., 2009; Seghier, 2013). The DMN activation rather enables the organization and processing of internally generated information in absence of stimulus presentation (Binder et al., 1999). The proposed role of the DMN in semantic processing is further highlighted by the convergence of these regions in a reciprocal relationship as an interface between the allocentric (bird’s eye view) and egocentric (first person view) perspective; in this way self-reflection, social knowledge, and autobiographical memories are integrated. Moreover, the semantic account exquisitely explains the engagement of DMN in both recalling past and envisioning future (Demblon, Bahri, \& D'Argembeau, 2016; Hassabis, Kumaran, Vann, \& Maguire, 2007; Schacter et al., 2007; Spreng, Mar, \& Kim, 2009), in that the internally stored in language world knowledge may lay the contextual foundations for envisioning future events as well as memory processes (Bzdok et al., 2012). Hence, the reported retrograde amnesia and the simultaneous impairment of imagining novel experience across patients with hippocampus lesions ties in well with this model (Hassabis \& Maguire, 2007). In other words, DMN activation might underlie a time dimension independent cognitive process of constructing contextual scenarios out of detached memories (Buckner \& Carroll, 2007; Gaesser, Spreng, McLelland, Addis, \& Schacter, 2013; Hassabis \& Maguire, 2007). Summing up the 'semantic account', DMN offers the conceptual framework that underlies not only language but also other major high-level functions of human behavior.
 
 \begin{itemize}
   \item The notion of semantic or knowledge association is
@@ -1308,7 +1297,7 @@ by social means.
 Our computational account can explain why the DMN is implicated in both a goal-directed task and an idlying rest cognitive set? -> task is policy/value updates to optmize short-term action / rest updates for mid- and long-term action
 
 
- The 'sentinel hypothesis' is a major functional account to explain DMN activity that this canonical network acts as a cohesive unit. This coherent neurobiological network would be prominently engaged as a “radar” as well as in self-referential information processing including mind wandering, autobiographical recall, mentalizing, reflection about past and future (Buckner, Andrews-Hanna, & Schacter, 2008; Schilbach, Eickhoff, Rotarska-Jagiela, Fink, & Vogeley, 2008). Acting as a sentinel, DMN functions as a broad focus manager that performs continuous environmental tracking for salient and unexpected events (Buckner et al., 2008). This default activity may allow the detection of possible predators and potentially serves an evolutionarily conserved purpose by means of attention allocation (Raichle et al., 2001). The “radar” function may be efficiently supported by the activation patterns of DMN in diffuse attention condition tasks with targets appearing in various locations (Hahn, Ross, & Stein, 2007). On the other hand, the salient information perceived from the external environment activates self-referential information processing (Krienen, Tu, & Buckner, 2010). A conceptualization of these functions suggests two highly adaptive interacting DMN subsystems (Andrews-Hanna, Saxe, & Yarkoni, 2014; Schacter, Addis, & Buckner, 2007). However, the sentinel hypothesis may not exhaustively explain the variety of findings on the DMN connectivity with memory-related structures such as hippocampus (Giugni, Vadala, De Vincentiis, Colica, & Bastianello, 2010; McCormick et al., 2014). Summing up this first candidate account for DMN function, the sentinel hypothesis heavily emphasizes on the DMN as a single structure with a continuous sentinel role increasing during self-referential tasks.
+ The 'sentinel hypothesis' is a major functional account to explain DMN activity that this canonical network acts as a cohesive unit. This coherent neurobiological network would be prominently engaged as a “radar” as well as in self-referential information processing including mind wandering, autobiographical recall, mentalizing, reflection about past and future (Buckner, Andrews-Hanna, \& Schacter, 2008; Schilbach, Eickhoff, Rotarska-Jagiela, Fink, \& Vogeley, 2008). Acting as a sentinel, DMN functions as a broad focus manager that performs continuous environmental tracking for salient and unexpected events (Buckner et al., 2008). This default activity may allow the detection of possible predators and potentially serves an evolutionarily conserved purpose by means of attention allocation (Raichle et al., 2001). The “radar” function may be efficiently supported by the activation patterns of DMN in diffuse attention condition tasks with targets appearing in various locations (Hahn, Ross, \& Stein, 2007). On the other hand, the salient information perceived from the external environment activates self-referential information processing (Krienen, Tu, \& Buckner, 2010). A conceptualization of these functions suggests two highly adaptive interacting DMN subsystems (Andrews-Hanna, Saxe, \& Yarkoni, 2014; Schacter, Addis, \& Buckner, 2007). However, the sentinel hypothesis may not exhaustively explain the variety of findings on the DMN connectivity with memory-related structures such as hippocampus (Giugni, Vadala, De Vincentiis, Colica, \& Bastianello, 2010; McCormick et al., 2014). Summing up this first candidate account for DMN function, the sentinel hypothesis heavily emphasizes on the DMN as a single structure with a continuous sentinel role increasing during self-referential tasks.
 
 
 
@@ -1337,7 +1326,7 @@ optimise control a~pð Þ x~ under this formulation, we have to: (i)
 assume the hidden states are available to the agent and (ii) solve
 Equation 18 for the value-function. Solving for the value-function
 is a non-trivial problem and usually involves backwards induction
-or some approximation scheme like reinforcement-learning [4–6].
+or some approximation scheme like reinforcement learning [4–6].
 The free-energy formulation circumvents these problems by
 prescribing the policy in terms of free-energy, which encodes
 optimal control (Equation 6)"
