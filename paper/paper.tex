@@ -372,7 +372,9 @@ The vmPFC subserves less ambiguous subjective-value-related evaluative processes
 reward-informed and risk estimation of self-relevant environmental stimuli.
 This DMN node is more closely associated with
 orchestrating adapted behavior by bottom-up-driven
-processing of “what matters now”.
+processing of “what matters now”,
+probably drawing on model-based value representations
+\cite{doherty2015structure}.
 Quantative lesion findings across 344 human individuals confirmed
 a gross impairment in value-based decision making
 (Glaescher et al., 2016).
@@ -488,6 +490,7 @@ action initiation during externally structured tasks and
 sensorimotor control by integrating supramodal stimulus-guided attention
 (Corbetta et al., 2002).
 Involvement of this DMN node was repeatedly reported in
+multi-step action execution \cite{hartmann2005takes},
 visuo-proprioceptive conflict (Balslev et al., 2005) and
 multi-modal detection of sensory changes across
 visual, auditory, or tactile stimulation in a multi-modal fMRI study
@@ -498,6 +501,10 @@ and stimulus awareness (Blanke et al., 2002).
 %
 Importantly, the RTPJ has been shown to be intimately related to
 supramodal prediction and error signaling.
+It was argued that the RTPJ encodes actions and ensuing outcomes
+without necessarily relating those to outcome value
+\cite{liljeholm2013neural, hamilton2008action,
+jakobs2009effects}.
 Neural activity in the RTPJ has been argued to be responsible 
 for stimulus-driven attentional reallocation to 
 salient and surprising sources of information
@@ -1004,7 +1011,8 @@ This random variable\footnote{Random as it depends both on the environment's dyn
   policy $\pi$ being played (which can be stochastic).}  measures the cumulative reward of
 following a
 policy $\pi$. The  goal of RL is then adapt this policy so as to  maximize the cumulative rewards.
-In the definition of $G^\pi$ above, the constant $\gamma \in [0, 1]$ is the \textit{discount factor}. The choice $\gamma = 0$   corresponds to a perfectly myopic agent who is solely concerned about their immediate rewards and have no regards for the future. For there to be any learning at all, a technical requirement is that $\gamma < 1$.
+In the definition of $G^\pi$ above, the constant $\gamma \in [0, 1]$ is the \textit{discount factor}. The choice $\gamma = 0$   corresponds to a perfectly myopic agent who is solely concerned about their immediate rewards and has no horizon
+for the future. For there to be any learning at all, a technical requirement is that $\gamma < 1$.
 % \footnote{In which case we can take $T \rightarrow +\infty$, provided the reward function $r$ is bounded.}.
 Thus the agent is positively biased towards considering rewards which are will
 come soon. The reward importance hence decays exponentially
@@ -1051,6 +1059,8 @@ The celebrated \textit{Bellman's equation} [Sutton and Barto 1998] then takes th
 which provides a recursive decomposition of optimal behavior.
 A complicated dynamic programming optimization can be
 broken into simpler subproblems at different time points.
+Using the Bellman equation, each state can be associated with a certain value,
+to guide action (i.e., improve the policy) towards a better state.
 It is a fixed-point equation for the deterministic policy $\pi$.
 Notice that in the expectation in \eqref{eq:bellman}, the sampling is done over only things which
 depend on the environment, and so can be learned off-policy by observing state-transitions
@@ -1146,6 +1156,8 @@ $$\nabla_{\theta^Q_{k+1}}Q(s, a|\theta^Q_{k+1}) = \phi(s, a) = \delta_{(s,a)}.$$
   In the absence of environmental input and feedback
   (e.g., mind-wandering or sleep) pseudo-experiencing possible
   future scenarios and action outcomes.
+  Our approach acknowledges the unavoidable stochasticity of
+  computation in neuronal processes \cite{faisal2008noise}.
   \item
   \textit{Inference} in the human brain reduces to generalization of
   policy and value adaptations from sampled experiences to
@@ -1177,16 +1189,22 @@ $$\nabla_{\theta^Q_{k+1}}Q(s, a|\theta^Q_{k+1}) = \phi(s, a) = \delta_{(s,a)}.$$
 \item humm, looks like such a knowledge would simply translate into constraints on the DqN weights $\theta^Q$ (... at least, part of such knowledge)
   ok, gotta think about the model-free / model-based reconsiliation
 \end{itemize}
-  
+
 
 \section{Relation to other cognitive models (Danilo)}
 \paragraph{Predictive Coding and Bayesian Brain Hypothesis}
-The predictive coding framework 
-is one of the most frequently evoked hypotheses of default mode function.
-Cortical responses emerge from a functional network of continuously interacting high and low hierarchical levels,
-with a dynamic intercourse that performs inference on the world by reconciling gaps between sensory input and prior information. 
+The predictive coding and Bayesian brain framework 
+is a frequently evoked idea related to the default mode function
+\cite{bar2007}.
+Cortical responses emerge from a functional network of continuously interacting high and low hierarchical levels.
+A dynamic intercourse performs inference on the world by reconciling gaps between sensory input and prior information. 
 Feed-forward sensory experience is constantly modulated by
 modulatory top-down modulation at various hierarchical processing levels.
+It explains the constructive, generative nature of sensory perception
+\cite{friston2010free} and
+why motor action is intimately related to sensory expectations
+\cite{wolpert1995internal}.
+and explains
 At each stage of processing abstraction level,
 an internally generated prediction of the sensory input is
 directly compared against actual external input.
@@ -1197,9 +1215,9 @@ incurs plasticity changes of neuronal back-projections (i.e., model parameters)
 for gradually improved future prediction of the environment.
 Indeed,
 back projection outnumber by far the input projection in the brain
-Salin, P.A. and Bullier, J. (1995) Corticocortical connections in the visual system: structure and function. Physiol. Rev. 75, 107–154.
+\cite{salin1995corticocortical}.
 This process permits updates of beliefs about the world
-to best fit the incoming sensory examples (Friston2014).
+to best fit the incoming sensory examples.
 The generative model of how data are generated in the
 world would hence be incorporated by
 the current neuronal wiring.
@@ -1214,7 +1232,8 @@ based on internal or generative models.
 \begin{itemize}
   \item Both accounts are process theories, supported by
   neurobiological evidence, that
-  view the brain as a \"statistical organ\" (Friston 2014).
+  view the brain as a \"statistical organ\"
+  that generalizes from the past to new experiences (Friston 2014).
   \item Both have a notion of brain plasticity with increased
   adaption of neuronal wiring when faced by unprecedented environmental
   challenges.
@@ -1258,6 +1277,10 @@ While our existing memories are used to derive analo- gies and activate predicti
 
 phantastic organ (from Greek phantastikos, the ability to create mental images)
 Friston2014
+
+Navigation processes require associative processing to link land- marks with spatial locations, episodic memories require associa- tions for binding the constituents of an episode, emotional processing and the concomitant heightened arousal they entail are tightly associated with affective memories, and our percep- tion of ourselves and others require associations formed with experience to help interpret the present and anticipate the future.
+In some respects, predictions may be considered a higher level of thought-element than associations; they also provide the basis to the many processes detailed above as occupying the unconstrained mind (e.g., planning, navigating, anticipating the thoughts and actions of others, stereotyping, imagining our- selves in the future, affective forecasting, etc.). The brain seems to be able to extract regularities and familiar patterns from our environment, and associate them with corresponding knowl- edge in memory to afford the generation of predictions. This idea of predictions as the basis of many, if not most, cognitive processes in the human brain will have to be developed sepa- rately because the observations we described here cannot speak to it directly
+Bar2007
 
 as showing that animals could learn a “cognitive map of the environment” in the absence of rewards or penalties, and that they could use the map later when they were motivated to reach a goal (Tolman, 1948). 
 
@@ -1338,18 +1361,19 @@ in practice, which makes it physiologically less plausible.
 What single brain function could be most important for existence and survival of the species?
 Estimating quantities that depend on how features of an agent’s environment are expected to unfold over the future.
 From the perspective of the human condition, it remains unclear what the nature and purpose of a domain-overarching computational mechanism implemented in the high association cortex could be to warriant the high energetic costs.
-
-Obtain reward and avoid pain.
+MDP conceptualize control of the environment.
+Obtain reward and avoid pain by adaptive behavior.
 
 The idealized computational framework explains previous observations about the
 DMN in a simple in conception but non-trivially links
 together disparate functional hypotheses in the DMN literature.
-
+The default brain function may be reducible to a small number
+of well-defined equations.
 biological plausibility of dynamic optimization in
 optimal substructure
-
+mathematical formalism; statistical solution; adaptive fitness
 ; formalize and predict; offer statistical control on the brain's default function/operations
-
+stochastic modelling
 At the least, we propose an alternative vocabulary to
 describe and discuss neuroscientific studies on the DMN.
 %
