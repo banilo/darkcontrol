@@ -1196,71 +1196,73 @@ $$\nabla_{\theta^Q_{k+1}}Q(s, a|\theta^Q_{k+1}) = \phi(s, a) = \delta_{(s,a)}.$$
 The predictive coding and Bayesian brain framework 
 is a frequently evoked idea related to the default mode function
 \cite{bar2007}.
-Cortical responses emerge from a functional network of continuously interacting high and low hierarchical levels.
-A dynamic intercourse performs inference on the world by reconciling gaps between sensory input and prior information. 
-Feed-forward sensory experience is constantly modulated by
-modulatory top-down modulation at various hierarchical processing levels.
-It explains the constructive, generative nature of sensory perception
+According to this view,
+cortical responses emerge from continuous functional interaction between
+higher and lower levels of the neural processing hierarchy.
+This dynamic intercourse enables inference on the world by reconciling
+gaps between fresh sensory input and stored prior information. 
+Feed-forward sensory experience is constantly calibrated by
+top-down modulation at various hierarchical processing levels.
+back projections probably outnumber by far the existing input projection in the brain
+\cite{salin1995corticocortical}.
+It can explains the constructive, generative nature of sensory perception
 \cite{friston2010free} and
 why motor action is intimately related to sensory expectations
 \cite{wolpert1995internal}.
-and explains
-At each stage of processing abstraction level,
+At each stage of neural processing,
 an internally generated prediction of the sensory input is
-directly compared against actual external input.
-A prediction error, i.e. the difference between sensory input
-and internal prediction,
-occurring at one of the processing levels
+directly compared against the actual input from the environment.
+A prediction error at one of the processing levels,
+i.e. the difference between sensory input
+and internally predicted sensation,
 incurs plasticity changes of neuronal back-projections (i.e., model parameters)
 for gradually improved future prediction of the environment.
-Indeed,
-back projection outnumber by far the input projection in the brain
-\cite{salin1995corticocortical}.
-This process permits updates of beliefs about the world
-to best fit the incoming sensory examples.
-The generative model of how data are generated in the
-world would hence be incorporated by
-the current neuronal wiring.
 Contextual integration is maintained by top-down modulation of sensorimotor
 processing by context-specific a-priori information.
-formulate perception as a constructive process
-based on internal or generative models.
-
-
+The generative model of how data arise in the
+world hence be incorporated into
+the current neuronal wiring.
+Indeed,
+This process permits updates of the internal model of the environment
+to best fit the incoming sensory examples.
 
 
 \begin{itemize}
-  \item Both accounts are process theories, supported by
-  neurobiological evidence, that
+  \item Both accounts are process theories backed up by plausible
+  neurobiological evidence that
   view the brain as a \"statistical organ\"
-  that generalizes from the past to new experiences (Friston 2014).
-  \item Both have a notion of brain plasticity with increased
+  generalizing from the past to new experiences.
+  \item Both expose a mechanisms of brain plasticity with increased
   adaption of neuronal wiring when faced by unprecedented environmental
   challenges.
-  \item hierarchical aspects from predictive coding in RL lies in the
-  nested prediction of probable upcoming actions and rewards
-  \item Both model consequences of action. In RL, the horizon of that
-  look into the future is manifest in the $\gamma$ parameter, but not
-  explicitly modeled in the PC account.
-  \item mismatch negativity of PC is immanent in reward prediction error
+  \item The hierarchical aspects from predictive coding
+  is re-expressed in MDP in form of
+  nested prediction of probable upcoming actions and rewards.
+  \item Both model the consequences of action. In RL, the horizon of that
+  look into the future is manifest in the $\gamma$ parameter
+  in the Bellman equation, but not
+  explicitly modeled in the PC account that
+  mostly emphasizes prediction about the
+  immediate future.
+  \item Mismatch negativity of PC is immanent in reward prediction error
   by the difference between actually predicted reward of an action given
   a state and the reward predicted by non-linear regression with graded
-  discounting of future rewards
+  discounting of future rewards.
   \item Sensory experience is a generative process from both views.
-  In predictive coding sensory perception of the external world
+  In predictive coding, sensory perception of the external world
   is a generative experience due to modulatory top down experience at
   various hierarchical levels of sensory input processing.
-  In RL, the environmental model is incorporated in the Markov decision
+  In our RL view, the (partially observed)
+  environmental model is incorporated in the Markov decision
   process, \textit{which can be fully recovered based on the last
   state alone}.
   \item Both provide a parsimoneous explanation why
   humans seem to minimize processing of incoming information
   when the environment is predictable and allocate attention when
   novel stimuli are encountered.
-  Similarly, the both propose explanations why
+  Similarly, both propose explanations why
   predicting the future is inherently
-  linked to information from the past; similarly for independence across
-  geographical spaces.
+  linked to information from the past.
 \end{itemize}
 
 
