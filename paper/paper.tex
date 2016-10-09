@@ -193,8 +193,11 @@ to describe, quantify, and predict autonomously acting systems like the brain
 can be the combination of control theory and reinforcement learning.
 It is known that, the more the external world is predictable,
 the more mental activity becomes detached from the actual sensory environment
-and the more stimulus-independent thoughts occur
-(Mason et al., 2007).
+\cite{antrobus1966studies, pope1978regulation}.
+For instance,
+the more the currently executed task is unknown and unpracticed,
+the lower the tendency for stimulus-independent thoughts
+\cite{filler1973daydreaming, teasdale1995stimulus}.
 These \"offline\" processes may however contribute to optimized control of the organism.
 We formalize
 a policy matrix to capture the space of possible actions that can be performed
@@ -945,11 +948,13 @@ is partially observed, in the sense that only part of the current state is obser
 the agent.
 \subsection{Markov Decision Processes}
 A popular abstract model for the scenario are so-called \textit{Markov Decision Processes (MDPs)}.
-%% In RL, MDPs are the mathematical instantiation of the environment model,
-%% which generally can incorporate action probabilities (policy matrix)
-%% and/or value function given a state.
-%% (Silver: The environment can be fully defined by state space and
-%% transition probability matrix.)
+Accorind to this model, the environment’s dynamics are fully determined by
+its current state.
+In RL, MDPs are the mathematical instantiation of the environment model,
+which generally can incorporate action probabilities (policy matrix)
+and/or value function given a state.
+(Silver: The environment can be fully defined by state space and
+transition probability matrix.)
 is simply a quintuplet $(\mathcal S, \mathcal A, r, \rho, \mu)$ where
 \begin{itemize}
 \item $\mathcal S$ is the set of states, e.g $\mathcal S = \{\text{happy}, \text{sad}\}$.
@@ -1122,6 +1127,20 @@ variational objective \eqref{eq:oracle}.
   \label{eq:oracle}
 \end{equation}
 
+\paragraph{TODO: Monte Carlo optimization.}
+Some text snippets that might be pertinent:
+Monte-Carlo simulation can be used to update the agent’s belief state
+\cite{silver2010monte}.
+Monte-Carlo simulation provides a simple method for evaluating
+a state s.
+In any MDP, there is at least one optimal policy matrix that
+achieves the optimal value function???
+The simulator is used to generate sequences of states, observations and rewards. These simulations are used to update the value function, without ever looking inside the black box describing the model’s dynamics. In addition, Monte-Carlo methods have a sample complexity that is determined only by the underlying difficulty of the POMDP, rather than the size of the state space or observation space.
+Monte-Carlo simulation can be turned into a simple control algorithm by evaluating all legal actions and selecting the action with highest evaluation [15]. Monte-Carlo simulation can be extended to partially observable MDPs.
+In these challenging POMDPs, Monte-Carlo simulation provides an effective mechanism both for tree search and for belief state updates, breaking the curse of dimensionality and allowing much greater scalability than has previously been possible.
+Link this to experience sampling in the hippocampus.
+
+
 \paragraph{Link to classical RL algorithms.}
 Note that most RL algorithms, including \textit{Temporal Difference (TD)}
 learning [Sutton et al., Bertsekas], REINFORCE [William], and SARSA can be
@@ -1139,6 +1158,10 @@ $$\nabla_{\theta^Q_{k+1}}Q(s, a|\theta^Q_{k+1}) = \phi(s, a) = \delta_{(s,a)}.$$
   \item The policy matrix represents the repertoire of possible actions
   on the world given a current state. It encodes the probabilites of
   choosing actions to be executed in a certain situation.
+  \item Interactions between external and internal sources of
+  information are probably commonplace during perception
+  \item The MDP frameworks how the human brain could solve
+  environmental problems over extended time periods.
   \item Given a state, the value function represents the estimated utility of
   being in that state, which is subjective to the agent. 
   For a state $s$, the value function at $s$ namely $V(s)$ define provides a quantitative answer to the question:
@@ -1194,7 +1217,7 @@ $$\nabla_{\theta^Q_{k+1}}Q(s, a|\theta^Q_{k+1}) = \phi(s, a) = \delta_{(s,a)}.$$
 
 
 \section{Relation to other cognitive models}
-\subsection{Predictive Coding and Bayesian Brain Hypothesis}
+\subsection{Predictive Coding Hypothesis}
 The predictive coding and Bayesian brain framework 
 is a frequently evoked idea related to the default mode function
 \cite{bar2007}.
@@ -1258,6 +1281,9 @@ to best fit the incoming sensory examples.
   environmental model is incorporated in the Markov decision
   process, \textit{which can be fully recovered based on the last
   state alone}.
+  \item Adapting the neuronal connections for improved top-down modulation
+  takes the concrete form of gradient computation
+  \textit{and back-propagation} in MDPs and RL.
   \item Both provide a parsimoneous explanation why
   humans seem to minimize processing of incoming information
   when the environment is predictable and allocate attention when
@@ -1271,32 +1297,39 @@ to best fit the incoming sensory examples.
 
 \subsection{Semantic Hypothesis}
 Another frequently proposed account of DMN function revolves
-around forming meaning associations and abstract analogies between
-the currently experienced environment and
-stored knowledge from the past
+around forming meaning associations and analogies between
+the currently experience and
+abstract knowledge derived from past experiences
 \cite{bar2007proactive, binder1999conceptual}.
 Analogies might naturally tie incoming novel sensory stimuli to
-explicit world knowledge stored in past memories
+explicit world knowledge extractable from past memories
 \cite{bar2009proactive}.
-Using these semantic analogies to mentally envision scenarios
-would improve optimal behavior in the environment
-integrated as new memories for future analogical associations.
+%
+These semantic analogies can be used to mentally envision non-existent scenarios
+that would improve optimal behavior in the environment
+by simulating future analogical associations.
 Such cognitive processes can afford
 the internal generation of necessary information
-that is not presented in the surrounding environment.
-This accounts further explains the reciprocal relationship
+that is not presented in the surrounding environment
+by recombining building blocks of
+concept knowledge and episodic memories.
+Indeed, in aging humans, remembering the past and imaging the future
+equally decreased in the level of detail and are associated with
+concurrent deficits in forming and integrating relationships between
+items \cite{addis2008age, spreng2006temporal}.
+A constructive account further explains the reciprocal relationship
 between an egocentric first person perspective and
 an allocentric bird’s eye perspective immersed in
 self-reflection, social knowledge, and autobiographical memories.
 %
-Closely related to episodic memory, language, problem solving,
-planning, others' thoughts, and spatial navigation
+It is also closely related to episodic memory, language, problem solving,
+planning, estimating others' thoughts, and spatial navigation
 as these necessitate abstract world knowledge and abstract assocations
 for binding the constituent elements in mental scene construction
 \cite{schacter2007remembering}.
 These scene generation processes could contribute to interpreting the
 present and foretelling the future.
-This view is supported by evidence in animals that
+This view is for instance supported by evidence in animals that
 could learn a \textit{cognitive map of the environment},
 even without reward incentives, and exploit it later
 for other means \cite{tolman1948cognitive}.
@@ -1305,9 +1338,13 @@ for other means \cite{tolman1948cognitive}.
 
 \begin{itemize}
   \item The notion of semantic or knowledge association is
-  incorporated into the MDP as a function of the state and action
-  history.
-  \item Both: there is no evidence to indicate that predictions of various
+  incorporated into the MDP as the Markov property,
+  that is, the current state directly results from the
+  agent's history of states and actions. The learned
+  value matrix and action transition schedules drive
+  stimulus processing and action choice in the present.
+  \item In both, semantic hypothesis and MDPs,
+  there is no evidence to indicate that predictions of various
   levels of complexity, abstraction, timescale and purpose
   use mechanisms that are qualitatively different. This concurs with
   DMN activity increases across time, space, and content domains
@@ -1315,9 +1352,9 @@ for other means \cite{tolman1948cognitive}.
   and RL account provide explanations why hippocampus lesion does
   not only impair retrieving memories, but also hypothetical and future
   thinking \cite{hassabis2007patients}.
-  \item The semantic hypothesis and MDP expose mechanisms of
-  how alternative decisions could be mentally explored.
-  \item While mental scene construction entails a distinction between
+  \item Both the semantic hypothesis and MDP expose mechanisms of
+  how alternative decision trees could be mentally explored.
+  \item While mental scene construction implies a distinction between
   environmental perception and internally generated mind-wandering
   \footnote{``A computational model of how such a process might be structured
   is far from being defined, but it will probably require a form of
@@ -1325,24 +1362,35 @@ for other means \cite{tolman1948cognitive}.
   while simulation of possible alternatives are constructed,
   followed by a return to perception of the present.''\cite{buckner2007self}},
   the MDP naturally integrates the former egocentric
-  (related to the current action, state and reward) and the later
+  (related to current action, state and reward) and the later
   allocentric (related to past and future actions, states, and rewards)
   angles on the world in a same optimization problem.
   \item The semantic account of DMN function does not offer 
-  a clear explanation how semantic world knowledge and analogies thereof
-  lead to prediction about future actions and states.
+  a mechanistic explanation how semantic world knowledge and analogies thereof
+  lead to prediction of future actions and states.
+  \item The semantic hypothesis does not explain why memory recall
+  for scene construction in humans is fragmentary and noisy
+  instead of accurate and reliable.
+  Yet, the MDP framework provides an algorithmic explanation in that
+  stochasticity of the parameter space search implemented
+  by Monte Carlo solvers provably yields better models of the world.
+  That is, the purposeful stochasticity of policy and value estimation
+  in MDPs provides a candidate explanation for why humans
+  have evolved imperfect memories as the better adaptation.
   \item While both semantic and MDP account propose memory-based internally
   generated information for probabilistic mental models of action outcomes,
   only MDPs render explicit the grounds on which the final action is
   actually chosen (i.e., the estimated cumulative reward).
-  \item In sum, the semantic hypothesis lacks an explicit time and
-  incentive model.
+  \item In sum, episodic scene construction according to the semantic
+  hypothesis lacks an explicit time and incentive model.
 \end{itemize}
 
 
 
 \subsection{Sentinel Hypothesis}
 many investigators speculate that this central neural network reflects the brain’s relentless tracking and prediction of environmental events to adaptively optimize the organism's future action (Schacter et al., 2007).
+
+The contents of memory and prospection may be nec- essarily and adaptively tied to things social in nature, po- tentially the most behaviorally relevant stimuli. As such, the evolutionary advancement of autonoetic awareness would correspond to the neural processes of theory of mind. The utilization of prospection is arguably of greatest strategic importance, particularly in the secur- ing of mates, protection, and resources (Suddendorf \&
 
 Cognitive neuroimaging studies linked the DMN to the contemplation of others’ (Mar, 2011) and one’s thoughts (Lombardo et al., 2009) mental states, 
 Schilbach et al., 2008
@@ -1362,7 +1410,15 @@ Our computational account can explain why the DMN is implicated in both a goal-d
  The 'sentinel hypothesis' is a major functional account to explain DMN activity that this canonical network acts as a cohesive unit. This coherent neurobiological network would be prominently engaged as a “radar” as well as in self-referential information processing including mind wandering, autobiographical recall, mentalizing, reflection about past and future (Buckner, Andrews-Hanna, \& Schacter, 2008; Schilbach, Eickhoff, Rotarska-Jagiela, Fink, \& Vogeley, 2008). Acting as a sentinel, DMN functions as a broad focus manager that performs continuous environmental tracking for salient and unexpected events (Buckner et al., 2008). This default activity may allow the detection of possible predators and potentially serves an evolutionarily conserved purpose by means of attention allocation (Raichle et al., 2001). The “radar” function may be efficiently supported by the activation patterns of DMN in diffuse attention condition tasks with targets appearing in various locations (Hahn, Ross, \& Stein, 2007). On the other hand, the salient information perceived from the external environment activates self-referential information processing (Krienen, Tu, \& Buckner, 2010). A conceptualization of these functions suggests two highly adaptive interacting DMN subsystems (Andrews-Hanna, Saxe, \& Yarkoni, 2014; Schacter, Addis, \& Buckner, 2007). However, the sentinel hypothesis may not exhaustively explain the variety of findings on the DMN connectivity with memory-related structures such as hippocampus (Giugni, Vadala, De Vincentiis, Colica, \& Bastianello, 2010; McCormick et al., 2014). Summing up this first candidate account for DMN function, the sentinel hypothesis heavily emphasizes on the DMN as a single structure with a continuous sentinel role increasing during self-referential tasks.
 
 
-
+ \begin{itemize}
+   \item The sentinel account does not provide a formal mechanisms of
+   how attention and memory resources are exactly reallocated when
+    encountering a salient environmental stimulus. In contrast,
+    the Bellman recursion is weighted at each step by
+    $\sum_{a \in A}\pi(a|s)$. This factor weighs which action cascades
+    are recursively explorated and which decision trees are neglected,
+    which implies allocation of attention and computational load.
+ \end{itemize}
 
 \section{Relation to other statistical models (Elvis)}
 \paragraph{Control theory.}
@@ -1412,6 +1468,8 @@ of well-defined equations.
 biological plausibility of dynamic optimization in
 optimal substructure
 mathematical formalism; statistical solution; adaptive fitness
+to optimize the organism's fate; contribute to human survival and
+creativity.
 ; formalize and predict; offer statistical control on the brain's default function/operations
 stochastic modelling
 At the least, we propose an alternative vocabulary to
