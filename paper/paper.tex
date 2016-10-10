@@ -1227,16 +1227,17 @@ $$\nabla_{\theta^Q_{k+1}}Q(s, a|\theta^Q_{k+1}) = \phi(s, a) = \delta_{(s,a)}.$$
 The predictive coding and Bayesian brain framework 
 is a frequently evoked idea related to the default mode function
 \cite{bar2007}.
-According to this view,
+According to this functional account,
 cortical responses emerge from continuous functional interaction between
 higher and lower levels of the neural processing hierarchy.
 This dynamic intercourse enables inference on the world by reconciling
 gaps between fresh sensory input and stored prior information. 
 Feed-forward sensory experience is constantly calibrated by
 top-down modulation at various hierarchical processing levels.
+In fact,
 back projections probably outnumber by far the existing input projection in the brain
 \cite{salin1995corticocortical}.
-It can explains the constructive, generative nature of sensory perception
+This can explains the constructive, generative nature of sensory perception
 \cite{friston2010free} and
 why motor action is intimately related to sensory expectations
 \cite{wolpert1995internal}.
@@ -1249,9 +1250,9 @@ and internally predicted sensation,
 incurs plasticity changes of neuronal back-projections (i.e., model parameters)
 for gradually improved future prediction of the environment.
 Contextual integration is maintained by top-down modulation of sensorimotor
-processing by context-specific a-priori information.
+processing by a-priori information about the environment.
 The generative model of how data arise in the
-world hence be incorporated into
+world would hence be incorporated into
 the current neuronal wiring.
 Indeed,
 This process permits updates of the internal model of the environment
@@ -1259,18 +1260,20 @@ to best fit the incoming sensory examples.
 
 
 \begin{itemize}
-  \item Both accounts are process theories backed up by plausible
+  \item Both the predictive coding account and MPDs
+  are process theories backed up by plausible
   neurobiological evidence that
-  view the brain as a \"statistical organ\"
+  view the brain as a ``statistical organ''
   generalizing from the past to new experiences.
-  \item Both expose a mechanisms of brain plasticity with increased
-  adaption of neuronal wiring when faced by unprecedented environmental
+  \item Both expose a mechanisms of brain plasticity in that 
+  neuronal wiring gets increasingly adapted
+  when faced by unprecedented environmental
   challenges.
   \item The hierarchical aspects from predictive coding
-  is re-expressed in MDP in form of
+  is re-expressed in MDPs in form of
   nested prediction of probable upcoming actions and rewards.
   \item Both model the consequences of action. In RL, the horizon of that
-  look into the future is manifest in the $\gamma$ parameter
+  look into the future is manifested in the $\gamma$ parameter
   in the Bellman equation, but not
   explicitly modeled in the PC account that
   mostly emphasizes prediction about the
@@ -1289,11 +1292,12 @@ to best fit the incoming sensory examples.
   state alone}.
   \item Adapting the neuronal connections for improved top-down modulation
   takes the concrete form of gradient computation
-  \textit{and back-propagation} in MDPs and RL.
-  \item Both provide a parsimoneous explanation why
-  humans seem to minimize processing of incoming information
-  when the environment is predictable and allocate attention when
-  novel stimuli are encountered.
+  \textit{and back-propagation} in MDPs and RL,
+  although this may not be neurobiologically plausible.
+  \item Both provide a parsimonious explanation why the
+  human brain decreases processing load devoted to incoming information
+  when the environment is predictable and allocate increased
+  attentional resources when novel stimuli are encountered.
   Similarly, both propose explanations why
   predicting the future is inherently
   linked to information from the past.
@@ -1303,18 +1307,18 @@ to best fit the incoming sensory examples.
 
 \subsection{Semantic Hypothesis}
 Another frequently proposed account of DMN function revolves
-around forming meaning associations and analogies between
-the currently experience and
-abstract knowledge derived from past experiences
+around forming meaningful associations and analogies between
+the current experience and
+the abstract knowledge derived from past experiences
 \cite{bar2007proactive, binder1999conceptual}.
 Analogies might naturally tie incoming novel sensory stimuli to
-explicit world knowledge extractable from past memories
+explicit world knowledge extractable from the environment
 \cite{bar2009proactive}.
 %
 Going much beyond language ifself,
 semantic analogies can be used to mentally envision non-existent scenarios
 that would improve optimal behavior in the environment
-by simulating future analogical associations.
+by simulating future events.
 Such cognitive processes can afford
 the internal generation of necessary information
 that is not presented in the surrounding environment
@@ -1350,7 +1354,7 @@ for other means \cite{tolman1948cognitive}.
   agent's history of states and actions. The learned
   value matrix and action transition schedules drive
   stimulus processing and action choice in the present.
-  \item In both, semantic hypothesis and MDPs,
+  \item In both semantic hypothesis and MDPs,
   there is no evidence to indicate that predictions of various
   levels of complexity, abstraction, timescale and purpose
   use mechanisms that are qualitatively different. This concurs with
@@ -1362,8 +1366,8 @@ for other means \cite{tolman1948cognitive}.
   \item Both the semantic hypothesis and MDP expose mechanisms of
   how alternative decision trees could be mentally explored.
   \item While mental scene construction implies a distinction between
-  environmental perception and internally generated mind-wandering
-  \footnote{``A computational model of how such a process might be structured
+  environmental perception and internally generated mind-wandering\footnote{
+  ``A computational model of how such a process might be structured
   is far from being defined, but it will probably require a form of
   regulation by which perception of the current world is suppressed
   while simulation of possible alternatives are constructed,
@@ -1377,9 +1381,9 @@ for other means \cite{tolman1948cognitive}.
   lead to prediction of future actions and states.
   \item In contrast to existing accounts on semantics and
   mental scene construction, the random and creative aspects of DMN function
-  are here directly related to the advantages of stochastic optimization.
+  are explained in MDPs by the advantages of stochastic optimization.
   \item The semantic hypothesis does not explain why memory recall
-  for scene construction in humans is fragmentary and noisy
+  for scene construction in humans is typically fragmentary and noisy
   instead of accurate and reliable.
   Yet, the MDP framework provides an algorithmic explanation in that
   stochasticity of the parameter space search implemented
@@ -1390,9 +1394,9 @@ for other means \cite{tolman1948cognitive}.
   \item While both semantic and MDP account propose memory-based internally
   generated information for probabilistic mental models of action outcomes,
   only MDPs render explicit the grounds on which the final action is
-  actually chosen (i.e., the estimated cumulative reward).
+  eventually chosen (i.e., the estimated cumulative reward).
   \item In sum, episodic scene construction according to the semantic
-  hypothesis lacks an explicit time and incentive model.
+  hypothesis is lacking an explicit time and incentive model.
 \end{itemize}
 
 
@@ -1468,24 +1472,26 @@ for the existence and survival of the human species
 to warrant constant, high energy costs?
 MDPs provide an attractive
 computational model how the human association cortex
-might implement supra-modal control of the environment to
-optimize the organism's fate by obtaining reward and avoiding pain.
+might implement supra-modal control of the environment by
+obtaining reward and avoiding pain to
+optimize the organism's fate.
 This idealized process model explains
 a number of previous experimental observations in the
 DMN literature by a simple but non-trivial concept.
 %
-Viewed as a MDP, behavior unfolds by integrating across past
-and future experience to guide action choice in the present context.
-This account is more compatible with the DMN's involvement across
+Viewed as an MDP, behavior unfolds by integrating happened past events
+and possible future events to guide action choice in the present context.
+This functional account is more compatible with the DMN's
+poorly understood involvement across
 autobiographical memory retrieval, problem solving,
 abstract reasoning based on internally generated scenes, social cognition,
 as well as delay discounting and self-related prospection.
 MDPs provide a mathematical formalism how
 optimal substructure can be recursively exploited
 when confronted with nested decisions.
-Algorithmic gains by injecting stochasticity in past
+Algorithmic gains by injecting stochasticity in the recall of past
 behavior and outcomes may plausibilize why
-very accurate memories have been evolutionarily de-selected
+very accurate memories have been evolutionarily disfavored
 and why human creativity might be adaptive.
 %
 In principle,
@@ -1493,15 +1499,16 @@ neuroscientific experiments can be designed that operationalize
 the set of action, value, and state variables that determine
 the behavior of intelligent RL systems.
 The proposed machine-learning
-approach to DMN function is not only practically computable but
+approach to DMN function is hence not only practically computable but
 also neuroscientifically falsifiable.
 At the least, we propose an alternative vocabulary to
-describe and discuss neuroscientific studies in DMN research.
+describe and interpret neuroscientific studies in DMN research.
 %
 Ultimately,
 the DMN can be viewed as a smoothing kernel extending
 from the relatively recent events to potentially upcoming events
-to constantly improve sensory input and peformed action in the world.
+to constantly improve sensory processing and
+action performance in the world.
 
 
 
