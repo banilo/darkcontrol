@@ -2,6 +2,7 @@
 \usepackage{nips14submit_e,times}
 \usepackage{hyperref}
 \usepackage{url}
+\usepackage[round]{natbib}
 \usepackage{amsmath,amsfonts,amsthm}
 \usepackage{mdframed}
 \usepackage{bbm}
@@ -87,7 +88,7 @@ by Control Theory and Reinforcement Learning}
 
 \begin{document}
 
-\author{Elvis Dohmatob, (Bert Kappen), Danilo Bzdok\\
+\author{Elvis Dohmatob, Bert Kappen, Danilo Bzdok\\
   INRIA, Parietal team, Saclay, France\\
   CEA, Neurospin, Gif-sur-Yvette, France\\
   firstname.lastname@inria.fr}
@@ -113,23 +114,23 @@ environmental assessment and prediction.
 DMN function is recast in mathematical terms
 from the perspective of control theory and
 reinforcement learning.
-Neurobiological evidence on the human and animal DMN
+In this way,
+neurobiological evidence on the human and animal DMN
 is linked to recent progress in autonomous systems research
-in the machine-learning domain.
+and machine-learning.
 We argue that this engineering approach to DMN function can parsimoneously
 explain a variety of existing neuroscientific hypotheses.
 %
 Formal models of the computational processes subserved in the DMN
 could offer access routes to statistical optimality
 of human behavior.
-
 \end{abstract}
 
 % official NIPS keywords
-\textbf{\\keywords}: Systems Biology, mind wandering, cognitive science,
+\textbf{\\keywords}: systems biology, mind wandering, cognitive science,
 autonomous learning systems
-\textbf{\\Get opinion from}: Danielle Bassett, Kai Vogeley, Mohammad Shakir,
-Guillaume Dumas, Smallwood, Tenenbaum
+% \textbf{\\Get opinion from}: Danielle Bassett, Kai Vogeley, Mohammad Shakir,
+% Guillaume Dumas, Smallwood, Tenenbaum
 
 \tableofcontents
 
@@ -138,9 +139,10 @@ Guillaume Dumas, Smallwood, Tenenbaum
 %
 When left unperturbed, the human brain is not at rest.
 Rather, the brain continues to metabolize large quantities of
-oxygen and glucose energy to maintain inter-neuronal information
-transfer in the absence of a focused behavioral goal (Raichle 2001;
-Shulman, 1999).
+oxygen and glucose energy to maintain
+potentially purposeful neuronal computation
+in the absence of a focused behavioral goal
+\cite{kenet2003spontaneously, fiser2004small}.
 This baseline energy demand is subject to surprisingly little modulations
 when mentally processing environmental challenges
 (Bzdok and Eickhoff, 2016a).
@@ -181,11 +183,11 @@ Understanding of the overarching DMN function is complicated by
 simultaneously controlling perception–action cycles and
 maintaining baseline contemplations
 across time, splace, and content domains
-interfacing the external world and the self.
+at the interface of the external world and the self.
 
 
 
-Consider an agent faced by choosing the next action
+Consider an agent faced by the choice of the next action
 and being guided by rich
 reenactment of really happened, hypothetically conceived, and
 predicted future events to perfect ongoing behavioral performance.
@@ -199,36 +201,44 @@ For instance,
 the more the currently executed task is unknown and unpracticed,
 the lower the tendency for stimulus-independent thoughts
 \cite{filler1973daydreaming, teasdale1995stimulus}.
-These \"offline\" processes may however contribute to optimized control of the organism.
+These ``offline'' processes may however contribute to optimized control of the organism.
 We formalize
 a policy matrix to capture the space of possible actions that can be performed
 on the environment given the current state. A value matrix 
-maps maps expected rewards to environmental objects and events.
+maps expected rewards to environmental objects and events.
 Switching between states reduces to a sequential processing model.
 In a model-based reinforcement learning approach,
 we try to understand the environment always better
 starting, at birth, with an environment that is completely unknown.
 Informed by outcomes of performed action,
 the DMN dynamics are constantly adapted in feed-back loops
-that are calibrated by error occurrence.
+that are calibrated by prediction error.
 A DMN framework incorporating reinforcement learning
 can naturally embed human behavior
 into the tension between exploitative action with immediate gains and
 explorative action with longer-term reward schedules.
 The implication of the DMN in a diversity of human cognitive processes
-can be parsimoneously recast as minimizing prediction error
+can be parsimoneously recast as prediction error minimization
 based on pervasive probabilistic simulations,
 thus maximizing reward outcome at various time scales.
 Such a purposeful optimization objective
 may be solved by a stochastic approximation
 based on a brain implementation of Markov Chain Monte Carlo sampling
-(Tenenbaum2011Science).
+\cite{tenenbaum2011grow}.
 \textit{Control} refers to the influences an agent exterts when interacting
 with the environment to encourage preferred states.
 Even (necessarily imperfect) memories
 of past experience, random mind-wandering and dreams during sleep
 may provide meanginful building blocks to iteratively improve
 the predictive DMN machinery to optimize the behavior of the organism.
+%
+In short, it has been proposed earlier that
+the human brain's energy budget is largely dedicated to
+``the development and maintenance of [a]
+probabilistic model of anticipated events''
+\cite{raichle2005intrinsic}.
+This paper proposes a formal model that
+satisfies this contention.
 
 
 
@@ -426,8 +436,6 @@ among the most complicated decision that humans and monkeys take
 
 
 
-
-
 The HC is well known to be involved in memory and
 spatial navigation in animals and humans
 (von Bechterew, 1900; Scoville and Milner, 1957; O’Keefe and Dostrovsky, 1971; Maguire et al., 2000).
@@ -569,8 +577,8 @@ navigate present action, weigh hypothetical possibilities, and forcast the futur
 The LTPJ may hence facilitate the automated prediction of events
 by incorporating experience-derived models of the world
 into ongoing action, planning, and problem solving.
-world -> policy matrix driven computation
-self -> value matrix driven computation
+% world -> policy matrix driven computation
+% self -> value matrix driven computation
 
 
 \section{Methods}
@@ -1205,7 +1213,6 @@ $$\nabla_{\theta^Q_{k+1}}Q(s, a|\theta^Q_{k+1}) = \phi(s, a) = \delta_{(s,a)}.$$
   the future, and hypothetical possibilities ties in with the
   MDP's implicit computation of action and state cascades as a function
   of what happened in the past.
-  
 \end{itemize}
 
 
@@ -1227,7 +1234,7 @@ $$\nabla_{\theta^Q_{k+1}}Q(s, a|\theta^Q_{k+1}) = \phi(s, a) = \delta_{(s,a)}.$$
 The predictive coding and Bayesian brain framework 
 is a frequently evoked idea related to the default mode function
 \cite{bar2007}.
-According to this functional account,
+According to this cognitive account,
 cortical responses emerge from continuous functional interaction between
 higher and lower levels of the neural processing hierarchy.
 This dynamic intercourse enables inference on the world by reconciling
@@ -1240,7 +1247,7 @@ back projections probably outnumber by far the existing input projection in the 
 This can explains the constructive, generative nature of sensory perception
 \cite{friston2010free} and
 why motor action is intimately related to sensory expectations
-\cite{wolpert1995internal}.
+\cite{wolpert1995internal, kording2004bayesian}.
 At each stage of neural processing,
 an internally generated prediction of the sensory input is
 directly compared against the actual input from the environment.
@@ -1403,21 +1410,21 @@ for other means \cite{tolman1948cognitive}.
 
 \subsection{Sentinel Hypothesis}
 Processing self-relevant information was perhaps the first
-functional account that was proposed for the DMN \cite{gusnard2001medial}.
+cognitive account that was proposed for the DMN \cite{gusnard2001medial}.
 Since then,
 different investigators have speculated that neural activity in the DMN
 may reflects the brain’s relentless tracking of
 relevance in the environment
-as an advantageous evolutionary adaptation
-\cite{}.
--> the most behaviorally relevant stimuli
--> particularly in the secur- ing of mates, protection, and resources
--> tracking for salient and unexpected events
-
-This coherent neurobiological network would be prominently engaged as a “radar” as well as in self-relevant information processing
-
-
-Environmental stimuli important for humans are frequently of
+as an advantageous evolutionary adaptation.
+According to this cognitive account, the brain's baseline realizes
+a ``radar'' function to
+detect subjectively salient and unexpected events that
+are the most important for unfolding behavior,
+including resources,
+the securing of mates, and protection.
+%
+In fact,
+environmental stimuli important for humans are frequently of
 social nature. This is probably unsurprising
 given that a key property of the human species is
 the complexity of their social systems
@@ -1426,55 +1433,69 @@ More specifically,
 according to the ``social brain hypothesis'',
 the human brain did not evolve to solve problems of the
 physical environment, but to form and maintain increasingly complex
-social systems to solve ecological problems in a social way
+social systems to solve ecological problems by means of social connections
 \cite{whiten1988machiavellian}.
+Highly efficient neurobiological processing of social cues is exemplified by
+facial judgments being routinely processed in less than 100 ms
+\cite{bar2006very}.
 Our human ancestors were probably among the few organisms that
 were more likely to be killed by members of their own species
 rather than predators from another species.
-Being able to detect the intention and upcoming actions of conspecific
-turned into a decisive evolutionary advantage.
+Being able to detect the intention and upcoming actions of conspecifics
+turned into a decisive evolutionary advantage
+\cite{frith2010social}.
+%
+This may explain why social topics amount to roughly
+two thirds of human everyday communication \cite{dunbar1997human}
+and
+why mind-wandering and dreams
+are so rich in stories about people and the complex relationships between them.
 
--> contents of memory and everyday dreaming tied to people and relationships to them
-
-
-Cognitive neuroimaging studies linked the DMN to the contemplation of others’ (Mar, 2011) and one’s thoughts (Lombardo et al., 2009) mental states, 
-Schilbach et al., 2008
-Clan mentality
-
-
-role increasing during self-referential tasks.
 
 
  \begin{itemize}
-    \item DMN does social cognition -> but it exists in rats
-    and monkeys with much more poorly developped social capacities
-    -> our computational framework can be equally applied to humans
-    and other primates.
+    \item Processing social information has been proposed to underlie the
+    physiological baseline of human brain function
+    \cite{schilbach2008minds}. This was later challenged by observing
+    analogues of the DMN in monkeys \cite{mantini2011default}
+    and rats \cite{lu2012rat}, with
+    supposedly less advanced social capacities.
+    The MDPs parsimoneously explain the dominance of social content in
+    human mental scenes by their extremely high relevance to humans
+    reflected by high values for social information in the value matrix.
+    \item How can a same neurobiological circuit be equally important
+    for baseline house-keeping functions and specific task performance?
+    Our computational account can explain why the DMN is implicated
+    in both a goal-directed task and an idlying rest cognitive set,
+    if environmental relevance is processed, manipulated, and retained
+    also as a baseline function of human mental activity.
+    In tasks, the policy and value matrices are updated to optmize short-term action,
+    whereas, at rest, these parameter updates may
+    serve especially mid- and long-term action.
     \item The sentinel account does not provide a formal mechanisms of
     how attention and memory resources are exactly reallocated when
     encountering a salient environmental stimulus. In contrast,
     the Bellman recursion is weighted at each step by
     $\sum_{a \in A}\pi(a|s)$. This factor weighs which action cascades
-    are recursively explorated and which decision trees are neglected,
-    which implies allocation of attention and computational load.
-    \item How can a same neurobiological circuit be equally important for baseline house-keeping functions and specific task performance? Yes, if
-    environmental relevance is processed, manipulated, and retained
-    also as a baseline function of human mental activity.
-    Our computational account can explain why the DMN is implicated in both a goal-directed task and an idlying rest cognitive set? -> task is policy/value updates to optmize short-term action / rest updates for mid- and long-term action
+    are recursively explored by the agend and which decision trees are neglected.
+    This directly implies allocation of attention and computational load.
+    \item In sum,
+    MDPs imply social thinking as a physiological brain baseline
+    as a special case, without excluding other topics.
  \end{itemize}
 
 
 
 \section{Relation to other statistical models (Elvis)}
-\paragraph{Control theory.}
+\subsection{Control theory.}
 \begin{itemize}
   \item The model proposed in \cite{betzel2016} can be cast in the form \eqref{eq:hj}, with the particular choice $\Q = \textbf{I} = \rho^{-1}\R$ and $\Q_{\text{fin}} = \textbf{0}$, but with a rather ad-hoc handle on stability issues and choice driver nodes...
 \end{itemize}
 
-\paragraph{Reinforcement Learning.}
+\subsection{Reinforcement Learning.}
 abc
 
-\paragraph{Free Energy Principle.}
+\subsection{Free Energy Principle.}
 \begin{itemize}
   \item Closely related to Friston's free-energy principle: brain as inference engine
   biological systems, including brains, must minimize the long-term average of surprise;
@@ -1503,12 +1524,12 @@ for the existence and survival of the human species
 to warrant constant, high energy costs?
 MDPs provide an attractive
 computational model how the human association cortex
-might implement supra-modal control of the environment by
-obtaining reward and avoiding pain to
-optimize the organism's fate.
+might implement supra-modal representation and control of the environment to
+optimize the organism's fate by
+obtaining reward and avoiding pain.
 This idealized process model explains
 a number of previous experimental observations in the
-DMN literature by a simple but non-trivial concept.
+DMN literature by a simple but non-trivial mechanism.
 %
 Viewed as an MDP, behavior unfolds by integrating happened past events
 and possible future events to guide action choice in the present context.
@@ -1518,10 +1539,10 @@ autobiographical memory retrieval, problem solving,
 abstract reasoning based on internally generated scenes, social cognition,
 as well as delay discounting and self-related prospection.
 MDPs provide a mathematical formalism how
-optimal substructure can be recursively exploited
+optimal substructure in the environment can be recursively exploited
 when confronted with nested decisions.
 Algorithmic gains by injecting stochasticity in the recall of past
-behavior and outcomes may plausibilize why
+behavior and outcomes to improve the internal world model may explain why
 very accurate memories have been evolutionarily disfavored
 and why human creativity might be adaptive.
 %
@@ -1537,7 +1558,7 @@ describe and interpret neuroscientific studies in DMN research.
 %
 Ultimately,
 the DMN can be viewed as a smoothing kernel extending
-from the relatively recent events to potentially upcoming events
+from the relatively recent events to anticipated upcoming events
 to constantly improve sensory processing and
 action performance in the world.
 
@@ -1553,7 +1574,9 @@ action performance in the world.
 
 
 \small
-\bibliographystyle{splncs03}
+% \bibliographystyle{splncs03}
+% \bibliographystyle{natbib}
+\bibliographystyle{plainnat}
 \bibliography{refs}
 
 \end{document}
