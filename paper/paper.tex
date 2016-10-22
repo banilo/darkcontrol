@@ -692,21 +692,21 @@ Our starting point will be to build an approximation $p_G$ for the true density 
     =-\sum_{\psi}p_G(\psi |\zeta)\log(p_G(\psi, \zeta)/p_G(\psi|\zeta))\\
     &= \sum_{\psi}p_G(\psi |\zeta)\log(p_G(\psi|\zeta))-\sum_{\psi}p_G(\psi |\zeta)\log  (p_G(\psi, \zeta))\\
     &= -\langle \log  (p_G(., \zeta)) \rangle_{p_G(. |\zeta)} - \mathcal H(p_G(. |\zeta))\\
-    &= \langle E_G(., \zeta) \rangle_{p_G(. |\zeta)} - \mathcal H(p_G(. |\zeta)) := F_G(\zeta)
+    &= \langle E_G(., \zeta) \rangle_{p_G(. |\zeta)} - \mathcal H(p_G(. |\zeta))
   \end{split}
   \label{eq:helm}
 \end{eqnarray}
 where $E_G(\psi, \zeta)$ is the energy at \textit{macrostate} $\psi$ of a fictive thermodynamic system defined by setting
 \begin{equation}
-  E_G(\psi, \zeta) := -\log(p_G(\psi, \zeta)).
+  E_G(\psi, \zeta) := -\log(p_G(\psi, \zeta)),
   \label{eq:gibbs}
 \end{equation}
 %% In the above, the variable $\psi$ is a hidden variable, and can / should be interpreted as the unobservable state of the external world.
-The last quantity in \eqref{eq:helm} defined formally as
+so that one recognizes The last quantity in \eqref{eq:helm} as the the \textit{Helmholtz free-energy} (at unit temperature!), defined formally by
 \begin{equation}
-  F_G(\zeta) := \langle E_G(., \zeta) \rangle_{p_G(. |\zeta)} - \mathcal H(p_G(. |\zeta))
+  F_G(\zeta) := \langle E_G(., \zeta) \rangle_{p_G(. |\zeta)} - \mathcal H(p_G(. |\zeta)).
 \end{equation}
-is the \textit{Helmholtz free-energy} (at unit temperature!). %% , modelled as the physical system for which $p_G(\psi|\zeta)$ dictates the occupation probabilities of macrostates $\psi$
+%% , modelled as the physical system for which $p_G(\psi|\zeta)$ dictates the occupation probabilities of macrostates $\psi$
 Thus generative surprise and generative Helmholtz free-energy are different views on exactly the same object.
 
 The goal of the brain is then to optimize over the generative model $G$: to iteratively or analytically modify the generative density $p_G(.|s)$, so as to minimize surprise. It turns out that a direct attempt to attack this optimization problem by gradient descent on the free-energy $F_G(s)$ is furtile: the parameter update steps are not ``very clean'', and require rather cumbersome and heavy computations. A workaround is then to introduce a second density $p_R(.|\zeta)$ called a \textit{recognition} density to work in tandem with the generative density $p_G(.|\zeta)$, as a trick for doing approximate inference. The former dreams / fantacizes whilst the latter tries to generate sensations which match these dreams! This primal-dual idea, first proposed in Hinton et al. 1995, is at the heart of the general free-energy principle that we'll introduce shortly.
@@ -720,11 +720,14 @@ distribution
   p_G(\psi|\zeta) = \frac{p_G(\psi|\zeta)}{p_G(\zeta)} = \frac{\exp(-E_G(\psi, \zeta))}{Z_G(\zeta)} = \frac{\exp(-E_G(\psi, \zeta))}{Z_G(\zeta)},
 \end{equation}
 where $Z_G(\zeta) := \log(p_G(\zeta)) = \sum_{\psi'}\exp(-E_G(\psi',\zeta))$, the normalizing \textit{partition function} for the model \ref{eq:gibbs}.
-Whence $\forall \psi$, $p_G(\zeta) = Z_G(\zeta) = \exp(-E_G(\psi, \zeta)) / p_G(\psi|\zeta)$, and so we have the invariance relation
+Whence, for any macrostate $\psi$, we have $p_G(\zeta) = Z_G(\zeta) = \exp(-E_G(\psi, \zeta)) / p_G(\psi|\zeta)$, and so it holds that
 \begin{equation}
 F_G(\zeta)\overset{\eqref{eq:helm}}{=} -\log(p_G(\zeta)) = -\log(Z_G(\zeta)) = E_G(\psi, \zeta) + \log(p_G(\psi|\zeta)).
-  \end{equation}
-Now, in the equation above, the LHS only depends on the generative model $G$ and the data point $\zeta$: it doesn't depend on the hidden variable $\psi$, etc. So, taking expectations w.r.t an arbitrary density\footnote{The conditioning in $P_R(.|\zeta)$ is because this density is selected from a world in which the sensory inputs and internal brain state vector $\zeta$ is assumed already observed.} $p_R(.|\zeta)$ yields
+\end{equation}
+Now, in the above equation, the LHS only depends on the generative model $G$ and the data point $\zeta$:
+it doesn't depend on the hidden variable $\psi$, etc. So, taking expectations w.r.t an arbitrary
+density\footnote{The conditioning in $P_R(.|\zeta)$ is because this density is selected from a world in which the sensory inputs and internal brain
+  state vector $\zeta$ is assumed already observed.} $p_R(.|\zeta)$ yields
 \begin{equation}
   \begin{split}
     F_G(\zeta) &= -\log(Z_G(\zeta)) = \langle E_G(., \zeta)\rangle_{P_R(.|\zeta)} + \sum_{\psi}p_R(\psi|\zeta)\log(p_G(\psi|\zeta))\\
