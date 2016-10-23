@@ -132,7 +132,8 @@ autonomous learning systems
 % Guillaume Dumas, Smallwood, Tenenbaum
 
 \tableofcontents
-
+\listoffigures
+\listoftables
 
 \section{Introduction}
 %
@@ -893,6 +894,12 @@ $$\nabla_{\theta^Q_{k+1}}Q(s, a|\theta^Q_{k+1}) = \phi(s, a) = \delta_{(s,a)}.$$
 
 \subsection{Correspondence between DMN function and RL framework}
 \textbf{XXX Put the diagrams and process charts here.}
+\begin{figure}[!h]
+  \includegraphics[width=.9\linewidth]{rl_process_chart.pdf}
+  \caption{The DMN as an RL agent...}
+  \label{fig:rl_process_chart}
+\end{figure}
+
 \begin{itemize}
   \item The policy matrix represents the repertoire of possible actions
   on the world given a current state. It encodes the probabilites of
@@ -1091,7 +1098,7 @@ The following critics can be made:
 \subsection{Minimizing free-energy via backprop!}
 % \subsection{Free-energy minimization via variational auto-encoders}
 \label{sec:vae}
-Here, we present a possible way to aleviate some conceptual and computational issues with the
+Here, we present a way to aleviate some conceptual and computational issues with the
 free-energy framework presented thus far, by using auto-encoder theory.
 Following Kingma et al. 2014 \citep{kingma2013auto}, define the data-dependent auxiliary random
 function
@@ -1130,7 +1137,7 @@ variational free-energy as
          Exponential & $\mathcal \exp(\lambda)$ & $\epsilon \sim \mathcal U([0, 1))$ & $-\log(1-\epsilon)/\lambda$ & Invertible CDF: Cauchy, Logistic, Rayleigh, Pareta, Weibull, Reciprocal, Gompert, Gumbel, Erlan, ... \\ \hline
          Other & $\log\mathcal N(\mu,\sigma)$ & $\epsilon \sim \mathcal N(0, 1)$ & $\exp(\mu + \sigma \odot \epsilon)$ & Gamma, Dirichlet, Beta, Chi-squared, F, ... \\ \hline
   \end{tabular}
-  \caption{Reparametrization trick for a variety of models. Kingma et al. 2014 \citep{kingma2013auto}.}
+  \caption{Reparametrization trick \citep{kingma2013auto} for a variety of models.}
 \end{table}
 
 The result is a scheme for training DBNs via good-old backprop!
@@ -1273,7 +1280,8 @@ optimal control (Equation 6)"
 
 \subsection{Control theory}
 \begin{itemize}
-  \item Cite stuff from Bert K.
+\item An authoritative review of control theory for decision making and its relationship to
+  reinforcement learning can be found in \citep{kappen2007introduction}. 
   \item The model proposed in \citep{betzel2016} can be cast in the form \eqref{eq:hj}, with the particular choice $\Q = \textbf{I} = \rho^{-1}\R$ and $\Q_{\text{fin}} = \textbf{0}$, but with a rather ad-hoc handle on stability issues and choice driver nodes...
 \end{itemize}
 
