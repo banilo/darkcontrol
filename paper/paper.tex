@@ -1088,7 +1088,8 @@ The following critics can be made:
     \end{itemize}
 
 
-\subsection{Free-energy minimization via variational auto-encoders}
+\subsection{Minimizing free-energy via backprop!}
+% \subsection{Free-energy minimization via variational auto-encoders}
 \label{sec:vae}
 Here, we present a possible way to aleviate some conceptual and computational issues with the
 free-energy framework presented thus far, by using auto-encoder theory.
@@ -1265,7 +1266,8 @@ prescribing the policy in terms of free-energy, which encodes
 optimal control (Equation 6)"
 \item It is difficult to compute with the free energy principle
   in practice, which makes it physiologically less plausible. Auto-encoder theory presented
- \ref{sec:vae} can help to remove these barriers.
+  \ref{sec:vae} can help to remove these barriers, by making the whole scheme trainable via
+  backprop!
   \end{itemize}
 
 
