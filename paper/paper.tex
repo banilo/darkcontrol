@@ -98,7 +98,7 @@ by Control Theory and Reinforcement Learning}
 
 
 \begin{abstract}
-The default mode network (DMN) is the neural representation of the human
+The default mode network (DMN) is the brain manifestations of the human
 baseline mental activity.
 %
 Many research streams agree on its likely role in evolutionarily adaptive
@@ -111,7 +111,7 @@ its intimate coupling with conscious awareness.
 %
 This concept paper proposes a process model that describes
 \textit{how} the DMN may actually implement continuous
-environmental assessment and prediction.
+environmental assessment and prediction to guide action choices.
 DMN function is recast in mathematical terms
 from the perspective of control theory and
 reinforcement learning.
@@ -147,11 +147,11 @@ This baseline energy demand is subject to surprisingly little modulations
 when mentally processing environmental challenges
 \citep{raichle2001pnas}.
 What has early been described as the "stream of consciousness"
-in psychology \citep{james1890principles},
+in psychology \citep{james1890principles}
 found its neurobiological manifestation
 in the so-called "default mode network" (DMN)
 \citep{shul1997}. This networked collection of some of the highest regions in
-the human association cortex \citep{mesulam1998sensation}
+the human association cortex \citep{mesulam1998sensation, margulies2016situating}
 consistently
 increased in neural activity during
 unfocused everyday mind wandering \citep{raichle2001pnas}.
@@ -167,7 +167,8 @@ deactivation during various psychological experiments.
 This processing of unknown information categories in the DMN has
 been argued to mediate an evolutionarily conserved function for the individual.
 This is all the more likely because the DMN contains the two
-biggest hotspots of energy consumption in the entire central nervous system.
+biggest hotspots of energy consumption in the entire central nervous system
+\citep{raichle2001pnas}.
 DMN activity also persists to a substantial degree during
 sleep and under anesthesia \citep{randy2008}.
 Today, many authors believe that the DMN implements
@@ -184,7 +185,7 @@ yet sometimes useful thoughts
 \citep{mason2007, seli2016mind}.
 %
 Understanding of the overarching DMN function is complicated by
-simultaneously controlling perception–action cycles and
+simultaneously controlling perception-action cycles and
 maintaining baseline contemplations
 across time, splace, and content domains
 at the interface of the external world and the self.
@@ -229,7 +230,7 @@ Such a purposeful optimization objective
 may be solved by a stochastic approximation
 based on a brain implementation of Markov Chain Monte Carlo sampling
 \citep{tenenbaum2011grow}.
-\textit{Control} refers to the influences an agent exerts when interacting
+\textit{Control} refers to the influences that an agent exerts when interacting
 with the environment to encourage preferred states.
 Even (necessarily imperfect) memories
 of past experience, random mind-wandering and dreams during sleep
@@ -752,7 +753,7 @@ a policy $\pi$ generates a trajectory as follows
 \end{eqnarray*}
 Since an action taken now might have repercussions long into the feature, it turns out that the
 quantity to optimize is not the instantaneous rewards $r(s, a)$, but a
-cumulative version which takes into account the future. A standard for
+cumulative reward estimate which takes into account the future. A standard for
 modeling this accumulation is the so-called
 time-discounted \textit{cumulative reward} function
 \begin{equation}
@@ -772,6 +773,10 @@ with distance in the future,
 given that there is more uncertainty in the farsighted future.
 The reward discount factor $\gamma$ can thus be seen as calibrating
 the delay discounting behavior of the intelligent agent.
+It is also important to appreciate that a stochastic policy estimation
+is more advantageous in many RL settings.
+For instance, a deterministic strategy in playing rock-paper-scissors can
+be easily exploited and a uniformly random choice is optimal.
 
 The agent's goal can then be formulated as being that of finding policy $\pi$ which maximizes the
 expected cumulative value of state-stat-pairs $(A_0,S_0)$, namely
@@ -1309,9 +1314,9 @@ This dynamic intercourse enables inference on the world by reconciling
 gaps between fresh sensory input and stored prior information.
 Feed-forward sensory experience is constantly calibrated by
 top-down modulation at various hierarchical processing levels.
-In fact,
-back projections probably outnumber by far the existing input projection in the brain
-\citep{salin1995corticocortical}.
+In fact, axonal
+back projections probably outnumber by far the input projection
+existing in the brain \citep{salin1995corticocortical}.
 This can explain the constructive, generative nature of sensory perception
 \citep{friston2010free} and
 why motor action is intimately related to sensory expectations
@@ -1322,16 +1327,16 @@ directly compared against the actual input from the environment.
 A prediction error at one of the processing levels,
 i.e. the difference between sensory input
 and internally predicted sensation,
-incurs plasticity changes of neuronal back-projections (i.e., model parameters)
+incurs plasticity changes of neuronal back projections (i.e., model parameters)
 for gradually improved future prediction of the environment.
-Contextual integration is maintained by top-down modulation of sensorimotor
+Contextual integration is hence maintained by top-down modulation of sensorimotor
 processing by a-priori information about the environment.
-The generative model of how data arise in the
-world would hence be incorporated into
+The generative model of how perceived sensory events arise in the
+world would be incorporated into
 the current neuronal wiring.
 Indeed,
 This process permits updates of the internal model of the environment
-to best fit the incoming sensory examples.
+to best fit the constant influx of sensory examples.
 
 
 \begin{itemize}
@@ -1340,35 +1345,6 @@ to best fit the incoming sensory examples.
   neurobiological evidence that
   view the brain as a ``statistical organ''
   generalizing from the past to new experiences.
-  \item Both expose a mechanisms of brain plasticity in that
-  neuronal wiring gets increasingly adapted
-  when faced by unprecedented environmental
-  challenges.
-  \item The hierarchical aspects from predictive coding
-  is re-expressed in MDPs in form of
-  nested prediction of probable upcoming actions and rewards.
-  \item Both model the consequences of action. In RL, the horizon of that
-  look into the future is manifested in the $\gamma$ parameter
-  in the Bellman equation, but not
-  explicitly modeled in the PC account that
-  mostly emphasizes prediction about the
-  immediate future.
-  \item Mismatch negativity of PC is immanent in reward prediction error
-  by the difference between actually predicted reward of an action given
-  a state and the reward predicted by non-linear regression with graded
-  discounting of future rewards.
-  \item Sensory experience is a generative process from both views.
-  In predictive coding, sensory perception of the external world
-  is a generative experience due to modulatory top down experience at
-  various hierarchical levels of sensory input processing.
-  In our RL view, the (partially observed)
-  environmental model is incorporated in the Markov decision
-  process, \textit{which can be fully recovered based on the last
-  state alone}.
-  \item Adapting the neuronal connections for improved top-down modulation
-  takes the concrete form of gradient computation
-  \textit{and back-propagation} in MDPs and RL,
-  although this may not be neurobiologically plausible.
   \item Both provide a parsimonious explanation why the
   human brain decreases processing load devoted to incoming information
   when the environment is predictable and allocate increased
@@ -1376,22 +1352,56 @@ to best fit the incoming sensory examples.
   Similarly, both propose explanations why
   predicting the future is inherently
   linked to information from the past.
+  \item Sensory experience is a generative process from both views.
+  In predictive coding, sensory perception of the external world
+  is a generative experience due to modulatory top down experience at
+  various hierarchical levels of sensory input processing.
+  In our RL view, the (partially observed)
+  environmental model is incorporated in the MDP,
+  \textit{which can be fully recovered based on the last
+  state alone}.
+  \item Both naturally expose a mechanisms of brain plasticity in that
+  neuronal wiring gets increasingly adapted
+  when faced by unprecedented environmental
+  challenges.
+  \item The hierarchical aspects from predictive coding
+  is re-expressed in MDPs in form of
+  nested prediction of probable upcoming actions and rewards.
+  \item Both model the consequences of action. In RL, the horizon of that
+  look into the future is explicitly manifested in the $\gamma$ parameter
+  in the Bellman equation, but not
+  explicitly modeled in the PC account that
+  tends to emphasize prediction about the
+  immediate future.
+  \item Mismatch negativity of PC is immanent in reward prediction error
+  by the difference between actually predicted reward of an action given
+  a state and the reward predicted by non-linear regression with graded
+  discounting of future rewards.
+  \item Adapting the neuronal connections for improved top-down modulation
+  takes the concrete form of gradient computation
+  \textit{and back-propagation} in MDPs and RL,
+  although this may not be neurobiologically plausible.
+  \item In sum,
+  the PC account in cognitive neuroscience does not expose an explicit
+  mechanism of the horizon of future considerations or
+  how the internal model of the world gets updated,
+  and collapses sensory input processing and action output preparation.
 \end{itemize}
 
 
 
 \subsection{Semantic Hypothesis}
-Another frequently proposed account of DMN function revolves
-around forming meaningful associations and analogies between
+Another frequently proposed cognitive account of DMN function revolves
+around forming logical associations and analogies between
 the current experience and
-the abstract knowledge derived from past experiences
+the conceptual knowledge derived from past experiences
 \citep{bar2007proactive, binder1999conceptual}.
 Analogies might naturally tie incoming novel sensory stimuli to
-explicit world knowledge extractable from the environment
+explicit world knowledge (i.e., semantics) extractable from the environment
 \citep{bar2009proactive}.
 %
-Going much beyond language ifself,
-semantic analogies can be used to mentally envision non-existent scenarios
+Going much beyond human language ifself,
+semantic building blocks provide the basis to mentally envision non-existent scenarios
 that would improve optimal behavior in the environment
 by simulating future events.
 Such cognitive processes can afford
@@ -1403,13 +1413,15 @@ Indeed, in aging humans, remembering the past and imaging the future
 equally decreased in the level of detail and are associated with
 concurrent deficits in forming and integrating relationships between
 items \citep{addis2008age, spreng2006temporal}.
-A constructive account further explains the reciprocal relationship
+Further,
+a constructive account explains the reciprocal relationship
 between an egocentric first person perspective and
 an allocentric bird’s eye perspective immersed in
 self-reflection, social knowledge, and autobiographical memories.
 %
-It is also closely related to episodic memory, language, problem solving,
-planning, estimating others' thoughts, and spatial navigation
+Cognitive aspects of egocentric-allocentric switching
+are also closely related to episodic memory, language, problem solving,
+planning, estimating other people's thoughts, and spatial navigation
 as these necessitate abstract world knowledge and abstract assocations
 for binding the constituent elements in mental scene construction
 \citep{schacter2007remembering}.
@@ -1423,12 +1435,8 @@ for other means \citep{tolman1948cognitive}.
 
 
 \begin{itemize}
-  \item The notion of semantic or knowledge association is
-  incorporated into the MDP as the Markov property,
-  that is, the current state directly results from the
-  agent's history of states and actions. The learned
-  value matrix and action transition schedules drive
-  stimulus processing and action choice in the present.
+  \item Both the semantic hypothesis and MDPs expose mechanisms of
+  how alternative decision trees could be mentally explored.
   \item In both semantic hypothesis and MDPs,
   there is no evidence to indicate that predictions of various
   levels of complexity, abstraction, timescale and purpose
@@ -1438,8 +1446,12 @@ for other means \citep{tolman1948cognitive}.
   and RL account provide explanations why hippocampus lesion does
   not only impair retrieving memories, but also hypothetical and future
   thinking \citep{hassabis2007patients}.
-  \item Both the semantic hypothesis and MDP expose mechanisms of
-  how alternative decision trees could be mentally explored.
+  \item The notion of semantic or knowledge association is
+  incorporated into the MDP as the Markov property,
+  that is, the current state directly results from the
+  agent's history of states and actions. The learned
+  value matrix and action transition schedules drive
+  stimulus processing and action choice in the present.
   \item While mental scene construction implies a distinction between
   environmental perception and internally generated mind-wandering\footnote{
   ``A computational model of how such a process might be structured
@@ -1447,12 +1459,12 @@ for other means \citep{tolman1948cognitive}.
   regulation by which perception of the current world is suppressed
   while simulation of possible alternatives are constructed,
   followed by a return to perception of the present.''\citep{buckner2007self}},
-  the MDP naturally integrates the former egocentric
-  (related to current action, state and reward) and the later
-  allocentric (related to past and future actions, states, and rewards)
+  the MDPs naturally integrate the former egocentric
+  (more related to current action, state and reward) and the later
+  allocentric (more related to past and future actions, states, and rewards)
   angles on the world in a same optimization problem.
   \item The semantic account of DMN function does not offer
-  a mechanistic explanation how semantic world knowledge and analogies thereof
+  a mechanistic explanation how explicit world knowledge and semnatic analogies thereof
   lead to prediction of future actions and states.
   \item In contrast to existing accounts on semantics and
   mental scene construction, the random and creative aspects of DMN function
@@ -1465,13 +1477,16 @@ for other means \citep{tolman1948cognitive}.
   by Monte Carlo solvers provably yields better models of the world.
   That is, the purposeful stochasticity of policy and value estimation
   in MDPs provides a candidate explanation for why humans
-  have evolved imperfect memories as the better adaptation.
+  have evolved imperfect noisy memories
+  as the more advantageous adaptation.
   \item While both semantic and MDP account propose memory-based internally
   generated information for probabilistic mental models of action outcomes,
   only MDPs render explicit the grounds on which the final action is
   eventually chosen (i.e., the estimated cumulative reward).
   \item In sum, episodic scene construction according to the semantic
-  hypothesis is lacking an explicit time and incentive model.
+  hypothesis is lacking an explicit time and incentive model;
+  neither does it explain how randomness of human mental experience
+  can be beneficial.
 \end{itemize}
 
 
@@ -1501,7 +1516,7 @@ More specifically,
 according to the ``social brain hypothesis'',
 the human brain did not evolve to solve problems of the
 physical environment, but to form and maintain increasingly complex
-social systems to solve ecological problems by means of social connections
+social systems to solve ecological problems by means of social relationships
 \citep{whiten1988machiavellian}.
 Highly efficient neurobiological processing of social cues is exemplified by
 facial judgments being routinely processed in less than 100 ms
@@ -1548,8 +1563,10 @@ are so rich in stories about people and the complex relationships between them.
     are recursively explored by the agent and which decision trees are neglected.
     This directly implies allocation of attention and computational load.
     \item In sum,
-    MDPs imply social thinking as a physiological brain baseline
-    as a special case, without excluding other topics.
+    MDPs imply a ``radar'' function of montoring the environment for salient information
+    in general and explain social thinking as a physiological brain baseline
+    as an important special case, without excluding other topics
+    contemplated in continuous mental activity.
  \end{itemize}
 
 
@@ -1561,11 +1578,11 @@ to warrant constant, high energy costs?
 MDPs provide an attractive
 computational model how the human association cortex
 might implement supra-modal representation and control of the environment to
-optimize the organism's fate by
-obtaining reward and avoiding pain.
+optimize the organism's fate.
+% by obtaining reward and avoiding pain.
 This idealized process model explains
 a number of previous experimental observations in the
-DMN literature by a simple but non-trivial mechanism.
+DMN by a simple but non-trivial mechanism.
 %
 Viewed as an MDP, behavior unfolds by integrating happened past events
 and possible future events to guide action choice in the present context.
@@ -1576,10 +1593,10 @@ abstract reasoning based on internally generated scenes, social cognition,
 as well as delay discounting and self-related prospection.
 MDPs provide a mathematical formalism how
 optimal substructure in the environment can be recursively exploited
-when confronted with nested decisions.
+when confronted with complicated decisions.
 Algorithmic gains by injecting stochasticity in the recall of past
-behavior and outcomes to improve the internal world model may explain why
-very accurate memories have been evolutionarily disfavored
+actions and outcomes to improve the internal world model may explain why
+very accurate memories have been disfavored in human evolution
 and why human creativity might be adaptive.
 %
 In principle,
