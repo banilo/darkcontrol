@@ -932,7 +932,7 @@ the would-be $Q$-value for the state-action pair $(s,a)$ as predicted by Bellman
 $r + \gamma \max_{a'} Q(s', a'|\theta^Q_k)$, with the output of a parametrized regression model $(s,a,r,s')
 \mapsto {Q}(s, a|\theta^Q_{k})$, where $Q(.,.|\theta^Q_{k})$ is an approximator for the $Q$-value operator,  parameterized by $\theta^Q_{k+1}$.
 In the brain, such an experience replay mechanism is probably implemented in the hyppocampus (HC). Indeed,
-Hippocampal replay is a phenomenon observed in rats, mice, cats, rabbits, songbirds, and monkeys. Indeed, during sleep or awake rest, replay refers to the re-occurrence of a sequence of cell activations that also occurred during activity, but the replay has a much faster time scale.
+hippocampal replay is a phenomenon observed in rats, mice, cats, rabbits, songbirds, and monkeys. Indeed, during sleep or awake rest, replay refers to the re-occurrence of a sequence of cell activations that also occurred during activity, but the replay has a much faster time scale.
 % It may be in the same order, or in reverse.
 Computing an optimal policy then corresponds to finding the parameters $\theta^Q_{k+1}$ which minimize the following mean-squared loss function
 \begin{equation}
@@ -948,9 +948,9 @@ For example, a general linear model with a kernel $\phi$ would be of the
 form
 $${Q}(s, a|\theta^Q) = \phi(s,a)^T\theta^Q.$$
 $\phi(s,a)$ would represent a high-level hand-crafted representation of the state-action $(s,a)$ into an appropriate
-feature space. Such are the techniques that have been proposed by [sutton et al. xyzw, Song et al. 2016 (NIPS),
-  and Parr et al. 2003 (JMLR)].
-A breakthrough alternative proposed by Google DeepMind [Minh et al. 2014, Silver et al 2015] is to learn this
+feature space. Such are the techniques that have been proposed by \cite{songNIPS2016}, for example.
+%  and Parr et al. 2003 (JMLR)].
+A breakthrough alternative proposed by Google DeepMind \cite{mnih2015,silver2016mastering}, is to learn this
 representation using a deep neural net, leading to the so-called \textit{Deep Q-learning} family of methods which
 are by far the current state-of-the-art in RL. In such a case, $\theta^Q$
 would correspond to the strengths of low-level synaptic or high-level functional connections between different
