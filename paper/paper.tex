@@ -841,10 +841,10 @@ policy $\pi$.
   the nucleus accumbens is involved in reward evaluation.
   \end{mdframed}
 The  goal of RL is then adapt this policy so as to  maximize the cumulative rewards.
-In the definition of $G^\pi$ above, the constant $\gamma \in [0, 1]$ is the \textit{discount factor}.
+In the definition of $G^\pi$ above, the constant $\gamma$ $(0 \le \gamma < 1$) is the reward \textit{discount factor}.
 Taking $\gamma = 0$   corresponds to a perfectly myopic agent who is solely concerned about their
 immediate rewards and has no horizon for the future, which is not compatible with long-term goal planning
-as implemented in the DMN. For there to be any learning at all, it is thus necessary that $\gamma > 0$.
+as implemented in the DMN. For there to be any learning at all, it is thus necessary that $0 < \gamma < 1$.
 % \footnote{In which case we can take $T \rightarrow +\infty$, provided the reward function $r$ is bounded.}.
 Thus the agent is positively biased towards considering rewards which are will
 come soon. The reward importance hence decays exponentially
@@ -857,7 +857,7 @@ is more advantageous in many RL settings.
 For instance, a deterministic strategy in playing rock-paper-scissors can
 be easily exploited and a uniformly random choice is optimal.
 
-The agent's goal can then be formulated as being that of finding policy $\pi$ which maximizes the
+The agent's goal can then be formulated as finding policy $\pi$ which maximizes the
 expected cumulative value of state-stat-pairs $(A_0,S_0)$, namely
 \begin{equation}
   \label{eq:qval}
@@ -868,9 +868,8 @@ action $a$ and then follow the policy $\pi$ thereafter to select future actions.
 %% Given that each $\pi$ correspondence to an exhaustive description of
 %% behavioral patterns, $Q^{\pi}(S_t,A_t)$ corresponds to the epistemic value of
 %% the set of actions given states in finite time.
-
-By construction, in general, maximizing the expectation in  \eqref{eq:qval} is intractable due to
-the enormous number of possible trajectories the agent might need to
+By construction, maximizing the expectation in  \eqref{eq:qval} is intractable in general
+due to the enormous number of possible trajectories the agent might need to
 consider.
 (If the Bellman-based computational ideas have a corresponding
 neurobiological implementation, this provides a framework of how
@@ -907,7 +906,7 @@ triggered by another behavioral policy, which can be stochastic.
 \subsection{Efficient RL with value approximation and replay}
 %As already mentioned in the previous section, Q-learning optimizes over the class of
 % deterministic policies of the form \eqref{eq:qlearning}.
-We need ways to approximate the state-action value function
+A successful RL theory needs ways to approximate the state-action value function
 which scale up to large state spaces and / or action spaces.
 In state $s \in \mathcal S$, the agent takes an action $a \in \mathcal A$
 % (for example, $a$ = ``Read'', or ``Run'', or ``Laugh'', or ``Sympathize'', or ``Empathize'', etc.)
@@ -919,8 +918,8 @@ behavior of the agent and is recorded in replay memory buffer:
 $D \leftarrow D \cup \{e\}$ (possibly discarding the oldest entries to make space).
 Now, at iteration $k+1$, replay consists in sampling (uniform or importance-weighted
 \footnote{e.g weighted by TD error of the state transition $s \overset{a}{\rightarrow} s'$.} ?)  mini-batches of experiences
-$(s, a, r, s') \sim \mathcal U(D)$ from the replay memory $\mathcal D$ and trying to
-approximate
+$(s, a, r, s') \sim \mathcal U(D)$ from the replay memory $\mathcal D$ (hyppocampus ?)
+and trying to approximate
 the would-be $Q$-value for the state-action pair $(s,a)$ as predicted by Bellman's equation \eqref{eq:bellman}, namely
 $r + \gamma \max_{a'} Q(s', a'|\theta^Q_k)$, with the output of a parametrized regression model $(s,a,r,s')
 \mapsto {Q}(s, a|\theta^Q_{k})$, where $Q(.,.|\theta^Q_{k})$ is an approximator for the $Q$-value operator,  parameterized by $\theta^Q_{k+1}$.
@@ -943,11 +942,13 @@ feature space. Such are the techniques that have been proposed by [sutton et al.
 A breakthrough alternative proposed by Google DeepMind [Minh et al. 2014, Silver et al 2015] is to learn this
 representation using a deep neural net, leading to the so-called \textit{Deep Q-learning} family of methods which
 are by far the current state-of-the-art in RL. In such a case, $\theta^Q$
-would correspond to ..
+would correspond to the strengths of low-level synaptic or high-level functional connections between different neurons / nodes
+in the network.
 
-The entire model can then be effectively trained via \textit{backprop}
-wherein online stochastic gradient descent is used to minimize the
-variational objective \eqref{eq:oracle}.
+Learning of the the entire model parameters can effictively be achieved via \textit{backprop},
+wherein prediction errors are propagated from lower to higher regions to modulate the choice of future
+% online stochastic gradient descent is used to minimize the variational objective
+% \eqref{eq:oracle}.
 
 \paragraph{Parameter update.}
 \begin{equation}
