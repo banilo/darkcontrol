@@ -529,9 +529,10 @@ in axonal tracing studies in monkeys \citep{haber1995orbital}.
 Additionally, the gray-matter volume of the vmPFC and nucleus accumbens
 correlated with indices of value-guided behavior and social reward attitudes
 \citep{lebreton2009automatic}.
-The NAc is thought to be linked to reward mechanisms that not
-only modulate motivated behavior towards basic survival needs but also
-subserve RL in humans more broadly.
+NAc activity is thought to reflect reward prediction signals from dopaminergic pathways
+\citep{schultz1998predictive}
+that not only modulate motivated behavior towards basic survival needs but also
+subserve RL in humans more broadly \citep{doherty2015structure}.
 This is consistent with diffusion MRI (dMRI) tractography in humans and monkeys
 \citep{croxson2005quantitative} that
 quantified this brain regions to
@@ -576,7 +577,7 @@ While the HC in the medial temporal lobe system
 is traditionally believed to allow remembering the past,
 there is now increasing evidence for a role
 in constructing mental models in general
-\citep{maguire2016, schacter2007remembering}.
+\citep{maguire2016, schacter2007remembering, gelbard2008internally}.
 Indeed,
 hippocampal damage is
 not only associated with an impairment in reexperiencing the past (i.e., amnesia),
@@ -824,8 +825,9 @@ Mathematically, a POMDP is simply a quintuplet $(\mathcal S, \mathcal A, r, p, \
 % \end{remark}
 
 \subsection{Value functions and policies}
-The behavior of the agent is governed by some kind of \textit{policy}, which maps states to
-sampling probabilities over candidate actions to perform from this state. Starting a time $t=0$,
+The behavior of the agent is governed by some kind of \textit{policy},
+which maps states of the world to
+a set of candidate actions to perform given this state. Starting a time $t=0$,
 a policy $\pi$ generates a trajectory as follows
 \begin{eqnarray*}
   \begin{split}
@@ -1017,7 +1019,7 @@ For sampling-based methods it is still almost non-existent beyond the descriptio
   on the world given a current state. It encodes the probabilites of
   choosing actions to be executed in a certain situation.
   \item Interactions between external and internal sources of
-  information are probably commonplace during perception
+  information are probably commonplace during perception \citep{gershman2010learning}
   \item The MDP frameworks how the human brain could solve
   environmental problems over extended time periods.
   \item Given a state, the value function represents the estimated utility of
@@ -1403,6 +1405,7 @@ choices of the posterior distribution are given in Tab. \ref{tab:rptrick}.
 \textbf{XXX: add tons of more examples and connnections}
 \textbf{XXX: integrate aspects from section "ThE MARkOv DECISION PROBLEM" in Dayan and Daw}
 \textbf{XXX: integrate aspects from WakeNsleep by Hinton}
+\textbf{XXX: integrate aspects from Friston2014(Dropbox) on active inference}
 \textbf{XXX: integrate aspects from Sutton/Barto book chapter}
 In summary:
 \begin{itemize}
@@ -1436,7 +1439,7 @@ abc
 \section{Relation to other cognitive models}
 \subsection{Predictive Coding Hypothesis}
 The predictive coding framework
-\citep{clark2013whatever}
+\citep{clark2013whatever, friston2008hierarchical}
 is a frequently evoked idea related to the default mode function
 \citep{bar2007}.
 According to this cognitive account,
@@ -1534,6 +1537,8 @@ the conceptual knowledge derived from past experiences
 Analogies might naturally tie incoming novel sensory stimuli to
 explicit world knowledge (i.e., semantics) extractable from the environment
 \citep{bar2009proactive}.
+In this way, the encoding of complex environments could be facilitated
+by relative similarity associations between states.
 %
 Going much beyond human language ifself,
 semantic building blocks provide the basis to
@@ -1544,7 +1549,8 @@ Such cognitive processes can afford
 the internal generation of necessary information
 that is not presented in the surrounding environment
 by recombining building blocks of
-concept knowledge and episodic memories.
+concept knowledge and episodic memories
+\citep{hassabis2009construction}.
 Indeed, in aging humans, remembering the past and imaging the future
 equally decreased in the level of detail and are associated with
 concurrent deficits in forming and integrating relationships between
@@ -1668,7 +1674,9 @@ This may explain why social topics amount to roughly
 two thirds of human everyday communication \citep{dunbar1997human}
 and
 why mind-wandering and dreams
-are so rich in stories about people and the complex relationships between them.
+are so rich in stories about people and
+the complex relationships between them
+\citep{schilbach2008minds}.
 
 
 
@@ -1720,7 +1728,8 @@ This idealized process model explains
 a number of previous experimental observations in the
 DMN by a simple but non-trivial mechanism.
 %
-Viewed as an MDP, behavior unfolds by integrating happened past events
+From the computational viewed of a MDP,
+behavior unfolds by integrating happened past events
 and possible future events to guide action choice in the present context.
 This functional account is more compatible with the DMN's
 poorly understood involvement across
