@@ -364,7 +364,7 @@ We will first attempt to deconstruct the overall DMN function
 by the mechanistic relevance of each individual network node
 based on published findings from neuroscience experiments.
 %
-\subsection{The PMC and PFC}
+\subsection{The posteriormedial cortex (PMC)}
 The posteriormedial cortex (PMC) and
 the dorsomedial prefrontal cortex (dmPFC) within the DMN
 are responsible for the highest metabolic turn-over
@@ -563,7 +563,7 @@ among the most complicated decision that humans and monkeys take
 
 
 
-The HC is well known to be involved in memory and
+The HC (\textbf{``HC'' = ?}) is well known to be involved in memory and
 spatial navigation in animals and humans.
 Its highly recursive anatomical architecture
 may be specifically designed to allow reconstructing
@@ -619,7 +619,7 @@ ongoing perception in the current environment
 % such that it really occures in reality later.)
 
 
-\subsection{The TPJ: Situation understanding and context-switching}
+\subsection{The TPJ: Situation-understanding and context-switching}
 Finally,
 the right and left TPJ are known to have hemispheric differences
 according to their cytoarchitectonic borders and gyrification pattern
@@ -712,6 +712,362 @@ by incorporating experience-derived models of the world
 into ongoing action, planning, and problem solving.
 % world -> policy matrix driven computation
 % self -> value matrix driven computation
+
+\section{Reinforcement Learning (RL) as a computational model for DMN function}
+We now argue that the DMN has biological substrates (gradient
+computation, backprop, experience replay, etc.) for all the
+major components of an efficient \textit{Reinforcement Learning} algorithm, and all these
+components integrate in a plausible way.
+Reinforcement Learning (RL) is learning to achieve a goal by interacting with an external
+environment. In a general RL framework, an \textit{agent}
+interacts with an  environment in a trial-by-error fashion by taking
+actions / decisions $a$, which trigger changes in the
+\textit{state} of the environment
+$s \rightarrow s'$, accompanied by a real-valued \textit{reward}
+$r = r(s, a)$ (or regret!, since it can be negative) collected by the
+agent. In this view, the environmental is partially controlled by
+the action of the agent and the reward should be thought
+of as an instantaneous satisfaction accompanying the execution of
+an action, and may be delayed, only becoming substantial when accumulated over an extended period of time.
+%% Here the subscript $t$ denotes time, and can be discrete or
+%% continuous.
+The environment is generally taken as stochastic,
+is partially observed, in the sense that only part of the current state is observed by
+the agent. This unpredictability
+% (in a first-order sense)
+is realistic in a model which sets out
+to explain DMN function. Indeed, it is known that, the more the external world is predictable,
+the more mental activity becomes detached from the actual sensorium
+\citep{antrobus1966studies, pope1978regulation}.
+Conversely, the more the currently executed task is unknown and unpracticed,
+the lower the DMN activity, i.e the tendency for stimulus-independent thoughts
+\citep{filler1973daydreaming, teasdale1995stimulus}.
+
+These ``offline'' processes may however contribute to optimized control of the organism.
+A DMN framework incorporating reinforcement learning
+can naturally embed human behavior
+into the tension between exploitative action with immediate gains and
+explorative action with longer-term reward schedules.
+The implication of the DMN in a diversity of human cognitive processes
+can be parsimoneously recast as prediction error minimization
+based on pervasive probabilistic simulations,
+thus maximizing reward outcome at various time scales.
+Such a purposeful optimization objective
+may be solved by a stochastic approximation
+based on a brain implementation of Markov Chain Monte Carlo sampling
+\citep{tenenbaum2011grow}.
+
+\subsection{Markov Decision Processes}
+It is our view that at a sufficiently coarse scale, the brain is a physical system governed by the laws of
+physics and can be locally described by Markov processes. Indeed, as noted in \cite{tegmark2016improved},
+any system obeying the laws of classical physics can be accurately modeled as a Markov process as long as the time
+step is sufficiently short (defining $s(t)$ --the state at time $t$-- as the position in phase space).
+If the process has $memory$ such that the next state depends not only on the current state but also on some finite
+number of past states, it can reformulated as a standard memoryless Markov process by simply expanding the
+definition of the state $s$ to include elements of the past.
+
+In artificial intelligence (AI), a popular abstract model for such an environment are so-called
+\textit{Markov Decision Processes (MDPs)}. According to this model, the environment's dynamics are
+fully determined by its current state.
+In RL, MDPs are the mathematical instantiation of the environment model,
+which generally can incorporate action probabilities (policy matrix)
+and/or value function given a state.
+(Silver: The environment can be fully defined by state space and
+transition probability matrix.)
+is simply a quintuplet $(\mathcal S, \mathcal A, r, p, \mu)$ where
+\begin{itemize}
+\item $\mathcal S$ is the set of states, e.g $\mathcal S = \{\text{happy}, \text{sad}\}$.
+\item $p : \mathcal S \times \mathcal A \times \mathcal S \rightarrow [0, 1],\; (s,a,s') \mapsto p(s'|s,a)$,
+  the probability of moving to state $s'$ if action $a$ is taken from state $s$. In addition, one requires that such
+  transitions be Markovian. Consequently, the future states are independent of past states and only depend on the present.
+\item $\mathcal A$ is the set of actions, e.g $\mathcal A = \{\text{read}, \text{run},
+  \text{laugh}, \text{sympathize}, \text{empathize}\}.$
+\item $r : \mathcal S \times \mathcal A \rightarrow \mathbb R$ is the \textit{reward function},
+  so that $r(s, a)$ is the instant reward for taking action $a$ in state $s$.
+\item $\mu: \mathcal S \rightarrow [0, 1]$ is the prior probability on the states so that
+  $\mu(s)$ is the probability that the environment starts-off in state $s$.
+\end{itemize}
+
+% \begin{remark}
+%   Given a system $(\mathcal S, \mathcal A, r, p, \mu)$ satisfying all the axioms for an MDP
+%   except the Markov property, we can always transform it into an MDP by considering a compounded
+%   version of the states
+%   $$S_t \leftarrow (S_0,A_0,R_0,S_1,A_1,S_2\ldots,S_t,A_{t-1},R_{t-1},S_{t})$$ made of the system's
+%   history up to an including time $t$.
+% \end{remark}
+
+\paragraph{A note on model-based RL.}
+Knowledge the agent has about the environment can be encoded in the
+functions $r$, $\mu$, $p$, and / or $\mu$, as is done in
+\textit{model-based} RL. For example if a rat in a maze knows, for sure,
+that staying still will produce no change in the environment, and in particular will not eventually lead to finding the food, they can assume:
+\begin{itemize}
+\item $r(s, \text{``stand still''}) = 0$ if $s$ does not correspond to a cell / chamber containing food.
+\item $p(s'|s,\text{``stand still''}) = 1$ if $s'=s$ and $0$ otherwise.
+\item etc.
+\end{itemize}
+
+\subsection{Value functions and policies}
+The behavior of the agent is governed by some kind of \textit{policy}, which maps states to
+sampling probabilities over candidate actions to perform from this state. Starting a time $t=0$,
+a policy $\pi$ generates a trajectory as follows
+\begin{eqnarray*}
+  \begin{split}
+    S_1 &\sim p(.|S_0,A_0), \text{ collect rewards }R_0 = r(S_0, A_0)\\
+    A_1 &\sim \pi(.|S_1)\\
+    S_2 &\sim p(.|S_1,A_1), \text{ collect rewards }R_1 = r(S_1, A_1)\\
+    \ldots\\
+    A_{t} &\sim \pi(.|S_{t})\\
+    S_{t+1} &\sim p(.|S_{t},A_{t}), \text{ collect rewards }R_{t} = r(S_{t}, A_{t})\\
+    \ldots
+  \end{split}
+\end{eqnarray*}
+Since an action taken now might have repercussions long into the feature, it turns out that the
+quantity to optimize is not the instantaneous rewards $r(s, a)$, but a
+cumulative reward estimate which takes into account the future. A standard for
+modeling this accumulation is the so-called
+time-discounted \textit{cumulative reward} function
+\begin{equation}
+  \label{eq:cumr}
+  G^\pi = \sum_{t=0}^{\infty}\gamma^{t}R_t.
+\end{equation}
+This random variable\footnote{Random as it depends both on the environment's dynamic and the
+  policy $\pi$ being played (which can be stochastic).}  measures the cumulative reward of
+following a
+policy $\pi$.
+\begin{mdframed}
+  \textbf{Where is ``value'' buffered in the brain ?}
+  The amygdala is known to be involved in significance evaluation) and
+  the nucleus accumbens is involved in reward evaluation.
+  \end{mdframed}
+The  goal of RL is then adapt this policy so as to  maximize the cumulative rewards.
+In the definition of $G^\pi$ above, the constant $\gamma \in [0, 1]$ is the \textit{discount factor}.
+Taking $\gamma = 0$   corresponds to a perfectly myopic agent who is solely concerned about their
+immediate rewards and has no horizon for the future, which is not compatible with long-term goal planning
+as implemented in the DMN. For there to be any learning at all, it is thus necessary that $\gamma > 0$.
+% \footnote{In which case we can take $T \rightarrow +\infty$, provided the reward function $r$ is bounded.}.
+Thus the agent is positively biased towards considering rewards which are will
+come soon. The reward importance hence decays exponentially
+with distance in the future,
+given that there is more uncertainty in the farsighted future.
+The reward discount factor $\gamma$ can thus be seen as calibrating
+the delay discounting behavior of the intelligent agent.
+It is also important to appreciate that a stochastic policy estimation
+is more advantageous in many RL settings.
+For instance, a deterministic strategy in playing rock-paper-scissors can
+be easily exploited and a uniformly random choice is optimal.
+
+The agent's goal can then be formulated as being that of finding policy $\pi$ which maximizes the
+expected cumulative value of state-stat-pairs $(A_0,S_0)$, namely
+\begin{equation}
+  \label{eq:qval}
+  Q^{\pi}(s,a) = \mathbb E [G^\pi|S_0=s,A_0=a,A_1 \sim \pi,A_2 \sim \pi,\ldots].
+\end{equation}
+That is, the expectated future reward over all possible trajectories in which we start at $s$ take
+action $a$ and then follow the policy $\pi$ thereafter to select future actions.
+%% Given that each $\pi$ correspondence to an exhaustive description of
+%% behavioral patterns, $Q^{\pi}(S_t,A_t)$ corresponds to the epistemic value of
+%% the set of actions given states in finite time.
+
+By construction, in general, maximizing the expectation in  \eqref{eq:qval} is intractable due to
+the enormous number of possible trajectories the agent might need to
+consider.
+(If the Bellman-based computational ideas have a corresponding
+neurobiological implementation, this provides a framework of how
+optimal behavior could be computable in the human brain.)
+One popular simplification that removes this issue is to only consider the sub-family of
+\textit{deterministic policies}, which map each state to the best single best action which
+should be taken at thin state, and therefore define functions from states to actions.
+\textit{Q-learning} (Watkins \& Dayan, 1992), a commonly used off-policy algorithm, uses the
+\textit{greedy policy}
+\begin{equation}
+  \pi(s) = \argmax_{a \in \mathcal A}{Q}(s, a).
+  \label{eq:qlearning}
+\end{equation}
+% where $\tilde{Q}(s, a)$ is the current estimate of the state-action value
+% table.
+The celebrated \textit{Bellman's equation} [Sutton and Barto 1998] then takes the simple form
+\begin{equation}
+  Q^\pi(s, a) = \mathbb E_{s' \sim p(.|s,a)} [r(s,a) + \gamma \max_{a' \in \mathcal A}Q^\pi(s', a')]
+  = \mathbb E_{s' \sim p(.|s,a)} [r(s,a) + \gamma Q^\pi(s', \pi(s'))]
+  \label{eq:bellman}
+\end{equation}
+which provides a recursive decomposition of optimal behavior.
+A complicated dynamic programming optimization can be
+broken into simpler subproblems at different time points,
+which has often been closely related to the medial prefrontal part of the DMN
+\citep{koechlin1999role, braver2002role}.
+Using the Bellman equation, each state can be associated with a certain value,
+to guide action (i.e., improve the policy) towards a better state.
+It is a fixed-point equation for the deterministic policy $\pi$.
+Notice that in the expectation in \eqref{eq:bellman}, the sampling is done over only things which
+depend on the environment, and so can be learned off-policy by observing state-transitions
+triggered by another behavioral policy, which can be stochastic.
+
+\subsection{Efficient RL with value approximation and replay}
+%As already mentioned in the previous section, Q-learning optimizes over the class of
+% deterministic policies of the form \eqref{eq:qlearning}.
+We need ways to approximate the state-action value function
+which scale up to large state spaces and / or action spaces.
+In state $s \in \mathcal S$, the agent takes an action $a \in \mathcal A$
+% (for example, $a$ = ``Read'', or ``Run'', or ``Laugh'', or ``Sympathize'', or ``Empathize'', etc.)
+by sampling from its current policy matrix, and collects a reward $r$,
+% (measured on their internal currency of worldly values ?),
+and the environment transitions to a new state $s' \in \mathcal S$. At the end of
+this step, a new \textit{experience} $e = (s,a,r,s')$ is produced; this represents an exemplar
+behavior of the agent and is recorded in replay memory buffer:
+$D \leftarrow D \cup \{e\}$ (possibly discarding the oldest entries to make space).
+Now, at iteration $k+1$, replay consists in sampling (uniform or importance-weighted
+\footnote{e.g weighted by TD error of the state transition $s \overset{a}{\rightarrow} s'$.} ?)  mini-batches of experiences
+$(s, a, r, s') \sim \mathcal U(D)$ from the replay memory $\mathcal D$ and trying to
+approximate
+the would-be $Q$-value for the state-action pair $(s,a)$ as predicted by Bellman's equation \eqref{eq:bellman}, namely
+$r + \gamma \max_{a'} Q(s', a'|\theta^Q_k)$, with the output of a parametrized regression model $(s,a,r,s')
+\mapsto {Q}(s, a|\theta^Q_{k})$, where $Q(.,.|\theta^Q_{k})$ is an approximator for the $Q$-value operator,  parameterized by $\theta^Q_{k+1}$.
+Computing an optimal policy then corresponds to finding the parameters $\theta^Q_{k+1}$ which minimize the following mean-squared loss function
+\begin{equation}
+  \mathcal L(\theta^Q_{k+1})
+  % = \mathbb E_{(s, a, r, s') \sim \mathcal U(D)}[(Q(s, a|\theta^Q) - Q(s',a'|\theta^Q_{k+1}))^2]
+  = \mathbb E_{(s, a, r, s') \sim \mathcal U(D)}\left[\frac{1}{2}(Q(s, a|\theta^Q_{k+1}) - y)^2\right],
+  \label{eq:oracle}
+\end{equation}
+where
+$ y = r + \gamma \max_{a' \in \mathcal A} Q(s', a'|\theta^Q_k) = r + \gamma Q(s', \pi(s')|\theta^Q_k)$ is the prediction target.
+% While $y_t$ is also dependent on $\theta^Q$, this is typically ignored.
+For example, a general linear model with a kernel $\phi$ would be of the
+form
+$${Q}(s, a|\theta^Q) = \phi(s,a)^T\theta^Q.$$
+$\phi(s,a)$ would represent a high-level hand-crafted representation of the state-action $(s,a)$ into an appropriate
+feature space. Such are the techniques that have been proposed by [sutton et al. xyzw, Song et al. 2016 (NIPS),
+  and Parr et al. 2003 (JMLR)].
+A breakthrough alternative proposed by Google DeepMind [Minh et al. 2014, Silver et al 2015] is to learn this
+representation using a deep neural net, leading to the so-called \textit{Deep Q-learning} family of methods which
+are by far the current state-of-the-art in RL. In such a case, $\theta^Q$
+would correspond to ..
+
+The entire model can then be effectively trained via \textit{backprop}
+wherein online stochastic gradient descent is used to minimize the
+variational objective \eqref{eq:oracle}.
+
+\paragraph{Parameter update.}
+\begin{equation}
+  \nabla_{\theta^Q_{k+1}}\mathcal L(\theta^Q_{k+1})
+  % = \mathbb E_{(s, a, r, s') \sim U(\mathcal D)}[(Q(s, a|\theta^Q) - Q(s',a'|\theta^Q_{k+1}))^2]
+  = \mathbb E_{(s, a, r, s') \sim \mathcal U(D)}\left[\underbrace{(Q(s, a|\theta^Q_{k+1}) - y)}_{\text{regret}}
+    \underbrace{\nabla_{\theta^Q_{k+1}}Q(s, a|\theta^Q_{k+1})}_{\text{???}}\right],
+  \label{eq:oracle}
+\end{equation}
+
+\paragraph{TODO: Monte Carlo optimization.}
+Some text snippets that might be pertinent:
+Monte-Carlo simulation can be used to update the agent’s belief state
+\citep{silver2010monte}.
+Monte-Carlo simulation provides a simple method for evaluating
+a state s.
+In any MDP, there is at least one optimal policy matrix that
+achieves the optimal value function???
+The simulator is used to generate sequences of states, observations and rewards. These simulations are used to update the value function, without ever looking inside the black box describing the model’s dynamics. In addition, Monte-Carlo methods have a sample complexity that is determined only by the underlying difficulty of the POMDP, rather than the size of the state space or observation space.
+Monte-Carlo simulation can be turned into a simple control algorithm by evaluating all legal actions and selecting the action with highest evaluation [15]. Monte-Carlo simulation can be extended to partially observable MDPs.
+In these challenging POMDPs, Monte-Carlo simulation provides an effective mechanism both for tree search and for belief state updates, breaking the curse of dimensionality and allowing much greater scalability than has previously been possible.
+Link this to experience sampling in the hippocampus.
+Much recent work points to Monte Carlo or stochastic sampling– based approximations as a unifying framework for understanding how Bayesian inference may work practically across all these levels, in minds, brains, and machines.
+For sampling-based methods it is still almost non-existent beyond the description of receptive fields.
+
+
+\paragraph{Link to classical RL algorithms.}
+Note that most RL algorithms, including \textit{Temporal Difference (TD)}
+learning [Sutton et al., Bertsekas], REINFORCE [William], and SARSA can be
+cast in this general variational framework. For example TD corresponds to
+the above framework using a linear value approximator with feature encoding
+$\phi(s,a) = \delta_{(s,a)} =  \text{ point mass at }(s,a)$ on the grid
+$\mathcal S \times \mathcal A$, and so
+$$\nabla_{\theta^Q_{k+1}}Q(s, a|\theta^Q_{k+1}) = \phi(s, a) = \delta_{(s,a)}.$$
+%% Whence, the gradient update due to the sample $(s,a,r,s') \in \mathcal D$ is
+%% $$\theta^Q(s,a) \leftarrow \theta^Q(s,a) + (Q(s, a|\theta^Q_{k+1}) - y)$$ ??
+
+\subsection{Correspondence between DMN function and RL framework}
+\textbf{XXX Put the diagrams and process charts here.}
+\begin{figure}[!h]
+  \includegraphics[width=.9\linewidth]{rl_process_chart.pdf}
+  \caption{The DMN as an RL agent...}
+  \label{fig:rl_process_chart}
+\end{figure}
+
+\begin{itemize}
+  \item The policy matrix represents the repertoire of possible actions
+  on the world given a current state. It encodes the probabilites of
+  choosing actions to be executed in a certain situation.
+  \item Interactions between external and internal sources of
+  information are probably commonplace during perception
+  \item The MDP frameworks how the human brain could solve
+  environmental problems over extended time periods.
+  \item Given a state, the value function represents the estimated utility of
+  being in that state, which is subjective to the agent.
+  For a state $s$, the value function at $s$ namely $V(s)$ define provides a quantitative answer to the question:
+  "How desirable is it to be in state $s$ ?"
+  For each action $a$ that can be taken from state $s$,
+  the Q-value  $Q(s, a)$ defined in \eqref{eq:qval} provides the subjective
+  utility of executing a specific action; it answers the question
+  "What is the expected utiltiy of taking action $a$ in this situation ?"
+  \item The DMN may subserve
+  constant exploration of possible future actions and their
+  cumulative outcomes. Implicit computation of future choices
+  provides an explanation for purposeful mind-wandering.
+  \item hippocampus -> provides perturbed action-transition-state-reward samples
+  as a block of "imagined", "hypothesized", "recalled" experience;
+  the small variations in these experience blocks allow searching
+  a larger space of parameters and possible experiences.
+  In the absence of environmental input and feedback
+  (e.g., mind-wandering or sleep) pseudo-experiencing possible
+  future scenarios and action outcomes.
+  Our approach acknowledges the unavoidable stochasticity of
+  computation in neuronal processes \citep{faisal2008noise}.
+  \item
+  \textit{Inference} in the human brain reduces to generalization of
+  policy and value adaptations from sampled experiences to
+  successful action choices and reward predictions in future states.
+  \item In the RL view, plasticity in the DMN arises naturally.
+  If an agent behaving optimally in a given environment moves
+  to novel, yet unexperienced environments, reward prediction errors will
+  massively increase. This will lead to adaptation of the policy matrix
+  and value function until the system converges to a
+  new steady-state of optimal action decisions given certain states.
+  \item The DMN is today known to consistently increase in neural
+  activity when engaging cognitive processes that are detached from
+  current sensory environment. DMN involvement in thinking about the past,
+  the future, and hypothetical possibilities ties in with the
+  MDP's implicit computation of action and state cascades as a function
+  of what happened in the past.
+\end{itemize}
+
+\paragraph*{Some notes:}
+\begin{itemize}
+  \item Actions are continuous, whilst states are continuous.
+  \item The brain does backprop (see Hinton's recent talk at Stanford)
+  \item model weights $\theta^Q$ should correspond to connections between neurons
+\item humm, looks like such a knowledge would simply translate into constraints on the DqN weights $\theta^Q$ (... at least, part of such knowledge)
+  ok, gotta think about the model-free / model-based reconsiliation
+\end{itemize}
+
+\subsection{Inverse reinforcement-learning}
+%\begin{mdframed}
+  Given the trace $s_0,a_0,s_1,\ldots,$ of an optimal agent's strategy $\pi^*$ in
+  a POMDP (called a \textit{teacher's demonstration}), can we figure out what is the
+  (instantaneous) reward function $r: \mathcal S \times \mathcal \mathcal A
+  \rightarrow \mathbb R$ that the agent is optimizing over a prescribed class of reward functions
+  (e.g linear rewards $r(s,a) \equiv \theta^T\phi(s,a)$)?
+  For example, given traces of motor actions from a an adult to grab a cup on a table,
+  can an observing child figure out what ``langragian'' functional is being minimized by the former ?
+  How ? Can they reproduce this optimal behavior ?
+%\end{mdframed}
+
+Such questions are of course pertinent to our decision-making theory for the DMN.
+In the general artificial case, the problem has been extensively studied and partially solved by
+\cite{abbeel2004}. They are also been rigourously studied in general optimal control literature under the name ``inverse optimal control'', but in model-based certains (where the physical dynamics
+are known, etc.)...
+
+IRL is is suited for problems in which it's hard to define what the reward function could be
+(e.g car-driving, drone maneuvering, etc.
 
 \section{Free-energy principles!}
 The so-called free-energy principle in its present form (including notions like ``generative density'', ``recognition density'', etc.) can be traced back to works of Dayan \& Hinton \citep{dayan1995helmholtz} in which they introduced the so-called \textit{Helmholtz machine}, a hierarchical factorial directional deep belief-net (DBN).
@@ -1025,361 +1381,6 @@ choices of the posterior distribution are given in Tab. \ref{tab:rptrick}.
 
 \subsection{GANs and other likelihood-free methods}
 ...
-
-
-\section{Reinforcement Learning as a computational model for DMN function}
-The main idea of this section is to argue that the DMN has biological substrates (gradient
-computation, backprop, experience replay, etc.) for all the
-major components of an efficient \textit{Reinforcement Learning} algorithm, and all these
-components integrate in a plausible way.
-Reinforcement Learning (RL) is learning to achieve a goal by interacting with an external
-environment. In a general RL framework, an \textit{agent}
-interacts with an  environment in a trial-by-error fashion by taking
-actions / decisions $a$, which trigger changes in the
-\textit{state} of the environment
-$s \rightarrow s'$, accompanied by a real-valued \textit{reward}
-$r = r(s, a)$ (or regret!, since it can be negative) collected by the
-agent. In this view, the environmental is partially controlled by
-the action of the agent and the reward should be thought
-of as an instantaneous satisfaction accompanying the execution of
-an action, and may be delayed, only becoming substantial when accumulated over an extended period of time.
-%% Here the subscript $t$ denotes time, and can be discrete or
-%% continuous.
-The environment is generally taken as stochastic,
-is partially observed, in the sense that only part of the current state is observed by
-the agent. This unpredictability
-% (in a first-order sense)
-is realistic in a model which sets out
-to explain DMN function. Indeed, it is known that, the more the external world is predictable,
-the more mental activity becomes detached from the actual sensorium
-\citep{antrobus1966studies, pope1978regulation}.
-Conversely, the more the currently executed task is unknown and unpracticed,
-the lower the DMN activity, i.e the tendency for stimulus-independent thoughts
-\citep{filler1973daydreaming, teasdale1995stimulus}.
-
-These ``offline'' processes may however contribute to optimized control of the organism.
-A DMN framework incorporating reinforcement learning
-can naturally embed human behavior
-into the tension between exploitative action with immediate gains and
-explorative action with longer-term reward schedules.
-The implication of the DMN in a diversity of human cognitive processes
-can be parsimoneously recast as prediction error minimization
-based on pervasive probabilistic simulations,
-thus maximizing reward outcome at various time scales.
-Such a purposeful optimization objective
-may be solved by a stochastic approximation
-based on a brain implementation of Markov Chain Monte Carlo sampling
-\citep{tenenbaum2011grow}.
-
-\subsection{Markov Decision Processes}
-It is our view that at a sufficiently coarse scale, the brain is a physical system governed by the laws of
-physics and can be locally described by Markov processes. Indeed, as noted in \cite{tegmark2016improved},
-any system obeying the laws of classical physics can be accurately modeled as a Markov process as long as the time
-step is sufficiently short (defining $s(t)$ --the state at time $t$-- as the position in phase space).
-If the process has $memory$ such that the next state depends not only on the current state but also on some finite
-number of past states, it can reformulated as a standard memoryless Markov process by simply expanding the
-definition of the state $s$ to include elements of the past.
-
-In artificial intelligence (AI), a popular abstract model for such an environment are so-called
-\textit{Markov Decision Processes (MDPs)}. According to this model, the environment's dynamics are
-fully determined by its current state.
-In RL, MDPs are the mathematical instantiation of the environment model,
-which generally can incorporate action probabilities (policy matrix)
-and/or value function given a state.
-(Silver: The environment can be fully defined by state space and
-transition probability matrix.)
-is simply a quintuplet $(\mathcal S, \mathcal A, r, p, \mu)$ where
-\begin{itemize}
-\item $\mathcal S$ is the set of states, e.g $\mathcal S = \{\text{happy}, \text{sad}\}$.
-\item $p : \mathcal S \times \mathcal A \times \mathcal S \rightarrow [0, 1],\; (s,a,s') \mapsto p(s'|s,a)$,
-  the probability of moving to state $s'$ if action $a$ is taken from state $s$. In addition, one requires that such
-  transitions be Markovian. Consequently, the future states are independent of past states and only depend on the present.
-\item $\mathcal A$ is the set of actions, e.g $\mathcal A = \{\text{read}, \text{run},
-  \text{laugh}, \text{sympathize}, \text{empathize}\}.$
-\item $r : \mathcal S \times \mathcal A \rightarrow \mathbb R$ is the \textit{reward function},
-  so that $r(s, a)$ is the instant reward for taking action $a$ in state $s$.
-\item $\mu: \mathcal S \rightarrow [0, 1]$ is the prior probability on the states so that
-  $\mu(s)$ is the probability that the environment starts-off in state $s$.
-\end{itemize}
-
-% \begin{remark}
-%   Given a system $(\mathcal S, \mathcal A, r, p, \mu)$ satisfying all the axioms for an MDP
-%   except the Markov property, we can always transform it into an MDP by considering a compounded
-%   version of the states
-%   $$S_t \leftarrow (S_0,A_0,R_0,S_1,A_1,S_2\ldots,S_t,A_{t-1},R_{t-1},S_{t})$$ made of the system's
-%   history up to an including time $t$.
-% \end{remark}
-
-\paragraph{A note on model-based RL.}
-Knowledge the agent has about the environment can be encoded in the
-functions $r$, $\mu$, $p$, and / or $\mu$, as is done in
-\textit{model-based} RL. For example if a rat in a maze knows, for sure,
-that staying still will produce no change in the environment, and in particular will not eventually lead to finding the food, they can assume:
-\begin{itemize}
-\item $r(s, \text{``stand still''}) = 0$ if $s$ does not correspond to a cell / chamber containing food.
-\item $p(s'|s,\text{``stand still''}) = 1$ if $s'=s$ and $0$ otherwise.
-\item etc.
-\end{itemize}
-
-\subsection{Value functions and policies}
-The behavior of the agent is governed by some kind of \textit{policy}, which maps states to
-sampling probabilities over candidate actions to perform from this state. Starting a time $t=0$,
-a policy $\pi$ generates a trajectory as follows
-\begin{eqnarray*}
-  \begin{split}
-    S_1 &\sim p(.|S_0,A_0), \text{ collect rewards }R_0 = r(S_0, A_0)\\
-    A_1 &\sim \pi(.|S_1)\\
-    S_2 &\sim p(.|S_1,A_1), \text{ collect rewards }R_1 = r(S_1, A_1)\\
-    \ldots\\
-    A_{t} &\sim \pi(.|S_{t})\\
-    S_{t+1} &\sim p(.|S_{t},A_{t}), \text{ collect rewards }R_{t} = r(S_{t}, A_{t})\\
-    \ldots
-  \end{split}
-\end{eqnarray*}
-Since an action taken now might have repercussions long into the feature, it turns out that the
-quantity to optimize is not the instantaneous rewards $r(s, a)$, but a
-cumulative reward estimate which takes into account the future. A standard for
-modeling this accumulation is the so-called
-time-discounted \textit{cumulative reward} function
-\begin{equation}
-  \label{eq:cumr}
-  G^\pi = \sum_{t=0}^{\infty}\gamma^{t}R_t.
-\end{equation}
-This random variable\footnote{Random as it depends both on the environment's dynamic and the
-  policy $\pi$ being played (which can be stochastic).}  measures the cumulative reward of
-following a
-policy $\pi$.
-\begin{mdframed}
-  \textbf{Where is ``value'' buffered in the brain ?}
-  The amygdala is known to be involved in significance evaluation) and
-  the nucleus accumbens is involved in reward evaluation.
-  \end{mdframed}
-The  goal of RL is then adapt this policy so as to  maximize the cumulative rewards.
-In the definition of $G^\pi$ above, the constant $\gamma \in [0, 1]$ is the \textit{discount factor}. The choice $\gamma = 0$   corresponds to a perfectly myopic agent who is solely concerned about their immediate rewards and has no horizon
-for the future. For there to be any learning at all, a technical requirement is that $\gamma < 1$.
-% \footnote{In which case we can take $T \rightarrow +\infty$, provided the reward function $r$ is bounded.}.
-Thus the agent is positively biased towards considering rewards which are will
-come soon. The reward importance hence decays exponentially
-with distance in the future,
-given that there is more uncertainty in the farsighted future.
-The reward discount factor $\gamma$ can thus be seen as calibrating
-the delay discounting behavior of the intelligent agent.
-It is also important to appreciate that a stochastic policy estimation
-is more advantageous in many RL settings.
-For instance, a deterministic strategy in playing rock-paper-scissors can
-be easily exploited and a uniformly random choice is optimal.
-
-The agent's goal can then be formulated as being that of finding policy $\pi$ which maximizes the
-expected cumulative value of state-stat-pairs $(A_0,S_0)$, namely
-\begin{equation}
-  \label{eq:qval}
-  Q^{\pi}(s,a) = \mathbb E [G^\pi|S_0=s,A_0=a,A_1 \sim \pi,A_2 \sim \pi,\ldots].
-\end{equation}
-That is, the expectated future reward over all possible trajectories in which we start at $s$ take
-action $a$ and then follow the policy $\pi$ thereafter to select future actions.
-%% Given that each $\pi$ correspondence to an exhaustive description of
-%% behavioral patterns, $Q^{\pi}(S_t,A_t)$ corresponds to the epistemic value of
-%% the set of actions given states in finite time.
-
-By construction, in general, maximizing the expectation in  \eqref{eq:qval} is intractable due to
-the enormous number of possible trajectories the agent might need to
-consider.
-(If the Bellman-based computational ideas have a corresponding
-neurobiological implementation, this provides a framework of how
-optimal behavior could be computable in the human brain.)
-One popular simplification that removes this issue is to only consider the sub-family of
-\textit{deterministic policies}, which map each state to the best single best action which
-should be taken at thin state, and therefore define functions from states to actions.
-\textit{Q-learning} (Watkins \& Dayan, 1992), a commonly used off-policy algorithm, uses the
-\textit{greedy policy}
-\begin{equation}
-  \pi(s) = \argmax_{a \in \mathcal A}{Q}(s, a).
-  \label{eq:qlearning}
-\end{equation}
-% where $\tilde{Q}(s, a)$ is the current estimate of the state-action value
-% table.
-The celebrated \textit{Bellman's equation} [Sutton and Barto 1998] then takes the simple form
-\begin{equation}
-  Q^\pi(s, a) = \mathbb E_{s' \sim p(.|s,a)} [r(s,a) + \gamma \max_{a' \in \mathcal A}Q^\pi(s', a')]
-  = \mathbb E_{s' \sim p(.|s,a)} [r(s,a) + \gamma Q^\pi(s', \pi(s'))]
-  \label{eq:bellman}
-\end{equation}
-which provides a recursive decomposition of optimal behavior.
-A complicated dynamic programming optimization can be
-broken into simpler subproblems at different time points,
-which has often been closely related to the medial prefrontal part of the DMN
-\citep{koechlin1999role, braver2002role}.
-Using the Bellman equation, each state can be associated with a certain value,
-to guide action (i.e., improve the policy) towards a better state.
-It is a fixed-point equation for the deterministic policy $\pi$.
-Notice that in the expectation in \eqref{eq:bellman}, the sampling is done over only things which
-depend on the environment, and so can be learned off-policy by observing state-transitions
-triggered by another behavioral policy, which can be stochastic.
-
-\subsection{Efficient RL with value approximation and replay}
-%As already mentioned in the previous section, Q-learning optimizes over the class of
-% deterministic policies of the form \eqref{eq:qlearning}.
-We need ways to approximate the state-action value function
-which scale up to large state spaces and / or action spaces.
-In state $s \in \mathcal S$, the agent takes an action $a \in \mathcal A$
-% (for example, $a$ = ``Read'', or ``Run'', or ``Laugh'', or ``Sympathize'', or ``Empathize'', etc.)
-by sampling from its current policy matrix, and collects a reward $r$,
-% (measured on their internal currency of worldly values ?),
-and the environment transitions to a new state $s' \in \mathcal S$. At the end of
-this step, a new \textit{experience} $e = (s,a,r,s')$ is produced; this represents an exemplar
-behavior of the agent and is recorded in replay memory buffer:
-$D \leftarrow D \cup \{e\}$ (possibly discarding the oldest entries to make space).
-Now, at iteration $k+1$, replay consists in sampling (uniform or importance-weighted
-\footnote{e.g weighted by TD error of the state transition $s \overset{a}{\rightarrow} s'$.} ?)  mini-batches of experiences
-$(s, a, r, s') \sim \mathcal U(D)$ from the replay memory $\mathcal D$ and trying to
-approximate
-the would-be $Q$-value for the state-action pair $(s,a)$ as predicted by Bellman's equation \eqref{eq:bellman}, namely
-$r + \gamma \max_{a'} Q(s', a'|\theta^Q_k)$, with the output of a parametrized regression model $(s,a,r,s')
-\mapsto {Q}(s, a|\theta^Q_{k})$, where $Q(.,.|\theta^Q_{k})$ is an approximator for the $Q$-value operator,  parameterized by $\theta^Q_{k+1}$.
-Computing an optimal policy then corresponds to finding the parameters $\theta^Q_{k+1}$ which minimize the following mean-squared loss function
-\begin{equation}
-  \mathcal L(\theta^Q_{k+1})
-  % = \mathbb E_{(s, a, r, s') \sim \mathcal U(D)}[(Q(s, a|\theta^Q) - Q(s',a'|\theta^Q_{k+1}))^2]
-  = \mathbb E_{(s, a, r, s') \sim \mathcal U(D)}\left[\frac{1}{2}(Q(s, a|\theta^Q_{k+1}) - y)^2\right],
-  \label{eq:oracle}
-\end{equation}
-where
-$ y = r + \gamma \max_{a' \in \mathcal A} Q(s', a'|\theta^Q_k) = r + \gamma Q(s', \pi(s')|\theta^Q_k)$ is the prediction target.
-% While $y_t$ is also dependent on $\theta^Q$, this is typically ignored.
-For example, a general linear model with a kernel $\phi$ would be of the
-form
-$${Q}(s, a|\theta^Q) = \phi(s,a)^T\theta^Q.$$
-$\phi(s,a)$ would represent a high-level hand-crafted representation of the state-action $(s,a)$ into an appropriate
-feature space. Such are the techniques that have been proposed by [sutton et al. xyzw, Song et al. 2016 (NIPS),
-  and Parr et al. 2003 (JMLR)].
-A breakthrough alternative proposed by Google DeepMind [Minh et al. 2014, Silver et al 2015] is to learn this
-representation using a deep neural net, leading to the so-called \textit{Deep Q-learning} family of methods which
-are by far the current state-of-the-art in RL. In such a case, $\theta^Q$
-would correspond to ..
-
-The entire model can then be effectively trained via \textit{backprop}
-wherein online stochastic gradient descent is used to minimize the
-variational objective \eqref{eq:oracle}.
-
-\paragraph{Parameter update.}
-\begin{equation}
-  \nabla_{\theta^Q_{k+1}}\mathcal L(\theta^Q_{k+1})
-  % = \mathbb E_{(s, a, r, s') \sim U(\mathcal D)}[(Q(s, a|\theta^Q) - Q(s',a'|\theta^Q_{k+1}))^2]
-  = \mathbb E_{(s, a, r, s') \sim \mathcal U(D)}\left[\underbrace{(Q(s, a|\theta^Q_{k+1}) - y)}_{\text{regret}}
-    \underbrace{\nabla_{\theta^Q_{k+1}}Q(s, a|\theta^Q_{k+1})}_{\text{???}}\right],
-  \label{eq:oracle}
-\end{equation}
-
-\paragraph{TODO: Monte Carlo optimization.}
-Some text snippets that might be pertinent:
-Monte-Carlo simulation can be used to update the agent’s belief state
-\citep{silver2010monte}.
-Monte-Carlo simulation provides a simple method for evaluating
-a state s.
-In any MDP, there is at least one optimal policy matrix that
-achieves the optimal value function???
-The simulator is used to generate sequences of states, observations and rewards. These simulations are used to update the value function, without ever looking inside the black box describing the model’s dynamics. In addition, Monte-Carlo methods have a sample complexity that is determined only by the underlying difficulty of the POMDP, rather than the size of the state space or observation space.
-Monte-Carlo simulation can be turned into a simple control algorithm by evaluating all legal actions and selecting the action with highest evaluation [15]. Monte-Carlo simulation can be extended to partially observable MDPs.
-In these challenging POMDPs, Monte-Carlo simulation provides an effective mechanism both for tree search and for belief state updates, breaking the curse of dimensionality and allowing much greater scalability than has previously been possible.
-Link this to experience sampling in the hippocampus.
-Much recent work points to Monte Carlo or stochastic sampling– based approximations as a unifying framework for understanding how Bayesian inference may work practically across all these levels, in minds, brains, and machines.
-For sampling-based methods it is still almost non-existent beyond the description of receptive fields.
-
-
-\paragraph{Link to classical RL algorithms.}
-Note that most RL algorithms, including \textit{Temporal Difference (TD)}
-learning [Sutton et al., Bertsekas], REINFORCE [William], and SARSA can be
-cast in this general variational framework. For example TD corresponds to
-the above framework using a linear value approximator with feature encoding
-$\phi(s,a) = \delta_{(s,a)} =  \text{ point mass at }(s,a)$ on the grid
-$\mathcal S \times \mathcal A$, and so
-$$\nabla_{\theta^Q_{k+1}}Q(s, a|\theta^Q_{k+1}) = \phi(s, a) = \delta_{(s,a)}.$$
-%% Whence, the gradient update due to the sample $(s,a,r,s') \in \mathcal D$ is
-%% $$\theta^Q(s,a) \leftarrow \theta^Q(s,a) + (Q(s, a|\theta^Q_{k+1}) - y)$$ ??
-
-\subsection{Correspondence between DMN function and RL framework}
-\textbf{XXX Put the diagrams and process charts here.}
-\begin{figure}[!h]
-  \includegraphics[width=.9\linewidth]{rl_process_chart.pdf}
-  \caption{The DMN as an RL agent...}
-  \label{fig:rl_process_chart}
-\end{figure}
-
-\begin{itemize}
-  \item The policy matrix represents the repertoire of possible actions
-  on the world given a current state. It encodes the probabilites of
-  choosing actions to be executed in a certain situation.
-  \item Interactions between external and internal sources of
-  information are probably commonplace during perception
-  \item The MDP frameworks how the human brain could solve
-  environmental problems over extended time periods.
-  \item Given a state, the value function represents the estimated utility of
-  being in that state, which is subjective to the agent.
-  For a state $s$, the value function at $s$ namely $V(s)$ define provides a quantitative answer to the question:
-  "How desirable is it to be in state $s$ ?"
-  For each action $a$ that can be taken from state $s$,
-  the Q-value  $Q(s, a)$ defined in \eqref{eq:qval} provides the subjective
-  utility of executing a specific action; it answers the question
-  "What is the expected utiltiy of taking action $a$ in this situation ?"
-  \item The DMN may subserve
-  constant exploration of possible future actions and their
-  cumulative outcomes. Implicit computation of future choices
-  provides an explanation for purposeful mind-wandering.
-  \item hippocampus -> provides perturbed action-transition-state-reward samples
-  as a block of "imagined", "hypothesized", "recalled" experience;
-  the small variations in these experience blocks allow searching
-  a larger space of parameters and possible experiences.
-  In the absence of environmental input and feedback
-  (e.g., mind-wandering or sleep) pseudo-experiencing possible
-  future scenarios and action outcomes.
-  Our approach acknowledges the unavoidable stochasticity of
-  computation in neuronal processes \citep{faisal2008noise}.
-  \item
-  \textit{Inference} in the human brain reduces to generalization of
-  policy and value adaptations from sampled experiences to
-  successful action choices and reward predictions in future states.
-  \item In the RL view, plasticity in the DMN arises naturally.
-  If an agent behaving optimally in a given environment moves
-  to novel, yet unexperienced environments, reward prediction errors will
-  massively increase. This will lead to adaptation of the policy matrix
-  and value function until the system converges to a
-  new steady-state of optimal action decisions given certain states.
-  \item The DMN is today known to consistently increase in neural
-  activity when engaging cognitive processes that are detached from
-  current sensory environment. DMN involvement in thinking about the past,
-  the future, and hypothetical possibilities ties in with the
-  MDP's implicit computation of action and state cascades as a function
-  of what happened in the past.
-\end{itemize}
-
-\paragraph*{Some notes:}
-\begin{itemize}
-  \item Actions are continuous, whilst states are continuous.
-  \item The brain does backprop (see Hinton's recent talk at Stanford)
-  \item model weights $\theta^Q$ should correspond to connections between neurons
-\item humm, looks like such a knowledge would simply translate into constraints on the DqN weights $\theta^Q$ (... at least, part of such knowledge)
-  ok, gotta think about the model-free / model-based reconsiliation
-\end{itemize}
-
-\subsection{Inverse reinforcement-learning}
-%\begin{mdframed}
-  Given the trace $s_0,a_0,s_1,\ldots,$ of an optimal agent's strategy $\pi^*$ in
-  a POMDP (called a \textit{teacher's demonstration}), can we figure out what is the
-  (instantaneous) reward function $r: \mathcal S \times \mathcal \mathcal A
-  \rightarrow \mathbb R$ that the agent is optimizing over a prescribed class of reward functions
-  (e.g linear rewards $r(s,a) \equiv \theta^T\phi(s,a)$)?
-  For example, given traces of motor actions from a an adult to grab a cup on a table,
-  can an observing child figure out what ``langragian'' functional is being minimized by the former ?
-  How ? Can they reproduce this optimal behavior ?
-%\end{mdframed}
-
-Such questions are of course pertinent to our decision-making theory for the DMN.
-In the general artificial case, the problem has been extensively studied and partially solved by
-\cite{abbeel2004}. They are also been rigourously studied in general optimal control literature under the name ``inverse optimal control'', but in model-based certains (where the physical dynamics
-are known, etc.)...
-
-IRL is is suited for problems in which it's hard to define what the reward function could be
-(e.g car-driving, drone maneuvering, etc.
 
 \section{Relation to other statistical models (Elvis)}
 \subsection{Friston's Free-energy principle (refer to \ref{label:friston})}
