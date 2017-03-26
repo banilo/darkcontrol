@@ -318,16 +318,16 @@ the more the currently executed task is unknown and unpracticed,
 the lower the tendency for stimulus-independent thoughts
 \citep{filler1973daydreaming, teasdale1995stimulus}.
 These ``offline'' processes may however contribute to optimized control of the organism.
-We formalize
-a policy matrix to capture the space of possible actions that can be performed
-on the environment given the current state. A value matrix
-maps expected rewards to environmental objects and events.
-Switching between states reduces to a sequential processing model.
+% We formalize
+% a policy matrix to capture the space of possible actions that can be performed
+% on the environment given the current state. A value matrix
+% maps expected rewards to environmental objects and events.
+% Switching between states reduces to a sequential processing model.
 In a model-based reinforcement learning (RL) approach,
 we try to understand the environment always better
 starting, at birth, with an environment that is completely unknown.
 Informed by outcomes of performed action,
-the DMN dynamics are constantly adapted in feed-back loops
+the DMN dynamics are constantly adapted in feedback loops
 that are calibrated by prediction error.
 A DMN framework incorporating RL can naturally embed human behavior
 into the tension between exploitative action with immediate gains and
@@ -942,22 +942,34 @@ feature space. Such are the techniques that have been proposed by [sutton et al.
 A breakthrough alternative proposed by Google DeepMind [Minh et al. 2014, Silver et al 2015] is to learn this
 representation using a deep neural net, leading to the so-called \textit{Deep Q-learning} family of methods which
 are by far the current state-of-the-art in RL. In such a case, $\theta^Q$
-would correspond to the strengths of low-level synaptic or high-level functional connections between different neurons / nodes
-in the network.
+would correspond to the strengths of low-level synaptic or high-level functional connections between different
+neurons / nodes / regions in the network.
 
 Learning of the the entire model parameters can effictively be achieved via \textit{backprop},
-wherein prediction errors are propagated from lower to higher regions to modulate the choice of future
+wherein prediction errors (aka \textit{regrets})  are propagated from lower to higher regions to modulate the choice of future actions
 % online stochastic gradient descent is used to minimize the variational objective
 % \eqref{eq:oracle}.
 
-\paragraph{Parameter update.}
+% \paragraph{Parameter update.}
 \begin{equation}
-  \nabla_{\theta^Q_{k+1}}\mathcal L(\theta^Q_{k+1})
-  % = \mathbb E_{(s, a, r, s') \sim U(\mathcal D)}[(Q(s, a|\theta^Q) - Q(s',a'|\theta^Q_{k+1}))^2]
-  = \mathbb E_{(s, a, r, s') \sim \mathcal U(D)}\left[\underbrace{(Q(s, a|\theta^Q_{k+1}) - y)}_{\text{regret}}
-    \underbrace{\nabla_{\theta^Q_{k+1}}Q(s, a|\theta^Q_{k+1})}_{\text{???}}\right],
+  \delta \theta_{k}^Q \propto -\nabla_{\theta^Q_{k}}\mathcal L(\theta^Q_{k})
+  % = -\mathbb E_{(s, a, r, s') \sim U(\mathcal D)}[(Q(s, a|\theta^Q) - Q(s',a'|\theta^Q_{}))^2]
+  = -\mathbb E_{(s, a, r, s') \sim \mathcal U(D)}\left[\underbrace{(Q(s, a|\theta^Q_{k}) - y)}_{\text{regret}}
+    \underbrace{\nabla_{\theta^Q_{k}}Q(s, a|\theta^Q_{k})}_{\text{???}}\right].
   \label{eq:oracle}
 \end{equation}
+
+\paragraph{Link to classical RL algorithms.}
+Note that most RL algorithms, including \textit{Temporal Difference (TD)}
+learning \cite{sutton1998reinforcement}, REINFORCE \cite{williams1992}, and SARSA can be
+cast in this general variational framework. For example TD corresponds to
+the above framework using a linear value approximator with feature encoding
+$\phi(s,a) = \delta_{(s,a)} =  \text{ point mass at }(s,a)$ on the grid
+$\mathcal S \times \mathcal A$, and so
+$$\nabla_{\theta^Q_{k+1}}Q(s, a|\theta^Q_{k+1}) = \phi(s, a) = \delta_{(s,a)}.$$
+%% Whence, the gradient update due to the sample $(s,a,r,s') \in \mathcal D$ is
+%% $$\theta^Q(s,a) \leftarrow \theta^Q(s,a) + (Q(s, a|\theta^Q_{k+1}) - y)$$ ??
+
 
 \paragraph{TODO: Monte Carlo optimization.}
 Some text snippets that might be pertinent:
@@ -975,19 +987,7 @@ Much recent work points to Monte Carlo or stochastic sampling– based approxima
 For sampling-based methods it is still almost non-existent beyond the description of receptive fields.
 
 
-\paragraph{Link to classical RL algorithms.}
-Note that most RL algorithms, including \textit{Temporal Difference (TD)}
-learning [Sutton et al., Bertsekas], REINFORCE [William], and SARSA can be
-cast in this general variational framework. For example TD corresponds to
-the above framework using a linear value approximator with feature encoding
-$\phi(s,a) = \delta_{(s,a)} =  \text{ point mass at }(s,a)$ on the grid
-$\mathcal S \times \mathcal A$, and so
-$$\nabla_{\theta^Q_{k+1}}Q(s, a|\theta^Q_{k+1}) = \phi(s, a) = \delta_{(s,a)}.$$
-%% Whence, the gradient update due to the sample $(s,a,r,s') \in \mathcal D$ is
-%% $$\theta^Q(s,a) \leftarrow \theta^Q(s,a) + (Q(s, a|\theta^Q_{k+1}) - y)$$ ??
-
 \subsection{Correspondence between DMN function and RL framework}
-\textbf{XXX Put the diagrams and process charts here.}
 \begin{figure}[!h]
   \includegraphics[width=.9\linewidth]{rl_process_chart.pdf}
   \caption{The DMN as an RL agent...}
