@@ -774,13 +774,15 @@ A POMDP models a decision process in which it is assumed that environment dynami
 but the agent cannot directly observe the underlying state. Instead, it must maintain a probability distribution over the set of possible states, based on a set of observations and observation probabilities, and the underlying Markov process. This is a minimal amount of assumptions that can be made about an environment, and is charastistic of so-called \textit{model-free RL}, the approach adapted by this work.
 In contrast, \textit{model-based RL} starts off with some mechanistic assumptions about the dynamics of world.
 These can be assumptions about the physical laws governing the agent's world or constraints on the state-space and transitions thereupon.
+For example if a rat in a maze knows, for sure,
+that staying still will produce no change in the environment, and in particular will not eventually lead to finding the food, they can assume:
+\begin{itemize}
+\item $r(s, \text{``stand still''}) = 0$ if $s$ does not correspond to a cell / chamber containing food.
+\item $p(s'|s,\text{``stand still''}) = 1$ if $s'=s$ and $0$ otherwise.
+\item etc.
+\end{itemize}
 
-In RL, POMDPs are the mathematical instantiation of the environment model,
-which generally can incorporate action probabilities (policy matrix)
-and/or value function given a state.
-(Silver: The environment can be fully defined by state space and
-transition probability matrix.)
-is simply a quintuplet $(\mathcal S, \mathcal A, r, p, \mu)$ where
+Mathematically, a POMDP is simply a quintuplet $(\mathcal S, \mathcal A, r, p, \mu)$ where
 \begin{itemize}
 \item $\mathcal S$ is the set of states, e.g $\mathcal S = \{\text{happy}, \text{sad}\}$.
 \item $p : \mathcal S \times \mathcal A \times \mathcal S \rightarrow [0, 1],\; (s,a,s') \mapsto p(s'|s,a)$,
@@ -801,17 +803,6 @@ is simply a quintuplet $(\mathcal S, \mathcal A, r, p, \mu)$ where
 %   $$S_t \leftarrow (S_0,A_0,R_0,S_1,A_1,S_2\ldots,S_t,A_{t-1},R_{t-1},S_{t})$$ made of the system's
 %   history up to an including time $t$.
 % \end{remark}
-
-\paragraph{A note on model-based RL.}
-Knowledge the agent has about the environment can be encoded in the
-functions $r$, $\mu$, $p$, and / or $\mu$, as is done in
-\textit{model-based} RL. For example if a rat in a maze knows, for sure,
-that staying still will produce no change in the environment, and in particular will not eventually lead to finding the food, they can assume:
-\begin{itemize}
-\item $r(s, \text{``stand still''}) = 0$ if $s$ does not correspond to a cell / chamber containing food.
-\item $p(s'|s,\text{``stand still''}) = 1$ if $s'=s$ and $0$ otherwise.
-\item etc.
-\end{itemize}
 
 \subsection{Value functions and policies}
 The behavior of the agent is governed by some kind of \textit{policy}, which maps states to
