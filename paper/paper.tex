@@ -718,7 +718,7 @@ into ongoing action, planning, and problem solving.
 \section{Reinforcement Learning as a computational model for DMN function}
 We now argue that the DMN has biological substrates (gradient
 computation, backprop, experience replay, etc.) for all the
-major components of an efficient \textit{Reinforcement Learning} algorithm, and all these
+major components of an efficient \textit{reinforcement learning (RL)} algorithm, and all these
 components integrate in a plausible way.
 Reinforcement Learning (RL) is learning to achieve a goal by interacting with an external
 environment. In a general RL framework, an \textit{agent}
@@ -760,7 +760,7 @@ may be solved by a stochastic approximation
 based on a brain implementation of Markov Chain Monte Carlo sampling
 \citep{tenenbaum2011grow}.
 
-\subsection{Markov Decision Processes}
+\subsection{Partially Observable Markov Decision Processes}
 It is our view that at a sufficiently coarse scale, the brain is a physical system governed by the laws of
 physics and can be locally described by Markov processes. Indeed, as noted in \cite{tegmark2016improved},
 any system obeying the laws of classical physics can be accurately modeled as a Markov process as long as the time
@@ -770,14 +770,20 @@ number of past states, it can reformulated as a standard memoryless Markov proce
 definition of the state $s$ to include elements of the past.
 
 In artificial intelligence (AI), a popular abstract model for such an environment are so-called
-\textit{Markov Decision Processes (MDPs)}. According to this model, the environment's dynamics are
-fully determined by its current state.
-In RL, MDPs are the mathematical instantiation of the environment model,
-which generally can incorporate action probabilities (policy matrix)
-and/or value function given a state.
-(Silver: The environment can be fully defined by state space and
-transition probability matrix.)
-is simply a quintuplet $(\mathcal S, \mathcal A, r, p, \mu)$ where
+\textit{Partially Observable Markov Decision Processes (POMDPs)}.
+A POMDP models a decision process in which it is assumed that environment dynamics are determined by a Markov process,
+but the agent cannot directly observe the underlying state. Instead, it must maintain a probability distribution over the set of possible states, based on a set of observations and observation probabilities, and the underlying Markov process. This is a minimal amount of assumptions that can be made about an environment, and is charastistic of so-called \textit{model-free RL}, the approach adapted by this work.
+In contrast, \textit{model-based RL} starts off with some mechanistic assumptions about the dynamics of world.
+These can be assumptions about the physical laws governing the agent's world or constraints on the state-space and transitions thereupon.
+For example if a rat in a maze knows, for sure,
+that staying still will produce no change in the environment, and in particular will not eventually lead to finding the food, they can assume:
+\begin{itemize}
+\item $r(s, \text{``stand still''}) = 0$ if $s$ does not correspond to a cell / chamber containing food.
+\item $p(s'|s,\text{``stand still''}) = 1$ if $s'=s$ and $0$ otherwise.
+\item etc.
+\end{itemize}
+
+Mathematically, a POMDP is simply a quintuplet $(\mathcal S, \mathcal A, r, p, \mu)$ where
 \begin{itemize}
 \item $\mathcal S$ is the set of states, e.g $\mathcal S = \{\text{happy}, \text{sad}\}$.
 \item $p : \mathcal S \times \mathcal A \times \mathcal S \rightarrow [0, 1],\; (s,a,s') \mapsto p(s'|s,a)$,
@@ -798,17 +804,6 @@ is simply a quintuplet $(\mathcal S, \mathcal A, r, p, \mu)$ where
 %   $$S_t \leftarrow (S_0,A_0,R_0,S_1,A_1,S_2\ldots,S_t,A_{t-1},R_{t-1},S_{t})$$ made of the system's
 %   history up to an including time $t$.
 % \end{remark}
-
-\paragraph{A note on model-based RL.}
-Knowledge the agent has about the environment can be encoded in the
-functions $r$, $\mu$, $p$, and / or $\mu$, as is done in
-\textit{model-based} RL. For example if a rat in a maze knows, for sure,
-that staying still will produce no change in the environment, and in particular will not eventually lead to finding the food, they can assume:
-\begin{itemize}
-\item $r(s, \text{``stand still''}) = 0$ if $s$ does not correspond to a cell / chamber containing food.
-\item $p(s'|s,\text{``stand still''}) = 1$ if $s'=s$ and $0$ otherwise.
-\item etc.
-\end{itemize}
 
 \subsection{Value functions and policies}
 The behavior of the agent is governed by some kind of \textit{policy}, which maps states to
@@ -925,8 +920,9 @@ and trying to approximate
 the would-be $Q$-value for the state-action pair $(s,a)$ as predicted by Bellman's equation \eqref{eq:bellman}, namely
 $r + \gamma \max_{a'} Q(s', a'|\theta^Q_k)$, with the output of a parametrized regression model $(s,a,r,s')
 \mapsto {Q}(s, a|\theta^Q_{k})$, where $Q(.,.|\theta^Q_{k})$ is an approximator for the $Q$-value operator,  parameterized by $\theta^Q_{k+1}$.
-In the brain, such an experience replay mechanism is probably implemented in the hyppocampus (HC). Indeed, it is well-known that during sleep,
-wake, and rest, the hyppocampal activity is positively correlated with activity in stimulus environment, though at a much faster rate.
+In the brain, such an experience replay mechanism is probably implemented in the hyppocampus (HC). Indeed,
+Hippocampal replay is a phenomenon observed in rats, mice, cats, rabbits, songbirds, and monkeys. Indeed, during sleep or awake rest, replay refers to the re-occurrence of a sequence of cell activations that also occurred during activity, but the replay has a much faster time scale.
+% It may be in the same order, or in reverse.
 Computing an optimal policy then corresponds to finding the parameters $\theta^Q_{k+1}$ which minimize the following mean-squared loss function
 \begin{equation}
   \mathcal L(\theta^Q_{k+1})
