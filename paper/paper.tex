@@ -272,7 +272,7 @@ baseline mental activities
 \citep{bzdok2015resting}.
 
 
-\subsection{DMN, a central piece in planning and decision-making}
+\subsection{Default mode network: Higher-order control of the organism}
 The DMN appeared to be exclusive in task-induced
 deactivation during various psychological experiments.
 This processing of unknown information categories in the DMN has
@@ -369,7 +369,7 @@ We will first attempt to deconstruct the overall DMN function
 by the mechanistic relevance of each individual network node
 based on published findings from neuroscience experiments.
 %
-\subsection{The posteriormedial cortex (PMC): high-order integration}
+\subsection{The posteriormedial cortex: Global monitoring and integration}
 The posteriormedial cortex (PMC) and
 the dorsomedial prefrontal cortex (dmPFC) within the DMN
 are responsible for the highest metabolic turn-over
@@ -401,12 +401,12 @@ leveraging these environmental opportunities (i.e., exploitation).
 Congruently,
 the human PMC was coupled in two functional connectivity modalities
 with the amygdala involved in significance evaluation and
-the nucleus accumbens (NAc), nvolved in reward evaluation.
-Specifically, the human ventral posterior cingulate cortex was
-the PMC region most connected to the laterobasal
-(rather than centromedial or superficial) nuclei group
-of the amygdala \citep{bzdok2015subspecialization}.
-\textbf{XXX: the previous sentence seems to be bad / incomplete grammar!}
+the nucleus accumbens (NAc), involved in reward evaluation.
+Specifically, among all parts of the PMC,
+the human ventral posterior cingulate cortex was
+most connected to the laterobasal
+nuclei group of the amygdala
+\citep{bzdok2015subspecialization}.
 This amygdalar subregion has been proposed to
 continuously scan environmental input
 for biological significance assessment.
@@ -470,7 +470,7 @@ in both the external environment and its internal representation
 that modulate strategic behavioral adjustment in volatile environments.
 
 
-\subsection{The prefrontal cortex (PFC)}
+\subsection{The prefrontal cortex: Stimulus-value assocation and action consideration}
 The dmPFC subserves predominantly ambiguous amodal processes
 across time, space, and content domains in
 sensory-independent top-down pathways.
@@ -509,9 +509,8 @@ whereas the vmPFC activity models value in the environment that leads performed 
 \citep{nicolle2012agent}.
 
 The ventromedial prefrontal cortex (vmPFC) subserves
-less ambiguous subjective-value-related evaluative processes
-reward-informed and risk estimation of self-relevant environmental stimuli.
-\textbf{XXX: previous sentence needs to be punctuated!}
+less ambiguous subjective-value-related evaluative processes and
+reward-informed risk estimation of self-relevant environmental stimuli.
 This DMN node is more closely associated with
 orchestrating adapted behavior by bottom-up-driven
 processing of “what matters now”,
@@ -524,6 +523,9 @@ The vmPFC is preferentially connected with limbic and reward-related areas.
 The vmPFC has been observed to have monosynaptical connections
 with the nucleus accumbens
 in axonal tracing studies in monkeys \citep{haber1995orbital}.
+Additionally, the gray-matter volume of the vmPFC and nucleus accumbens
+correlated with indices of value-guided behavior and social reward attitudes
+\citep{lebreton2009automatic}.
 The NAc is thought to be linked to reward mechanisms that not
 only modulate motivated behavior towards basic survival needs but also
 subserve RL in humans more broadly.
@@ -549,10 +551,6 @@ was related to state encoding in OFC.
 Such a \textit{cognitive map} of action space was argued to encode
 the current task state even when states are unobservable from sensory input,
 which was shown to be critical for behavior.
-The gray-matter volume (GMV) of the vmPFC and nucleus accumbens
-correlated with indices of social reward attitudes and
-value-guided behavior \citep{lebreton2009automatic}.
-\textbf{XXX Previous sentence is detached and disconnected!}
 Additionally,
 independent whole-brain analyses from structural
 neuroimaging studies related the gray-matter volume GMV of the vmPFC,
@@ -565,6 +563,7 @@ among the most complicated decision that humans and monkeys take
 
 
 
+\subsection{The hippocampus: Memory, space, and experience replay}
 The HC is well known to be involved in memory and spatial navigation in animals and humans.
 Its highly recursive anatomical architecture
 may be specifically designed to allow reconstructing
@@ -611,7 +610,7 @@ reexperienced or newly generated mental scenarios
 %
 The HC thus orchestrates elements of experienced environmental aspects for
 consolidations based on reenactment and for integration into
-rich mental scene construction. In this view, the HC my even influence
+rich mental scene construction. In this way, the HC may even influence
 ongoing perception in the current environment
 \citep{maguire2016}.
 % (TODO: relate to self-play in deepmind Go).
@@ -620,7 +619,7 @@ ongoing perception in the current environment
 % such that it really occures in reality later.)
 
 
-\subsection{The TPJ: Situation-understanding and context-switching}
+\subsection{The right and left TPJ: Prediction error signaling and world semantics}
 Finally,
 the right and left TPJ are known to have hemispheric differences
 according to their cytoarchitectonic borders and gyrification pattern
@@ -629,10 +628,10 @@ Neuroscientific investigations on hemispheric functional specialization
 have converged to the right versus left cerebral hemisphere as dominant for
 attention versus language functions.
 %
-The anterior RTPJ (\textbf{XXX ???})  is a key node network is central for
+The anterior RTPJ is a key node of the DMN that  is central for
 action initiation during externally structured tasks and
 sensorimotor control by integrating supramodal stimulus-guided attention
-\citep{corbetta2002control}. \textbf{XXX Previous sentence is weird!}
+\citep{corbetta2002control}.
 Involvement of this DMN node was repeatedly reported in
 multi-step action execution \citep{hartmann2005takes},
 visuo-proprioceptive conflict (Balslev et al., 2005) and
@@ -714,7 +713,7 @@ into ongoing action, planning, and problem solving.
 % world -> policy matrix driven computation
 % self -> value matrix driven computation
 
-\section{Reinforcement Learning (RL) as a computational model for DMN function}
+\section{Reinforcement Learning as a computational model for DMN function}
 We now argue that the DMN has biological substrates (gradient
 computation, backprop, experience replay, etc.) for all the
 major components of an efficient \textit{reinforcement learning (RL)} algorithm, and all these
@@ -1381,6 +1380,7 @@ choices of the posterior distribution are given in Tab. \ref{tab:rptrick}.
 
 \section{Relation to other statistical models (Elvis)}
 \subsection{Friston's Free-energy principle (refer to \ref{label:friston})}
+\textbf{XXX: add tons of more examples and connnections}
 In summary:
 \begin{itemize}
   \item Friston's free-energy principle: brain as inference engine
@@ -1490,16 +1490,17 @@ to best fit the constant influx of sensory examples.
   \textit{and back-propagation} in MDPs and RL,
   although this may not be neurobiologically plausible.
   \item In sum,
-  the MDP account may serve as a concrete conceptualization of the PC account in cognitive neuroscience. MPDs have the advantage of exposing an explicit
+  the MDP account may serve as a concrete conceptualization of the PC account
+  in cognitive neuroscience. MPDs have the advantage of exposing an explicit
   mechanism of the horizon of future considerations or
   how the internal model of the world gets updated,
   and collapses sensory input processing and action output preparation.
+  %
+  As such, our account can be viewed as a RL implemnetion of the
+  prediction coding hypothesis.
 \end{itemize}
 
-\begin{mdframed}
-  \textbf{XXX:} Rather than a heads-on competitor, our proposed formalism should be seen
-  and sold as a solid implementation of the predictive coding hypothesis.
-\end{mdframed}
+
 \subsection{Semantic Hypothesis}
 Another frequently proposed cognitive account of DMN function revolves
 around forming logical associations and analogies between
@@ -1511,7 +1512,8 @@ explicit world knowledge (i.e., semantics) extractable from the environment
 \citep{bar2009proactive}.
 %
 Going much beyond human language ifself,
-semantic building blocks provide the basis to mentally envision non-existent scenarios
+semantic building blocks provide the basis to
+mentally envision non-existent scenarios
 that would improve optimal behavior in the environment
 by simulating future events.
 Such cognitive processes can afford
