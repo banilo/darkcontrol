@@ -272,7 +272,7 @@ baseline mental activities
 \citep{bzdok2015resting}.
 
 
-
+\subsection{DMN, a central piece in planning and decision-making}
 The DMN appeared to be exclusive in task-induced
 deactivation during various psychological experiments.
 This processing of unknown information categories in the DMN has
@@ -305,7 +305,7 @@ at the interface of the external world and the self.
 
 Consider an agent faced with the choice of the next action
 and being guided by rich
-reenactment of really happened, hypothetically conceived, and
+reenactment of really-happened, hypothetically conceived, and
 predicted future events to perfect ongoing behavioral performance.
 A particularly attractive computational framework
 to describe, quantify, and predict autonomously acting systems like the brain
@@ -351,9 +351,14 @@ In short, it has been proposed earlier that
 the human brain's energy budget is largely dedicated to
 ``the development and maintenance of [a]
 probabilistic model of anticipated events''
-\citep{raichle2005intrinsic}.
-This paper proposes a formal model that
-satisfies this contention.
+\citep{raichle2005intrinsic}. This paper proposes a formal model that satisfies this contention.
+
+\subsection{Sketch of main contributions}
+We show that the DMN is endowed with sufficient neurobiological equipment to
+implement a reinforcement learning (RL) agent, at least in principle. A global
+picture of the current body of knowledge (predictive coding, free-energy principle,
+sentinel hypothesis, etc.) concerning decision-making in the brain
+is drawn, with the DMN at its core. Our work 
 
 
 
@@ -364,7 +369,7 @@ We will first attempt to deconstruct the overall DMN function
 by the mechanistic relevance of each individual network node
 based on published findings from neuroscience experiments.
 %
-\subsection{The posteriormedial cortex (PMC)}
+\subsection{The posteriormedial cortex (PMC): high-order integration}
 The posteriormedial cortex (PMC) and
 the dorsomedial prefrontal cortex (dmPFC) within the DMN
 are responsible for the highest metabolic turn-over
@@ -395,9 +400,8 @@ of information about alternative objects (i.e., exploration) as well as
 leveraging these environmental opportunities (i.e., exploitation).
 Congruently,
 the human PMC was coupled in two functional connectivity modalities
-with the amygdala
-(involved in significance evaluation) and
-the nucleus accumbens (involved in reward evaluation).
+with the amygdala involved in significance evaluation and
+the nucleus accumbens (NAc), nvolved in reward evaluation.
 Specifically, the human ventral posterior cingulate cortex was
 the PMC region most connected to the laterobasal
 (rather than centromedial or superficial) nuclei group
@@ -504,8 +508,6 @@ possible actions that are not actually executed,
 whereas the vmPFC activity models value in the environment that leads performed actions
 \citep{nicolle2012agent}.
 
-
-
 The ventromedial prefrontal cortex (vmPFC) subserves
 less ambiguous subjective-value-related evaluative processes
 reward-informed and risk estimation of self-relevant environmental stimuli.
@@ -522,7 +524,7 @@ The vmPFC is preferentially connected with limbic and reward-related areas.
 The vmPFC has been observed to have monosynaptical connections
 with the nucleus accumbens
 in axonal tracing studies in monkeys \citep{haber1995orbital}.
-The NAc (\textbf{XXX ``NAc'' = ?}) is thought to be linked to reward mechanisms that not
+The NAc is thought to be linked to reward mechanisms that not
 only modulate motivated behavior towards basic survival needs but also
 subserve RL in humans more broadly.
 This is consistent with diffusion MRI (dMRI) tractography in humans and monkeys
@@ -547,7 +549,7 @@ was related to state encoding in OFC.
 Such a \textit{cognitive map} of action space was argued to encode
 the current task state even when states are unobservable from sensory input,
 which was shown to be critical for behavior.
-The GMV (\textbf{``GMV'' = ?}) of the vmPFC and nucleus accumbens
+The gray-matter volume (GMV) of the vmPFC and nucleus accumbens
 correlated with indices of social reward attitudes and
 value-guided behavior \citep{lebreton2009automatic}.
 \textbf{XXX Previous sentence is detached and disconnected!}
@@ -563,8 +565,7 @@ among the most complicated decision that humans and monkeys take
 
 
 
-The HC (\textbf{``HC'' = ?}) is well known to be involved in memory and
-spatial navigation in animals and humans.
+The HC is well known to be involved in memory and spatial navigation in animals and humans.
 Its highly recursive anatomical architecture
 may be specifically designed to allow reconstructing
 entire episodes of experience from memory fragments.
@@ -628,7 +629,7 @@ Neuroscientific investigations on hemispheric functional specialization
 have converged to the right versus left cerebral hemisphere as dominant for
 attention versus language functions.
 %
-The aRTPJ (\textbf{XXX ???})  is a key node network is central for
+The anterior RTPJ (\textbf{XXX ???})  is a key node network is central for
 action initiation during externally structured tasks and
 sensorimotor control by integrating supramodal stimulus-guided attention
 \citep{corbetta2002control}. \textbf{XXX Previous sentence is weird!}
@@ -834,15 +835,14 @@ time-discounted \textit{cumulative reward} function
 \end{equation}
 This random variable\footnote{Random as it depends both on the environment's dynamic and the
   policy $\pi$ being played (which can be stochastic).}  measures the cumulative reward of
-following a
-policy $\pi$.
+following a policy $\pi$.
 \begin{mdframed}
   \textbf{Where is ``value'' buffered in the brain ?}
   The amygdala is known to be involved in significance evaluation) and
-  the nucleus accumbens is involved in reward evaluation.
-  \end{mdframed}
-The  goal of RL is then adapt this policy so as to  maximize the cumulative rewards.
-In the definition of $G^\pi$ above, the constant $\gamma$ $(0 \le \gamma < 1$) is the reward \textit{discount factor}.
+  the nucleus accumbens (NAc) is involved in reward evaluation.
+\end{mdframed}
+  The  goal of RL is then adapt this policy so as to  maximize the cumulative rewards. In
+  the definition of $G^\pi$ above, the constant $\gamma$ $(0 \le \gamma < 1$) is the reward \textit{discount factor}.
 Taking $\gamma = 0$   corresponds to a perfectly myopic agent who is solely concerned about their
 immediate rewards and has no horizon for the future, which is not compatible with long-term goal planning
 as implemented in the DMN. For there to be any learning at all, it is thus necessary that $0 < \gamma < 1$.
@@ -924,6 +924,8 @@ and trying to approximate
 the would-be $Q$-value for the state-action pair $(s,a)$ as predicted by Bellman's equation \eqref{eq:bellman}, namely
 $r + \gamma \max_{a'} Q(s', a'|\theta^Q_k)$, with the output of a parametrized regression model $(s,a,r,s')
 \mapsto {Q}(s, a|\theta^Q_{k})$, where $Q(.,.|\theta^Q_{k})$ is an approximator for the $Q$-value operator,  parameterized by $\theta^Q_{k+1}$.
+In the brain, such an experience replay mechanism is probably implemented in the hyppocampus (HC). Indeed, it is well-known that during sleep,
+wake, and rest, the hyppocampal activity is positively correlated with activity in stimulus environment, though at a much faster rate.
 Computing an optimal policy then corresponds to finding the parameters $\theta^Q_{k+1}$ which minimize the following mean-squared loss function
 \begin{equation}
   \mathcal L(\theta^Q_{k+1})
@@ -953,10 +955,10 @@ wherein prediction errors (aka \textit{regrets})  are propagated from lower to h
 
 % \paragraph{Parameter update.}
 \begin{equation}
-  \delta \theta_{k}^Q \propto -\nabla_{\theta^Q_{k}}\mathcal L(\theta^Q_{k})
+  \delta \theta_{k+1}^Q \propto -\nabla_{\theta^Q_{k+1}}\mathcal L(\theta^Q_{k+1})
   % = -\mathbb E_{(s, a, r, s') \sim U(\mathcal D)}[(Q(s, a|\theta^Q) - Q(s',a'|\theta^Q_{}))^2]
-  = -\mathbb E_{(s, a, r, s') \sim \mathcal U(D)}\left[\underbrace{(Q(s, a|\theta^Q_{k}) - y)}_{\text{regret}}
-    \underbrace{\nabla_{\theta^Q_{k}}Q(s, a|\theta^Q_{k})}_{\text{???}}\right].
+  = -\mathbb E_{(s, a, r, s') \sim \mathcal U(D)}\left[\underbrace{(Q(s, a|\theta^Q_{k+1}) - y)}_{\text{regret}}
+    \underbrace{\nabla_{\theta^Q_{k}}Q(s, a|\theta^Q_{k+1})}_{\text{???}}\right].
   \label{eq:oracle}
 \end{equation}
 
@@ -1062,7 +1064,6 @@ For sampling-based methods it is still almost non-existent beyond the descriptio
   can an observing child figure out what ``langragian'' functional is being minimized by the former ?
   How ? Can they reproduce this optimal behavior ?
 %\end{mdframed}
-
 Such questions are of course pertinent to our decision-making theory for the DMN.
 In the general artificial case, the problem has been extensively studied and partially solved by
 \cite{abbeel2004}. They are also been rigourously studied in general optimal control literature under the name ``inverse optimal control'', but in model-based certains (where the physical dynamics
@@ -1073,7 +1074,6 @@ IRL is is suited for problems in which it's hard to define what the reward funct
 
 \section{Free-energy principles!}
 The so-called free-energy principle in its present form (including notions like ``generative density'', ``recognition density'', etc.) can be traced back to works of Dayan \& Hinton \citep{dayan1995helmholtz} in which they introduced the so-called \textit{Helmholtz machine}, a hierarchical factorial directional deep belief-net (DBN).
-
 In this subsection, we will develop from first-principles, the bare-bones minimalistic ideas needed to build a free-energy principle for general decision-making. This ideas were first developed by Hinton et al. in the early 90s in building their Helmholtz machine. Theories like Friston's free-energy principle and active-inference will then emerge as particular instances of this general framework, with particular design choises. For example the Friston theory axiomatizes that the brain uses a (problematic, as it implicitly assumes that posterior of each hidden unit is factorial, e.g) wake-sleep algorithm to train the underlying Helmholtz machine, etc.
 
 % \begin{mdframed}
@@ -1163,18 +1163,17 @@ where $F^R_G(\x)$ is the \textit{variational} Helmholtz free-energy from $R$ to 
 and $D_{KL}(P_R(.|\x) || P_G(.|\x))$ is the Kullback-Leibler divergence between the $p_R(.|\x)$ and the generative density $p_G(.|\x)$. Note that $F^G_G = F_G$.
 
 \subsection{A general free-energy principle}
-We can resume the situation as follows:
+We can resume the situation as follows\footnote{Where we have used the fact that KL divergence is always nonnegative.}:
 \begin{mdframed}
 \begin{equation}
   \begin{split}
     \text{generative surprise } &:= -\log(p_G(\x)) = F_G(\x) \\
     &=\underbrace{F^R_G(\x)}_{\text{accuracy}} - \underbrace{D_{KL}(P_R(.|\x) || P_G(.|\x))}_{\text{complexity}} \\
     &\le F^R_G(\x),
-    \text{ with equality if }p_R(.|\x) = p_G(.|\x),
+    \text{ with equality if }p_R(\z|\x) = p_G(\z|\x)\text{ for all } \z
     \end{split}
 \end{equation}
 \end{mdframed}
-where we have used the fact that KL divergence is always nonnegative.
 %% In fact, we have the following theorem
 %% \begin{theorem}
 %%   It holds that
