@@ -919,7 +919,7 @@ the would-be $Q$-value for the state-action pair $(s,a)$ as predicted by Bellman
 $r + \gamma \max_{a'} Q(s', a'|\theta^Q_k)$, with the output of a parametrized regression model $(s,a,r,s')
 \mapsto {Q}(s, a|\theta^Q_{k})$, where $Q(.,.|\theta^Q_{k})$ is an approximator for the $Q$-value operator,  parameterized by $\theta^Q_{k+1}$.
 In the brain, such an experience replay mechanism is probably implemented in the hyppocampus (HC). Indeed,
-Hippocampal replay is a phenomenon observed in rats, mice, cats, rabbits, songbirds, and monkeys. Indeed, during sleep or awake rest, replay refers to the re-occurrence of a sequence of cell activations that also occurred during activity, but the replay has a much faster time scale.
+hippocampal replay is a phenomenon observed in rats, mice, cats, rabbits, songbirds, and monkeys. Indeed, during sleep or awake rest, replay refers to the re-occurrence of a sequence of cell activations that also occurred during activity, but the replay has a much faster time scale.
 % It may be in the same order, or in reverse.
 Computing an optimal policy then corresponds to finding the parameters $\theta^Q_{k+1}$ which minimize the following mean-squared loss function
 \begin{equation}
