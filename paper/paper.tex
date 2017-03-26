@@ -272,7 +272,7 @@ baseline mental activities
 \citep{bzdok2015resting}.
 
 
-
+\subsection{DMN, a central piece in planning and decision-making}
 The DMN appeared to be exclusive in task-induced
 deactivation during various psychological experiments.
 This processing of unknown information categories in the DMN has
@@ -305,7 +305,7 @@ at the interface of the external world and the self.
 
 Consider an agent faced with the choice of the next action
 and being guided by rich
-reenactment of really happened, hypothetically conceived, and
+reenactment of really-happened, hypothetically conceived, and
 predicted future events to perfect ongoing behavioral performance.
 A particularly attractive computational framework
 to describe, quantify, and predict autonomously acting systems like the brain
@@ -351,9 +351,14 @@ In short, it has been proposed earlier that
 the human brain's energy budget is largely dedicated to
 ``the development and maintenance of [a]
 probabilistic model of anticipated events''
-\citep{raichle2005intrinsic}.
-This paper proposes a formal model that
-satisfies this contention.
+\citep{raichle2005intrinsic}. This paper proposes a formal model that satisfies this contention.
+
+\subsection{Sketch of main contributions}
+We show that the DMN is endowed with sufficient neurobiological equipment to
+implement a reinforcement learning (RL) agent, at least in principle. A global
+picture of the current body of knowledge (predictive coding, free-energy principle,
+sentinel hypothesis, etc.) concerning decision-making in the brain
+is drawn, with the DMN at its core. Our work 
 
 
 
@@ -1061,7 +1066,6 @@ For sampling-based methods it is still almost non-existent beyond the descriptio
   can an observing child figure out what ``langragian'' functional is being minimized by the former ?
   How ? Can they reproduce this optimal behavior ?
 %\end{mdframed}
-
 Such questions are of course pertinent to our decision-making theory for the DMN.
 In the general artificial case, the problem has been extensively studied and partially solved by
 \cite{abbeel2004}. They are also been rigourously studied in general optimal control literature under the name ``inverse optimal control'', but in model-based certains (where the physical dynamics
@@ -1072,7 +1076,6 @@ IRL is is suited for problems in which it's hard to define what the reward funct
 
 \section{Free-energy principles!}
 The so-called free-energy principle in its present form (including notions like ``generative density'', ``recognition density'', etc.) can be traced back to works of Dayan \& Hinton \citep{dayan1995helmholtz} in which they introduced the so-called \textit{Helmholtz machine}, a hierarchical factorial directional deep belief-net (DBN).
-
 In this subsection, we will develop from first-principles, the bare-bones minimalistic ideas needed to build a free-energy principle for general decision-making. This ideas were first developed by Hinton et al. in the early 90s in building their Helmholtz machine. Theories like Friston's free-energy principle and active-inference will then emerge as particular instances of this general framework, with particular design choises. For example the Friston theory axiomatizes that the brain uses a (problematic, as it implicitly assumes that posterior of each hidden unit is factorial, e.g) wake-sleep algorithm to train the underlying Helmholtz machine, etc.
 
 % \begin{mdframed}
@@ -1162,18 +1165,17 @@ where $F^R_G(\x)$ is the \textit{variational} Helmholtz free-energy from $R$ to 
 and $D_{KL}(P_R(.|\x) || P_G(.|\x))$ is the Kullback-Leibler divergence between the $p_R(.|\x)$ and the generative density $p_G(.|\x)$. Note that $F^G_G = F_G$.
 
 \subsection{A general free-energy principle}
-We can resume the situation as follows:
+We can resume the situation as follows\footnote{Where we have used the fact that KL divergence is always nonnegative.}:
 \begin{mdframed}
 \begin{equation}
   \begin{split}
     \text{generative surprise } &:= -\log(p_G(\x)) = F_G(\x) \\
     &=\underbrace{F^R_G(\x)}_{\text{accuracy}} - \underbrace{D_{KL}(P_R(.|\x) || P_G(.|\x))}_{\text{complexity}} \\
     &\le F^R_G(\x),
-    \text{ with equality if }p_R(.|\x) = p_G(.|\x),
+    \text{ with equality if }p_R(\z|\x) = p_G(\z|\x)\text{ for all } \z
     \end{split}
 \end{equation}
 \end{mdframed}
-where we have used the fact that KL divergence is always nonnegative.
 %% In fact, we have the following theorem
 %% \begin{theorem}
 %%   It holds that
