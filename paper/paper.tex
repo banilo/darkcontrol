@@ -717,7 +717,7 @@ into ongoing action, planning, and problem solving.
 \section{Reinforcement Learning (RL) as a computational model for DMN function}
 We now argue that the DMN has biological substrates (gradient
 computation, backprop, experience replay, etc.) for all the
-major components of an efficient \textit{Reinforcement Learning} algorithm, and all these
+major components of an efficient \textit{reinforcement learning (RL)} algorithm, and all these
 components integrate in a plausible way.
 Reinforcement Learning (RL) is learning to achieve a goal by interacting with an external
 environment. In a general RL framework, an \textit{agent}
@@ -759,7 +759,7 @@ may be solved by a stochastic approximation
 based on a brain implementation of Markov Chain Monte Carlo sampling
 \citep{tenenbaum2011grow}.
 
-\subsection{Markov Decision Processes}
+\subsection{Partially Observable Markov Decision Processes}
 It is our view that at a sufficiently coarse scale, the brain is a physical system governed by the laws of
 physics and can be locally described by Markov processes. Indeed, as noted in \cite{tegmark2016improved},
 any system obeying the laws of classical physics can be accurately modeled as a Markov process as long as the time
@@ -769,9 +769,13 @@ number of past states, it can reformulated as a standard memoryless Markov proce
 definition of the state $s$ to include elements of the past.
 
 In artificial intelligence (AI), a popular abstract model for such an environment are so-called
-\textit{Markov Decision Processes (MDPs)}. According to this model, the environment's dynamics are
-fully determined by its current state.
-In RL, MDPs are the mathematical instantiation of the environment model,
+\textit{Partially Observable Markov Decision Processes (POMDPs)}.
+A POMDP models a decision process in which it is assumed that environment dynamics are determined by a Markov process,
+but the agent cannot directly observe the underlying state. Instead, it must maintain a probability distribution over the set of possible states, based on a set of observations and observation probabilities, and the underlying Markov process. This is a minimal amount of assumptions that can be made about an environment, and is charastistic of so-called \textit{model-free RL}, the approach adapted by this work.
+In contrast, \textit{model-based RL} starts off with some mechanistic assumptions about the dynamics of world.
+These can be assumptions about the physical laws governing the agent's world or constraints on the state-space and transitions thereupon.
+
+In RL, POMDPs are the mathematical instantiation of the environment model,
 which generally can incorporate action probabilities (policy matrix)
 and/or value function given a state.
 (Silver: The environment can be fully defined by state space and
