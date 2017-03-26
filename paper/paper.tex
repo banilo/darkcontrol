@@ -1075,10 +1075,10 @@ The so-called free-energy principle in its present form (including notions like 
 
 In this subsection, we will develop from first-principles, the bare-bones minimalistic ideas needed to build a free-energy principle for general decision-making. This ideas were first developed by Hinton et al. in the early 90s in building their Helmholtz machine. Theories like Friston's free-energy principle and active-inference will then emerge as particular instances of this general framework, with particular design choises. For example the Friston theory axiomatizes that the brain uses a (problematic, as it implicitly assumes that posterior of each hidden unit is factorial, e.g) wake-sleep algorithm to train the underlying Helmholtz machine, etc.
 
-\begin{mdframed}
-  Though our presentation of free-energy principles is thermodynamic in flavor, a completely equivalent
-  information-theoretic formulation is of course possible, simply by exploiting the information-theoretic interpretation of entropy.
-\end{mdframed}
+% \begin{mdframed}
+%   Though our presentation of free-energy principles is thermodynamic in flavor, a completely equivalent
+%   information-theoretic formulation is of course possible, simply by exploiting the information-theoretic interpretation of entropy.
+% \end{mdframed}
 
 \subsection{Helmholtz free-energy and the generative model}
 \begin{table}[H]
@@ -1128,10 +1128,10 @@ Thus,
   Generative surprise and generative Helmholtz free-energy are different views on exactly the same object.
 \end{fact}
 
-The goal of the brain is then to optimize over the generative model $G$: to iteratively or analytically modify the generative density $p_G(.|\x)$, so as to minimize surprise. It turns out that a direct attempt to attack this optimization problem by gradient descent on the free-energy $F_G(\x)$ is furtile: the parameter update steps are not ``very clean'', and require rather cumbersome and heavy computations. A workaround is then to introduce a second density $p_R(.|\x)$ called a \textit{recognition} density to work in tandem with the generative density $p_G(.|\x)$, as a trick for doing approximate inference. The former dreams / fantacizes whilst the latter tries to generate sensations which match these dreams! This primal-dual idea, first proposed in Hinton et al. 1995, is at the heart of the general free-energy principle that we'll introduce shortly.
+The goal of the brain is then to optimize over the generative model $G$: to iteratively or analytically modify the generative density $p_G(.|\x)$, so as to minimize surprise. It turns out that a direct attempt to attack this optimization problem by gradient descent on the free-energy $F_G(\x)$ is furtile: the parameter update steps are not ``very clean'', and require rather cumbersome and heavy computations. A workaround is then to introduce a second density $p_R(.|\x)$ called a \textit{recognition} density to work in tandem with the generative density $p_G(.|\x)$, as a trick for doing approximate inference. The former dreams / fantacizes whilst the latter tries to generate sensations which match these dreams! This primal-dual idea, first proposed in Hinton et al. 1995, is at the heart of the general free-energy principle that we will introduce shortly.
 
 \subsection{Variational Helmholtz free-energy and the bottom-up recognition sub-model}
-In this subsection, we'll present an insightful upper bound for the generative surprise (i.e generate Helmholtz free-energy), called the \textit{variational} (Helmholtz) free-energy. As an avant-gout of what is to come shorty, let's just note that the well-known \textit{free-energy principle} is simply a workaround whereby the minimization surprise (intractable) is replaced with the  minimization a carefully chosen upper bound thereof.
+In this subsection, we will present an insightful upper bound for the generative surprise (i.e generate Helmholtz free-energy), called the \textit{variational} (Helmholtz) free-energy. As an avant-gout of what is to come shorty, let's just note that the well-known \textit{free-energy principle} is simply a workaround whereby the minimization surprise (intractable) is replaced with the  minimization a carefully chosen upper bound thereof.
 
 Invoking \eqref{eq:gibbs} and applying Bayes rule, we get the Gibbs
 distribution
@@ -1194,7 +1194,7 @@ p_R(\z^{(l)}|\x) = \Pi_{k=1}^{h_l}p_R(\z_k^{(l)} |\x)
 $$
 % \end{mdframed}
 
-\subsection{Friston's active-inference}
+\subsection{Friston's active-inference and agency}
 \label{sec:friston}
 This is nothing but an application of the Dayan's wake-sleep algorithm for training a Helmholtz machine model of the brain...
 
@@ -1500,8 +1500,10 @@ to best fit the constant influx of sensory examples.
   and collapses sensory input processing and action output preparation.
 \end{itemize}
 
-
-
+\begin{mdframed}
+  \textbf{XXX:} Rather than a heads-on competitor, our proposed formalism should be seen
+  and sold as a solid implementation of the predictive coding hypothesis.
+\end{mdframed}
 \subsection{Semantic Hypothesis}
 Another frequently proposed cognitive account of DMN function revolves
 around forming logical associations and analogies between
