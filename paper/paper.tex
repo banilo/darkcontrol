@@ -139,8 +139,8 @@
 
 \title{A Computational Account of Default Mode Function\\
   by
-  % Control Theory and
-  Reinforcement Learning Theory}
+  Control Theory and
+  Reinforcement Learning}
 
 \newcommand{\fix}{\marginpar{FIX}}
 \newcommand{\new}{\marginpar{NEW}}
@@ -607,7 +607,7 @@ their modification of input-free self-generated patterns
 after environmental events \citep{buzsaki2004large}.
 Specific spiking sequences, that were elicited in experimental task conditions,
 have been shown to be reenacted spontaneously during
-quiet wakefulness and sleep \citep{hartley2014space}.
+quiet wakefulness and sleep \citep{hartley2014space, o2010play}.
 Moreover, spike sequences measured in hippocampal place cells of rats
 featured reoccurrence directly after experimental trials
 as well as directly before upcoming experimental trials \citep{diba2007forward}.
@@ -776,8 +776,13 @@ physics and can be locally described by Markov processes. Indeed, as noted in \c
 any system obeying the laws of classical physics can be accurately modeled as a Markov process as long as the time
 step is sufficiently short (defining $s(t)$ --the state at time $t$-- as the position in phase space).
 If the process has $memory$ such that the next state depends not only on the current state but also on some finite
-number of past states, it can reformulated as a standard memoryless Markov process by simply expanding the
+number of past states,
+rational probabilistic planning can reformulated
+as a standard memoryless Markov process by simply expanding the
 definition of the state $s$ to include elements of the past.
+\textbf{these first sentences are a little too abstract.
+Take inspiration from here: An MDP represents an agent’s model of its interaction with its environment. MDPs encode all relevant information about the configuration of the world and the agent with the state variable. MDPs also represent the affordances of the environment: what actions the agent can take and a causal model of how these actions change the state of the world. Finally, MDPs represent the subjective rewards or costs caused by the agent’s actions in each state.}
+
 
 In artificial intelligence (AI), a popular abstract model for
 multi-step decision processes in such an environment are so-called
@@ -1689,7 +1694,8 @@ the complex relationships between them
     supposedly less advanced social capacities.
     The MDPs parsimoneously explain the dominance of social content in
     human mental scenes by their extremely high relevance to humans
-    reflected by high values for social information in the value matrix.
+    reflected by high values for social information in the value matrix
+    \citep{baker2009action}.
     \item How can a same neurobiological circuit be equally important
     for baseline house-keeping functions and specific task performance?
     Our computational account can explain why the DMN is implicated
