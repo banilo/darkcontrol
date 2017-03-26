@@ -936,9 +936,9 @@ For example, a general linear model with a kernel $\phi$ would be of the
 form
 $${Q}(s, a|\theta^Q) = \phi(s,a)^T\theta^Q.$$
 $\phi(s,a)$ would represent a high-level hand-crafted representation of the state-action $(s,a)$ into an appropriate
-feature space. Such are the techniques that have been proposed by [sutton et al. xyzw, Song et al. 2016 (NIPS),
-  and Parr et al. 2003 (JMLR)].
-A breakthrough alternative proposed by Google DeepMind [Minh et al. 2014, Silver et al 2015] is to learn this
+feature space. Such are the techniques that have been proposed by \cite{songNIPS2016}, for example.
+%  and Parr et al. 2003 (JMLR)].
+A breakthrough alternative proposed by Google DeepMind \cite{mnih2015,silver2016mastering}, is to learn this
 representation using a deep neural net, leading to the so-called \textit{Deep Q-learning} family of methods which
 are by far the current state-of-the-art in RL. In such a case, $\theta^Q$
 would correspond to the strengths of low-level synaptic or high-level functional connections between different
