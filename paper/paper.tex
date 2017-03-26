@@ -351,7 +351,9 @@ In short, it has been proposed earlier that
 the human brain's energy budget is largely dedicated to
 ``the development and maintenance of [a]
 probabilistic model of anticipated events''
-\citep{raichle2005intrinsic}. 
+\citep{raichle2005intrinsic}.
+The idea has been invigorated by empirical evidence from
+neuroscientific experiments \citep{kording2004bayesian, fiser2004small}.
 This paper proposes a formal model that satisfies this contention.
 
 \subsection{Sketch of main contributions}
@@ -749,7 +751,8 @@ These ``offline'' processes may however contribute to optimized control of the o
 A DMN framework incorporating reinforcement learning
 can naturally embed human behavior
 into the tension between exploitative action with immediate gains and
-explorative action with longer-term reward schedules.
+explorative action with longer-term reward schedules
+\citep{dayan2008decision}.
 The implication of the DMN in a diversity of human cognitive processes
 can be parsimoneously recast as prediction error minimization
 based on pervasive probabilistic simulations,
@@ -768,14 +771,23 @@ If the process has $memory$ such that the next state depends not only on the cur
 number of past states, it can reformulated as a standard memoryless Markov process by simply expanding the
 definition of the state $s$ to include elements of the past.
 
-In artificial intelligence (AI), a popular abstract model for such an environment are so-called
+In artificial intelligence (AI), a popular abstract model for
+multi-step decision processes in such an environment are so-called
 \textit{Partially Observable Markov Decision Processes (POMDPs)}.
 A POMDP models a decision process in which it is assumed that environment dynamics are determined by a Markov process,
-but the agent cannot directly observe the underlying state. Instead, it must maintain a probability distribution over the set of possible states, based on a set of observations and observation probabilities, and the underlying Markov process. This is a minimal amount of assumptions that can be made about an environment, and is charastistic of so-called \textit{model-free RL}, the approach adapted by this work.
+but the agent cannot directly observe the underlying state.
+\textbf{XXX say quite early what this control-theoretical object is optimizing
+to inferring solutions to decision problems of what to do next or what action to take;
+sequential decision making}
+Instead, it must maintain a probability distribution over the set of possible states, based on a set of observations and observation probabilities, and the underlying Markov process. This is a minimal amount of assumptions that can be made about an environment, and is charastistic of so-called \textit{model-free RL}, the approach adapted by this work.
 In contrast, \textit{model-based RL} starts off with some mechanistic assumptions about the dynamics of world.
 These can be assumptions about the physical laws governing the agent's world or constraints on the state-space and transitions thereupon.
 For example if a rat in a maze knows, for sure,
-that staying still will produce no change in the environment, and in particular will not eventually lead to finding the food, they can assume:
+that staying still will produce no change in the environment, and in particular will not eventually lead to finding the food.
+A core property of human intelligence has been proposed underly to improve
+on an expected utility outcomes as a strategy for action choice in uncertain
+environments \citep{gershman2015computational}.
+For both we can assume:
 \begin{itemize}
 \item $r(s, \text{``stand still''}) = 0$ if $s$ does not correspond to a cell / chamber containing food.
 \item $p(s'|s,\text{``stand still''}) = 1$ if $s'=s$ and $0$ otherwise.
@@ -1382,6 +1394,8 @@ choices of the posterior distribution are given in Tab. \ref{tab:rptrick}.
 \section{Relation to other statistical models (Elvis)}
 \subsection{Friston's Free-energy principle (refer to \ref{label:friston})}
 \textbf{XXX: add tons of more examples and connnections}
+\textbf{XXX: integrate aspects from section "ThE MARkOv DECISION PROBLEM" in Dayan and Daw}
+\textbf{XXX: integrate aspects from WakeNsleep by Hinton}
 In summary:
 \begin{itemize}
   \item Friston's free-energy principle: brain as inference engine
