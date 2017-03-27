@@ -1082,7 +1082,7 @@ For sampling-based methods it is still almost non-existent beyond the descriptio
   ok, gotta think about the model-free / model-based reconsiliation
 \end{itemize}
 
-\subsection{Inverse reinforcement-learning}
+\subsection{Hippocampal replay = inverse reinforcement-learning ?}
 %\begin{mdframed}
   Given the trace $s_0,a_0,s_1,\ldots,$ of an optimal agent's strategy $\pi^*$ in
   a POMDP (called a \textit{teacher's demonstration}), can we figure out what is the
@@ -1095,11 +1095,11 @@ For sampling-based methods it is still almost non-existent beyond the descriptio
 %\end{mdframed}
 Such questions are of course pertinent to our decision-making theory for the DMN.
 In the general artificial case, the problem has been extensively studied and partially solved by
-\cite{abbeel2004}. They are also been rigourously studied in general optimal control literature under the name ``inverse optimal control'', but in model-based certains (where the physical dynamics
-are known, etc.)...
+\cite{abbeel2004}. They are also been rigourously studied in general optimal control literature under the name
+``inverse optimal control'', but in model-based certain (where the physical dynamics are known, etc.)...
 
 IRL is is suited for problems in which it's hard to define what the reward function could be
-(e.g car-driving, drone maneuvering, etc.
+(e.g car-driving, drone maneuvering, etc.) ...
 
 \section{Free-energy principles!}
 The so-called free-energy principle in its present form (including notions like ``generative density'', ``recognition density'', etc.) can be traced back to works of Dayan \& Hinton \citep{dayan1995helmholtz} in which they introduced the so-called \textit{Helmholtz machine}, a hierarchical factorial directional deep belief-net (DBN).
