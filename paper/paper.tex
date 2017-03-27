@@ -361,13 +361,11 @@ We show that the DMN is endowed with sufficient neurobiological equipment to
 implement a reinforcement learning (RL) agent, at least in principle. A global
 picture of the current body of knowledge (predictive coding, free-energy principle,
 sentinel hypothesis, etc.) concerning decision-making in the brain
-is drawn, with the DMN at its core. Our work 
+is drawn, with the DMN at its core. Our work ...
 
 
 
 \section{Known Neurobiological Properties of the Default Mode Network}
-\textbf{XXX This section is presented as transfinite block of concatenated text.
-  Please reorganize into subsections and paragraphs!}
 We will first attempt to deconstruct the overall DMN function
 by the mechanistic relevance of each individual network node
 based on published findings from neuroscience experiments.
@@ -724,13 +722,13 @@ into ongoing action, planning, and problem solving.
 % world -> policy matrix driven computation
 % self -> value matrix driven computation
 
-\section{Reinforcement Learning as a computational model for DMN function}
-We now argue that the DMN has biological substrates (gradient
-computation, backprop, experience replay, etc.) for all the
-major components of an efficient \textit{reinforcement learning (RL)} algorithm, and all these
+\section{Reinforcement Learning, a computational model for DMN function}
+We now argue that the DMN is equipped with sufficient neurobiological substrates gradient
+for implementing all the major components (memory, reward signaling, accumulators, random sampling, etc.)
+of an efficient \textit{reinforcement learning (RL)} algorithm, and all these
 components integrate in a plausible way.
 Reinforcement Learning (RL) is learning to achieve a goal by interacting with an external
-environment. In a general RL framework, an \textit{agent}
+\textit{environment / world}. In a general RL framework, an \textit{agent}
 interacts with an  environment in a trial-by-error fashion by taking
 actions / decisions $a$, which trigger changes in the
 \textit{state} of the environment
@@ -780,27 +778,23 @@ number of past states,
 rational probabilistic planning can reformulated
 as a standard memoryless Markov process by simply expanding the
 definition of the state $s$ to include elements of the past.
-\textbf{these first sentences are a little too abstract.
-Take inspiration from here: An MDP represents an agent’s model of its interaction with its environment. MDPs encode all relevant information about the configuration of the world and the agent with the state variable. MDPs also represent the affordances of the environment: what actions the agent can take and a causal model of how these actions change the state of the world. Finally, MDPs represent the subjective rewards or costs caused by the agent’s actions in each state.}
-
 
 In artificial intelligence (AI), a popular abstract model for
 multi-step decision processes in such an environment are so-called
 \textit{Partially Observable Markov Decision Processes (POMDPs)}.
 A POMDP models a decision process in which it is assumed that environment dynamics are determined by a Markov process,
-but the agent cannot directly observe the underlying state.
-\textbf{XXX say quite early what this control-theoretical object is optimizing
-to inferring solutions to decision problems of what to do next or what action to take;
-sequential decision making}
-Instead, it must maintain a probability distribution over the set of possible states, based on a set of observations and observation probabilities, and the underlying Markov process. This is a minimal amount of assumptions that can be made about an environment, and is charastistic of so-called \textit{model-free RL}, the approach adapted by this work.
+but the agent cannot directly observe the underlying state. Instead, it tries to optimize a \textit{subjective} reward
+signal which is tried alongside each transition in the environments state-space, and maintains a probability distribution over the set of possible
+states, based on a set of observations and observation probabilities. This is a minimal amount of assumptions that can be made about an environment,
+and is characteristic of so-called \textit{model-free RL}, the approach adapted by our work.
 In contrast, \textit{model-based RL} starts off with some mechanistic assumptions about the dynamics of world.
 These can be assumptions about the physical laws governing the agent's world or constraints on the state-space and transitions thereupon.
 For example if a rat in a maze knows, for sure,
 that staying still will produce no change in the environment, and in particular will not eventually lead to finding the food.
-A core property of human intelligence has been proposed underly to improve
-on an expected utility outcomes as a strategy for action choice in uncertain
-environments \citep{gershman2015computational}.
-For both we can assume:
+% A core property of human intelligence has been proposed underly to improve
+% on an expected utility outcomes as a strategy for action choice in uncertain
+% environments \citep{gershman2015computational}.
+Our rat might represent such knowledge about the world as:
 \begin{itemize}
 \item $r(s, \text{``stand still''}) = 0$ if $s$ does not correspond to a cell / chamber containing food.
 \item $p(s'|s,\text{``stand still''}) = 1$ if $s'=s$ and $0$ otherwise.
@@ -880,22 +874,28 @@ For instance, a deterministic strategy in playing rock-paper-scissors can
 be easily exploited and a uniformly random choice is optimal.
 
 The agent's goal can then be formulated as finding policy $\pi$ which maximizes the
-expected cumulative value of state-stat-pairs $(A_0,S_0)$, namely
+expected cumulative value of state-stat-pairs $(A_0,S_0)$, also known as the \textit{Q-value}, namely
 \begin{equation}
   \label{eq:qval}
   Q^{\pi}(s,a) = \mathbb E [G^\pi|S_0=s,A_0=a,A_1 \sim \pi,A_2 \sim \pi,\ldots].
 \end{equation}
-That is, the expectated future reward over all possible trajectories in which we start at $s$ take
-action $a$ and then follow the policy $\pi$ thereafter to select future actions.
+\begin{mdframed}
+In plain English, the Q-value $Q^{\pi}(s,a)$ is the expected / average / mean future reward
+over all possible trajectories in which the agent starts off starts at with an environment in state
+$s$, takes and action $a$, and then follows the policy $\pi$ thereafter to select future actions.
+\end{mdframed}
 %% Given that each $\pi$ correspondence to an exhaustive description of
 %% behavioral patterns, $Q^{\pi}(S_t,A_t)$ corresponds to the epistemic value of
 %% the set of actions given states in finite time.
 By construction, maximizing the expectation in  \eqref{eq:qval} is intractable in general
 due to the enormous number of possible trajectories the agent might need to
 consider.
-(If the Bellman-based computational ideas have a corresponding
-neurobiological implementation, this provides a framework of how
-optimal behavior could be computable in the human brain.)
+% \begin{mdframed}
+%   \textbf{N.B.:}
+%   If the Bellman-based computational ideas have a corresponding
+%   neurobiological implementation, this provides a framework of how
+%   optimal behavior could be computable in the human brain.
+% \end{mdframed}
 One popular simplification that removes this issue is to only consider the sub-family of
 \textit{deterministic policies}, which map each state to the best single best action which
 should be taken at thin state, and therefore define functions from states to actions.
@@ -907,20 +907,23 @@ should be taken at thin state, and therefore define functions from states to act
 \end{equation}
 % where $\tilde{Q}(s, a)$ is the current estimate of the state-action value
 % table.
-The celebrated \textit{Bellman's equation} [Sutton and Barto 1998] then takes the simple form
+The celebrated \textit{Bellman's equation} \cite{sutton1998reinforcement} then takes the simple form
 \begin{equation}
-  Q^\pi(s, a) = \mathbb E_{s' \sim p(.|s,a)} [r(s,a) + \gamma \max_{a' \in \mathcal A}Q^\pi(s', a')]
-  = \mathbb E_{s' \sim p(.|s,a)} [r(s,a) + \gamma Q^\pi(s', \pi(s'))]
+  \begin{split}
+    Q^\pi(s, a) &= \mathbb E_{s' \sim p(.|s,a)} [r(s,a) + \gamma \max_{a' \in \mathcal A}Q^\pi(s', a')]
+    \\
+    &= \mathbb E_{s' \sim p(.|s,a)} [r(s,a) + \gamma Q^\pi(s', \pi(s'))],
+  \end{split}
   \label{eq:bellman}
 \end{equation}
-which provides a recursive decomposition of optimal behavior.
+a \textit{fixed-point} equation which provides a recursive decomposition of optimal behavior.
 A complicated dynamic programming optimization can be
-broken into simpler subproblems at different time points,
+broken into simpler sub-problems at different time points,
 which has often been closely related to the medial prefrontal part of the DMN
 \citep{koechlin1999role, braver2002role}.
 Using the Bellman equation, each state can be associated with a certain value,
-to guide action (i.e., improve the policy) towards a better state.
-It is a fixed-point equation for the deterministic policy $\pi$.
+to guide action towards a better state, thus improving on the agent's current policy.
+% It is a fixed-point equation for the deterministic policy $\pi$.
 Notice that in the expectation in \eqref{eq:bellman}, the sampling is done over only things which
 depend on the environment, and so can be learned off-policy by observing state-transitions
 triggered by another behavioral policy, which can be stochastic.
@@ -945,9 +948,11 @@ and trying to approximate
 the would-be $Q$-value for the state-action pair $(s,a)$ as predicted by Bellman's equation \eqref{eq:bellman}, namely
 $r + \gamma \max_{a'} Q(s', a'|\theta^Q_k)$, with the output of a parametrized regression model $(s,a,r,s')
 \mapsto {Q}(s, a|\theta^Q_{k})$, where $Q(.,.|\theta^Q_{k})$ is an approximator for the $Q$-value operator,  parameterized by $\theta^Q_{k+1}$.
+\begin{mdframed}
 In the brain, such an experience replay mechanism is probably implemented in the hyppocampus (HC). Indeed,
 hippocampal replay is a phenomenon observed in rats, mice, cats, rabbits, songbirds, and monkeys. Indeed, during sleep or awake rest, replay refers to the re-occurrence of a sequence of cell activations that also occurred during activity, but the replay has a much faster time scale.
-% It may be in the same order, or in reverse.
+\end{mdframed}
+
 Computing an optimal policy then corresponds to finding the parameters $\theta^Q_{k+1}$ which minimize the following mean-squared loss function
 \begin{equation}
   \mathcal L(\theta^Q_{k+1})
