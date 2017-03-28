@@ -206,18 +206,16 @@
 
 
 \begin{abstract}
-The default mode network (DMN) reflects the  baseline mental activity
-in humans.
+The default mode network (DMN) is the brain manifestations of the human
+baseline mental activity.
 %
 Many research streams agree on its likely role in evolutionarily adaptive
 envisioning of mental scenarios to predict the environment.
-The DMN is believed to be dedicated to
-continuous autobiographical memory retrieval,
+The DMN would hence be dedicated to continuous autobiographical memory retrieval,
 generation of hypothetical outcomes,
 and reward contingency evaluation when letting the mind go.
-Indeed, the DMN probably accounts for the
-highest energy consumption in the brain and
-is intimately coupled with conscious awareness.
+It explains its highest energy consumption in the brain and
+its intimate coupling with conscious awareness.
 %
 This concept paper proposes a process model that describes
 \textit{how} the DMN may actually implement continuous
@@ -263,25 +261,23 @@ What has early been described as the "stream of consciousness"
 in psychology \citep{james1890principles}
 found its neurobiological manifestation
 in the so-called "default mode network" (DMN)
-\citep{shul1997}. This networked collection of some of brain regions at the top of
+\citep{shul1997}. This networked collection of some of the highest regions in
 the human association cortex \citep{mesulam1998sensation, margulies2016situating}
 consistently
 increased in neural activity during
 unfocused everyday mind wandering \citep{raichle2001pnas}.
-In the beginning of the 21st century, brain imaging
-was perhaps the first existing technology
+In the beginning of the 21st century, brain imaging was hence the first technology
 to allow for the discovery of a unique brain network that subserves
 baseline mental activities
-\citep{raichle2007default, bzdok2015resting}.
+\citep{bzdok2015resting}.
 
 
 \subsection{Default mode network: Higher-order control of the organism}
 The DMN appeared to be exclusive in task-induced
 deactivation during various psychological experiments.
-This processing of yet-to-be-discovered information categories in the DMN has
+This processing of unknown information categories in the DMN has
 been argued to mediate an evolutionarily conserved function for the individual.
-This is all the more likely becaus
-the DMN has been shown to contain the two
+This is all the more likely because the DMN contains the two
 biggest hotspots of energy consumption in the entire central nervous system
 \citep{raichle2001pnas}.
 DMN activity also persists to a substantial degree during
@@ -312,10 +308,9 @@ and being guided by rich
 reenactment of really-happened, hypothetically conceived, and
 predicted future events to perfect ongoing behavioral performance.
 A particularly attractive computational framework
-to describe, quantify, and experimentally test
-autonomously acting systems like the brain
-can be the combination of control theory and reinforcement learning (RL).
-It is long known that, the more the external world is predictable,
+to describe, quantify, and predict autonomously acting systems like the brain
+can be the combination of control theory and reinforcement learning.
+It is known that, the more the external world is predictable,
 the more mental activity becomes detached from the actual sensory environment
 \citep{antrobus1966studies, pope1978regulation}.
 Conversely,
@@ -323,6 +318,10 @@ the more the currently executed task is unknown and unpracticed,
 the lower the tendency for stimulus-independent thoughts
 \citep{filler1973daydreaming, teasdale1995stimulus}.
 These ``offline'' processes may however contribute to optimized control of the organism.
+% We formalize
+% a policy matrix to capture the space of possible actions that can be performed
+% on the environment given the current state. A value matrix
+% maps expected rewards to environmental objects and events.
 % Switching between states reduces to a sequential processing model.
 % In a model-based reinforcement learning (RL) approach,
 % we try to understand the environment always better
@@ -330,6 +329,7 @@ These ``offline'' processes may however contribute to optimized control of the o
 Informed by outcomes of performed action,
 the DMN dynamics are constantly adapted in feedback loops
 that are calibrated by prediction error.
+
 A DMN framework incorporating RL can naturally embed human behavior
 into the tension between exploitative action with immediate gains and
 exploratory action with longer-term reward schedules.
@@ -358,21 +358,25 @@ probabilistic model of anticipated events''
 The idea has been invigorated by empirical evidence from
 neuroscientific experiments \citep{kording2004bayesian, fiser2004small}.
 This paper proposes a formal model that satisfies this contention.
+
 We show that the DMN is endowed with sufficient neurobiological equipment to
-implement a reinforcement learning agent, at least in principle.
+implement a reinforcement learning (RL) agent, at least in principle. A global
+picture of the current body of knowledge (predictive coding, free-energy principle,
+sentinel hypothesis, etc.) concerning decision-making in the brain
+is drawn, with the DMN at its core. Our work ...
 
 
 
 
 \section{Known Neurobiological Properties of the Default Mode Network}
-We begin by a deconstruction of the overall DMN function
-by reviewing published findings from neuroscience experiments
-on the mechanistic relevance of each individual network node.
+We begin by a deconstruction the overall DMN function
+by the mechanistic relevance of each individual network node
+based on published findings from neuroscience experiments.
 %
-\subsection{The posteromedial cortex: Global monitoring and integration}
-The posteromedial cortex (PMC) and
+\subsection{The posteriormedial cortex: Global monitoring and integration}
+The posteriormedial cortex (PMC) and
 the dorsomedial prefrontal cortex (dmPFC) within the DMN
-are probably responsible for the highest metabolic turn-over
+are responsible for the highest metabolic turn-over
 of glucose energy consumption in humans \citep{raichle2001pnas}.
 The PMC myelinates relatively late during postnatal development in monkeys
 \citep{goldman1987development}, generally considered to
@@ -381,20 +385,18 @@ Physiological and disturbed metabolic fluctuations in the
 human PMC have been repeatedly related to
 phenomena of changed conscious awareness,
 including anesthesia,
-sleep, and coma \citep{cavanna2006precuneus}.
+sleep, and forms of coma \citep{cavanna2006precuneus}.
 %
 The PMC has long been speculated to reflect constant computation of
 the environmental statistics and its internal representation
-to resemble "inner minds eye" \citep{cavanna2006precuneus}.
-
-
+as an "inner minds eye" \citep{cavanna2006precuneus}.
 For instance, B\'alint's syndrome is a neurological disorder of conscious
 awareness that results from damage in the bilateral parietal cortex
 \citep{balint1909seelenlahmung}.
 Patients are plagued by an
 inability to bind various individual features of the visual
 environment into an integrated whole (i.e., simultanagnosia)
-as well as by the inability to direct action towards
+as well as inability to direct action towards
 currently unattended environmental objects
 (i.e., optic ataxia).
 This can be viewed as a high-level impairment in the gathering
@@ -403,17 +405,17 @@ leveraging these environmental opportunities (i.e., exploitation).
 Congruently,
 the human PMC was coupled in two functional connectivity modalities
 with the amygdala involved in significance evaluation and
-the nucleus accumbens (NAc), involved in reward evaluation
-\citep{bzdok2015subspecialization}.
+the nucleus accumbens (NAc), involved in reward evaluation.
 Specifically, among all parts of the PMC,
 the human ventral posterior cingulate cortex was
 most connected to the laterobasal
-nuclei group of the amygdala.
+nuclei group of the amygdala
+\citep{bzdok2015subspecialization}.
 This amygdalar subregion has been proposed to
 continuously scan environmental input
 for biological significance assessment.
 %
-In support of this contention,
+Indeed,
 electrophysiological recordings in animals implicated the PMC in
 strategic selection \citep{pearson2009neurons},
 risk assessment \citep{mccoy2005risk},
@@ -450,30 +452,30 @@ and evaluation of reward contingencies by integrating these with
 information from memory and altered perspective frames.
 Regarding memory retrieval, retrosplenial lesions have been
 consistently associated with anterograde and retrograde memory impairments
-of various sensory inputs in rabbits and humans
+of various kinds of sensory information
+in rabbits and humans
 \citep{vann2009does}.
 Regarding perspective frames, this PMC subregion has been
-proposed to mediate between the organism's egocentric viewpoint
+proposed to mediate between the organism's egocentric
 (i.e., focused on sensory input) and
-allocentric viewpoint (i.e., focused on world knowledge) 
+allocentric (i.e., focused on world knowledge) viewpoints
 in animals and humans
 \citep{epstein2008parahippocampal, burgess2008spatial, valiquette2007different}.
-
-
-The overall PMC may consequently monitor the subjective outcomes
+%
+The PMC may consequently monitor the subjective outcomes
 of possible decisions and integrates that information
 with memory, perspective frames, and
 reward schedules into higher-level strategies.
 Perceived value that differs across individuals updates
 statistical assessment of the environment
 to predict delayed reward opportunities in the future.
-In doing so, the PMC needs to continuously adapts to changes
+In doing so, the PMC continuously adapts to changes
 in both the external environment and its internal representation
 that modulate strategic behavioral adjustment in volatile environments.
 
 
-\subsection{The prefrontal cortex: Stimulus-value association and action consideration}
-The dmPFC subserves predominantly ambiguous processes
+\subsection{The prefrontal cortex: Stimulus-value assocation and action consideration}
+The dmPFC subserves predominantly ambiguous amodal processes
 across time, space, and content domains in
 sensory-independent top-down pathways.
 This DMN node has been described as a “mental sketchpad”
@@ -482,7 +484,7 @@ potentially implicated in de-novo generation and binding
 of meaning representations instructed by stored semantics and memories.
 %
 The dmPFC may thus enable inference, representation, and assessment
-of one's own and other individuals' actions and thoughts.
+of one's own and other individuals' action and thoughts.
 Generally,
 patients with neurological lesions in the prefrontal cortex
 are known to adapt to novel situations and stimuli with difficulty
@@ -505,48 +507,41 @@ episodic memory retrieval, generative construction processes,
 and explicit knowledge of the external world.
 %
 According to computational neuroimaging experiments,
-neural activity in the dmPFC
-preferentially models stimulus-value associations of
+the dmPFC activity preferentially models stimulus-value associations of
 possible actions that are not actually executed,
-whereas neural activity
-in the ventral portion of the medial PFC models value in the environment that leads performed actions
+whereas the vmPFC activity models value in the environment that leads performed actions
 \citep{nicolle2012agent}.
 
 The ventromedial prefrontal cortex (vmPFC) subserves
-evaluation of subjective value as well as
-reward and risk estimation of environmental stimuli.
-In contrast to the dmPFC,
-the vmPFC node of the DMN is more closely associated with
+less ambiguous subjective-value-related evaluative processes and
+reward-informed risk estimation of self-relevant environmental stimuli.
+This DMN node is more closely associated with
 orchestrating adapted behavior by bottom-up-driven
 processing of “what matters now”,
-probably drawing on internal value representations
+probably drawing on model-based value representations
 \citep{doherty2015structure}.
-Quantitative lesion findings across 344 human individuals confirmed
+Quantative lesion findings across 344 human individuals confirmed
 a gross impairment in value-based decision making
 \citep{glascher2012lesion}.
-The vmPFC is preferentially connected with areas of the
-limbic and reward systems.
+The vmPFC is preferentially connected with limbic and reward-related areas.
 The vmPFC has been observed to have monosynaptical connections
-with the NAc
+with the nucleus accumbens
 in axonal tracing studies in monkeys \citep{haber1995orbital}.
-Additionally, the gray matter volume of the vmPFC and NAc
+Additionally, the gray-matter volume of the vmPFC and nucleus accumbens
 correlated with indices of value-guided behavior and social reward attitudes
 \citep{lebreton2009automatic}.
 NAc activity is thought to reflect reward prediction signals from dopaminergic pathways
 \citep{schultz1998predictive}
 that not only modulate motivated behavior towards basic survival needs but also
 subserve RL in humans more broadly \citep{doherty2015structure}.
-This is consistent with diffusion MRI tractography in humans and monkeys
+This is consistent with diffusion MRI (dMRI) tractography in humans and monkeys
 \citep{croxson2005quantitative} that
-quantified NAc to
+quantified this brain regions to
 be substantially more likely connected to the vmPFC than dmPFC in both species.
 Two functional connectivity modalities in humans strongly connected
-the vmPFC with the NAc, hippocampus (HC),
-and PMC.
-
-
-
-In fact,
+the vmPFC with the nucleus accumbens, hippocampus (HC),
+and posteriomedial cortex.
+%
 The vmPFC is often proposed to be involved in (external) emotional
 reactions and own (visceral) arousal.
 Real or imaginged bodily states could be mapped in the vmPFC
@@ -557,16 +552,18 @@ the vmPFC consistently reflects an individual’s subjective
 valuation
 \citep{behrens2008associative}.
 This may be why performance within and across participants
-was related to state encoding in this part of the brain.
+was related to state encoding in OFC.
 Such a \textit{cognitive map} of action space was argued to encode
 the current task state even when states are unobservable from sensory input,
 which was shown to be critical for behavior.
 Additionally,
 independent whole-brain analyses from structural
-neuroimaging studies related the gray matter volume GMV of the vmPFC,
+neuroimaging studies related the gray-matter volume GMV of the vmPFC,
 more consistently than any other
-brain region, to complex decision making
-in humans and monkeys \citep{behrens2009computation}.
+brain region, to indices of
+social competence and social network complexity,
+among the most complicated decision that humans and monkeys take
+\citep{behrens2009computation}.
 %
 
 
@@ -594,7 +591,7 @@ Single-cell recordings in the animal hippocampus revealed
 some constantly active neuronal ensembles whose firing coincided with
 distinct locations in space while the animal navigated through its surroundings.
 London taxi drivers, individuals with high performance in spatial navigation,
-were shown to exhibit increased gray matter volume in the
+were shown to exhibit increased grey matter volume in the
 posterior hippocampus \citep{maguire2000navigation}.
 Indeed, place-specific neuronal populations in the hippocampus
 spike one after another when an animal is choosing between alternative
@@ -618,13 +615,13 @@ as well as directly before upcoming experimental trials \citep{diba2007forward}.
 Such hippocampal ensemble burts during rest and sleep
 have been proposed to be critical in communicating local information
 to the neocortex for long-term storage, potentially also in the nodes of the DMN.
-Such mechanisms of the hippocampus could also make important contributions to the
+These mechanisms of the hippocampus probably make important contributions to the
 recollection of autobiographical memory episodes and other
 reexperienced or newly generated mental scenarios
 \citep{hassabis2007patients}.
 %
-The HC thus reenacts elements of experienced environmental aspects for
-consolidations and potentially, for integration into
+The HC thus orchestrates elements of experienced environmental aspects for
+consolidations based on reenactment and for integration into
 rich mental scene construction. In this way, the HC may even influence
 ongoing perception in the current environment
 \citep{maguire2016}.
@@ -785,7 +782,6 @@ rational probabilistic planning can reformulated
 as a standard memoryless Markov process by simply expanding the
 definition of the state $s$ to include elements of the past.
 
-
 In artificial intelligence (AI), a popular abstract model for
 multi-step decision processes in such an environment are so-called
 \textit{Partially Observable Markov Decision Processes (POMDPs)}.
@@ -796,17 +792,8 @@ states, based on a set of observations and observation probabilities. This is a 
 and is characteristic of so-called \textit{model-free RL}, the approach adapted by our work.
 In contrast, \textit{model-based RL} starts off with some mechanistic assumptions about the dynamics of world.
 These can be assumptions about the physical laws governing the agent's world or constraints on the state-space and transitions thereupon.
-For example, if a rat in a maze knows
-that standing still will produce no change in the environment, and in particular will not eventually lead to finding the food.
-\textbf{XXX last sentence not statistically sound}
-\textbf{XXX this paper is mostly about the human DMN, therefore it would be better to rephrase the example into something with a human being}
-We formalize
-a policy matrix to capture the space of possible actions that can be performed
-on the environment given the current state. A value matrix
-maps expected rewards to environmental objects and events.
-
-
-
+For example if a rat in a maze knows, for sure,
+that staying still will produce no change in the environment, and in particular will not eventually lead to finding the food.
 % A core property of human intelligence has been proposed underly to improve
 % on an expected utility outcomes as a strategy for action choice in uncertain
 % environments \citep{gershman2015computational}.
@@ -839,19 +826,19 @@ Mathematically, a POMDP is simply a quintuplet $(\mathcal S, \mathcal A, r, p, \
 %   history up to an including time $t$.
 % \end{remark}
 
-\subsection{Value mapping and action policies}
+\subsection{Long-term rewards and policies}
 The behavior of the agent is governed by some kind of \textit{policy},
 which maps states of the world to
 a set of candidate actions to perform given this state. Starting a time $t=0$,
 a policy $\pi$ generates a trajectory as follows
 \begin{eqnarray*}
   \begin{split}
-    S_1 &\sim p(.|S_0,A_0), \text{ collect rewards }R_0 = r(S_0, A_0)\\
-    A_1 &\sim \pi(.|S_1)\\
-    S_2 &\sim p(.|S_1,A_1), \text{ collect rewards }R_1 = r(S_1, A_1)\\
+    \textbf{ observe transition: }s_1 &\sim p(s|s_0,a_0)\textbf{ and collect rewards }R_0 = r(s_0, a_0)\\
+    \textbf{choose action: }a_1 &\sim \pi(a|s_1)\\
+    \textbf{ observe transition: }s_2 &\sim p(s|s_1,a_1), \textbf{ and collect rewards }R_1 = r(s_1, a_1)\\
     \ldots\\
-    A_{t} &\sim \pi(.|S_{t})\\
-    S_{t+1} &\sim p(.|S_{t},A_{t}), \text{ collect rewards }R_{t} = r(S_{t}, A_{t})\\
+    \textbf{choose action: }a_{t} &\sim \pi(a|s_{t})\\
+    \textbf{ observe transition: }s_{t+1} &\sim p(s|s_{t},a_{t}), \textbf{ and collect rewards }R_{t} = r(s_{t}, a_{t})\\
     \ldots
   \end{split}
 \end{eqnarray*}
@@ -871,7 +858,7 @@ following a policy $\pi$.
   \textbf{Where is ``value'' buffered in the brain ? You mean where in the DMN!
   then the answer is in the vmPFC which is connected to the NAc}
   The amygdala is known to be involved in significance evaluation) and
-  the NAc is involved in reward evaluation.
+  the nucleus accumbens (NAc) is involved in reward evaluation.
 \end{mdframed}
   The  goal of RL is then adapt this policy so as to  maximize the cumulative rewards. In
   the definition of $G^\pi$ above, the constant $\gamma$ $(0 \le \gamma < 1$) is the reward \textit{discount factor}.
@@ -892,25 +879,27 @@ For instance, a deterministic strategy in playing rock-paper-scissors can
 be easily exploited and a uniformly random choice is optimal.
 \textbf{XXX I love this example :-)}
 
+\subsection{The Q-value: a goodness measure for actions}
 The agent's goal can then be formulated as finding policy $\pi$ which maximizes the
-expected cumulative value of state-stat-pairs $(A_0,S_0)$, also known as the \textit{Q-value}, namely
+expected cumulative value of an state-action pair $(a,s)$, also known as the \textit{Q-value}, namely
 \begin{equation}
   \label{eq:qval}
-  Q^{\pi}(s,a) = \mathbb E [G^\pi|S_0=s,A_0=a,A_1 \sim \pi,A_2 \sim \pi,\ldots].
+  Q^{\pi}(s,a) = \mathbb E [G^\pi|s_0=s,a_0=a,a_1 \sim \pi,a_2 \sim \pi,\ldots].
 \end{equation}
-\begin{mdframed}
-In plain English, the Q-value $Q^{\pi}(s,a)$ is the expected future reward
-\textbf{XXX let's stick to "expected" in these situations because
-it implies that the DMN is doing prediction without needing to 
-emphasize it too much all the time}
-over all possible
-\textbf{XXX action???}
-trajectories in which the agent starts off starts at with an environment in state
+In plain English, the Q-value $Q^{\pi}(s,a)$ is the expected / average / mean future reward
+over all possible trajectories in which the agent starts off starts at with an environment in state
 $s$, takes and action $a$, and then follows the policy $\pi$ thereafter to select future actions.
-\end{mdframed}
 %% Given that each $\pi$ correspondence to an exhaustive description of
-%% behavioral patterns, $Q^{\pi}(S_t,A_t)$ corresponds to the epistemic value of
+%% behavioral patterns, $Q^{\pi}(s_t,a_t)$ corresponds to the epistemic value of
 %% the set of actions given states in finite time.
+For the brain,
+$Q^{\pi}(s, a)$ defined in \eqref{eq:qval} provides the subjective
+utility of executing a specific action; it answers the question
+"What is the expected utiltiy of taking action $a$ in this situation ?".
+When a choice of actions is available, the $Q^{\pi}(s,a)$
+provides a formalization of optimal selection.
+
+\subsection{Computing optimal behavior}
 By construction, maximizing the expectation in  \eqref{eq:qval} is intractable in general
 \textbf{XXX coputationally or statistically?}
 due to the enormous number of possible
@@ -929,7 +918,8 @@ One popular simplification that removes
 is to only consider the sub-family of
 \textit{deterministic policies}, which map each state to the best single best action which
 should be taken at thin state, and therefore define functions from states to actions.
-\textit{Q-learning} (Watkins \& Dayan, 1992), a commonly used off-policy algorithm, uses the
+
+\subsubsection{Q-learning} Q-learning (Watkins \& Dayan, 1992), a commonly used off-policy algorithm, uses the
 \textit{greedy policy}
 \begin{equation}
   \pi(s) = \argmax_{a \in \mathcal A}{Q}(s, a).
@@ -940,9 +930,9 @@ should be taken at thin state, and therefore define functions from states to act
 The \textit{Bellman's equation} \cite{sutton1998reinforcement} then takes the simple form
 \begin{equation}
   \begin{split}
-    Q^\pi(s, a) &= \mathbb E_{s' \sim p(.|s,a)} [r(s,a) + \gamma \max_{a' \in \mathcal A}Q^\pi(s', a')]
+    Q^\pi(s, a) &= \mathbb E_{s' \sim p(s'|s,a)} [r(s,a) + \gamma \max_{a' \in \mathcal A}Q^\pi(s', a')]
     \\
-    &= \mathbb E_{s' \sim p(.|s,a)} [r(s,a) + \gamma Q^\pi(s', \pi(s'))],
+    &= \mathbb E_{s' \sim p(s'|s,a)} [r(s,a) + \gamma Q^\pi(s', \pi(s'))],
   \end{split}
   \label{eq:bellman}
 \end{equation}
@@ -958,7 +948,7 @@ Notice that in the expectation in \eqref{eq:bellman}, the sampling is done over 
 depend on the environment, and so can be learned off-policy by observing state-transitions
 triggered by another behavioral policy, which can be stochastic.
 
-\subsection{Efficient RL with value approximation and replay}
+\subsubsection{Efficient learning via value approximation and experience replay}
 %As already mentioned in the previous section, Q-learning optimizes over the class of
 % deterministic policies of the form \eqref{eq:qlearning}.
 A successful RL theory needs ways to approximate the state-action value function
@@ -978,10 +968,9 @@ and trying to approximate
 the would-be $Q$-value for the state-action pair $(s,a)$ as predicted by Bellman's equation \eqref{eq:bellman}, namely
 $r + \gamma \max_{a'} Q(s', a'|\theta^Q_k)$, with the output of a parametrized regression model $(s,a,r,s')
 \mapsto {Q}(s, a|\theta^Q_{k})$, where $Q(.,.|\theta^Q_{k})$ is an approximator for the $Q$-value operator,  parameterized by $\theta^Q_{k+1}$.
-\begin{mdframed}
+
 In the brain, such an experience replay mechanism is probably implemented in the hyppocampus (HC). Indeed,
 hippocampal replay is a phenomenon observed in rats, mice, cats, rabbits, songbirds, and monkeys. Indeed, during sleep or awake rest, replay refers to the re-occurrence of a sequence of cell activations that also occurred during activity, but the replay has a much faster time scale.
-\end{mdframed}
 
 Computing an optimal policy then corresponds to finding the parameters $\theta^Q_{k+1}$ which minimize the following mean-squared loss function
 \begin{equation}
@@ -1019,7 +1008,8 @@ wherein prediction errors (aka \textit{regrets})  are propagated from lower to h
   \label{eq:oracle}
 \end{equation}
 
-\paragraph{Link to classical RL algorithms.}
+\begin{mdframed}
+\textbf{A note on classical RL algorithms.}
 Note that most RL algorithms, including \textit{Temporal Difference (TD)}
 learning \cite{sutton1998reinforcement}, REINFORCE \cite{williams1992}, and SARSA can be
 cast in this general variational framework. For example TD corresponds to
@@ -1029,88 +1019,21 @@ $\mathcal S \times \mathcal A$, and so
 $$\nabla_{\theta^Q_{k+1}}Q(s, a|\theta^Q_{k+1}) = \phi(s, a) = \delta_{(s,a)}.$$
 %% Whence, the gradient update due to the sample $(s,a,r,s') \in \mathcal D$ is
 %% $$\theta^Q(s,a) \leftarrow \theta^Q(s,a) + (Q(s, a|\theta^Q_{k+1}) - y)$$ ??
+\end{mdframed}
 
+\subsubsection{Interlude: zoom on the Hippocampus}
+\paragraph{Does the hippocampus do Monte-Carlo sampling ?}
+In RL, Monte-Carlo simulation can be used to update the agent's belief state
+\citep{silver2010monte}. Such methods have a sample complexity that is determined only by the underlying difficulty of the POMDP, rather than the size of the state space or observation space,
+which can be prohibitively large.
+Monte-Carlo simulation provides a simple method for evaluating a state $s$.
+They provide an effective mechanism both for tree search and for belief state updates, breaking the curse of dimensionality and allowing much greater scalability than has previously been possible.
 
-\paragraph{TODO: Monte Carlo optimization.}
-Some text snippets that might be pertinent:
-Monte-Carlo simulation can be used to update the agent’s belief state
-\citep{silver2010monte}.
-Monte-Carlo simulation provides a simple method for evaluating
-a state s.
-In any MDP, there is at least one optimal policy matrix that
-achieves the optimal value function???
-The simulator is used to generate sequences of states, observations and rewards. These simulations are used to update the value function, without ever looking inside the black box describing the model’s dynamics. In addition, Monte-Carlo methods have a sample complexity that is determined only by the underlying difficulty of the POMDP, rather than the size of the state space or observation space.
-Monte-Carlo simulation can be turned into a simple control algorithm by evaluating all legal actions and selecting the action with highest evaluation [15]. Monte-Carlo simulation can be extended to partially observable MDPs.
+In the brain, the HC would generate / imagine sequences of world states, observations and rewards. These simulations would be used to update the value function, without ever looking inside the black box describing the model's dynamics. This would be a simple control algorithm by evaluating all legal actions and selecting the action with highest evaluation.
 In these challenging POMDPs, Monte-Carlo simulation provides an effective mechanism both for tree search and for belief state updates, breaking the curse of dimensionality and allowing much greater scalability than has previously been possible.
-Link this to experience sampling in the hippocampus.
-Much recent work points to Monte Carlo or stochastic sampling– based approximations as a unifying framework for understanding how Bayesian inference may work practically across all these levels, in minds, brains, and machines.
-For sampling-based methods it is still almost non-existent beyond the description of receptive fields.
+Much recent work points to Monte Carlo or stochastic sampling– based approximations as a unifying framework for understanding how Bayesian inference may work practically across all these levels, in minds, brains, and machines. For sampling-based methods it is still almost non-existent beyond the description of receptive fields.
 
-
-\subsection{Correspondence between DMN function and RL framework}
-\begin{figure}[!h]
-  \includegraphics[width=.9\linewidth]{rl_process_chart.pdf}
-  \caption{The DMN as an RL agent...}
-  \label{fig:rl_process_chart}
-\end{figure}
-
-\begin{itemize}
-  \item The policy matrix represents the repertoire of possible actions
-  on the world given a current state. It encodes the probabilites of
-  choosing actions to be executed in a certain situation.
-  \item Interactions between external and internal sources of
-  information are probably commonplace during perception \citep{gershman2010learning}
-  \item The MDP frameworks how the human brain could solve
-  environmental problems over extended time periods.
-  \item Given a state, the value function represents the estimated utility of
-  being in that state, which is subjective to the agent.
-  For a state $s$, the value function at $s$ namely $V(s)$ define provides a quantitative answer to the question:
-  "How desirable is it to be in state $s$ ?"
-  For each action $a$ that can be taken from state $s$,
-  the Q-value  $Q(s, a)$ defined in \eqref{eq:qval} provides the subjective
-  utility of executing a specific action; it answers the question
-  "What is the expected utiltiy of taking action $a$ in this situation ?"
-  \item The DMN may subserve
-  constant exploration of possible future actions and their
-  cumulative outcomes. Implicit computation of future choices
-  provides an explanation for purposeful mind-wandering.
-  \item hippocampus -> provides perturbed action-transition-state-reward samples
-  as a block of "imagined", "hypothesized", "recalled" experience;
-  the small variations in these experience blocks allow searching
-  a larger space of parameters and possible experiences.
-  In the absence of environmental input and feedback
-  (e.g., mind-wandering or sleep) pseudo-experiencing possible
-  future scenarios and action outcomes.
-  Our approach acknowledges the unavoidable stochasticity of
-  computation in neuronal processes \citep{faisal2008noise}.
-  \item
-  \textit{Inference} in the human brain reduces to generalization of
-  policy and value adaptations from sampled experiences to
-  successful action choices and reward predictions in future states.
-  \item In the RL view, plasticity in the DMN arises naturally.
-  If an agent behaving optimally in a given environment moves
-  to novel, yet unexperienced environments, reward prediction errors will
-  massively increase. This will lead to adaptation of the policy matrix
-  and value function until the system converges to a
-  new steady-state of optimal action decisions given certain states.
-  \item The DMN is today known to consistently increase in neural
-  activity when engaging cognitive processes that are detached from
-  current sensory environment. DMN involvement in thinking about the past,
-  the future, and hypothetical possibilities ties in with the
-  MDP's implicit computation of action and state cascades as a function
-  of what happened in the past.
-\end{itemize}
-
-\paragraph*{Some notes:}
-\begin{itemize}
-  \item Actions are continuous, whilst states are continuous.
-  \item The brain does backprop (see Hinton's recent talk at Stanford)
-  \item model weights $\theta^Q$ should correspond to connections between neurons
-\item humm, looks like such a knowledge would simply translate into constraints on the DqN weights $\theta^Q$ (... at least, part of such knowledge)
-  ok, gotta think about the model-free / model-based reconsiliation
-\end{itemize}
-
-\subsection{Hippocampal replay = inverse reinforcement-learning ?}
+\paragraph{Hippocampal replay = inverse reinforcement-learning ?}
 %\begin{mdframed}
   Given the trace $s_0,a_0,s_1,\ldots,$ of an optimal agent's strategy $\pi^*$ in
   a POMDP (called a \textit{teacher's demonstration}), can we figure out what is the
@@ -1129,6 +1052,467 @@ In the general artificial case, the problem has been extensively studied and par
 IRL is is suited for problems in which it's hard to define what the reward function could be
 (e.g car-driving, drone maneuvering, etc.) ...
 
+\subsection{Conclusion: putting everything together}
+\begin{figure}[!h]
+  \includegraphics[width=.9\linewidth]{rl_process_chart.pdf}
+  \caption{The DMN as an RL agent...}
+  \label{fig:rl_process_chart}
+\end{figure}
+The DMN is today known to consistently increase in neural
+  activity when engaging cognitive processes that are detached from
+  current sensory environment \citep{kenet2003spontaneously, fiser2004small}.
+  Its involvement in thinking about the past,
+  the future, and hypothetical possibilities ties in with the implicit computation of
+  action and state cascades as a function of what happened in the past.
+% A policy represents the repertoire of possible actions
+%   on the world given a current state. It encodes the probabilites of
+%   choosing actions to be executed in a certain situation.
+% Interactions between external and internal sources of
+%   information are probably commonplace during perception \citep{gershman2010learning}
+The DMN may subserve
+  constant exploration of possible future actions and their
+  cumulative outcomes. Implicit computation of future choices
+  provides an explanation for purposeful mind-wandering.
+
+The HC provides perturbed action-transition-state-reward samples
+  as a block of "imagined", "hypothesized", "recalled" experience;
+  the small variations in these experience blocks allow searching
+  a larger space of parameters and possible experiences.
+  In the absence of environmental input and feedback
+  (e.g., mind-wandering or sleep) pseudo-experiencing possible
+  future scenarios and action outcomes.
+  Our approach acknowledges the unavoidable stochasticity of
+  computation in neuronal processes \citep{faisal2008noise}.
+
+In our proposed RL-based view, \textit{inference} in the human brain reduces to generalization of
+  policy and value adaptations from sampled experiences to
+  successful action choices and reward predictions in future states.
+  Plasticity in the DMN also arises naturally:
+  If an agent behaving optimally in a given environment moves
+  to novel, yet unexperienced environments, reward prediction errors will
+  massively increase. This will lead to adaptation of the policy matrix
+  and value function until the system converges to a
+  new steady-state of optimal action decisions given certain states.
+  
+% \paragraph*{Some notes:}
+% \begin{itemize}
+%   \item Actions are continuous, whilst states are continuous.
+%   \item The brain does backprop (see Hinton's recent talk at Stanford)
+%   \item model weights $\theta^Q$ should correspond to connections between neurons
+% \item humm, looks like such a knowledge would simply translate into constraints on the DqN weights $\theta^Q$ (... at least, part of such knowledge)
+%   ok, gotta think about the model-free / model-based reconsiliation
+% \end{itemize}
+
+\section{Relation to other models decision-making and optimal control for the brain}
+\subsection{The free-energy principle and active inference}
+% \subsubsection{The theory}
+In Friston's free-energy principle (FEP) \citep{friston2010free,fristonAIorRL}, the brain emerges as biomechanical inference engine which must minimize the long-term average of surprise.
+Precursors of this theory can be traced back to \citep{dayan1995helmholtz} in which they introduced the so-called \textit{Helmholtz machine}, a hierarchical factorial \textit{directional deep belief-net (DBN)}. According to FEP's account, the goal of the brain is then to optimize over the generative model $G$: to iteratively
+modify its internal representation $p_G(\z|\x)$ about objects in the world, their interactions and dynamics, etc., so as to minimize surprise when these representations are confronted with sensory input $\x$ during perception cycles. These is called the \textit{generative} model. FEP also postulates a dual model called the \textit{recognition} model,
+which works in tandem with the generative model $p_R(\z|\x)$, to accomplish approximate inference. The recognition model dreams / fantasizes imaginary worlds $\z$ whilst the latter tries to generate sensations $\x$ which match these dreams!
+
+Because surprisal is intractably difficult to optimize (since we would need to sum over all hidden causes of the sensations), FEP sets out to instead minimize an upper-bound thereupon, namely the \text{free-energy} $F_G^R(\x)$ given by
+
+  \begin{equation}
+    \begin{split}
+      \text{generative surprise } &:= -\log(p_G(\x)) = F_G(\x) \\
+      &=\underbrace{F^R_G(\x)}_{\text{accuracy}} - \underbrace{D_{KL}(P_R(.|\x) || P_G(.|\x))}_{\text{complexity}} \\
+      &\le F^R_G(\x),
+      \text{ with equality if }p_R(\z|\x) = p_G(\z|\x)\text{ for all } \z
+    \end{split}
+  \end{equation}
+
+% \begin{figure}[!tb]
+%   \centering
+%   \includegraphics[width=.8\linewidth]{vae.pdf}
+%   \caption{Variational autoencoders...}
+%   \label{fig:vae}
+% \end{figure}
+The main algorithm for minimizing free-energy $F_G^R(\x)$ is the \textit{wake-sleep algorithm}.
+\citep{dayan1995helmholtz}. As noted already in \citep{dayan1995helmholtz},
+a crucial drawback of the wake-sleep algorithm is that it requires a concurrent models (generative and recogntiion), which together do not correspond to optimization of (a bound of) the marginal likelihood (because of the incorrect KL used therein, etc.). Thus the brain could not possible be running such a algorithm, not even in principle! To the rescue, we note that the recent theory of
+\textit{variational auto-encoders (VAEs)} \citep{kingma2013auto} might provide an efficient alternative to the wake-sleep algorithm, as it overcomes the technical limits of the former, by using a reparametrization trick. For example, unlike the wake-sleep algorithm for minimizing free-energy, VAEs can be efficiently trained back-propagation of learning errors.
+
+\subsubsection{Comparison to our proposed theory}
+On the surface, a common point between the FEP and our proposed RL-based framework
+  is placing the minimization of a surprise signal at the core of brain function.
+  Indeed in RL, surprise minimization is subsumed  by accurate prediction of
+  rewarding outcomes in the future. A ``free-energy'' agent is barely a biomechanical machine which has the tendency to resist internal phase-transitions which lead contradictory with the
+  blurred version of the external world captured as sensations
+  \citep{friston2010free,fristonAIorRL,ortega2013thermodynamics}. Such a theory cannot by itself,
+  explain the emergence of strategic behavior inherent in humans (e.g cite dark-room experiment).
+  
+% Friston's critic of RL \citep{fristonAIorRL} (he proposes ``active inference''): "This equation (equation 18) comes from the theory of dynamic programming,
+% pioneered in the 1950s by Richard Bellman and colleagues [2]. To
+% optimise control a~pð Þ x~ under this formulation, we have to: (i)
+% assume the hidden states are available to the agent and (ii) solve
+% Equation 18 for the value-function. Solving for the value-function
+% is a non-trivial problem and usually involves backwards induction
+% or some approximation scheme like reinforcement learning [4–6].
+% The free-energy formulation circumvents these problems by
+% prescribing the policy in terms of free-energy, which encodes
+% optimal control (Equation 6)"
+
+% The following critics can be made:
+% \begin{itemize}
+%   \item
+%     As noted by Dayan et al. (\textit{Variants of Helmholtz machines}), the inter-neuronal intra-layer independence assumption which is at the center of the HM becomes severely problematic as it is agnostic to the known organization of cortical layers...
+%   \item A drawback of the wake-sleep algorithm is that it requires a concurrent models (generative and recognitiion), which together do not correspond to optimization of (a bound of) the marginal likelihood (because of the incorrect KL used therein, etc.).
+%   \item Also, note that the wake-sleep algorithm doesn't do backprop! This is due to
+%     technical difficulty in getting derivatives of loss function w.r.t
+%     recognition weights $\W^R$).
+%   \item This difficulty was removed in the 2010s by \citep{kingma2013auto}, an other groups, via a ``reparametrization trick''.
+%   \end{itemize}
+  
+\textbf{XXX: add tons of more examples and connnections}
+\textbf{XXX: integrate aspects from section "ThE MARkOv DECISION PROBLEM" in Dayan and Daw}
+\textbf{XXX: integrate aspects from WakeNsleep by Hinton}
+\textbf{XXX: integrate aspects from Friston2014(Dropbox) on active inference}
+\textbf{XXX: integrate aspects from Sutton/Barto book chapter}
+
+\subsection{Predictive Coding Hypothesis}
+The predictive coding framework
+\citep{clark2013whatever, friston2008hierarchical}
+is a frequently evoked idea related to the default mode function
+\citep{bar2007}.
+According to this cognitive account,
+cortical responses emerge from continuous functional interaction between
+higher and lower levels of the neural processing hierarchy.
+This dynamic intercourse enables inference on the world by reconciling
+gaps between fresh sensory input and stored prior information.
+Feed-forward sensory experience is constantly calibrated by
+top-down modulation at various hierarchical processing levels.
+In fact, axonal
+back projections probably outnumber by far the input projection
+existing in the brain \citep{salin1995corticocortical}.
+This can explain the constructive, generative nature of sensory perception
+\citep{friston2010free} and
+why motor action is intimately related to sensory expectations
+\citep{wolpert1995internal, kording2004bayesian}.
+At each stage of neural processing,
+an internally generated prediction of the sensory input is
+directly compared against the actual input from the environment.
+A prediction error at one of the processing levels,
+i.e. the difference between sensory input
+and internally predicted sensation,
+incurs plasticity changes of neuronal back projections (i.e., model parameters)
+for gradually improved future prediction of the environment.
+Contextual integration is hence maintained by top-down modulation of sensorimotor
+processing by a-priori information about the environment.
+The generative model of how perceived sensory events arise in the
+world would be incorporated into
+the current neuronal wiring.
+Indeed,
+This process permits updates of the internal model of the environment
+to best fit the constant influx of sensory examples.
+
+
+\begin{itemize}
+  \item Both the predictive coding account and POMDPs
+  are process theories backed up by plausible
+  neurobiological evidence that
+  view the brain as a ``statistical organ''
+  generalizing from the past to new experiences.
+  \item Both provide a parsimonious explanation why the
+  human brain decreases processing load devoted to incoming information
+  when the environment is predictable and allocate increased
+  attentional resources when novel stimuli are encountered.
+  Similarly, both propose explanations why
+  predicting the future is inherently
+  linked to information from the past.
+  \item Sensory experience is a generative process from both views.
+  In predictive coding, sensory perception of the external world
+  is a generative experience due to modulatory top down experience at
+  various hierarchical levels of sensory input processing.
+  In our RL view, the (partially observed)
+  environmental model is incorporated in the POMDP,
+  \textit{which can be fully recovered based on the last
+  state alone}.
+  \item Both naturally expose a mechanisms of brain plasticity in that
+  neuronal wiring gets increasingly adapted
+  when faced by unprecedented environmental
+  challenges.
+  \item The hierarchical aspects from predictive coding
+  is re-expressed in POMDPs in form of
+  nested prediction of probable upcoming actions and rewards.
+  \item Both model the consequences of action. In RL, the horizon of that
+  look into the future is explicitly manifested in the $\gamma$ parameter
+  in the Bellman equation, but not
+  explicitly modeled in the PC account that
+  tends to emphasize prediction about the
+  immediate future.
+  \item Mismatch negativity of PC is immanent in reward prediction error
+  by the difference between actually predicted reward of an action given
+  a state and the reward predicted by non-linear regression with graded
+  discounting of future rewards.
+  \item Adapting the neuronal connections for improved top-down modulation
+  takes the concrete form of gradient computation
+  \textit{and back-propagation} in MDPs and RL,
+  although this may not be neurobiologically plausible.
+  \item In sum,
+  the MDP account may serve as a concrete conceptualization of the PC account
+  in cognitive neuroscience. MPDs have the advantage of exposing an explicit
+  mechanism of the horizon of future considerations or
+  how the internal model of the world gets updated,
+  and collapses sensory input processing and action output preparation.
+  %
+  As such, our account can be viewed as a RL implemention of the
+  prediction coding hypothesis.
+\end{itemize}
+
+
+\subsection{Semantic Hypothesis}
+Another frequently proposed cognitive account of DMN function revolves
+around forming logical associations and analogies between
+the current experience and
+the conceptual knowledge derived from past experiences
+\citep{bar2007proactive, binder1999conceptual}.
+Analogies might naturally tie incoming novel sensory stimuli to
+explicit world knowledge (i.e., semantics) extractable from the environment
+\citep{bar2009proactive}.
+In this way, the encoding of complex environments could be facilitated
+by relative similarity associations between states.
+%
+Going much beyond human language ifself,
+semantic building blocks provide the basis to
+mentally envision non-existent scenarios
+that would improve optimal behavior in the environment
+by simulating future events.
+Such cognitive processes can afford
+the internal generation of necessary information
+that is not presented in the surrounding environment
+by recombining building blocks of
+concept knowledge and episodic memories
+\citep{hassabis2009construction}.
+Indeed, in aging humans, remembering the past and imaging the future
+equally decreased in the level of detail and are associated with
+concurrent deficits in forming and integrating relationships between
+items \citep{addis2008age, spreng2006temporal}.
+Further,
+a constructive account explains the reciprocal relationship
+between an egocentric first person perspective and
+an allocentric bird’s eye perspective immersed in
+self-reflection, social knowledge, and autobiographical memories.
+%
+Cognitive aspects of egocentric-allocentric switching
+are also closely related to episodic memory, language, problem solving,
+planning, estimating other people's thoughts, and spatial navigation
+as these necessitate abstract world knowledge and abstract assocations
+for binding the constituent elements in mental scene construction
+\citep{schacter2007remembering}.
+These scene generation processes could contribute to interpreting the
+present and foretelling the future.
+This view is for instance supported by evidence in animals that
+could learn a \textit{cognitive map of the environment},
+even without reward incentives, and exploit it later
+for other means \citep{tolman1948cognitive}.
+
+
+
+\begin{itemize}
+  \item Both the semantic hypothesis and MDPs expose mechanisms of
+  how alternative decision trees could be mentally explored.
+  \item In both semantic hypothesis and MDPs,
+  there is no evidence to indicate that predictions of various
+  levels of complexity, abstraction, timescale and purpose
+  use mechanisms that are qualitatively different. This concurs with
+  DMN activity increases across time, space, and content domains
+  demonstrated in many neuroimaging studies. The semantic hypothesis
+  and RL account provide explanations why hippocampus lesion does
+  not only impair retrieving memories, but also hypothetical and future
+  thinking \citep{hassabis2007patients}.
+  \item The notion of semantic or knowledge association is
+  incorporated into the MDP as the Markov property,
+  that is, the current state directly results from the
+  agent's history of states and actions. The learned
+  value matrix and action transition schedules drive
+  stimulus processing and action choice in the present.
+  \item While mental scene construction implies a distinction between
+  environmental perception and internally generated mind-wandering\footnote{
+  ``A computational model of how such a process might be structured
+  is far from being defined, but it will probably require a form of
+  regulation by which perception of the current world is suppressed
+  while simulation of possible alternatives are constructed,
+  followed by a return to perception of the present.''\citep{buckner2007self}},
+  the MDPs naturally integrate the former egocentric
+  (more related to current action, state and reward) and the later
+  allocentric (more related to past and future actions, states, and rewards)
+  angles on the world in a same optimization problem.
+  \item The semantic account of DMN function does not offer
+  a mechanistic explanation how explicit world knowledge and semantic analogies thereof
+  lead to prediction of future actions and states.
+  \item In contrast to existing accounts on semantics and
+  mental scene construction, the random and creative aspects of DMN function
+  are explained in MDPs by the advantages of stochastic optimization.
+  \item The semantic hypothesis does not explain why memory recall
+  for scene construction in humans is typically fragmentary and noisy
+  instead of accurate and reliable.
+  Yet, the MDP framework provides an algorithmic explanation in that
+  stochasticity of the parameter space search implemented
+  by Monte Carlo solvers provably yields better models of the world.
+  That is, the purposeful stochasticity of policy and value estimation
+  in MDPs provides a candidate explanation for why humans
+  have evolved imperfect noisy memories
+  as the more advantageous adaptation.
+  \item While both semantic and MDP account propose memory-based internally
+  generated information for probabilistic mental models of action outcomes,
+  only MDPs render explicit the grounds on which the final action is
+  eventually chosen (i.e., the estimated cumulative reward).
+  \item In sum, episodic scene construction according to the semantic
+  hypothesis is lacking an explicit time and incentive model;
+  neither does it explain how randomness of human mental experience
+  can be beneficial.
+\end{itemize}
+
+
+
+\subsection{Sentinel Hypothesis}
+Processing self-relevant information was perhaps the first
+cognitive account that was proposed for the DMN \citep{gusnard2001medial}.
+Since then,
+different investigators have speculated that neural activity in the DMN
+may reflect the brain’s relentless tracking of
+relevance in the environment
+as an advantageous evolutionary adaptation.
+According to this cognitive account, the brain's baseline realizes
+a ``radar'' function to
+detect subjectively salient and unexpected events that
+are the most important for unfolding behavior,
+including resources,
+the securing of mates, and protection.
+%
+In fact,
+environmental stimuli important for humans are frequently of
+social nature. This is probably unsurprising
+given that a key property of the human species is
+the complexity of their social systems
+\citep{tomasello2009cultural}.
+More specifically,
+according to the ``social brain hypothesis'',
+the human brain did not evolve to solve problems of the
+physical environment, but to form and maintain increasingly complex
+social systems to solve ecological problems by means of social relationships
+\citep{whiten1988machiavellian}.
+Highly efficient neurobiological processing of social cues is exemplified by
+facial judgments being routinely processed in less than 100 ms
+\citep{bar2006very}.
+Our human ancestors were probably among the few organisms that
+were more likely to be killed by members of their own species
+rather than predators from another species.
+Being able to detect the intention and upcoming actions of conspecifics
+turned into a decisive evolutionary advantage
+\citep{frith2010social}.
+%
+This may explain why social topics amount to roughly
+two thirds of human everyday communication \citep{dunbar1997human}
+and
+why mind-wandering and dreams
+are so rich in stories about people and
+the complex relationships between them
+\citep{schilbach2008minds}.
+
+
+\textbf{XXX Your focus in this subsection ought to be on the SC itself not POMPDs, etc.}
+ \begin{itemize}
+    \item Processing social information has been proposed to underlie the
+    physiological baseline of human brain function
+    \citep{schilbach2008minds}. This was later challenged by observing
+    analogues of the DMN in monkeys \citep{mantini2011default}
+    and rats \citep{lu2012rat}, with
+    supposedly less advanced social capacities.
+    The MDPs parsimoneously explain the dominance of social content in
+    human mental scenes by their extremely high relevance to humans
+    reflected by high values for social information in the value matrix
+    \citep{baker2009action}.
+    \item How can a same neurobiological circuit be equally important
+    for baseline house-keeping functions and specific task performance?
+    Our computational account can explain why the DMN is implicated
+    in both a goal-directed task and an idlying rest cognitive set,
+    if environmental relevance is processed, manipulated, and retained
+    also as a baseline function of human mental activity.
+    In tasks, the policy and value matrices are updated to optimize short-term action,
+    whereas, at rest, these parameter updates may
+    improve especially mid- and long-term action.
+    \item The sentinel account does not provide a formal mechanisms of
+    how attention and memory resources are exactly reallocated when
+    encountering a salient environmental stimulus. \textbf{XXX remove the next sentence. It's probably false.}
+    In contrast,
+    the Bellman recursion is weighted at each step by
+    $\sum_{a \in A}\pi(a|s)$. This factor weighs which action cascades
+    are recursively explored by the agent and which decision trees are neglected.
+    This directly implies allocation of attention and computational load.
+    \item In sum,
+    MDPs imply a ``radar'' function of monitoring the environment for salient information
+    in general and explain social thinking as a physiological brain baseline
+    as an important special case, without excluding other topics
+    contemplated in continuous mental activity.
+ \end{itemize}
+
+
+
+\section{Conclusion}
+What brain function could be important enough
+for the existence and survival of the human species
+to warrant constant, high energy costs?
+MDPs provide an attractive
+computational model how the human association cortex
+might implement supra-modal representation and control of the environment to
+optimize the organism's fate.
+% by obtaining reward and avoiding pain.
+This idealized process model explains
+a number of previous experimental observations in the
+DMN by a simple but non-trivial mechanism.
+%
+From the computational viewed of a MDP,
+behavior unfolds by integrating happened past events
+and possible future events to guide action choice in the present context.
+This functional account is more compatible with the DMN's
+poorly understood involvement across
+autobiographical memory retrieval, problem solving,
+abstract reasoning based on internally generated scenes, social cognition,
+as well as delay discounting and self-related prospection.
+MDPs provide a mathematical formalism how
+optimal substructure in the environment can be recursively exploited
+when confronted with complicated decisions.
+Algorithmic gains by injecting stochasticity in the recall of past
+actions and outcomes to improve the internal world model may explain why
+very accurate memories have been disfavored in human evolution
+and why human creativity might be adaptive.
+%
+In principle,
+neuroscientific experiments can be designed that operationalize
+the set of action, value, and state variables that determine
+the behavior of intelligent RL systems.
+The proposed machine-learning perspective
+on DMN function is hence not only practically computable but
+also neuroscientifically falsifiable.
+At the least, we propose an alternative vocabulary to
+describe and interpret neuroscientific studies in DMN research.
+%
+Ultimately,
+the DMN can be viewed as a smoothing kernel extending
+from the relatively recent events to anticipated upcoming events
+to constantly improve sensory processing and
+action performance in the world.
+
+
+
+\paragraph{Acknowledgment}
+% {\small The research leading to these results has received funding from the
+% European Union Seventh Framework Programme (FP7/2007-2013)
+% under grant agreement no. 604102 (Human Brain Project).
+% Further support was received from
+% the German National Academic Foundation (D.B.).
+% }
+
+
+\small
+% \bibliographystyle{splncs03}
+% \bibliographystyle{natbib}
+\bibliographystyle{plainnat}
+\bibliography{refs}
+
+\appendix
 \section{Free-energy principles!}
 The so-called free-energy principle in its present form (including notions like ``generative density'', ``recognition density'', etc.) can be traced back to works of Dayan \& Hinton \citep{dayan1995helmholtz} in which they introduced the so-called \textit{Helmholtz machine}, a hierarchical factorial directional deep belief-net (DBN).
 In this subsection, we will develop from first-principles, the bare-bones minimalistic ideas needed to build a free-energy principle for general decision-making. This ideas were first developed by Hinton et al. in the early 90s in building their Helmholtz machine. Theories like Friston's free-energy principle and active-inference will then emerge as particular instances of this general framework, with particular design choises. For example the Friston theory axiomatizes that the brain uses a (problematic, as it implicitly assumes that posterior of each hidden unit is factorial, e.g) wake-sleep algorithm to train the underlying Helmholtz machine, etc.
@@ -1267,14 +1651,13 @@ The following critics can be made:
     \end{itemize}
 
 
-\subsection{Minimizing free-energy via backprop!}
+\subsection{Minimizing free-energy via backprop: variational auto-encoders}
 
 % \subsection{Free-energy minimization via variational auto-encoders}
 \label{sec:vae}
-Here, we present a way to aleviate some conceptual and computational issues with the
-free-energy framework presented thus far, by using auto-encoder theory.
-Following Kingma et al. 2014 \citep{kingma2013auto}, define the data-dependent auxiliary random
-function
+Here, we present a way to alleviate some conceptual and computational issues with the
+free-energy framework presented thus far, by using the recent \textit{variational auto-encoder} (VAE) theory \citep{kingma2013auto}. Define the data-dependent
+auxiliary random function
 \begin{eqnarray}
   f_{G,R}(., \x) :\z \mapsto \log(p_G(\z,\x)) - \log(p_R(\z|\x)).
 \end{eqnarray}
@@ -1291,6 +1674,7 @@ variational free-energy as
 \begin{mdframed}
   \textbf{Problem:} How do we sample from the recognition density $p_R(.|\x)$ in such a way that the sampling process is differentiable w.r.t the weights of the recognition network $\W^R$ ?
 \end{mdframed}
+
 \begin{figure}[!tb]
   \centering
   \includegraphics[width=.8\linewidth]{vae.pdf}
@@ -1440,382 +1824,5 @@ choices of the posterior distribution are given in Tab. \ref{tab:rptrick}.
 \subsection{GANs and other likelihood-free methods}
 ...
 
-\section{Relation to other statistical models (Elvis)}
-\subsection{Friston's Free-energy principle (refer to \ref{label:friston})}
-\textbf{XXX: add tons of more examples and connnections}
-\textbf{XXX: integrate aspects from section "ThE MARkOv DECISION PROBLEM" in Dayan and Daw}
-\textbf{XXX: integrate aspects from WakeNsleep by Hinton}
-\textbf{XXX: integrate aspects from Friston2014(Dropbox) on active inference}
-\textbf{XXX: integrate aspects from Sutton/Barto book chapter}
-In summary:
-\begin{itemize}
-  \item Friston's free-energy principle: brain as inference engine
-  biological systems, including brains, must minimize the long-term average of surprise;
-  \item A common point between the Free Energy principle and our framework
-  is placing the minimization of suprise at the core of brain function.
-  In RL, surprise minimization reduces to accurate prediction of
-  rewarding outcomes in the future.
-  \item Ortega et al. 2013 \citep{ortega2013thermodynamics} ``Thermodynamics as a theory of decision-making with information-processing costs''
-\item Friston's critic of RL \citep{fristonAIorRL} (he proposes "active inference''): "This equation (equation 18) comes from the theory of dynamic programming,
-pioneered in the 1950s by Richard Bellman and colleagues. To
-optimise control a~pð Þ x~ under this formulation, we have to: (i)
-assume the hidden states are available to the agent and (ii) solve
-Equation 18 for the value-function. Solving for the value-function
-is a non-trivial problem and usually involves backwards induction
-or some approximation scheme like reinforcement learning.
-The free-energy formulation circumvents these problems by
-prescribing the policy in terms of free-energy, which encodes
-optimal control (Equation 6)"
-\item It is difficult to compute with the free energy principle
-  in practice, which makes it physiologically less plausible. Auto-encoder theory presented
-  \ref{sec:vae} can help to remove these barriers, by making the whole scheme trainable via
-  backprop!
-  \end{itemize}
-
-
-\subsection{Other Leinforcement Learning literature}
-abc
-
-\section{Relation to other cognitive models}
-\subsection{Predictive Coding Hypothesis}
-The predictive coding framework
-\citep{clark2013whatever, friston2008hierarchical}
-is a frequently evoked idea related to the default mode function
-\citep{bar2007}.
-According to this cognitive account,
-cortical responses emerge from continuous functional interaction between
-higher and lower levels of the neural processing hierarchy.
-This dynamic intercourse enables inference on the world by reconciling
-gaps between fresh sensory input and stored prior information.
-Feed-forward sensory experience is constantly calibrated by
-top-down modulation at various hierarchical processing levels.
-In fact, axonal
-back projections probably outnumber by far the input projection
-existing in the brain \citep{salin1995corticocortical}.
-This can explain the constructive, generative nature of sensory perception
-\citep{friston2010free} and
-why motor action is intimately related to sensory expectations
-\citep{wolpert1995internal, kording2004bayesian}.
-At each stage of neural processing,
-an internally generated prediction of the sensory input is
-directly compared against the actual input from the environment.
-A prediction error at one of the processing levels,
-i.e. the difference between sensory input
-and internally predicted sensation,
-incurs plasticity changes of neuronal back projections (i.e., model parameters)
-for gradually improved future prediction of the environment.
-Contextual integration is hence maintained by top-down modulation of sensorimotor
-processing by a-priori information about the environment.
-The generative model of how perceived sensory events arise in the
-world would be incorporated into
-the current neuronal wiring.
-Indeed,
-This process permits updates of the internal model of the environment
-to best fit the constant influx of sensory examples.
-
-
-\begin{itemize}
-  \item Both the predictive coding account and MDPs
-  are process theories backed up by plausible
-  neurobiological evidence that
-  view the brain as a ``statistical organ''
-  generalizing from the past to new experiences.
-  \item Both provide a parsimonious explanation why the
-  human brain decreases processing load devoted to incoming information
-  when the environment is predictable and allocate increased
-  attentional resources when novel stimuli are encountered.
-  Similarly, both propose explanations why
-  predicting the future is inherently
-  linked to information from the past.
-  \item Sensory experience is a generative process from both views.
-  In predictive coding, sensory perception of the external world
-  is a generative experience due to modulatory top down experience at
-  various hierarchical levels of sensory input processing.
-  In our RL view, the (partially observed)
-  environmental model is incorporated in the MDP,
-  \textit{which can be fully recovered based on the last
-  state alone}.
-  \item Both naturally expose a mechanisms of brain plasticity in that
-  neuronal wiring gets increasingly adapted
-  when faced by unprecedented environmental
-  challenges.
-  \item The hierarchical aspects from predictive coding
-  is re-expressed in MDPs in form of
-  nested prediction of probable upcoming actions and rewards.
-  \item Both model the consequences of action. In RL, the horizon of that
-  look into the future is explicitly manifested in the $\gamma$ parameter
-  in the Bellman equation, but not
-  explicitly modeled in the PC account that
-  tends to emphasize prediction about the
-  immediate future.
-  \item Mismatch negativity of PC is immanent in reward prediction error
-  by the difference between actually predicted reward of an action given
-  a state and the reward predicted by non-linear regression with graded
-  discounting of future rewards.
-  \item Adapting the neuronal connections for improved top-down modulation
-  takes the concrete form of gradient computation
-  \textit{and back-propagation} in MDPs and RL,
-  although this may not be neurobiologically plausible.
-  \item In sum,
-  the MDP account may serve as a concrete conceptualization of the PC account
-  in cognitive neuroscience. MPDs have the advantage of exposing an explicit
-  mechanism of the horizon of future considerations or
-  how the internal model of the world gets updated,
-  and collapses sensory input processing and action output preparation.
-  %
-  As such, our account can be viewed as a RL implemention of the
-  prediction coding hypothesis.
-\end{itemize}
-
-
-\subsection{Semantic Hypothesis}
-Another frequently proposed cognitive account of DMN function revolves
-around forming logical associations and analogies between
-the current experience and
-the conceptual knowledge derived from past experiences
-\citep{bar2007proactive, binder1999conceptual}.
-Analogies might naturally tie incoming novel sensory stimuli to
-explicit world knowledge (i.e., semantics) extractable from the environment
-\citep{bar2009proactive}.
-In this way, the encoding of complex environments could be facilitated
-by relative similarity associations between states.
-%
-Going much beyond human language ifself,
-semantic building blocks provide the basis to
-mentally envision non-existent scenarios
-that would improve optimal behavior in the environment
-by simulating future events.
-Such cognitive processes can afford
-the internal generation of necessary information
-that is not presented in the surrounding environment
-by recombining building blocks of
-concept knowledge and episodic memories
-\citep{hassabis2009construction}.
-Indeed, in aging humans, remembering the past and imaging the future
-equally decreased in the level of detail and are associated with
-concurrent deficits in forming and integrating relationships between
-items \citep{addis2008age, spreng2006temporal}.
-Further,
-a constructive account explains the reciprocal relationship
-between an egocentric first person perspective and
-an allocentric bird’s eye perspective immersed in
-self-reflection, social knowledge, and autobiographical memories.
-%
-Cognitive aspects of egocentric-allocentric switching
-are also closely related to episodic memory, language, problem solving,
-planning, estimating other people's thoughts, and spatial navigation
-as these necessitate abstract world knowledge and abstract assocations
-for binding the constituent elements in mental scene construction
-\citep{schacter2007remembering}.
-These scene generation processes could contribute to interpreting the
-present and foretelling the future.
-This view is for instance supported by evidence in animals that
-could learn a \textit{cognitive map of the environment},
-even without reward incentives, and exploit it later
-for other means \citep{tolman1948cognitive}.
-
-
-
-\begin{itemize}
-  \item Both the semantic hypothesis and MDPs expose mechanisms of
-  how alternative decision trees could be mentally explored.
-  \item In both semantic hypothesis and MDPs,
-  there is no evidence to indicate that predictions of various
-  levels of complexity, abstraction, timescale and purpose
-  use mechanisms that are qualitatively different. This concurs with
-  DMN activity increases across time, space, and content domains
-  demonstrated in many neuroimaging studies. The semantic hypothesis
-  and RL account provide explanations why hippocampus lesion does
-  not only impair retrieving memories, but also hypothetical and future
-  thinking \citep{hassabis2007patients}.
-  \item The notion of semantic or knowledge association is
-  incorporated into the MDP as the Markov property,
-  that is, the current state directly results from the
-  agent's history of states and actions. The learned
-  value matrix and action transition schedules drive
-  stimulus processing and action choice in the present.
-  \item While mental scene construction implies a distinction between
-  environmental perception and internally generated mind-wandering\footnote{
-  ``A computational model of how such a process might be structured
-  is far from being defined, but it will probably require a form of
-  regulation by which perception of the current world is suppressed
-  while simulation of possible alternatives are constructed,
-  followed by a return to perception of the present.''\citep{buckner2007self}},
-  the MDPs naturally integrate the former egocentric
-  (more related to current action, state and reward) and the later
-  allocentric (more related to past and future actions, states, and rewards)
-  angles on the world in a same optimization problem.
-  \item The semantic account of DMN function does not offer
-  a mechanistic explanation how explicit world knowledge and semnatic analogies thereof
-  lead to prediction of future actions and states.
-  \item In contrast to existing accounts on semantics and
-  mental scene construction, the random and creative aspects of DMN function
-  are explained in MDPs by the advantages of stochastic optimization.
-  \item The semantic hypothesis does not explain why memory recall
-  for scene construction in humans is typically fragmentary and noisy
-  instead of accurate and reliable.
-  Yet, the MDP framework provides an algorithmic explanation in that
-  stochasticity of the parameter space search implemented
-  by Monte Carlo solvers provably yields better models of the world.
-  That is, the purposeful stochasticity of policy and value estimation
-  in MDPs provides a candidate explanation for why humans
-  have evolved imperfect noisy memories
-  as the more advantageous adaptation.
-  \item While both semantic and MDP account propose memory-based internally
-  generated information for probabilistic mental models of action outcomes,
-  only MDPs render explicit the grounds on which the final action is
-  eventually chosen (i.e., the estimated cumulative reward).
-  \item In sum, episodic scene construction according to the semantic
-  hypothesis is lacking an explicit time and incentive model;
-  neither does it explain how randomness of human mental experience
-  can be beneficial.
-\end{itemize}
-
-
-
-\subsection{Sentinel Hypothesis}
-Processing self-relevant information was perhaps the first
-cognitive account that was proposed for the DMN \citep{gusnard2001medial}.
-Since then,
-different investigators have speculated that neural activity in the DMN
-may reflect the brain’s relentless tracking of
-relevance in the environment
-as an advantageous evolutionary adaptation.
-According to this cognitive account, the brain's baseline realizes
-a ``radar'' function to
-detect subjectively salient and unexpected events that
-are the most important for unfolding behavior,
-including resources,
-the securing of mates, and protection.
-%
-In fact,
-environmental stimuli important for humans are frequently of
-social nature. This is probably unsurprising
-given that a key property of the human species is
-the complexity of their social systems
-\citep{tomasello2009cultural}.
-More specifically,
-according to the ``social brain hypothesis'',
-the human brain did not evolve to solve problems of the
-physical environment, but to form and maintain increasingly complex
-social systems to solve ecological problems by means of social relationships
-\citep{whiten1988machiavellian}.
-Highly efficient neurobiological processing of social cues is exemplified by
-facial judgments being routinely processed in less than 100 ms
-\citep{bar2006very}.
-Our human ancestors were probably among the few organisms that
-were more likely to be killed by members of their own species
-rather than predators from another species.
-Being able to detect the intention and upcoming actions of conspecifics
-turned into a decisive evolutionary advantage
-\citep{frith2010social}.
-%
-This may explain why social topics amount to roughly
-two thirds of human everyday communication \citep{dunbar1997human}
-and
-why mind-wandering and dreams
-are so rich in stories about people and
-the complex relationships between them
-\citep{schilbach2008minds}.
-
-
-
- \begin{itemize}
-    \item Processing social information has been proposed to underlie the
-    physiological baseline of human brain function
-    \citep{schilbach2008minds}. This was later challenged by observing
-    analogues of the DMN in monkeys \citep{mantini2011default}
-    and rats \citep{lu2012rat}, with
-    supposedly less advanced social capacities.
-    The MDPs parsimoneously explain the dominance of social content in
-    human mental scenes by their extremely high relevance to humans
-    reflected by high values for social information in the value matrix
-    \citep{baker2009action}.
-    \item How can a same neurobiological circuit be equally important
-    for baseline house-keeping functions and specific task performance?
-    Our computational account can explain why the DMN is implicated
-    in both a goal-directed task and an idlying rest cognitive set,
-    if environmental relevance is processed, manipulated, and retained
-    also as a baseline function of human mental activity.
-    In tasks, the policy and value matrices are updated to optimize short-term action,
-    whereas, at rest, these parameter updates may
-    improve especially mid- and long-term action.
-    \item The sentinel account does not provide a formal mechanisms of
-    how attention and memory resources are exactly reallocated when
-    encountering a salient environmental stimulus. In contrast,
-    the Bellman recursion is weighted at each step by
-    $\sum_{a \in A}\pi(a|s)$. This factor weighs which action cascades
-    are recursively explored by the agent and which decision trees are neglected.
-    This directly implies allocation of attention and computational load.
-    \item In sum,
-    MDPs imply a ``radar'' function of monitoring the environment for salient information
-    in general and explain social thinking as a physiological brain baseline
-    as an important special case, without excluding other topics
-    contemplated in continuous mental activity.
- \end{itemize}
-
-
-
-\section{Conclusion}
-What brain function could be important enough
-for the existence and survival of the human species
-to warrant constant, high energy costs?
-MDPs provide an attractive
-computational model how the human association cortex
-might implement supra-modal representation and control of the environment to
-optimize the organism's fate.
-% by obtaining reward and avoiding pain.
-This idealized process model explains
-a number of previous experimental observations in the
-DMN by a simple but non-trivial mechanism.
-%
-From the computational viewed of a MDP,
-behavior unfolds by integrating happened past events
-and possible future events to guide action choice in the present context.
-This functional account is more compatible with the DMN's
-poorly understood involvement across
-autobiographical memory retrieval, problem solving,
-abstract reasoning based on internally generated scenes, social cognition,
-as well as delay discounting and self-related prospection.
-MDPs provide a mathematical formalism how
-optimal substructure in the environment can be recursively exploited
-when confronted with complicated decisions.
-Algorithmic gains by injecting stochasticity in the recall of past
-actions and outcomes to improve the internal world model may explain why
-very accurate memories have been disfavored in human evolution
-and why human creativity might be adaptive.
-%
-In principle,
-neuroscientific experiments can be designed that operationalize
-the set of action, value, and state variables that determine
-the behavior of intelligent RL systems.
-The proposed machine-learning perspective
-on DMN function is hence not only practically computable but
-also neuroscientifically falsifiable.
-At the least, we propose an alternative vocabulary to
-describe and interpret neuroscientific studies in DMN research.
-%
-Ultimately,
-the DMN can be viewed as a smoothing kernel extending
-from the relatively recent events to anticipated upcoming events
-to constantly improve sensory processing and
-action performance in the world.
-
-
-
-\paragraph{Acknowledgment}
-% {\small The research leading to these results has received funding from the
-% European Union Seventh Framework Programme (FP7/2007-2013)
-% under grant agreement no. 604102 (Human Brain Project).
-% Further support was received from
-% the German National Academic Foundation (D.B.).
-% }
-
-
-\small
-% \bibliographystyle{splncs03}
-% \bibliographystyle{natbib}
-\bibliographystyle{plainnat}
-\bibliography{refs}
 
 \end{document}
