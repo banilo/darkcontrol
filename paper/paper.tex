@@ -790,6 +790,16 @@ but the agent cannot directly observe the underlying state. Instead, it tries to
 signal which is tried alongside each transition in the environments state-space, and maintains a probability distribution over the set of possible
 states, based on a set of observations and observation probabilities. This is a minimal amount of assumptions that can be made about an environment,
 and is characteristic of so-called \textit{model-free RL}, the approach adapted by our work.
+\begin{mdframed}
+\textbf{Model-free RL in the brain is plausible.}  Indeed, as was noted in \cite{dayan2008decision}, It has long been suggested in the literature that there
+  is a rather direct
+mapping of model-free RL learning algorithms
+onto the brain, with the neuromodulator dopamine serving
+as a teaching signal to train values or policies by controlling
+synaptic plasticity at targets such as the ventral and
+dorsolateral striatum.
+\end{mdframed}
+
 In contrast, \textit{model-based RL} starts off with some mechanistic assumptions about the dynamics of world.
 These can be assumptions about the physical laws governing the agent's world or constraints on the state-space and transitions thereupon.
 For example if a rat in a maze knows, for sure,
