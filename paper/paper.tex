@@ -791,9 +791,8 @@ signal which is tried alongside each transition in the environments state-space,
 states, based on a set of observations and observation probabilities. This is a minimal amount of assumptions that can be made about an environment,
 and is characteristic of so-called \textit{model-free RL}, the approach adapted by our work.
 \begin{mdframed}
-\textbf{Model-free RL in the brain is plausible.}  Indeed, as was noted in \cite{dayan2008decision}, It has long been suggested in the literature that there
-  is a rather direct
-mapping of model-free RL learning algorithms
+\textbf{Model-free RL in the brain is plausible.}  Indeed, as was noted in \cite{dayan2008decision}, it has long been suggested in the literature that there
+  is a rather direct mapping of model-free RL learning algorithms
 onto the brain, with the neuromodulator dopamine serving
 as a teaching signal to train values or policies by controlling
 synaptic plasticity at targets such as the ventral and
@@ -910,10 +909,8 @@ When a choice of actions is available, the $Q^{\pi}(s,a)$
 provides a formalization of optimal selection.
 
 \subsection{Computing optimal behavior}
-By construction, maximizing the expectation in  \eqref{eq:qval} is intractable in general
-\textbf{XXX coputationally or statistically?}
-due to the enormous number of possible
-\textbf{XXX action???}
+By construction, maximizing the expectation in  \eqref{eq:qval} is computationally intractable in general
+due to the enormous number of possible action
 trajectories the agent might need to
 consider.
 % \begin{mdframed}
@@ -923,9 +920,7 @@ consider.
 %   optimal behavior could be computable in the human brain.
 % \end{mdframed}
 One popular simplification that removes
-%this issue
-\textbf{excess in complexity on the agent's horizon???}
-is to only consider the sub-family of
+this issue is to only consider the sub-family of
 \textit{deterministic policies}, which map each state to the best single best action which
 should be taken at thin state, and therefore define functions from states to actions.
 
@@ -1036,7 +1031,7 @@ $$\nabla_{\theta^Q_{k+1}}Q(s, a|\theta^Q_{k+1}) = \phi(s, a) = \delta_{(s,a)}.$$
 In RL, Monte-Carlo simulation can be used to update the agent's belief state
 \citep{silver2010monte}. Such methods have a sample complexity that is determined only by the underlying difficulty of the POMDP, rather than the size of the state space or observation space,
 which can be prohibitively large.
-Monte-Carlo simulation provides a simple method for evaluating a state $s$.
+Monte-Carlo simulation provides a simple method for evaluating the value / fitness of a state.
 They provide an effective mechanism both for tree search and for belief state updates, breaking the curse of dimensionality and allowing much greater scalability than has previously been possible.
 
 In the brain, the HC would generate / imagine sequences of world states, observations and rewards. These simulations would be used to update the value function, without ever looking inside the black box describing the model's dynamics. This would be a simple control algorithm by evaluating all legal actions and selecting the action with highest evaluation.
@@ -1094,14 +1089,14 @@ The HC provides perturbed action-transition-state-reward samples
   Our approach acknowledges the unavoidable stochasticity of
   computation in neuronal processes \citep{faisal2008noise}.
 
-In our proposed RL-based view, \textit{inference} in the human brain reduces to generalization of
+  In our proposed model-free RL-based view, \textit{inference} in the human brain reduces to
+  generalization of
   policy and value adaptations from sampled experiences to
   successful action choices and reward predictions in future states.
   Plasticity in the DMN also arises naturally:
   If an agent behaving optimally in a given environment moves
   to novel, yet unexperienced environments, reward prediction errors will
-  massively increase. This will lead to adaptation of the policy matrix
-  and value function until the system converges to a
+  massively increase. This will lead to adaptation of the policy until the system converges to a 
   new steady-state of optimal action decisions given certain states.
   
 % \paragraph*{Some notes:}
