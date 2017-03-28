@@ -365,14 +365,14 @@ implement a reinforcement learning agent, at least in principle.
 
 
 \section{Known Neurobiological Properties of the Default Mode Network}
-We begin by a deconstruction the overall DMN function
-by the mechanistic relevance of each individual network node
-based on published findings from neuroscience experiments.
+We begin by a deconstruction of the overall DMN function
+by reviewing published findings from neuroscience experiments
+on the mechanistic relevance of each individual network node.
 %
-\subsection{The posteriormedial cortex: Global monitoring and integration}
-The posteriormedial cortex (PMC) and
+\subsection{The posteromedial cortex: Global monitoring and integration}
+The posteromedial cortex (PMC) and
 the dorsomedial prefrontal cortex (dmPFC) within the DMN
-are responsible for the highest metabolic turn-over
+are probably responsible for the highest metabolic turn-over
 of glucose energy consumption in humans \citep{raichle2001pnas}.
 The PMC myelinates relatively late during postnatal development in monkeys
 \citep{goldman1987development}, generally considered to
@@ -381,18 +381,20 @@ Physiological and disturbed metabolic fluctuations in the
 human PMC have been repeatedly related to
 phenomena of changed conscious awareness,
 including anesthesia,
-sleep, and forms of coma \citep{cavanna2006precuneus}.
+sleep, and coma \citep{cavanna2006precuneus}.
 %
 The PMC has long been speculated to reflect constant computation of
 the environmental statistics and its internal representation
-as an "inner minds eye" \citep{cavanna2006precuneus}.
+to resemble "inner minds eye" \citep{cavanna2006precuneus}.
+
+
 For instance, B\'alint's syndrome is a neurological disorder of conscious
 awareness that results from damage in the bilateral parietal cortex
 \citep{balint1909seelenlahmung}.
 Patients are plagued by an
 inability to bind various individual features of the visual
 environment into an integrated whole (i.e., simultanagnosia)
-as well as inability to direct action towards
+as well as by the inability to direct action towards
 currently unattended environmental objects
 (i.e., optic ataxia).
 This can be viewed as a high-level impairment in the gathering
@@ -401,17 +403,17 @@ leveraging these environmental opportunities (i.e., exploitation).
 Congruently,
 the human PMC was coupled in two functional connectivity modalities
 with the amygdala involved in significance evaluation and
-the nucleus accumbens (NAc), involved in reward evaluation.
+the nucleus accumbens (NAc), involved in reward evaluation
+\citep{bzdok2015subspecialization}.
 Specifically, among all parts of the PMC,
 the human ventral posterior cingulate cortex was
 most connected to the laterobasal
-nuclei group of the amygdala
-\citep{bzdok2015subspecialization}.
+nuclei group of the amygdala.
 This amygdalar subregion has been proposed to
 continuously scan environmental input
 for biological significance assessment.
 %
-Indeed,
+In support of this contention,
 electrophysiological recordings in animals implicated the PMC in
 strategic selection \citep{pearson2009neurons},
 risk assessment \citep{mccoy2005risk},
@@ -448,30 +450,30 @@ and evaluation of reward contingencies by integrating these with
 information from memory and altered perspective frames.
 Regarding memory retrieval, retrosplenial lesions have been
 consistently associated with anterograde and retrograde memory impairments
-of various kinds of sensory information
-in rabbits and humans
+of various sensory inputs in rabbits and humans
 \citep{vann2009does}.
 Regarding perspective frames, this PMC subregion has been
-proposed to mediate between the organism's egocentric
+proposed to mediate between the organism's egocentric viewpoint
 (i.e., focused on sensory input) and
-allocentric (i.e., focused on world knowledge) viewpoints
+allocentric viewpoint (i.e., focused on world knowledge) 
 in animals and humans
 \citep{epstein2008parahippocampal, burgess2008spatial, valiquette2007different}.
-%
-The PMC may consequently monitor the subjective outcomes
+
+
+The overall PMC may consequently monitor the subjective outcomes
 of possible decisions and integrates that information
 with memory, perspective frames, and
 reward schedules into higher-level strategies.
 Perceived value that differs across individuals updates
 statistical assessment of the environment
 to predict delayed reward opportunities in the future.
-In doing so, the PMC continuously adapts to changes
+In doing so, the PMC needs to continuously adapts to changes
 in both the external environment and its internal representation
 that modulate strategic behavioral adjustment in volatile environments.
 
 
-\subsection{The prefrontal cortex: Stimulus-value assocation and action consideration}
-The dmPFC subserves predominantly ambiguous amodal processes
+\subsection{The prefrontal cortex: Stimulus-value association and action consideration}
+The dmPFC subserves predominantly ambiguous processes
 across time, space, and content domains in
 sensory-independent top-down pathways.
 This DMN node has been described as a “mental sketchpad”
@@ -480,7 +482,7 @@ potentially implicated in de-novo generation and binding
 of meaning representations instructed by stored semantics and memories.
 %
 The dmPFC may thus enable inference, representation, and assessment
-of one's own and other individuals' action and thoughts.
+of one's own and other individuals' actions and thoughts.
 Generally,
 patients with neurological lesions in the prefrontal cortex
 are known to adapt to novel situations and stimuli with difficulty
@@ -503,41 +505,48 @@ episodic memory retrieval, generative construction processes,
 and explicit knowledge of the external world.
 %
 According to computational neuroimaging experiments,
-the dmPFC activity preferentially models stimulus-value associations of
+neural activity in the dmPFC
+preferentially models stimulus-value associations of
 possible actions that are not actually executed,
-whereas the vmPFC activity models value in the environment that leads performed actions
+whereas neural activity
+in the ventral portion of the medial PFC models value in the environment that leads performed actions
 \citep{nicolle2012agent}.
 
 The ventromedial prefrontal cortex (vmPFC) subserves
-less ambiguous subjective-value-related evaluative processes and
-reward-informed risk estimation of self-relevant environmental stimuli.
-This DMN node is more closely associated with
+evaluation of subjective value as well as
+reward and risk estimation of environmental stimuli.
+In contrast to the dmPFC,
+the vmPFC node of the DMN is more closely associated with
 orchestrating adapted behavior by bottom-up-driven
 processing of “what matters now”,
-probably drawing on model-based value representations
+probably drawing on internal value representations
 \citep{doherty2015structure}.
-Quantative lesion findings across 344 human individuals confirmed
+Quantitative lesion findings across 344 human individuals confirmed
 a gross impairment in value-based decision making
 \citep{glascher2012lesion}.
-The vmPFC is preferentially connected with limbic and reward-related areas.
+The vmPFC is preferentially connected with areas of the
+limbic and reward systems.
 The vmPFC has been observed to have monosynaptical connections
-with the nucleus accumbens
+with the NAc
 in axonal tracing studies in monkeys \citep{haber1995orbital}.
-Additionally, the gray-matter volume of the vmPFC and nucleus accumbens
+Additionally, the gray matter volume of the vmPFC and NAc
 correlated with indices of value-guided behavior and social reward attitudes
 \citep{lebreton2009automatic}.
 NAc activity is thought to reflect reward prediction signals from dopaminergic pathways
 \citep{schultz1998predictive}
 that not only modulate motivated behavior towards basic survival needs but also
 subserve RL in humans more broadly \citep{doherty2015structure}.
-This is consistent with diffusion MRI (dMRI) tractography in humans and monkeys
+This is consistent with diffusion MRI tractography in humans and monkeys
 \citep{croxson2005quantitative} that
-quantified this brain regions to
+quantified NAc to
 be substantially more likely connected to the vmPFC than dmPFC in both species.
 Two functional connectivity modalities in humans strongly connected
-the vmPFC with the nucleus accumbens, hippocampus (HC),
-and posteriomedial cortex.
-%
+the vmPFC with the NAc, hippocampus (HC),
+and PMC.
+
+
+
+In fact,
 The vmPFC is often proposed to be involved in (external) emotional
 reactions and own (visceral) arousal.
 Real or imaginged bodily states could be mapped in the vmPFC
@@ -548,18 +557,16 @@ the vmPFC consistently reflects an individual’s subjective
 valuation
 \citep{behrens2008associative}.
 This may be why performance within and across participants
-was related to state encoding in OFC.
+was related to state encoding in this part of the brain.
 Such a \textit{cognitive map} of action space was argued to encode
 the current task state even when states are unobservable from sensory input,
 which was shown to be critical for behavior.
 Additionally,
 independent whole-brain analyses from structural
-neuroimaging studies related the gray-matter volume GMV of the vmPFC,
+neuroimaging studies related the gray matter volume GMV of the vmPFC,
 more consistently than any other
-brain region, to indices of
-social competence and social network complexity,
-among the most complicated decision that humans and monkeys take
-\citep{behrens2009computation}.
+brain region, to complex decision making
+in humans and monkeys \citep{behrens2009computation}.
 %
 
 
@@ -587,7 +594,7 @@ Single-cell recordings in the animal hippocampus revealed
 some constantly active neuronal ensembles whose firing coincided with
 distinct locations in space while the animal navigated through its surroundings.
 London taxi drivers, individuals with high performance in spatial navigation,
-were shown to exhibit increased grey matter volume in the
+were shown to exhibit increased gray matter volume in the
 posterior hippocampus \citep{maguire2000navigation}.
 Indeed, place-specific neuronal populations in the hippocampus
 spike one after another when an animal is choosing between alternative
@@ -611,13 +618,13 @@ as well as directly before upcoming experimental trials \citep{diba2007forward}.
 Such hippocampal ensemble burts during rest and sleep
 have been proposed to be critical in communicating local information
 to the neocortex for long-term storage, potentially also in the nodes of the DMN.
-These mechanisms of the hippocampus probably make important contributions to the
+Such mechanisms of the hippocampus could also make important contributions to the
 recollection of autobiographical memory episodes and other
 reexperienced or newly generated mental scenarios
 \citep{hassabis2007patients}.
 %
-The HC thus orchestrates elements of experienced environmental aspects for
-consolidations based on reenactment and for integration into
+The HC thus reenacts elements of experienced environmental aspects for
+consolidations and potentially, for integration into
 rich mental scene construction. In this way, the HC may even influence
 ongoing perception in the current environment
 \citep{maguire2016}.
@@ -861,7 +868,7 @@ following a policy $\pi$.
 \begin{mdframed}
   \textbf{Where is ``value'' buffered in the brain ?}
   The amygdala is known to be involved in significance evaluation) and
-  the nucleus accumbens (NAc) is involved in reward evaluation.
+  the NAc is involved in reward evaluation.
 \end{mdframed}
   The  goal of RL is then adapt this policy so as to  maximize the cumulative rewards. In
   the definition of $G^\pi$ above, the constant $\gamma$ $(0 \le \gamma < 1$) is the reward \textit{discount factor}.
