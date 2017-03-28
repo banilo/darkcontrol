@@ -1131,7 +1131,7 @@ Because surprisal is intractably difficult to optimize (since we would need to s
 The main algorithm for minimizing free-energy $F_G^R(\x)$ is the \textit{wake-sleep algorithm}.
 \citep{dayan1995helmholtz}. As noted already in \citep{dayan1995helmholtz},
 a crucial drawback of the wake-sleep algorithm is that it requires a concurrent models (generative and recogntiion), which together do not correspond to optimization of (a bound of) the marginal likelihood (because of the incorrect KL used therein, etc.). Thus the brain could not possible be running such a algorithm, not even in principle! To the rescue, we note that the recent theory of
-\textit{variational auto-encoders (VAEs)} \citep{kingma2013auto} might provide an efficient alternative to the wake-sleep algorithm, as it overcomes the technical limits of the former, by using a reparametrization trick. For example, unlike the wake-sleep algorithm for minimizing free-energy, VAEs can be efficiently trained back-propagation of learning errors.
+\textit{variational auto-encoders (VAEs)} \citep{kingma2013auto} might provide an efficient alternative to the wake-sleep algorithm, as it overcomes the technical limits of the former, by using a reparametrization trick. For example, unlike the wake-sleep algorithm for minimizing free-energy, VAEs can be efficiently trained via back-propagation of learning errors.
 
 \subsubsection{Comparison to our proposed theory}
 On the surface, a common point between the FEP and our proposed RL-based framework
