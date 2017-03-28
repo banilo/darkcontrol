@@ -637,7 +637,7 @@ the right and left TPJ are known to have hemispheric differences
 according to their cytoarchitectonic borders and gyrification pattern
 \citep{seghier2013angular}.
 Neuroscientific investigations on hemispheric functional specialization
-have converged to the right versus left cerebral hemisphere as dominant for
+have highlighted the right versus left cerebral hemisphere as dominant for
 attention versus language functions.
 %
 The anterior RTPJ is a key node of the DMN that  is central for
@@ -672,13 +672,13 @@ In the face of large discrepancies between actual and previously predicted
 environmental events the RTPJ acts a potential switch between
 externally-oriented mind sets focussed on the
 sensory world and internally-oriented mind sets focussed
-on self-relevant mind-wandering of possible mental scenarios.
+on self-relevant mind wandering through mental scenarios.
 Transient RTPJ in humans for instance disrupted the
 impact of predicted intentions of other individuals
 \citep{young2010disruption},
 a capacity believed to be subserved by the DMN.
 The RTPJ might hence be an important player that shifts away
-from the default active ‘‘internally directed’’ processes
+from the ‘‘internally directed’’ baseline processes
 to deal instead with immediate environmental objects and contexts.
 % (TODO: slow endogeneous changes in state transitions by the policy and value matrices)
 
@@ -706,12 +706,11 @@ without obvious relation to processing any language content
 %
 Also inner speech hinges on knowledge retrieval of statistical structure
 about the physical and inter-personal world.
-Multivariate volumetric analyses showed that the internal production of
-formulated thought ("language of the mind") is closely related to the left TPJ
+Indeed,
+the internal production of
+formulated thought ("language of the mind") was closely related to the left TPJ
+in a multivariate analysis of brain volume
 \citep{geva2011neural}.
-A number of neuroimaging studies demonstrated LTPJ activity responses
-to sementically aberrant words in sentences, which suggests a role
-in binding a given semantic concept into an integrated whole.
 Further,
 episodic memory recall and imagination strongly draw on
 complex world knowledge.
@@ -730,10 +729,10 @@ We now argue that the DMN is equipped with sufficient neurobiological substrates
 for implementing all the major components (memory, reward signaling, accumulators, random sampling, etc.)
 of an efficient \textit{reinforcement learning (RL)} algorithm, and all these
 components integrate in a plausible way.
-Reinforcement Learning (RL) is learning to achieve a goal by interacting with an external
-\textit{environment / world}. In a general RL framework, an \textit{agent}
+Reinforcement learning is learning to achieve a goal by interacting with an external
+\textit{environment}. In a general RL framework, an \textit{agent}
 interacts with an  environment in a trial-by-error fashion by taking
-actions / decisions $a$, which trigger changes in the
+actions $a$, which trigger changes in the
 \textit{state} of the environment
 $s \rightarrow s'$, accompanied by a real-valued \textit{reward}
 $r = r(s, a)$ (or regret!, since it can be negative) collected by the
@@ -773,9 +772,10 @@ based on a brain implementation of Markov Chain Monte Carlo sampling
 
 \subsection{Partially Observable Markov Decision Processes}
 It is our view that at a sufficiently coarse scale, the brain is a physical system governed by the laws of
+\textbf{XXX the paper is about the DMN more specifically, perhaps try to sharpen}
 physics and can be locally described by Markov processes. Indeed, as noted in \cite{tegmark2016improved},
 any system obeying the laws of classical physics can be accurately modeled as a Markov process as long as the time
-step is sufficiently short (defining $s(t)$ --the state at time $t$-- as the position in phase space).
+step is sufficiently short, defining $s(t)$, the state at time $t$, as the position in phase space.
 If the process has $memory$ such that the next state depends not only on the current state but also on some finite
 number of past states,
 rational probabilistic planning can reformulated
@@ -855,7 +855,8 @@ This random variable\footnote{Random as it depends both on the environment's dyn
   policy $\pi$ being played (which can be stochastic).}  measures the cumulative reward of
 following a policy $\pi$.
 \begin{mdframed}
-  \textbf{Where is ``value'' buffered in the brain ?}
+  \textbf{Where is ``value'' buffered in the brain ? You mean where in the DMN!
+  then the answer is in the vmPFC which is connected to the NAc}
   The amygdala is known to be involved in significance evaluation) and
   the nucleus accumbens (NAc) is involved in reward evaluation.
 \end{mdframed}
@@ -863,18 +864,20 @@ following a policy $\pi$.
   the definition of $G^\pi$ above, the constant $\gamma$ $(0 \le \gamma < 1$) is the reward \textit{discount factor}.
 Taking $\gamma = 0$   corresponds to a perfectly myopic agent who is solely concerned about their
 immediate rewards and has no horizon for the future, which is not compatible with long-term goal planning
-as implemented in the DMN. For there to be any learning at all, it is thus necessary that $0 < \gamma < 1$.
+as potentially implemented in the DMN. For there to be any learning at all, it is thus necessary that $0 < \gamma < 1$.
 % \footnote{In which case we can take $T \rightarrow +\infty$, provided the reward function $r$ is bounded.}.
-Thus the agent is positively biased towards considering rewards which are will
-come soon. The reward importance hence decays exponentially
+Thus, the agent is positively biased towards considering rewards which with
+a short time delay. The reward importance hence decays exponentially
 with distance in the future,
 given that there is more uncertainty in the farsighted future.
 The reward discount factor $\gamma$ can thus be seen as calibrating
-the delay discounting behavior of the intelligent agent.
+the delay discounting behavior of the intelligent agent,
+that is the decision related to reward-delay tradeoff schedules.
 It is also important to appreciate that a stochastic policy estimation
 is more advantageous in many RL settings.
 For instance, a deterministic strategy in playing rock-paper-scissors can
 be easily exploited and a uniformly random choice is optimal.
+\textbf{XXX I love this example :-)}
 
 \subsection{The Q-value: a goodness measure for actions}
 The agent's goal can then be formulated as finding policy $\pi$ which maximizes the
@@ -898,7 +901,10 @@ provides a formalization of optimal selection.
 
 \subsection{Computing optimal behavior}
 By construction, maximizing the expectation in  \eqref{eq:qval} is intractable in general
-due to the enormous number of possible trajectories the agent might need to
+\textbf{XXX coputationally or statistically?}
+due to the enormous number of possible
+\textbf{XXX action???}
+trajectories the agent might need to
 consider.
 % \begin{mdframed}
 %   \textbf{N.B.:}
@@ -906,7 +912,10 @@ consider.
 %   neurobiological implementation, this provides a framework of how
 %   optimal behavior could be computable in the human brain.
 % \end{mdframed}
-One popular simplification that removes this issue is to only consider the sub-family of
+One popular simplification that removes
+%this issue
+\textbf{excess in complexity on the agent's horizon???}
+is to only consider the sub-family of
 \textit{deterministic policies}, which map each state to the best single best action which
 should be taken at thin state, and therefore define functions from states to actions.
 
@@ -918,7 +927,7 @@ should be taken at thin state, and therefore define functions from states to act
 \end{equation}
 % where $\tilde{Q}(s, a)$ is the current estimate of the state-action value
 % table.
-The celebrated \textit{Bellman's equation} \cite{sutton1998reinforcement} then takes the simple form
+The \textit{Bellman's equation} \cite{sutton1998reinforcement} then takes the simple form
 \begin{equation}
   \begin{split}
     Q^\pi(s, a) &= \mathbb E_{s' \sim p(s'|s,a)} [r(s,a) + \gamma \max_{a' \in \mathcal A}Q^\pi(s', a')]
