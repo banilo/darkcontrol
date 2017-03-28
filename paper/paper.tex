@@ -206,16 +206,18 @@
 
 
 \begin{abstract}
-The default mode network (DMN) is the brain manifestations of the human
-baseline mental activity.
+The default mode network (DMN) reflects the  baseline mental activity
+in humans.
 %
 Many research streams agree on its likely role in evolutionarily adaptive
 envisioning of mental scenarios to predict the environment.
-The DMN would hence be dedicated to continuous autobiographical memory retrieval,
+The DMN is believed to be dedicated to
+continuous autobiographical memory retrieval,
 generation of hypothetical outcomes,
 and reward contingency evaluation when letting the mind go.
-It explains its highest energy consumption in the brain and
-its intimate coupling with conscious awareness.
+Indeed, the DMN probably accounts for the
+highest energy consumption in the brain and
+is intimately coupled with conscious awareness.
 %
 This concept paper proposes a process model that describes
 \textit{how} the DMN may actually implement continuous
@@ -261,23 +263,25 @@ What has early been described as the "stream of consciousness"
 in psychology \citep{james1890principles}
 found its neurobiological manifestation
 in the so-called "default mode network" (DMN)
-\citep{shul1997}. This networked collection of some of the highest regions in
+\citep{shul1997}. This networked collection of some of brain regions at the top of
 the human association cortex \citep{mesulam1998sensation, margulies2016situating}
 consistently
 increased in neural activity during
 unfocused everyday mind wandering \citep{raichle2001pnas}.
-In the beginning of the 21st century, brain imaging was hence the first technology
+In the beginning of the 21st century, brain imaging
+was perhaps the first existing technology
 to allow for the discovery of a unique brain network that subserves
 baseline mental activities
-\citep{bzdok2015resting}.
+\citep{raichle2007default, bzdok2015resting}.
 
 
 \subsection{Default mode network: Higher-order control of the organism}
 The DMN appeared to be exclusive in task-induced
 deactivation during various psychological experiments.
-This processing of unknown information categories in the DMN has
+This processing of yet-to-be-discovered information categories in the DMN has
 been argued to mediate an evolutionarily conserved function for the individual.
-This is all the more likely because the DMN contains the two
+This is all the more likely becaus
+the DMN has been shown to contain the two
 biggest hotspots of energy consumption in the entire central nervous system
 \citep{raichle2001pnas}.
 DMN activity also persists to a substantial degree during
@@ -308,9 +312,10 @@ and being guided by rich
 reenactment of really-happened, hypothetically conceived, and
 predicted future events to perfect ongoing behavioral performance.
 A particularly attractive computational framework
-to describe, quantify, and predict autonomously acting systems like the brain
-can be the combination of control theory and reinforcement learning.
-It is known that, the more the external world is predictable,
+to describe, quantify, and experimentally test
+autonomously acting systems like the brain
+can be the combination of control theory and reinforcement learning (RL).
+It is long known that, the more the external world is predictable,
 the more mental activity becomes detached from the actual sensory environment
 \citep{antrobus1966studies, pope1978regulation}.
 Conversely,
@@ -318,10 +323,6 @@ the more the currently executed task is unknown and unpracticed,
 the lower the tendency for stimulus-independent thoughts
 \citep{filler1973daydreaming, teasdale1995stimulus}.
 These ``offline'' processes may however contribute to optimized control of the organism.
-% We formalize
-% a policy matrix to capture the space of possible actions that can be performed
-% on the environment given the current state. A value matrix
-% maps expected rewards to environmental objects and events.
 % Switching between states reduces to a sequential processing model.
 % In a model-based reinforcement learning (RL) approach,
 % we try to understand the environment always better
@@ -357,12 +358,8 @@ probabilistic model of anticipated events''
 The idea has been invigorated by empirical evidence from
 neuroscientific experiments \citep{kording2004bayesian, fiser2004small}.
 This paper proposes a formal model that satisfies this contention.
-
 We show that the DMN is endowed with sufficient neurobiological equipment to
-implement a reinforcement learning (RL) agent, at least in principle. A global
-picture of the current body of knowledge (predictive coding, free-energy principle,
-sentinel hypothesis, etc.) concerning decision-making in the brain
-is drawn, with the DMN at its core. Our work ...
+implement a reinforcement learning agent, at least in principle.
 
 
 
@@ -781,6 +778,7 @@ rational probabilistic planning can reformulated
 as a standard memoryless Markov process by simply expanding the
 definition of the state $s$ to include elements of the past.
 
+
 In artificial intelligence (AI), a popular abstract model for
 multi-step decision processes in such an environment are so-called
 \textit{Partially Observable Markov Decision Processes (POMDPs)}.
@@ -793,6 +791,13 @@ In contrast, \textit{model-based RL} starts off with some mechanistic assumption
 These can be assumptions about the physical laws governing the agent's world or constraints on the state-space and transitions thereupon.
 For example if a rat in a maze knows, for sure,
 that staying still will produce no change in the environment, and in particular will not eventually lead to finding the food.
+We formalize
+a policy matrix to capture the space of possible actions that can be performed
+on the environment given the current state. A value matrix
+maps expected rewards to environmental objects and events.
+
+
+
 % A core property of human intelligence has been proposed underly to improve
 % on an expected utility outcomes as a strategy for action choice in uncertain
 % environments \citep{gershman2015computational}.
