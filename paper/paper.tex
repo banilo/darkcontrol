@@ -790,6 +790,15 @@ but the agent cannot directly observe the underlying state. Instead, it tries to
 signal which is tried alongside each transition in the environments state-space, and maintains a probability distribution over the set of possible
 states, based on a set of observations and observation probabilities. This is a minimal amount of assumptions that can be made about an environment,
 and is characteristic of so-called \textit{model-free RL}, the approach adapted by our work.
+\begin{mdframed}
+\textbf{Model-free RL in the brain is plausible.}  Indeed, as was noted in \cite{dayan2008decision}, it has long been suggested in the literature that there
+  is a rather direct mapping of model-free RL learning algorithms
+onto the brain, with the neuromodulator dopamine serving
+as a teaching signal to train values or policies by controlling
+synaptic plasticity at targets such as the ventral and
+dorsolateral striatum.
+\end{mdframed}
+
 In contrast, \textit{model-based RL} starts off with some mechanistic assumptions about the dynamics of world.
 These can be assumptions about the physical laws governing the agent's world or constraints on the state-space and transitions thereupon.
 For example if a rat in a maze knows, for sure,
@@ -900,10 +909,8 @@ When a choice of actions is available, the $Q^{\pi}(s,a)$
 provides a formalization of optimal selection.
 
 \subsection{Computing optimal behavior}
-By construction, maximizing the expectation in  \eqref{eq:qval} is intractable in general
-\textbf{XXX coputationally or statistically?}
-due to the enormous number of possible
-\textbf{XXX action???}
+By construction, maximizing the expectation in  \eqref{eq:qval} is computationally intractable in general
+due to the enormous number of possible action
 trajectories the agent might need to
 consider.
 % \begin{mdframed}
@@ -913,9 +920,7 @@ consider.
 %   optimal behavior could be computable in the human brain.
 % \end{mdframed}
 One popular simplification that removes
-%this issue
-\textbf{excess in complexity on the agent's horizon???}
-is to only consider the sub-family of
+this issue is to only consider the sub-family of
 \textit{deterministic policies}, which map each state to the best single best action which
 should be taken at thin state, and therefore define functions from states to actions.
 
@@ -1026,7 +1031,7 @@ $$\nabla_{\theta^Q_{k+1}}Q(s, a|\theta^Q_{k+1}) = \phi(s, a) = \delta_{(s,a)}.$$
 In RL, Monte-Carlo simulation can be used to update the agent's belief state
 \citep{silver2010monte}. Such methods have a sample complexity that is determined only by the underlying difficulty of the POMDP, rather than the size of the state space or observation space,
 which can be prohibitively large.
-Monte-Carlo simulation provides a simple method for evaluating a state $s$.
+Monte-Carlo simulation provides a simple method for evaluating the value / fitness of a state.
 They provide an effective mechanism both for tree search and for belief state updates, breaking the curse of dimensionality and allowing much greater scalability than has previously been possible.
 
 In the brain, the HC would generate / imagine sequences of world states, observations and rewards. These simulations would be used to update the value function, without ever looking inside the black box describing the model's dynamics. This would be a simple control algorithm by evaluating all legal actions and selecting the action with highest evaluation.
@@ -1052,7 +1057,7 @@ In the general artificial case, the problem has been extensively studied and par
 IRL is is suited for problems in which it's hard to define what the reward function could be
 (e.g car-driving, drone maneuvering, etc.) ...
 
-\subsection{Conclusion: putting everything together}
+\subsection{Putting everything together}
 \begin{figure}[!h]
   \includegraphics[width=.9\linewidth]{rl_process_chart.pdf}
   \caption{The DMN as an RL agent...}
@@ -1084,14 +1089,14 @@ The HC provides perturbed action-transition-state-reward samples
   Our approach acknowledges the unavoidable stochasticity of
   computation in neuronal processes \citep{faisal2008noise}.
 
-In our proposed RL-based view, \textit{inference} in the human brain reduces to generalization of
+  In our proposed model-free RL-based view, \textit{inference} in the human brain reduces to
+  generalization of
   policy and value adaptations from sampled experiences to
   successful action choices and reward predictions in future states.
   Plasticity in the DMN also arises naturally:
   If an agent behaving optimally in a given environment moves
   to novel, yet unexperienced environments, reward prediction errors will
-  massively increase. This will lead to adaptation of the policy matrix
-  and value function until the system converges to a
+  massively increase. This will lead to adaptation of the policy until the system converges to a 
   new steady-state of optimal action decisions given certain states.
   
 % \paragraph*{Some notes:}
@@ -1131,14 +1136,13 @@ Because surprisal is intractably difficult to optimize (since we would need to s
 The main algorithm for minimizing free-energy $F_G^R(\x)$ is the \textit{wake-sleep algorithm}.
 \citep{dayan1995helmholtz}. As noted already in \citep{dayan1995helmholtz},
 a crucial drawback of the wake-sleep algorithm is that it requires a concurrent models (generative and recogntiion), which together do not correspond to optimization of (a bound of) the marginal likelihood (because of the incorrect KL used therein, etc.). Thus the brain could not possible be running such a algorithm, not even in principle! To the rescue, we note that the recent theory of
-\textit{variational auto-encoders (VAEs)} \citep{kingma2013auto} might provide an efficient alternative to the wake-sleep algorithm, as it overcomes the technical limits of the former, by using a reparametrization trick. For example, unlike the wake-sleep algorithm for minimizing free-energy, VAEs can be efficiently trained back-propagation of learning errors.
+\textit{variational auto-encoders (VAEs)} \citep{kingma2013auto} might provide an efficient alternative to the wake-sleep algorithm, as it overcomes the technical limits of the former, by using a reparametrization trick. For example, unlike the wake-sleep algorithm for minimizing free-energy, VAEs can be efficiently trained via back-propagation of learning errors.
 
 \subsubsection{Comparison to our proposed theory}
 On the surface, a common point between the FEP and our proposed RL-based framework
   is placing the minimization of a surprise signal at the core of brain function.
   Indeed in RL, surprise minimization is subsumed  by accurate prediction of
-  rewarding outcomes in the future. A ``free-energy'' agent is barely a biomechanical machine which has the tendency to resist internal phase-transitions which lead contradictory with the
-  blurred version of the external world captured as sensations
+  rewarding outcomes in the future. A ``free-energy'' agent is barely a biomechanical machine which has the tendency to resist undesired / harmful phase-transitions.
   \citep{friston2010free,fristonAIorRL,ortega2013thermodynamics}. Such a theory cannot by itself,
   explain the emergence of strategic behavior inherent in humans (e.g cite dark-room experiment).
   
