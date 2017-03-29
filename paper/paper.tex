@@ -557,7 +557,7 @@ the vmPFC consistently reflects an individual’s subjective
 valuation
 \citep{behrens2008associative}.
 This may be why performance within and across participants
-was related to state encoding in OFC.
+was related to state encoding in vmPFC.
 Such a \textit{cognitive map} of action space was argued to encode
 the current task state even when states are unobservable from sensory input,
 which was shown to be critical for behavior.
@@ -765,7 +765,7 @@ The environment is generally taken as stochastic,
 in one sentence each.}
 is \textit{partially observed},
 in the sense that only part of the current state is observed by
-the agent.
+the agent \citep{starkweather2017dopamine}.
 This unpredictability
 \textbf{XXX Explain this sentence better because it is important.}
 is realistic in a model which sets out
@@ -971,7 +971,7 @@ should be taken at thin state, and therefore define functions from states to act
 \end{equation}
 % where $\tilde{Q}(s, a)$ is the current estimate of the state-action value
 % table.
-The \textit{Bellman equation} \cite{sutton1998reinforcement} then takes the simple form
+The \textit{Bellman equation} \citep{sutton1998reinforcement} then takes the simple form
 \begin{equation}
   \begin{split}
     Q^\pi(s, a) &= \mathbb E_{s' \sim p(s'|s,a)} [r(s,a) + \gamma \max_{a' \in \mathcal A}Q^\pi(s', a')]
@@ -1036,7 +1036,8 @@ $${Q}(s, a|\theta^Q) = \phi(s,a)^T\theta^Q.$$
 $\phi(s,a)$ would represent a high-level hand-crafted representation of the state-action $(s,a)$ into an appropriate
 feature space. Such are the techniques that have been proposed by \cite{songNIPS2016}.
 %  and Parr et al. 2003 (JMLR)].
-A breakthrough alternative proposed by Google DeepMind \cite{mnih2015,silver2016mastering}, is to learn this
+A recently proposed breakthrough alternative
+\citep{mnih2015,silver2016mastering}, is to learn this
 representation using a deep neural net, leading to the so-called \textit{Deep Q-learning} family of methods which
 are by far the current state-of-the-art in RL. In such a case, $\theta^Q$
 would correspond to the strengths of low-level synaptic or high-level functional connections between different
@@ -1059,7 +1060,7 @@ wherein prediction errors (aka \textit{regrets})  are propagated from lower to h
 \begin{mdframed}
 \textbf{A note on classical RL algorithms.}
 Note that most RL algorithms, including \textit{Temporal Difference (TD)}
-learning \cite{sutton1998reinforcement}, REINFORCE \cite{williams1992}, and SARSA can be
+learning \citep{sutton1998reinforcement}, REINFORCE \citep{williams1992}, and SARSA can be
 cast in this general variational framework. For example TD corresponds to
 the above framework using a linear value approximator with feature encoding
 $\phi(s,a) = \delta_{(s,a)} =  \text{ point mass at }(s,a)$ on the grid
