@@ -968,7 +968,8 @@ The \textit{Bellman equation} \citep{sutton1998reinforcement} then takes the sim
   \end{split}
   \label{eq:bellman}
 \end{equation}
-This \textit{fixed-point} equation provides a recursive decomposition of optimal behavior.
+This \textit{fixed-point} equation provides a recursive decomposition of optimal behavior by dividing the value function into the immediate reward
+and the discounted rewards of the upcoming states.
 A complicated dynamic programming optimization can be
 broken into simpler sub-problems at different time points,
 which has often been closely related to the medial prefrontal part of the DMN
@@ -1079,7 +1080,8 @@ They provide an effective mechanism both for tree search and for belief state up
 
 In the human brain,
 the HC could contribute to synthesizing imagined sequences of world states,
-observations and rewards. These simulations would be used to update the value function, without ever looking inside the black box describing the model's dynamics. This would be a simple control algorithm by evaluating all legal actions and selecting the action with
+observations and rewards \citep{aronov2017}.
+These simulations would be used to update the value function, without ever looking inside the black box describing the model's dynamics. This would be a simple control algorithm by evaluating all legal actions and selecting the action with
 \textbf{highest expected cumulative rewards [please double-check]}.
 In these challenging POMDPs, Monte-Carlo simulation provides an effective mechanism both for tree search and for belief state updates, breaking the curse of dimensionality and allowing much greater scalability than has previously been possible.
 Much recent work points to Monte Carlo or stochastic sampling– based approximations as a unifying framework for understanding how Bayesian inference may work practically across all these levels, in minds, brains, and machines. For sampling-based methods it is still almost non-existent beyond the description of receptive fields.
@@ -1562,7 +1564,7 @@ on the default mode network.
 Ultimately,
 the DMN can be viewed as a functional integrator
 from the relatively recent events to anticipated upcoming events
-in order to constantly improve present action in the world.
+in order to constantly improve present action in the dynamic world.
 
 
 
