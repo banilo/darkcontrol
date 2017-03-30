@@ -866,11 +866,10 @@ Since an action taken in the present moment $t$
 might have repercussions long into the future, it turns out that the
 quantity to optimize is not the instantaneous rewards $r(s, a)$, but a
 cumulative reward estimate which takes into account the future. A standard for
-modeling this accumulation is the so-called
-time-discounted \textit{cumulative reward} function
+modeling this accumulation is the time-discounted \textit{cumulative reward}% function
 \begin{equation}
   \label{eq:cumr}
-  G^\pi = \sum_{t=0}^{\infty}\gamma^{t}R_t.
+  G^\pi = \sum_{t=0}^{\infty}\gamma^{t}R_t = R_0 + \gamma R_1 + \gamma^2 R_2 + \ldots + \gamma^tR_t + \ldots
 \end{equation}
 This random variable\footnote{Random as it depends both on the environment's dynamic and the
   policy $\pi$ being played (which can be stochastic).}  measures the cumulative reward of
@@ -881,8 +880,8 @@ following a policy $\pi$.
   The amygdala is known to be involved in significance evaluation) and
   the nucleus accumbens (NAc) is involved in reward evaluation.
 \end{mdframed}
-  The  goal of RL is then to adapt this policy so as to  maximize the cumulative rewards. In
-  the definition of $G^\pi$ above, the constant $\gamma$ $(0 \le \gamma < 1$) is the reward \textit{discount factor}.
+  The  goal of RL is then to adapt this policy so as to  maximize $G^\pi$. In
+  the definition of cumulative reward $G^\pi$ above, the constant $\gamma$ $(0 \le \gamma < 1$) is the reward \textit{discount factor}.
 Taking $\gamma = 0$   corresponds to a perfectly myopic agent who is solely concerned about their
 immediate rewards and has no horizon for the future, which is not compatible with long-term goal planning
 as potentially implemented in the DMN.
@@ -994,10 +993,13 @@ $r + \gamma \max_{a'} Q(s', a'|\theta^Q_k)$, with the output of a parametrized r
 \mapsto {Q}(s, a|\theta^Q_{k})$. Here, $Q(.,.|\theta^Q_{k})$ is an approximator for the $Q$-value operator,  parameterized by weights $\theta^Q_{k+1}$
 (synaptic strengths, etc.).
 
-In the human brain, such an experience replay mechanism
-is likely to rely on the hyppocampus (HC). Indeed,
-hippocampal replay is a phenomenon observed in rats, mice, cats, rabbits, songbirds, and monkeys \textbf{XXX citation !!!}.
-Indeed, during sleep or awake rest, replay refers to the re-occurrence of a sequence of cell activations that also occurred during activity, but the replay has a much faster time scale.
+Biologically, experience replay would be manifested as the re-occurrence of a sequence of cell activations that also occurred during activity.
+%, but the replay has a much faster time scale.
+In the human brain, such a mechanism is likely to be implemented by the
+hyppocampus (HC), as experiments on various animals indicate this is the case.
+Indeed, this phenomenon has been observed in rats, mice, cats, rabbits, songbirds, and
+monkeys \cite{buhry2011,nokia2010,dave2000,skaggs2007}.
+
 
 Computing an optimal policy then corresponds to finding the parameters $\theta^Q_{k+1}$ which minimize the following mean-squared loss function
 \begin{equation}
