@@ -734,33 +734,23 @@ of intelligent RL agents appear to cross-talk in the DMN in a plausible way.
 
 
 
-Reinforcement learning is learning to achieve a goal by interacting with an external
-\textit{environment}.
-\textbf{XXX Don't define something with the same thing}
-In a general RL framework, an \textit{agent}
-interacts with an  environment in a trial-by-error fashion by taking
-\textit{actions} $a$, which trigger changes in the
+Reinforcement learning is a problem-solving technique in which, through their interactions with an external environment,
+an agent learns to reach a goal, optimize a reward signal, or minimize some cost,
+in an iterative trial-by-error fashion.
+At any moment, each action $a$ taken triggers a changes in the
 \textit{state} of the environment
 $s \rightarrow s'$, accompanied by a real-valued \textit{reward}
 $r = r(s, a)$ (or regret!, since it can be negative) collected by the
 agent.
 In this view, the environment is partially controlled by
 the action of the agent and the reward should be thought
-of as an instantaneous
-\textbf{XXX instant is problematic here, because it may change behavior only later in RL}
-satisfaction
-\textbf{XXX or punishment?}
-accompanying the execution of
+of as satisfaction --or punishment-- accompanying the execution of
 an action, and may be delayed, only becoming substantial when accumulated over an extended period of time.
-%% Here the subscript $t$ denotes time, and can be discrete or
-%% continuous.
-The environment is generally taken as stochastic,
-\textbf{XXX One sentence, one bullet. Please explain stochast and PO
-in one sentence each.}
-is \textit{partially observed},
+The environment is generally taken as stochastic, i.e unpredictable, changing in random ways. In addition,
+it is only \textit{partially observed},
 in the sense that only part of the current state is observed by
 the agent \citep{starkweather2017dopamine}.
-This unpredictability
+This unpredictability of the environment
 \textbf{XXX Explain this sentence better because it is important.}
 is realistic in a model which sets out
 to explain DMN function. Indeed, it is known that, the more the external world is predictable,
@@ -790,8 +780,8 @@ based on a brain implementation of Markov Chain Monte Carlo (MCMC) sampling
 \citep{tenenbaum2011grow}.
 
 \subsection{Partially Observable Markov Decision Processes}
-It is our view that at a sufficiently coarse scale, the brain is a physical system governed by the laws of
-\textbf{XXX the paper is about the DMN more specifically, perhaps try to sharpen}
+It is our view that at a sufficiently coarse scale, the brain --and therefore the DMN in particular--
+is a physical system governed by the laws of
 physics and can be locally described by Markov processes. Indeed, as noted in \cite{tegmark2016improved},
 any system obeying the laws of classical physics can be accurately modeled as a Markov process as long as the time
 step is sufficiently short, defining $s(t)$, the state at time $t$, as the position in phase space.
@@ -809,15 +799,14 @@ but the agent cannot directly observe the underlying state. Instead, it tries to
 signal. This is performed alongside each transition in the environments state-space, and maintains a probability distribution over the set of possible
 states, based on a set of observations and observation probabilities. This is a minimal amount of assumptions that can be made about an environment,
 and is characteristic of so-called \textit{model-free RL}, the approach adapted by our work.
-Such model-free RL is plausible in the human brain. Indeed, as was noted in \cite{dayan2008decision}, it has long been suggested in the literature that there
+
+Model-free RL is plausible in the human brain. Indeed, as was noted in \cite{dayan2008decision}, it has long been suggested in the literature that there
   is a rather direct mapping of model-free RL learning algorithms
 onto the brain,
-\textbf{XXX New sentence}
 with the neuromodulator dopamine serving
 as a teaching signal to train values or policies by controlling
 synaptic plasticity at targets such as the ventral and
 dorsolateral striatum.
-\textbf{XXX Loose all boxes by integrating the text please since it is not a usual layouting}
 
 In contrast, \textit{model-based RL} would start off with some mechanistic assumptions about the dynamics of world.
 These can be assumptions about the physical laws governing the agent's world or constraints on the state space and transitions between states.
@@ -826,7 +815,6 @@ that standing still will produce no change in the environment, and in particular
 % A core property of human intelligence has been proposed underly to improve
 % on an expected utility outcomes as a strategy for action choice in uncertain
 % environments \citep{gershman2015computational}.
-\textbf{XXX transition back to model-free RL is not clear. please make explicit}
 Our rat might represent such knowledge about the world as:
 \begin{itemize}
 \item $r(s, \text{``stand still''}) = 0$ if $s$ does not correspond to a cell / chamber containing food.
@@ -834,6 +822,7 @@ Our rat might represent such knowledge about the world as:
 \item etc.
 \end{itemize}
 
+\begin{definition}
 Mathematically, a POMDP is simply a quintuplet $(\mathcal S, \mathcal A, r, p, \mu)$ where
 \begin{itemize}
 \item $\mathcal S$ is the set of states, such as $\mathcal S = \{\text{happy}, \text{sad}\}$.
@@ -855,6 +844,7 @@ Mathematically, a POMDP is simply a quintuplet $(\mathcal S, \mathcal A, r, p, \
 %   $$S_t \leftarrow (S_0,A_0,R_0,S_1,A_1,S_2\ldots,S_t,A_{t-1},R_{t-1},S_{t})$$ made of the system's
 %   history up to an including time $t$.
 % \end{remark}
+\end{definition}
 
 \subsection{Long-term rewards and action policies}
 The behavior of the agent is governed by some kind of \textit{policy},
@@ -899,19 +889,17 @@ as potentially implemented in the DMN.
 To allow a learning process to arise,
 it is thus necessary that $0 < \gamma < 1$.
 % \footnote{In which case we can take $T \rightarrow +\infty$, provided the reward function $r$ is bounded.}.
-Thus, the agent is positively biased towards considering rewards with
-a short time delay. The reward importance hence decays exponentially
-with distance in the future,
-\textbf{XXX correct grammar in previous sentences}
-given that there is more uncertainty in the farsighted future.
-The reward discount factor $\gamma$ can thus be seen as calibrating
+Thus, the agent is more considering of rewards in to come in a short future, paying lesser attention to
+rewards to come in at a later time.
+% given that there is more uncertainty in the farsighted future.
+The reward discount factor $\gamma$ can then be seen as calibrating
 the delay discounting behavior of the intelligent agent,
-that is the decision related to reward-delay tradeoff schedules.
-It is also important to appreciate that a stochastic policy estimation
-is more advantageous in many RL settings.
-For instance, a deterministic strategy in playing rock-paper-scissors can
-be easily exploited and a uniformly random choice is optimal.
-\textbf{XXX I love this example :-)}
+that is the decision related to reward-delay trade-off schedules.
+% It is also important to appreciate that a stochastic policy estimation
+% is more advantageous in many RL settings.
+% For instance, a deterministic strategy in playing rock-paper-scissors can
+% be easily exploited and a uniformly random choice is optimal.
+% \textbf{XXX I love this example :-)}
 
 \subsection{The Q-value: A goodness measure for actions}
 The purpose of the DMN can then be
@@ -949,15 +937,12 @@ consider simultaneously.
 %   neurobiological implementation, this provides a framework of how
 %   optimal behavior could be computable in the human brain.
 % \end{mdframed}
-One popular solution that remedies
+One popular solution concept is called \text{Q-learning}. It remedies
 this issue is to only consider the sub-family of
-\textit{deterministic policies}, which map each state to the best single best action which
-should be taken at thin state, and therefore define functions from states to actions.
-\textbf{XXX sentence too long, please cut into 2}
+\textit{deterministic policies}, which map each state to the best single best action to
+take at the state. Such policies define deterministic functions from states to actions.
 
-\subsubsection{Q-learning} Q-learning (Watkins \& Dayan, 1992), a commonly used off-policy algorithm
-\textbf{XXX WHATTTEEE?}
-, uses the
+\subsubsection{Q-learning} Q-learning (Watkins \& Dayan, 1992), generates a
 \textit{greedy policy}
 \begin{equation}
   \pi(s) = \argmax_{a \in \mathcal A}{Q}(s, a).
