@@ -989,10 +989,10 @@ Now, at iteration $k+1$, replay consists in sampling (uniform or importance-weig
 \footnote{e.g weighted by TD error of the state transition $s \overset{a}{\rightarrow} s'$.} ?)  mini-batches of experiences
 $(s, a, r, s') \sim \mathcal U(D)$ from the replay memory $\mathcal D$
 and trying to approximate
-the would-be $Q$-value for the state-action pair $(s,a)$ as predicted by Bellman's equation \eqref{eq:bellman}, namely
+the would-be $Q$-value for the state-action pair $(s,a)$ as predicted by the Bellman equation \eqref{eq:bellman}, namely
 $r + \gamma \max_{a'} Q(s', a'|\theta^Q_k)$, with the output of a parametrized regression model $(s,a,r,s')
-\mapsto {Q}(s, a|\theta^Q_{k})$, where $Q(.,.|\theta^Q_{k})$ is an approximator for the $Q$-value operator,  parameterized by $\theta^Q_{k+1}$.
-\textbf{XXX please cut previous sentence into smaller pieces}
+\mapsto {Q}(s, a|\theta^Q_{k})$. Here, $Q(.,.|\theta^Q_{k})$ is an approximator for the $Q$-value operator,  parameterized by weights $\theta^Q_{k+1}$
+(synaptic strengths, etc.).
 
 In the human brain, such an experience replay mechanism
 is likely to rely on the hyppocampus (HC). Indeed,
@@ -1007,7 +1007,7 @@ Computing an optimal policy then corresponds to finding the parameters $\theta^Q
   \label{eq:oracle}
 \end{equation}
 where
-$ y = r + \gamma \max_{a' \in \mathcal A} Q(s', a'|\theta^Q_k) = r + \gamma Q(s', \pi(s')|\theta^Q_k)$ is the prediction target \textbf{XXX unpack what the target is !!!}.
+$ y = r + \gamma \max_{a' \in \mathcal A} Q(s', a'|\theta^Q_k) = r + \gamma Q(s', \pi(s')|\theta^Q_k)$ is the prediction target.
 % While $y_t$ is also dependent on $\theta^Q$, this is typically ignored.
 For instance, a general linear model with a kernel $\phi$ would be of the
 form
