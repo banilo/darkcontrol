@@ -739,7 +739,7 @@ an agent learns to reach goals, optimize reward signals, or minimize costs
 in an iterative trial-by-error fashion.
 At any moment, each taken \textit{action} $a$ triggers a changes in the
 \textit{state} of the environment
-$s \rightarrow s'$, accompanied by a real-valued \textit{reward}
+$s \rightarrow s'$, accompanied by environmental feed signals as \textit{reward}
 $r = r(s, a)$ (or regret!, since it can be negative) collected by the
 agent.
 In this view, the environment is partially controlled by
@@ -1028,18 +1028,21 @@ $ y = r + \gamma \max_{a' \in \mathcal A} Q(s', a'|\theta^Q_k) = r + \gamma Q(s'
 For instance, a general linear model with a kernel $\phi$ would be of the
 form
 $${Q}(s, a|\theta^Q) = \phi(s,a)^T\theta^Q.$$
-$\phi(s,a)$ would represent a high-level hand-crafted representation of the state-action $(s,a)$ into an appropriate
-feature space. Such are the techniques that have been proposed by \cite{songNIPS2016}.
+$\phi(s,a)$ would represent a high-level hand-crafted representation in an
+appropriate form of the state-action pairs $(s,a)$,
+as proposed by \cite{songNIPS2016}.
 %  and Parr et al. 2003 (JMLR)].
 A recently proposed breakthrough alternative
 \citep{mnih2015,silver2016mastering}, is to learn this
 representation using a deep neural net, leading to the so-called \textit{Deep Q-learning} family of methods which
 are by far the current state-of-the-art in RL. In such a case, $\theta^Q$
-would correspond to the strengths of low-level synaptic or high-level functional connections between different
-neurons / nodes / regions in the network.
+would correspond to the strengths of low-level synaptic or high-level functional connections between different elements
+in brain networks.
+\textbf{XXX perhaps add one sentence to rephrase and detail the idea}
 
-Learning of the the entire model parameters can effictively be achieved via \textit{backprop},
-wherein prediction errors (aka \textit{regrets})  are propagated from lower to higher regions to modulate the choice of future actions
+Learning (i.e., fitting)
+of the the entire model parameters can effictively be achieved via \textit{backprop},
+wherein prediction errors (i.e., \textit{regrets})  are propagated from lower to higher regions to modulate the choice of future actions
 % online stochastic gradient descent is used to minimize the variational objective
 % \eqref{eq:oracle}.
 
@@ -1056,7 +1059,7 @@ wherein prediction errors (aka \textit{regrets})  are propagated from lower to h
 \textbf{A note on classical RL algorithms.}
 Note that most RL algorithms, including \textit{Temporal Difference (TD)}
 learning \citep{sutton1998reinforcement}, REINFORCE \citep{williams1992}, and SARSA can be
-cast in this general variational framework. For example TD corresponds to
+cast in this general variational framework. For instance, TD corresponds to
 the above framework using a linear value approximator with feature encoding
 $\phi(s,a) = \delta_{(s,a)} =  \text{ point mass at }(s,a)$ on the grid
 $\mathcal S \times \mathcal A$, and so
@@ -1065,30 +1068,31 @@ $$\nabla_{\theta^Q_{k+1}}Q(s, a|\theta^Q_{k+1}) = \phi(s, a) = \delta_{(s,a)}.$$
 %% $$\theta^Q(s,a) \leftarrow \theta^Q(s,a) + (Q(s, a|\theta^Q_{k+1}) - y)$$ ??
 \end{mdframed}
 
-\subsubsection{Interlude: The role of the hippocampus}
-\paragraph{Does the hippocampus do Monte-Carlo sampling ?}
+\subsubsection{Excursion: The role of the hippocampus}
+\paragraph{Does the hippocampus do Monte-Carlo sampling?}
 In RL, Monte-Carlo simulation can be used to update the agent's belief state
 \citep{silver2010monte}. Such methods have a sample complexity that is determined only by the underlying difficulty of the POMDP, rather than the size of the state space or observation space,
 which can be prohibitively large.
 Monte-Carlo simulation provides a simple method for evaluating the value / fitness of a state.
-They provide an effective mechanism both for tree search and for belief state updates, breaking the curse of dimensionality and allowing much greater scalability than has previously been possible.
+They provide an effective mechanism both for tree search and for belief state updates, breaking the curse of dimensionality and allowing much greater scalability than a RL agent without stochastic resampling procedures.
 
 In the human brain,
 the HC could contribute to synthesizing imagined sequences of world states,
-observations and rewards. These simulations would be used to update the value function, without ever looking inside the black box describing the model's dynamics. This would be a simple control algorithm by evaluating all legal actions and selecting the action with highest evaluation.
+observations and rewards. These simulations would be used to update the value function, without ever looking inside the black box describing the model's dynamics. This would be a simple control algorithm by evaluating all legal actions and selecting the action with
+\textbf{highest expected cumulative rewards [please double-check]}.
 In these challenging POMDPs, Monte-Carlo simulation provides an effective mechanism both for tree search and for belief state updates, breaking the curse of dimensionality and allowing much greater scalability than has previously been possible.
 Much recent work points to Monte Carlo or stochastic sampling– based approximations as a unifying framework for understanding how Bayesian inference may work practically across all these levels, in minds, brains, and machines. For sampling-based methods it is still almost non-existent beyond the description of receptive fields.
 
-\paragraph{Hippocampal replay = inverse reinforcement-learning ?}
+\paragraph{Hippocampal replay corresponds to inverse reinforcement-learning?}
 %\begin{mdframed}
   Given the trace $s_0,a_0,s_1,\ldots,$ of an optimal agent's strategy $\pi^*$ in
   a POMDP (called a \textit{teacher's demonstration}), can we figure out what is the
   (instantaneous) reward function $r: \mathcal S \times \mathcal \mathcal A
   \rightarrow \mathbb R$ that the agent is optimizing over a prescribed class of reward functions
   (e.g., linear rewards $r(s,a) \equiv \theta^T\phi(s,a)$)?
-  For example, given traces of motor actions from a an adult to grab a cup on a table,
-  can an observing child figure out what ``langragian'' functional is being minimized by the former ?
-  How ? Can they reproduce this optimal behavior ?
+  For instance, given traces of motor actions from a an adult to grab a cup on a table,
+  can an observing child figure out what ``langragian'' functional is being minimized by the former?
+  How? Can they reproduce this optimal behavior?
 %\end{mdframed}
 Such questions are of course pertinent to our decision-making theory for the DMN.
 In the general artificial case, the problem has been extensively studied and partially solved by
@@ -1101,7 +1105,7 @@ IRL is is suited for problems in which it's hard to define what the reward funct
 \subsection{Putting everything together}
 \begin{figure}[!h]
   \includegraphics[width=.9\linewidth]{rl_process_chart.pdf}
-  \caption{The DMN as an RL agent...}
+  \caption{The DMN as an RL agent... \textbf{Please add a figure caption}}
   \label{fig:rl_process_chart}
 \end{figure}
 The DMN is today known to consistently increase in neural
@@ -1120,12 +1124,18 @@ The DMN is today known to consistently increase in neural
 The DMN may subserve
   constant exploration of possible future actions and their
   cumulative outcomes. Implicit computation of future choices
-  provides an explanation for purposeful mind-wandering.
+  provides an explanation for the
+  evolutionary emergence and practical usefulness of mind-wandering
+  in humans.
 
-The HC provides perturbed action-transition-state-reward samples
-  as a block of "imagined", "hypothesized", "recalled" experience;
-  the small variations in these experience blocks allow searching
-  a larger space of parameters and possible experiences.
+The HC may provide perturbed action-transition-state-reward samples
+  as a block of "imagined", "hypothesized", "recalled" experience.
+  The small variations in these experience blocks allow searching
+  a larger space of model parameters and possible experiences.
+  Taken to its extreme, stochastic recombination of experience
+  building blocks can further optimize the behavior of the RL agent
+  by model learning from scenarios in the environment that the agent might
+  only very rarely or never encounter.
   In the absence of environmental input and feedback
   (e.g., mind-wandering or sleep) pseudo-experiencing (i.e., emulating) possible
   future scenarios and action outcomes.
@@ -1141,7 +1151,7 @@ The HC provides perturbed action-transition-state-reward samples
   If an agent behaving optimally in a given environment moves
   to novel, yet unexperienced environments, reward prediction errors will
   massively increase. This will lead to adaptation of the policy until the system converges to a 
-  new steady-state of optimal action decisions in the volatile environment.
+  new steady-state of optimal action decisions in volatile environments.
   
 % \paragraph*{Some notes:}
 % \begin{itemize}
@@ -1181,7 +1191,7 @@ Because surprisal is intractably difficult to optimize (since we would need to s
 The main algorithm for minimizing free-energy $F_G^R(\x)$ is the \textit{wake-sleep algorithm}.
 \citep{dayan1995helmholtz}. As noted already in \citep{dayan1995helmholtz},
 a crucial drawback of the wake-sleep algorithm is that it requires a concurrent models (generative and recogntiion), which together do not correspond to optimization of (a bound of) the marginal likelihood (because of the incorrect KL used therein, etc.). Thus the brain could not possible be running such a algorithm, not even in principle! To the rescue, we note that the recent theory of
-\textit{variational auto-encoders (VAEs)} \citep{kingma2013auto} might provide an efficient alternative to the wake-sleep algorithm, as it overcomes the technical limits of the former, by using a reparametrization trick. For example, unlike the wake-sleep algorithm for minimizing free-energy, VAEs can be efficiently trained via back-propagation of learning errors.
+\textit{variational auto-encoders (VAEs)} \citep{kingma2013auto} might provide an efficient alternative to the wake-sleep algorithm, as it overcomes the technical limits of the former, by using a reparametrization trick. For instance, unlike the wake-sleep algorithm for minimizing free-energy, VAEs can be efficiently trained via back-propagation of learning errors.
 
 \subsubsection{Comparison to our proposed theory}
 On the surface, a common point between the FEP and our proposed RL-based framework
@@ -1484,7 +1494,9 @@ the complex relationships between them
     improve especially mid- and long-term action.
     \item The sentinel account does not provide a formal mechanisms of
     how attention and memory resources are exactly reallocated when
-    encountering a salient environmental stimulus. \textbf{XXX remove the next sentence. It's probably false.}
+    encountering a salient environmental stimulus. \textbf{XXX remove the next sentence. Danilo: can you help me to correct the sentence instead.
+    There appears to be a cool link between cognition and formal theory
+    here.}
     In contrast,
     the Bellman recursion is weighted at each step by
     $\sum_{a \in A}\pi(a|s)$. This factor weighs which action cascades
@@ -1512,7 +1524,7 @@ This idealized process model explains
 a number of previous experimental observations in the
 DMN by a simple but non-trivial mechanism.
 %
-From the computational viewed of a Markov decision process,
+From the computational view of a Markovian sequential decision process,
 behavior unfolds by integrating happened past events
 and possible future events to guide action choice in the present context.
 This functional account is more compatible with the DMN's
@@ -1523,8 +1535,9 @@ as well as delay discounting and self-related prospection.
 MDPs provide a mathematical formalism how
 optimal substructure in the environment can be recursively exploited
 when confronted with complicated decisions.
-Algorithmic gains by injecting stochasticity in the recall of past
-actions and outcomes to improve the internal world model may explain why
+Improvement of the internal world model
+by injecting stochasticity in the recall of past
+actions and outcomes may explain why
 very accurate memories have been disfavored in human evolution
 and why human creativity might be adaptive.
 %
@@ -1540,10 +1553,9 @@ describe and interpret experimental findings in neuroscience studies
 on the default mode network.
 %
 Ultimately,
-the DMN can be viewed as a smoothing kernel extending
+the DMN can be viewed as a functional integrator
 from the relatively recent events to anticipated upcoming events
-to constantly improve sensory processing and
-action performance in the world.
+in order to constantly improve present action in the world.
 
 
 
@@ -1565,7 +1577,7 @@ action performance in the world.
 \appendix
 \section{Free-energy principles!}
 The so-called free-energy principle in its present form (including notions like ``generative density'', ``recognition density'', etc.) can be traced back to works of Dayan \& Hinton \citep{dayan1995helmholtz} in which they introduced the so-called \textit{Helmholtz machine}, a hierarchical factorial directional deep belief-net (DBN).
-In this subsection, we will develop from first-principles, the bare-bones minimalistic ideas needed to build a free-energy principle for general decision-making. This ideas were first developed by Hinton et al. in the early 90s in building their Helmholtz machine. Theories like Friston's free-energy principle and active-inference will then emerge as particular instances of this general framework, with particular design choises. For example the Friston theory axiomatizes that the brain uses a (problematic, as it implicitly assumes that posterior of each hidden unit is factorial) wake-sleep algorithm to train the underlying Helmholtz machine, etc.
+In this subsection, we will develop from first-principles, the bare-bones minimalistic ideas needed to build a free-energy principle for general decision-making. This ideas were first developed by Hinton et al. in the early 90s in building their Helmholtz machine. Theories like Friston's free-energy principle and active-inference will then emerge as particular instances of this general framework, with particular design choises. For instance, the Friston theory axiomatizes that the brain uses a (problematic, as it implicitly assumes that posterior of each hidden unit is factorial) wake-sleep algorithm to train the underlying Helmholtz machine, etc.
 
 % \begin{mdframed}
 %   Though our presentation of free-energy principles is thermodynamic in flavor, a completely equivalent
