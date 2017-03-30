@@ -372,7 +372,7 @@ We begin by a deconstruction the overall DMN function
 by the mechanistic relevance of each individual network node
 based on published findings from neuroscience experiments.
 %
-\subsection{The posteriormedial cortex: Global monitoring and integration}
+\subsection{The posteromedial cortex: Global monitoring and integration}
 The posteriormedial cortex (PMC) and
 the dorsomedial prefrontal cortex (dmPFC) within the DMN
 are responsible for the highest metabolic turn-over
@@ -473,7 +473,7 @@ in both the external environment and its internal representation
 that modulate strategic behavioral adjustment in volatile environments.
 
 
-\subsection{The prefrontal cortex: Stimulus-value assocation and action consideration}
+\subsection{The prefrontal cortex: Stimulus-value association and action consideration}
 The dmPFC subserves predominantly ambiguous amodal processes
 across time, space, and content domains in
 sensory-independent top-down pathways.
@@ -539,7 +539,7 @@ quantified this brain regions to
 be substantially more likely connected to the vmPFC than dmPFC in both species.
 Two functional connectivity modalities in humans strongly connected
 the vmPFC with the nucleus accumbens, hippocampus (HC),
-and posteriomedial cortex.
+and posteromedial cortex.
 %
 The vmPFC is often proposed to be involved in (external) emotional
 reactions and own (visceral) arousal.
@@ -734,26 +734,28 @@ of intelligent RL agents appear to cross-talk in the DMN in a plausible way.
 
 
 
-Reinforcement learning is a problem-solving technique in which, through their interactions with an external environment,
-an agent learns to reach a goal, optimize a reward signal, or minimize some cost,
+RL is a problem-solving technique in which, through their interactions with an external environment,
+an agent learns to reach goals, optimize reward signals, or minimize costs
 in an iterative trial-by-error fashion.
-At any moment, each action $a$ taken triggers a changes in the
+At any moment, each taken \textit{action} $a$ triggers a changes in the
 \textit{state} of the environment
 $s \rightarrow s'$, accompanied by a real-valued \textit{reward}
 $r = r(s, a)$ (or regret!, since it can be negative) collected by the
 agent.
 In this view, the environment is partially controlled by
 the action of the agent and the reward should be thought
-of as satisfaction --or punishment-- accompanying the execution of
-an action, and may be delayed, only becoming substantial when accumulated over an extended period of time.
-The environment is generally taken as stochastic, i.e unpredictable, changing in random ways. In addition,
+of as satisfaction -- or punishment -- accompanying the execution of
+an action.
+Action may be delayed to achieve substantial increases in expected reward
+that can increase over time.
+The environment is generally taken as stochastic,
+that is, unpredictable, changing in random ways. In addition,
 it is only \textit{partially observed},
 in the sense that only part of the current state is observed by
 the agent \citep{starkweather2017dopamine}.
 This unpredictability of the environment
-\textbf{XXX Explain this sentence better because it is important.}
 is realistic in a model which sets out
-to explain DMN function. Indeed, it is known that, the more the external world is predictable,
+to explain DMN function. Indeed, it is known that the more the external world is predictable,
 the more mental activity becomes detached from the actual sensory inputs
 \citep{antrobus1966studies, pope1978regulation},
 the more stimulus-independent thoughts occur, and
@@ -764,12 +766,13 @@ the lower the DMN activity
 %
 These ``offline'' processes may however contribute to
 optimizing control of the organism.
-A DMN framework incorporating reinforcement learning
+Such a framework of DMN funtion based on reinforcement learning
 can naturally embed human behavior
-into the tension between exploitative action with immediate gains and
+in the tension between exploitative action with immediate gains and
 explorative action with longer-term reward schedules
 \citep{dayan2008decision}.
-The implication of the DMN in a diversity of human cognitive processes
+The implication of the DMN in a diversity of
+particularly advanced cognitive processes
 can be parsimoneously explained as prediction error minimization
 coupled with probabilistic simulations in form of mental scenes,
 thus calibrating action portfolios and
@@ -780,23 +783,25 @@ based on a brain implementation of Markov Chain Monte Carlo (MCMC) sampling
 \citep{tenenbaum2011grow}.
 
 \subsection{Partially Observable Markov Decision Processes}
-It is our view that at a sufficiently coarse scale, the brain --and therefore the DMN in particular--
+It is our view that at a sufficiently coarse scale, the brain -- and therefore the DMN in particular --
 is a physical system governed by the laws of
 physics and can be locally described by Markov processes. Indeed, as noted in \cite{tegmark2016improved},
 any system obeying the laws of classical physics can be accurately modeled as a Markov process as long as the time
 step is sufficiently short, defining $s(t)$, the state at time $t$, as the position in phase space.
 If the process has $memory$ such that the next state depends not only on the current state but also on some finite
-number of past states,
-rational probabilistic planning can be reformulated
+number of past states.
+Rational probabilistic planning can be reformulated
 as a standard memoryless Markov process by simply expanding the
 definition of the state $s$ to include elements of the past.
 
-In artificial intelligence (AI), a popular abstract model for
+In artificial intelligence (AI), a popular computational model for
 multi-step decision processes in such an environment are so-called
 \textit{Partially Observable Markov Decision Processes (POMDPs)}.
-A POMDP models a decision process in which it is assumed that environment dynamics are determined by a Markov process,
-but the agent cannot directly observe the underlying state. Instead, it tries to optimize a \textit{subjective} reward
-signal. This is performed alongside each transition in the environments state-space, and maintains a probability distribution over the set of possible
+A POMDP formalizes a decision process in which it is assumed that environment dynamics are determined by a Markov process,
+but the agent cannot directly observe the underlying state.
+Instead, the agent tries to optimize a \textit{subjective} reward
+signal (i.e., is likely to be different for another agent in the same state).
+This is performed alongside each transition in the environments state-space, and maintains a probability distribution over the set of possible
 states, based on a set of observations and observation probabilities. This is a minimal amount of assumptions that can be made about an environment,
 and is characteristic of so-called \textit{model-free RL}, the approach adapted by our work.
 
@@ -815,7 +820,9 @@ that standing still will produce no change in the environment, and in particular
 % A core property of human intelligence has been proposed underly to improve
 % on an expected utility outcomes as a strategy for action choice in uncertain
 % environments \citep{gershman2015computational}.
-Our rat might represent such knowledge about the world as:
+
+In our present model-free RL framework,
+a rat might represent such knowledge about the world as follows:
 \begin{itemize}
 \item $r(s, \text{``stand still''}) = 0$ if $s$ does not correspond to a cell / chamber containing food.
 \item $p(s'|s,\text{``stand still''}) = 1$ if $s'=s$ and $0$ otherwise.
@@ -882,25 +889,27 @@ following a policy $\pi$.
 \end{mdframed}
   The  goal of RL is then to adapt this policy so as to  maximize $G^\pi$. In
   the definition of cumulative reward $G^\pi$ above, the constant $\gamma$ $(0 \le \gamma < 1$) is the reward \textit{discount factor}.
-Taking $\gamma = 0$   corresponds to a perfectly myopic agent who is solely concerned about their
-immediate rewards and has no horizon for the future, which is not compatible with long-term goal planning
+Setting $\gamma = 0$ corresponds to a perfectly myopic agent who is solely concerned about its
+immediate rewards.
+Such an agent would have no horizon for the future,
+which is not compatible with long-term goal planning
 as potentially implemented in the DMN.
 To allow a learning process to arise,
-it is thus necessary that $0 < \gamma < 1$.
+it is necessary that $0 < \gamma < 1$.
 % \footnote{In which case we can take $T \rightarrow +\infty$, provided the reward function $r$ is bounded.}.
-Thus, the agent is more considering of rewards in to come in a short future, paying lesser attention to
-rewards to come in at a later time.
+Such an agent is thus better emphasizing consideration of rewards expected in
+a short future and paying less attention to
+rewards expected at a later time.
 % given that there is more uncertainty in the farsighted future.
 The reward discount factor $\gamma$ can then be seen as calibrating
 the delay discounting behavior of the intelligent agent,
-that is the decision related to reward-delay trade-off schedules.
-% It is also important to appreciate that a stochastic policy estimation
-% is more advantageous in many RL settings.
-% For instance, a deterministic strategy in playing rock-paper-scissors can
-% be easily exploited and a uniformly random choice is optimal.
-% \textbf{XXX I love this example :-)}
+that is, the decision related to reward-delay trade-off schedules.
+It is also important to appreciate that a stochastic policy estimation
+is more advantageous in many RL settings.
+For instance, a deterministic strategy in playing rock-paper-scissors can
+be easily exploited and a uniformly random choice is optimal.
 
-\subsection{The Q-value: A goodness measure for actions}
+\subsection{The Q-value: A goodness measure for action choices}
 The purpose of the DMN can then be
 formulated as finding a policy $\pi$ for the agent which maximizes the
 expected cumulative value of an state-action pair $(a,s)$, also known as the \textit{Q-value}, namely
@@ -910,8 +919,8 @@ expected cumulative value of an state-action pair $(a,s)$, also known as the \te
 \end{equation}
 In other words,
 the Q-value $Q^{\pi}(s,a)$ corresponds to the expected reward
-over all possible action trajectories in which
-the agent starts off starts at with an environment in state
+over all possible action trajectories, in which
+the agent sets out in the environment in state
 $s$, chooses action $a$,
 and then follows the policy $\pi$ thereafter to select future actions.
 %% Given that each $\pi$ correspondence to an exhaustive description of
@@ -920,14 +929,14 @@ and then follows the policy $\pi$ thereafter to select future actions.
 For the brain,
 $Q^{\pi}(s, a)$ defined in \eqref{eq:qval} provides the subjective
 utility of executing a specific action; it answers the question
-"What is the expected utiltiy of taking action $a$ in this situation ?".
+"What is the expected utility of taking action $a$ in this situation ?".
 When a choice of actions is available, the $Q^{\pi}(s,a)$
-provides a formalization of optimal behavior,
+offers a formalization of optimal behavior,
 potentially driven by the DMN.
 
 \subsection{Computing optimal behavior}
-By construction, maximizing the expectation in  \eqref{eq:qval} is computationally intractable in general
-due to the enormous number of possible action
+By construction, maximizing the expectation in  \eqref{eq:qval} is computationally intractable in general.
+This is due to the enormous number of possible action
 trajectories the agent might need to
 consider simultaneously.
 % \begin{mdframed}
@@ -937,8 +946,8 @@ consider simultaneously.
 %   optimal behavior could be computable in the human brain.
 % \end{mdframed}
 One popular solution concept is called \text{Q-learning}. It remedies
-this issue is to only consider the sub-family of
-\textit{deterministic policies}, which map each state to the best single best action to
+the issue by only considering the sub-family of
+\textit{deterministic policies}, which map each state to the single best action to
 take at the state. Such policies define deterministic functions from states to actions.
 
 \subsubsection{Q-learning} Q-learning (Watkins \& Dayan, 1992), generates a
@@ -954,33 +963,34 @@ The \textit{Bellman equation} \citep{sutton1998reinforcement} then takes the sim
   \begin{split}
     Q^\pi(s, a) &= \mathbb E_{s' \sim p(s'|s,a)} [r(s,a) + \gamma \max_{a' \in \mathcal A}Q^\pi(s', a')]
     \\
-    &= \mathbb E_{s' \sim p(s'|s,a)} [r(s,a) + \gamma Q^\pi(s', \pi(s'))],
+    &= \mathbb E_{s' \sim p(s'|s,a)} [r(s,a) + \gamma Q^\pi(s', \pi(s'))].
   \end{split}
   \label{eq:bellman}
 \end{equation}
-a \textit{fixed-point} equation which provides a recursive decomposition of optimal behavior.
+This \textit{fixed-point} equation provides a recursive decomposition of optimal behavior.
 A complicated dynamic programming optimization can be
 broken into simpler sub-problems at different time points,
 which has often been closely related to the medial prefrontal part of the DMN
 \citep{koechlin1999role, braver2002role}.
-Using the Bellman equation, each state can be associated with a certain value,
+Using the Bellman equation, each state can be associated with a certain value
 to guide action towards a better state, thus improving on the agent's current policy.
 % It is a fixed-point equation for the deterministic policy $\pi$.
-Notice that in \eqref{eq:bellman}, the sampling is done over only things which
-\textbf{XXX Ahhmm, please make a bigger effort here}
-depend on the environment, and so can be learned off-policy by observing state-transitions
+Notice that in \eqref{eq:bellman}, the sampling is done only over things which
+depend on the environment, and so can be learned off-policy by observing state transitions
 triggered by another behavioral policy, which can be stochastic.
 
 \subsubsection{Efficient learning via value approximation and experience replay}
 %As already mentioned in the previous section, Q-learning optimizes over the class of
 % deterministic policies of the form \eqref{eq:qlearning}.
 A successful RL theory needs ways to approximate the state-action value function
-which scale up to large state and action spaces.
+to allow for scaling to large state and action spaces.
 In state $s \in \mathcal S$, the agent takes an action $a \in \mathcal A$
 % (for example, $a$ = ``Read'', or ``Run'', or ``Laugh'', or ``Sympathize'', or ``Empathize'', etc.)
 by sampling from its current policy matrix, and collects a reward $r$,
 % (measured on their internal currency of worldly values ?),
-and the environment transitions to a new state $s' \in \mathcal S$. At the end of
+and the environment transitions to a new state $s' \in \mathcal S$.
+\textbf{XXX Please try to smoothen the previous sentence}
+At the end of
 this step, a new \textit{experience} $e = (s,a,r,s')$ is produced; this represents an exemplar
 behavior of the agent and is recorded in replay memory buffer:
 $D \leftarrow D \cup \{e\}$ (possibly discarding the oldest entries to make space).
@@ -990,14 +1000,18 @@ $(s, a, r, s') \sim \mathcal U(D)$ from the replay memory $\mathcal D$
 and trying to approximate
 the would-be $Q$-value for the state-action pair $(s,a)$ as predicted by the Bellman equation \eqref{eq:bellman}, namely
 $r + \gamma \max_{a'} Q(s', a'|\theta^Q_k)$, with the output of a parametrized regression model $(s,a,r,s')
-\mapsto {Q}(s, a|\theta^Q_{k})$. Here, $Q(.,.|\theta^Q_{k})$ is an approximator for the $Q$-value operator,  parameterized by weights $\theta^Q_{k+1}$
+\mapsto {Q}(s, a|\theta^Q_{k})$.
+Here, $Q(.,.|\theta^Q_{k})$
+\textbf{XXX just double-checking, are the dots int he Q() correct?}
+is an approximator for the $Q$-value operator,  parameterized by weights $\theta^Q_{k+1}$
 (synaptic strengths, etc.).
 
-Biologically, experience replay would be manifested as the re-occurrence of a sequence of cell activations that also occurred during activity.
+From a neurobiological perspective,
+experience replay would be manifested as the re-occurrence of a sequence of cell activations that also occur during specific actions.
 %, but the replay has a much faster time scale.
-In the human brain, such a mechanism is likely to be implemented by the
-hyppocampus (HC), as experiments on various animals indicate this is the case.
-Indeed, this phenomenon has been observed in rats, mice, cats, rabbits, songbirds, and
+In the human brain, the hippocampus is likely to contribute to such a mechanism,
+as neuroscience experiments on various animals have repeatedly indicated
+in rats, mice, cats, rabbits, songbirds, and
 monkeys \cite{buhry2011,nokia2010,dave2000,skaggs2007}.
 
 
