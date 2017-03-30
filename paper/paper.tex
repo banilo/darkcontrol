@@ -1308,7 +1308,9 @@ to best fit the constant influx of sensory examples.
   \item Adapting the neuronal connections for improved top-down modulation
   takes the concrete form of gradient computation
   \textit{and back-propagation} in MDPs and RL,
-  although this may not be neurobiologically plausible \textbf{XXX (danilo) what is not plausible. Be specific.}
+  although the neurobiological plausibility of
+  the back-propagation procedure is controversal
+  \citep{goodfellow2016deep}.
   \item In sum,
   the MDP account may serve as a concrete conceptualization of the PC account
   in cognitive neuroscience. MPDs have the advantage of exposing an explicit
@@ -1316,9 +1318,8 @@ to best fit the constant influx of sensory examples.
   how the internal model of the world gets updated,
   and collapses sensory input processing and action output preparation.
   %
-  As such, our account can be viewed as a RL implemention of the
-  prediction coding hypothesis. \textbf{XXX (danilo) Reformulate. Also in general, you should be clear whether
-    you're talking about MDPs, POMDPS, both, or neither. These are being mixed up a lot.}
+  As such, our MDP account of DMN function can parsimoneously explain
+  prediction coding hypothesis.
 \end{itemize}
 
 
@@ -1388,7 +1389,8 @@ for other means \citep{tolman1948cognitive}.
   agent's history of states and actions. The learned
   value matrix and action transition schedules drive
   stimulus processing and action choice in the present.
-  \item While mental scene construction implies a distinction between
+  \item Mental scene construction has been proposed by some authors
+  \citep{buckner2007self} to imply a distinction between
     environmental perception and internally generated mind-wandering\footnote{
       \textbf{XXX (danilo) This is more than just a footnote. Make this part of the paper
       and factorize the lot. Also you probably need a citation here!!!}
@@ -1396,8 +1398,8 @@ for other means \citep{tolman1948cognitive}.
   is far from being defined, but it will probably require a form of
   regulation by which perception of the current world is suppressed
   while simulation of possible alternatives are constructed,
-  followed by a return to perception of the present.''\citep{buckner2007self}},
-  the MDPs naturally integrate the former egocentric
+  followed by a return to perception of the present.''\citep{buckner2007self}}.
+  The MDPs naturally integrate the former egocentric
   (more related to current action, state and reward) and the later
   allocentric (more related to past and future actions, states, and rewards)
   angles on the world in a same optimization problem.
@@ -1410,9 +1412,10 @@ for other means \citep{tolman1948cognitive}.
   \item The semantic hypothesis does not explain why memory recall
   for scene construction in humans is typically fragmentary and noisy
   instead of accurate and reliable.
-\textbf{XXX (danilo) Is this a loose opinion or a fact ? What do you mean by ``probably better models of the world'' ?}  Yet, the MDP framework provides an algorithmic explanation in that
-  stochasticity of the parameter space search implemented
-  by Monte Carlo solvers provably yields better models of the world.
+  Yet, the MDP framework provides an algorithmic explanation in that
+  stochasticity of the parameter space explored
+  by the Monte Carlo solvers achieves better fine-tuning of the
+  action policies and estimation of expected reward outcomes.
   That is, the purposeful stochasticity of policy and value estimation
   in MDPs provides a candidate explanation for why humans
   have evolved imperfect noisy memories
@@ -1475,7 +1478,7 @@ the complex relationships between them
 \citep{schilbach2008minds}.
 
 
-\textbf{XXX (danilo) Your focus in this subsection ought to be on the SC itself not POMPDs, etc.}
+\textbf{XXX (danilo) Your focus in this subsection ought to be on the SC itself not POMPDs. -> agree I will fix it later.}
  \begin{itemize}
     \item Processing social information has been proposed to underlie the
     physiological baseline of human brain function
