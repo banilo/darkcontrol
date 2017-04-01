@@ -368,7 +368,7 @@ This paper proposes a formal model that satisfies this contention.
 
 
 \section{Known Neurobiological Properties of the Default Mode Network}
-\textbf{XXX (danilo) this section needs more tight integration of the parts, and no just a separate independent subsection for each portion of the DMN...}
+\textbf{XXX Elvis: this section needs more tight integration of the parts, and no just a separate independent subsection for each portion of the DMN...}
 We begin by a deconstruction the overall DMN function
 by the mechanistic relevance of each individual network node
 based on published findings from neuroscience experiments.
@@ -883,10 +883,11 @@ This random variable\footnote{Random as it depends both on the environment's dyn
   policy $\pi$ being played (which can be stochastic).}  measures the cumulative reward of
 following a policy $\pi$.
 \begin{mdframed}
-  \textbf{Where is ``value'' buffered in the brain ? You mean where in the DMN!
-  then the answer is in the vmPFC which is connected to the NAc}
-  The amygdala is known to be involved in significance evaluation) and
-  the nucleus accumbens (NAc) is involved in reward evaluation.
+  \textbf{Where is ``value'' buffered in the DMN ?
+    % brain ?
+    }
+  The amygdala is known to be involved in significance evaluation while
+  the nucleus accumbens (NAc), which is connected to the vmPFC, is involved in reward evaluation.
 \end{mdframed}
   The  goal of RL is then to adapt this policy so as to  maximize $G^\pi$. In
   the definition of cumulative reward $G^\pi$ above, the constant $\gamma$ $(0 \le \gamma < 1$) is the reward \textit{discount factor}.
@@ -984,27 +985,25 @@ triggered by another behavioral policy, which can be stochastic.
 \subsubsection{Efficient learning via value approximation and experience replay}
 %As already mentioned in the previous section, Q-learning optimizes over the class of
 % deterministic policies of the form \eqref{eq:qlearning}.
-A successful RL theory needs ways to approximate the state-action value function
+A successful RL theory needs ways to efficiently approximate the state-action value function
 to allow for scaling to large state and action spaces.
-In state $s \in \mathcal S$, the agent takes an action $a \in \mathcal A$
+In a state $s \in \mathcal S$, the agent takes an action $a \in \mathcal A$
 % (for example, $a$ = ``Read'', or ``Run'', or ``Laugh'', or ``Sympathize'', or ``Empathize'', etc.)
-by sampling from its current policy matrix, and collects a reward $r$,
+by sampling from its current policy, and collects a reward $r$,
 % (measured on their internal currency of worldly values ?),
-and the environment transitions to a new state $s' \in \mathcal S$.
-\textbf{XXX Please try to smoothen the previous sentence}
-At the end of
-this step, a new \textit{experience} $e = (s,a,r,s')$ is produced; this represents an exemplar
+after which the environment transitions to a new state $s' \in \mathcal S$.
+% \textbf{XXX Please try to smoothen the previous sentence}
+At the end of this cycle, a new \textit{experience} $e = (s,a,r,s')$ is produced, which represents an exemplar
 behavior of the agent and is recorded in replay memory buffer:
 $D \leftarrow D \cup \{e\}$ (possibly discarding the oldest entries to make space).
 Now, at iteration $k+1$, replay consists in sampling (uniform or importance-weighted
 \footnote{e.g weighted by TD error of the state transition $s \overset{a}{\rightarrow} s'$.} ?)  mini-batches of experiences
-$(s, a, r, s') \sim \mathcal U(D)$ from the replay memory $\mathcal D$
-and trying to approximate
+$(s, a, r, s') \sim \mathcal U(D)$ from the replay memory $\mathcal D$.
+The agent then tries to approximate
 the would-be $Q$-value for the state-action pair $(s,a)$ as predicted by the Bellman equation \eqref{eq:bellman}, namely
-$r + \gamma \max_{a'} Q(s', a'|\theta^Q_k)$, with the output of a parametrized regression model $(s,a,r,s')
-\mapsto {Q}(s, a|\theta^Q_{k})$.
-Here, $Q(.,.|\theta^Q_{k})$
-\textbf{XXX just double-checking, are the dots int he Q() correct?}
+$y := r + \gamma \max_{a'} Q(s', a'|\theta^Q_k)$, with the output of a parametrized regression model $(s,a,r,s')
+\mapsto {Q}(s, a|\theta^Q_{k})$. Here the function $(s,a) \mapsto Q(a,s|\theta^Q_{k})$
+% \textbf{XXX just double-checking, are the dots int he Q() correct?}
 is an approximator for the $Q$-value operator,  parameterized by weights $\theta^Q_{k+1}$
 (synaptic strengths, etc.).
 
@@ -1025,7 +1024,7 @@ Computing an optimal policy then corresponds to finding the parameters $\theta^Q
   \label{eq:oracle}
 \end{equation}
 where
-$ y = r + \gamma \max_{a' \in \mathcal A} Q(s', a'|\theta^Q_k) = r + \gamma Q(s', \pi(s')|\theta^Q_k)$ is the prediction target.
+$ y: = r + \gamma \max_{a' \in \mathcal A} Q(s', a'|\theta^Q_k) = r + \gamma Q(s', \pi(s')|\theta^Q_k)$ is the prediction target.
 % While $y_t$ is also dependent on $\theta^Q$, this is typically ignored.
 For instance, a general linear model with a kernel $\phi$ would be of the
 form
@@ -1040,10 +1039,13 @@ representation using a deep neural net, leading to the so-called \textit{Deep Q-
 are by far the current state-of-the-art in RL. In such a case, $\theta^Q$
 would correspond to the strengths of low-level synaptic or high-level functional connections between different elements
 in brain networks.
-\textbf{XXX perhaps add one sentence to rephrase and detail the idea}
+\textbf{XXX perhaps add one sentence to rephrase and detail the idea}. \textbf{XXX Elvis: My biology is very poor.
+  The idea of the statement was to say where the parameters $\theta^Q$ would ``live'' in the brain.
+  Would these be synaptic strengths ? effective functional connectivity ?
+If you know this, please could you rephrase ?}
 
-Learning (i.e., fitting)
-of the the entire model parameters can effictively be achieved via \textit{backprop},
+Learning
+of the the entire model parameters can effectively be achieved via \textit{backprop},
 wherein prediction errors (i.e., \textit{regrets})  are propagated from lower to higher regions to modulate the choice of future actions
 % online stochastic gradient descent is used to minimize the variational objective
 % \eqref{eq:oracle}.
@@ -1057,18 +1059,16 @@ wherein prediction errors (i.e., \textit{regrets})  are propagated from lower to
   \label{eq:oracle}
 \end{equation}
 
-\begin{mdframed}
-\textbf{A note on classical RL algorithms.}
-Note that most RL algorithms, including \textit{Temporal Difference (TD)}
+\subsubsection{Link to classical reinforcement learning algorithms} One should note that most classical RL algorithms, including \textit{Temporal Difference (TD)}
 learning \citep{sutton1998reinforcement}, REINFORCE \citep{williams1992}, and SARSA can be
 cast in this general variational framework. For instance, TD corresponds to
 the above framework using a linear value approximator with feature encoding
 $\phi(s,a) = \delta_{(s,a)} =  \text{ point mass at }(s,a)$ on the grid
 $\mathcal S \times \mathcal A$, and so
 $$\nabla_{\theta^Q_{k+1}}Q(s, a|\theta^Q_{k+1}) = \phi(s, a) = \delta_{(s,a)}.$$
-%% Whence, the gradient update due to the sample $(s,a,r,s') \in \mathcal D$ is
-%% $$\theta^Q(s,a) \leftarrow \theta^Q(s,a) + (Q(s, a|\theta^Q_{k+1}) - y)$$ ??
-\end{mdframed}
+Whence, the gradient update due to the sample $(s,a,r,s') \in \mathcal D$ is
+$$\theta^Q(s,a) \leftarrow \theta^Q(s,a) + (Q(s, a|\theta^Q_{k+1}) - y),$$
+the well-known TD update rule \citep{sutton1998reinforcement}.
 
 \subsubsection{Excursion: The role of the hippocampus}
 \paragraph{Does the hippocampus do Monte-Carlo sampling?}
@@ -1081,12 +1081,12 @@ They provide an effective mechanism both for tree search and for belief state up
 In the human brain,
 the HC could contribute to synthesizing imagined sequences of world states,
 observations and rewards \citep{aronov2017}.
-These simulations would be used to update the value function, without ever looking inside the black box describing the model's dynamics. This would be a simple control algorithm by evaluating all legal actions and selecting the action with
-\textbf{highest expected cumulative rewards [please double-check]}.
-In these challenging POMDPs, Monte-Carlo simulation provides an effective mechanism both for tree search and for belief state updates, breaking the curse of dimensionality and allowing much greater scalability than has previously been possible.
-Much recent work points to Monte Carlo or stochastic sampling– based approximations as a unifying framework for understanding how Bayesian inference may work practically across all these levels, in minds, brains, and machines. For sampling-based methods it is still almost non-existent beyond the description of receptive fields.
+% These simulations would be used to update the value function, without ever looking inside the black box describing the model's dynamics. This would be a simple control algorithm by evaluating all legal actions and selecting the action with
+% \textbf{highest expected cumulative rewards [please double-check]}.
+In POMDPs, Monte-Carlo simulation provides an effective mechanism both for tree search and for belief-based state updates, breaking the curse of dimensionality and allowing much greater scalability than has previously been possible.
+Much recent work points to Monte Carlo or stochastic sampling-based approximations as a unifying framework for understanding how Bayesian inference may work practically across all these levels, in minds, brains, and machines. \textbf{XXX Elvis: refs needed in last sentence.} For sampling-based methods it is still almost non-existent beyond the description of receptive fields. \textbf{XXX Elvis: rephrase last sentence}
 
-\paragraph{Hippocampal replay corresponds to inverse reinforcement-learning?}
+\paragraph{Hippocampal replay equals inverse reinforcement-learning?}
 %\begin{mdframed}
   Given the trace $s_0,a_0,s_1,\ldots,$ of an optimal agent's strategy $\pi^*$ in
   a POMDP (called a \textit{teacher's demonstration}), can we figure out what is the
@@ -1394,7 +1394,7 @@ for other means \citep{tolman1948cognitive}.
   \item Mental scene construction has been proposed by some authors
   \citep{buckner2007self} to imply a distinction between
     environmental perception and internally generated mind-wandering\footnote{
-      \textbf{XXX (danilo) This is more than just a footnote. Make this part of the paper
+      \textbf{XXX Elvis: This is more than just a footnote. Make this part of the paper
       and factorize the lot. Also you probably need a citation here!!!}
   ``A computational model of how such a process might be structured
   is far from being defined, but it will probably require a form of
@@ -1480,7 +1480,7 @@ the complex relationships between them
 \citep{schilbach2008minds}.
 
 
-\textbf{XXX (danilo) Your focus in this subsection ought to be on the SC itself not POMPDs. -> agree I will fix it later.}
+\textbf{XXX Elvis: Your focus in this subsection ought to be on the SC itself not POMPDs. -> agree I will fix it later.}
  \begin{itemize}
     \item Processing social information has been proposed to underlie the
     physiological baseline of human brain function
@@ -1505,7 +1505,8 @@ the complex relationships between them
     how attention and memory resources are exactly reallocated when
     encountering a salient environmental stimulus. \textbf{XXX remove the next sentence. Danilo: can you help me to correct the sentence instead.
     There appears to be a cool link between cognition and formal theory
-    here.}
+    here. Elvis: I'd've helped you correct it but, i don't quite understand what you wanted to say. For ex, note that $\sum_{a \in \mathcal A}\pi(a|s) = 1$ for any state $s$,
+  and so it doesn't quite make sense to talk about weighting things with ``$\sum_{a \in \mathcal A}\pi(a|s)$''.}
     In contrast,
     the Bellman recursion is weighted at each step by
     $\sum_{a \in A}\pi(a|s)$. This factor weighs which action cascades
