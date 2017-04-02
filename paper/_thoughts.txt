@@ -1,0 +1,35 @@
+Guillaume's ideas:
+------------------
+- 2 types of figures: biology vs. algo
+* bio: give a lot of experimental examples
+*
+
+- 2 way argument:
+-----------------
+* we did not invent POMDP but it is one of the most attractive current approaches to
+general purpose intelligence algorithms; "parsimoneous" + "combines decision making and learning"
+* our suggestion is backed up by recent practical advances/success of these state-of-art
+algorithms
+=> provably succesful in real-world problems + parsimoneous + bridge between decision making and learning
+
+===> the further you are from the sensory inputs, the more we need to be model-free
+
+
+- we need a snappy and flashy term to associate the paper/ideas with
+
+- How is our approach related to transfer learning?
+
+- explore how to improve didactis based on figures
+
+- VAE -> appendix
+
+- sentinel hypothesis: Supra-human cognitive control / Frith
+
+- "putting together" -> first thing in "Relation to other cognitive theories"
+
+- "Relation to other statistical models" -> appendix?
+
+- Find ways to propose attractive task models for the bottom-up Gustav Deco crowd,
+including McIntosh
+
+- 
