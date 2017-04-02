@@ -1097,7 +1097,7 @@ where prediction errors (i.e., \textit{regrets}) percolate from lower to higher 
   \delta \theta_{k+1}^Q \propto -\nabla_{\theta^Q_{k+1}}\mathcal L(\theta^Q_{k+1})
   % = -\mathbb E_{(s, a, r, s') \sim U(\mathcal D)}[(Q(s, a|\theta^Q) - Q(s',a'|\theta^Q_{}))^2]
   = -\mathbb E_{(s, a, r, s') \sim \mathcal U(D)}\left[\underbrace{(Q(s, a|\theta^Q_{k+1}) - y)}_{\text{regret}}
-    \underbrace{\nabla_{\theta^Q_{k}}Q(s, a|\theta^Q_{k+1})}_{\text{???}}\right].
+    \underbrace{\nabla_{\theta^Q_{k}}Q(s, a|\theta^Q_{k+1})}_{\text{averseness}}\right].
   \label{eq:oracle}
 \end{equation}
 
