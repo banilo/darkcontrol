@@ -46,13 +46,13 @@
 
 
 % Remove comment for double spacing
-%\usepackage{setspace} 
+%\usepackage{setspace}
 %\doublespacing
 
 % Text layout
 \raggedright
 \setlength{\parindent}{0.5cm}
-\textwidth 5.25in 
+\textwidth 5.25in
 \textheight 8.75in
 
 % Bold the 'Figure #' in the caption and separate it from the title/caption with a period
@@ -493,7 +493,7 @@ across time, space, and content domains in
 sensory-independent top-down pathways.
 In contrast to the PMC, however,
 the dmPFC may be the DMN node whose function comes closest to a
-``mental sketchpad'' \citep{goldman1996prefrontal}, as it 
+``mental sketchpad'' \citep{goldman1996prefrontal}, as it
 potentially subserves the de-novo generation and binding
 of meaning representations instructed by stored semantics and memories.
 
@@ -760,7 +760,7 @@ into ongoing action, planning, and problem solving.
 \section{Reinforcement learning: A process model for DMN function}
 The outlined neurobiological properties and suspected functions of the DMN
 are argued to be sufficient
-for implementing all components 
+for implementing all components
 of a full-fledged \textit{reinforcement learning (RL)} algorithm.
 Integration of past experience, probabilistic mapping of candidate actions,
 random sampling of possible scenarios as well as
@@ -1202,9 +1202,9 @@ The HC may provide perturbed action-transition-state-reward samples
   If an agent behaving optimally in a given environment moves
   to novel, yet unexperienced environments, reward prediction errors will
   massively increase \textbf{Please complete sentence}.
-  This will lead to adaptation of the policy until the system converges to a 
+  This will lead to adaptation of the policy until the system converges to a
   new steady-state of optimal action decisions in volatile environments.
-  
+
 % \paragraph*{Some notes:}
 % \begin{itemize}
 %   \item Actions are continuous, whilst states are continuous.
@@ -1252,7 +1252,7 @@ On the surface, a common point between the FEP and our proposed RL-based framewo
   rewarding outcomes in the future. A ``free-energy'' agent is barely a biomechanical machine which has the tendency to resist undesired / harmful phase-transitions.
   \citep{friston2010free,fristonAIorRL,ortega2013thermodynamics}. Such a theory cannot by itself,
   explain the emergence of strategic behavior inherent in humans (e.g.,  cite dark-room experiment).
-  
+
 % Friston's critic of RL \citep{fristonAIorRL} (he proposes ``active inference''): "This equation (equation 18) comes from the theory of dynamic programming,
 % pioneered in the 1950s by Richard Bellman and colleagues [2]. To
 % optimise control a~pð Þ x~ under this formulation, we have to: (i)
@@ -1274,7 +1274,7 @@ On the surface, a common point between the FEP and our proposed RL-based framewo
 %     recognition weights $\W^R$).
 %   \item This difficulty was removed in the 2010s by \citep{kingma2013auto}, an other groups, via a ``reparametrization trick''.
 %   \end{itemize}
-  
+
 \textbf{XXX: add tons of more examples and connnections}
 \textbf{XXX: integrate aspects from section "ThE MARkOv DECISION PROBLEM" in Dayan and Daw}
 \textbf{XXX: integrate aspects from WakeNsleep by Hinton}
@@ -1352,10 +1352,10 @@ to best fit the constant influx of sensory examples.
   explicitly modeled in the PC account that
   tends to emphasize prediction about the
   immediate future.
-  \item Mismatch negativity of PC is immanent in reward prediction error
+  \item \suggestremove{Mismatch negativity of PC is immanent in reward prediction error
   by the difference between actually predicted reward of an action given
   a state and the reward predicted by non-linear regression with graded
-  discounting of future rewards.
+  discounting of future rewards.}
   \item Adapting the neuronal connections for improved top-down modulation
   takes the concrete form of gradient computation
   \textit{and back-propagation} in MDPs and RL,
@@ -1814,7 +1814,7 @@ variational free-energy as
 \end{itemize}
 The mapping $g$ should be taught of as a ``blurring'' function which produces noisy versions $\z$,
 called \textit{sensations}, of the true world state $\x$.
-The result is a scheme for training DBNs via good-old backprop! 
+The result is a scheme for training DBNs via good-old backprop!
 Refer to Fig. \ref{fig:vae}. Some examples of the reparametrization trick for a number of
 choices of the posterior distribution are given in Tab. \ref{tab:rptrick}.
 
@@ -1823,7 +1823,7 @@ choices of the posterior distribution are given in Tab. \ref{tab:rptrick}.
          \hline
          Posterior & $p_R(.|\x)$ & noise & $g(\W^R,\x,\epsilon)$ & Also \\ \hline
          Normal & $\mathcal N(\mu,\sigma)$ & $\epsilon \sim \mathcal N(0, 1)$ & $\mu + \sigma \odot \epsilon$ & Location-scale family: Laplace, Elliptical,
-         Student’s t, Logistic, Uniform, Triangular, ... \\ \hline
+         Student’s t, Logistic, Uniform, Triangular, \ldots \\ \hline
          Exponential & $\mathcal \exp(\lambda)$ & $\epsilon \sim \mathcal U([0, 1))$ & $-\log(1-\epsilon)/\lambda$ & Invertible CDF: Cauchy, Logistic, Rayleigh, Pareta, Weibull, Reciprocal, Gompert, Gumbel, Erlan, ... \\ \hline
          Other & $\log\mathcal N(\mu,\sigma)$ & $\epsilon \sim \mathcal N(0, 1)$ & $\exp(\mu + \sigma \odot \epsilon)$ & Gamma, Dirichlet, Beta, Chi-squared, F, ... \\ \hline
   \end{tabular}
@@ -1943,7 +1943,7 @@ choices of the posterior distribution are given in Tab. \ref{tab:rptrick}.
 
 
 \subsection{GANs and other likelihood-free methods}
-...
+\ldots
 
 
 \end{document}
