@@ -896,12 +896,12 @@ a set of candidate actions to perform given this state. Starting a time $t=0$,
 a policy $\pi$ generates a trajectory of action cascades as follows
 \begin{eqnarray*}
   \begin{split}
-    \textbf{ observe transition: }s_1 &\sim p(s|s_0,a_0)\textbf{ and collect rewards }R_0 = r(s_0, a_0)\\
+    \textbf{ observe transition: }s_1 &\sim p(s|s_0,a_0)\textbf{ and collect reward }R_0 = r(s_0, a_0)\\
     \textbf{choose action: }a_1 &\sim \pi(a|s_1)\\
-    \textbf{ observe transition: }s_2 &\sim p(s|s_1,a_1), \textbf{ and collect rewards }R_1 = r(s_1, a_1)\\
+    \textbf{ observe transition: }s_2 &\sim p(s|s_1,a_1), \textbf{ and collect reward }R_1 = r(s_1, a_1)\\
     \ldots\\
     \textbf{choose action: }a_{t} &\sim \pi(a|s_{t})\\
-    \textbf{ observe transition: }s_{t+1} &\sim p(s|s_{t},a_{t}), \textbf{ and collect rewards }R_{t} = r(s_{t}, a_{t})\\
+    \textbf{ observe transition: }s_{t+1} &\sim p(s|s_{t},a_{t}), \textbf{ and collect reward }R_{t} = r(s_{t}, a_{t})\\
     \ldots
   \end{split}
 \end{eqnarray*}
@@ -1088,7 +1088,7 @@ of the neural processing hierarchy
 Learning
 of the the entire model parameters can effectively be achieved
 via \textit{backpropagation},
-where prediction errors (i.e., \textit{regrets}) percolate from lower to higher processing layers to modulate the choice of future actions
+where reward prediction errors (RPES) -- also known as \textit{regret}-- percolate from lower to higher processing layers to modulate the choice of future actions
 % online stochastic gradient descent is used to minimize the variational objective
 % \eqref{eq:oracle}.
 
@@ -1096,7 +1096,7 @@ where prediction errors (i.e., \textit{regrets}) percolate from lower to higher 
 \begin{equation}
   \delta \theta_{k+1}^Q \propto -\nabla_{\theta^Q_{k+1}}\mathcal L(\theta^Q_{k+1})
   % = -\mathbb E_{(s, a, r, s') \sim U(\mathcal D)}[(Q(s, a|\theta^Q) - Q(s',a'|\theta^Q_{}))^2]
-  = -\mathbb E_{(s, a, r, s') \sim \mathcal U(D)}\left[\underbrace{(Q(s, a|\theta^Q_{k+1}) - y)}_{\text{regret}}
+  = -\mathbb E_{(s, a, r, s') \sim \mathcal U(D)}\left[\underbrace{(Q(s, a|\theta^Q_{k+1}) - y)}_{\text{regret / RPE}}
     \underbrace{\nabla_{\theta^Q_{k}}Q(s, a|\theta^Q_{k+1})}_{\text{averseness}}\right].
   \label{eq:oracle}
 \end{equation}
@@ -1242,8 +1242,12 @@ Because surprisal is intractably difficult to optimize (since we would need to s
 % \end{figure}
 The main algorithm for minimizing free-energy $F_G^R(\x)$ is the \textit{wake-sleep algorithm}.
 \citep{dayan1995helmholtz}. As noted already in \citep{dayan1995helmholtz},
-a crucial drawback of the wake-sleep algorithm is that it requires a concurrent models (generative and recogntiion), which together do not correspond to optimization of (a bound of) the marginal likelihood (because of the incorrect KL used therein, etc.). Thus the brain could not possible be running such a algorithm, not even in principle! To the rescue, we note that the recent theory of
-\textit{variational auto-encoders (VAEs)} \citep{kingma2013auto} might provide an efficient alternative to the wake-sleep algorithm, as it overcomes the technical limits of the former, by using a reparametrization trick. For instance, unlike the wake-sleep algorithm for minimizing free-energy, VAEs can be efficiently trained via back-propagation of learning errors.
+a crucial drawback of the wake-sleep algorithm is that it postulates a pair forward (generation) and backward (recognition) models,
+which together do not correspond to optimization of (a bound of) the marginal likelihood, because of the incorrect KL used therein, etc.
+Thus the brain could not possibly be running such a algorithm, not even in principle! To the rescue, we note that the recent theory of
+\textit{variational auto-encoders (VAEs)} \citep{kingma2013auto} might provide an efficient alternative to the wake-sleep algorithm,
+as it overcomes the technical limits of the former, by using a reparametrization trick. For instance, unlike the wake-sleep algorithm
+for minimizing free-energy, VAEs can be efficiently trained via back-propagation of learning errors.
 
 \subsubsection{Comparison to our proposed theory}
 On the surface, a common point between the FEP and our proposed RL-based framework
