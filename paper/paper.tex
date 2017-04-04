@@ -822,7 +822,7 @@ It is our view that at a sufficiently coarse scale, the brain -- and therefore t
 is a physical system governed by the laws of
 physics and can be locally described by Markov processes. Indeed, as noted in \cite{tegmark2016improved},
 any system obeying the laws of classical physics can be accurately modeled as a Markov process as long as the time
-step is sufficiently short, defining $s(t)$, the state at time $t$, as the position in phase space \textbf{Replace by "state space"?}.
+step is sufficiently short, defining $s(t)$, the state at time $t$, as the position in state space.
 The process has $memory$ if the next state depends not only on the current state but also on some finite
 number of past states.
 Rational probabilistic planning can be reformulated
@@ -905,6 +905,12 @@ a policy $\pi$ generates a trajectory of action cascades as follows
     \ldots
   \end{split}
 \end{eqnarray*}
+
+\begin{mdframed}
+  \textbf{Time-invariance assumption:} It is assumed that the MDP has reached steady-state conditions so that
+  the dynamics of the process are equivalent over sufficiently long time windows of equal length.
+\end{mdframed}
+
 Since an action taken in the present moment $t$
 might have repercussions long into the future, it turns out that the
 quantity to optimize is not the instantaneous rewards $r(s, a)$, but a
@@ -934,17 +940,18 @@ as potentially implemented in the DMN.
 To allow a learning process to arise,
 it is necessary that $0 < \gamma < 1$.
 % \footnote{In which case we can take $T \rightarrow +\infty$, provided the reward function $r$ is bounded.}.
+% The reward discount factor
+$\gamma$ can be seen as calibrating risk-seeking valency of the intelligent agent,
+that is, the decision related to reward-delay trade-off schedules.
 Such an agent puts relatively more emphasis on rewards expected in
 a short future and pays less attention to
-rewards expected at a later time.
+rewards expected at a later time, precisely rewards more than $1/(1 - \gamma)$ time steps into the future are disregarded.
+This reduces the variance of expected rewards to be accumulated across action cascades by limiting the length of this cascades.
 % given that there is more uncertainty in the farsighted future.
-The reward discount factor $\gamma$ can be seen as calibrating
-the delay discounting behavior of the intelligent agent,
-that is, the decision related to reward-delay trade-off schedules.
-It is also important to appreciate that a stochastic policy estimation
-is more advantageous in many RL settings.
-For instance, a deterministic strategy in playing rock-paper-scissors can
-be easily exploited and a uniformly random choice is optimal.
+% It is also important to appreciate that a stochastic policy estimation
+% is more advantageous in many RL settings.
+% For instance, a deterministic strategy in playing rock-paper-scissors can
+% be easily exploited and a uniformly random choice is optimal.
 
 \subsection{The Q-value: A goodness measure for action choices}
 We can now formulate the purpose of the DMN
@@ -967,9 +974,11 @@ For the brain,
 $Q^{\pi}(s, a)$ defined in \eqref{eq:qval} provides the subjective
 utility of executing a specific action; it answers the question
 "What is the expected utility of taking action $a$ in this situation ?".
-When a choice of actions is available, the $Q^{\pi}(s,a)$
-offers a formalization of optimal behavior,
+$Q^{\pi}(s,a)$ offers a formalization of optimal behavior,
 potentially driven by the DMN in human agents.
+% The goal of the DMN is then
+% to find then to produce a policy $\pi$ which maximizes the expected cumulative reward $Q^\pi(s_0,\pi(a_0))$
+% given an initial state $s_0$.
 
 \subsection{Efficient computation of optimal behavior}
 By construction, maximizing the expectation in  \eqref{eq:qval} is computationally intractable in general.
