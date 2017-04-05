@@ -1504,35 +1504,48 @@ different investigators have speculated that neural activity in the DMN
 may reflect the brain’s relentless tracking of
 relevance in the environment
 as an advantageous evolutionary adaptation.
-According to this cognitive account, the brain's baseline realizes
+According to this cognitive account, the brain\'s baseline realizes
 a ``radar'' function to
-detect subjectively salient and unexpected events that
-are the most important for unfolding behavior,
-including resources,
-the securing of mates, and protection.
+detect subjectively salient object and unexpected events in the environment.
+The sentinel account does however not provide a formal mechanisms of
+how attention and memory resources are exactly reallocated when
+encountering a salient environmental stimulus.
+In our formal account,
+action cascades
+are recursively explored by human agents. Conversely,
+certain branches of candidate action trajectories
+are detected to be less worthy to get explored.
+This mechanism, mediated by the Bellman equation,
+directly implies allocation of attention and computational load
+to relevant objects and events in the environment.
 %
+Further,
+our computational account provides an explanation for the known implication
+of the DMN
+in both certain goal-directed experimental tasks and
+especially in the idlying rest cognitive set.
+Both cognitive sets may entail DMN recruitment
+if environmental relevance is processed, manipulated, and used for prediction.
+In tasks, the policy and value matrices are updated to optimize short-term action.
+At rest, these parameter updates may
+improve especially mid- and long-term action.
+We thus provide answers to the unsettled question why the involvement
+of the same neurobiological brain circuit, the DMN, has been documented
+for baseline house-keeping functions and specific task performance.
+
+
+
 In fact,
-environmental stimuli important for humans are frequently of
+environmental stimuli especially important for humans are frequently of
 social nature. This is probably unsurprising
 given that a key property of the human species is
 the complexity of their social systems
 \citep{tomasello2009cultural}.
-More specifically,
-according to the ``social brain hypothesis'',
+According to the ``social brain hypothesis'',
 the human brain did not evolve to solve problems of the
 physical environment, but to form and maintain increasingly complex
 social systems to solve ecological problems by means of social relationships
 \citep{whiten1988machiavellian}.
-Highly efficient neurobiological processing of social cues is exemplified by
-facial judgments being routinely processed in less than 100 ms
-\citep{bar2006very}.
-Our human ancestors were probably among the few organisms that
-were more likely to be killed by members of their own species
-rather than predators from another species.
-Being able to detect the intention and upcoming actions of conspecifics
-turned into a decisive evolutionary advantage
-\citep{frith2010social}.
-%
 This may explain why social topics amount to roughly
 two thirds of human everyday communication \citep{dunbar1997human}
 and
@@ -1540,46 +1553,27 @@ why mind-wandering and dreams
 are so rich in stories about people and
 the complex relationships between them
 \citep{schilbach2008minds}.
+%
+Consequently, the DMN has been proposed to reflect
+continuous processing of social information as a
+physiological baseline of human brain function
+\citep{schilbach2008minds}. This view was later challenged by observing
+analogues of the DMN in monkeys \citep{mantini2011default}
+and rats \citep{lu2012rat}, species with
+supposedly less advanced social-cognitive capacities.
+Instead,
+our formal account can parsimoneously explain the dominance of social content in
+human mental scenes by their relevance to humans
+reflected in high estimates for social information obtained from the value function
+\citep{baker2009action}.
+In sum,
+our account on the DMN directly implies
+its previously proposed ``radar'' function
+of monitoring the environment for salient information
+in general and inherently incorporates the importance of social environmental cues
+as an important special case, without excluding other topics
+contemplated in continuous mental activity.
 
-
-\textbf{XXX Elvis: Your focus in this subsection ought to be on the SC itself not POMPDs. -> agree I will fix it later.}
- \begin{itemize}
-    \item Processing social information has been proposed to underlie the
-    physiological baseline of human brain function
-    \citep{schilbach2008minds}. This was later challenged by observing
-    analogues of the DMN in monkeys \citep{mantini2011default}
-    and rats \citep{lu2012rat}, with
-    supposedly less advanced social capacities.
-    The MDPs parsimoneously explain the dominance of social content in
-    human mental scenes by their extremely high relevance to humans
-    reflected by high values for social information in the value matrix
-    \citep{baker2009action}.
-    \item How can a same neurobiological circuit be equally important
-    for baseline house-keeping functions and specific task performance?
-    Our computational account can explain why the DMN is implicated
-    in both a goal-directed task and an idlying rest cognitive set,
-    if environmental relevance is processed, manipulated, and retained
-    also as a baseline function of human mental activity.
-    In tasks, the policy and value matrices are updated to optimize short-term action,
-    whereas, at rest, these parameter updates may
-    improve especially mid- and long-term action.
-    \item The sentinel account does not provide a formal mechanisms of
-    how attention and memory resources are exactly reallocated when
-    encountering a salient environmental stimulus. \textbf{XXX remove the next sentence. Danilo: can you help me to correct the sentence instead.
-    There appears to be a cool link between cognition and formal theory
-    here. Elvis: I'd've helped you correct it but, i don't quite understand what you wanted to say. For ex, note that $\sum_{a \in \mathcal A}\pi(a|s) = 1$ for any state $s$,
-  and so it doesn't quite make sense to talk about weighting things with ``$\sum_{a \in \mathcal A}\pi(a|s)$''.}
-    In contrast,
-    the Bellman recursion is weighted at each step by
-    $\sum_{a \in A}\pi(a|s)$. This factor weighs which action cascades
-    are recursively explored by the agent and which decision trees are neglected.
-    This directly implies allocation of attention and computational load.
-    \item In sum,
-    MDPs imply a ``radar'' function of monitoring the environment for salient information
-    in general and explain social thinking as a physiological brain baseline
-    as an important special case, without excluding other topics
-    contemplated in continuous mental activity.
- \end{itemize}
 
 
 
