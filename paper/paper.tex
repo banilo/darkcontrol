@@ -822,7 +822,7 @@ It is our view that at a sufficiently coarse scale, the brain -- and therefore t
 is a physical system governed by the laws of
 physics and can be locally described by Markov processes. Indeed, as noted in \cite{tegmark2016improved},
 any system obeying the laws of classical physics can be accurately modeled as a Markov process as long as the time
-step is sufficiently short, defining $s(t)$, the state at time $t$, as the position in phase space \textbf{Replace by "state space"?}.
+step is sufficiently short, defining $s(t)$, the state at time $t$, as the position in state space.
 The process has $memory$ if the next state depends not only on the current state but also on some finite
 number of past states.
 Rational probabilistic planning can be reformulated
@@ -896,15 +896,21 @@ a set of candidate actions to perform given this state. Starting a time $t=0$,
 a policy $\pi$ generates a trajectory of action cascades as follows
 \begin{eqnarray*}
   \begin{split}
-    \textbf{ observe transition: }s_1 &\sim p(s|s_0,a_0)\textbf{ and collect rewards }R_0 = r(s_0, a_0)\\
+    \textbf{ observe transition: }s_1 &\sim p(s|s_0,a_0)\textbf{ and collect reward }R_0 = r(s_0, a_0)\\
     \textbf{choose action: }a_1 &\sim \pi(a|s_1)\\
-    \textbf{ observe transition: }s_2 &\sim p(s|s_1,a_1), \textbf{ and collect rewards }R_1 = r(s_1, a_1)\\
+    \textbf{ observe transition: }s_2 &\sim p(s|s_1,a_1), \textbf{ and collect reward }R_1 = r(s_1, a_1)\\
     \ldots\\
     \textbf{choose action: }a_{t} &\sim \pi(a|s_{t})\\
-    \textbf{ observe transition: }s_{t+1} &\sim p(s|s_{t},a_{t}), \textbf{ and collect rewards }R_{t} = r(s_{t}, a_{t})\\
+    \textbf{ observe transition: }s_{t+1} &\sim p(s|s_{t},a_{t}), \textbf{ and collect reward }R_{t} = r(s_{t}, a_{t})\\
     \ldots
   \end{split}
 \end{eqnarray*}
+
+\begin{mdframed}
+  \textbf{Time-invariance assumption:} It is assumed that the MDP has reached steady-state conditions so that
+  the dynamics of the process are equivalent over sufficiently long time windows of equal length.
+\end{mdframed}
+
 Since an action taken in the present moment $t$
 might have repercussions long into the future, it turns out that the
 quantity to optimize is not the instantaneous rewards $r(s, a)$, but a
@@ -934,17 +940,18 @@ as potentially implemented in the DMN.
 To allow a learning process to arise,
 it is necessary that $0 < \gamma < 1$.
 % \footnote{In which case we can take $T \rightarrow +\infty$, provided the reward function $r$ is bounded.}.
+% The reward discount factor
+$\gamma$ can be seen as calibrating risk-seeking valency of the intelligent agent,
+that is, the decision related to reward-delay trade-off schedules.
 Such an agent puts relatively more emphasis on rewards expected in
 a short future and pays less attention to
-rewards expected at a later time.
+rewards expected at a later time, precisely rewards more than $1/(1 - \gamma)$ time steps into the future are disregarded.
+This reduces the variance of expected rewards to be accumulated across action cascades by limiting the length of this cascades.
 % given that there is more uncertainty in the farsighted future.
-The reward discount factor $\gamma$ can be seen as calibrating
-the delay discounting behavior of the intelligent agent,
-that is, the decision related to reward-delay trade-off schedules.
-It is also important to appreciate that a stochastic policy estimation
-is more advantageous in many RL settings.
-For instance, a deterministic strategy in playing rock-paper-scissors can
-be easily exploited and a uniformly random choice is optimal.
+% It is also important to appreciate that a stochastic policy estimation
+% is more advantageous in many RL settings.
+% For instance, a deterministic strategy in playing rock-paper-scissors can
+% be easily exploited and a uniformly random choice is optimal.
 
 \subsection{The Q-value: A goodness measure for action choices}
 We can now formulate the purpose of the DMN
@@ -967,9 +974,11 @@ For the brain,
 $Q^{\pi}(s, a)$ defined in \eqref{eq:qval} provides the subjective
 utility of executing a specific action; it answers the question
 "What is the expected utility of taking action $a$ in this situation ?".
-When a choice of actions is available, the $Q^{\pi}(s,a)$
-offers a formalization of optimal behavior,
+$Q^{\pi}(s,a)$ offers a formalization of optimal behavior,
 potentially driven by the DMN in human agents.
+% The goal of the DMN is then
+% to find then to produce a policy $\pi$ which maximizes the expected cumulative reward $Q^\pi(s_0,\pi(a_0))$
+% given an initial state $s_0$.
 
 \subsection{Efficient computation of optimal behavior}
 By construction, maximizing the expectation in  \eqref{eq:qval} is computationally intractable in general.
@@ -1088,7 +1097,7 @@ of the neural processing hierarchy
 Learning
 of the the entire model parameters can effectively be achieved
 via \textit{backpropagation},
-where prediction errors (i.e., \textit{regrets}) percolate from lower to higher processing layers to modulate the choice of future actions
+where reward prediction errors (RPES) -- also known as \textit{regret}-- percolate from lower to higher processing layers to modulate the choice of future actions
 % online stochastic gradient descent is used to minimize the variational objective
 % \eqref{eq:oracle}.
 
@@ -1096,7 +1105,7 @@ where prediction errors (i.e., \textit{regrets}) percolate from lower to higher 
 \begin{equation}
   \delta \theta_{k+1}^Q \propto -\nabla_{\theta^Q_{k+1}}\mathcal L(\theta^Q_{k+1})
   % = -\mathbb E_{(s, a, r, s') \sim U(\mathcal D)}[(Q(s, a|\theta^Q) - Q(s',a'|\theta^Q_{}))^2]
-  = -\mathbb E_{(s, a, r, s') \sim \mathcal U(D)}\left[\underbrace{(Q(s, a|\theta^Q_{k+1}) - y)}_{\text{regret}}
+  = -\mathbb E_{(s, a, r, s') \sim \mathcal U(D)}\left[\underbrace{(Q(s, a|\theta^Q_{k+1}) - y)}_{\text{regret / RPE}}
     \underbrace{\nabla_{\theta^Q_{k}}Q(s, a|\theta^Q_{k+1})}_{\text{averseness}}\right].
   \label{eq:oracle}
 \end{equation}
@@ -1242,8 +1251,12 @@ Because surprisal is intractably difficult to optimize (since we would need to s
 % \end{figure}
 The main algorithm for minimizing free-energy $F_G^R(\x)$ is the \textit{wake-sleep algorithm}.
 \citep{dayan1995helmholtz}. As noted already in \citep{dayan1995helmholtz},
-a crucial drawback of the wake-sleep algorithm is that it requires a concurrent models (generative and recogntiion), which together do not correspond to optimization of (a bound of) the marginal likelihood (because of the incorrect KL used therein, etc.). Thus the brain could not possible be running such a algorithm, not even in principle! To the rescue, we note that the recent theory of
-\textit{variational auto-encoders (VAEs)} \citep{kingma2013auto} might provide an efficient alternative to the wake-sleep algorithm, as it overcomes the technical limits of the former, by using a reparametrization trick. For instance, unlike the wake-sleep algorithm for minimizing free-energy, VAEs can be efficiently trained via back-propagation of learning errors.
+a crucial drawback of the wake-sleep algorithm is that it postulates a pair forward (generation) and backward (recognition) models,
+which together do not correspond to optimization of (a bound of) the marginal likelihood, because of the incorrect KL used therein, etc.
+Thus the brain could not possibly be running such a algorithm, not even in principle! To the rescue, we note that the recent theory of
+\textit{variational auto-encoders (VAEs)} \citep{kingma2013auto} might provide an efficient alternative to the wake-sleep algorithm,
+as it overcomes the technical limits of the former, by using a reparametrization trick. For instance, unlike the wake-sleep algorithm
+for minimizing free-energy, VAEs can be efficiently trained via back-propagation of learning errors.
 
 \subsubsection{Comparison to our proposed theory}
 On the surface, a common point between the FEP and our proposed RL-based framework
