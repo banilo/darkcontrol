@@ -1312,8 +1312,10 @@ On the surface, a common point between the FEP and our proposed RL-based framewo
 \textbf{XXX: integrate aspects from Friston2014(Dropbox) on active inference}
 \textbf{XXX: integrate aspects from Sutton/Barto book chapter}
 
+
+
 \subsection{Predictive coding hypothesis}
-The predictive coding framework
+The predictive coding account
 \citep{clark2013whatever, friston2008hierarchical}
 is a frequently evoked idea related to the default mode function
 \citep{bar2007}.
@@ -1349,60 +1351,64 @@ This process permits updates of the internal model of the environment
 to best fit the constant influx of sensory examples.
 
 
-\begin{itemize}
-  \item Both the predictive coding account and POMDPs
-  are process theories backed up by plausible
-  neurobiological evidence that
-  view the brain as a ``statistical organ''
-  generalizing from the past to new experiences.
-  \item Both provide a parsimonious explanation why the
-  human brain decreases processing load devoted to incoming information
-  when the environment is predictable and allocate increased
-  attentional resources when novel stimuli are encountered.
-  Similarly, both propose explanations why
-  predicting the future is inherently
-  linked to information from the past.
-  \item Sensory experience is a generative process from both views.
-  In predictive coding, sensory perception of the external world
-  is a generative experience due to modulatory top down experience at
-  various hierarchical levels of sensory input processing.
-  In our RL view, the (partially observed)
-  environmental model is incorporated in the POMDP,
-  \textit{which can be fully recovered based on the last
-  state alone}.
-  \item Both naturally expose a mechanisms of brain plasticity in that
-  neuronal wiring gets increasingly adapted
-  when faced by unprecedented environmental
-  challenges.
-  \item The hierarchical aspects from predictive coding
-  is re-expressed in POMDPs in form of
-  nested prediction of probable upcoming actions and rewards.
-  \item Both model the consequences of action. In RL, the horizon of that
-  look into the future is explicitly manifested in the $\gamma$ parameter
-  in the Bellman equation, but not
-  explicitly modeled in the PC account that
-  tends to emphasize prediction about the
-  immediate future.
-  \item \suggestremove{Mismatch negativity of PC is immanent in reward prediction error
-  by the difference between actually predicted reward of an action given
-  a state and the reward predicted by non-linear regression with graded
-  discounting of future rewards.}
-  \item Adapting the neuronal connections for improved top-down modulation
-  takes the concrete form of gradient computation
-  \textit{and back-propagation} in MDPs and RL,
-  although the neurobiological plausibility of
-  the back-propagation procedure is controversal
-  \citep{goodfellow2016deep}.
-  \item In sum,
-  the MDP account may serve as a concrete conceptualization of the PC account
-  in cognitive neuroscience. MPDs have the advantage of exposing an explicit
-  mechanism of the horizon of future considerations or
-  how the internal model of the world gets updated,
-  and collapses sensory input processing and action output preparation.
-  %
-  As such, our MDP account of DMN function can parsimoneously explain
-  prediction coding hypothesis.
-\end{itemize}
+There a number of common properties between the predictive coding account
+and the proposed formal account.
+Both frameworks are plausibilized by neurobiological evidence that
+the human brain may be viewed as a ``statistical organ'' aiming to
+generalize from the past to new experiences.
+Both accounts provide a parsimonious explanation why the
+human brain decreases processing load devoted to incoming information
+when the environment is predictable and allocate increased
+computation resources when novel stimuli or unexpected events are encountered.
+The predictive coding and formal account
+naturally evoke a mechanisms of brain plasticity in that
+neuronal wiring gets increasingly adapted
+when faced by unprecedented environmental
+challenges.
+
+
+While sensory experience is a generative process from both views,
+in predictive coding sensory perception of the external world
+is a generative experience due to modulatory top down-experience at
+various hierarchical levels of sensory input processing. Instead,
+the Markov property of our sequential decision making framework
+In our RL view, the environmental model is
+\textbf{effectively expressed in the current state of the human agent
+XXX guys, please double-check}.
+The hierarchical processing aspect from predictive coding
+is re-expressed in our account in form of
+nested prediction of probable upcoming actions, states, and rewards.
+Both model the consequences of action.
+In the present account, the horizon of that
+look into the future is explicitly expressed in the $\gamma$ parameter
+in the Bellman equation.
+The predictive coding framework is typically explained without
+explicitly parameterization of the agent's horizon and
+has a tendency to be presented as emphasizing prediction about the
+immediate future.
+% \item \suggestremove{Mismatch negativity of PC is immanent in reward prediction error
+% by the difference between actually predicted reward of an action given
+% a state and the reward predicted by non-linear regression with graded
+% discounting of future rewards.}
+The process of adapting the neuronal connections
+for improved top-down modulation
+takes the concrete form of gradient computation
+back-propagation in our RL implementation,
+although the neurobiological plausibility of
+the back-propagation procedure is controversal
+\citep{goodfellow2016deep}.
+\item In sum,
+the formal account may serve as a concrete implementation of
+the predictive coding account
+from cognitive neuroscience.
+MPDs have the advantage of exposing an explicit
+mechanism of the horizon of future considerations or
+how the internal model of the world gets updated,
+and collapses sensory input processing and action output preparation.
+%
+As such, recasting DMN function in terms of MDPs naturally incorporates
+a majority of aspects of the prediction coding hypothesis.
+
 
 
 \subsection{Semantic hypothesis}
