@@ -907,8 +907,8 @@ a policy $\pi$ generates a trajectory of action cascades as follows
 \end{eqnarray*}
 
 \begin{mdframed}
-  \textbf{Time-invariance assumption:} It is assumed that the MDP has reached steady-state conditions so that
-  the dynamics of the process are equivalent over sufficiently long time windows of equal length.
+  \textbf{Time-invariance assumption:} It is assumed that the underlying MDP is stationary --i.e has reached steady-state conditions--
+  so that the dynamics of the process are equivalent over sufficiently long time windows of equal length.
 \end{mdframed}
 
 Since an action taken in the present moment $t$
@@ -953,13 +953,13 @@ This reduces the variance of expected rewards to be accumulated across action ca
 % For instance, a deterministic strategy in playing rock-paper-scissors can
 % be easily exploited and a uniformly random choice is optimal.
 
-\subsection{The Q-value: A goodness measure for action choices}
+\subsection{The Q-values, state-values, and the advantage function}
 We can now formulate the purpose of the DMN
 as finding a policy $\pi$ for the human agent that maximizes the
 expected cumulative value of an state-action pair $(a,s)$, also known as the \textit{Q-value}, namely
 \begin{equation}
   \label{eq:qval}
-  Q^{\pi}(s,a) = \mathbb E [G^\pi|s_0=s,a_0=a,a_1 \sim \pi,a_2 \sim \pi,\ldots].
+  Q^{\pi}(s,a) = \mathbb E [G^\pi|s_0=s,a_0=a].
 \end{equation}
 In other words,
 the Q-value $Q^{\pi}(s,a)$ corresponds to the expected reward
@@ -976,6 +976,18 @@ utility of executing a specific action; it answers the question
 "What is the expected utility of taking action $a$ in this situation ?".
 $Q^{\pi}(s,a)$ offers a formalization of optimal behavior,
 potentially driven by the DMN in human agents.
+
+One can also define the state-value function
+
+\begin{eqnarray}
+  \V^\pi(s) := \mathbb E_{a \sim \pi}Q^\pi(s,a) = \mathbb E [G^\pi|s_0=s],
+\end{eqnarray}
+which measures the value of each state $s \in \mathcal S$ under the policy $\pi$. This serves
+as a baseline value for any action. Finally, the advantage function is defined by
+\begin{equation}
+A^\pi(s,a) :=  Q^\pi(s,a) - V^\pi(s).
+\end{equation}
+
 % The goal of the DMN is then
 % to find then to produce a policy $\pi$ which maximizes the expected cumulative reward $Q^\pi(s_0,\pi(a_0))$
 % given an initial state $s_0$.
@@ -1001,25 +1013,26 @@ take at the state. Such policies define deterministic functions from states to a
 \textbf{XXX please add 1-2 sentences why this is interesting in the current
 context. This statement appears a little alone as it stands.}
 \begin{equation}
-  \pi(s) = \argmax_{a \in \mathcal A}{Q}(s, a).
+  \pi^*(s) = \argmax_{a \in \mathcal A}{Q}^*(s, a),
   \label{eq:qlearning}
 \end{equation}
+which maps each state $s$ to the optimal action which should be taken at that state.
+Here $Q^*(s, a) := \max_{\pi}Q^\pi(s,a)$, the optimal Q-value over all policies.
 % where $\tilde{Q}(s, a)$ is the current estimate of the state-action value
 % table.
 The \textit{Bellman equation} \citep{sutton1998reinforcement} then takes the simple form
 \begin{equation}
   \begin{split}
-    Q^\pi(s, a) &= \mathbb E_{s' \sim p(s'|s,a)} [r(s,a) + \gamma \max_{a' \in \mathcal A}Q^\pi(s', a')]
+    Q^*(s_0, a_0) &= \mathbb E_{s_1 \sim p(s_1|s_0,a)} [r(s,a) + \gamma \max_{a_1 \in \mathcal A}Q^*(s_1, a_1)]
     \\
-    &= \mathbb E_{s' \sim p(s'|s,a)} [r(s,a) + \gamma Q^\pi(s', \pi(s'))].
+    &= \mathbb E_{s_1 \sim p(s_1|s_0,a_0)} [r(s_0,a_0) + \gamma Q^*(s_1, \pi(s_1))].
   \end{split}
   \label{eq:bellman}
 \end{equation}
-This \textit{fixed-point} equation provides a recursive decomposition of optimal behavior by dividing the value function \textbf{XXX please more explicitly introduce
-the notion of value function}
-into the immediate reward
-and the discounted rewards of the upcoming states.
-A complicated dynamic programming optimization can be
+This consistency equation for the optimal (over all policies) Q-value function provides
+a recursive decomposition of optimal behavior by dividing the Q-value function into the immediate
+reward and the discounted rewards of the upcoming states. The optimal Q-value operator $Q^*$
+is a fixed point for this equation. A complicated dynamic programming optimization can be
 broken into simpler sub-problems at different time points,
 which has often been closely related to the medial prefrontal part of the DMN
 \citep{koechlin1999role, braver2002role}.
