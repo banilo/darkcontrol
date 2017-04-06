@@ -40,7 +40,7 @@
 }
 
 % \thickhline command for thick horizontal lines that span the table
-\newcommand\thickhline{\noalign{\global\savedwidth\arrayrulewidth\global\arrayrulewidth 2pt}%
+\newcommand\thickhline{\noalign{\global\savedwidth\arrayrulewidth\global\arrayrulewidth 2pt}%@
 \hline
 \noalign{\global\arrayrulewidth\savedwidth}}
 
@@ -254,7 +254,7 @@ in the absence of a focused behavioral goal
 \citep{kenet2003spontaneously, fiser2004small}.
 This baseline energy demand is subject to surprisingly little modulations
 when mentally processing environmental challenges
-\citep{raichle2001pnas}.
+\citep{raichle2001pnas}. \textbf{(XXX Guillaume: What about the energy consumption compare to sleep?)}
 What has early been described as the "stream of consciousness"
 in psychology \citep{james1890principles}
 found a potential neurobiological manifestation
@@ -276,18 +276,18 @@ baseline mental activities
 \citep{raichle2001pnas, bzdok2015resting}.
 
 
-\subsection{Default mode network: Higher-order control of the organism}
+\subsection{Default mode network: higher-order control of the organism}
 The DMN appeared to be exclusive in task-induced
 deactivation during various psychological experiments.
 This processing of unknown information categories in the DMN has
-been argued to mediate an evolutionarily conserved function for the individual.
+been argued to mediate an evolutionarily conserved function for the individual \textbf{(XXX Guillaume: Ref?)}.
 This is all the more likely because the DMN contains hotspots
 of highest energy consumption in the entire central nervous system
 \citep{raichle2001pnas}.
 DMN activity also persists to a substantial degree during
 sleep and under anesthesia \citep{randy2008}.
 Today, many authors believe that the DMN implements
-probabilistic estimation of past, hypothetical, and future events. This
+probabilistic estimation of past, hypothetical, and future events \textbf{(XXX Guillaume: Ref? // many authors)}. This
 brain network
 might have emerged to continuously predict environmental events using
 mental imagery as an evolutionary advantage.
@@ -302,8 +302,8 @@ yet sometimes useful thoughts
 Understanding of the overarching DMN function is complicated by
 simultaneously controlling perception-action cycles and
 maintaining baseline contemplations
-across time, splace, and content domains
-at the interface of the external world and the self.
+across time, space, and content domains
+at the interface of the external world and the self \textbf{(XXX Guillaume: This sentence is not clear and too long.)}.
 
 
 
@@ -318,10 +318,10 @@ It is known that, the more the external world is predictable,
 the more mental activity becomes detached from the actual sensory environment
 \citep{antrobus1966studies, pope1978regulation}.
 Conversely,
-the more the currently executed task is unknown and unpracticed,
-the lower the tendency for stimulus-independent thoughts
+the more the ongoing executed task is unknown and unpracticed,
+the less stimulus-independent thoughts occur
 \citep{filler1973daydreaming, teasdale1995stimulus}.
-These ``offline'' processes may however contribute to optimized control of the organism.
+These ``offline'' processes may however contribute to optimized control of the organism. \textbf{(XXX Guillaume: What about the idea of model free control being also remote of environment?)}
 % We formalize
 % a policy matrix to capture the space of possible actions that can be performed
 % on the environment given the current state. A value matrix
@@ -332,18 +332,18 @@ These ``offline'' processes may however contribute to optimized control of the o
 % starting, at birth, with an environment that is completely unknown.
 Informed by outcomes of performed action,
 the DMN dynamics are constantly adapted in feedback loops
-that are calibrated by prediction error.
+shaped by prediction error.
 A DMN framework incorporating RL can naturally embed human behavior
 into the tension between exploitative action with immediate gains and
 exploratory action with longer-term reward schedules.
 
 
-\subsection{Sketch of our main contributions}
+\subsection{Sketch of our main contributions\textbf{(XXX Guillaume: What about ``Towards a computational account of DMN function'')}}
 We argue that the implication of the DMN in a
 diversity of humans' most advanced cognitive processes
 can be parsimoniously recast as prediction error minimization
 based on pervasive probabilistic simulations,
-thus maximizing reward outcome at various time scales.
+thus maximizing reward outcome across multiple time scales.
 Such a purposeful optimization objective
 may be solved by a stochastic approximation
 based on a brain implementation of Markov Chain Monte Carlo sampling
@@ -351,7 +351,7 @@ based on a brain implementation of Markov Chain Monte Carlo sampling
 \textit{Control} refers to the influences that an agent exerts when interacting
 with the environment to encourage preferred states.
 Even (necessarily imperfect) memories
-of past experience, random day-time mind-wandering and dreams during sleep
+\suggestremove{of past experience}, random day-time mind-wandering, and dreams during sleep
 may provide meaningful building blocks to iteratively improve
 the predictive DMN machinery to optimize the behavior of the organism.
 %
@@ -360,8 +360,8 @@ the human brain's energy budget is largely dedicated to
 ``the development and maintenance of [a]
 probabilistic model of anticipated events''
 \citep{raichle2005intrinsic}.
-The idea has been invigorated by empirical evidence from
-neuroscientific experiments \citep{kording2004bayesian, fiser2004small}.
+Numerous empirical evidence from
+neuroscientific experiments have invigorated this idea \citep{kording2004bayesian, fiser2004small}.
 This paper proposes a formal model that satisfies this contention.
 
 
