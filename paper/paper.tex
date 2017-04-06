@@ -1821,12 +1821,12 @@ variational free-energy as
   \textbf{Problem:} How do we sample from the recognition density $p_R(.|\x)$ in such a way that the sampling process is differentiable w.r.t the weights of the recognition network $\W^R$ ?
 \end{mdframed}
 
-\begin{figure}[!tb]
-  \centering
-  \includegraphics[width=.8\linewidth]{vae.pdf}
-  \caption{Variational autoencoders...}
-  \label{fig:vae}
-\end{figure}
+% \begin{figure}[!tb]
+%   \centering
+%   \includegraphics[width=.8\linewidth]{vae.pdf}
+%   \caption{Variational autoencoders...}
+%   \label{fig:vae}
+% \end{figure}
 
 \paragraph{Solution: The reparametrization trick.}
 \begin{itemize}
@@ -1840,7 +1840,9 @@ variational free-energy as
 The mapping $g$ should be taught of as a ``blurring'' function which produces noisy versions $\z$,
 called \textit{sensations}, of the true world state $\x$.
 The result is a scheme for training DBNs via good-old backprop!
-Refer to Fig. \ref{fig:vae}. Some examples of the reparametrization trick for a number of
+Refer to Fig. vae.pdf.
+% \ref{fig:vae}.
+Some examples of the reparametrization trick for a number of
 choices of the posterior distribution are given in Tab. \ref{tab:rptrick}.
 
 \begin{table}[H]
