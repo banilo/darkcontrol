@@ -2,7 +2,7 @@
 
 PDFLATEX_OPTIONS="-shell-escape -interaction=nonstopmode -file-line-error"
 
-all: clean
+all: clean loTopdf
         # pdfcrop -margin 5 vae.pdf vae.pdf
 	pdflatex ${PDFLATEX_OPTIONS} paper
 	bibtex -terse paper
@@ -10,6 +10,11 @@ all: clean
 	pdflatex ${PDFLATEX_OPTIONS} paper
 	# makeglossaries paper
 	pdflatex ${PDFLATEX_OPTIONS} paper
+
+
+loTopdf:
+	unoconv -f pdf *.odp
+
 
 clean:
 	rm -f *.aux
