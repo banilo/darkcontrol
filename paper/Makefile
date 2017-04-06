@@ -3,7 +3,7 @@
 PDFLATEX_OPTIONS="-shell-escape -interaction=nonstopmode -file-line-error"
 
 all: clean
-	pdfcrop -margin 5 vae.pdf vae.pdf
+        # pdfcrop -margin 5 vae.pdf vae.pdf
 	pdflatex ${PDFLATEX_OPTIONS} paper
 	bibtex -terse paper
 	pdflatex ${PDFLATEX_OPTIONS} paper
