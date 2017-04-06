@@ -10,7 +10,7 @@ all: clean loTopdf
 	pdflatex ${PDFLATEX_OPTIONS} paper
 	# makeglossaries paper
 	pdflatex ${PDFLATEX_OPTIONS} paper
-
+	make clean
 
 loTopdf:
 	unoconv -f pdf *.odp
@@ -33,6 +33,5 @@ clean:
 	rm -f *.toc
 	rm -f *.run.xml
 	rm -f *.synctex.gz
-	rm -f paper.pdf
 	rm -f *.log *.lot *.aux *.bbl *.blg
 	
