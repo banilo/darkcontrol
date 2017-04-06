@@ -1,3 +1,15 @@
 Building the paper from source
 ==============================
-$ make -C paper
+- Run "make -C paper"
+
+
+unoconv: converting .odp files to pdf
+=====================================
+- You'll need to update  may need to install the small tool "unoconv" for converting .odp files to pdf.
+ - For Mac OSX users, go instructions for install unoconv can be found here:
+   http://macappstore.org/unoconv/.
+
+  You may also have to update you libreoffice version manually from here
+  https://www.google.com/url?q=https%3A%2F%2Fdownloadarchive.documentfoundation.org%2Flibreoffice%2Fold%2F4.2.5.2%2Fmac%2Fx86_64%2FLibreOffice_4.2.5.2_MacOS_x86-64.dmg&sa=D&sntz=1&usg=AFQjCNGX2VuEch7XDlcppb5s4rd8Pzn0jA
+
+  

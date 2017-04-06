@@ -34,3 +34,5 @@ clean:
 	rm -f *.run.xml
 	rm -f *.synctex.gz
 	rm -f paper.pdf
+	rm -f *.log *.lot *.aux *.bbl *.blg
+	
