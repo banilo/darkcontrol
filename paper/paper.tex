@@ -1175,11 +1175,6 @@ IRL is is suited for problems in which it's hard to define what the reward funct
 (e.g.,  car-driving, drone maneuvering, etc.) ...
 
 \subsection{Putting everything together}
-\begin{figure}[!h]
-  \includegraphics[width=.9\linewidth]{neurobiological_and_rl_overview_DMN.pdf}
-  \caption{Neurobiological implementation of RL by the DMN...}
-  \label{fig:rl_process_chart}
-\end{figure}
 The DMN is today known to consistently increase in neural
   activity when humans engage in goal-directed behavior that are detached from
   current sensory environment \citep{kenet2003spontaneously, fiser2004small}
@@ -1192,7 +1187,13 @@ The DMN is today known to consistently increase in neural
     on the world given a current state. It encodes the probabilites of
     choosing actions to be executed in a certain situation.
 % Interactions between external and internal sources of
-%   information are probably commonplace during perception \citep{gershman2010learning}
+% information are probably commonplace during perception \citep{gershman2010learning}
+\begin{figure}[!h]
+  \includegraphics[width=.9\linewidth]{neurobiological_and_rl_overview_DMN.pdf}
+  \caption{Neurobiological implementation of RL by the DMN...}
+  \label{fig:rl_process_chart}
+\end{figure}
+    
 The DMN may subserve
   constant exploration of possible future actions and their
   cumulative reward outcomes. Implicit computation of future choices
