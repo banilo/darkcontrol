@@ -376,7 +376,7 @@ We begin by a deconstruction of the DMN based on experimental findings in neuros
   \label{fig:neurobiological_overview_DMN}
 \end{figure}
 %
-\subsection{The posteromedial cortex: Global monitoring and information integration}
+\subsection{The posteromedial cortex: global monitoring and information integration}
 \suggestremove{Among all parts of the human brain,}
 the midline structures of the DMN,
 including the posteromedial cortex (PMC) and
@@ -491,7 +491,7 @@ in both the external environment and its internal representation
 that modulate strategic behavioral adjustment in volatile environments.
 
 
-\subsection{The prefrontal cortex: Stimulus-value association and action consideration}
+\subsection{The prefrontal cortex: stimulus-value association and action consideration}
 Analogous to the PMC,
 the dorsomedial PFC (dmPFC) is believed to subserve predominantly ambiguous processes
 across time, space, and content domains in
@@ -592,7 +592,7 @@ among the most complicated decision that humans and monkeys take
 
 
 
-\subsection{The hippocampus: Memory, space, and experience replay}
+\subsection{The hippocampus: memory, space, and experience replay}
 The midline core of the DMN is probably in constant communication
 with the HC in the medial temporal lobe \citep{vincet2006}.
 The HC is long known to be involved in memory and spatial navigation in animals and humans.
@@ -664,7 +664,7 @@ ongoing perception in the current environment
 % such that it really occures in reality later.)
 
 
-\subsection{The right and left TPJ: Prediction error signaling and world semantics}
+\subsection{The right and left TPJ: prediction error signaling and world semantics}
 While the DMN emerges with its midline structures early in human development,
 the right and left TPJ may become fully integrated into this canonical
 network only after birth \citep{doria2010}.
@@ -762,7 +762,7 @@ into ongoing action, planning, and problem solving.
 
 
 
-\section{Reinforcement learning: A process model for DMN function}
+\section{Reinforcement learning: a process model for DMN function}
 The outlined neurobiological properties and suspected functions of the DMN
 are argued to be sufficient
 for implementing all components
@@ -1139,7 +1139,7 @@ Whence, the gradient update due to the sample $(s,a,r,s') \in \mathcal D$ is
 $$\theta^Q(s,a) \leftarrow \theta^Q(s,a) + (Q(s, a|\theta^Q_{k+1}) - y),$$
 the well-known TD update rule \citep{sutton1998reinforcement}.
 
-\subsubsection{Excursion: The role of the hippocampus}
+\subsubsection{Excursion: the role of the hippocampus}
 \paragraph{Does the hippocampus do Monte-Carlo sampling?}
 In RL, Monte-Carlo simulation can be used to update the agent's belief state
 \citep{silver2010monte}. Such methods have a sample complexity that is determined only by the underlying difficulty of the POMDP, rather than the size of the state space or observation space,
@@ -1311,7 +1311,7 @@ On the surface, a common point between the FEP and our proposed RL-based framewo
 \textbf{XXX: integrate aspects from Friston2014(Dropbox) on active inference}
 \textbf{XXX: integrate aspects from Sutton/Barto book chapter}
 
-\subsection{Predictive Coding Hypothesis}
+\subsection{Predictive coding hypothesis}
 The predictive coding framework
 \citep{clark2013whatever, friston2008hierarchical}
 is a frequently evoked idea related to the default mode function
@@ -1404,7 +1404,7 @@ to best fit the constant influx of sensory examples.
 \end{itemize}
 
 
-\subsection{Semantic Hypothesis}
+\subsection{Semantic hypothesis}
 Another frequently proposed cognitive account of DMN function revolves
 around forming logical associations and analogies between
 the current experience and
@@ -1513,7 +1513,7 @@ for other means \citep{tolman1948cognitive}.
 
 
 
-\subsection{Sentinel Hypothesis}
+\subsection{Sentinel hypothesis}
 Processing self-relevant information was perhaps the first
 cognitive account that was proposed for the DMN \citep{gusnard2001medial}.
 Since then,
@@ -1832,7 +1832,7 @@ variational free-energy as
 %   \label{fig:vae}
 % \end{figure}
 
-\paragraph{Solution: The reparametrization trick.}
+\paragraph{Solution: the reparametrization trick.}
 \begin{itemize}
 \item Choose $\epsilon \sim p_{\text{noise}}$ (noise distribution, independent of $\W^R$!)
 \item Set $\z = g(\W^{R}, \x, \epsilon)$, where $g$ is an appropriate class $\mathcal C^1$ function
