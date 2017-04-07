@@ -1315,50 +1315,58 @@ On the surface, a common point between the FEP and our proposed RL-based framewo
 
 
 \subsection{Predictive coding hypothesis}
-The predictive coding account
+Predictive coding mechanisms
 \citep{clark2013whatever, friston2008hierarchical}
-is a frequently evoked idea related to the default mode function
+are a frequently evoked idea in the context of default mode function
 \citep{bar2007}.
-According to this cognitive account,
+According to this view,
 cortical responses emerge from continuous functional interaction between
 higher and lower levels of the neural processing hierarchy.
-This dynamic intercourse enables inference on the world by reconciling
-gaps between fresh sensory input and stored prior information.
 Feed-forward sensory experience is constantly calibrated by
-top-down modulation at various hierarchical processing levels.
+top-down modulation realized by more multi-modal and associative brain regions
+further away from the primary sensory cortices.
+The dynamic interplay between cortical processing levels
+may enable inferences about the world by reconciling
+gaps between fresh sensory input and expectations computed
+from stored prior information.
+At each stage of neural processing,
+an internally generated prediction of aspects of sensory input is
+directly compared against the actual environmental input.
+A prediction error at one of the processing levels,
+i.e., the difference between sensory input
+and internally predicted sensation,
+incurs plasticity changes of neuronal back projections
+(i.e., adapting model parameters)
+to allow for gradually improved future prediction of the environment.
 In fact, axonal
-back projections probably outnumber by far the input projection
-existing in the brain \citep{salin1995corticocortical}.
+back projections probably outnumber by far the axonal input projections
+existing in the primate brain \citep{salin1995corticocortical}.
 This can explain the constructive, generative nature of sensory perception
 \citep{friston2010free} and
-why motor action is intimately related to sensory expectations
+why motor action is probably intimately related to sensory expectations
 \citep{wolpert1995internal, kording2004bayesian}.
-At each stage of neural processing,
-an internally generated prediction of the sensory input is
-directly compared against the actual input from the environment.
-A prediction error at one of the processing levels,
-i.e. the difference between sensory input
-and internally predicted sensation,
-incurs plasticity changes of neuronal back projections (i.e., model parameters)
-for gradually improved future prediction of the environment.
-Contextual integration is hence maintained by top-down modulation of sensorimotor
-processing by a-priori information about the environment.
-The generative model of how perceived sensory events arise in the
+Contextual sensorimotor integration of perception-action cycles
+may hence be maintained by top-down modulation
+by a-priori information about the environment.
+
+
+
+This process permits updates of the internal representation of the environment
+to best accommodate and prepare for the constant influx of sensory examples.
+There are hence a number of common properties
+between the predictive coding account
+and the proposed formal account.
+Importantly,
+the generative model of how perceived sensory cues arise in the
 world would be incorporated into
 the current neuronal wiring.
-Indeed,
-This process permits updates of the internal model of the environment
-to best fit the constant influx of sensory examples.
-
-
-There a number of common properties between the predictive coding account
-and the proposed formal account.
-Both frameworks are plausibilized by neurobiological evidence that
-the human brain may be viewed as a ``statistical organ'' aiming to
+Further,
+both frameworks are plausibilized by neurobiological evidence that suggest
+the human brain to be a ``statistical organ'' with the biological purpose to
 generalize from the past to new experiences.
-Both accounts provide a parsimonious explanation why the
+Both accounts also provide a parsimonious explanation why the
 human brain decreases processing load devoted to incoming information
-when the environment is predictable and allocate increased
+when the environment is predictable and allocates increased
 computation resources when novel stimuli or unexpected events are encountered.
 The predictive coding and formal account
 naturally evoke a mechanisms of brain plasticity in that
@@ -1368,33 +1376,35 @@ challenges.
 
 
 While sensory experience is a generative process from both views,
-in predictive coding sensory perception of the external world
-is a generative experience due to modulatory top down-experience at
+the predictive coding account frames
+sensory perception of the external world
+as a generative experience due to the modulatory top-down influence at
 various hierarchical levels of sensory input processing. Instead,
-the Markov property of our sequential decision making framework
+the Markov property of our sequential decision making framework.
 In our RL view, the environmental model is
 \textbf{effectively expressed in the current state of the human agent
 XXX guys, please double-check}.
 The hierarchical processing aspect from predictive coding
 is re-expressed in our account in form of
 nested prediction of probable upcoming actions, states, and rewards.
-Both model the consequences of action.
-In the present account, the horizon of that
-look into the future is explicitly expressed in the $\gamma$ parameter
-in the Bellman equation.
+Both frameworks model the consequences of action.
 The predictive coding framework is typically explained without
 explicitly parameterization of the agent's horizon and
 has a tendency to be presented as emphasizing prediction about the
 immediate future.
+In the present account, the horizon of that
+look into the future is explicitly expressed in the $\gamma$ parameter
+of the Bellman equation.
 % \item \suggestremove{Mismatch negativity of PC is immanent in reward prediction error
 % by the difference between actually predicted reward of an action given
 % a state and the reward predicted by non-linear regression with graded
 % discounting of future rewards.}
 The process of adapting the neuronal connections
 for improved top-down modulation
-takes the concrete form of gradient computation
-back-propagation in our RL implementation,
-although the neurobiological plausibility of
+takes the concrete form of gradient computation and
+back-propagation in our RL implementation.
+It is however important to note that
+the neurobiological plausibility of
 the back-propagation procedure is controversal
 \citep{goodfellow2016deep}.
 \item In sum,
@@ -1404,7 +1414,8 @@ from cognitive neuroscience.
 MPDs have the advantage of exposing an explicit
 mechanism of the horizon of future considerations or
 how the internal model of the world gets updated,
-and collapses sensory input processing and action output preparation.
+and
+more explicitly reconciles sensory input processing and action output preparation.
 %
 As such, recasting DMN function in terms of MDPs naturally incorporates
 a majority of aspects of the prediction coding hypothesis.
