@@ -1064,13 +1064,16 @@ behavior of the agent and is recorded in replay memory buffer:
 $D \leftarrow D \cup \{e\}$ (possibly discarding the oldest entries to make space).
 Now, at iteration $k+1$, replay consists in sampling (uniform or importance-weighted
 \footnote{e.g weighted by TD error of the state transition $s \overset{a}{\rightarrow} s'$.} ?)  mini-batches of experiences
-$(s, a, r, s') \sim \mathcal U(D)$ from the replay memory $\mathcal D$.
+$(s, a, r, s') \sim \mathcal D$ from the replay memory $\mathcal D$.
 The agent then tries to approximate
 the would-be $Q$-value for the state-action pair $(s,a)$ as predicted by the Bellman equation \eqref{eq:bellman}, namely
-$y := r + \gamma \max_{a'} Q(s', a'|\theta^Q_k)$, with the output of a parametrized regression model $(s,a,r,s')
-\mapsto {Q}(s, a|\theta^Q_{k})$. Here the function $(s,a) \mapsto Q(a,s|\theta^Q_{k})$
+\begin{equation}
+  y_k := r_k + \gamma \max_{a'} \tilde{Q}(s', a'|\theta_{k-1}),
+\end{equation}
+with the output of a parametrized regression model $(s,a)
+\mapsto \tilde{Q}(s, a|\theta_{k-1})$. Here the function $(s,a) \mapsto Q(a,s|\theta_{k-1})$
 % \textbf{XXX just double-checking, are the dots int he Q() correct?}
-is an approximator for the $Q$-value operator,  parameterized by weights $\theta^Q_{k+1}$
+is an approximator for the $Q$-value operator,  parameterized by weights $\theta_{k}$
 (synaptic strengths, etc.).
 
 From a neurobiological perspective,
@@ -1082,19 +1085,16 @@ in rats, mice, cats, rabbits, songbirds, and
 monkeys \cite{buhry2011,nokia2010,dave2000,skaggs2007}.
 
 
-Computing an optimal policy then corresponds to finding the parameters $\theta^Q_{k+1}$ which minimize the following mean-squared loss function
+Computing an optimal policy then corresponds to finding the parameters $\theta_{k}$ which minimize the following mean-squared loss function
 \begin{equation}
-  \mathcal L(\theta^Q_{k+1})
-  % = \mathbb E_{(s, a, r, s') \sim \mathcal U(D)}[(Q(s, a|\theta^Q) - Q(s',a'|\theta^Q_{k+1}))^2]
-  = \mathbb E_{(s, a, r, s') \sim \mathcal U(D)}\left[\frac{1}{2}(Q(s, a|\theta^Q_{k+1}) - y)^2\right],
+  \mathcal L(\theta^Q_{k})
+  % = \mathbb E_{(s, a, r, s') \sim \mathcal D}[(\tilde{Q}(s, a|\theta) - \tilde{Q}(s',a'|\theta^Q_{k}))^2]
+  = \mathbb E_{(s, a, r, s') \sim \mathcal D}\left[\frac{1}{2}(\tilde{Q}(s, a|\theta_{k}) - y_k)^2\right].
   \label{eq:oracle}
 \end{equation}
-where
-$ y: = r + \gamma \max_{a' \in \mathcal A} Q(s', a'|\theta^Q_k) = r + \gamma Q(s', \pi(s')|\theta^Q_k)$ is the prediction target.
-% While $y_t$ is also dependent on $\theta^Q$, this is typically ignored.
 For instance, a general linear model with a kernel $\phi$ would be of the
 form
-$${Q}(s, a|\theta^Q) = \phi(s,a)^T\theta^Q.$$
+$$\tilde{Q}(s, a|\theta) = \phi(s,a)^T\theta.$$
 $\phi(s,a)$ would represent a high-level hand-crafted representation of the state-action pairs
 $(s,a)$, as proposed by \citep{songNIPS2016}.
 %  and Parr et al. 2003 (JMLR)].
@@ -1120,10 +1120,9 @@ where reward prediction errors (RPES) -- also known as \textit{regret}-- percola
 
 % \paragraph{Parameter update.}
 \begin{equation}
-  \delta \theta_{k+1}^Q \propto -\nabla_{\theta^Q_{k+1}}\mathcal L(\theta^Q_{k+1})
-  % = -\mathbb E_{(s, a, r, s') \sim U(\mathcal D)}[(Q(s, a|\theta^Q) - Q(s',a'|\theta^Q_{}))^2]
-  = -\mathbb E_{(s, a, r, s') \sim \mathcal U(D)}\left[\underbrace{(Q(s, a|\theta^Q_{k+1}) - y)}_{\text{regret / RPE}}
-    \underbrace{\nabla_{\theta^Q_{k}}Q(s, a|\theta^Q_{k+1})}_{\text{averseness}}\right].
+  \delta \theta_{k} \propto -\nabla_{\theta_{k}}\mathcal L(\theta_{k})
+  = -\mathbb E_{(s, a, r, s') \sim \mathcal U(D)}[\underbrace{(\tilde{Q}(s, a|\theta_{k}) - y_k)}_{\text{prediction error}}
+    \underbrace{\nabla_{\theta_{k}}\tilde{Q}(s, a|\theta_{k})}_{\text{averseness}}].
   \label{eq:oracle}
 \end{equation}
 
@@ -1134,9 +1133,9 @@ general variational framework. For instance, TD corresponds to
 the above framework using a linear value approximator with feature encoding
 $\phi(s,a) = \delta_{(s,a)} =  \text{ point mass at }(s,a)$ on the grid
 $\mathcal S \times \mathcal A$, and so
-$$\nabla_{\theta^Q_{k+1}}Q(s, a|\theta^Q_{k+1}) = \phi(s, a) = \delta_{(s,a)}.$$
+$$\nabla_{\theta}\tilde{Q}(s, a|\theta) = \phi(s, a) = \delta_{(s,a)}.$$
 Whence, the gradient update due to the sample $(s,a,r,s') \in \mathcal D$ is
-$$\theta^Q(s,a) \leftarrow \theta^Q(s,a) + (Q(s, a|\theta^Q_{k+1}) - y),$$
+$$\theta(s,a) \leftarrow \theta(s,a) + \alpha(\tilde{Q}(s, a|\theta) - y),$$
 the well-known TD update rule \citep{sutton1998reinforcement}.
 
 \subsubsection{Excursion: the role of the hippocampus}
