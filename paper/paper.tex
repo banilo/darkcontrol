@@ -1437,16 +1437,16 @@ the current experience and
 the conceptual knowledge derived from past experiences
 \citep{bar2007proactive, binder1999conceptual}.
 Analogies might naturally tie incoming novel sensory stimuli to
-explicit world knowledge (i.e., semantics) extractable from the environment
+explicit world knowledge (i.e., semantics) extracted from the environment
 \citep{bar2009proactive}.
-In this way, the encoding of complex environments could be facilitated
+The encoding of complex environments could thus be facilitated
 by relative similarity associations between states.
 %
-Going much beyond human language ifself,
-semantic building blocks provide the basis to
-mentally envision non-existent scenarios
-that would improve optimal behavior in the environment
-by simulating future events.
+Going beyond human language itself,
+semantic building blocks may provide the basis for
+mentally envisioning non-existent scenarios
+that would optimize behavior in the environment
+by constantly simulating possible future events.
 Such cognitive processes can afford
 the internal generation of necessary information
 that is not presented in the surrounding environment
@@ -1454,88 +1454,89 @@ by recombining building blocks of
 concept knowledge and episodic memories
 \citep{hassabis2009construction}.
 Indeed, in aging humans, remembering the past and imaging the future
-equally decreased in the level of detail and are associated with
+equally decreased in the level of detail and were associated with
 concurrent deficits in forming and integrating relationships between
 items \citep{addis2008age, spreng2006temporal}.
 Further,
-a constructive account explains the reciprocal relationship
+a constructive account can explain the reciprocal relationship
 between an egocentric first person perspective and
 an allocentric bird’s eye perspective immersed in
-self-reflection, social knowledge, and autobiographical memories.
+self-reflection, semantic associations, and autobiographical memories.
 %
 Cognitive aspects of egocentric-allocentric switching
 are also closely related to episodic memory, language, problem solving,
-planning, estimating other people's thoughts, and spatial navigation
-as these necessitate abstract world knowledge and abstract assocations
+planning, estimating other people's thoughts, and spatial navigation.
+These neural processes are likely to
+build on abstract world knowledge and abstract assocations
 for binding the constituent elements in mental scene construction
 \citep{schacter2007remembering}.
-These scene generation processes could contribute to interpreting the
+Such scene generation processes could contribute to interpreting the
 present and foretelling the future.
-This view is for instance supported by evidence in animals that
+Mental scene construction has been proposed
+to imply a distinction between
+environmental perception and internally generated mind-wandering
+\citep{buckner2007self}.
+These authors stated that
+``A computational model [...] will probably require a form of
+regulation by which perception of the current world is suppressed
+while simulation of possible alternatives are constructed,
+followed by a return to perception of the present.''.
+The semantic hypothesis is for instance supported by evidence in animals that
 could learn a \textit{cognitive map of the environment},
 even without reward incentives, and exploit it later
 for other means \citep{tolman1948cognitive}.
 
 
-
-\begin{itemize}
-  \item Both the semantic hypothesis and MDPs expose mechanisms of
-  how alternative decision trees could be mentally explored.
-  \item In both semantic hypothesis and MDPs,
-  there is no evidence to indicate that predictions of various
-  levels of complexity, abstraction, timescale and purpose
-  use mechanisms that are qualitatively different. This concurs with
-  DMN activity increases across time, space, and content domains
-  demonstrated in many neuroimaging studies. The semantic hypothesis
-  and RL account provide explanations why hippocampus lesion does
-  not only impair retrieving memories, but also hypothetical and future
-  thinking \citep{hassabis2007patients}.
-  \item The notion of semantic or knowledge association is
-  incorporated into the MDP as the Markov property,
-  that is, the current state directly results from the
-  agent's history of states and actions. The learned
-  value matrix and action transition schedules drive
-  stimulus processing and action choice in the present.
-  \item Mental scene construction has been proposed by some authors
-  \citep{buckner2007self} to imply a distinction between
-    environmental perception and internally generated mind-wandering\footnote{
-      \textbf{XXX Elvis: This is more than just a footnote. Make this part of the paper
-      and factorize the lot. Also you probably need a citation here!!!}
-  ``A computational model of how such a process might be structured
-  is far from being defined, but it will probably require a form of
-  regulation by which perception of the current world is suppressed
-  while simulation of possible alternatives are constructed,
-  followed by a return to perception of the present.''\citep{buckner2007self}}.
-  The MDPs naturally integrate the former egocentric
-  (more related to current action, state and reward) and the later
-  allocentric (more related to past and future actions, states, and rewards)
-  angles on the world in a same optimization problem.
-  \item The semantic account of DMN function does not offer
-  a mechanistic explanation how explicit world knowledge and semantic analogies thereof
-  lead to prediction of future actions and states.
-  \item In contrast to existing accounts on semantics and
-  mental scene construction, the random and creative aspects of DMN function
-  are explained in MDPs by the advantages of stochastic optimization.
-  \item The semantic hypothesis does not explain why memory recall
-  for scene construction in humans is typically fragmentary and noisy
-  instead of accurate and reliable.
-  Yet, the MDP framework provides an algorithmic explanation in that
-  stochasticity of the parameter space explored
-  by the Monte Carlo solvers achieves better fine-tuning of the
-  action policies and estimation of expected reward outcomes.
-  That is, the purposeful stochasticity of policy and value estimation
-  in MDPs provides a candidate explanation for why humans
-  have evolved imperfect noisy memories
-  as the more advantageous adaptation.
-  \item While both semantic and MDP account propose memory-based internally
-  generated information for probabilistic mental models of action outcomes,
-  only MDPs render explicit the grounds on which the final action is
-  eventually chosen (i.e., the estimated cumulative reward).
-  \item In sum, episodic scene construction according to the semantic
-  hypothesis is lacking an explicit time and incentive model;
-  neither does it explain how randomness of human mental experience
-  can be beneficial.
-\end{itemize}
+In comparison,
+both the semantic hypothesis and MDPs expose mechanisms of
+how action considerations could be mentally explored.
+In both accounts,
+there is also no evidence to indicate that predictions of various
+levels of complexity, abstraction, timescale and purpose
+use mechanisms that are qualitatively different. This concurs with
+DMN activity increases across time, space, and content domains
+demonstrated in many neuroimaging studies \citep{spreng2009common}.
+The semantic hypothesis
+and MDP account provide explanations why hippocampus lesion does
+not only impair retrieving memories, but also hypothetical and future
+thinking \citep{hassabis2007patients}.
+While both semantic hypothesis and
+our formal account propose memory-based internally
+generated information for probabilistic mental models of action outcomes,
+MDPs render explicit the grounds on which the final action is
+eventually chosen, namely, the estimated cumulative reward.
+\textbf{The notion of semantic knowledge associations is
+incorporated into the MDP as the Markov property,
+that is, the current state directly results from the
+agent's history of states and actions. The learned
+value matrix and action transition schedules drive
+stimulus processing and action choice in the present.}
+The MDPs naturally integrate the former egocentric
+(more related to current action, state and reward) and the later
+allocentric (more related to past and future actions, states, and rewards)
+angles on the world in a same optimization problem.
+Further,
+the semantic account of DMN function does not offer
+a mechanistic explanation how explicit world knowledge and semantic analogies thereof
+lead to prediction of future actions and states.
+The semantic hypothesis does not explain why memory recall
+for scene construction in humans is typically fragmentary and noisy
+instead of accurate and reliable.
+In contrast to existing accounts on semantics and
+mental scene construction, the random and creative aspects of DMN function
+are explained in MDPs by the advantages of stochastic optimization.
+Yet, the MDP framework provides an algorithmic explanation in that
+stochasticity of the parameter space explored
+by the Monte Carlo solvers achieves better fine-tuning of the
+action policies and estimation of expected reward outcomes.
+That is, the purposeful stochasticity of policy and value estimation
+in MDPs provides a candidate explanation for why humans
+have evolved imperfect noisy memories
+as the more advantageous adaptation.
+In sum, episodic scene construction according to the semantic
+hypothesis is lacking an explicit time and incentive model;
+neither does it explain how randomness of human mental experience
+can be beneficial.
 
 
 
