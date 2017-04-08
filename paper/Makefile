@@ -17,7 +17,7 @@ latex: clean
 
 
 loTopdf:
-	unoconv -f pdf *.odp
+	./unoconv -f pdf *.odp
 
 
 clean:
