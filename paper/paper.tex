@@ -1318,77 +1318,86 @@ Predictive coding mechanisms
 \citep{clark2013whatever, friston2008hierarchical}
 are a frequently evoked idea in the context of default mode function
 \citep{bar2007}.
-According to this view,
-cortical responses emerge from continuous functional interaction between
+Cortical responses are explained as
+emerging from continuous functional interaction between
 higher and lower levels of the neural processing hierarchy.
-Feed-forward sensory experience is constantly calibrated by
-top-down modulation realized by more multi-modal and associative brain regions
-further away from the primary sensory cortices.
+Feed-forward sensory processing is constantly calibrated by
+top-down modulation from more multi-modal and associative brain regions
+further away from primary sensory cortical regions.
 The dynamic interplay between cortical processing levels
 may enable inferences about the world by reconciling
 gaps between fresh sensory input and expectations computed
 from stored prior information.
 At each stage of neural processing,
-an internally generated prediction of aspects of sensory input is
+an internally generated prediction of aspects of sensory sensation is
 directly compared against the actual environmental input.
-A prediction error at one of the processing levels,
-i.e., the difference between sensory input
-and internally predicted sensation,
+A prediction error at one of the processing levels
 incurs plasticity changes of neuronal back projections
 (i.e., adapting model parameters)
 to allow for gradually improved future prediction of the environment.
-In fact, axonal
-back projections probably outnumber by far the axonal input projections
-existing in the primate brain \citep{salin1995corticocortical}.
-This can explain the constructive, generative nature of sensory perception
+In this way,
+the predictive coding hypothesis offers explanations for
+the constructive, generative nature of sensory perception
 \citep{friston2010free} and
-why motor action is probably intimately related to sensory expectations
+the intimate relation of motor action to sensory expectations
 \citep{wolpert1995internal, kording2004bayesian}.
 Contextual sensorimotor integration of perception-action cycles
-may hence be maintained by top-down modulation
+may be maintained by top-down modulation
 by a-priori information about the environment.
 
 
 
-This process permits updates of the internal representation of the environment
-to best accommodate and prepare for the constant influx of sensory examples.
+Predictive coding processes
+permit updates of the internal representation of the environment
+to best accommodate and prepare the organism
+for the constant influx of sensory examples and
+for reacting to the environment.
 There are hence a number of common properties
 between the predictive coding account
 and the proposed formal account.
 Importantly,
-the generative model of how perceived sensory cues arise in the
+a generative model of how perceived sensory cues arise in the
 world would be incorporated into
 the current neuronal wiring.
 Further,
-both frameworks are plausibilized by neurobiological evidence that suggest
+both frameworks are plausibilized by neuroscientific evidence that suggest
 the human brain to be a ``statistical organ'' with the biological purpose to
 generalize from the past to new experiences.
-Both accounts also provide a parsimonious explanation why the
+Neuroanatomically, axonal
+back projections probably outnumber by far the axonal input projections
+existing in the primate brain \citep{salin1995corticocortical}.
+Moreover,
+both accounts provide a parsimonious explanation why the
 human brain decreases processing load devoted to incoming information
-when the environment is predictable and allocates increased
-computation resources when novel stimuli or unexpected events are encountered.
+when the environment is predictable because the internal generative
+model only requires updating following descrepancies between
+environmental reality and its internal reinstantiation.
+Increased computation resources are however allocated
+when novel stimuli or
+unexpected events are encountered by the organism.
 The predictive coding and formal account
-naturally evoke a mechanisms of brain plasticity in that
+naturally evoke a mechanism of brain plasticity in that
 neuronal wiring gets increasingly adapted
-when faced by unprecedented environmental
-challenges.
+when faced by unprecedented environmental challenges.
 
 
 While sensory experience is a generative process from both views,
 the predictive coding account frames
 sensory perception of the external world
 as a generative experience due to the modulatory top-down influence at
-various hierarchical levels of sensory input processing. Instead,
-the Markov property of our sequential decision making framework.
-In our RL view, the environmental model is
+various hierarchical levels of sensory input processing.
+In our RL view, instead,
+the Markov property of our sequential decision making framework entails
+the environmental model to be
 \textbf{effectively expressed in the current state of the human agent
 XXX guys, please double-check}.
-The hierarchical processing aspect from predictive coding
+Further,
+the hierarchical processing aspect from predictive coding
 is re-expressed in our account in form of
 nested prediction of probable upcoming actions, states, and rewards.
 Both frameworks model the consequences of action.
 The predictive coding framework is typically explained without
-explicitly parameterization of the agent's horizon and
+explicit parameterization of the agent's horizon and
 has a tendency to be presented as emphasizing prediction about the
 immediate future.
 In the present account, the horizon of that
@@ -1398,7 +1407,8 @@ of the Bellman equation.
 % by the difference between actually predicted reward of an action given
 % a state and the reward predicted by non-linear regression with graded
 % discounting of future rewards.}
-The process of adapting the neuronal connections
+Finally,
+the process of adapting the neuronal connections
 for improved top-down modulation
 takes the concrete form of gradient computation and
 back-propagation in our RL implementation.
@@ -1408,15 +1418,14 @@ the back-propagation procedure is controversal
 \citep{goodfellow2016deep}.
 In sum,
 the formal account may serve as a concrete implementation of
-the predictive coding account
-from cognitive neuroscience.
+the long-standing predictive coding account from cognitive neuroscience.
 MPDs have the advantage of exposing an explicit
 mechanism of the horizon of future considerations or
 how the internal model of the world gets updated,
 and
-more explicitly reconciles sensory input processing and action output preparation.
+more explicitly reconciles sensory input processing and action consideration.
 %
-As such, recasting DMN function in terms of MDPs naturally incorporates
+Recasting DMN function in terms of MDPs therefore naturally incorporate
 a majority of aspects of the prediction coding hypothesis.
 
 
