@@ -823,11 +823,12 @@ based on a brain implementation of Markov Chain Monte Carlo (MCMC) sampling
 \citep{tenenbaum2011grow}.
 
 \subsection{Partially Observable Markov Decision Processes}
-It is our view that at a sufficiently coarse scale, the brain -- and therefore the DMN in particular --
+It is our view that at a sufficiently coarse scale, the brain --and therefore the DMN in particular--
 is a physical system governed by the laws of
 physics and can be locally described by Markov processes. Indeed, as noted in \cite{tegmark2016improved},
 any system obeying the laws of classical physics can be accurately modeled as a Markov process as long as the time
-step is sufficiently short, defining $s(t)$, the state at time $t$, as the position in state space.
+step is sufficiently short
+% , defining $s(t)$, the state at time $t$, as the position in state space.
 The process has $memory$ if the next state depends not only on the current state but also on some finite
 number of past states.
 Rational probabilistic planning can be reformulated
@@ -898,7 +899,7 @@ Mathematically, a POMDP is simply a quintuplet $(\mathcal S, \mathcal A, r, p, \
 The behavior of the agent is governed by some kind of \textit{policy},
 which maps states of the world to
 a set of candidate actions to perform given this state. Starting a time $t=0$,
-a policy $\pi$ generates a trajectory of action cascades as follows
+a policy $\pi$ generates a trajectory of action cascades / trajectories as follows
 \begin{eqnarray*}
   \begin{split}
     \textbf{ observe transition: }s_1 &\sim p(s|s_0,a_0)\textbf{ and collect reward }R_0 = r(s_0, a_0)\\
@@ -951,7 +952,7 @@ that is, the decision related to reward-delay trade-off schedules.
 Such an agent puts relatively more emphasis on rewards expected in
 a short future and pays less attention to
 rewards expected at a later time, precisely rewards more than $1/(1 - \gamma)$ time steps into the future are disregarded.
-This reduces the variance of expected rewards to be accumulated across action cascades by limiting the length of this cascades.
+This reduces the variance of expected rewards accumulated across action cascades by limiting the length of this cascades.
 % given that there is more uncertainty in the farsighted future.
 % It is also important to appreciate that a stochastic policy estimation
 % is more advantageous in many RL settings.
@@ -1060,9 +1061,10 @@ by sampling from its current policy, and collects a reward $r$,
 after which the environment transitions to a new state $s' \in \mathcal S$.
 % \textbf{XXX Please try to smoothen the previous sentence}
 At the end of this cycle, a new \textit{experience} $e = (s,a,r,s')$ is produced, which represents an exemplar
-behavior of the agent and is recorded in replay memory buffer:
-$D \leftarrow D \cup \{e\}$ (possibly discarding the oldest entries to make space).
-Now, at iteration $k+1$, replay consists in sampling (uniform or importance-weighted
+behavior of the agent and is recorded in replay memory buffer
+(possibly discarding the oldest entries to make space):
+$\mathcal D \leftarrow \text{append}(\mathcal D, e)$.
+At iteration $k+1$, replay then consists in sampling (uniform or importance-weighted
 \footnote{e.g weighted by TD error of the state transition $s \overset{a}{\rightarrow} s'$.} ?)  mini-batches of experiences
 $(s, a, r, s') \sim \mathcal D$ from the replay memory $\mathcal D$.
 The agent then tries to approximate
@@ -1071,7 +1073,7 @@ the would-be $Q$-value for the state-action pair $(s,a)$ as predicted by the Bel
   y_k := r_k + \gamma \max_{a'} \tilde{Q}(s', a'|\theta_{k-1}),
 \end{equation}
 with the output of a parametrized regression model $(s,a)
-\mapsto \tilde{Q}(s, a|\theta_{k-1})$. Here the function $(s,a) \mapsto Q(a,s|\theta_{k-1})$
+\mapsto \tilde{Q}(s, a|\theta_{k-1})$. Here the function $(s,a) \mapsto \tilde{Q}(a,s|\theta_{k-1})$
 % \textbf{XXX just double-checking, are the dots int he Q() correct?}
 is an approximator for the $Q$-value operator,  parameterized by weights $\theta_{k}$
 (synaptic strengths, etc.).
@@ -1102,7 +1104,7 @@ A recently proposed, practically successful alternative approach
 \citep{mnih2015,silver2016mastering} is to learn this
 representation using a deep neural network, leading to the so-called \textit{Deep Q-learning} family of methods which
 likely are state-of-the-art in RL.
-The set of $\theta^Q$ parameters that instantiate the nonlinear interactions
+The set of $\theta$ parameters that instantiate the nonlinear interactions
 between layers of the artifical neural network
 may find a neurobiological correspondence in the adaptive strengths of axonal
 connections between neurons from the different levels
@@ -1114,7 +1116,8 @@ of the neural processing hierarchy
 Learning
 of the the entire model parameters can effectively be achieved
 via \textit{backpropagation},
-where reward prediction errors (RPES) -- also known as \textit{regret}-- percolate from lower to higher processing layers to modulate the choice of future actions
+where reward prediction errors (RPEs) -- also known as \textit{regret}-- percolate
+from lower to higher processing layers to modulate the choice of future actions
 % online stochastic gradient descent is used to minimize the variational objective
 % \eqref{eq:oracle}.
 
@@ -1126,7 +1129,8 @@ where reward prediction errors (RPES) -- also known as \textit{regret}-- percola
   \label{eq:oracle}
 \end{equation}
 
-\subsubsection{Link to classical reinforcement learning algorithms} One should note that most classical RL algorithms, including \textit{Temporal Difference (TD)}
+\subsubsection{Link to classical reinforcement learning algorithms}
+One should note that most classical RL algorithms, including \textit{Temporal Difference (TD)}
 learning \citep{sutton1998reinforcement}, REINFORCE \citep{williams1992}, and SARSA can be
 cast in this \textbf{please unpack the "this" here}
 general variational framework. For instance, TD corresponds to
