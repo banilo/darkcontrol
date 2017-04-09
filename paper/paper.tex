@@ -1073,9 +1073,9 @@ $(s, a, r, s') \sim \mathcal D$ from the replay memory $\mathcal D$.
 The agent then tries to approximate
 the would-be $Q$-value for the state-action pair $(s,a)$ as predicted by the Bellman equation \eqref{eq:bellman}, namely
 \begin{equation}
-  y_k := r_k + \gamma \max_{a'} \tilde{Q}(s', a'|\theta_{k-1}),
+  y_k := y_k(s,a,s') =  r + \gamma \max_{a'} \tilde{Q}(s', a'|\theta_{k-1}),
 \end{equation}
-with the output of a parametrized regression model $(s,a)
+with the prediction of a parametrized regression model $(s,a)
 \mapsto \tilde{Q}(s, a|\theta_{k-1})$. Here the function $(s,a) \mapsto \tilde{Q}(a,s|\theta_{k-1})$
 % \textbf{XXX just double-checking, are the dots int he Q() correct?}
 is an approximator for the $Q$-value operator,  parameterized by weights $\theta_{k}$
@@ -1101,7 +1101,7 @@ For instance, a general linear model with a kernel $\phi$ would be of the
 form
 $$\tilde{Q}(s, a|\theta) = \phi(s,a)^T\theta.$$
 $\phi(s,a)$ would represent a high-level hand-crafted representation of the state-action pairs
-$(s,a)$, as proposed by \citep{songNIPS2016}.
+$(s,a)$, as proposed by \citep{songNIPS2016} for example.
 %  and Parr et al. 2003 (JMLR)].
 A recently proposed, practically successful alternative approach
 \citep{mnih2015,silver2016mastering} is to learn this
@@ -1127,7 +1127,7 @@ from lower to higher processing layers to modulate the choice of future actions
 % \paragraph{Parameter update.}
 \begin{equation}
   \delta \theta_{k} \propto -\nabla_{\theta_{k}}\mathcal L(\theta_{k})
-  = -\mathbb E_{(s, a, r, s') \sim \mathcal U(D)}[\underbrace{(\tilde{Q}(s, a|\theta_{k}) - y_k)}_{\text{prediction error}}
+  = -\mathbb E_{(s, a, r, s') \sim \mathcal D}[\underbrace{(\tilde{Q}(s, a|\theta_{k}) - y_k)}_{\text{prediction error}}
     \underbrace{\nabla_{\theta_{k}}\tilde{Q}(s, a|\theta_{k})}_{\text{averseness}}].
   \label{eq:oracle}
 \end{equation}
