@@ -224,7 +224,7 @@ control theory and reinforcement learning based on Markov decision processes.
 We argue that our formal account of DMN function
 naturally accommodates
 previously proposed cognitive accounts as special cases and
-parsimoneously explains
+parsimoniously explains
 experimental findings in animals and humans.
 %
 A process models for the neural implemention
@@ -249,7 +249,7 @@ reinforcement learning
 When left unperturbed, the human brain is not at rest.
 Rather, the brain continues to metabolize large quantities of
 oxygen and glucose energy to maintain
-potentially purposeful neuronal computation
+neuronal computation
 in the absence of behavioral focus
 \citep{kenet2003spontaneously, fiser2004small}.
 The baseline energy demand is subject to surprisingly little modulations
@@ -275,7 +275,7 @@ the DMN at the top and the salience and dorsal attention systems
 at intermediate levels, above thalamic and unimodal sensory
 cortex" \citep{carhart2010default}.
 In the beginning of the 21st century,
-brain imaging may have been first technique
+brain imaging may have been the first technique
 to allow for the discovery of a unique brain network that subserves
 baseline mental activities
 \citep{raichle2001pnas, bzdok2015resting}.
@@ -349,7 +349,7 @@ into the tension between exploitative action with immediate gains and
 exploratory action with longer-term reward schedules.
 
 
-\subsection{Towards a computational account of DMN function}
+\subsection{Towards a formal account of DMN function}
 We argue that the implication of the DMN in a
 diversity of humans' most advanced cognitive processes
 can be parsimoniously recast as prediction error minimization
@@ -371,16 +371,22 @@ the human brain's energy budget is largely dedicated to
 ``the development and maintenance of [a]
 probabilistic model of anticipated events''
 \citep{raichle2005intrinsic}.
-Numerous empirical evidence from
-neuroscientific experiments have invigorated this idea \citep{kording2004bayesian, fiser2004small}.
-This paper proposes a process model that satisfies this contention.
+This idea has been invigorated by
+empirical evidence from
+neuroscientific experiments \citep{kording2004bayesian, fiser2004small}.
+The present paper proposes a
+process model that satisfies this contention.
 
 
 
 
 \section{Known neurobiological properties of the default mode network}
 We begin by a neurobiological deconstruction of the DMN
-based on experimental findings in neuroscience. This walkthrough across individual network nodes will describe their mechanistic relevance, paving the way for their functional interpretation within our computational account in the next section.
+based on experimental findings in the neuroscience literature.
+This walkthrough across network nodes will
+outline their individual functional profiles,
+paving the way for their functional interpretation within our computational account
+described in the next section.
 
 \begin{figure}[!h]
   \includegraphics[width=.9\linewidth]{neurobiological_overview_DMN.pdf}
@@ -392,7 +398,7 @@ based on experimental findings in neuroscience. This walkthrough across individu
 The midline structures of the DMN,
 including the posteromedial cortex (PMC) and
 the medial prefrontal cortex (mPFC),
-are responsible for the highest metabolic turn-over
+are responsible for the highest turn-over
 of glucose energy consumption \citep{raichle2001pnas}.
 These metabolic characteristics go hand-in-hand with
 brain-imaging analyses \citep{andrews2010} in
@@ -403,7 +409,7 @@ potentially represent the functional backbone of the DMN.
 The PMC myelinates relatively late during postnatal development in monkeys
 \citep{goldman1987development}, which is generally considered to
 be a sign of evolutionary sophistication \citep{flechsig1920}.
-Physiological and disturbed metabolic fluctuations in the
+Normal and disturbed metabolic fluctuations in the
 human PMC have been repeatedly related to
 phenomena of changed conscious awareness \citep{cavanna2006precuneus},
 including anesthesia, sleep, and coma.
@@ -411,21 +417,21 @@ including anesthesia, sleep, and coma.
 Indeed,
 the PMC has long been speculated to reflect constant computation of
 environmental statistics and its internal representation
-as an "inner minds eye" \citep{cavanna2006precuneus, leech_pcc2014}.
+as an inner "mind's eye" \citep{cavanna2006precuneus, leech_pcc2014}.
 For instance, B\'alint's syndrome is a neurological disorder of conscious
 awareness that results from damage in the parietal cortex
 \citep{balint1909seelenlahmung}.
 Patients are plagued by an
-inability to bind various individual features of the visual
+the inability to bind various individual features of the visual
 environment into an integrated whole (i.e., simultanagnosia)
 as well as inability to direct action towards
 currently unattended environmental objects
 (i.e., optic ataxia).
-This can be viewed as a high-level impairment in the gathering
-of information about alternative objects (i.e., exploration) as well as
+This can be viewed as a high-level impairment in gathering
+information about alternative objects (i.e., exploration) as well as
 leveraging these environmental opportunities (i.e., exploitation).
 Congruently,
-the human PMC was coupled in two functional connectivity modalities
+the human PMC was coupled in two functional connectivity analyses
 with the amygdala, involved in significance evaluation, and
 the nucleus accumbens (NAc), involved in reward evaluation.
 Specifically, among all parts of the PMC,
@@ -439,7 +445,8 @@ for biological significance assessment.
 
 
 
-The putative role of the PMC in continuous integration of environmental relevance
+The putative role of the PMC in continuous integration of
+relevant environmental information
 and ensuing top-level control of action on the environment is supported
 by a number of neuroscience experiments.
 Electrophysiological recordings in animals implicated the PMC in
@@ -447,11 +454,11 @@ strategic decision making \citep{pearson2009neurons},
 risk assessment \citep{mccoy2005risk},
 and outcome-contingent behavioral modulation \citep{hayden2009electrophysiological},
 while its retrosplenial portion was
-more specifically implicated in approach-avoidance behavior
+repeatedly implicated in approach-avoidance behavior
 \citep{vann2009does}.
 Neuron spiking activity in the PMC allowed distinguishing
 whether a monkey would persue an exploratory or exploitative
-behavioral strategy in a complex food foraging task \citep{pearson2009neurons}.
+behavioral strategy during food foraging \citep{pearson2009neurons}.
 Further, single-cell recordings in the monkey PMC
 demonstrated this brain region's sensitivity to
 subjective target utility \citep{mccoy2005risk} and integration
@@ -460,10 +467,11 @@ This DMN node encoded the
 preference of or aversion to options with uncertain reward outcomes
 and its spiking activity was more associated with
 subjectively perceived relevance of a chosen object
-than by its factual value, based on an internal currency of value.
+than by its factual value,
+based on an internal currency of value \citep{mccoy2005risk}.
 In fact, direct stimulation of PMC neurons
-promoted exploratory action towards options
-with unsafe reward outcomes that were previously shunned.
+promoted exploratory action towards actions
+that were previously shunned \citep{hayden2008stim}.
 Graded changes in firing rates of PMC neurons
 indicated changing choices in upcoming trials and their neural patterns were
 distinct from spike firings that indicated choosing either option.
@@ -498,7 +506,7 @@ reward schedules into higher-level strategies.
 Perceived value, that differs across individuals, may update
 statistical assessment of the environment
 to predict delayed reward opportunities in the future.
-In doing so, the PMC continuously adapts to changes
+In doing so, the PMC may continuously adapt to changes
 in both the external environment and its internal representation
 to enable strategic behavior in volatile environments.
 
@@ -545,14 +553,14 @@ and explicit knowledge of the external world.
 According to computational neuroimaging experiments,
 dmPFC activity preferentially models stimulus-value associations of
 possible actions that are not actually executed,
-whereas the vmPFC activity models value in the environment that leads performed actions
+whereas vmPFC activity models value in the environment that leads performed actions
 \citep{nicolle2012agent}.
 
 
 Comparing to the dorsomedial prefrontal DMN,
 the ventromedial portion of the prefrontal cortex (vmPFC) probably subserves
-less ambiguous subjective-value-related evaluative processes and
-reward-informed risk estimation of self-relevant environmental stimuli.
+subjective-value-related evaluative processes and
+risk estimation of self-relevant environmental stimuli.
 This DMN node is more closely associated with
 orchestrating adaptive behavior by bottom-up-driven
 processing of “what matters now”,
@@ -578,13 +586,13 @@ This is consistent with diffusion MRI tractography in humans and monkeys
 \citep{croxson2005quantitative} that
 quantified the NAc to
 be substantially more likely connected to the vmPFC than dmPFC in both species.
-Two functional connectivity modalities in humans strongly connected
+Two functional connectivity analyses in humans strongly connected
 the vmPFC with the NAc, hippocampus (HC),
 and PMC.
 %
 The vmPFC is often proposed to be involved in (external) emotional
 reactions and own (visceral) arousal.
-Real or imaginged bodily states could be mapped in the vmPFC
+Real or imagined bodily states could be mapped in the vmPFC
 as a bioregulatory disposition governing cognition
 and decision making \citep{damasio1996somatic}
 In neuroeconomic studies of human decision making,
@@ -592,18 +600,18 @@ the vmPFC consistently reflects an individual’s subjective
 valuation
 \citep{behrens2008associative}.
 This may be why performance within and across participants
-was related to state encoding in vmPFC.
+was related to state encoding in the vmPFC.
 Such a ``cognitive map'' of the action space was argued to encode
 the current task state even when states are unobservable from sensory input,
 which was shown to be critical for behavior \citep{Schuck2016}.
-Additionally,
-independent whole-brain analyses from structural
-neuroimaging studies related the gray-matter volume of the vmPFC,
-more consistently than any other
-brain region, to indices of
-social competence and social network complexity, which are probably
-among the most complicated decision that humans and monkeys take
-\citep{behrens2009computation}.
+% Additionally,
+% independent whole-brain analyses from structural
+% neuroimaging studies related the gray-matter volume of the vmPFC,
+% more consistently than any other
+% brain region, to indices of
+% social competence and social network complexity, which are probably
+% among the most complicated decision that humans and monkeys take
+% \citep{behrens2009computation}.
 
 
 
@@ -837,7 +845,7 @@ explorative action with longer-term reward schedules
 \citep{dayan2008decision}.
 DMN implication in a diversity of
 particularly advanced cognitive processes
-can be parsimoneously explained as probabilistic simulations in form of mental scenes coupled with prediction error minimization
+can be parsimoniously explained as probabilistic simulations in form of mental scenes coupled with prediction error minimization
 to calibrate action portfolios and
 maximize reward outcome at different time scales.
 Such a purposeful optimization objective
@@ -1649,7 +1657,7 @@ analogues of the DMN in monkeys \citep{mantini2011default}
 and rats \citep{lu2012rat}, both species with
 supposedly less advanced social-cognitive capacities.
 Rather than functional specificity for processing social information,
-the present formal account can parsimoneously incorporate
+the present formal account can parsimoniously incorporate
 the dominance of social content in
 human mental activity 
 as high value function estimates for information about humans
