@@ -617,8 +617,8 @@ which was shown to be critical for behavior \citep{Schuck2016}.
 
 \subsection{The hippocampus: memory, space, and experience replay}
 The DMN midline is probably closely linked
-with the HC in the medial temporal lobe \citep{vincet2006}.
-The HC is long known to be involved in
+with the HC in the medial temporal lobe \citep{vincet2006} --
+a region long known to be involved in
 memory operations and spatial navigation in animals and humans.
 
 
@@ -634,8 +634,8 @@ entire episodes of experience from memory fragments.
 Indeed,
 hippocampal damage is
 not only associated with an impairment in reexperiencing the past (i.e., amnesia),
-but also thinking about one's own future and
-imagining new fictitious experiences more broadly \citep{hassabis2007patients}.
+but also imagining about one's own future and
+ new fictitious experiences more broadly \citep{hassabis2007patients}.
 Mental scenes created by HC-lesioned patients exposed a lack of
 spatial integrity, richness in detail, and overall coherence.
 %
@@ -645,9 +645,9 @@ distinct locations in space during environmental navigation.
 London taxi drivers, individuals with high performance in spatial navigation,
 were shown to exhibit increased gray-matter volume in the
 HC \citep{maguire2000navigation}.
-Indeed, place-specific neuronal populations in the HC
-spike one after another when an animal is choosing between alternative
-paths \citep{johnson2007neural}.
+Indeed, when an animal is choosing between alternative
+paths, the corresponding neuronal populations in the HC
+spike one after another  \citep{johnson2007neural}.
 These neuronal patterns appear to also indicate upcoming behavior
 \citep{pfeiffer2013hippocampal}.
 
@@ -678,7 +678,7 @@ reexperiencing or newly generating mental scenarios
 The HC thus orchestrates experience of environmental aspects for
 consolidations based on reenactment and for integration into
 rich mental scene construction \citep{deuker2016event, bird2010establishing}.
-In this way, the HC may even influence
+In this way, the HC may influence
 ongoing perception in the current environment
 \citep{maguire2016}.
 % (TODO: relate to self-play in deepmind Go).
@@ -688,11 +688,12 @@ ongoing perception in the current environment
 
 
 \subsection{The right and left TPJ: prediction error signaling and world semantics}
-While the DMN emerges with its midline structures early in human development,
+The DMN emerges with its midline structures early in human development.
+However,
 the right and left TPJ may become fully integrated into this canonical
 network only after birth \citep{doria2010}.
 The TPJs are known to exhibit hemispheric differences
-according to their cytoarchitectonic borders and gyrification pattern
+based on cytoarchitectonic borders and gyrification pattern
 \citep{seghier2013angular}.
 Neuroscientific investigations on hemispheric functional specialization
 have highlighted the right versus left cerebral hemisphere as dominant for
@@ -726,20 +727,20 @@ salient and surprising sources of information
 as a ‘‘circuit breaker’’ that recalibrates control and maintenance systems
 \citep{bzdok2013tpj, corbettashul2008}.
 % (Bzdok et al., 2013; Corbetta et al., 2008).
-Indeed, patients with right TPJ damage have particular difficulties
+Indeed, patients with RTPJ damage have particular difficulties
 with multistep actions \citep{hartmann2005takes}.
 In the face of large discrepancies between actual and previously predicted
 environmental events the RTPJ acts a potential switch between
 externally-oriented mind sets focussed on the
 sensory world and internally-oriented mind sets focussed
 on self-relevant mental scene construction.
-Transient RTPJ in humans for instance disrupted the
+Transient RTPJ lesion in humans for instance diminished the
 impact of predicted intentions of other individuals
 \citep{young2010disruption},
 a capacity believed to be subserved by the DMN.
 The RTPJ might hence be an important relay that shifts away
 from the ‘‘internally directed’’ baseline processes
-to, instead, deal with environmental objects and events.
+to, instead, deal with (unexpected) environmental objects and events.
 % (TODO: slow endogeneous changes in state transitions by the policy and value matrices)
 
 
@@ -763,7 +764,7 @@ without obvious relation to processing explicit language content
 \citep{varney1987locus}.
 % (Varney and Damasio 1987; Rothi et al. 1991; Buxbaum et al. 2005).
 %
-Inner speech also hinges on knowledge retrieval of statistical structure
+Inner speech also hinges on knowledge retrieval
 about the physical and inter-personal world.
 Indeed,
 the internal production of
@@ -772,7 +773,7 @@ in a multivariate analysis of brain volume
 \citep{geva2011neural}.
 Further,
 episodic memory recall and imagination strongly draw on
-complex world knowledge.
+reassembling world knowledge.
 Isolated building blocks of world statistics probably get reassembled
 in internally generated visual scenarios that
 navigate present action, weigh hypothetical possibilities, and forecast the future.
@@ -790,20 +791,20 @@ We now argue the outlined neurobiological properties
 and potential functions of the DMN
 to be sufficient for implementing all components
 of a full-fledged RL algorithm.
-Integration of past experience, probabilistic mapping of candidate actions,
+Recalling past experience, considering candidate actions,
 random sampling of possible scenarios, as well as
-incorporation of instantaneous, delayed, and expected reward outcomes
+evaluating instantaneous, delayed, and expected reward outcomes
 are key components of intelligent RL agents
-that are plausible to cross-talk in the DMN.
+that are plausible to intertwine in the DMN.
 
 
 
 RL is a problem-solving technique in which, through interactions with an external environment,
-an agent learns to reach goals, optimize reward signals, or minimize costs
+an agent learns to reach goals, optimize reward signals, and minimize costs
 in an iterative trial-by-error fashion.
 At a given moment, each taken \textit{action} $a$ triggers a change in the
 \textit{state} of the environment
-$s \rightarrow s'$, accompanied by environmental feed signals as \textit{reward}
+$s \rightarrow s'$, accompanied by environmental feedback signals as \textit{reward}
 $r = r(s, a)$ (or \textit{punishment},
 since it can be negative) collected by the
 agent.
@@ -815,10 +816,10 @@ Action may be delayed to achieve substantial increases in expected reward
 that can grow with time.
 The environment is generally taken as stochastic,
 that is, changing in random ways. In addition,
-it is only \textit{partially observed},
+it is only \textit{partially observed}
 in the sense that only part of the current state is observed by
 the agent \citep{starkweather2017dopamine}.
-The unpredictability of the environment
+The volatility of the environment
 is realistic in a computational model which sets out
 to explain DMN function.
 % XXX: the following passage is already in the introduction
@@ -838,7 +839,7 @@ to explain DMN function.
 % in the tension between exploitative action with immediate gains and
 % explorative action with longer-term reward schedules
 % \citep{dayan2008decision}.
-A framework of DMN funtion based on RL
+We argue that a functional account of the DMN based on RL
 can naturally embed human behavior
 in the tension between exploitative action with immediate gains and
 explorative action with longer-term reward schedules
@@ -855,11 +856,11 @@ based on a brain implementation of Markov Chain Monte Carlo (MCMC) sampling
 
 \subsection{Partially Observable Markov Decision Processes}
 We propose that the brain in general and the DMN in particular 
-are a physical system governed by the laws of
+are a natural system governed by the laws of
 physics and can be locally described by Markov processes at a sufficiently coarse scale.
 Indeed, as noted in \cite{tegmark2016improved},
 any system obeying the laws of classical physics can be accurately modeled as a Markov process as long as the time
-step is sufficiently short
+step is sufficiently short.
 % , defining $s(t)$, the state at time $t$, as the position in state space.
 The process has $memory$ if the next state depends not only on the current state but also on some finite
 number of past states.
@@ -867,14 +868,14 @@ Rational probabilistic planning can be reformulated
 as a standard memoryless Markov process by simply expanding the
 definition of the state $s$ to include elements of the past.
 
-In artificial intelligence (AI), a popular computational model for
+In artificial intelligence and machine learning, a popular computational model for
 multi-step decision processes in such an environment are
 \textit{Partially Observable Markov Decision Processes (POMDPs)}.
 A POMDP formalizes a sequential decision process in which it is assumed that environment dynamics are determined by a Markov process,
 but the agent cannot directly observe the underlying state.
 Instead, the agent tries to optimize a \textit{subjective} reward
 signal (i.e., is likely to be different for another agent in the same state).
-This is performed alongside each transition in the environments state-space, and maintains a probability distribution over the set of possible
+This is performed alongside each transition in the environments state space, and maintains a probability distribution over the set of possible
 states, based on a set of observations and observation probabilities. This is a minimal amount of assumptions that can be made about an environment,
 and is characteristic of so-called \textit{model-free RL},
 which we propose as a useful formal framework for DMN function.
@@ -882,12 +883,13 @@ which we propose as a useful formal framework for DMN function.
 Model-free RL is plausible in the human brain. Indeed,
 it has long been proposed \citep{dayan2008decision} that there
 is a rather direct mapping of model-free RL learning algorithms
-onto the brain,
-with the neuromodulator dopamine serving
-as a teaching signal to train values or policies by controlling
+onto aspects of the brain.
+The neurotransmitter dopamine could serve
+as a ``teaching signal'' to better estimate value associations
+and action policies by controlling
 synaptic plasticity at targets such as the ventral and
 dorsolateral striatum.
-In contrast, \textit{model-based RL} would start off with some mechanistic assumptions about the dynamics of world.
+In contrast, \textit{model-based RL} would start off with some mechanistic assumptions about the dynamics of the world.
 These can be assumptions about the physical laws governing the agent's world or constraints on the state space and transitions between states.
 For instance, if a rat in a maze knows
 that standing still will produce no change in the environment, and in particular will not eventually lead to finding the food.
@@ -904,6 +906,7 @@ a rat might represent such knowledge about the world as follows:
 \end{itemize}
 
 \begin{definition}
+\textbf{XXX Danilo: Is there a definition 2 somewhere?}
 Mathematically, a POMDP is simply a quintuplet $(\mathcal S, \mathcal A, r, p, \mu)$ where
 \begin{itemize}
 \item $\mathcal S$ is the set of states, such as $\mathcal S = \{\text{happy}, \text{sad}\}$.
@@ -928,8 +931,8 @@ Mathematically, a POMDP is simply a quintuplet $(\mathcal S, \mathcal A, r, p, \
 \end{definition}
 
 \subsection{Long-term rewards and action policies}
-The behavior of the agent is governed by some kind of \textit{policy},
-which maps states of the world to
+The behavior of the agent is governed by some kind of \textit{policy}.
+It maps states of the world to
 a set of candidate actions to perform given this state. Starting a time $t=0$,
 a policy $\pi$ generates a trajectory of action cascades / trajectories as follows
 \begin{eqnarray*}
@@ -945,7 +948,7 @@ a policy $\pi$ generates a trajectory of action cascades / trajectories as follo
 \end{eqnarray*}
 
 \begin{mdframed}
-  \textbf{Time-invariance assumption:} It is assumed that the underlying MDP is stationary --i.e has reached steady-state conditions--
+  \textbf{Time-invariance assumption:} It is assumed that the underlying MDP is stationary -- i.e., has reached steady-state conditions --
   so that the dynamics of the process are equivalent over sufficiently long time windows of equal length.
 \end{mdframed}
 
@@ -1014,8 +1017,8 @@ For the brain,
 $Q^{\pi}(s, a)$ defined in \eqref{eq:qval} provides the subjective
 utility of executing a specific action; it answers the question
 "What is the expected utility of taking action $a$ in this situation ?".
-$Q^{\pi}(s,a)$ offers a formalization of optimal behavior,
-potentially driven by the DMN in human agents.
+$Q^{\pi}(s,a)$ offers a formalization of optimal behavior that
+may well reflect processing aspects of the DMN in human agents.
 
 One can also define the state-value function
 
@@ -1035,7 +1038,7 @@ A^\pi(s,a) :=  Q^\pi(s,a) - V^\pi(s).
 \subsection{Efficient computation of optimal behavior}
 By construction, maximizing the expectation in  \eqref{eq:qval} is computationally intractable in general.
 This is due to the enormous number of possible action
-trajectories the agent might need to
+trajectories that the agent often needs to
 consider simultaneously.
 % \begin{mdframed}
 %   \textbf{N.B.:}
@@ -1046,7 +1049,7 @@ consider simultaneously.
 One popular solution is called \text{Q-learning}. It remedies
 the issue by only considering the sub-family of
 \textit{deterministic policies}, which map each state to the single best action to
-take at the state. Such policies define deterministic functions from states to actions.
+take at the current state. Such policies define deterministic functions from states to actions.
 
 \subsubsection{Q-learning} Q-learning (Watkins \& Dayan, 1992) generates a
 \textit{greedy policy}
@@ -1069,12 +1072,13 @@ The \textit{Bellman equation} \citep{sutton1998reinforcement} then takes the sim
   \end{split}
   \label{eq:bellman}
 \end{equation}
-This consistency equation for the optimal (over all policies) Q-value function provides
+This consistency equation for the optimal (i.e., over all policies) Q-value function provides
 a recursive decomposition of optimal behavior by dividing the Q-value function into the immediate
 reward and the discounted rewards of the upcoming states. The optimal Q-value operator $Q^*$
 is a fixed point for this equation. A complicated dynamic programming optimization can be
-broken into simpler sub-problems at different time points,
-which has often been closely related to the medial prefrontal part of the DMN
+broken into simpler sub-problems at different time points.
+Exploitation of hierarchical structure in actions considerations
+has previously been closely related to the medial prefrontal part of the DMN
 \citep{koechlin1999role, braver2002role}.
 Using the Bellman equation, each state can be associated with a certain value
 to guide action towards a better state, thus improving on the agent's current policy.
@@ -1086,7 +1090,8 @@ triggered by another behavioral policy, which can be stochastic.
 \subsubsection{Efficient learning via value approximation and experience replay}
 %As already mentioned in the previous section, Q-learning optimizes over the class of
 % deterministic policies of the form \eqref{eq:qlearning}.
-A successful RL theory needs ways to efficiently approximate the state-action value function
+A practically successful RL approach
+needs ways to efficiently approximate the state-action value function
 to allow for scaling to large state and action spaces.
 In a state $s \in \mathcal S$, the agent takes an action $a \in \mathcal A$
 % (for example, $a$ = ``Read'', or ``Run'', or ``Laugh'', or ``Sympathize'', or ``Empathize'', etc.)
@@ -1114,7 +1119,7 @@ is an approximator for the $Q$-value operator,  parameterized by weights $\theta
 
 From a neurobiological perspective,
 experience replay would be manifested as the re-occurrence of a
-neuron spiking sequences that also occur during specific actions.
+neuron spiking sequence that also occurs during specific actions.
 %, but the replay has a much faster time scale.
 In the human brain, the hippocampus is likely to contribute to such a mechanism,
 as neuroscience experiments on various animals have repeatedly indicated
@@ -1129,6 +1134,7 @@ Computing an optimal policy then corresponds to finding the parameters $\theta_{
   = \mathbb E_{(s, a, r, s') \sim \mathcal D}\left[\frac{1}{2}(\tilde{Q}(s, a|\theta_{k}) - y_k)^2\right].
   \label{eq:oracle}
 \end{equation}
+\textbf{We still may need to explain y in the formula with one sentence.}
 For instance, a general linear model with a kernel $\phi$ would be of the
 form
 $$\tilde{Q}(s, a|\theta) = \phi(s,a)^T\theta.$$
@@ -1178,7 +1184,7 @@ $$\theta(s,a) \leftarrow \theta(s,a) + \alpha(\tilde{Q}(s, a|\theta) - y),$$
 the well-known TD update rule \citep{sutton1998reinforcement}.
 
 \subsubsection{Excursion: the role of the hippocampus}
-\paragraph{Does the hippocampus do Monte-Carlo sampling?}
+\paragraph{Does the hippocampus subserve Monte-Carlo sampling?}
 In RL, Monte-Carlo simulation can be used to update the agent's belief state
 \citep{silver2010monte}. Such methods have a sample complexity that is determined only by the underlying difficulty of the POMDP, rather than the size of the state space or observation space,
 which can be prohibitively large.
@@ -1192,7 +1198,7 @@ These simulations would be used to update the value function, without ever looki
 highest expected cumulative rewards.
 In POMDPs, Monte-Carlo simulation provides an effective mechanism both for tree search and for belief-based state updates, breaking the curse of dimensionality and allowing much greater scalability than has previously been possible
 \textbf{XXX Elvis: refs needed.}.
-Much recent work points to Monte Carlo or stochastic sampling-based approximations as a unifying framework for understanding how Bayesian inference may work practically across all these levels, in minds, brains, and machines. \textbf{XXX Elvis: refs needed in last sentence.} For sampling-based methods it is still almost non-existent beyond the description of receptive fields. \textbf{XXX Elvis: rephrase last sentence}
+Much recent work points to Monte Carlo or stochastic sampling-based approximations as a unifying framework for understanding how Bayesian inference may work practically across all these levels, in minds, brains, and machines. \textbf{XXX Elvis: refs needed in last sentence. Plus, should be really bring up Bayesian?} For sampling-based methods it is still almost non-existent beyond the description of receptive fields. \textbf{XXX Elvis: rephrase last sentence}
 
 \paragraph{Does hippocampal replay equal inverse reinforcement-learning?}
 %\begin{mdframed}
@@ -1219,7 +1225,7 @@ The DMN is today known to consistently increase in neural
   current sensory environment \citep{kenet2003spontaneously, fiser2004small}
   and it was proposed to be situated at the top of the functional network hierarchies
   \citep{carhart2010default, margulies2016situating}.
-  Its involvement in thinking about the past,
+  Its putative involvement in thinking about the past,
   the future, and hypothetical possibilities
   appears to tie in with the implicit computation of
   action and state cascades as a function of what happened in the past.
