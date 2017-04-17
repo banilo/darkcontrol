@@ -133,6 +133,7 @@
 \newtheorem{proposition}[theorem]{Proposition}
 \newtheorem{corollary}[theorem]{Corollary}
 \newtheorem{definition}[theorem]{Definition}
+\newtheorem*{definition*}{Definition}
 \newtheorem{remark}{Remark}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -899,7 +900,6 @@ that standing still will produce no change in the environment, and in particular
 % A core property of human intelligence has been proposed underly to improve
 % on an expected utility outcomes as a strategy for action choice in uncertain
 % environments \citep{gershman2015computational}.
-
 In our present model-free RL framework,
 a rat might represent such knowledge about the world as follows:
 \begin{itemize}
@@ -908,8 +908,9 @@ a rat might represent such knowledge about the world as follows:
 \item etc.
 \end{itemize}
 
-\begin{definition}
-\textbf{XXX Danilo: Is there a definition 2 somewhere?}
+\begin{mdframed}
+\begin{definition*}
+% \textbf{XXX Danilo: Is there a definition 2 somewhere?}
 Mathematically, a POMDP is simply a quintuplet $(\mathcal S, \mathcal A, r, p, \mu)$ where
 \begin{itemize}
 \item $\mathcal S$ is the set of states, such as $\mathcal S = \{\text{happy}, \text{sad}\}$.
@@ -931,7 +932,8 @@ Mathematically, a POMDP is simply a quintuplet $(\mathcal S, \mathcal A, r, p, \
 %   $$S_t \leftarrow (S_0,A_0,R_0,S_1,A_1,S_2\ldots,S_t,A_{t-1},R_{t-1},S_{t})$$ made of the system's
 %   history up to an including time $t$.
 % \end{remark}
-\end{definition}
+\end{definition*}
+\end{mdframed}
 
 \subsection{Long-term rewards and action policies}
 The behavior of the agent is governed by some kind of \textit{policy}.
@@ -1134,10 +1136,11 @@ Computing an optimal policy then corresponds to finding the parameters $\theta_{
 \begin{equation}
   \mathcal L(\theta^Q_{k})
   % = \mathbb E_{(s, a, r, s') \sim \mathcal D}[(\tilde{Q}(s, a|\theta) - \tilde{Q}(s',a'|\theta^Q_{k}))^2]
-  = \mathbb E_{(s, a, r, s') \sim \mathcal D}\left[\frac{1}{2}(\tilde{Q}(s, a|\theta_{k}) - y_k)^2\right].
+  = \mathbb E_{(s, a, r, s') \sim \mathcal D}\left[\frac{1}{2}(\tilde{Q}(s, a|\theta_{k}) - y_k)^2\right],
   \label{eq:oracle}
 \end{equation}
-\textbf{We still may need to explain y in the formula with one sentence.}
+where $y_k$ is a defined in \eqref{eq:bellman}
+% \textbf{We still may need to explain y in the formula with one sentence.}
 For instance, a general linear model with a kernel $\phi$ would be of the
 form
 $$\tilde{Q}(s, a|\theta) = \phi(s,a)^T\theta.$$
@@ -1294,79 +1297,6 @@ The HC may provide perturbed action-transition-state-reward samples
 % \end{itemize}
 
 \section{Relation to other models decision-making and optimal control for the brain}
-\subsection{The free-energy principle and active inference \
-textbf{move to Appendix}}
-% \subsubsection{The theory}
-In Friston's free-energy principle (FEP) \citep{friston2010free,fristonAIorRL}, the brain is portrayed
-as biomechanical inference engine which must minimize the long-term average of surprise.
-Precursors of this theory can be traced back to \citep{dayan1995helmholtz} in which they introduced the so-called \textit{Helmholtz machine}, a hierarchical factorial \textit{directional deep belief-net (DBN)}. According to FEP's account, the goal of the brain is then to optimize over the generative model $G$: to iteratively
-modify its internal representation $p_G(\z|\x)$ about objects in the world, their interactions and dynamics, etc., so as to minimize surprise when these representations are confronted with sensory input $\x$ during perception cycles. These is called the \textit{generative} model. FEP also postulates a dual model called the \textit{recognition} model,
-which works in tandem with the generative model $p_R(\z|\x)$, to accomplish approximate inference. The recognition model dreams / fantasizes imaginary worlds $\z$ whilst the latter tries to generate sensations $\x$ which match these dreams!
-
-Because surprisal is intractably difficult to optimize (since we would need to sum over all hidden causes of the sensations), FEP sets out to instead minimize an upper-bound thereupon, namely the \text{free-energy} $F_G^R(\x)$ given by
-
-  \begin{equation}
-    \begin{split}
-      \text{generative surprise } &:= -\log(p_G(\x)) = F_G(\x) \\
-      &=\underbrace{F^R_G(\x)}_{\text{accuracy}} - \underbrace{D_{KL}(P_R(.|\x) || P_G(.|\x))}_{\text{complexity}} \\
-      &\le F^R_G(\x),
-      \text{ with equality if }p_R(\z|\x) = p_G(\z|\x)\text{ for all } \z
-    \end{split}
-  \end{equation}
-
-% \begin{figure}[!tb]
-%   \centering
-%   \includegraphics[width=.8\linewidth]{vae.pdf}
-%   \caption{Variational autoencoders...}
-%   \label{fig:vae}
-% \end{figure}
-The main algorithm for minimizing free-energy $F_G^R(\x)$ is the \textit{wake-sleep algorithm}.
-\citep{dayan1995helmholtz}. As noted already in \citep{dayan1995helmholtz},
-a crucial drawback of the wake-sleep algorithm is that it postulates a pair forward (generation) and backward (recognition) models,
-which together do not correspond to optimization of (a bound of) the marginal likelihood, because of the incorrect KL used therein, etc.
-Thus the brain could not possibly be running such a algorithm, not even in principle! To the rescue, we note that the recent theory of
-\textit{variational auto-encoders (VAEs)} \citep{kingma2013auto} might provide an efficient alternative to the wake-sleep algorithm,
-as it overcomes the technical limits of the former, by using a reparametrization trick. For instance, unlike the wake-sleep algorithm
-for minimizing free-energy, VAEs can be efficiently trained via back-propagation of learning errors.
-
-\subsubsection{Comparison to our proposed theory}
-On the surface, a common point between the FEP and our proposed RL-based framework
-  is placing the minimization of a surprise signal at the core of brain function.
-  Indeed in RL, surprise minimization is subsumed  by accurate prediction of
-  rewarding outcomes in the future. A ``free-energy'' agent is barely a biomechanical machine which has the tendency to resist undesired / harmful phase-transitions.
-  \citep{friston2010free,fristonAIorRL,ortega2013thermodynamics}. Such a theory cannot by itself,
-  explain the emergence of strategic behavior inherent in humans (e.g.,  cite dark-room experiment).
-
-% Friston's critic of RL \citep{fristonAIorRL} (he proposes ``active inference''): "This equation (equation 18) comes from the theory of dynamic programming,
-% pioneered in the 1950s by Richard Bellman and colleagues [2]. To
-% optimise control a~pð Þ x~ under this formulation, we have to: (i)
-% assume the hidden states are available to the agent and (ii) solve
-% Equation 18 for the value-function. Solving for the value-function
-% is a non-trivial problem and usually involves backwards induction
-% or some approximation scheme like reinforcement learning [4–6].
-% The free-energy formulation circumvents these problems by
-% prescribing the policy in terms of free-energy, which encodes
-% optimal control (Equation 6)"
-
-% The following critics can be made:
-% \begin{itemize}
-%   \item
-%     As noted by Dayan et al. (\textit{Variants of Helmholtz machines}), the inter-neuronal intra-layer independence assumption which is at the center of the HM becomes severely problematic as it is agnostic to the known organization of cortical layers...
-%   \item A drawback of the wake-sleep algorithm is that it requires a concurrent models (generative and recognitiion), which together do not correspond to optimization of (a bound of) the marginal likelihood (because of the incorrect KL used therein, etc.).
-%   \item Also, note that the wake-sleep algorithm doesn't do backprop! This is due to
-%     technical difficulty in getting derivatives of loss function w.r.t
-%     recognition weights $\W^R$).
-%   \item This difficulty was removed in the 2010s by \citep{kingma2013auto}, an other groups, via a ``reparametrization trick''.
-%   \end{itemize}
-
-\textbf{XXX: add tons of more examples and connnections}
-\textbf{XXX: integrate aspects from section "ThE MARkOv DECISION PROBLEM" in Dayan and Daw}
-\textbf{XXX: integrate aspects from WakeNsleep by Hinton}
-\textbf{XXX: integrate aspects from Friston2014(Dropbox) on active inference}
-\textbf{XXX: integrate aspects from Sutton/Barto book chapter}
-
-
-
 \subsection{Predictive coding hypothesis}
 Predictive coding mechanisms
 \citep{clark2013whatever, friston2008hierarchical}
@@ -1683,7 +1613,75 @@ inherently incorporates the importance of social environmental cues
 as an important special case.
 
 
+\subsection{The free-energy principle and active inference \textbf{XXX move to Appendix}}
+% \subsubsection{The theory}
+In Friston's free-energy principle (FEP) \citep{friston2010free,fristonAIorRL}, the brain is portrayed
+as biomechanical inference engine which must minimize the long-term average of surprise.
+Precursors of this theory can be traced back to \citep{dayan1995helmholtz} in which they introduced the so-called \textit{Helmholtz machine}, a hierarchical factorial \textit{directional deep belief-net (DBN)}. According to FEP's account, the goal of the brain is then to optimize over the generative model $G$: to iteratively
+modify its internal representation $p_G(\z|\x)$ about objects in the world, their interactions and dynamics, etc., so as to minimize surprise when these representations are confronted with sensory input $\x$ during perception cycles. These is called the \textit{generative} model. FEP also postulates a dual model called the \textit{recognition} model,
+which works in tandem with the generative model $p_R(\z|\x)$, to accomplish approximate inference. The recognition model dreams / fantasizes imaginary worlds $\z$ whilst the latter tries to generate sensations $\x$ which match these dreams!
 
+Because surprisal is intractably difficult to optimize (since we would need to sum over all hidden causes of the sensations), FEP sets out to instead minimize an upper-bound thereupon, namely the \text{free-energy} $F_G^R(\x)$ given by
+
+  \begin{equation}
+    \begin{split}
+      \text{generative surprise } &:= -\log(p_G(\x)) = F_G(\x) \\
+      &=\underbrace{F^R_G(\x)}_{\text{accuracy}} - \underbrace{D_{KL}(P_R(.|\x) || P_G(.|\x))}_{\text{complexity}} \\
+      &\le F^R_G(\x),
+      \text{ with equality if }p_R(\z|\x) = p_G(\z|\x)\text{ for all } \z
+    \end{split}
+  \end{equation}
+
+% \begin{figure}[!tb]
+%   \centering
+%   \includegraphics[width=.8\linewidth]{vae.pdf}
+%   \caption{Variational autoencoders...}
+%   \label{fig:vae}
+% \end{figure}
+The main algorithm for minimizing free-energy $F_G^R(\x)$ is the \textit{wake-sleep algorithm}.
+\citep{dayan1995helmholtz}. As noted already in \citep{dayan1995helmholtz},
+a crucial drawback of the wake-sleep algorithm is that it postulates a pair forward (generation) and backward (recognition) models,
+which together do not correspond to optimization of (a bound of) the marginal likelihood, because of the incorrect KL used therein, etc.
+Thus the brain could not possibly be running such a algorithm, not even in principle! To the rescue, we note that the recent theory of
+\textit{variational auto-encoders (VAEs)} \citep{kingma2013auto} might provide an efficient alternative to the wake-sleep algorithm,
+as it overcomes the technical limits of the former, by using a reparametrization trick. For instance, unlike the wake-sleep algorithm
+for minimizing free-energy, VAEs can be efficiently trained via back-propagation of learning errors.
+
+\subsubsection{Comparison to our proposed theory}
+On the surface, a common point between the FEP and our proposed RL-based framework
+  is placing the minimization of a surprise signal at the core of brain function.
+  Indeed in RL, surprise minimization is subsumed  by accurate prediction of
+  rewarding outcomes in the future. A ``free-energy'' agent is barely a biomechanical machine which has the tendency to resist undesired / harmful phase-transitions.
+  \citep{friston2010free,fristonAIorRL,ortega2013thermodynamics}. Such a theory cannot by itself,
+  explain the emergence of strategic behavior inherent in humans (e.g.,  cite dark-room experiment).
+
+% Friston's critic of RL \citep{fristonAIorRL} (he proposes ``active inference''): "This equation (equation 18) comes from the theory of dynamic programming,
+% pioneered in the 1950s by Richard Bellman and colleagues [2]. To
+% optimise control a~pð Þ x~ under this formulation, we have to: (i)
+% assume the hidden states are available to the agent and (ii) solve
+% Equation 18 for the value-function. Solving for the value-function
+% is a non-trivial problem and usually involves backwards induction
+% or some approximation scheme like reinforcement learning [4–6].
+% The free-energy formulation circumvents these problems by
+% prescribing the policy in terms of free-energy, which encodes
+% optimal control (Equation 6)"
+
+% The following critics can be made:
+% \begin{itemize}
+%   \item
+%     As noted by Dayan et al. (\textit{Variants of Helmholtz machines}), the inter-neuronal intra-layer independence assumption which is at the center of the HM becomes severely problematic as it is agnostic to the known organization of cortical layers...
+%   \item A drawback of the wake-sleep algorithm is that it requires a concurrent models (generative and recognitiion), which together do not correspond to optimization of (a bound of) the marginal likelihood (because of the incorrect KL used therein, etc.).
+%   \item Also, note that the wake-sleep algorithm doesn't do backprop! This is due to
+%     technical difficulty in getting derivatives of loss function w.r.t
+%     recognition weights $\W^R$).
+%   \item This difficulty was removed in the 2010s by \citep{kingma2013auto}, an other groups, via a ``reparametrization trick''.
+%   \end{itemize}
+
+\textbf{XXX: add tons of more examples and connnections}
+\textbf{XXX: integrate aspects from section "ThE MARkOv DECISION PROBLEM" in Dayan and Daw}
+\textbf{XXX: integrate aspects from WakeNsleep by Hinton}
+\textbf{XXX: integrate aspects from Friston2014(Dropbox) on active inference}
+\textbf{XXX: integrate aspects from Sutton/Barto book chapter}
 
 \section{Conclusion}
 What brain function could be important enough
