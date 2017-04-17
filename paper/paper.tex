@@ -349,7 +349,7 @@ the DMN dynamics are constantly adapted in feedback loops
 shaped by prediction error.
 A DMN framework incorporating RL can naturally embed human behavior
 into the tension between exploitative action with immediate gains and
-exploratory action with longer-term reward schedules.
+exploratory action with longer-term reward outcomes.
 
 
 \subsection{Towards a formal account of DMN function}
@@ -505,7 +505,7 @@ Consequently, the PMC may contribute to overall DMN function
 by monitoring the subjective outcomes
 of possible decisions and integrating that information
 with memory, perspective frames, and
-reward schedules into higher-level strategies.
+reward outcomes into higher-level strategies.
 Perceived value, that differs across individuals, may update
 statistical assessment of the environment
 to predict delayed reward opportunities in the future.
@@ -787,18 +787,18 @@ into ongoing action, planning, and problem solving.
 
 \section{Reinforcement learning: a process model for DMN function}
 We now argue the outlined neurobiological properties
-and potential functions of the DMN
+and potential functions of the DMN nodes
 to be sufficient for implementing all components
 of a full-fledged RL algorithm.
 Recalling past experience, considering candidate actions,
 random sampling of possible scenarios, as well as
 evaluating instantaneous, delayed, and expected reward outcomes
 are key components of intelligent RL agents
-that are plausible to intertwine in the DMN.
+that are plausible to intersect in the DMN.
 
 
 
-RL is a problem-solving technique in which, through interactions with an external environment,
+RL is a problem-solving technique in which, through interactions with an environment,
 an agent learns to reach goals, optimize reward signals, and minimize costs
 in an iterative trial-by-error fashion.
 At a given moment, each taken \textit{action} $a$ triggers a change in the
@@ -815,7 +815,7 @@ Action may be delayed to achieve substantial increases in expected reward
 that can grow with time.
 The environment is generally taken as stochastic,
 that is, changing in random ways. In addition,
-it is only \textit{partially observed}
+the environment is only \textit{partially observed}
 in the sense that only part of the current state is observed by
 the agent \citep{starkweather2017dopamine}.
 The volatility of the environment
@@ -841,20 +841,23 @@ to explain DMN function.
 We argue that a functional account of the DMN based on RL
 can naturally embed human behavior
 in the tension between exploitative action with immediate gains and
-explorative action with longer-term reward schedules
+explorative action with longer-term reward outcomes
 \citep{dayan2008decision}.
 DMN implication in a diversity of
 particularly advanced cognitive processes
-can be parsimoniously explained as probabilistic simulations in form of mental scenes coupled with prediction error minimization
-to calibrate action portfolios and
-maximize reward outcome at different time scales.
+can be parsimoniously explained as probabilistic mental
+scene simulations coupled with prediction error minimization
+to calibrate action trajectories and
+maximize reward outcomes at different time scales.
 Such a purposeful optimization objective
 may be solved by a stochastic approximation
 based on a brain implementation of MCMC sampling
 \citep{tenenbaum2011grow}.
 
+
+
 \subsection{Partially Observable Markov Decision Processes}
-We propose that the brain in general and the DMN in particular
+We argue that the brain in general and the DMN in particular
 are a physical system governed by the laws of
 physics and can be locally described by Markov processes at a sufficiently coarse scale.
 Indeed, as noted in \cite{tegmark2016improved},
@@ -879,7 +882,8 @@ states, based on a set of observations and observation probabilities. This is a 
 and is characteristic of so-called \textit{model-free RL},
 which we propose as a useful formal framework for DMN function.
 
-Model-free RL is plausible in the human brain. Indeed,
+
+Model-free RL is plausible to be realizable in the human brain. Indeed,
 it has long been proposed \citep{dayan2008decision} that there
 is a rather direct mapping of model-free RL learning algorithms
 onto aspects of the brain.
@@ -1560,7 +1564,7 @@ eventually chosen, namely, the estimated cumulative reward.
 incorporated into the MDP as the Markov property,
 that is, the current state directly results from the
 agent's history of states and actions. The learned
-value estimations and action transition schedules drive
+estimations of value and action transitions drive
 stimulus processing and action choice in the present.}
 The MDPs naturally integrate the former egocentric
 (more related to current action, state and reward) and the later
