@@ -196,14 +196,12 @@
 \begin{document}
 
 \author{Elvis Dohmatob, Guillaume Dumas, Danilo Bzdok\\
-  \textbf{Please add your affiliation}
-  %% INRIA, Parietal team, Saclay, France\\
-  %% CEA, Neurospin, Gif-sur-Yvette, France\\
-  %% firstname.lastname@inria.fr
-  %% GD1 Institut Pasteur, Human Genetics and Cognitive Functions Unit, Paris, France
-  %% GD2 CNRS UMR 3571 Genes, Synapses and Cognition, Institut Pasteur, Paris, France
-  %% GD3 University Paris Diderot, Sorbonne Paris Cité, Paris, France
-  %% GD4 Centre de Bioinformatique, Biostatistique et Biologie Intégrative (C3BI, USR 3756 Institut Pasteur et CNRS), Paris, France
+  INRIA, Parietal team, Saclay, France\\
+  CEA, Neurospin, Gif-sur-Yvette, France\\
+  Institut Pasteur, Human Genetics and Cognitive Functions Unit, Paris, France\\
+  CNRS UMR 3571 Genes, Synapses and Cognition, Institut Pasteur, Paris, France\\
+  University Paris Diderot, Sorbonne Paris Cité, Paris, France\\
+  Centre de Bioinformatique, Biostatistique et Biologie Intégrative, Paris, France
 }
 
 \maketitle
@@ -230,8 +228,8 @@ previously proposed cognitive accounts as special cases and
 parsimoniously explains
 experimental findings in animals and humans.
 %
-A process models for the neural implemention
-of continuous future predictions probably realized in the DMN
+A process model for the neural implemention
+of continuous future predictions potentially realized in the DMN
 could offer insight into the statistical mechanisms underlying human behavior.
 \end{abstract}
 
@@ -270,9 +268,10 @@ in the so-called "default mode network" (DMN)
 This set of some of the highest regions in
 the human association cortex \citep{mesulam1998sensation, margulies2016situating}
 consistently
-increased in neural activity during
+increase in neural activity during
 unfocused everyday mind wandering \citep{raichle2001pnas}.
-The DMN may exert higher-order control on human behavior
+The DMN may subserve important functions in
+higher-order control of human behavior
 following the notion of "a hierarchy of brain systems with
 the DMN at the top and the salience and dorsal attention systems
 at intermediate levels, above thalamic and unimodal sensory
@@ -285,16 +284,16 @@ baseline mental activities
 
 
 \subsection{Default mode network: higher-order control of the organism}
-The human DMN accounts for a large part of the brain's baseline activity
-and typically decreases in activity during psychological experiments.
+The human DMN is responsible for a large part of the brain's baseline activity,
+which typically decreases during psychological experiments.
 The standard mode of
 neural information maintenance and manipulation has
 been argued to mediate evolutionarily conserved functions
 \citep{brown1914nature, binder1999conceptual, buzsaki2006rhythms}.
-This is all the more likely because the DMN contains hotspots
+In line with this, the DMN contains hotspots
 of highest energy consumption in the entire central nervous system
-\citep{raichle2001pnas}.
-DMN activity also persists to a substantial degree during
+\citep{raichle2001pnas},
+which persists to a substantial degree during
 sleep and under anesthesia \citep{randy2008}.
 Today, many authors believe that the DMN implements
 probabilistic estimation of past, hypothetical, and
@@ -312,18 +311,19 @@ and increased DMN activity was linked to more task-independent,
 yet sometimes useful thoughts
 \citep{mason2007, seli2016mind}.
 %
-Gaining insight into the overarching DMN function is challenging because
+Gaining insight into the function of the DMN is
+particularly challenging because
 this network appears to
 simultaneously control perception-action cycles and
 maintain baseline contemplations
 across time, space, and content domains.
 
 
-In this work,
-we consider an agent faced with the choice of the next action
+The present work takes the perspective of
+a human agent faced with the choice of the next action
 and being guided by rich
 reenactment of really-happened, hypothetically conceived, and
-predicted future events to perfect ongoing behavioral performance.
+estimated futures to optmize behavioral performance.
 A particularly attractive computational framework
 to describe, quantify, and predict autonomously acting systems like the brain
 is proposed to be the combination of control theory and
@@ -353,23 +353,24 @@ exploratory action with longer-term reward schedules.
 
 
 \subsection{Towards a formal account of DMN function}
-We argue that the implication of the DMN in a
+We argue that DMN implication in a
 diversity of humans' most advanced cognitive processes
 can be parsimoniously recast as prediction error minimization
 based on pervasive probabilistic simulations,
-thus maximizing reward outcome across multiple time scales.
+thus maximizing action outcome across multiple time scales.
 Such a purposeful optimization objective
 may be solved by a stochastic approximation
-based on a brain implementation of Markov Chain Monte Carlo sampling
+based on a brain implementation of Markov Chain Monte Carlo (MCMC) sampling
 \citep{tenenbaum2011grow}.
 In this context,
-\textit{control} refers to the influences that an agent exerts when interacting
+\textit{control} refers to the influence that an agent exerts when interacting
 with the environment to encourage preferred states.
-Even (necessarily imperfect) memories, random day-time mind-wandering, and dreams during sleep
+Even (necessarily imperfect) memory retrieval,
+random day-time mind-wandering, and dreams during sleep
 may provide meaningful building blocks to iteratively improve
 the predictive DMN machinery to optimize the behavior of the organism.
 %
-In short, it has been proposed earlier that
+It has indeed been proposed earlier that
 the human brain's energy budget is largely dedicated to
 ``the development and maintenance of [a]
 probabilistic model of anticipated events''
@@ -387,9 +388,9 @@ process model that satisfies this contention.
 We begin by a neurobiological deconstruction of the DMN
 based on experimental findings in the neuroscience literature.
 This walkthrough across network nodes will
-outline their individual functional profiles,
-paving the way for their functional interpretation within our computational account
-described in the next section.
+outline the individual functional profiles,
+paving the way for their functional interpretation
+within our formal account (next section).
 
 \begin{figure}[!h]
   \includegraphics[width=.9\linewidth]{neurobiological_overview_DMN.pdf}
@@ -401,10 +402,10 @@ described in the next section.
 The midline structures of the DMN,
 including the posteromedial cortex (PMC) and
 the medial prefrontal cortex (mPFC),
-are responsible for the highest turn-over
+are probably responsible for the highest turn-over
 of glucose energy consumption \citep{raichle2001pnas}.
 These metabolic characteristics go hand-in-hand with
-brain-imaging analyses \citep{andrews2010} in
+functional neuroimaging analyses \citep{andrews2010} in
 suggesting that the PMC and mPFC
 potentially represent the functional backbone of the DMN.
 
@@ -414,8 +415,7 @@ The PMC myelinates relatively late during postnatal development in monkeys
 be a sign of evolutionary sophistication \citep{flechsig1920}.
 Normal and disturbed metabolic fluctuations in the
 human PMC have been repeatedly related to
-phenomena of changed conscious awareness \citep{cavanna2006precuneus},
-including anesthesia, sleep, and coma.
+phenomena of changed conscious awareness \citep{cavanna2006precuneus}.
 %
 Indeed,
 the PMC has long been speculated to reflect constant computation of
@@ -425,9 +425,9 @@ For instance, B\'alint's syndrome is a neurological disorder of conscious
 awareness that results from damage in the parietal cortex
 \citep{balint1909seelenlahmung}.
 Patients are plagued by an
-the inability to bind various individual features of the visual
+inability to combine various individual features of the visual
 environment into an integrated whole (i.e., simultanagnosia)
-as well as inability to direct action towards
+as well as an inability to direct action towards
 currently unattended environmental objects
 (i.e., optic ataxia).
 This can be viewed as a high-level impairment in gathering
@@ -523,7 +523,7 @@ exert top-down control.
 In comparison to the PMC, however,
 the dmPFC may be closer to a
 ``mental sketchpad'' \citep{goldman1996prefrontal}, as it
-potentially subserves the de-novo generation and binding
+potentially subserves the de-novo generation and manipulation
 of meaning representations instructed by stored semantics and memories.
 
 
@@ -854,7 +854,7 @@ to calibrate action portfolios and
 maximize reward outcome at different time scales.
 Such a purposeful optimization objective
 may be solved by a stochastic approximation
-based on a brain implementation of Markov Chain Monte Carlo (MCMC) sampling
+based on a brain implementation of MCMC sampling
 \citep{tenenbaum2011grow}.
 
 \subsection{Partially Observable Markov Decision Processes}
@@ -1522,7 +1522,7 @@ are also closely related to episodic memory, language, problem solving,
 planning, estimating other people's thoughts, and spatial navigation.
 These neural processes are likely to
 build on abstract world knowledge and logical assocations
-for binding the constituent elements in mental scene construction
+for integrating the constituent elements in mental scene construction
 \citep{schacter2007remembering}.
 Such scene generation processes could contribute to interpreting the
 present and foretelling the future.
