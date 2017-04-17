@@ -801,21 +801,27 @@ evaluating instantaneous, delayed, and expected reward outcomes
 are key components of intelligent RL agents
 that are plausible to intertwine in the DMN.
 
-
-
 RL is a problem-solving technique in which, through interactions with an external environment,
 an agent learns to reach goals, optimize reward signals, and minimize costs
 in an iterative trial-by-error fashion.
-At a given moment, each taken \textit{action} $a$ triggers a change in the
-\textit{state} of the environment
+At a given moment, each taken \textit{action} $a$ triggers an \textit{partially observed} change
+in the \textit{state} of the environment
 $s \rightarrow s'$, accompanied by environmental feedback signals as \textit{reward}
 $r = r(s, a)$ (or \textit{punishment},
 since it can be negative) collected by the
-agent.
+agent. This is illustrated in Fig. \ref{fig:rl}.
 In this view, the environment is partially controlled by
 the action of the agent and the reward can be thought
 of as satisfaction -- or punishment -- accompanying the execution of
 an action.
+
+\begin{wrapfigure}{r}{.4\linewidth}
+  \centering
+  \includegraphics{aeloop-300x183.png}
+  \caption{RL in a nutshell}
+  \label{fig:rl}
+\end{wrapfigure}
+
 Action may be delayed to achieve substantial increases in expected reward
 that can grow with time.
 The environment is generally taken as stochastic,
