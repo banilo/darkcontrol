@@ -234,7 +234,7 @@ We argue that our formal account of DMN function naturally accommodates as speci
 previously proposed cognitive accounts on
 \textit{i}) predictive coding,
 \textit{ii}) semantic association, and
-\textit{iii}) a ``radar'' function.
+\textit{iii}) a ``sentinel'' function.
 %
 A process model for the neural optimization of complex behavior
 can offer parsimonious explanations for
@@ -1416,7 +1416,7 @@ the predictive coding account frames
 sensory perception of the external world
 as a generative experience due to the modulatory top-down influence at
 various stages of sensory input processing.
-In our RL view, instead,
+In our MDP view, instead,
 the Markov property of our sequential decision making framework entails
 the environmental model to be
 \textbf{effectively expressed in the current state of the human agent
@@ -1425,7 +1425,7 @@ Further,
 the hierarchical processing aspect from predictive coding
 is re-expressed in our account in form of
 nested prediction of probable upcoming actions, states, and rewards.
-Both accounts model the consequences of action.
+Both accounts capture the consequences of action.
 The predictive coding account is typically explained without
 explicit parameterization of the agent's horizon and
 has a tendency to be presented as emphasizing prediction about the
@@ -1441,7 +1441,7 @@ Finally,
 the process of adapting the neuronal connections
 for improved top-down modulation
 takes the concrete form of gradient computation and
-back-propagation in our RL implementation.
+back-propagation in our MDP implementation.
 It is however important to note that
 the neurobiological plausibility of
 the back-propagation procedure is controversal
@@ -1449,23 +1449,23 @@ the back-propagation procedure is controversal
 In sum,
 the present formal account may serve as a concrete implementation of
 the long-standing predictive coding account from cognitive neuroscience.
-MPDs have the advantage of exposing an explicit
+MDPs have the advantage of exposing an explicit
 mechanism for the horizon of future considerations or
 how the internal model of the world gets updated,
 and
 more explicitly reconciles sensory input processing and action consideration.
 %
 Recasting DMN function in terms of MDPs therefore naturally incorporates
-a majority of aspects of the prediction coding hypothesis.
+a majority of aspects from the prediction coding hypothesis.
 
 
 
 \subsection{Semantic hypothesis}
 Another frequently proposed cognitive account of DMN function revolves
-around forming logical associations and analogies between
+around forming logical associations and abstract analogies between
 the current experience and
 the conceptual knowledge derived from past experiences
-\citep{bar2007proactive, binder1999conceptual}.
+\citep{bar2007proactive, binder1999conceptual, constantinescu2016organizing}.
 Analogies might naturally tie incoming novel sensory stimuli to
 explicit world knowledge (i.e., semantics) extracted from the environment
 \citep{bar2009proactive}.
@@ -1474,7 +1474,7 @@ by association to similar states.
 %
 Going beyond human language itself,
 semantic building blocks may provide the basis for
-mentally envisioning non-existent scenarios
+mentally envisioning non-existing scenarios
 that would optimize behavior in the environment
 by constantly simulating possible future events.
 Such cognitive processes can afford
@@ -1488,15 +1488,15 @@ equally decreased in the level of detail and were associated with
 concurrent deficits in forming and integrating relationships between
 items \citep{addis2008age, spreng2006temporal}.
 Further,
-a constructive account can explain the reciprocal relationship
-between an egocentric first person perspective and
-an allocentric bird’s eye perspective immersed in
-self-reflection, semantic associations, and autobiographical memories.
-%
-Cognitive aspects of egocentric-allocentric switching
-are also closely related to episodic memory, language, problem solving,
-planning, estimating other people's thoughts, and spatial navigation.
-These neural processes are likely to
+% a constructive account can explain the reciprocal relationship
+% between an egocentric first person perspective and
+% an allocentric bird’s eye perspective immersed in
+% self-reflection, semantic associations, and autobiographical memories.
+% %
+% Cognitive aspects of egocentric-allocentric switching
+episodic memory, language, problem solving,
+planning, estimating other people's thoughts, and spatial navigation
+represent neural processes that are likely to
 build on abstract world knowledge and logical assocations
 for integrating the constituent elements in mental scene construction
 \citep{schacter2007remembering}.
@@ -1513,20 +1513,20 @@ regulation by which perception of the current world is suppressed
 while simulation of possible alternatives are constructed,
 followed by a return to perception of the present.''.
 The semantic hypothesis is for instance supported by evidence in animals that
-could learn a \textit{cognitive map of the environment},
-even without reward incentives, and exploit it later
-for other means \citep{tolman1948cognitive}.
+could learn a \textit{cognitive map of the environment}
+and exploit it later for other means \citep{tolman1948cognitive}.
 
 
 In comparison,
-both the semantic hypothesis and MDPs expose mechanisms of
-how action considerations could be mentally explored.
+both the semantic hypothesis and the present account based on MDPs
+expose mechanisms of how action considerations could be mentally explored.
 In both accounts,
-there is also no evidence to indicate that predictions of various
+there is also no reason to assume that predictions of various
 levels of complexity, abstraction, timescale and purpose
 use mechanisms that are qualitatively different. This concurs with
 DMN activity increases across time, space, and content domains
-demonstrated in many neuroimaging studies \citep{spreng2009common}.
+demonstrated in many neuroimaging studies
+\citep{spreng2009common, laird2009, bzdok2012morality, binder2009}.
 The semantic hypothesis
 and MDP account provide explanations why hippocampus lesion does
 not only impair recalling memories, but also hypothetical and future
@@ -1542,10 +1542,10 @@ that is, the current state directly results from the
 agent's history of states and actions. The learned
 estimations of value and action transitions drive
 stimulus processing and action choice in the present.}
-The MDPs naturally integrate the former egocentric
+The MDPs naturally integrate the former egocentric view
 (more related to current action, state and reward) and the later
-allocentric (more related to past and future actions, states, and rewards)
-angles on the world in a same optimization problem.
+world view (more related to past and future actions, states, and rewards)
+on the world in a same optimization problem.
 Further,
 the semantic account of DMN function does not offer
 a mechanistic explanation how explicit world knowledge and semantic analogies thereof
@@ -1599,7 +1599,8 @@ the increasingly recognized observation
 of the DMN implication
 in certain goal-directed experimental tasks and
 in task-unconstrained mind-wandering \citep{smith2009, bzdok2016formal}.
-Both cognitive sets may entail DMN recruitment
+Both environment-detached and environment-engaged
+cognitive sets may entail DMN recruitment
 if environmental relevance is processed, manipulated, and
 used for predicting the future.
 During tasks,
@@ -1608,7 +1609,7 @@ updated to optimize especially short-term action.
 At rest, these parameter updates may
 improve especially mid- and long-term action.
 The horizon is expressed in the $\gamma$ parameter in the formal account.
-We thus provide answers for the unsettled question why the involvement
+We thus provide answers for the currently unsettled question why the involvement
 of the same neurobiological brain circuit (i.e., DMN) has been documented
 for baseline house-keeping functions and specific task performances.
 
@@ -1740,7 +1741,7 @@ optimize the organism's fate.
 % by obtaining reward and avoiding pain.
 This idealized process model explains
 a number of previous experimental observations in the
-DMN by a simple but non-trivial mechanism.
+DMN by simple but non-trivial mechanisms.
 %
 From the computational view of a Markovian sequential decision process,
 behavior unfolds by integrating happened past events
@@ -1752,11 +1753,11 @@ when confronted with complicated decisions.
 This functional interpretation is more compatible with the DMN's
 poorly understood involvement across
 autobiographical memory recall, problem solving,
-abstract reasoning based on internally generated scenes, social cognition,
+abstract reasoning, social cognition,
 as well as delay discounting and self-related prospection.
 Improvement of the internal world model
 by injecting stochasticity in the recall of past
-actions and outcomes may explain why
+actions and the estimation of action outcomes may explain why
 very accurate memories have been disfavored in human evolution
 and why human creativity might be adaptive.
 %
@@ -1773,12 +1774,12 @@ also yields falsifiable neuroscientific hypotheses.
 %
 At the least, we propose an alternative vocabulary to
 describe and interpret experimental findings in neuroscience studies
-on this macroscopic brain network.
+on this major brain network.
 %
 Ultimately,
 the DMN can be viewed as a functional integrator
 from the relatively recent events to anticipated upcoming events
-in to constantly refine action in our dynamic world.
+in to constantly refine the organism's interaction with the world.
 
 
 
