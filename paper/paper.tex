@@ -1004,7 +1004,7 @@ $\gamma$ can be seen as calibrating risk-seeking valency of the intelligent agen
 that is, the decision related to reward-delay trade-off schedules.
 Such an agent puts relatively more emphasis on rewards expected in
 a short future and pays less attention to
-rewards expected at a later time, precisely rewards more than $1/(1 - \gamma)$ time steps into the future are disregarded.
+rewards expected at a later time. Precisely, rewards that are not expected to come within $\tau := 1/(1 - \gamma)$ time steps from the present point are disregarded.
 This reduces the variance of expected rewards accumulated across action cascades by limiting the length of this cascades.
 % given that there is more uncertainty in the farsighted future.
 % It is also important to appreciate that a stochastic policy estimation
@@ -1146,7 +1146,7 @@ In the DMN, The dmPFC (BA9) would implement such a greedy lookup over the action
 The tensor $\theta$ encodes the model
   parameters and would correspond to synaptic weights and / or connection strengths between
   DMN regions. It is a time-varying neuronal program which dictates how to move from world states $s$ to actions $a$ via the greedy policy \eqref{eq:policy}.
-The oracle Q-values $Q(s, a|\theta)$ which tell the DMN the (expected) usefulness of taking an action a in state / situation  $s$. The brain (BA9 ?) would then choose, a given $s$, an action $a$ which maximizes this tabulated values. This mapping from states to actions defines a matrix, which can be conveniently called a "policy matrix". Learning consists in starting from a given instantiation of such a table and tweaking it around while using it to take actions which take the agent to different areas of the table, and so on, and so forth. % like solving a problem which is changing...), etc..
+  The oracle Q-values $Q(s, a|\theta)$ tell the DMN the (expected) usefulness of taking an action a in state / situation  $s$. The DMN (via BA9 ?) would then choose, at a given $s$, an action $a$ which maximizes this tabulated values. This mapping from states to actions defines a matrix, which can be conveniently called a "policy matrix". Learning consists in starting from a given instantiation of such a table and tweaking it around while using it to take actions which take the agent to different areas of the table, and so on, and so forth.
 
 
 \subsubsection{The loss function}
@@ -1206,6 +1206,40 @@ connections between neurons from the different levels
 of the neural processing hierarchy
 \citep{mesulam1998sensation, taylor2015global}.
 
+
+\subsubsection{Optimal control via stochastic gradient descent in the DMN}
+Learning of the the entire model parameters can effectively be achieved
+via \textit{gradient descent},
+where reward prediction errors (RPEs) -- also known as \textit{regret}-- percolate
+from lower to higher processing layers to modulate the choice of future actions
+
+% online stochastic gradient descent is used to minimize the variational objective
+% \eqref{eq:oracle}.
+
+% \paragraph{Parameter update.}
+\begin{equation}
+  \delta \theta_{k} \propto -\nabla_{\theta_{k}}\mathcal L(\theta_{k})
+  = -\mathbb E_{(s, a, r, s') \sim \mathcal D}[\underbrace{(\tilde{Q}(s, a|\theta_{k}) - y_k)}_{\text{prediction error}}
+    \underbrace{\nabla_{\theta_{k}}\tilde{Q}(s, a|\theta_{k})}_{\text{averseness}}].
+  \label{eq:oracle}
+\end{equation}
+Over time (i.e in the limit $k \rightarrow \infty$), the so-generated approximating sequence of
+$Q$-value functions provably\footnote{The proof is standard and relies on the Banach Fixed-Point Theorem applied to the Bellman transform.} $Q$-value functions $\tilde{Q}(.,.|\theta_0) \rightarrow \tilde{Q}(.,.|\theta_1) \rightarrow \tilde{Q}(.,.|\theta_2) \rightarrow \ldots$
+are attracted and absorbed by the optimal $Q$-value function $Q^*$ defined implicitly by the Bellman equation \eqref{eq:bellman}.
+
+% \subsubsection{Link to classical reinforcement learning algorithms}
+% One should note that most classical RL algorithms, including \textit{Temporal Difference (TD)}
+% learning \citep{sutton1998reinforcement}, REINFORCE \citep{williams1992}, and SARSA can be
+% cast in this \textbf{please unpack the "this" here}
+% general variational framework. For instance, TD corresponds to
+% the above framework using a linear value approximator with feature encoding
+% $\phi(s,a) = \delta_{(s,a)} =  \text{ point mass at }(s,a)$ on the grid
+% $\mathcal S \times \mathcal A$, and so
+% $$\nabla_{\theta}\tilde{Q}(s, a|\theta) = \phi(s, a) = \delta_{(s,a)}.$$
+% Whence, the gradient update due to the sample $(s,a,r,s') \in \mathcal D$ is
+% $$\theta(s,a) \leftarrow \theta(s,a) + \alpha(\tilde{Q}(s, a|\theta) - y),$$
+% the well-known TD update rule \citep{sutton1998reinforcement}.
+
 \subsubsection{Does the hippocampus subserve Monte-Carlo sampling?}
 In RL, Monte-Carlo simulation can be used to update the agent's belief state
 \citep{silver2010monte}. Such methods have a sample complexity that is determined only by the underlying difficulty of the POMDP, rather than the size of the state space or observation space,
@@ -1221,40 +1255,6 @@ highest expected cumulative rewards.
 In POMDPs, Monte-Carlo simulation provides an effective mechanism both for tree search and for belief-based state updates, breaking the curse of dimensionality and allowing much greater scalability than has previously been possible
 \textbf{XXX Elvis: refs needed.}.
 Much recent work points to Monte Carlo or stochastic sampling-based approximations as a unifying framework for understanding how Bayesian inference may work practically across all these levels, in minds, brains, and machines. \textbf{XXX Elvis: refs needed in last sentence. Plus, should be really bring up Bayesian?} For sampling-based methods it is still almost non-existent beyond the description of receptive fields. \textbf{XXX Elvis: rephrase last sentence}
-
-\subsubsection{Optimal control via stochastic gradient descent in the DMN}
-Learning of the the entire model parameters can effectively be achieved
-via \textit{gradient descent},
-where reward prediction errors (RPEs) -- also known as \textit{regret}-- percolate
-from lower to higher processing layers to modulate the choice of future actions.
-Over time (i.e in the limit $k \rightarrow \infty$), the approximate
-$Q$-values $\tilde{Q}(a,s|\theta_{k-1})$ provably\footnote{The proof is standard and relies on the Banach Fixed-Point Theorem applied to the Bellman transform.}
-converge uniformly to the unique fixed-point $Q^*(a,s)$ defined implicitly by the Bellman
-equation \eqref{eq:bellman}
-
-% online stochastic gradient descent is used to minimize the variational objective
-% \eqref{eq:oracle}.
-
-% \paragraph{Parameter update.}
-\begin{equation}
-  \delta \theta_{k} \propto -\nabla_{\theta_{k}}\mathcal L(\theta_{k})
-  = -\mathbb E_{(s, a, r, s') \sim \mathcal D}[\underbrace{(\tilde{Q}(s, a|\theta_{k}) - y_k)}_{\text{prediction error}}
-    \underbrace{\nabla_{\theta_{k}}\tilde{Q}(s, a|\theta_{k})}_{\text{averseness}}].
-  \label{eq:oracle}
-\end{equation}
-
-% \subsubsection{Link to classical reinforcement learning algorithms}
-% One should note that most classical RL algorithms, including \textit{Temporal Difference (TD)}
-% learning \citep{sutton1998reinforcement}, REINFORCE \citep{williams1992}, and SARSA can be
-% cast in this \textbf{please unpack the "this" here}
-% general variational framework. For instance, TD corresponds to
-% the above framework using a linear value approximator with feature encoding
-% $\phi(s,a) = \delta_{(s,a)} =  \text{ point mass at }(s,a)$ on the grid
-% $\mathcal S \times \mathcal A$, and so
-% $$\nabla_{\theta}\tilde{Q}(s, a|\theta) = \phi(s, a) = \delta_{(s,a)}.$$
-% Whence, the gradient update due to the sample $(s,a,r,s') \in \mathcal D$ is
-% $$\theta(s,a) \leftarrow \theta(s,a) + \alpha(\tilde{Q}(s, a|\theta) - y),$$
-% the well-known TD update rule \citep{sutton1998reinforcement}.
 
 
 \paragraph{Does hippocampal replay equal inverse reinforcement-learning?}
