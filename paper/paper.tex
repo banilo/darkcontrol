@@ -1665,11 +1665,11 @@ inherently incorporates the importance of social environmental cues
 as an important special case.
 
 
-\subsection{The free-energy principle and active inference \textbf{XXX move to Appendix}}
+\subsection{The free-energy principle and active inference}
 % \subsubsection{The theory}
 In Friston's free-energy principle (FEP) \citep{friston2010free,fristonAIorRL}, the brain is portrayed
 as biomechanical inference engine which must minimize the long-term average of surprise.
-Precursors of this theory can be traced back to \citep{dayan1995helmholtz} in which they introduced the so-called \textit{Helmholtz machine}, a hierarchical factorial \textit{directional deep belief-net (DBN)}. According to FEP's account, the goal of the brain is then to optimize over the generative model $G$: to iteratively
+Precursors of this theory can be traced back to \citep{dayan1995helmholtz} in which they introduced the so-called \textit{Helmholtz machine}, a hierarchical factorial \textit{directional deep belief-net (DBN)}. According to FEP's account, the goal of the brain is then to optimize over a generative model $G$ of sensations: to iteratively
 modify its internal representation $p_G(\z|\x)$ about objects in the world, their interactions and dynamics, etc., so as to minimize surprise when these representations are confronted with sensory input $\x$ during perception cycles. These is called the \textit{generative} model. FEP also postulates a dual model called the \textit{recognition} model,
 which works in tandem with the generative model $p_R(\z|\x)$, to accomplish approximate inference. The recognition model dreams / fantasizes imaginary worlds $\z$ whilst the latter tries to generate sensations $\x$ which match these dreams!
 
@@ -1697,7 +1697,7 @@ which together do not correspond to optimization of (a bound of) the marginal li
 Thus the brain could not possibly be running such a algorithm, not even in principle! To the rescue, we note that the recent theory of
 \textit{variational auto-encoders (VAEs)} \citep{kingma2013auto} might provide an efficient alternative to the wake-sleep algorithm,
 as it overcomes the technical limits of the former, by using a reparametrization trick. For instance, unlike the wake-sleep algorithm
-for minimizing free-energy, VAEs can be efficiently trained via back-propagation of learning errors.
+for minimizing free-energy, VAEs can be efficiently trained via back-propagation of prediction errors.
 
 \subsubsection{Comparison to our proposed theory}
 On the surface, a common point between the FEP and our proposed RL-based framework
