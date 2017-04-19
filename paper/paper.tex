@@ -201,12 +201,12 @@
 
 \maketitle
 \small{
-    \textbf{1} INRIA, Parietal team, Saclay, France\\
-    \textbf{2} CEA, Neurospin, Gif-sur-Yvette, France\\
+    \textbf{1} Universit\'e Paris-Saclay, INRIA, Parietal team, Saclay, France\\
+    \textbf{2} Universit\'e Paris-Saclay, CEA, Neurospin, Gif-sur-Yvette, France\\
     \textbf{3} Department of Psychiatry, Psychotherapy and Psychosomatics, RWTH Aachen University, Aachen, Germany\\
     \textbf{4} Institut Pasteur, Human Genetics and Cognitive Functions Unit, Paris, France\\
     \textbf{5} CNRS UMR 3571 Genes, Synapses and Cognition, Institut Pasteur, Paris, France\\
-    \textbf{6} University Paris Diderot, Sorbonne Paris Cité, Paris, France\\
+    \textbf{6} University Paris Diderot, Sorbonne Paris Cit\'e, Paris, France\\
     \textbf{7} Centre de Bioinformatique, Biostatistique et Biologie Intégrative, Paris, France
 }
 
@@ -946,7 +946,7 @@ Mathematically, a POMDP is simply a quintuplet $(\mathcal S, \mathcal A, r, p, \
 \end{definition*}
 \end{mdframed}
 
-\subsubsection{Long-term rewards and action policies}
+\subsubsection{Accumulated rewards and policies}
 The behavior of the agent is governed by some kind of \textit{policy}.
 It maps states of the world to
 a set of candidate actions to perform given this state. Starting a time $t=0$,
@@ -990,7 +990,7 @@ following a policy $\pi$.
   the NAc is involved in reward evaluation. Both are known to
   be connected to the vmPFC of the DMN.
 \end{mdframed}
-  The goal of the RL agent is then to adapt this policy so as to  maximize $G^\pi$. In
+  The goal of the RL agent is then to adapt this policy so as to  maximize $G^\pi$, in an average sense to be made precise latter. In
   the definition of cumulative reward $G^\pi$ above, the constant $\gamma$ $(0 \le \gamma < 1$) is the reward \textit{discount factor}.
 Setting $\gamma = 0$ corresponds to a perfectly shortsighted agent who is solely concerned about its immediate rewards.
 Such an agent would have no horizon for the future,
