@@ -795,9 +795,9 @@ are key components of intelligent RL agents
 that are plausible to intersect in the DMN.
 
 
-RL is a problem-solving technique in which, through interactions with an environment,
+RL is a problem-solving technique in which, through interactions with an unknown \textit{environment / world},
 an agent learns to reach goals, optimize reward signals, and minimize costs
-in an iterative trial-by-error fashion.
+in an iterative trial-by-error fashion. See Fig. \ref{fig:rl}.
 At a given moment, each taken \textit{action} $a$ triggers an \textit{partially observed} change
 in the \textit{state} of the environment
 $s \rightarrow s'$, accompanied by environmental feedback signals as \textit{reward}
@@ -888,7 +888,7 @@ and is characteristic of so-called \textit{model-free RL},
 which we propose as a useful formal framework for DMN function.
 
 
-Model-free RL is plausible to be realizable in the human brain. Indeed,
+Model-free RL is plausibly realizable in the human brain. Indeed,
 it has long been proposed \citep{dayan2008decision} that there
 is a rather direct mapping of model-free RL learning algorithms
 onto aspects of the brain.
@@ -1005,20 +1005,20 @@ This reduces the variance of expected rewards accumulated across action cascades
 % For instance, a deterministic strategy in playing rock-paper-scissors can
 % be easily exploited and a uniformly random choice is optimal.
 
-\subsection{The Q-values, state-values, and the advantage function}
-We can now formulate the purpose of the DMN
-as finding a policy $\pi$ for the human agent that maximizes the
-expected cumulative value of an state-action pair $(a,s)$, also known as the \textit{Q-value}, namely
+\subsection{Expected values, Bellman equation, and optimal control}
+Given only the limited information available from a POMDP, at a state $s$ the average quality or usefulness of taking an action $a$ under a policy $\pi$ is completely captured by the single number
+% We can now formulate the purpose of the DMN
+% as finding a policy $\pi$ for the human agent that maximizes the
+% expected cumulative value of an state-action pair $(a,s)$, also known as the \textit{Q-value}, namely
 \begin{equation}
   \label{eq:qval}
-  Q^{\pi}(s,a) = \mathbb E [G^\pi|s_0=s,a_0=a].
+  Q^{\pi}(s,a) = \mathbb E [G^\pi|s_0=s,a_0=a],
 \end{equation}
-In other words,
-the Q-value $Q^{\pi}(s,a)$ corresponds to the expected reward
+called the $Q$-value for the state-action pair $(s,a)$.
+In other words, $Q^{\pi}(s,a)$ corresponds to the expected reward
 over all possible action trajectories, in which
 the agent sets out in the environment in state
-$s$, chooses action $a$,
-and then follows the policy $\pi$ to select future actions.
+$s$, chooses action $a$, and then follows the policy $\pi$ to select future actions.
 %% Given that each $\pi$ correspondence to an exhaustive description of
 %% behavioral patterns, $Q^{\pi}(s_t,a_t)$ corresponds to the epistemic value of
 %% the set of actions given states in finite time.
@@ -1029,64 +1029,81 @@ utility of executing a specific action; it answers the question
 $Q^{\pi}(s,a)$ offers a formalization of optimal behavior that
 may well reflect processing aspects of the DMN in human agents.
 
-One can also define the state-value function
+% One can also define the state-value function
 
-\begin{eqnarray}
-  \V^\pi(s) := \mathbb E_{a \sim \pi}Q^\pi(s,a) = \mathbb E [G^\pi|s_0=s],
-\end{eqnarray}
-which measures the value of each state $s \in \mathcal S$ under the policy $\pi$. This serves
-as a baseline value for any action. Finally, the advantage function is defined by
-\begin{equation}
-A^\pi(s,a) :=  Q^\pi(s,a) - V^\pi(s).
-\end{equation}
+% \begin{eqnarray}
+%   \V^\pi(s) := \mathbb E_{a \sim \pi}Q^\pi(s,a) = \mathbb E [G^\pi|s_0=s],
+% \end{eqnarray}
+% which measures the value of each state $s \in \mathcal S$ under the policy $\pi$. This serves
+% as a baseline value for any action. Finally, the advantage function is defined by
+% \begin{equation}
+% A^\pi(s,a) :=  Q^\pi(s,a) - V^\pi(s).
+% \end{equation}
 
 % The goal of the DMN is then
 % to find then to produce a policy $\pi$ which maximizes the expected cumulative reward $Q^\pi(s_0,\pi(a_0))$
 % given an initial state $s_0$.
 
-\subsection{Efficient computation of optimal behavior}
-By construction, maximizing the expectation in  \eqref{eq:qval} is computationally intractable in general.
-This is due to the enormous number of possible action
-trajectories that the agent often needs to
-consider simultaneously.
-% \begin{mdframed}
-%   \textbf{N.B.:}
-%   If the Bellman-based computational ideas have a corresponding
-%   neurobiological implementation, this provides a framework of how
-%   optimal behavior could be computable in the human brain.
-% \end{mdframed}
-One popular solution is called \text{Q-learning}. It remedies
-the issue by only considering the sub-family of
-\textit{deterministic policies}, which map each state to the single best action to
-take at the current state. Such policies define deterministic functions from states to actions.
+% \subsection{Efficient computation of optimal behavior}
+% By construction, maximizing the expectation in  \eqref{eq:qval} is computationally intractable in general.
+% This is due to the enormous number of possible action
+% trajectories that the agent often needs to
+% consider simultaneously.
+% % \begin{mdframed}
+% %   \textbf{N.B.:}
+% %   If the Bellman-based computational ideas have a corresponding
+% %   neurobiological implementation, this provides a framework of how
+% %   optimal behavior could be computable in the human brain.
+% % \end{mdframed}
+% One popular solution is called \text{Q-learning}. It remedies
+% the issue by only considering the sub-family of
+% \textit{deterministic policies}, which map each state to the single best action to
+% take at the current state. Such policies define deterministic functions from states to actions.
 
-\subsubsection{Q-learning} Q-learning (Watkins \& Dayan, 1992) generates a
-\textit{greedy policy}
-\textbf{XXX please add 1-2 sentences why this is interesting in the current
-context. This statement appears a little alone as it stands.}
+% \subsubsection{The Bellman equation:  characterizing optimal behavior}
+% Q-learning (Watkins \& Dayan, 1992) generates a
+% \textit{greedy policy}
+Optimal behavior corresponds to a strategy $\pi^*$ for choosing actions such that, for every state, the chosen action guarantees the best possible reward on average. This can be formalized by
+% \textbf{XXX please add 1-2 sentences why this is interesting in the current
+% context. This statement appears a little alone as it stands.}
 \begin{equation}
   \pi^*(s) = \argmax_{a \in \mathcal A}{Q}^*(s, a),
   \label{eq:qlearning}
 \end{equation}
-which maps each state $s$ to the optimal action which should be taken at that state.
-Here $Q^*(s, a) := \max_{\pi}Q^\pi(s,a)$, the optimal Q-value over all policies.
+where
+\begin{equation}
+  Q^*(s, a) := \max_{\pi}Q^\pi(s,a),
+\end{equation}
+the optimal Q-value over all policies. The goal of learning is to approach the policy $\pi^*$ as ``close as possible'', that is to \text{solve} the POMDP. Of course \eqref{eq:qlearning} is just a definition and
+represents by no means, a candidate schema for solving POMDPs with even moderately-sized action and state spaces: it's intractable!
 % where $\tilde{Q}(s, a)$ is the current estimate of the state-action value
 % table.
-The \textit{Bellman equation} \citep{sutton1998reinforcement} then takes the simple form
+Fortunately, the \textit{Bellman equation} \citep{sutton1998reinforcement} provides a fixed-point relation which defines $Q^*$ implicitly via a sampling procedure, without the intractable problem
+over all every policy, viz
 \begin{equation}
-  \begin{split}
-    Q^*(s_0, a_0) &= \mathbb E_{s_1 \sim p(s_1|s_0,a)} [r(s,a) + \gamma \max_{a_1 \in \mathcal A}Q^*(s_1, a_1)]
-    \\
-    &= \mathbb E_{s_1 \sim p(s_1|s_0,a_0)} [r(s_0,a_0) + \gamma Q^*(s_1, \pi(s_1))].
-  \end{split}
+  Q^* = \text{Bel}(Q^*),
   \label{eq:bellman}
 \end{equation}
-This consistency equation for the optimal (i.e., over all policies) Q-value function provides
-a recursive decomposition of optimal behavior by dividing the Q-value function into the immediate
-reward and the discounted rewards of the upcoming states. The optimal Q-value operator $Q^*$
-is a fixed point for this equation. A complicated dynamic programming optimization can be
-broken into simpler sub-problems at different time points.
-Exploitation of hierarchical structure in actions considerations
+where the ``Bellman transform'' $\text{Bel}(Q)$ of an arbitrary $Q$-value function $Q: \mathcal S \times \mathcal A \rightarrow \mathbb R$  is defined by setting
+\begin{equation}
+  \begin{split}
+   \text{Bel}(Q)(s,a) &:=
+   \mathbb E_{s' \sim p(s'|s,a)} [r(s,a) + \gamma \max_{a' \in \mathcal A}Q(s', a')]\\
+   &= r(s,a) + \mathbb E_{s' \sim p(s'|s,a)} [\gamma \max_{a' \in \mathcal A}Q(s', a')]\\
+   &= \text{instantaneous reward} + \text{expected reward for acting greedily thereafter}
+%    \; \forall (s,a) \in \mathcal S \times \mathcal A
+    % \\&=
+    % \mathbb E_{s' \sim p(s'|s,a)} [r(s,a) + \gamma Q^*(s', \pi^*(s'))].
+    \end{split}
+  \end{equation}
+The Bellman equation \eqref{eq:bellman} is a ``self-consistency'' equation which provides
+a recursive decomposition of optimal behavior by dividing the $Q$-value function into the immediate
+reward and the discounted rewards of the upcoming states.
+% The optimal Q-value operator $Q^*$
+% is a fixed point for this equation.
+As a consequence, the complicated dynamic programming optimization problem \eqref{eq:qlearning}
+is broken into simpler sub-problems at different time points.
+Exploitation of hierarchical structure in actions consideration
 has previously been closely related to the medial prefrontal part of the DMN
 \citep{koechlin1999role, braver2002role}.
 Using the Bellman equation, each state can be associated with a certain value
@@ -1096,15 +1113,27 @@ Note that in \eqref{eq:bellman} the sampling is done only over things which
 depend on the environment, and so can be learned off-policy by observing state transitions
 triggered by another behavioral policy, which can be stochastic.
 
-\subsubsection{Efficient learning via value approximation and experience replay}
+\begin{mdframed}
+  \textbf{ NCs for the Bellman equation:}
+  ...
+\end{mdframed}
+
+\subsubsection{Value approximation and greedy action consideration, and experience replay}
 %As already mentioned in the previous section, Q-learning optimizes over the class of
 % deterministic policies of the form \eqref{eq:qlearning}.
-A practically successful RL approach
-needs ways to efficiently approximate the state-action value function
-to allow for scaling to large state and action spaces.
-In a state $s \in \mathcal S$, the agent takes an action $a \in \mathcal A$
-% (for example, $a$ = ``Read'', or ``Run'', or ``Laugh'', or ``Sympathize'', or ``Empathize'', etc.)
-by sampling from its current policy, and collects a reward $r$,
+At a time step $k-1$, the world is in a state $s \in \mathcal S$, and the agent greedily takes an
+action which it expects to be the must valuable on average, namely
+
+\begin{equation}
+  \pi^{\text{greedy}}(s) = \argmax_{a \in \mathcal A}\tilde{Q}(s, a|\theta),
+  \label{eq:policy}
+\end{equation}
+by querying an approximate version $a \mapsto \tilde{Q}(a,s|\theta)$ of the $Q$-value function ``frozen'' at state $s$. In the DMN, The dmPFC (BA9) would implement such a greedy lookup over the action space.
+The tensor $\theta$ encodes the model
+  parameters and would correspond to synaptic weights and / or connection strengths between
+  DMN regions. It is a time-varying neuronal program which dictates how to move from world states $s$ to actions $a$ via the greedy policy \eqref{eq:policy}. Learning consists in rewriting this program on the fly, so that the approximating functional $\tilde{Q}(.,.|\theta)$ becomes closer and closer to the optimum $Q^*$.
+
+The action $a$ taken in \eqref{eq:policy} triggers a reward $r$ collected by the agent,
 % (measured on their internal currency of worldly values ?),
 after which the environment transitions to a new state $s' \in \mathcal S$.
 % \textbf{XXX Please try to smoothen the previous sentence}
@@ -1112,7 +1141,14 @@ At the end of this cycle, a new \textit{experience} $e = (s,a,r,s')$ is produced
 behavior of the agent and is recorded in replay memory buffer
 (possibly discarding the oldest entries to make space):
 $\mathcal D \leftarrow \text{append}(\mathcal D, e)$.
-At iteration $k+1$, replay then consists in sampling (uniform or importance-weighted
+At time step $k$, the agent seeks an update $\theta_{k} \leftarrow \theta_{k-1} + \delta \theta_{k}$ of the parameters for its approximate model of $Q$-value functional. This warrants learning,
+and a loss function is in demand. The Bellman equation \eqref{eq:bellman}
+provides a way to produce such a loss function \eqref{eq:oracle} as we now outline below.
+
+% A practically successful RL approach
+% needs ways to efficiently approximate the state-action value function
+% to allow for scaling to large state and action spaces.
+Replay consists in sampling (uniform or importance-weighted
 \footnote{e.g weighted by TD error of the state transition $s \overset{a}{\rightarrow} s'$.} ?)  mini-batches of experiences
 $(s, a, r, s') \sim \mathcal D$ from the replay memory $\mathcal D$.
 The agent then tries to approximate
@@ -1121,11 +1157,7 @@ the would-be $Q$-value for the state-action pair $(s,a)$ as predicted by the Bel
   y_k := y_k(s,a,s') =  r + \gamma \max_{a'} \tilde{Q}(s', a'|\theta_{k-1}),
 \end{equation}
 with the prediction of a parametrized regression model $(s,a)
-\mapsto \tilde{Q}(s, a|\theta_{k-1})$. Here the function $(s,a) \mapsto \tilde{Q}(a,s|\theta_{k-1})$
-% \textbf{XXX just double-checking, are the dots int he Q() correct?}
-is an approximator for the $Q$-value operator,  parameterized by weights $\theta_{k}$
-(synaptic strengths, etc.).
-
+\mapsto \tilde{Q}(s, a|\theta_{k-1})$.
 From a neurobiological perspective,
 experience replay would be manifested as the re-occurrence of a
 neuron spiking sequence that also occurs during specific actions.
@@ -1135,8 +1167,8 @@ as neuroscience experiments on various animals have repeatedly indicated
 in rats, mice, cats, rabbits, songbirds, and
 monkeys \cite{buhry2011,nokia2010,dave2000,skaggs2007}.
 
-
-Computing an optimal policy then corresponds to finding the parameters $\theta_{k}$ which minimize the following mean-squared loss function
+\subsubsection{Stochastic gradient descent in the DMN}
+At the current iteration $k$, computing an optimal parameter update then corresponds to finding the parameters $\theta_{k}$ which minimize the following mean-squared loss function
 \begin{equation}
   \mathcal L(\theta^Q_{k})
   % = \mathbb E_{(s, a, r, s') \sim \mathcal D}[(\tilde{Q}(s, a|\theta) - \tilde{Q}(s',a'|\theta^Q_{k}))^2]
@@ -1163,12 +1195,16 @@ of the neural processing hierarchy
 \citep{mesulam1998sensation, taylor2015global}.
 
 
-
 Learning
 of the the entire model parameters can effectively be achieved
 via \textit{backpropagation},
 where reward prediction errors (RPEs) -- also known as \textit{regret}-- percolate
-from lower to higher processing layers to modulate the choice of future actions
+from lower to higher processing layers to modulate the choice of future actions.
+Over time (i.e in the limit $k \rightarrow \infty$), the approximate
+$Q$-values $\tilde{Q}(a,s|\theta_{k-1})$ provably\footnote{The proof is standard and relies on the Banach Fixed-Point Theorem applied to the Bellman transform.}
+converge uniformly to the unique fixed-point $Q^*(a,s)$ defined implicitly by the Bellman
+equation \eqref{eq:bellman}
+
 % online stochastic gradient descent is used to minimize the variational objective
 % \eqref{eq:oracle}.
 
