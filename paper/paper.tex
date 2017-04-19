@@ -196,17 +196,18 @@
 
 \begin{document}
 
-\author{Elvis Dohmatob\textsuperscript{1,2}, Guillaume Dumas\textsuperscript{3,4,5,6}, Danilo Bzdok\textsuperscript{1,2}
+\author{Elvis Dohmatob\textsuperscript{1,2}, Guillaume Dumas\textsuperscript{4,5,6,7}, Danilo Bzdok\textsuperscript{1,2,3}
 }
 
 \maketitle
 \small{
     \textbf{1} INRIA, Parietal team, Saclay, France\\
     \textbf{2} CEA, Neurospin, Gif-sur-Yvette, France\\
-    \textbf{3} Institut Pasteur, Human Genetics and Cognitive Functions Unit, Paris, France\\
-    \textbf{4} CNRS UMR 3571 Genes, Synapses and Cognition, Institut Pasteur, Paris, France\\
-    \textbf{5} University Paris Diderot, Sorbonne Paris Cité, Paris, France\\
-    \textbf{6} Centre de Bioinformatique, Biostatistique et Biologie Intégrative, Paris, France
+    \textbf{3} Department of Psychiatry, Psychotherapy and Psychosomatics, RWTH Aachen University, Aachen, Germany\\
+    \textbf{4} Institut Pasteur, Human Genetics and Cognitive Functions Unit, Paris, France\\
+    \textbf{5} CNRS UMR 3571 Genes, Synapses and Cognition, Institut Pasteur, Paris, France\\
+    \textbf{6} University Paris Diderot, Sorbonne Paris Cité, Paris, France\\
+    \textbf{7} Centre de Bioinformatique, Biostatistique et Biologie Intégrative, Paris, France
 }
 
 \begin{abstract}
@@ -214,22 +215,30 @@ The default mode network (DMN) is believed to subserve the human
 baseline mental activity.
 %
 Its highest energy consumption in the brain and
-its intimate coupling with conscious awareness are both pointing towards an important functional roles.
+its intimate coupling with conscious awareness are both pointing towards
+an important functional role.
 %
-Many research streams support its evolutionarily adaptive role as
+Many research streams support an evolutionarily adaptive role in
 envisioning mental scenarios to simulate the future.
 
-The present concept paper proposes to explain \textit{how} the DMN may actually implement such continuous assessment and prediction of the environment to guide action choices.
 
+The present paper proposes a \textit{process model}
+that tries to explain \textit{how}
+the DMN may implement
+continuous assessment and prediction of the environment to guide action choices.
+%
 DMN function is recast in mathematical terms of
 control theory and reinforcement learning based on Markov decision processes.
 %
 We argue that our formal account of DMN function naturally accommodates as special cases
-previously proposed cognitive accounts such as \textit{predictive coding}.
+previously proposed cognitive accounts on
+\textit{i}) predictive coding,
+\textit{ii}) semantic association, and
+\textit{iii}) a ``radar'' function.
 %
-A process model for the neural implemention
-of continuous future predictions potentially realized in the DMN
-could offer insight into the statistical mechanisms underlying human behavior and provide a parsimonious explanation of experimental findings in animals and humans.
+A process model for the neural optimization of complex behavior
+can offer parsimonious explanations for
+various experimental findings in animals and humans.
 \end{abstract}
 
 % official NIPS keywords
@@ -240,30 +249,33 @@ reinforcement learning
 % \textbf{\\Get opinion from}: Danielle Bassett, Kai Vogeley, Mohammad Shakir,
 % Guillaume Dumas, Smallwood, Tenenbaum
 
-\tableofcontents
-\listoffigures
-\listoftables
+% \tableofcontents
+% \listoffigures
+% \listoftables
 
 \section{Introduction}
 %
 When left unperturbed, the human brain is not at rest.
-Rather, the brain continues to metabolize large quantities of
+Especially the so-called "default mode network" (DMN) continues
+to metabolize large quantities of
 oxygen and glucose energy to maintain
 neuronal computation
 in the absence of behavioral focus
 \citep{kenet2003spontaneously, fiser2004small}.
 The baseline energy demand is surprisingly weakly modulated
 with task demand \citep{raichle2001pnas}. At the opposite, during sleep, the
-decoupling of brain structures discarded the idea of the DMN being only a passive network resonance and rather supported its important role in the sustenance of conscious awareness \citep{horovitz2009decoupling}.
-This dark matter of brain physiology strongly question
-its underlying biological purpose
+decoupling of brain structures discarded the idea of the DMN being
+only a passive network resonance and rather supported its
+important role in sustaining conscious awareness \citep{horovitz2009decoupling}.
+This dark matter of brain physiology begs the question
+of the biological purpose underlying the DMN
 \citep{raichle2006brain}.
 What has early been described as the "stream of consciousness"
 in psychology \citep{james1890principles}
 found a potential neurobiological manifestation
-in the so-called "default mode network" (DMN)
+in the DMN
 \citep{shul1997, raichle2001pnas}.
-This set of some of the highest regions in
+This set of some of the most advanced regions in
 the human association cortex \citep{mesulam1998sensation, margulies2016situating}
 consistently
 increase in neural activity during
@@ -281,19 +293,14 @@ baseline mental activities
 \citep{raichle2001pnas, bzdok2015resting}.
 
 
-\subsection{Default mode network: higher-order control of the organism}
-The human DMN is responsible for a large part of the brain's baseline activity,
+\subsection{Towards a formal account of default mode function: higher-order control of the organism}
+The human DMN is responsible for a large part of the baseline neural activity,
 which typically decreases during psychological experiments.
 The standard mode of
 neural information maintenance and manipulation has
 been argued to mediate evolutionarily conserved functions
 \citep{brown1914nature, binder1999conceptual, buzsaki2006rhythms}.
-In line with this, the DMN contains hotspots
-of highest energy consumption in the entire central nervous system
-\citep{raichle2001pnas},
-which persists to a substantial degree during
-sleep and under anesthesia \citep{randy2008}.
-Today, many authors believe that the DMN implements
+Today, many investigators believe that the DMN implements some form of
 probabilistic estimation of past, hypothetical, and
 future events
 \citep{fox2005, hassabis2007patients, schacter2007remembering, binder2009,
@@ -318,10 +325,10 @@ across time, space, and content domains.
 
 
 The present work takes the perspective of
-a human agent faced with the choice of the next action
-and being guided by rich
-reenactment of really-happened, hypothetically conceived, and
-estimated futures to optmize behavioral performance.
+a human agent faced with the choice of the next actions
+and being guided by outcome estimations
+of really-happened, hypothetically conceived, and
+expected futures to optimize behavioral performance.
 A particularly attractive computational framework
 to describe, quantify, and predict autonomously acting systems like the brain
 is proposed to be the combination of control theory and
@@ -333,24 +340,23 @@ Conversely,
 the more the ongoing executed task is unknown and unpracticed,
 the less stimulus-independent thoughts occur
 \citep{filler1973daydreaming, teasdale1995stimulus, christoff2016mind}.
-Without requiring explicitly awareness, those ``offline'' processes may however contribute to optimized control of the organism. \textbf{(XXX Guillaume: What about the idea of model free control being also remote of environment? - danilo: hmm, let's keeping thinking about this - Guillaume: where shall we add this, more in the discussion, then?)}
-% We formalize
-% a policy matrix to capture the space of possible actions that can be performed
-% on the environment given the current state. A value matrix
-% maps expected rewards to environmental objects and events.
-% Switching between states reduces to a sequential processing model.
-% In a model-based reinforcement learning (RL) approach,
-% we try to understand the environment always better
-% starting, at birth, with an environment that is completely unknown.
+Without requiring explicit awareness,
+these ``offline'' processes may however contribute
+to optimizing control of the organism.
+We formalize
+a policy matrix to capture the space of possible actions that can be performed
+on the environment given the current state. A value function
+maps expected rewards to environmental objects and events.
+Switching between states reduces to a sequential processing model.
 Informed by outcomes of performed action,
 the DMN dynamics are constantly adapted in feedback loops
 shaped by prediction error.
-A DMN framework incorporating RL can naturally embed human behavior
+A DMN account incorporating RL can naturally embed human behavior
 into the tension between exploitative action with immediate gains and
 exploratory action with longer-term reward outcomes.
 
 
-\subsection{Towards a formal account of DMN function}
+
 We argue that DMN implication in a
 diversity of humans' most advanced cognitive processes
 can be parsimoniously recast as prediction error minimization
@@ -1300,7 +1306,7 @@ The HC may provide perturbed action-transition-state-reward samples
 %   ok, gotta think about the model-free / model-based reconsiliation
 % \end{itemize}
 
-\section{Relation to other models decision-making and optimal control for the brain}
+\section{Relation to existing cognitive accounts on default mode function}
 \subsection{Predictive coding hypothesis}
 Predictive coding mechanisms
 \citep{clark2013whatever, friston2008hierarchical}
@@ -1465,7 +1471,7 @@ to imply a distinction between
 engagement in the sensory environment
 and internally generated mind-wandering
 \citep{buckner2007self}.
-These authors stated that
+These investigators stated that
 ``A computational model [...] will probably require a form of
 regulation by which perception of the current world is suppressed
 while simulation of possible alternatives are constructed,
