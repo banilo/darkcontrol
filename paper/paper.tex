@@ -1069,11 +1069,11 @@ may well reflect processing aspects of the DMN in human agents.
 % \subsubsection{The Bellman equation:  characterizing optimal behavior}
 % Q-learning (Watkins \& Dayan, 1992) generates a
 % \textit{greedy policy}
-Optimal behavior corresponds to a strategy $\pi^*$ for choosing actions such that, for every state, the chosen action guarantees the best possible reward on average. This can be formalized by
+Optimal behavior corresponds to a strategy $\pi^*$ for choosing actions such that, for every state, the chosen action guarantees the best possible reward on average. Formally,
 % \textbf{XXX please add 1-2 sentences why this is interesting in the current
 % context. This statement appears a little alone as it stands.}
 \begin{equation}
-  \pi^*(s) = \argmax_{a \in \mathcal A}{Q}^*(s, a),
+  \pi^*(s) := \argmax_{a \in \mathcal A}{Q}^*(s, a),
   \label{eq:qlearning}
 \end{equation}
 where
@@ -1084,8 +1084,7 @@ the optimal Q-value over all policies. The goal of learning is to approach the p
 represents by no means, a candidate schema for solving POMDPs with even moderately-sized action and state spaces: it's intractable!
 % where $\tilde{Q}(s, a)$ is the current estimate of the state-action value
 % table.
-Fortunately, the \textit{Bellman equation} \citep{sutton1998reinforcement} provides a fixed-point relation which defines $Q^*$ implicitly via a sampling procedure, without the intractable problem
-over all every policy, viz
+Fortunately, the \textit{Bellman equation} \citep{sutton1998reinforcement} provides a fixed-point relation which defines $Q^*$ implicitly via a sampling procedure, without querying the entire space of policies, viz
 \begin{equation}
   Q^* = \text{Bel}(Q^*),
   \label{eq:bellman}
