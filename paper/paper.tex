@@ -945,7 +945,7 @@ Mathematically, a POMDP is simply a quintuplet $(\mathcal S, \mathcal A, r, p, \
 \end{definition*}
 \end{mdframed}
 
-\subsection{Long-term rewards and action policies}
+\subsubsection{Long-term rewards and action policies}
 The behavior of the agent is governed by some kind of \textit{policy}.
 It maps states of the world to
 a set of candidate actions to perform given this state. Starting a time $t=0$,
@@ -1011,7 +1011,8 @@ This reduces the variance of expected rewards accumulated across action cascades
 % For instance, a deterministic strategy in playing rock-paper-scissors can
 % be easily exploited and a uniformly random choice is optimal.
 
-\subsection{Expected values, Bellman equation, and optimal control}
+\subsection{The knots and bolts for RL in the DMN}
+\subsubsection{The objective value of an action given a state}
 Given only the limited information available from a POMDP, at a state $s$ the average quality or usefulness of taking an action $a$ under a policy $\pi$ is completely captured by the single number
 % We can now formulate the purpose of the DMN
 % as finding a policy $\pi$ for the human agent that maximizes the
@@ -1069,7 +1070,7 @@ may well reflect processing aspects of the DMN in human agents.
 % \subsubsection{The Bellman equation:  characterizing optimal behavior}
 % Q-learning (Watkins \& Dayan, 1992) generates a
 % \textit{greedy policy}
-Optimal behavior corresponds to a strategy $\pi^*$ for choosing actions such that, for every state, the chosen action guarantees the best possible reward on average. Formally,
+\subsubsection{Optimal behavior and the Bellman equation} Optimal behavior corresponds to a strategy $\pi^*$ for choosing actions such that, for every state, the chosen action guarantees the best possible reward on average. Formally,
 % \textbf{XXX please add 1-2 sentences why this is interesting in the current
 % context. This statement appears a little alone as it stands.}
 \begin{equation}
@@ -1080,7 +1081,8 @@ where
 \begin{equation}
   Q^*(s, a) := \max_{\pi}Q^\pi(s,a),
 \end{equation}
-the optimal Q-value over all policies. The goal of learning is to approach the policy $\pi^*$ as ``close as possible'', that is to \text{solve} the POMDP. Of course \eqref{eq:qlearning} is just a definition and
+the optimal Q-value over all policies. The goal of learning is to approach the policy $\pi^*$ as ``close as possible'', that is to \text{solve} the POMDP.
+Of course \eqref{eq:qlearning} is just a definition and
 represents by no means, a candidate schema for solving POMDPs with even moderately-sized action and state spaces: it's intractable!
 % where $\tilde{Q}(s, a)$ is the current estimate of the state-action value
 % table.
@@ -1094,7 +1096,7 @@ where the ``Bellman transform'' $\text{Bel}(Q)$ of an arbitrary $Q$-value functi
   \begin{split}
    \text{Bel}(Q)(s,a) &:=
    \mathbb E_{s' \sim p(s'|s,a)} [r(s,a) + \gamma \max_{a' \in \mathcal A}Q(s', a')]\\
-   &= r(s,a) + \mathbb E_{s' \sim p(s'|s,a)} [\gamma \max_{a' \in \mathcal A}Q(s', a')]\\
+   &= r(s,a) + \gamma\mathbb E_{s' \sim p(s'|s,a)} [\max_{a' \in \mathcal A}Q(s', a')]\\
    &= \text{instantaneous reward} + \text{expected reward for acting greedily thereafter}
 %    \; \forall (s,a) \in \mathcal S \times \mathcal A
     % \\&=
@@ -1123,7 +1125,8 @@ triggered by another behavioral policy, which can be stochastic.
   ...
 \end{mdframed}
 
-\subsubsection{Value approximation and greedy action consideration, and experience replay}
+% \subsection{Learning in the DMN}
+\subsubsection{Value approximation and the policy matrix}
 %As already mentioned in the previous section, Q-learning optimizes over the class of
 % deterministic policies of the form \eqref{eq:qlearning}.
 At a time step $k-1$, the world is in a state $s \in \mathcal S$, and the agent greedily takes an
@@ -1133,23 +1136,33 @@ action which it expects to be the must valuable on average, namely
   \pi^{\text{greedy}}(s) = \argmax_{a \in \mathcal A}\tilde{Q}(s, a|\theta),
   \label{eq:policy}
 \end{equation}
-by querying an approximate version $a \mapsto \tilde{Q}(a,s|\theta)$ of the $Q$-value function ``frozen'' at state $s$. In the DMN, The dmPFC (BA9) would implement such a greedy lookup over the action space.
+by querying an approximate version $a \mapsto \tilde{Q}(a,s|\theta)$ of the $Q$-value function ``frozen'' at state $s$. For instance, a simplistic linear model with a kernel $\phi$ would be of the
+form $\tilde{Q}(s, a|\theta) = \phi(s,a)^T\theta$, where
+$\phi(s,a)$ would represent a high-level representation of the state-action pairs
+$(s,a)$, as proposed by \citep{songNIPS2016} for example.
+%  and Parr et al. 2003 (JMLR)].
+In the DMN, The dmPFC (BA9) would implement such a greedy lookup over the action space.
 The tensor $\theta$ encodes the model
   parameters and would correspond to synaptic weights and / or connection strengths between
-  DMN regions. It is a time-varying neuronal program which dictates how to move from world states $s$ to actions $a$ via the greedy policy \eqref{eq:policy}. Learning consists in rewriting this program on the fly, so that the approximating functional $\tilde{Q}(.,.|\theta)$ becomes closer and closer to the optimum $Q^*$.
+  DMN regions. It is a time-varying neuronal program which dictates how to move from world states $s$ to actions $a$ via the greedy policy \eqref{eq:policy}.
+The oracle Q-values $Q(s, a|\theta)$ which tell the DMN the (expected) usefulness of taking an action a in state / situation  $s$. The brain (BA9 ?) would then choose, a given $s$, an action $a$ which maximizes this tabulated values. This mapping from states to actions defines a matrix, which can be conveniently called a "policy matrix". Learning consists in starting from a given instantiation of such a table and tweaking it around while using it to take actions which take the agent to different areas of the table, and so on, and so forth. % like solving a problem which is changing...), etc..
 
-The action $a$ taken in \eqref{eq:policy} triggers a reward $r$ collected by the agent,
+
+\subsubsection{The loss function}
+There can be no learning without a loss function in sight.
+The action $a$ taken in state $s$ according to the policy matrix defined in
+\eqref{eq:policy} triggers a reward $r$ collected by the agent,
 % (measured on their internal currency of worldly values ?),
 after which the environment transitions to a new state $s' \in \mathcal S$.
 % \textbf{XXX Please try to smoothen the previous sentence}
 At the end of this cycle, a new \textit{experience} $e = (s,a,r,s')$ is produced, which represents an exemplar
-behavior of the agent and is recorded in replay memory buffer
-(possibly discarding the oldest entries to make space):
+behavior of the agent and is recorded in replay memory buffer --which we hypothesize to be the
+hippocampus--, possibly discarding the oldest entries to make space:
 $\mathcal D \leftarrow \text{append}(\mathcal D, e)$.
 At time step $k$, the agent seeks an update $\theta_{k} \leftarrow \theta_{k-1} + \delta \theta_{k}$ of the parameters for its approximate model of $Q$-value functional. This warrants learning,
-and a loss function is in demand. The Bellman equation \eqref{eq:bellman}
-provides a way to produce such a loss function \eqref{eq:oracle} as we now outline below.
-
+and a loss function is in demand.
+% \subsubsection{Stochastic gradient in the DMN via experience replay}
+The Bellman equation \eqref{eq:bellman} provides a way to produce such a loss function \eqref{eq:oracle} as we now outline.
 % A practically successful RL approach
 % needs ways to efficiently approximate the state-action value function
 % to allow for scaling to large state and action spaces.
@@ -1172,7 +1185,6 @@ as neuroscience experiments on various animals have repeatedly indicated
 in rats, mice, cats, rabbits, songbirds, and
 monkeys \cite{buhry2011,nokia2010,dave2000,skaggs2007}.
 
-\subsubsection{Stochastic gradient descent in the DMN}
 At the current iteration $k$, computing an optimal parameter update then corresponds to finding the parameters $\theta_{k}$ which minimize the following mean-squared loss function
 \begin{equation}
   \mathcal L(\theta^Q_{k})
@@ -1182,12 +1194,6 @@ At the current iteration $k$, computing an optimal parameter update then corresp
 \end{equation}
 where $y_k$ is a defined in \eqref{eq:bellman}
 % \textbf{We still may need to explain y in the formula with one sentence.}
-For instance, a general linear model with a kernel $\phi$ would be of the
-form
-$$\tilde{Q}(s, a|\theta) = \phi(s,a)^T\theta.$$
-$\phi(s,a)$ would represent a high-level hand-crafted representation of the state-action pairs
-$(s,a)$, as proposed by \citep{songNIPS2016} for example.
-%  and Parr et al. 2003 (JMLR)].
 A recently proposed, practically successful alternative approach
 \citep{mnih2015,silver2016mastering} is to learn this
 representation using a deep neural network, leading to the so-called \textit{Deep Q-learning} family of methods which
@@ -1199,10 +1205,25 @@ connections between neurons from the different levels
 of the neural processing hierarchy
 \citep{mesulam1998sensation, taylor2015global}.
 
+\subsubsection{Does the hippocampus subserve Monte-Carlo sampling?}
+In RL, Monte-Carlo simulation can be used to update the agent's belief state
+\citep{silver2010monte}. Such methods have a sample complexity that is determined only by the underlying difficulty of the POMDP, rather than the size of the state space or observation space,
+which can be prohibitively large.
+Monte-Carlo simulation provides a simple method for evaluating the value / fitness of a state.
+They provide an effective mechanism both for tree search and for belief state updates, breaking the curse of dimensionality and allowing much greater scalability than a RL agent without stochastic resampling procedures.
 
-Learning
-of the the entire model parameters can effectively be achieved
-via \textit{backpropagation},
+In the human brain,
+the HC could contribute to synthesizing imagined sequences of world states,
+observations and rewards \citep{aronov2017, chao2017interaction}.
+These simulations would be used to update the value function, without ever looking inside the black box describing the model's dynamics. This would be a simple control algorithm by evaluating all legal actions and selecting the action with
+highest expected cumulative rewards.
+In POMDPs, Monte-Carlo simulation provides an effective mechanism both for tree search and for belief-based state updates, breaking the curse of dimensionality and allowing much greater scalability than has previously been possible
+\textbf{XXX Elvis: refs needed.}.
+Much recent work points to Monte Carlo or stochastic sampling-based approximations as a unifying framework for understanding how Bayesian inference may work practically across all these levels, in minds, brains, and machines. \textbf{XXX Elvis: refs needed in last sentence. Plus, should be really bring up Bayesian?} For sampling-based methods it is still almost non-existent beyond the description of receptive fields. \textbf{XXX Elvis: rephrase last sentence}
+
+\subsubsection{Optimal control via stochastic gradient descent in the DMN}
+Learning of the the entire model parameters can effectively be achieved
+via \textit{gradient descent},
 where reward prediction errors (RPEs) -- also known as \textit{regret}-- percolate
 from lower to higher processing layers to modulate the choice of future actions.
 Over time (i.e in the limit $k \rightarrow \infty$), the approximate
@@ -1221,35 +1242,19 @@ equation \eqref{eq:bellman}
   \label{eq:oracle}
 \end{equation}
 
-\subsubsection{Link to classical reinforcement learning algorithms}
-One should note that most classical RL algorithms, including \textit{Temporal Difference (TD)}
-learning \citep{sutton1998reinforcement}, REINFORCE \citep{williams1992}, and SARSA can be
-cast in this \textbf{please unpack the "this" here}
-general variational framework. For instance, TD corresponds to
-the above framework using a linear value approximator with feature encoding
-$\phi(s,a) = \delta_{(s,a)} =  \text{ point mass at }(s,a)$ on the grid
-$\mathcal S \times \mathcal A$, and so
-$$\nabla_{\theta}\tilde{Q}(s, a|\theta) = \phi(s, a) = \delta_{(s,a)}.$$
-Whence, the gradient update due to the sample $(s,a,r,s') \in \mathcal D$ is
-$$\theta(s,a) \leftarrow \theta(s,a) + \alpha(\tilde{Q}(s, a|\theta) - y),$$
-the well-known TD update rule \citep{sutton1998reinforcement}.
+% \subsubsection{Link to classical reinforcement learning algorithms}
+% One should note that most classical RL algorithms, including \textit{Temporal Difference (TD)}
+% learning \citep{sutton1998reinforcement}, REINFORCE \citep{williams1992}, and SARSA can be
+% cast in this \textbf{please unpack the "this" here}
+% general variational framework. For instance, TD corresponds to
+% the above framework using a linear value approximator with feature encoding
+% $\phi(s,a) = \delta_{(s,a)} =  \text{ point mass at }(s,a)$ on the grid
+% $\mathcal S \times \mathcal A$, and so
+% $$\nabla_{\theta}\tilde{Q}(s, a|\theta) = \phi(s, a) = \delta_{(s,a)}.$$
+% Whence, the gradient update due to the sample $(s,a,r,s') \in \mathcal D$ is
+% $$\theta(s,a) \leftarrow \theta(s,a) + \alpha(\tilde{Q}(s, a|\theta) - y),$$
+% the well-known TD update rule \citep{sutton1998reinforcement}.
 
-\subsubsection{Excursion: the role of the hippocampus}
-\paragraph{Does the hippocampus subserve Monte-Carlo sampling?}
-In RL, Monte-Carlo simulation can be used to update the agent's belief state
-\citep{silver2010monte}. Such methods have a sample complexity that is determined only by the underlying difficulty of the POMDP, rather than the size of the state space or observation space,
-which can be prohibitively large.
-Monte-Carlo simulation provides a simple method for evaluating the value / fitness of a state.
-They provide an effective mechanism both for tree search and for belief state updates, breaking the curse of dimensionality and allowing much greater scalability than a RL agent without stochastic resampling procedures.
-
-In the human brain,
-the HC could contribute to synthesizing imagined sequences of world states,
-observations and rewards \citep{aronov2017, chao2017interaction}.
-These simulations would be used to update the value function, without ever looking inside the black box describing the model's dynamics. This would be a simple control algorithm by evaluating all legal actions and selecting the action with
-highest expected cumulative rewards.
-In POMDPs, Monte-Carlo simulation provides an effective mechanism both for tree search and for belief-based state updates, breaking the curse of dimensionality and allowing much greater scalability than has previously been possible
-\textbf{XXX Elvis: refs needed.}.
-Much recent work points to Monte Carlo or stochastic sampling-based approximations as a unifying framework for understanding how Bayesian inference may work practically across all these levels, in minds, brains, and machines. \textbf{XXX Elvis: refs needed in last sentence. Plus, should be really bring up Bayesian?} For sampling-based methods it is still almost non-existent beyond the description of receptive fields. \textbf{XXX Elvis: rephrase last sentence}
 
 \paragraph{Does hippocampal replay equal inverse reinforcement-learning?}
 %\begin{mdframed}
