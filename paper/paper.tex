@@ -1260,26 +1260,6 @@ In POMDPs, Monte-Carlo simulation provides an effective mechanism both for tree 
 \textbf{XXX Elvis: refs needed.}.
 Much recent work points to Monte Carlo or stochastic sampling-based approximations as a unifying framework for understanding how Bayesian inference may work practically across all these levels, in minds, brains, and machines. \textbf{XXX Elvis: refs needed in last sentence. Plus, should be really bring up Bayesian?} For sampling-based methods it is still almost non-existent beyond the description of receptive fields. \textbf{XXX Elvis: rephrase last sentence}
 
-
-% \paragraph{Does hippocampal replay equal inverse reinforcement-learning?}
-% %\begin{mdframed}
-%   Given the trace $s_0,a_0,s_1,\ldots,$ of an optimal agent's strategy $\pi^*$ in
-%   a POMDP (called a \textit{teacher's demonstration}), can we figure out what is the
-%   (instantaneous) reward function $r: \mathcal S \times \mathcal \mathcal A
-%   \rightarrow \mathbb R$ that the agent is optimizing over a prescribed class of reward functions
-%   (e.g., linear rewards $r(s,a) \equiv \theta^T\phi(s,a)$)?
-%   For instance, given traces of motor actions from an adult to grab a cup on a table,
-%   can an observing child figure out what ``langragian'' functional is being minimized by the former?
-%   How? Can they reproduce this optimal behavior?
-% %\end{mdframed}
-% Such questions are of course pertinent to our decision-making theory for the DMN.
-% In the general artificial case, the problem has been extensively studied and partially solved by
-% \citep{abbeel2004}. They are also been rigorously studied in general optimal control literature under the name
-% ``inverse optimal control'', but in model-based certain (where the physical dynamics are known, etc.)...
-
-% IRL is is suited for problems in which it's hard to define what the reward function could be
-% (e.g.,  car-driving, drone maneuvering, etc.) ...
-
 \subsection{Putting everything together}
 The DMN is today known to consistently increase in neural
   activity when humans engage in goal-directed behavior that are detached from
@@ -1811,6 +1791,27 @@ Starwars!
 \bibliography{refs}
 
 \appendix
+
+\section{More on RL in the brain}
+\subsection{Does hippocampal replay equal inverse reinforcement-learning?}
+%\begin{mdframed}
+  Given the trace $s_0,a_0,s_1,\ldots,$ of an optimal agent's strategy $\pi^*$ in
+  a POMDP (called a \textit{teacher's demonstration}), can we figure out what is the
+  (instantaneous) reward function $r: \mathcal S \times \mathcal \mathcal A
+  \rightarrow \mathbb R$ that the agent is optimizing over a prescribed class of reward functions
+  (e.g., linear rewards $r(s,a) \equiv \theta^T\phi(s,a)$)?
+  For instance, given traces of motor actions from an adult to grab a cup on a table,
+  can an observing child figure out what ``langragian'' functional is being minimized by the former?
+  How? Can they reproduce this optimal behavior?
+%\end{mdframed}
+Such questions are of course pertinent to our decision-making theory for the DMN.
+In the general artificial case, the problem has been extensively studied and partially solved by
+\citep{abbeel2004}. They are also been rigorously studied in general optimal control literature under the name
+``inverse optimal control'', but in model-based certain (where the physical dynamics are known, etc.)...
+
+IRL is is suited for problems in which it's hard to define what the reward function could be
+(e.g.,  car-driving, drone maneuvering, etc.) ...
+
 \section{Free-energy principles!}
 The so-called free-energy principle in its present form (including notions like ``generative density'', ``recognition density'', etc.) can be traced back to works of Dayan \& Hinton \citep{dayan1995helmholtz} in which they introduced the so-called \textit{Helmholtz machine}, a hierarchical factorial directional deep belief-net (DBN).
 In this subsection, we will develop from first-principles, the bare-bones minimalistic ideas needed to build a free-energy principle for general decision-making. This ideas were first developed by Hinton et al. in the early 90s in building their Helmholtz machine. Theories like Friston's free-energy principle and active-inference will then emerge as particular instances of this general framework, with particular design choises. For instance, the Friston theory axiomatizes that the brain uses a (problematic, as it implicitly assumes that posterior of each hidden unit is factorial) wake-sleep algorithm to train the underlying Helmholtz machine, etc.
