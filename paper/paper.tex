@@ -201,7 +201,7 @@
 
 \maketitle
 \small{
-    \textbf{1} Universit\'e Paris-Saclay, INRIA, Parietal team, Saclay, France\\
+    \textbf{1} Universit\'e Paris-Saclay, INRIA, Parietal Team, Saclay, France\\
     \textbf{2} Universit\'e Paris-Saclay, CEA, Neurospin, Gif-sur-Yvette, France\\
     \textbf{3} Department of Psychiatry, Psychotherapy and Psychosomatics, RWTH Aachen University, Aachen, Germany\\
     \textbf{4} Institut Pasteur, Human Genetics and Cognitive Functions Unit, Paris, France\\
@@ -820,9 +820,9 @@ of as satisfaction -- or punishment -- accompanying the execution of
 an action.
 
 \begin{wrapfigure}{r}{.4\linewidth}
+  \caption{Reinforcement Learning in a nutshell}  
   \centering
-  \includegraphics{rl.png}
-  \caption{RL in a nutshell}
+  \includegraphics[width=.9\linewidth]{rl.png}
   \label{fig:rl}
 \end{wrapfigure}
 
@@ -957,26 +957,26 @@ Mathematically, a POMDP is simply a quintuplet $(\mathcal S, \mathcal A, r, p, \
 The behavior of the agent is governed by some kind of \textit{policy}.
 It maps states of the world to
 a set of candidate actions to perform given this state. Starting a time $t=0$,
-a policy $\pi$ generates a trajectory of action cascades / trajectories as follows
+a policy $\pi$ generates a trajectory of action cascades / trajectories as follows:
 \begin{eqnarray*}
   \begin{split}
+    \textbf{choose action: }a_0 &\sim \pi(a|s_0)\\
     \textbf{ observe transition: }s_1 &\sim p(s|s_0,a_0)\textbf{ and collect reward }R_0 = r(s_0, a_0)\\
     \textbf{choose action: }a_1 &\sim \pi(a|s_1)\\
     \textbf{ observe transition: }s_2 &\sim p(s|s_1,a_1), \textbf{ and collect reward }R_1 = r(s_1, a_1)\\
-    \ldots\\
+    \vdots\\
     \textbf{choose action: }a_{t} &\sim \pi(a|s_{t})\\
     \textbf{ observe transition: }s_{t+1} &\sim p(s|s_{t},a_{t}), \textbf{ and collect reward }R_{t} = r(s_{t}, a_{t})\\
-    \ldots
+    \vdots
   \end{split}
 \end{eqnarray*}
 
 \begin{mdframed}
-  \textbf{Time-invariance assumption:} It is assumed that the underlying MDP is stationary -- i.e., has reached steady-state conditions --
+\textbf{Time-invariance assumption:} It is assumed that the underlying MDP is stationary -- i.e., has reached steady-state conditions --
   so that the dynamics of the process are equivalent over sufficiently long time windows of equal length.
 \end{mdframed}
 
-Since an action taken in the present moment $t$
-might have repercussions in the far future, it turns out that the
+Since an action taken in the present moment might have repercussions in the far future, it turns out that the
 quantity to optimize is not the instantaneous rewards $r(s, a)$, but a
 cumulative reward estimate which takes into account expected reward in the future.
 A common approach to
@@ -1020,7 +1020,7 @@ This reduces the variance of expected rewards accumulated across action cascades
 % be easily exploited and a uniformly random choice is optimal.
 
 \subsection{The knots and bolts of Reinforcement Learning in the DMN}
-\textbf{XXX Elvis: a short preface is needed here, explaining the roadmap of this subsection from a high-level perspective!}
+\textbf{XXX Elvis: ==> Elvis a short preface is needed here, explaining the roadmap of this subsection from a high-level perspective!}
 \subsubsection{The objective value of an action given a state}
 Given only the limited information available from a POMDP, at a state $s$ the average quality or usefulness of taking an action $a$ under a policy $\pi$ is completely captured by the single number
 % We can now formulate the purpose of the DMN
