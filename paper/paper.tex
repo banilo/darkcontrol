@@ -804,6 +804,15 @@ evaluating instantaneous, delayed, and expected reward outcomes
 are key components of intelligent RL agents
 that are plausible to intersect in the DMN.
 
+\begin{wrapfigure}{r}{.4\linewidth}
+  \caption{\textbf{Reinforcement Learning in a nutshell.} Given the current state of the environment,
+    the agent takes an action (by following some policy). This generates a reward and an observed
+    state transition of the environment. This process goes on until interrupted or a goal state is reached.}
+  \centering
+  \includegraphics[width=1.\linewidth]{rl.png}
+  \label{fig:rl}
+\end{wrapfigure}
+
 
 RL is a problem-solving technique in which, through interactions with an unknown \textit{environment / world},
 an agent learns to reach goals, optimize reward signals, and minimize costs
@@ -818,14 +827,6 @@ In this view, the environment is partially controlled by
 the action of the agent and the reward can be thought
 of as satisfaction -- or punishment -- accompanying the execution of
 an action.
-
-\begin{wrapfigure}{r}{.45\linewidth}
-  \caption{\textbf{Reinforcement Learning in a nutshell.} At each step, given the current state of the environment,
-    agent takes and action. This generates a reward and an observed state transition of the environment.}  
-  \centering
-  \includegraphics[width=.9\linewidth]{rl.png}
-  \label{fig:rl}
-\end{wrapfigure}
 
 Action may be delayed to achieve substantial increases in expected reward
 that can grow with time.
