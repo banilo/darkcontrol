@@ -819,8 +819,9 @@ the action of the agent and the reward can be thought
 of as satisfaction -- or punishment -- accompanying the execution of
 an action.
 
-\begin{wrapfigure}{r}{.4\linewidth}
-  \caption{Reinforcement Learning in a nutshell}  
+\begin{wrapfigure}{r}{.45\linewidth}
+  \caption{\textbf{Reinforcement Learning in a nutshell.} At each step, given the current state of the environment,
+    agent takes and action. This generates a reward and an observed state transition of the environment.}  
   \centering
   \includegraphics[width=.9\linewidth]{rl.png}
   \label{fig:rl}
@@ -1079,13 +1080,16 @@ may well reflect processing aspects of the DMN in human agents.
 % \subsubsection{The Bellman equation:  characterizing optimal behavior}
 % Q-learning (Watkins \& Dayan, 1992) generates a
 % \textit{greedy policy}
-\subsubsection{Optimal behavior and the Bellman equation} Optimal behavior corresponds to a strategy $\pi^*$ for choosing actions such that, for every state, the chosen action guarantees the best possible reward on average. Formally,
+\subsubsection{Optimal behavior and the Bellman equation}
+
+Optimal behavior corresponds to a strategy $\pi^*$ for choosing actions such that, for every state, the chosen action guarantees the best possible reward on average. Formally,
 % \textbf{XXX please add 1-2 sentences why this is interesting in the current
 % context. This statement appears a little alone as it stands.}
 \begin{equation}
   \pi^*(s) := \argmax_{a \in \mathcal A}{Q}^*(s, a),\text{ where }Q^*(s, a) := \max_{\pi}Q^\pi(s,a).
   \label{eq:qlearning}
 \end{equation}
+
 The goal of learning is to approach the policy $\pi^*$ as ``close as possible'', that is to \text{solve} the POMDP.
 Of course \eqref{eq:qlearning} is just a definition and
 represents by no means, a candidate schema for solving POMDPs with even moderately-sized action and state spaces: it's intractable!
@@ -1113,6 +1117,13 @@ a recursive decomposition of optimal behavior by dividing the $Q$-value function
 reward and the discounted rewards of the upcoming states.
 % The optimal Q-value operator $Q^*$
 % is a fixed point for this equation.
+
+% \begin{wrapfigure}{r}{.4\linewidth}
+%     \caption{Graphical illustration of the Bellman transform}   
+%   \includegraphics[width=.9\linewidth]{bellman.png}
+%   \label{fig:rl}
+% \end{wrapfigure}
+
 As a consequence, the complicated dynamic programming optimization problem \eqref{eq:qlearning}
 is broken into simpler sub-problems at different time points.
 Exploitation of hierarchical structure in actions consideration
