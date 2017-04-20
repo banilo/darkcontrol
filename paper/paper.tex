@@ -1019,7 +1019,8 @@ This reduces the variance of expected rewards accumulated across action cascades
 % For instance, a deterministic strategy in playing rock-paper-scissors can
 % be easily exploited and a uniformly random choice is optimal.
 
-\subsection{The knots and bolts for RL in the DMN}
+\subsection{The knots and bolts of Reinforcement Learning in the DMN}
+\textbf{XXX Elvis: a short preface is needed here, explaining the roadmap of this subsection from a high-level perspective!}
 \subsubsection{The objective value of an action given a state}
 Given only the limited information available from a POMDP, at a state $s$ the average quality or usefulness of taking an action $a$ under a policy $\pi$ is completely captured by the single number
 % We can now formulate the purpose of the DMN
@@ -1125,7 +1126,7 @@ depend on the environment, and so can be learned off-policy by observing state t
 triggered by another behavioral policy, which can be stochastic.
 
 \begin{mdframed}
-  \textbf{ NCs for the Bellman equation:}
+  \textbf{ Neural correlates of the Bellman equation in the DMN:}
   ...
 \end{mdframed}
 
@@ -1152,7 +1153,7 @@ The tensor $\theta$ encodes the model
   The oracle Q-values $Q(s, a|\theta)$ tell the DMN the (expected) usefulness of taking an action a in state / situation  $s$. The DMN (via BA9 ?) would then choose, at a given $s$, an action $a$ which maximizes this tabulated values. This mapping from states to actions defines a matrix, which can be conveniently called a "policy matrix". Learning consists in starting from a given instantiation of such a table and tweaking it around while using it to take actions which take the agent to different areas of the table, and so on, and so forth.
 
 
-\subsubsection{The loss function}
+  \subsubsection{Self-training and the loss function}
 There can be no learning without a loss function in sight.
 The action $a$ taken in state $s$ according to the policy matrix defined in
 \eqref{eq:policy} triggers a reward $r$ collected by the agent,
@@ -1304,7 +1305,7 @@ The DMN may subserve
   \includegraphics[width=.9\linewidth]{neurobiological_and_rl_overview_DMN.pdf}
   \caption{\textbf{DMN: neurobiological implementation of Reinforcement Learning.}
   Overview of how the constituent nodes of the Default Mode Network (DMN)
-  map onto computational components necessary for a RL agent.}
+  map onto computational components necessary for an RL agent.}
   \label{fig:rl_process_chart}
 \end{figure}
 
