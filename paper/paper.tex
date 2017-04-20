@@ -875,7 +875,7 @@ based on a brain implementation of MCMC sampling
 We argue that the brain in general and the DMN in particular
 are a physical system governed by the laws of
 physics and can be locally described by Markov processes at a sufficiently coarse scale.
-Indeed, as noted in \cite{tegmark2016improved},
+Indeed, as noted in \citep{tegmark2016improved},
 any system obeying the laws of classical physics can be accurately modeled as a Markov process as long as the time
 step is sufficiently short.
 % , defining $s(t)$, the state at time $t$, as the position in state space.
@@ -887,7 +887,7 @@ definition of the state $s$ to include elements of the past.
 
 In artificial intelligence and machine learning, a popular computational model for
 multi-step decision processes in such an environment are
-\textit{Partially Observable Markov Decision Processes (POMDPs)}.
+\textit{Partially Observable Markov Decision Processes (POMDPs)}\citep{sutton1998reinforcement}.
 A POMDP formalizes a sequential decision process in which it is assumed that environment dynamics are determined by a Markov process,
 but the agent cannot directly observe the underlying state.
 Instead, the agent tries to optimize a \textit{subjective} reward
@@ -898,7 +898,8 @@ and is characteristic of so-called \textit{model-free RL},
 which we propose as a useful formal framework for DMN function.
 %
 
-Model-free RL has had great success in real-world problems including robotics\cite{abbeel2004,andrewng}, computer game play, \citep{mnih2015,silver2016mastering},
+\paragraph{Model-free Reinforcement Learning.}
+Model-free RL has had great success in real-world problems including robotics\citep{abbeel2004,andrewng}, computer game play, \citep{mnih2015,silver2016mastering},
 etc., just to name a few. Such a learning scheme is plausibly realizable in the human brain. Indeed,
 a core property of human intelligence has been proposed underly to improve
 on an expected utility outcomes as a strategy for action choice in uncertain
@@ -1186,7 +1187,7 @@ neuron spiking sequence that also occurs during specific actions.
 In the human brain, the hippocampus is likely to contribute to such a mechanism,
 as neuroscience experiments on various animals have repeatedly indicated
 in rats, mice, cats, rabbits, songbirds, and
-monkeys \cite{buhry2011,nokia2010,dave2000,skaggs2007}.
+monkeys \citep{buhry2011,nokia2010,dave2000,skaggs2007}.
 
 At the current iteration $k$, computing an optimal parameter update then corresponds to finding the parameters $\theta_{k}$ which minimize the following mean-squared loss function
 \begin{equation}
@@ -1272,7 +1273,7 @@ Much recent work points to Monte Carlo or stochastic sampling-based approximatio
 % %\end{mdframed}
 % Such questions are of course pertinent to our decision-making theory for the DMN.
 % In the general artificial case, the problem has been extensively studied and partially solved by
-% \cite{abbeel2004}. They are also been rigorously studied in general optimal control literature under the name
+% \citep{abbeel2004}. They are also been rigorously studied in general optimal control literature under the name
 % ``inverse optimal control'', but in model-based certain (where the physical dynamics are known, etc.)...
 
 % IRL is is suited for problems in which it's hard to define what the reward function could be
