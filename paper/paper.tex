@@ -400,7 +400,7 @@ within our formal account (next section).
 
 \begin{figure}[!h]
   \includegraphics[width=.9\linewidth]{neurobiological_overview_DMN.pdf}
-  \caption{Neurobiological overview of the DMN with its key constituent nodes and their associated functional roles relevant in our functional account.
+  \caption{Neurobiological overview of the DMN with its key constituent nodes and their associated functional roles relevant in our functional account.}
   \label{fig:neurobiological_overview_DMN}
 \end{figure}
 %
@@ -894,9 +894,13 @@ This is performed alongside each transition in the environments state space, and
 states, based on a set of observations and observation probabilities. This is a minimal amount of assumptions that can be made about an environment,
 and is characteristic of so-called \textit{model-free RL},
 which we propose as a useful formal framework for DMN function.
+%
 
-
-Model-free RL is plausibly realizable in the human brain. Indeed,
+Model-free RL has had great success in real-world problems including robotics\cite{abbeel2004,andrewng}, computer game play, \citep{mnih2015,silver2016mastering},
+etc., just to name a few. Such a learning scheme is plausibly realizable in the human brain. Indeed,
+a core property of human intelligence has been proposed underly to improve
+on an expected utility outcomes as a strategy for action choice in uncertain
+environments \citep{gershman2015computational}, a situation perfectly captured by the formalism of POMDPs. Also,
 it has long been proposed \citep{dayan2008decision} that there
 is a rather direct mapping of model-free RL learning algorithms
 onto aspects of the brain.
@@ -909,10 +913,9 @@ In contrast, \textit{model-based RL} would start off with some mechanistic assum
 These can be assumptions about the physical laws governing the agent's world or constraints on the state space and transitions between states.
 For instance, if a rat in a maze knows
 that standing still will produce no change in the environment, and in particular will not eventually lead to finding the food.
-% A core property of human intelligence has been proposed underly to improve
-% on an expected utility outcomes as a strategy for action choice in uncertain
-% environments \citep{gershman2015computational}.
-In our present model-free RL framework,
+%
+
+In our adopted model-free RL framework,
 a rat might represent such knowledge about the world as follows:
 \begin{itemize}
 \item $r(s, \text{``stand still''}) = 0$ if $s$ does not correspond to a cell / chamber containing food.
@@ -1076,14 +1079,10 @@ may well reflect processing aspects of the DMN in human agents.
 % \textbf{XXX please add 1-2 sentences why this is interesting in the current
 % context. This statement appears a little alone as it stands.}
 \begin{equation}
-  \pi^*(s) := \argmax_{a \in \mathcal A}{Q}^*(s, a),
+  \pi^*(s) := \argmax_{a \in \mathcal A}{Q}^*(s, a),\text{ where }Q^*(s, a) := \max_{\pi}Q^\pi(s,a).
   \label{eq:qlearning}
 \end{equation}
-where
-\begin{equation}
-  Q^*(s, a) := \max_{\pi}Q^\pi(s,a),
-\end{equation}
-the optimal Q-value over all policies. The goal of learning is to approach the policy $\pi^*$ as ``close as possible'', that is to \text{solve} the POMDP.
+The goal of learning is to approach the policy $\pi^*$ as ``close as possible'', that is to \text{solve} the POMDP.
 Of course \eqref{eq:qlearning} is just a definition and
 represents by no means, a candidate schema for solving POMDPs with even moderately-sized action and state spaces: it's intractable!
 % where $\tilde{Q}(s, a)$ is the current estimate of the state-action value
@@ -1258,24 +1257,24 @@ In POMDPs, Monte-Carlo simulation provides an effective mechanism both for tree 
 Much recent work points to Monte Carlo or stochastic sampling-based approximations as a unifying framework for understanding how Bayesian inference may work practically across all these levels, in minds, brains, and machines. \textbf{XXX Elvis: refs needed in last sentence. Plus, should be really bring up Bayesian?} For sampling-based methods it is still almost non-existent beyond the description of receptive fields. \textbf{XXX Elvis: rephrase last sentence}
 
 
-\paragraph{Does hippocampal replay equal inverse reinforcement-learning?}
-%\begin{mdframed}
-  Given the trace $s_0,a_0,s_1,\ldots,$ of an optimal agent's strategy $\pi^*$ in
-  a POMDP (called a \textit{teacher's demonstration}), can we figure out what is the
-  (instantaneous) reward function $r: \mathcal S \times \mathcal \mathcal A
-  \rightarrow \mathbb R$ that the agent is optimizing over a prescribed class of reward functions
-  (e.g., linear rewards $r(s,a) \equiv \theta^T\phi(s,a)$)?
-  For instance, given traces of motor actions from an adult to grab a cup on a table,
-  can an observing child figure out what ``langragian'' functional is being minimized by the former?
-  How? Can they reproduce this optimal behavior?
-%\end{mdframed}
-Such questions are of course pertinent to our decision-making theory for the DMN.
-In the general artificial case, the problem has been extensively studied and partially solved by
-\cite{abbeel2004}. They are also been rigorously studied in general optimal control literature under the name
-``inverse optimal control'', but in model-based certain (where the physical dynamics are known, etc.)...
+% \paragraph{Does hippocampal replay equal inverse reinforcement-learning?}
+% %\begin{mdframed}
+%   Given the trace $s_0,a_0,s_1,\ldots,$ of an optimal agent's strategy $\pi^*$ in
+%   a POMDP (called a \textit{teacher's demonstration}), can we figure out what is the
+%   (instantaneous) reward function $r: \mathcal S \times \mathcal \mathcal A
+%   \rightarrow \mathbb R$ that the agent is optimizing over a prescribed class of reward functions
+%   (e.g., linear rewards $r(s,a) \equiv \theta^T\phi(s,a)$)?
+%   For instance, given traces of motor actions from an adult to grab a cup on a table,
+%   can an observing child figure out what ``langragian'' functional is being minimized by the former?
+%   How? Can they reproduce this optimal behavior?
+% %\end{mdframed}
+% Such questions are of course pertinent to our decision-making theory for the DMN.
+% In the general artificial case, the problem has been extensively studied and partially solved by
+% \cite{abbeel2004}. They are also been rigorously studied in general optimal control literature under the name
+% ``inverse optimal control'', but in model-based certain (where the physical dynamics are known, etc.)...
 
-IRL is is suited for problems in which it's hard to define what the reward function could be
-(e.g.,  car-driving, drone maneuvering, etc.) ...
+% IRL is is suited for problems in which it's hard to define what the reward function could be
+% (e.g.,  car-driving, drone maneuvering, etc.) ...
 
 \subsection{Putting everything together}
 The DMN is today known to consistently increase in neural
