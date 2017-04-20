@@ -201,7 +201,7 @@
 
 \maketitle
 \small{
-    \textbf{1} Universit\'e Paris-Saclay, INRIA, Parietal team, Saclay, France\\
+    \textbf{1} Universit\'e Paris-Saclay, INRIA, Parietal Team, Saclay, France\\
     \textbf{2} Universit\'e Paris-Saclay, CEA, Neurospin, Gif-sur-Yvette, France\\
     \textbf{3} Department of Psychiatry, Psychotherapy and Psychosomatics, RWTH Aachen University, Aachen, Germany\\
     \textbf{4} Institut Pasteur, Human Genetics and Cognitive Functions Unit, Paris, France\\
@@ -809,6 +809,15 @@ evaluating instantaneous, delayed, and expected reward outcomes
 are key components of intelligent RL agents
 that are plausible to intersect in the DMN.
 
+\begin{wrapfigure}{r}{.4\linewidth}
+  \caption{\textbf{Reinforcement Learning in a nutshell.} Given the current state of the environment,
+    the agent takes an action (by following some policy). This generates a reward and an observed
+    state transition of the environment. This process goes on until interrupted or a goal state is reached.}
+  \centering
+  \includegraphics[width=1.\linewidth]{rl.png}
+  \label{fig:rl}
+\end{wrapfigure}
+
 
 RL is a problem-solving technique in which, through interactions with an unknown \textit{environment / world},
 an agent learns to reach goals, optimize reward signals, and minimize costs
@@ -823,13 +832,6 @@ In this view, the environment is partially controlled by
 the action of the agent and the reward can be thought
 of as satisfaction -- or punishment -- accompanying the execution of
 an action.
-
-\begin{wrapfigure}{r}{.4\linewidth}
-  \centering
-  \includegraphics{rl.png}
-  \caption{RL in a nutshell}
-  \label{fig:rl}
-\end{wrapfigure}
 
 Action may be delayed to achieve substantial increases in expected reward
 that can grow with time.
@@ -962,26 +964,26 @@ Mathematically, a POMDP is simply a quintuplet $(\mathcal S, \mathcal A, r, p, \
 The behavior of the agent is governed by some kind of \textit{policy}.
 It maps states of the world to
 a set of candidate actions to perform given this state. Starting a time $t=0$,
-a policy $\pi$ generates a trajectory of action cascades / trajectories as follows
+a policy $\pi$ generates a trajectory of action cascades / trajectories as follows:
 \begin{eqnarray*}
   \begin{split}
+    \textbf{choose action: }a_0 &\sim \pi(a|s_0)\\
     \textbf{ observe transition: }s_1 &\sim p(s|s_0,a_0)\textbf{ and collect reward }R_0 = r(s_0, a_0)\\
     \textbf{choose action: }a_1 &\sim \pi(a|s_1)\\
     \textbf{ observe transition: }s_2 &\sim p(s|s_1,a_1), \textbf{ and collect reward }R_1 = r(s_1, a_1)\\
-    \ldots\\
+    \vdots\\
     \textbf{choose action: }a_{t} &\sim \pi(a|s_{t})\\
     \textbf{ observe transition: }s_{t+1} &\sim p(s|s_{t},a_{t}), \textbf{ and collect reward }R_{t} = r(s_{t}, a_{t})\\
-    \ldots
+    \vdots
   \end{split}
 \end{eqnarray*}
 
 \begin{mdframed}
-  \textbf{Time-invariance assumption:} It is assumed that the underlying MDP is stationary -- i.e., has reached steady-state conditions --
+\textbf{Time-invariance assumption:} It is assumed that the underlying MDP is stationary -- i.e., has reached steady-state conditions --
   so that the dynamics of the process are equivalent over sufficiently long time windows of equal length.
 \end{mdframed}
 
-Since an action taken in the present moment $t$
-might have repercussions in the far future, it turns out that the
+Since an action taken in the present moment might have repercussions in the far future, it turns out that the
 quantity to optimize is not the instantaneous rewards $r(s, a)$, but a
 cumulative reward estimate which takes into account expected reward in the future.
 A common approach to
@@ -1024,7 +1026,8 @@ This reduces the variance of expected rewards accumulated across action cascades
 % For instance, a deterministic strategy in playing rock-paper-scissors can
 % be easily exploited and a uniformly random choice is optimal.
 
-\subsection{The knots and bolts for RL in the DMN}
+\subsection{The knots and bolts of Reinforcement Learning in the DMN}
+\textbf{XXX Elvis: ==> Elvis a short preface is needed here, explaining the roadmap of this subsection from a high-level perspective!}
 \subsubsection{The objective value of an action given a state}
 Given only the limited information available from a POMDP, at a state $s$ the average quality or usefulness of taking an action $a$ under a policy $\pi$ is completely captured by the single number
 % We can now formulate the purpose of the DMN
@@ -1083,13 +1086,16 @@ may well reflect processing aspects of the DMN in human agents.
 % \subsubsection{The Bellman equation:  characterizing optimal behavior}
 % Q-learning (Watkins \& Dayan, 1992) generates a
 % \textit{greedy policy}
-\subsubsection{Optimal behavior and the Bellman equation} Optimal behavior corresponds to a strategy $\pi^*$ for choosing actions such that, for every state, the chosen action guarantees the best possible reward on average. Formally,
+\subsubsection{Optimal behavior and the Bellman equation}
+
+Optimal behavior corresponds to a strategy $\pi^*$ for choosing actions such that, for every state, the chosen action guarantees the best possible reward on average. Formally,
 % \textbf{XXX please add 1-2 sentences why this is interesting in the current
 % context. This statement appears a little alone as it stands.}
 \begin{equation}
   \pi^*(s) := \argmax_{a \in \mathcal A}{Q}^*(s, a),\text{ where }Q^*(s, a) := \max_{\pi}Q^\pi(s,a).
   \label{eq:qlearning}
 \end{equation}
+
 The goal of learning is to approach the policy $\pi^*$ as ``close as possible'', that is to \text{solve} the POMDP.
 Of course \eqref{eq:qlearning} is just a definition and
 represents by no means, a candidate schema for solving POMDPs with even moderately-sized action and state spaces: it's intractable!
@@ -1117,6 +1123,13 @@ a recursive decomposition of optimal behavior by dividing the $Q$-value function
 reward and the discounted rewards of the upcoming states.
 % The optimal Q-value operator $Q^*$
 % is a fixed point for this equation.
+
+% \begin{wrapfigure}{r}{.4\linewidth}
+%     \caption{Graphical illustration of the Bellman transform}   
+%   \includegraphics[width=.9\linewidth]{bellman.png}
+%   \label{fig:rl}
+% \end{wrapfigure}
+
 As a consequence, the complicated dynamic programming optimization problem \eqref{eq:qlearning}
 is broken into simpler sub-problems at different time points.
 Exploitation of hierarchical structure in actions consideration
@@ -1130,7 +1143,7 @@ depend on the environment, and so can be learned off-policy by observing state t
 triggered by another behavioral policy, which can be stochastic.
 
 \begin{mdframed}
-  \textbf{ NCs for the Bellman equation:}
+  \textbf{ Neural correlates of the Bellman equation in the DMN:}
   ...
 \end{mdframed}
 
@@ -1157,7 +1170,7 @@ The tensor $\theta$ encodes the model
   The oracle Q-values $Q(s, a|\theta)$ tell the DMN the (expected) usefulness of taking an action a in state / situation  $s$. The DMN (via BA9 ?) would then choose, at a given $s$, an action $a$ which maximizes this tabulated values. This mapping from states to actions defines a matrix, which can be conveniently called a "policy matrix". Learning consists in starting from a given instantiation of such a table and tweaking it around while using it to take actions which take the agent to different areas of the table, and so on, and so forth.
 
 
-\subsubsection{The loss function}
+  \subsubsection{Self-training and the loss function}
 There can be no learning without a loss function in sight.
 The action $a$ taken in state $s$ according to the policy matrix defined in
 \eqref{eq:policy} triggers a reward $r$ collected by the agent,
@@ -1265,26 +1278,6 @@ In POMDPs, Monte-Carlo simulation provides an effective mechanism both for tree 
 \textbf{XXX Elvis: refs needed.}.
 Much recent work points to Monte Carlo or stochastic sampling-based approximations as a unifying framework for understanding how Bayesian inference may work practically across all these levels, in minds, brains, and machines. \textbf{XXX Elvis: refs needed in last sentence. Plus, should be really bring up Bayesian?} For sampling-based methods it is still almost non-existent beyond the description of receptive fields. \textbf{XXX Elvis: rephrase last sentence}
 
-
-% \paragraph{Does hippocampal replay equal inverse reinforcement-learning?}
-% %\begin{mdframed}
-%   Given the trace $s_0,a_0,s_1,\ldots,$ of an optimal agent's strategy $\pi^*$ in
-%   a POMDP (called a \textit{teacher's demonstration}), can we figure out what is the
-%   (instantaneous) reward function $r: \mathcal S \times \mathcal \mathcal A
-%   \rightarrow \mathbb R$ that the agent is optimizing over a prescribed class of reward functions
-%   (e.g., linear rewards $r(s,a) \equiv \theta^T\phi(s,a)$)?
-%   For instance, given traces of motor actions from an adult to grab a cup on a table,
-%   can an observing child figure out what ``langragian'' functional is being minimized by the former?
-%   How? Can they reproduce this optimal behavior?
-% %\end{mdframed}
-% Such questions are of course pertinent to our decision-making theory for the DMN.
-% In the general artificial case, the problem has been extensively studied and partially solved by
-% \citep{abbeel2004}. They are also been rigorously studied in general optimal control literature under the name
-% ``inverse optimal control'', but in model-based certain (where the physical dynamics are known, etc.)...
-
-% IRL is is suited for problems in which it's hard to define what the reward function could be
-% (e.g.,  car-driving, drone maneuvering, etc.) ...
-
 \subsection{Putting everything together}
 The DMN is today known to consistently increase in neural
   activity when humans engage in goal-directed behavior that are detached from
@@ -1308,9 +1301,9 @@ The DMN may subserve
   in humans.
 \begin{figure}[!h]
   \includegraphics[width=.9\linewidth]{neurobiological_and_rl_overview_DMN.pdf}
-  \caption{\textbf{Default mode network: reinforcement learning implementation.}
-  Overview of how the constituent nodes of the DMN
-  map onto computational components necessary for a Markov decision process.}
+  \caption{\textbf{DMN: neurobiological implementation of Reinforcement Learning.}
+  Overview of how the constituent nodes of the Default Mode Network (DMN)
+  map onto computational components necessary for an RL agent.}
   \label{fig:rl_process_chart}
 \end{figure}
 
@@ -1711,7 +1704,7 @@ Thus the brain could not possibly be running such a algorithm, not even in princ
 as it overcomes the technical limits of the former, by using a reparametrization trick. For instance, unlike the wake-sleep algorithm
 for minimizing free-energy, VAEs can be efficiently trained via back-propagation of prediction errors.
 
-\subsubsection{Comparison to our proposed theory}
+% \paragraph{Comparison to our proposed theory.}
 On the surface, a common point between the FEP and our proposed RL-based framework
   is placing the minimization of a surprise signal at the core of brain function.
   Indeed in RL, surprise minimization is subsumed  by accurate prediction of
@@ -1800,7 +1793,8 @@ to constantly refine the organism's interaction with the world.
 
 
 
-\paragraph{Acknowledgment}
+\paragraph{Acknowledgment.}
+Starwars!
 % {\small The research leading to these results has received funding from the
 % European Union Seventh Framework Programme (FP7/2007-2013)
 % under grant agreement no. 604102 (Human Brain Project).
@@ -1816,6 +1810,27 @@ to constantly refine the organism's interaction with the world.
 \bibliography{refs}
 
 \appendix
+
+\section{More on RL in the brain}
+\subsection{Does hippocampal replay equal inverse reinforcement-learning?}
+%\begin{mdframed}
+  Given the trace $s_0,a_0,s_1,\ldots,$ of an optimal agent's strategy $\pi^*$ in
+  a POMDP (called a \textit{teacher's demonstration}), can we figure out what is the
+  (instantaneous) reward function $r: \mathcal S \times \mathcal \mathcal A
+  \rightarrow \mathbb R$ that the agent is optimizing over a prescribed class of reward functions
+  (e.g., linear rewards $r(s,a) \equiv \theta^T\phi(s,a)$)?
+  For instance, given traces of motor actions from an adult to grab a cup on a table,
+  can an observing child figure out what ``langragian'' functional is being minimized by the former?
+  How? Can they reproduce this optimal behavior?
+%\end{mdframed}
+Such questions are of course pertinent to our decision-making theory for the DMN.
+In the general artificial case, the problem has been extensively studied and partially solved by
+\citep{abbeel2004}. They are also been rigorously studied in general optimal control literature under the name
+``inverse optimal control'', but in model-based certain (where the physical dynamics are known, etc.)...
+
+IRL is is suited for problems in which it's hard to define what the reward function could be
+(e.g.,  car-driving, drone maneuvering, etc.) ...
+
 \section{Free-energy principles!}
 The so-called free-energy principle in its present form (including notions like ``generative density'', ``recognition density'', etc.) can be traced back to works of Dayan \& Hinton \citep{dayan1995helmholtz} in which they introduced the so-called \textit{Helmholtz machine}, a hierarchical factorial directional deep belief-net (DBN).
 In this subsection, we will develop from first-principles, the bare-bones minimalistic ideas needed to build a free-energy principle for general decision-making. This ideas were first developed by Hinton et al. in the early 90s in building their Helmholtz machine. Theories like Friston's free-energy principle and active-inference will then emerge as particular instances of this general framework, with particular design choises. For instance, the Friston theory axiomatizes that the brain uses a (problematic, as it implicitly assumes that posterior of each hidden unit is factorial) wake-sleep algorithm to train the underlying Helmholtz machine, etc.
