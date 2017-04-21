@@ -1022,7 +1022,7 @@ This reduces the variance of expected rewards accumulated across action cascades
 % be easily exploited and a uniformly random choice is optimal.
 
 \subsection{The knots and bolts of Reinforcement Learning in the DMN}
-\textbf{XXX Elvis: ==> Elvis a short preface is needed here, explaining the roadmap of this subsection from a high-level perspective!}
+\textbf{XXX Elvis to Elvis:a short preface is needed here, explaining the roadmap of this subsection from a high-level perspective!}
 \subsubsection{The objective value of an action given a state}
 Given only the limited information available from a POMDP, at a state $s$ the average quality or usefulness of taking an action $a$ under a policy $\pi$ is completely captured by the single number
 % We can now formulate the purpose of the DMN
@@ -1090,7 +1090,6 @@ Optimal behavior corresponds to a strategy $\pi^*$ for choosing actions such tha
   \pi^*(s) := \argmax_{a \in \mathcal A}{Q}^*(s, a),\text{ where }Q^*(s, a) := \max_{\pi}Q^\pi(s,a).
   \label{eq:qlearning}
 \end{equation}
-
 The goal of learning is to approach the policy $\pi^*$ as ``close as possible'', that is to \text{solve} the POMDP.
 Of course \eqref{eq:qlearning} is just a definition and
 represents by no means, a candidate schema for solving POMDPs with even moderately-sized action and state spaces: it's intractable!
@@ -1101,7 +1100,7 @@ Fortunately, the \textit{Bellman equation} \citep{sutton1998reinforcement} provi
   Q^* = \text{Bel}(Q^*),
   \label{eq:bellman}
 \end{equation}
-where the ``Bellman transform'' $\text{Bel}(Q)$ of an arbitrary $Q$-value function $Q: \mathcal S \times \mathcal A \rightarrow \mathbb R$  is defined by setting
+where the ``Bellman transform'' $\text{Bel}(Q)$ of an arbitrary $Q$-value function $Q: \mathcal S \times \mathcal A \rightarrow \mathbb R$  is another $Q$-value function defined by
 \begin{equation}
   \begin{split}
    \text{Bel}(Q)(s,a) &:=
@@ -1116,16 +1115,9 @@ where the ``Bellman transform'' $\text{Bel}(Q)$ of an arbitrary $Q$-value functi
 The Bellman equation \eqref{eq:bellman} is a ``self-consistency'' equation which provides
 a recursive decomposition of optimal behavior by dividing the $Q$-value function into the immediate
 reward and the discounted rewards of the upcoming states.
-% The optimal Q-value operator $Q^*$
-% is a fixed point for this equation.
-
-% \begin{wrapfigure}{r}{.4\linewidth}
-%     \caption{Graphical illustration of the Bellman transform}   
-%   \includegraphics[width=.9\linewidth]{bellman.png}
-%   \label{fig:rl}
-% \end{wrapfigure}
-
-As a consequence, the complicated dynamic programming optimization problem \eqref{eq:qlearning}
+The optimal Q-value operator $Q^*$ is a fixed point for this equation.
+As a consequence of this decomposition, the complicated dynamic programming optimization
+problem \eqref{eq:qlearning}
 is broken into simpler sub-problems at different time points.
 Exploitation of hierarchical structure in actions consideration
 has previously been closely related to the medial prefrontal part of the DMN
