@@ -350,7 +350,7 @@ a policy matrix to capture the space of possible actions that can be performed
 on the environment given the current state. A value function
 maps expected rewards to environmental objects and events.
 Switching between states reduces to a sequential processing model.
-Informed by outcomes of performed action,
+Informed by outcomes of really performed action,
 the DMN dynamics are constantly adapted in feedback loops
 shaped by prediction error.
 A DMN account incorporating RL can naturally embed human behavior
@@ -395,8 +395,8 @@ We begin by a neurobiological deconstruction of the DMN
 based on experimental findings in the neuroscience literature.
 This walkthrough across each node of the DMN will
 outline the individual functional profiles,
-paving the way for their functional interpretation
-within our formal account (next section).
+paving the way for their algorithmic interpretation
+in our formal account (next section).
 
 \begin{figure}[!h]
   \includegraphics[width=.9\linewidth]{neurobiological_overview_DMN.pdf}
@@ -419,12 +419,12 @@ potentially represent the functional backbone of the DMN
 \citep{andrews2010, hagmann2008mapping}.
 
 
-The PMC myelinates relatively late during postnatal development in monkeys
+The PMC matures relatively late (i.e., myelination) during postnatal development in monkeys
 \citep{goldman1987development}, which is generally considered to
 be a sign of evolutionary sophistication \citep{flechsig1920}.
 Normal and disturbed metabolic fluctuations in the
-human PMC have been repeatedly related to
-phenomena of changed conscious awareness \citep{cavanna2006precuneus}.
+human PMC have been closely related to
+changes of conscious awareness \citep{cavanna2006precuneus}.
 %
 Indeed,
 the PMC has long been speculated to reflect constant computation of
@@ -460,11 +460,11 @@ for biological significance assessment.
 The putative role of the PMC in continuous integration of
 relevant environmental information
 and ensuing top-level control of action on the environment is supported
-by a number of neuroscience experiments.
-Electrophysiological recordings in animals implicated the PMC in
+by many neuroscience experiments.
+Electrophysiological recordings in animals implicated PMC neurons in
 strategic decision making \citep{pearson2009neurons},
 risk assessment \citep{mccoy2005risk},
-outcome-contingent behavioral modulation \citep{hayden2009electrophysiological},
+outcome-dependent behavioral modulation \citep{hayden2009electrophysiological},
 as well as approach-avoidance behavior
 \citep{vann2009does}.
 Neuron spiking activity in the PMC allowed distinguishing
@@ -485,16 +485,16 @@ promoted exploratory actions,
 which would otherwise be shunned \citep{hayden2008stim}.
 Graded changes in firing rates of PMC neurons
 indicated changing choices in upcoming trials and their neural patterns were
-distinct from spike firings that indicated choosing either option.
+distinct from neuronal spike firings that indicated choosing either option.
 Similarly in humans,
 the DMN has been shown to gather and integrate information
 over different parts of auditory narratives in an fMRI study
 \citep{simony2016dynamic}.
 
 
-The retrosplenial portion of the PMC can subserve
+Moreover, the retrosplenial portion of the PMC can subserve
 representation of action possibilities
-and evaluation of reward contingencies by integration with
+and evaluation of reward outcomes by integration with
 information from memory and different perspective frames.
 Regarding memory recall, retrosplenial lesions have been
 consistently associated with anterograde and retrograde memory impairments
@@ -503,7 +503,7 @@ in rabbits and humans
 \citep{vann2009does}.
 Regarding perspective frames, the retrosplenial subregion of the PMC has been
 proposed to mediate between the organism's egocentric
-(i.e., focused on sensory input) and
+(i.e., focused on sensory environment) and
 allocentric (i.e., focused on world knowledge) viewpoints
 in animals and humans
 \citep{epstein2008parahippocampal, burgess2008spatial, valiquette2007different}.
@@ -512,15 +512,15 @@ in animals and humans
 
 Consequently, the PMC may contribute to overall DMN function
 by monitoring the subjective outcomes
-of possible decisions and integrating that information
+of possible actions and integrating that information
 with memory, perspective frames, and
 reward outcomes into higher-level strategies.
-Perceived value, that differs across individuals, may update
+Estimated value, that differs across individuals, may update
 statistical assessment of the environment
 to predict delayed reward opportunities in the future.
-In doing so, the PMC may continuously adapt to changes
+In doing so, the PMC may continuously adapt the organism to changes
 in both the external environment and its internal representation
-to enable strategic behavior in volatile environments.
+to enable strategic behavior.
 
 
 \subsection{The prefrontal cortex: stimulus-value association and action consideration}
@@ -528,19 +528,20 @@ Analogous to the PMC,
 the dorsomedial PFC (dmPFC) of the DMN is believed to subserve
 supra-sensory processes
 across time, space, and content domains to
-exert top-down control.
-In comparison to the PMC, however,
+exert top-level control on behavior.
+Comparing to the PMC, however,
 dmPFC function may be closer to a
 ``mental sketchpad'' \citep{goldman1996prefrontal}, as it
 potentially subserves the de-novo generation and manipulation
-of meaning representations instructed by stored semantics and memories.
+of meaning representations instructed by stored semantics and memories
+\citep{bzdok2013segregation}.
 
 
 
 Generally,
 patients with neurological lesions in the prefrontal cortex
 are known to struggle with
-adaption to novel situations and stimuli
+adaption to new situations and stimuli
 \citep{stuss1986frontal}.
 The dmPFC may subserve inference, representation, and assessment
 of one's own and other individuals' action considerations.
@@ -560,11 +561,11 @@ environmental context in several lesion studies \citep{kolling2016value}.
 Such highly abstract neural computations necessarily rely on the
 generation of probabilistic internal information drawing from
 episodic memory recall, generative construction processes,
-and explicit knowledge of the external world.
+and stored knowledge of the world.
 %
 In a computational neuroimaging experiment,
 dorsomedial PFC activity preferentially modeled the consequences of
-action choices that were not actually executed,
+action choices that were considered but not actually executed,
 whereas ventromedial PFC (vmPFC) activity
 modeled especially value outcomes of performed actions in the environment
 \citep{nicolle2012agent}.
@@ -580,18 +581,19 @@ processing of “what matters now”,
 probably drawing on sophisticated value representations
 \citep{doherty2015structure}.
 Quantitative lesion findings across 344 human individuals confirmed
-a substantial impairment in value-based decision making
+a substantial impairment in value-based action choice
 \citep{glascher2012lesion}.
 Indeed,
-the vmPFC is preferentially connected with reward-related and limbic regions.
-The vmPFC is well known to have monosynaptical connections
+this DMN node is preferentially connected with reward-related and limbic regions.
+The vmPFC is well known to have direct connections
 with the NAc
 in axonal tracing studies in monkeys \citep{haber1995orbital}.
 Congruently, the gray-matter volume of the vmPFC and NAc
 correlated with indices of value-guided behavior and reward attitudes
 in humans
 \citep{lebreton2009automatic}.
-NAc activity is thought to reflect reward prediction signals from dopaminergic pathways
+NAc activity is thought to reflect reward prediction signals
+from dopaminergic neurotransmitter pathways
 \citep{schultz1998predictive}
 that not only channel action towards basic survival needs but also
 subserve RL in humans more broadly \citep{doherty2015structure}.
@@ -604,20 +606,20 @@ the vmPFC with the NAc, hippocampus (HC),
 and PMC.
 %
 In line with these connectivity findings in animals and humans,
-the vmPFC is often proposed to be involved in (external) emotional
-reactions and own (visceral) arousal \citep{damasio1996somatic}.
-Real or imagined bodily states could be mapped in the vmPFC
-as a bioregulatory disposition governing cognition
+the vmPFC is often proposed to represent externally or internally triggered
+emotional and motivational states \citep{damasio1996somatic}.
+Such real or imagined arousal states could be mapped in the vmPFC
+as a bioregulatory disposition influencing cognition
 and decision making.
 In neuroeconomic studies of human decision making,
 the vmPFC consistently reflects an individual’s subjective
-valuation
+value estimates
 \citep{behrens2008associative}.
 This may be why performance within and across participants
 was related to state encoding in the vmPFC.
 Such a ``cognitive map'' of the action space was argued to encode
-the current task state even when states are unobservable from sensory input,
-which was shown to be critical for behavior \citep{Schuck2016}.
+the current task state even when states are unobservable from the sensory environment
+\citep{Schuck2016}.
 
 
 
@@ -646,7 +648,7 @@ Mental scenes created by HC-lesioned patients exposed a lack of
 spatial integrity, richness in detail, and overall coherence.
 %
 Single-cell recordings in the animal HC revealed
-some constantly active neuronal ensembles whose firing coincided with
+some constantly active neuronal populations whose firing coincided with
 specific locations in space during environmental navigation.
 London taxi drivers, individuals with high performance in spatial navigation,
 were shown to exhibit increased gray-matter volume in the
@@ -654,7 +656,7 @@ HC \citep{maguire2000navigation}.
 Indeed, when an animal is choosing between alternative
 paths, the corresponding neuronal populations in the HC
 spike one after another  \citep{johnson2007neural}.
-These neuronal patterns appear to also indicate upcoming behavior
+These neuronal patterns appear to directly indicate upcoming behavior
 \citep{pfeiffer2013hippocampal}.
 
 
@@ -667,10 +669,10 @@ after environmental events \citep{buzsaki2004large}.
 Specific spiking sequences, which were elicited in experimental task conditions,
 have been shown to be reenacted spontaneously during
 quiet wakefulness and sleep \citep{hartley2014space, o2010play}.
-Moreover, spike sequences measured in hippocampal place cells of rats
+Moreover, neuronal spike sequences measured in hippocampal place cells of rats
 featured re-occurrence directly after experimental trials
 as well as directly before upcoming experimental trials \citep{diba2007forward}.
-Such hippocampal ensembles burt during rest and sleep
+Such hippocampal neurons burst during rest and sleep
 have been proposed to be critical in communicating local information
 to the neocortex for long-term storage, potentially also in the nodes of the DMN.
 Moreover, invasively triggering experience recall
@@ -685,7 +687,7 @@ reexperiencing or newly generating mental scenarios
 
 
 
-The HC thus orchestrates experience of environmental aspects for
+The HC thus orchestrates re-experience of environmental aspects for
 consolidations based on reenactment and for integration into
 rich mental scene construction \citep{deuker2016event, bird2010establishing}.
 In this way, the HC may contribute to improving
@@ -701,18 +703,19 @@ ongoing perception of and action on the environment
 The DMN emerges with its midline structures early in human development
 \citep{doria2010}.
 However,
-the right and left TPJ may become fully integrated into this canonical
+the right and left TPJ may become fully integrated into this major brain
 network only after birth.
 The TPJs are known to exhibit hemispheric differences
 based on cytoarchitectonic borders and gyrification pattern
 \citep{seghier2013angular}.
-Neuroscientific investigations on hemispheric functional specialization
+Globally, neuroscientific investigations on hemispheric functional specialization
 have highlighted the right versus left cerebral hemisphere as dominant for
-attention versus language functions.
+attention versus language functions
+\citep{seghier2013angular, bzdok2013tpj, bzdok2016left}.
 
 
 
-The TPJ in the right hemipshere (RTPJ)
+The TPJ in the right-hemispheric DMN (RTPJ)
 has been shown to be intimately related to
 supra-modal prediction and error signaling.
 It is probably central for
@@ -757,7 +760,8 @@ to, instead, deal with (unexpected) environmental objects and events.
 
 
 
-The TPJ in the left hemisphere (LTPJ), in turn, exhibits a close topographical relationship to Wernicke's area
+The TPJ in the left-hemispheric hemisphere (LTPJ),
+in turn, exhibits a close topographical relationship to Wernicke's area
 involved in understanding spoken and written language.
 Neurological patients with damage caused to Wernicke's area
 have a major impairment of language comprehension
@@ -1337,7 +1341,7 @@ The HC may provide perturbed action-transition-state-reward samples
   As such,
   plasticity in the DMN arises naturally:
   If an agent behaving optimally in a given environment moves
-  to novel, yet unexperienced environments, reward prediction errors will
+  to new, yet unexperienced environments, reward prediction errors will
   massively increase \textbf{Please check/simplify sentence}.
   This will lead to adaptation of the policy until the system converges to a
   new steady-state of optimal action decisions in volatile environments.
@@ -1412,7 +1416,7 @@ when the environment is predictable because the internal generative
 model only requires updating following descrepancies between
 environmental reality and its internal reinstantiation.
 Increased computation resources are however allocated
-when novel stimuli or
+when unknown stimuli or
 unexpected events are encountered by the organism.
 The predictive coding and formal account
 naturally evoke a mechanism of brain plasticity in that
@@ -1475,7 +1479,7 @@ around forming logical associations and abstract analogies between
 the current experience and
 the conceptual knowledge derived from past experiences
 \citep{bar2007proactive, binder1999conceptual, constantinescu2016organizing}.
-Analogies might naturally tie incoming novel sensory stimuli to
+Analogies might naturally tie incoming new sensory stimuli to
 explicit world knowledge (i.e., semantics) extracted from the environment
 \citep{bar2009proactive}.
 The encoding of complex environments could thus be facilitated
