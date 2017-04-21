@@ -944,9 +944,7 @@ a rat might represent such knowledge about the world as follows:
 \item etc.
 \end{itemize}
 
-\begin{mdframed}
 \begin{definition*}
-% \textbf{XXX Danilo: Is there a definition 2 somewhere?}
 Mathematically, a POMDP is simply a quintuplet $(\mathcal S, \mathcal A, r, p, \mu)$ where
 \begin{itemize}
 \item $\mathcal S$ is the set of states, such as $\mathcal S = \{\text{happy}, \text{sad}\}$.
@@ -961,15 +959,15 @@ Mathematically, a POMDP is simply a quintuplet $(\mathcal S, \mathcal A, r, p, \
   $\mu(s)$ is the probability that the environment starts off in state $s$.
 \end{itemize}
 
-% \begin{remark}
-%   Given a system $(\mathcal S, \mathcal A, r, p, \mu)$ satisfying all the axioms for an MDP
-%   except the Markov property, we can always transform it into an MDP by considering a compounded
-%   version of the states
-%   $$S_t \leftarrow (S_0,A_0,R_0,S_1,A_1,S_2\ldots,S_t,A_{t-1},R_{t-1},S_{t})$$ made of the system's
-%   history up to an including time $t$.
-% \end{remark}
 \end{definition*}
-\end{mdframed}
+
+\begin{remark}
+  Given a system $(\mathcal S, \mathcal A, r, p, \mu)$ satisfying all the axioms for an MDP
+  except the Markov property, we can always transform it into an MDP by considering a compounded
+  version of the states
+  $$S_t \leftarrow (S_0,A_0,R_0,S_1,A_1,S_2\ldots,S_t,A_{t-1},R_{t-1},S_{t})$$ made of the system's
+  history up to an including time $t$.
+\end{remark}
 
 \subsubsection{Accumulated rewards and policies}
 The behavior of the agent is governed by some kind of \textit{policy}.
