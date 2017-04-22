@@ -215,7 +215,7 @@ The default mode network (DMN) is believed to subserve the
 baseline mental activity in humans.
 %
 Its highest energy consumption compared to other brain networks and
-its intimate coupling with conscious awareness are both pointing towards
+its intimate coupling with conscious awareness are both pointing to
 an important functional role.
 %
 Many research streams support an evolutionarily adaptive role in
@@ -225,7 +225,7 @@ envisioning mental scenarios to anticipate the future.
 The present paper proposes a \textit{process model}
 that tries to explain \textit{how}
 the DMN may implement
-continuous assessment and prediction of the environment to guide action choices.
+continuous evaluation and prediction of the environment to guide action choices.
 %
 DMN function is recast in mathematical terms of
 control theory and reinforcement learning based on Markov decision processes.
@@ -234,11 +234,11 @@ We argue that our formal account of DMN function naturally accommodates as speci
 the previously proposed cognitive accounts on
 (1) predictive coding,
 (2) semantic associations, and
-(2) a ``sentinel'' function.
+(2) a ``sentinel'' role.
 %
 A process model for the neural optimization of complex behavior in the DMN
 offers parsimonious explanations for
-various experimental findings in animals and humans.
+recent experimental findings in animals and humans.
 \end{abstract}
 
 % official NIPS keywords
@@ -258,23 +258,23 @@ reinforcement learning
 When left unperturbed, the human brain is not at rest.
 In the beginning of the 21st century,
 brain imaging may have been the first technique
-to allow for the discovery of a unique brain network that subserves
+to allow for the discovery of a unique brain network that probably maintains
 baseline mental activities
-\citep{raichle2001pnas, bzdok2015resting}.
-Especially the so-called "default mode network" (DMN) continues
+\citep{raichle2001pnas, randy2008, bzdok2015resting}.
+The "default mode network" (DMN) continues
 to metabolize large quantities of
 oxygen and glucose energy to maintain
 neuronal computation
 in the absence of behavioral focus
 \citep{kenet2003spontaneously, fiser2004small}.
 The baseline energy demand is only weakly modulated
-at the onset of psychological tasks \citep{raichle2001pnas}.
+at the onset of defined psychological tasks \citep{raichle_baseline}.
 At the opposite, during sleep, the
 decoupling of brain structures discarded the idea of the DMN being
-only a passive network resonance and rather supported its
+only a passive network resonance and rather supported an
 important role in sustaining conscious awareness \citep{horovitz2009decoupling}.
 This dark matter of brain physiology begs the question
-of the biological purpose underlying the DMN
+of the biological purpose underlying DMN activity
 \citep{raichle2006brain}.
 What has early been described as the "stream of consciousness"
 in psychology \citep{james1890principles}
@@ -283,12 +283,8 @@ in the DMN
 \citep{shul1997, raichle2001pnas}.
 This set of some of the most advanced regions in
 the human association cortex \citep{mesulam1998sensation, margulies2016situating}
-consistently
-increase in neural activity during
-unfocused mind wandering \citep{raichle2001pnas}.
-Indeed, the DMN may exert
-higher-order control on human behavior
-following the notion of "a hierarchy of brain systems with
+may exert higher-order control on human behavior.
+It follows the notion of "a hierarchy of brain systems with
 the DMN at the top and the salience and dorsal attention systems
 at intermediate levels, above thalamic and unimodal sensory
 cortex" \citep{carhart2010default}.
@@ -297,7 +293,7 @@ cortex" \citep{carhart2010default}.
 
 \subsection{Towards a formal account of default mode function: higher-order control of the organism}
 The human DMN is responsible for a large part of the baseline neural activity,
-which typically decreases during psychological experiments.
+which typically decreases when engaged in psychological experiments.
 The standard mode of
 neural information maintenance and manipulation has
 been argued to mediate evolutionarily conserved functions
@@ -321,7 +317,7 @@ yet sometimes useful thoughts
 Gaining insight into the function of the DMN is
 particularly challenging because
 this network appears to
-simultaneously control perception-action cycles and
+simultaneously influence perception-action cycles and
 maintain baseline contemplations
 across time, space, and content domains.
 
@@ -329,22 +325,29 @@ across time, space, and content domains.
 The present work takes the perspective of
 a human agent faced with the choice of the next actions
 and being guided by outcome estimations
-of really-happened, hypothetically conceived, and
+of really happened, hypothetically imagined, and
 expected futures to optimize behavioral performance.
-A particularly attractive computational framework
+Formally, a particularly attractive framework
 to describe, quantify, and predict intelligent systems, such as the brain,
 is proposed to be the combination of control theory and
 reinforcement learning (RL).
-It is known that, the more the external world is predictable,
+An intelligent agent improves its interaction with the environment
+by continuously updating its computation of value estimates and action predispositions
+through integration of feedback outcomes.
+Biologically,
+it is known that, the more the external world is predictable,
 the more mental activity becomes detached from the actual sensory environment
 \citep{antrobus1966studies, pope1978regulation}.
 Conversely,
 the more the ongoing executed task is unknown and unpracticed,
 the less stimulus-independent thoughts occur
 \citep{filler1973daydreaming, teasdale1995stimulus, christoff2016mind}.
-Without requiring explicit awareness,
+Without requiring explicit awareness by the agent,
 these ``offline'' processes may contribute
 to optimizing control of the organism.
+In this context,
+\textit{control} refers to the influence that an agent exerts when interacting
+with the environment to encourage preferred states. \textbf{(XXX Guillaume: DM was asking to move this sentence up. Indeed, we may have to define early on the key concepts.}
 We formalize
 a policy matrix to capture the space of possible actions that can be performed
 on the environment given the current state. A value function
@@ -355,24 +358,22 @@ the DMN dynamics are constantly adapted in feedback loops
 shaped by prediction error.
 A DMN account incorporating RL can naturally embed human behavior
 into the tension between exploitative action with immediate gains and
-exploratory action with longer-term reward outcomes.
+exploratory action with longer-term gratification.
 
 
 
 We argue that DMN implication in a
 diversity of humans' most advanced cognitive processes
 can be recast as prediction error minimization
-based on pervasive probabilistic simulations,
+based on probabilistic mental simulations,
 thus maximizing action outcome across multiple time scales.
 Such a purposeful optimization objective
 may be solved by a stochastic approximation
 based on a brain implementation of Markov Chain Monte Carlo (MCMC) sampling
 \citep{tenenbaum2011grow}.
-In this context,
-\textit{control} refers to the influence that an agent exerts when interacting
-with the environment to encourage preferred states. \textbf{(XXX Guillaume: DM was asking to move this sentence up. Indeed, we may have to define early on the key concepts.}
 Even (necessarily imperfect) memory recall,
-random day-time mind-wandering, and dreams during sleep
+random day-time mind-wandering, and
+seemingly arbitrary dreams during sleep
 may provide meaningful building blocks to iteratively improve
 the predictive DMN machinery to optimize the behavior of the organism.
 %
@@ -413,8 +414,7 @@ the medial prefrontal cortex (mPFC),
 are probably responsible for the highest turn-over
 of glucose energy consumption \citep{raichle2001pnas}.
 These metabolic characteristics go hand-in-hand with
-functional and structural neuroimaging analyses
-suggesting that the PMC and mPFC
+neuroimaging analyses that suggested the PMC and mPFC to
 potentially represent the functional backbone of the DMN
 \citep{andrews2010, hagmann2008mapping}.
 
@@ -478,8 +478,8 @@ This DMN node encoded the
 preference of or aversion to options with uncertain reward outcomes
 and its spiking activity was more associated with
 subjectively perceived relevance of a chosen object
-than by its factual value,
-based on an internal currency of value \citep{mccoy2005risk}.
+than by its actual value,
+based on an ``internal currency of value'' \citep{mccoy2005risk}.
 In fact, direct stimulation of PMC neurons
 promoted exploratory actions,
 which would otherwise be shunned \citep{hayden2008stim}.
@@ -496,7 +496,7 @@ Moreover, the retrosplenial portion of the PMC can subserve
 representation of action possibilities
 and evaluation of reward outcomes by integration with
 information from memory and different perspective frames.
-Regarding memory recall, retrosplenial lesions have been
+Regarding memory recall, retrosplenial damage have been
 consistently associated with anterograde and retrograde memory impairments
 of various kinds of sensory information
 in rabbits and humans
@@ -519,7 +519,7 @@ Estimated value, that differs across individuals, may update
 statistical assessment of the environment
 to predict delayed reward opportunities in the future.
 In doing so, the PMC may continuously adapt the organism to changes
-in both the external environment and its internal representation
+in both the external environment and its internally modeled representation
 to enable strategic behavior.
 
 
@@ -539,7 +539,7 @@ of meaning representations instructed by stored semantics and memories
 
 
 Generally,
-patients with neurological lesions in the prefrontal cortex
+neurological patients with tissue damage in the prefrontal cortex
 are known to struggle with
 adaption to new situations and stimuli
 \citep{stuss1986frontal}.
@@ -601,9 +601,9 @@ This is consistent with diffusion MRI tractography in humans and monkeys
 \citep{croxson2005quantitative} that
 quantified the NAc to
 be more connected to the vmPFC than dmPFC in both species.
-Two functional connectivity analyses in humans strongly connected
+Two different functional connectivity analyses in humans strongly connected
 the vmPFC with the NAc, hippocampus (HC),
-and PMC.
+and PMC \citep{bzdok2015subspecialization}.
 %
 In line with these connectivity findings in animals and humans,
 the vmPFC is often proposed to represent externally or internally triggered
@@ -641,10 +641,10 @@ may be specifically designed to allow reconstructing
 entire episodes of experience from memory fragments.
 Indeed,
 hippocampal damage is
-not only associated with an impairment in reexperiencing the past (i.e., amnesia),
+not only associated with an impairment in re-experiencing the past (i.e., amnesia),
 but also imagining one's own future and
 imagined experiences more broadly \citep{hassabis2007patients}.
-Mental scenes created by HC-lesioned patients exposed a lack of
+Mental scenes created by patients with HC lesion exposed a lack of
 spatial integrity, richness in detail, and overall coherence.
 %
 Single-cell recordings in the animal HC revealed
@@ -656,7 +656,7 @@ HC \citep{maguire2000navigation}.
 Indeed, when an animal is choosing between alternative
 paths, the corresponding neuronal populations in the HC
 spike one after another  \citep{johnson2007neural}.
-These neuronal patterns appear to directly indicate upcoming behavior
+Such neuronal patterns in the HC appear to directly indicate upcoming behavior
 \citep{pfeiffer2013hippocampal}.
 
 
@@ -672,7 +672,7 @@ quiet wakefulness and sleep \citep{hartley2014space, o2010play}.
 Moreover, neuronal spike sequences measured in hippocampal place cells of rats
 featured re-occurrence directly after experimental trials
 as well as directly before upcoming experimental trials \citep{diba2007forward}.
-Such hippocampal neurons burst during rest and sleep
+Such hippocampal neurons spking patterns during rest and sleep
 have been proposed to be critical in communicating local information
 to the neocortex for long-term storage, potentially also in the nodes of the DMN.
 Moreover, invasively triggering experience recall
@@ -682,7 +682,7 @@ has been shown to subsequently alter action choice during wakefulness
 These HC-subserved mechanisms
 probably contribute to advanced cognitive processes that require
 recollecting autobiographical memory episodes, as well as
-reexperiencing or newly generating mental scenarios
+re-experiencing or newly generating mental scenarios
 \citep{hassabis2007patients}.
 
 
@@ -728,7 +728,7 @@ visuo-proprioceptive conflict \citep{Balslev2005}, and
 multi-sensory detection of environmental changes across
 visual, auditory, or tactile stimulation in an fMRI experiment
 \citep{downar2000multimodal}.
-In humans, direct electrical stimulation of the
+Direct electrical stimulation of the human
 RTPJ during neurosurgery was associated with altered perception
 and stimulus awareness \citep{blanke2002neuropsychology}.
 %
@@ -739,7 +739,7 @@ jakobs2009effects}.
 Neural activity in the RTPJ has been argued to reflect
 stimulus-driven attentional reallocation to
 self-relevant and unexpected sources of information
-as a ‘‘circuit breaker’’ that recalibrates control and maintenance systems
+as a ‘‘circuit breaker’’ that recalibrates control and maintenance brain networks
 \citep{bzdok2013tpj, corbettashul2008}.
 % (Bzdok et al., 2013; Corbetta et al., 2008).
 Indeed, patients with RTPJ damage have particular difficulties
@@ -749,7 +749,7 @@ environmental events the RTPJ acts as a potential switch between
 externally-oriented mind sets focussed on the
 sensory environment and internally-oriented mind sets focussed
 on self-relevant mental scene construction.
-For instance, temporally induced RTPJ lesion in humans diminished the
+For instance, temporally induced RTPJ damage in humans diminished the
 impact of predicted intentions of other individuals
 \citep{young2010disruption},
 a capacity believed to be enabled by the DMN.
@@ -774,7 +774,7 @@ and neuropsychology,
 the LTPJ probably mediates access to and integration of world knowlege,
 such as required during action considerations
 \citep{binder2011neurobiology, seghier2013angular}.
-For instance, LTPJ lesions in humans also entail problems in recognizing
+For instance, LTPJ damage in humans also entail problems in recognizing
 others' pantomimed action towards objects
 without obvious relation to processing explicit language content
 \citep{varney1987locus}.
@@ -815,7 +815,7 @@ are key components of intelligent RL agents
 that are plausible to intersect in the DMN.
 
 \begin{wrapfigure}{r}{.4\linewidth}
-  \caption{\textbf{Reinforcement Learning in a nutshell.} Given the current state of the environment,
+  \caption{\textbf{Reinforcement learning in a nutshell.} Given the current state of the environment,
     the agent takes an action (by following some policy). This generates a reward and an observed
     state transition of the environment. This process goes on until interrupted or a goal state is reached.}
   \centering
@@ -916,7 +916,7 @@ which we propose as a useful formal framework for DMN function.
 %
 
 
-\paragraph{Model-free Reinforcement Learning.}
+\paragraph{Model-free reinforcement learning.}
 Model-free RL has had great success in real-world problems including robotics\citep{abbeel2004,andrewng}, computer game play, \citep{mnih2015,silver2016mastering},
 etc., just to name a few. Such a learning scheme can be
 plausibly realized in the human brain. Indeed,
@@ -1035,7 +1035,7 @@ This reduces the variance of expected rewards accumulated across action cascades
 % For instance, a deterministic strategy in playing rock-paper-scissors can
 % be easily exploited and a uniformly random choice is optimal.
 
-\subsection{The nuts and bolts of Reinforcement Learning in the DMN}
+\subsection{The nuts and bolts of reinforcement learning in the DMN}
 \textbf{XXX Elvis to Elvis a short preface is needed here, explaining the roadmap of this subsection from a high-level perspective!}
 
 \subsubsection{The objective value of an action given a state}
@@ -1549,7 +1549,7 @@ DMN activity increases across time, space, and content domains
 demonstrated in many neuroimaging studies
 \citep{spreng2009common, laird2009, bzdok2012morality, binder2009}.
 The semantic hypothesis
-and MDP account provide explanations why hippocampus lesion does
+and MDP account provide explanations why hippocampus damage does
 not only impair recalling memories, but also hypothetical and future
 thinking \citep{hassabis2007patients}.
 While both semantic hypothesis and
@@ -1755,19 +1755,19 @@ On the surface, a common point between the FEP and our proposed RL-based framewo
 \section{Conclusion}
 What brain function could be important enough
 for the existence and survival of the human species
-to warrant constantly high energy costs?
+to justify constantly high energy costs?
 MDPs provide an attractive
 formal account how the human association cortex
 might implement multi-sensory representation and control of the environment to
-optimize the organism's fate.
+optimize the organism's interaction with the world.
 % by obtaining reward and avoiding pain.
 This idealized process model explains
 a number of previous experimental observations in the
 DMN by simple but non-trivial mechanisms.
 %
 From the computational view of a Markovian sequential decision process,
-behavior unfolds by integrating happened past events
-and possible future events to guide action choice in the present context.
+behavior unfolds by integrating happened past experience
+and expected future events to guide action choice in the present context.
 MDPs provide a mathematical formalism how
 optimal substructure in the environment can be recursively exploited
 when confronted with complicated decisions.
@@ -1785,23 +1785,23 @@ and why human creativity might be adaptive.
 %
 In principle,
 neuroscience experiments can be designed that operationalize
-the set of action, value, and state variables that determine
+the set of action, value, and state variables that operationalize
 the behavior of intelligent RL systems.
 
 
 
 The proposed machine-learning perspective
-on DMN biology is hence not only practically computable but
-also yields falsifiable neuroscientific hypotheses.
+on DMN biology is hence practically computable and
+yields falsifiable neuroscientific hypotheses.
 %
 At the least, we propose an alternative vocabulary to
 describe and interpret experimental findings in neuroscience studies
-on this major brain network.
+on this top-level brain network.
 %
 Ultimately,
-the DMN can be viewed as a functional integrator
-from the relatively recent events to anticipated upcoming events
-to constantly refine the organism's interaction with the world.
+DMN activity may instantiate a holistic integration
+ranging from real experience over purposeful dreams to anticipated futures
+for constant refinement of the organism's fate.
 
 
 

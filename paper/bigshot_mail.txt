@@ -1,0 +1,12 @@
+Dear Professor Tenenbaum,
+
+Kristian Kersting introduced me to you a while ago. I am writing you today because we have recently drafted a manuscript that intersects human cognition and reinforcement learning systems to explain the energy-demanding baseline mental activity. We conceptualize continuous action policy computation and utility estimation in the so-called default mode network couched in terms of Markov decision processes. This formal attempt to explain the biological purpose of "mind-wandering" at day-time and dreams during sleep more parsimoniously captures, as special cases, a number of existing theories from cognitive psychology and cognitive neuroscience.
+
+It would be fantastic to have your thoughts and corrections on the paper, if you find the time.
+
+
+Best,
+Danilo Bzdok
+
+
+
