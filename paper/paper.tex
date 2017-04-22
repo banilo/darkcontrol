@@ -837,9 +837,10 @@ In this view, the environment is partially controlled by
 the action of the agent and the reward can be thought
 of as satisfaction -- or aversion -- accompanying the execution of
 an action.
-
 Action may be delayed to achieve substantial increases in expected reward
 that is expected to grow with time.
+
+
 The environment is generally taken as \textit{stochastic},
 that is, changing in random ways. In addition,
 the environment is only \textit{partially observed}
@@ -920,8 +921,8 @@ which we propose as a useful formal framework for DMN function.
 Model-free RL has had great success in real-world problems including robotics\citep{abbeel2004,andrewng}, computer game play, \citep{mnih2015,silver2016mastering},
 etc., just to name a few. Such a learning scheme can be
 plausibly realized in the human brain. Indeed,
-a core property of human intelligence has been proposed underly to improve
-on an expected utility outcomes as a strategy for action choice in uncertain
+a core property of human intelligence has been proposed to underly improvement
+of expected utility outcomes as a strategy for action choice in uncertain
 environments \citep{gershman2015computational}, a situation perfectly captured by the formalism of POMDPs.
 It has also long been proposed \citep{dayan2008decision} that there
 is a rather direct mapping of model-free RL learning algorithms
@@ -1169,7 +1170,7 @@ $(s,a)$, as proposed by \citep{songNIPS2016} for example.
 %  and Parr et al. 2003 (JMLR)].
 In the DMN, The dmPFC (BA9) would implement such a greedy lookup over the action space.
 The tensor $\theta$ encodes the model
-  parameters and would correspond to synaptic weights and / or connection strengths between
+  parameters and would correspond to synaptic weights and connection strengths between
   DMN regions. It is a time-varying neuronal program which dictates how to move from world states $s$ to actions $a$ via the greedy policy \eqref{eq:policy}.
   The oracle Q-values $Q(s, a|\theta)$ tell the DMN the (expected) usefulness of taking an action a in state / situation  $s$.
   The DMN, and in particular its dmPFC node, would then contribute to the choice, at a given $s$, of an action $a$ which maximizes this tabulated values. This mapping from states to actions defines a matrix, which can be conveniently called a "policy matrix". Learning consists in starting from a given instantiation of such a table and tweaking it around while using it to take actions which take the agent to different areas of the table, and so forth.
@@ -1253,7 +1254,8 @@ from lower to higher processing layers to modulate the choice of future actions
 \end{equation}
 Over time (i.e., in the limit $k \rightarrow \infty$),
 the thus generated approximating sequence of
-$Q$-value functions provably\footnote{The proof is standard and relies on the Banach Fixed-Point Theorem applied to the Bellman transform.} $Q$-value functions $\tilde{Q}(.,.|\theta_0) \rightarrow \tilde{Q}(.,.|\theta_1) \rightarrow \tilde{Q}(.,.|\theta_2) \rightarrow \ldots$
+$Q$-value functions provably\footnote{The proof is standard and relies on the Banach Fixed-Point Theorem applied to the Bellman transform.}
+$\tilde{Q}(.,.|\theta_0) \rightarrow \tilde{Q}(.,.|\theta_1) \rightarrow \tilde{Q}(.,.|\theta_2) \rightarrow \ldots$
 are attracted and absorbed by the optimal $Q$-value function $Q^*$ defined implicitly by the Bellman equation \eqref{eq:bellman}.
 
 % \subsubsection{Link to classical reinforcement learning algorithms}
