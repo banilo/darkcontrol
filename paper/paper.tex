@@ -1110,7 +1110,6 @@ Optimal behavior corresponds to a strategy $\pi^*$ for choosing actions such tha
   \pi^*(s) := \argmax_{a \in \mathcal A}{Q}^*(s, a),\text{ where }Q^*(s, a) := \max_{\pi}Q^\pi(s,a).
   \label{eq:qlearning}
 \end{equation}
-
 The learning goal is to approach the
 policy $\pi^*$ as ``close as possible'', that is to \text{solve} the POMDP.
 Of course \eqref{eq:qlearning} is just a definition and
@@ -1160,6 +1159,8 @@ triggered by another behavioral policy, which can be stochastic.
 \subsubsection{Value approximation and the policy matrix}
 %As already mentioned in the previous section, Q-learning optimizes over the class of
 % deterministic policies of the form \eqref{eq:qlearning}.
+\textbf{XXX Elvis to Elvis: clarify the notion of greed. Add a paragraph on the exploitation vs exploration dilemma, and end with a conclusion saying the DMN probably does epsilon-greedy.}
+
 At a time step $k-1$, the world is in a state $s \in \mathcal S$, and the agent greedily takes an
 action which it expects to be the must valuable on average, namely
 
@@ -1172,7 +1173,7 @@ form $\tilde{Q}(s, a|\theta) = \phi(s,a)^T\theta$, where
 $\phi(s,a)$ would represent a high-level representation of the state-action pairs
 $(s,a)$, as proposed by \citep{songNIPS2016} for example.
 %  and Parr et al. 2003 (JMLR)].
-In the DMN, the dmPFC (BA9) would implement such a greedy (i.e., heuristic but efficient) lookup
+In the DMN, the dmPFC (BA9) would implement such a greedy lookup
 over the action space.
 The model
   parameters $\theta$ would correspond to synaptic weights and connection strengths between
