@@ -234,7 +234,7 @@ We argue that our formal account of DMN function naturally accommodates as speci
 the previously proposed cognitive accounts on
 (1) predictive coding,
 (2) semantic associations, and
-(2) a ``sentinel'' role.
+(3) a ``sentinel'' role.
 %
 A process model for the neural optimization of complex behavior in the DMN
 offers parsimonious explanations for
@@ -320,7 +320,8 @@ particularly challenging because
 this network appears to
 simultaneously impact perception-action cycles and
 maintain probabilistic contemplations
-across time, space, and content domains.
+across time, space, and content domains
+\citep{boyer2008evolutionary}.
 
 
 The present work adopts the perspective of
@@ -636,7 +637,8 @@ While the HC
 is traditionally believed to allow remembering the past,
 there is now increasing evidence for a role
 in constructing mental models in general
-\citep{maguire2016, schacter2007remembering, gelbard2008internally, Javadi2017}.
+\citep{maguire2016, schacter2007remembering, gelbard2008internally, Javadi2017,
+boyer2008evolutionary}.
 Its recursive anatomical architecture
 may be specifically designed to allow reconstructing
 entire episodes of experience from memory fragments.
@@ -1244,7 +1246,7 @@ of the neural processing hierarchy
 \subsubsection{Optimal control via stochastic gradient descent in the DMN}
 Learning of the the entire model parameters can effectively be achieved
 via \textit{gradient descent},
-where reward prediction errors (RPEs) -- also known as \textit{regret}-- percolate
+where reward prediction errors -- also known as \textit{regret}-- percolate
 from lower to higher processing layers to modulate the choice of future actions
 
 % online stochastic gradient descent is used to minimize the variational objective
@@ -1288,7 +1290,7 @@ and for belief state updates, breaking the curse of dimensionality and allowing 
 
 In the human brain,
 the HC could contribute to synthesizing imagined sequences of world states,
-observations and rewards \citep{aronov2017, chao2017interaction}.
+observations and rewards \citep{aronov2017, chao2017interaction, boyer2008evolutionary}.
 These simulations would be used to update the value function, without ever looking inside the black box describing the model's dynamics \citep{lavilleon2015}.
 This would be a simple control algorithm by evaluating all legal actions and selecting the action with
 highest expected cumulative rewards.
@@ -1300,7 +1302,8 @@ beyond the description of receptive fields. \textbf{XXX Elvis: rephrase last sen
 \subsection{Putting everything together}
 The DMN is today known to consistently increase in neural
   activity when humans engage in cognitive processes that are detached from
-  current sensory environment \citep{kenet2003spontaneously, fiser2004small}
+  current sensory environment
+  \citep{kenet2003spontaneously, fiser2004small, bzdok2013segregation}
   and it was proposed to be situated at the top of the brain network hierarchy
   \citep{carhart2010default, margulies2016situating}.
   Its putative involvement in thinking about the past,
@@ -1321,7 +1324,7 @@ The DMN may subserve
   in humans.
 \begin{figure}[!h]
   \includegraphics[width=.9\linewidth]{neurobiological_and_rl_overview_DMN.pdf}
-  \caption{\textbf{DMN: neurobiological implementation of Reinforcement Learning.}
+  \caption{\textbf{DMN: neurobiological implementation of reinforcement learning.}
   Overview of how the constituent nodes of the Default Mode Network (DMN)
   map onto computational components necessary for an RL agent.}
   \label{fig:rl_process_chart}
@@ -1502,11 +1505,12 @@ explicit world knowledge (i.e., semantics) extracted from the environment
 The encoding of complex environments could thus be facilitated
 by association to similar states.
 %
-Going beyond human language itself,
+Going beyond meaning and concepts extracted from the world,
 semantic building blocks may provide the basis for
 mentally envisioning non-existing scenarios
 that would optimize behavior in the environment
-by constantly simulating possible future events.
+by constantly simulating possible future events
+\citep{boyer2008evolutionary, binder2011neurobiology}.
 Such cognitive processes can afford
 the internal generation of necessary information
 that is not presented in the surrounding environment
@@ -1600,6 +1604,9 @@ account is lacking an explicit time and incentive model.
 
 
 \subsection{Sentinel hypothesis}
+DMN regions have been associated with processing the
+experienced or expected relevance of a diversity of environment stimuli
+\citep{montague2006imaging}.
 Processing self-relevant information was perhaps the first
 cognitive account that was proposed for the DMN \citep{gusnard2001medial}.
 Since then,
