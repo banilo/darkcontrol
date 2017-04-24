@@ -1159,8 +1159,6 @@ triggered by another behavioral policy, which can be stochastic.
 \subsubsection{Value approximation and the policy matrix}
 %As already mentioned in the previous section, Q-learning optimizes over the class of
 % deterministic policies of the form \eqref{eq:qlearning}.
-\textbf{XXX Elvis to Elvis: clarify the notion of greed. Add a paragraph on the exploitation vs exploration dilemma, and end with a conclusion saying the DMN probably does epsilon-greedy.}
-
 At a time step $k-1$, the world is in a state $s \in \mathcal S$, and the agent greedily takes an
 action which it expects to be the must valuable on average, namely
 
@@ -1168,7 +1166,10 @@ action which it expects to be the must valuable on average, namely
   \pi^{\text{greedy}}(s) = \argmax_{a \in \mathcal A}\tilde{Q}(s, a|\theta),
   \label{eq:policy}
 \end{equation}
-by querying an approximate version $a \mapsto \tilde{Q}(a,s|\theta)$ of the $Q$-value function ``frozen'' at state $s$. For instance, a simplistic linear model with a kernel $\phi$ would be of the
+by querying an oracle which maps from states directly to actions. Here $\tilde{Q}(s,a|\theta)$ is an
+approximate version of the $Q$-value function parameterized by the tensor $\theta$.
+% $a \mapsto \tilde{Q}(a,s|\theta)$ of the $Q$-value function ``frozen'' at state $s$.
+For instance, a simplistic linear model with a kernel $\phi$ would be of the
 form $\tilde{Q}(s, a|\theta) = \phi(s,a)^T\theta$, where
 $\phi(s,a)$ would represent a high-level representation of the state-action pairs
 $(s,a)$, as proposed by \citep{songNIPS2016} for example.
@@ -1178,9 +1179,10 @@ over the action space.
 The model
   parameters $\theta$ would correspond to synaptic weights and connection strengths between
   brain regions. It is a time-varying neuronal program which dictates how to move from world states $s$ to actions $a$ via the greedy policy \eqref{eq:policy}.
-  The oracle Q-values $Q(s, a|\theta)$ tell the DMN the (expected) usefulness of taking an action a in state $s$.
+  The oracle Q-values $\tilde{Q}(s, a|\theta)$ tell the DMN the (expected) usefulness of taking an action a in state $s$.
   The DMN, and in particular its dmPFC node, would then contribute to the choice, at a given state $s$, of an action $a$ which maximizes this tabulated values. This mapping from states to actions is conventionally called "policy matrix". Learning consists in starting from a given instantiation of such a table and tweaking it around while using it to take actions which take the agent to different areas of the table, and so forth.
 
+\textbf{XXX Elvis to Elvis: clarify the notion of greed. Add a paragraph on the exploitation vs exploration dilemma, and end with a conclusion saying the DMN probably does epsilon-greedy.}
 
 \subsubsection{Self-training and the loss function}
 Successful learning in brains and computer algorithms is challenging without a clear learning goal --
