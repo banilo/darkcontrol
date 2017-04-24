@@ -1269,18 +1269,18 @@ $Q$-value functions provably
 $\tilde{Q}(.,.|\theta_0) \rightarrow \tilde{Q}(.,.|\theta_1) \rightarrow \tilde{Q}(.,.|\theta_2) \rightarrow \ldots$
 are attracted and absorbed by the optimal $Q$-value function $Q^*$ defined implicitly by the Bellman equation \eqref{eq:bellman}.
 
-% \subsubsection{Link to classical reinforcement learning algorithms}
-% One should note that most classical RL algorithms, including \textit{Temporal Difference (TD)}
-% learning \citep{sutton1998reinforcement}, REINFORCE \citep{williams1992}, and SARSA can be
-% cast in this \textbf{please unpack the "this" here}
-% general variational framework. For instance, TD corresponds to
-% the above framework using a linear value approximator with feature encoding
-% $\phi(s,a) = \delta_{(s,a)} =  \text{ point mass at }(s,a)$ on the grid
-% $\mathcal S \times \mathcal A$, and so
-% $$\nabla_{\theta}\tilde{Q}(s, a|\theta) = \phi(s, a) = \delta_{(s,a)}.$$
-% Whence, the gradient update due to the sample $(s,a,r,s') \in \mathcal D$ is
-% $$\theta(s,a) \leftarrow \theta(s,a) + \alpha(\tilde{Q}(s, a|\theta) - y),$$
-% the well-known TD update rule \citep{sutton1998reinforcement}.
+\subsubsection{Link to classical reinforcement learning algorithms}
+One should note that most classical RL algorithms, including \textit{Temporal Difference (TD)}
+learning \citep{sutton1998reinforcement}, REINFORCE \citep{williams1992}, and SARSA can be
+cast in this \textbf{please unpack the "this" here}
+general variational framework. For instance, TD corresponds to
+the above framework using a linear value approximator with feature encoding
+$\phi(s,a) = \delta_{(s,a)} =  \text{ point mass at }(s,a)$ on the grid
+$\mathcal S \times \mathcal A$, and so
+$$\nabla_{\theta}\tilde{Q}(s, a|\theta) = \phi(s, a) = \delta_{(s,a)}.$$
+Whence, the gradient update due to the sample $(s,a,r,s') \in \mathcal D$ is
+$$\tilde{Q}(s, a) \leftarrow \tilde{Q}(s, a) + \alpha(y-\tilde{Q}(s, a)),$$
+the well-known TD update rule \citep{sutton1998reinforcement}.
 
 \subsubsection{Does the hippocampus subserve Monte-Carlo sampling?}
 In RL, Monte-Carlo simulation can be used to update the agent's belief state
