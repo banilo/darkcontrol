@@ -1025,29 +1025,31 @@ and
 the amygdala, known to be involved in evaluation of biological significance.
 
 
-The goal of the RL agent is then to update this policy in order
-to maximize $G^\pi$, in an average sense to be made precise latter. In
-the definition of cumulative reward $G^\pi$ \eqref{eq:cumr},
-the constant $\gamma$ $(0 \le \gamma < 1$) is the reward \textit{discount factor}, viewed to be specific an agent.
-Setting $\gamma = 0$ corresponds to a perfectly shortsighted agent who
-is hedonistic in being exclusively concerned with immediate rewards.
-Such an agent would have no horizon for the future,
-which is not compatible with long-term goal planning
-as potentially realized in the DMN.
-To allow a learning process to arise,
-it is necessary to set $0 < \gamma < 1$.
+The goal of the RL agent is then to update this action policy in order
+to maximize $G^\pi$ on average (cf. below). In \eqref{eq:cumr},
+the definition of cumulative reward $G^\pi$,
+the constant $\gamma$ $(0 \le \gamma < 1$) is the \textit{reward discount factor},
+viewed to be specific an agent.
+On the one hand,
+setting $\gamma = 0$ yields perfectly hedonistic behavior.
+An agent with such a shortsighted horizon is exclusively
+concerned with immediate rewards.
+This is however not compatible with coordinated planning if long-term goal that is
+potentially subserved by neural activity in the DMN.
 % \footnote{In which case we can take $T \rightarrow +\infty$, provided the reward function $r$ is bounded.}.
 % The reward discount factor
-$\gamma$ can be seen as calibrating risk-seeking trait of the intelligent agent,
-that is, the behavioral predispositions related to reward-delay trade-off schedules.
+On the other hand,
+setting $0 < \gamma < 1$ allows a learning process to arise.
+A positive $\gamma$ can be seen as calibrating risk-seeking trait of the intelligent agent,
+that is, the behavioral predispositions related to trading longer delays for higher rewards.
 Such an agent puts relatively more emphasis on rewards expected in
-a short future and pays less attention to
+a longer-term future and pays less attention to
 rewards expected at a later time. Precisely, rewards that are not expected to come within $\tau := 1/(1 - \gamma)$ time steps from the present point are disregarded.
 This reduces the variance of expected rewards accumulated across
 considered action cascades by limiting the depth of the search tree.
-% given that there is more uncertainty in the farsighted future.
-% It is also important to appreciate that a stochastic policy estimation
-% is more advantageous in many RL settings.
+Given that there is more uncertainty in the farsighted future,
+it is important to appreciate that a stochastic policy estimation
+is more advantageous in many RL settings.
 % For instance, a deterministic strategy in playing rock-paper-scissors can
 % be easily exploited and a uniformly random choice is optimal.
 
@@ -1055,7 +1057,8 @@ considered action cascades by limiting the depth of the search tree.
 \textbf{XXX Elvis to Elvis a short preface is needed here, explaining the roadmap of this subsection from a high-level perspective!}
 
 \subsubsection{The objective value of an action given a state}
-Given only the limited information available from a MDP, at a state $s$ the average quality or usefulness of taking an action $a$ under a policy $\pi$ is completely captured by the single number
+Given only the limited information available from a MDP, at a state $s$ the average 
+utility of choosing an action $a$ under a policy $\pi$ can be captured by the single number
 % We can now formulate the purpose of the DMN
 % as finding a policy $\pi$ for the human agent that maximizes the
 % expected cumulative value of an state-action pair $(a,s)$, also known as the \textit{Q-value}, namely
@@ -1073,7 +1076,8 @@ $s$, chooses action $a$, and then follows the policy $\pi$ to select future acti
 %% the set of actions given states in finite time.
 For the brain,
 $Q^{\pi}(s, a)$ defined in \eqref{eq:qval} provides the subjective
-utility of executing a specific action; it answers the question
+utility of executing a specific action.
+Thus, it answers the question
 ``What is the expected utility of taking action $a$ in this situation ?''.
 $Q^{\pi}(s,a)$ offers a formalization of optimal behavior that
 may well reflect processing aspects of the DMN in human agents.
@@ -1114,7 +1118,8 @@ may well reflect processing aspects of the DMN in human agents.
 % \textit{greedy policy}
 \subsubsection{Optimal behavior and the Bellman equation}
 
-Optimal behavior corresponds to a strategy $\pi^*$ for choosing actions such that, for every state, the chosen action guarantees the best possible reward on average. Formally,
+Optimal behavior of the agent corresponds to
+a strategy $\pi^*$ for choosing actions such that, for every state, the chosen action guarantees the best possible reward on average. Formally,
 % \textbf{XXX please add 1-2 sentences why this is interesting in the current
 % context. This statement appears a little alone as it stands.}
 \begin{equation}
@@ -1127,7 +1132,7 @@ Of course \eqref{eq:qlearning} is just a definition and
 represents by no means, a candidate schema for solving MDPs with even moderately-sized action and state spaces: it's intractable!
 % where $\tilde{Q}(s, a)$ is the current estimate of the state-action value
 % table.
-Fortunately, the \textit{Bellman equation} \citep{sutton1998reinforcement} provides a fixed-point relation which defines $Q^*$ implicitly via a sampling procedure, without querying the entire space of policies, viz
+Fortunately, the \textit{Bellman equation} \citep{sutton1998reinforcement} provides a fixed-point relation which defines $Q^*$ implicitly via a sampling procedure, without querying the entire space of policies, with the form
 \begin{equation}
   Q^* = \text{Bel}(Q^*),
   \label{eq:bellman}
@@ -1146,19 +1151,22 @@ where the ``Bellman transform'' $\text{Bel}(Q)$ of an arbitrary $Q$-value functi
   \end{equation}
 The Bellman equation \eqref{eq:bellman} is a ``self-consistency'' equation which provides
 a recursive decomposition of optimal behavior by dividing the $Q$-value function into the immediate
-reward and the discounted rewards of the upcoming states.
+reward and the discounted rewards of the upcoming states in the environment.
 The optimal Q-value operator $Q^*$ is a fixed point for this equation.
 As a consequence of this decomposition, the complicated dynamic programming optimization
 problem \eqref{eq:qlearning}
 is broken into simpler sub-problems at different time points.
 Exploitation of hierarchical structure in action considerations
-has previously been closely related to the medial prefrontal part of the DMN
+has previously been related to the medial prefrontal part of the DMN
 \citep{koechlin1999role, braver2002role}.
 Using the Bellman equation, each state can be associated with a certain value
-to guide action towards a better state, thus improving on the agent's current policy.
+to guide action towards a preferred state, thus improving on the agent's current policy.
 % It is a fixed-point equation for the deterministic policy $\pi$.
-Note that in \eqref{eq:bellman} the sampling is done only over things which
-depend on the environment, and so can be learned off-policy by observing state transitions
+Note that in \eqref{eq:bellman} the random sampling
+is performed only over quantities which
+depend on the environment.
+This aspect of the learning process
+can unroll off-policy by observing state transitions
 triggered by another behavioral policy, which can be stochastic.
 
 \begin{mdframed}
@@ -1171,53 +1179,62 @@ triggered by another behavioral policy, which can be stochastic.
 %As already mentioned in the previous section, Q-learning optimizes over the class of
 % deterministic policies of the form \eqref{eq:qlearning}.
 At a time step $k-1$, the world is in a state $s \in \mathcal S$, and the agent greedily takes an
-action which it expects to be the must valuable on average, namely
+action which it expects to be the most valuable on average, namely
 
 \begin{equation}
   \pi^{\text{greedy}}(s) = \argmax_{a \in \mathcal A}\tilde{Q}(s, a|\theta),
   \label{eq:policy}
 \end{equation}
-by querying an oracle which maps from states directly to actions. Here $\tilde{Q}(s,a|\theta)$ is an
+by querying an oracle \textbf{XXX Please let's not use "oracle" anywhere in
+the paper, if possible, because it will confuse a lot of peoople.}
+which maps from states directly to actions. Here $\tilde{Q}(s,a|\theta)$ is an
 approximate version of the $Q$-value function parameterized by the tensor $\theta$.
 % $a \mapsto \tilde{Q}(a,s|\theta)$ of the $Q$-value function ``frozen'' at state $s$.
 For instance, a simplistic linear model with a kernel $\phi$ would be of the
 form $\tilde{Q}(s, a|\theta) = \phi(s,a)^T\theta$, where
 $\phi(s,a)$ would represent a high-level representation of the state-action pairs
-$(s,a)$, as proposed by \citep{songNIPS2016} for example.
+$(s,a)$, as proposed by \citep{songNIPS2016}.
 %  and Parr et al. 2003 (JMLR)].
-In the DMN, the dmPFC (BA9) would implement such a greedy lookup
+In the DMN, the dmPFC would implement such a greedy lookup
 over the action space.
 The model
   parameters $\theta$ would correspond to synaptic weights and connection strengths between
   brain regions. It is a time-varying neuronal program which dictates how to move from world states $s$ to actions $a$ via the greedy policy \eqref{eq:policy}.
   The oracle Q-values $\tilde{Q}(s, a|\theta)$ tell the DMN the (expected) usefulness of taking an action a in state $s$.
-  The DMN, and in particular its dmPFC node, would then contribute to the choice, at a given state $s$, of an action $a$ which maximizes this tabulated values. This mapping from states to actions is conventionally called ``policy matrix''. Learning consists in starting from a given instantiation of such a table and tweaking it around while using it to take actions which take the agent to different areas of the table, and so forth.
+  The DMN, and in particular its dmPFC node, could then contribute to the choice, at a given state $s$, of an action $a$ which maximizes this tabulated values. This mapping from states to actions is conventionally called ``policy matrix''.
+  Learning consists in starting from a given table and
+  updating it during action choices,
+  which take the agent to different table entries.
 
 \textbf{XXX Elvis to Elvis: clarify the notion of greed. Add a paragraph on the exploitation vs exploration dilemma, and end with a conclusion saying the DMN probably does epsilon-greedy.}
 
 \subsubsection{Self-training and the loss function}
-Successful learning in brains and computer algorithms is challenging without a clear learning goal --
-the \textit{loss function}.
+Successful learning in brains and computer algorithms is challenging without a
+defined learning goal -- the \textit{loss function}.
 The action $a$ chosen in state $s$ according to the policy matrix defined in
 \eqref{eq:policy} yields a reward $r$ collected by the agent,
 % (measured on their internal currency of worldly values ?),
 after which the environment transitions to a new state $s' \in \mathcal S$.
 % \textbf{XXX Please try to smoothen the previous sentence}
-At the end of this cycle, a new \textit{experience} $e = (s,a,r,s')$ is produced, which represents an 
-behavior unit of the agent and is recorded in replay memory buffer -- which we hypothesize to be the
+One such cycle yields a new \textit{experience} $e = (s,a,r,s')$.
+Each cycle represents a behavior unit of the agent
+and is recorded in replay memory buffer -- which we hypothesize to be the
 HC --, possibly discarding the oldest entries to make space:
 $\mathcal D \leftarrow \text{append}(\mathcal D, e)$.
-At time step $k$, the agent seeks an update $\theta_{k} \leftarrow \theta_{k-1} + \delta \theta_{k}$ of the parameters for its approximate model of $Q$-value function. This warrants a learning process
+
+
+
+At time step $k$, the agent seeks an update $\theta_{k} \leftarrow \theta_{k-1} + \delta \theta_{k}$ of the parameters for its approximate model of the $Q$-value function. This warrants a learning process
 and definition of a loss function.
 % \subsubsection{Stochastic gradient in the DMN via experience replay}
-The Bellman equation \eqref{eq:bellman} provides a way to produce such a loss function \eqref{eq:oracle} as we now outline.
+The Bellman equation \eqref{eq:bellman} provides a way to obtain such a loss function \eqref{eq:oracle} as we outline in the following.
 % A practically successful RL approach
 % needs ways to efficiently approximate the state-action value function
 % to allow for scaling to large state and action spaces.
 Replay consists in sampling
 % (uniform or importance-weighted
 % \footnote{e.g weighted by TD error of the state transition $s \overset{a}{\rightarrow} s'$.})
-mini-batches of experiences $e$
+batches of experiences $e$
 $(s, a, r, s') \sim \mathcal D$ from the replay memory $\mathcal D$.
 The agent then tries to approximate
 the would-be $Q$-value for the state-action pair $(s,a)$ as predicted by the Bellman equation \eqref{eq:bellman}, namely
@@ -1228,21 +1245,22 @@ with the prediction of a parametrized regression model $(s,a)
 \mapsto \tilde{Q}(s, a|\theta_{k-1})$.
 From a neurobiological perspective,
 experience replay can be manifested in the re-occurrence of a
-neuron spiking sequence that also occurs during specific actions.
+neuron spiking sequence that also occurred during specific prior actions.
 %, but the replay has a much faster time scale.
-In the human brain, the HC is likely to contribute to such a mechanism,
+The HC is likely to contribute to such a mechanism,
 as neuroscience experiments on various animals have repeatedly indicated
 in rats, mice, cats, rabbits, songbirds, and
 monkeys \citep{buhry2011,nokia2010,dave2000,skaggs2007}.
 
-At the current iteration $k$, computing an optimal parameter update then corresponds to finding the parameters $\theta_{k}$ which minimize the following mean-squared loss function
+At the current step $k$, computing an optimal parameter update then corresponds to
+finding the model parameters $\theta_{k}$ which minimize the following mean-squared loss function
 \begin{equation}
   \mathcal L(\theta^Q_{k})
   % = \mathbb E_{(s, a, r, s') \sim \mathcal D}[(\tilde{Q}(s, a|\theta) - \tilde{Q}(s',a'|\theta^Q_{k}))^2]
   = \mathbb E_{(s, a, r, s') \sim \mathcal D}\left[\frac{1}{2}(\tilde{Q}(s, a|\theta_{k}) - y_k)^2\right],
   \label{eq:oracle}
 \end{equation}
-where $y_k$ is a defined in \eqref{eq:bellman}.
+where $y_k$ is defined in \eqref{eq:bellman}.
 % \textbf{We still may need to explain y in the formula with one sentence.}
 A recently proposed, practically successful alternative approach
 \citep{mnih2015,silver2016mastering} is to learn this
@@ -1258,9 +1276,10 @@ of the neural processing hierarchy
 
 
 \subsubsection{Optimal control via stochastic gradient descent in the DMN}
-Learning of the the entire model parameters can effectively be achieved
-via \textit{gradient descent},
-where reward prediction errors -- also known as \textit{regret}-- percolate
+Efficient learning of the entire set of model parameters can effectively be achieved
+via \textit{gradient descent}.
+\textbf{XXX Please add one explanatory sentence for GD.}
+Reward prediction errors -- also known as \textit{regret}-- percolate
 from lower to higher processing layers to modulate the choice of future actions
 
 % online stochastic gradient descent is used to minimize the variational objective
@@ -1279,6 +1298,8 @@ $Q$-value functions provably
 % \footnote{The proof is standard and relies on the Banach Fixed-Point Theorem applied to the Bellman transform.}
 $\tilde{Q}(.,.|\theta_0) \rightarrow \tilde{Q}(.,.|\theta_1) \rightarrow \tilde{Q}(.,.|\theta_2) \rightarrow \ldots$
 are attracted and absorbed by the optimal $Q$-value function $Q^*$ defined implicitly by the Bellman equation \eqref{eq:bellman}.
+\textbf{XXX Please say something about *stochasti*, which you can then
+also use as transition into the next passage.}
 
 % \subsubsection{Link to classical reinforcement learning algorithms}
 % One should note that most classical RL algorithms, including \textit{Temporal Difference (TD)}
@@ -1295,7 +1316,9 @@ are attracted and absorbed by the optimal $Q$-value function $Q^*$ defined impli
 
 \subsubsection{Does the hippocampus subserve Monte-Carlo sampling?}
 In RL, Monte-Carlo simulation can be used to update the agent's belief state
-\citep{silver2010monte}. Such methods have a sample complexity that is determined only by the underlying difficulty of the MDP, rather than the size of the state space or observation space,
+\citep{silver2010monte}.
+Such methods have scaling as a function of available data (i.e., sample complexity) that
+is determined only by the underlying difficulty of the MDP, rather than the size of the state space or observation space,
 which can be prohibitively large.
 Monte-Carlo simulation provides a simple method for evaluating the value of a state.
 They provide an effective mechanism both for tree search (of the considered
@@ -1305,7 +1328,8 @@ and for belief state updates, breaking the curse of dimensionality and allowing 
 In the human brain,
 the HC could contribute to synthesizing imagined sequences of world states,
 observations and rewards \citep{aronov2017, chao2017interaction, boyer2008evolutionary}.
-These simulations would be used to update the value function, without ever looking inside the black box describing the model's dynamics \citep{lavilleon2015}.
+These simulations of experience batches
+would be used to update the value function, without ever looking inside the black box describing the model's dynamics \citep{lavilleon2015}.
 This would be a simple control algorithm by evaluating all legal actions and selecting the action with
 highest expected cumulative rewards.
 In MDPs, Monte-Carlo simulation provides an effective mechanism both for tree search and for belief-based state updates, breaking the curse of dimensionality and allowing much greater scalability than has previously been possible
@@ -1346,7 +1370,7 @@ The DMN may subserve
 
 
 The HC may provide perturbed action-transition-state-reward samples
-  as batches of imagined, hypothesized, recalled experience.
+  as batches of imagined, hypothesized, and recalled experience.
   The small variations in these experience samplings allow searching
   a larger space of model parameters and possible experiences.
   Taken to its extreme, stochastic recombination of experience
@@ -1427,7 +1451,7 @@ using a-priori information about the environment.
 In short, predictive coding processes
 conceptualize updates of the internal representation of the environment
 to best accommodate and prepare the organism
-for the constant influx of sensory examples and
+for processing the constant influx of sensory stimulation and
 performing action on the environment.
 There are hence a number of common properties
 between the predictive coding account
@@ -1438,11 +1462,13 @@ world would be incorporated into
 the current neuronal wiring.
 Further,
 both accounts are plausibilized by neuroscientific evidence that suggest
-the human brain to be a ``statistical organ'' with the biological purpose to
+the human brain to be a ``statistical organ'' \citep{friston2014phantastic}
+with the biological purpose to
 generalize from the past to new experiences.
 Neuroanatomically, axonal
 back projections indeed outnumber by far the axonal input projections
-existing in the primate brain \citep{salin1995corticocortical}.
+existing in the monkey and probably also human brain 
+\citep{salin1995corticocortical}.
 Moreover,
 both accounts provide a parsimonious explanation why the
 human brain decreases processing load devoted to incoming information
@@ -1464,7 +1490,7 @@ sensory perception of the external world
 as a generative experience due to the modulatory top-down influence at
 various stages of sensory input processing.
 In our MDP view, instead,
-the Markov property of our sequential decision making framework entails
+the Markov property of the sequential decision making framework entails
 the environmental model to be
 \textbf{effectively expressed in the current state of the human agent
 XXX guys, please double-check}.
@@ -1478,7 +1504,7 @@ explicit parameterization of the agent's horizon and
 has a tendency to be presented as emphasizing prediction about the
 immediate future.
 In the present account, the horizon of that
-look into the future is explicitly expressed in the $\gamma$ parameter
+look into the future is made explicit in the $\gamma$ parameter
 of the Bellman equation.
 % \item \suggestremove{Mismatch negativity of PC is immanent in reward prediction error
 % by the difference between actually predicted reward of an action given
@@ -1493,6 +1519,8 @@ It is however important to note that
 the neurobiological plausibility of
 the back-propagation procedure is controversal
 \citep{goodfellow2016deep}.
+
+
 In sum,
 the present formal account may serve as a concrete implementation of
 the long-standing predictive coding account from cognitive neuroscience.
@@ -1545,7 +1573,7 @@ Further,
 episodic memory, language, problem solving,
 planning, estimating other people's thoughts, and spatial navigation
 represent neural processes that are likely to
-build on abstract world knowledge and logical assocations
+build on abstract world knowledge and logical associations
 for integrating the constituent elements in mental scene construction
 \citep{schacter2007remembering}.
 Such scene construction processes could contribute to interpreting the
@@ -1566,7 +1594,7 @@ and exploit it later for other means \citep{tolman1948cognitive}.
 
 
 In comparison,
-both the semantic hypothesis and the present account based on MDPs
+both the semantic hypothesis and the present formal account based on MDPs
 expose mechanisms of how action considerations could be mentally explored.
 In both accounts,
 there is also no reason to assume that predictions of various
@@ -1596,7 +1624,8 @@ world view (more related to past and future actions, states, and rewards)
 on the world in a same optimization problem.
 Further,
 the semantic account of DMN function does not offer
-a mechanistic explanation how explicit world knowledge and semantic analogies thereof
+a mechanistic explanation \textit{how}
+explicit world knowledge and semantic analogies thereof
 lead to prediction of future actions and states.
 The semantic hypothesis does not explain why memory recall
 for scene construction in humans is typically fragmentary and noisy
@@ -1604,7 +1633,7 @@ instead of accurate and reliable.
 In contrast to existing accounts on semantics and
 mental scene construction, the random and creative aspects of DMN function
 are explained in MDPs by the advantages of stochastic optimization.
-Yet, the MDP-based account provides an algorithmic explanation in that
+Our MDP account provides an algorithmic explanation in that
 stochasticity of the parameter space explored
 by the Monte Carlo solvers achieves better fine-tuning of the
 action policies and estimation of expected reward outcomes.
@@ -1613,16 +1642,17 @@ in MDPs provides a candidate explanation for why humans
 have evolved imperfect noisy memories
 as the more advantageous adaptation.
 In sum, episodic scene construction according to the semantic
-account is lacking an explicit time and incentive model.
+account is lacking an explicit time and incentive model,
+both of which are incorporated into MDPs.
 
 
 
 \subsection{Sentinel hypothesis}
 DMN regions have been associated with processing the
-experienced or expected relevance of a diversity of environment stimuli
+experienced or expected relevance of environment stimuli
 \citep{montague2006imaging}.
 Processing self-relevant information was perhaps the first
-cognitive account that was proposed for the DMN \citep{gusnard2001medial}.
+cognitive account that was proposed for DMN function \citep{gusnard2001medial}.
 Since then,
 many investigators have speculated that neural activity in the DMN
 may reflect the brain's continuous tracking of
@@ -1631,7 +1661,8 @@ as an advantageous evolutionary adaptation \citep{randy2008, hahn2007cingulate}.
 According to this cognitive account, the human brain's baseline realizes
 a ``radar'' function to
 detect subjectively relevant cues and unexpected events in the environment.
-Propositions of such a sentinel function have however seldom detailed
+Propositions of a sentinel function to underlie DMN activity
+have however seldom detailed
 the mechanisms of
 how attention and memory resources are exactly reallocated when
 encountering a self-relevant environmental stimulus.
@@ -1646,13 +1677,12 @@ over relevant cues and events in the environment.
 %
 Further,
 our account provides a parsimonious explanation for
-the increasingly recognized observation
-of the DMN implication
+the consistently observed DMN implication
 in certain goal-directed experimental tasks and
 in task-unconstrained mind-wandering \citep{smith2009, bzdok2016formal}.
 Both environment-detached and environment-engaged
-cognitive sets may entail DMN recruitment
-if environmental relevance is processed, manipulated, and
+cognitive processes may entail DMN recruitment
+if real or imagined experience is processed, manipulated, and
 used for predicting the future.
 During tasks,
 the policy and value estimates may be
@@ -1671,7 +1701,7 @@ environmental stimuli especially important for humans are frequently of
 social nature. This is probably unsurprising
 given that
 the complexity of the social systems
-is a likely human-defining property
+is a likely to be a human-defining property
 \citep{tomasello2009cultural}.
 According to the ``social brain hypothesis'',
 the human brain has especially been shaped for
@@ -1718,9 +1748,11 @@ In Friston's free-energy principle (FEP) \citep{friston2010free,fristonAIorRL}, 
 as biomechanical inference engine which must minimize the long-term average of surprise.
 Precursors of this theory can be traced back to \citep{dayan1995helmholtz} in which they introduced the so-called \textit{Helmholtz machine}, a hierarchical factorial \textit{directional deep belief-net (DBN)}. According to FEP's account, the goal of the brain is then to optimize over a generative model $G$ of sensations: to iteratively
 modify its internal representation $p_G(\z|\x)$ about objects in the world, their interactions and dynamics, etc., so as to minimize surprise when these representations are confronted with sensory input $\x$ during perception cycles. These is called the \textit{generative} model. FEP also postulates a dual model called the \textit{recognition} model,
-which works in tandem with the generative model $p_R(\z|\x)$, to accomplish approximate inference. The recognition model dreams / fantasizes imaginary worlds $\z$ whilst the latter tries to generate sensations $\x$ which match these dreams!
+which works in tandem with the generative model $p_R(\z|\x)$, to accomplish approximate inference. The recognition model dreams imaginary worlds $\z$,
+while the latter tries to generate sensations $\x$ which match these dreams!
 
-Because surprisal is intractably difficult to optimize (since we would need to sum over all hidden causes of the sensations), FEP sets out to instead minimize an upper-bound thereupon, namely the \text{free-energy} $F_G^R(\x)$ given by
+Because surprise is intractably difficult to optimize (since we would need to sum over all hidden causes of the sensations), FEP sets out to instead minimize an upper-bound thereof,
+namely the \text{free-energy} $F_G^R(\x)$ given by
 
   \begin{equation}
     \begin{split}
@@ -1737,7 +1769,7 @@ Because surprisal is intractably difficult to optimize (since we would need to s
 %   \caption{Variational autoencoders...}
 %   \label{fig:vae}
 % \end{figure}
-The main algorithm for minimizing free-energy $F_G^R(\x)$ is the \textit{wake-sleep algorithm}.
+The main algorithm for minimizing free-energy $F_G^R(\x)$ is the \textit{wake-sleep algorithm}
 \citep{dayan1995helmholtz}. As noted already in \citep{dayan1995helmholtz},
 a crucial drawback of the wake-sleep algorithm is that it postulates a pair forward (generation) and backward (recognition) models,
 which together do not correspond to optimization of (a bound of) the marginal likelihood, because of the incorrect KL used therein, etc.
