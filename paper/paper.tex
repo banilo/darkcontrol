@@ -1110,7 +1110,7 @@ may well reflect processing aspects of the DMN in human agents.
 % \subsubsection{The Bellman equation:  characterizing optimal behavior}
 % Q-learning (Watkins \& Dayan, 1992) generates a
 % \textit{greedy policy}
-\subsubsection{Optimal behavior and the Bellman equation}
+\subsubsection{Optimal behavior and the Bellman temporal consistency}
 
 Optimal behavior corresponds to a strategy $\pi^*$ for choosing actions such that, for every state, the chosen action guarantees the best possible reward on average. Formally,
 % \textbf{XXX please add 1-2 sentences why this is interesting in the current
@@ -1142,8 +1142,8 @@ where the ``Bellman transform'' $\text{Bel}(Q)$ of an arbitrary $Q$-value functi
     % \mathbb E_{s' \sim p(s'|s,a)} [r(s,a) + \gamma Q^*(s', \pi^*(s'))].
     \end{split}
   \end{equation}
-The Bellman equation \eqref{eq:bellman} is a ``self-consistency'' equation which provides
-a recursive decomposition of optimal behavior by dividing the $Q$-value function into the immediate
+The Bellman equation \eqref{eq:bellman} is a temporal consistency equation which provides
+a dynamic decomposition of optimal behavior by dividing the $Q$-value function into the immediate
 reward and the discounted rewards of the upcoming states.
 The optimal Q-value operator $Q^*$ is a fixed point for this equation.
 As a consequence of this decomposition, the complicated dynamic programming optimization
@@ -1192,6 +1192,9 @@ The model
   The DMN, and in particular its dmPFC node, would then contribute to the choice, at a given state $s$, of an action $a$ which maximizes this tabulated values. This mapping from states to actions is conventionally called ``policy matrix''. Learning consists in starting from a given instantiation of such a table and tweaking it around while using it to take actions which take the agent to different areas of the table, and so forth.
 
 \textbf{XXX Elvis to Elvis: clarify the notion of greed. Add a paragraph on the exploitation vs exploration dilemma, and end with a conclusion saying the DMN probably does epsilon-greedy.}
+
+\subsubsection{Bounded rationality}
+$$\max_{a \in \mathcal A}\tilde{Q}(s, a|\theta)  \propto \lim_{T \rightarrow 0^+}\exp(\tilde{Q}(s,a|\theta)/T)$$
 
 \subsubsection{Self-training and the loss function}
 Successful learning in brains and computer algorithms is challenging without a clear learning goal --
