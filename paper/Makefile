@@ -13,7 +13,7 @@ latex: clean
 	pdflatex ${PDFLATEX_OPTIONS} paper
 	# makeglossaries paper
 	pdflatex ${PDFLATEX_OPTIONS} paper
-	make clean	
+	make clean
 
 
 loTopdf:
@@ -38,4 +38,4 @@ clean:
 	rm -f *.run.xml
 	rm -f *.synctex.gz
 	rm -f *.log *.lot *.aux *.bbl *.blg
-	
+	rm -f *.fdb_latexmk
