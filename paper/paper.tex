@@ -127,8 +127,6 @@
 %\def\B#1{\mathbf{#1}}
 \def\trans{\mathsf{T}}
 
-%\renewcommand{\labelitemi}{--}
-
 \newtheorem{theorem}{Theorem} \newtheorem{lemma}[theorem]{Lemma}
 \newtheorem{proposition}[theorem]{Proposition}
 \newtheorem{corollary}[theorem]{Corollary}
@@ -636,7 +634,7 @@ the current task state even when states are unobservable from the sensory enviro
 
 \subsection{The hippocampus: memory, space, and experience replay}
 The DMN midline is probably closely linked
-with the HC in the medial temporal lobe \citep{vincet2006, shannon2013morning} --
+with the HC in the medial temporal lobe \citep{vincet2006, shannon2013morning} \textemdash
 a region long known to be involved in
 memory operations and spatial navigation in animals and humans.
 
@@ -848,7 +846,7 @@ If the collected reward outcome yields a negative value it can be
 more naturally interpreted as \textit{punishment}.
 In this view, the environment is partially controlled by
 the action of the agent and the reward can be thought
-of as satisfaction -- or aversion -- accompanying the execution of
+of as satisfaction \textemdash or aversion \textemdash accompanying the execution of
 an action.
 Action may be delayed to achieve substantial increases in expected reward
 that is expected to grow with time.
@@ -1212,7 +1210,7 @@ The model
 
 \subsubsection{Self-training and the loss function}
 Successful learning in brains and computer algorithms is challenging without a
-defined learning goal -- the \textit{loss function}.
+defined learning goal \textemdash the \textit{loss function}.
 The action $a$ chosen in state $s$ according to the policy matrix defined in
 \eqref{eq:policy} yields a reward $r$ collected by the agent,
 % (measured on their internal currency of worldly values ?),
@@ -1220,8 +1218,8 @@ after which the environment transitions to a new state $s' \in \mathcal S$.
 % \textbf{XXX Please try to smoothen the previous sentence}
 One such cycle yields a new \textit{experience} $e = (s,a,r,s')$.
 Each cycle represents a behavior unit of the agent
-and is recorded in replay memory buffer -- which we hypothesize to be the
-HC --, possibly discarding the oldest entries to make space:
+and is recorded in replay memory buffer \textemdash which we hypothesize to be the
+HC \textemdash, possibly discarding the oldest entries to make space:
 $\mathcal D \leftarrow \text{append}(\mathcal D, e)$.
 
 
@@ -1281,7 +1279,7 @@ of the neural processing hierarchy
 Efficient learning of the entire set of model parameters can effectively be achieved
 via \textit{gradient descent}.
 \textbf{XXX Please add one explanatory sentence for GD.}
-Reward prediction errors -- also known as \textit{regret}-- percolate
+Reward prediction errors \textemdash also known as \textit{regret}\textemdash percolate
 from lower to higher processing layers to modulate the choice of future actions
 
 % online stochastic gradient descent is used to minimize the variational objective
