@@ -920,9 +920,9 @@ definition of the state $s$ to include experience episodes of the past.
 In artificial intelligence and machine learning, a popular computational model for
 multi-step decision processes in such an environment are
 \textit{Markov decision processes (MDPs)}\citep{sutton1998reinforcement}.
-For the remainder of this paper, for the sake of simplicity
-we use the abbreviation ``MDP'' to refer to the special case
-of \textit{Partially Observable Markov Decision Processes}.
+% For the remainder of this paper, for the sake of simplicity
+% we use the abbreviation ``MDP'' to refer to the special case
+% of \textit{Partially Observable Markov Decision Processes}.
 A MDP operationalizes a sequential decision process
 in which it is assumed that environment dynamics are determined by a Markov process,
 but the agent cannot directly observe the underlying state.
@@ -930,16 +930,11 @@ Instead, the agent tries to optimize a \textit{subjective} reward
 signal (i.e., is likely to be different for another agent in the same state).
 This is performed alongside each transition in the environments state space, and maintains a probability distribution over the set of possible
 states, based on a set of observations and observation probabilities. This is a minimal amount of assumptions that can be made about an environment,
-and is characteristic of so-called \textit{model-free RL},
-which we propose as a useful formal framework for DMN function.
-%
+and is characteristic of so-called \textit{model-free RL}. Model-free RL has had great success in real-world problems including robotics
+\citep{abbeel2004,andrewng}, computer game play, \citep{mnih2015,silver2016mastering}, etc., just to name a few.
+We propose to use such a model as formal basis to model DMN function.
 
-
-\paragraph{Model-free reinforcement learning.}
-Model-free RL has had great success in real-world problems including robotics \citep{abbeel2004,andrewng}, computer game play, \citep{mnih2015,silver2016mastering},
-etc., just to name a few \textbf{XXX Please expand with 1-2 additional sentences}.
-Such a learning scheme can be
-plausibly realized in the human brain \citep{doherty2015structure}. Indeed,
+Such a learning scheme can be plausibly realized in the human brain \citep{doherty2015structure}. Indeed,
 a core property of human intelligence has been proposed to underly improvement
 of expected utility outcomes as a strategy for action choice in uncertain
 environments \citep{gershman2015computational}, a situation perfectly captured by the formalism of MDPs.
@@ -965,7 +960,7 @@ an agent might represent such knowledge about the world as follows:
 \end{itemize}
 
 \begin{definition*}
-Mathematically, a MDP is simply a quintuplet $(\mathcal S, \mathcal A, r, p, \mu)$ where
+Mathematically, an MDP is simply a quintuplet $(\mathcal S, \mathcal A, r, p, \mu)$ where
 \begin{itemize}
 \item $\mathcal S$ is the set of states, such as $\mathcal S = \{\text{happy}, \text{sad}\}$.
 \item $p : \mathcal S \times \mathcal A \times \mathcal S \rightarrow [0, 1],\; (s,a,s') \mapsto p(s'|s,a)$,
@@ -1054,10 +1049,7 @@ is more advantageous in many RL settings.
 % be easily exploited and a uniformly random choice is optimal.
 
 \subsection{The nuts and bolts of reinforcement learning in the DMN}
-\textbf{XXX Elvis to Elvis a short preface is needed here, explaining the roadmap of this subsection from a high-level perspective!}
-
-\subsubsection{The objective value of an action given a state}
-Given only the limited information available from a MDP, at a state $s$ the average
+Given only the limited information available from an MDP, at a state $s$ the average
 utility of choosing an action $a$ under a policy $\pi$ can be captured by the single number
 % We can now formulate the purpose of the DMN
 % as finding a policy $\pi$ for the human agent that maximizes the
@@ -1187,10 +1179,8 @@ action which it expects to be the most valuable on average, namely
   \pi^{\text{greedy}}(s) = \argmax_{a \in \mathcal A}\tilde{Q}(s, a|\theta),
   \label{eq:policy}
 \end{equation}
-by querying an oracle \textbf{XXX Please let's not use "oracle" anywhere in
-the paper, if possible, because it will confuse a lot of peoople.}
-which maps from states directly to actions. Here $\tilde{Q}(s,a|\theta)$ is an
-approximate version of the $Q$-value function parameterized by the tensor $\theta$.
+by querying an an approximate version $\tilde{Q}(s,a|\theta)$ of the $Q$-value function, parameterized
+by the tensor $\theta$. This defines a mapping from states directly to actions.
 % $a \mapsto \tilde{Q}(a,s|\theta)$ of the $Q$-value function ``frozen'' at state $s$.
 For instance, a simplistic linear model with a kernel $\phi$ would be of the
 form $\tilde{Q}(s, a|\theta) = \phi(s,a)^T\theta$, where
@@ -1282,10 +1272,8 @@ of the neural processing hierarchy
 
 \subsubsection{Optimal control via stochastic gradient descent in the DMN}
 Efficient learning of the entire set of model parameters can effectively be achieved
-via \textit{gradient descent}.
-\textbf{XXX Please add one explanatory sentence for GD.}
-Reward prediction errors \textemdash also known as \textit{regret}\textemdash percolate
-from lower to higher processing layers to modulate the choice of future actions
+via stochastic \textit{gradient descent}, a first-order\footnote{ i.e using only differential information up to order 1.} algorithm for finding
+local minimal of differentiable functions. Stochastic here that the true gradient is estimated from batches of training examples samples from the replay memory, the HC
 
 % online stochastic gradient descent is used to minimize the variational objective
 % \eqref{eq:oracle}.
@@ -1297,20 +1285,17 @@ from lower to higher processing layers to modulate the choice of future actions
     \underbrace{\nabla_{\theta_{k}}\tilde{Q}(s, a|\theta_{k})}_{\text{aversion}}].
   \label{eq:oracle}
 \end{equation}
-Over time (i.e., in the limit $k \rightarrow \infty$),
+Thus actions are taken to drive reward prediction errors \textemdash also known as \textit{regret}\textemdash percolate
+from lower to higher processing layers to modulate the choice of future actions .Over time (i.e., in the limit $k \rightarrow \infty$),
 the thus generated approximating sequence of
 $Q$-value functions provably
 % \footnote{The proof is standard and relies on the Banach Fixed-Point Theorem applied to the Bellman transform.}
 $\tilde{Q}(.,.|\theta_0) \rightarrow \tilde{Q}(.,.|\theta_1) \rightarrow \tilde{Q}(.,.|\theta_2) \rightarrow \ldots$
 are attracted and absorbed by the optimal $Q$-value function $Q^*$ defined implicitly by the Bellman equation \eqref{eq:bellman}.
-\textbf{XXX Please say something about *stochasti*, which you can then
-also use as transition into the next passage.}
 
-\subsubsection{Link to classical reinforcement learning algorithms}
 One should note that most classical RL algorithms, including \textit{Temporal Difference (TD)}
 learning \citep{sutton1998reinforcement}, REINFORCE \citep{williams1992}, and SARSA can be
-cast in this \textbf{please unpack the "this" here}
-general variational framework. For instance, TD corresponds to
+cast in the general variational framework \eqref{eq:oracle}. For instance, TD corresponds to
 the above framework using a linear value approximator with feature encoding
 $\phi(s,a) = \delta_{(s,a)} =  \text{ point mass at }(s,a)$ on the grid
 $\mathcal S \times \mathcal A$, and so
@@ -1900,7 +1885,7 @@ for continued refinement of the organism's fate.
 \subsection{Does hippocampal replay equal inverse reinforcement-learning?}
 %\begin{mdframed}
   Given the trace $s_0,a_0,s_1,\ldots,$ of an optimal agent's strategy $\pi^*$ in
-  a MDP (called a \textit{teacher's demonstration}), can we figure out what is the
+  an MDP (called a \textit{teacher's demonstration}), can we figure out what is the
   (instantaneous) reward function $r: \mathcal S \times \mathcal \mathcal A
   \rightarrow \mathbb R$ that the agent is optimizing over a prescribed class of reward functions
   (e.g., linear rewards $r(s,a) \equiv \theta^T\phi(s,a)$)?
