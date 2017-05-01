@@ -1198,7 +1198,8 @@ The model
   updating it during action choices,
   which take the agent to different table entries.
 
-\textbf{XXX Elvis to Elvis: clarify the notion of greed. Add a paragraph on the exploitation vs exploration dilemma, and end with a conclusion saying the DMN probably does epsilon-greedy.}
+  \textbf{XXX Elvis to Elvis: clarify the notion of greed. Add a paragraph on the exploitation vs exploration dilemma, and end with a conclusion saying the DMN probably does epsilon-greedy
+    or softmax.}
 
 % \subsubsection{Bounded rationality}
 % $$\max_{a \in \mathcal A}\tilde{Q}(s, a|\theta)  \propto \lim_{T \rightarrow 0^+}\exp(\tilde{Q}(s,a|\theta)/T)$$
@@ -1285,7 +1286,7 @@ local minimal of differentiable functions. Stochastic here that the true gradien
     \underbrace{\nabla_{\theta_{k}}\tilde{Q}(s, a|\theta_{k})}_{\text{aversion}}].
   \label{eq:oracle}
 \end{equation}
-Thus actions are taken to drive reward prediction errors \textemdash also known as \textit{regret}\textemdash percolate
+Thus next action is taken to drive reward prediction errors \textemdash also known as \textit{regret}\textemdash percolate
 from lower to higher processing layers to modulate the choice of future actions .Over time (i.e., in the limit $k \rightarrow \infty$),
 the thus generated approximating sequence of
 $Q$-value functions provably
@@ -1480,11 +1481,8 @@ the predictive coding account frames
 sensory perception of the external world
 as a generative experience due to the modulatory top-down influence at
 various stages of sensory input processing.
-In our MDP view, instead,
-the Markov property of the sequential decision making framework entails
-the environmental model to be
-\textbf{effectively expressed in the current state of the human agent
-XXX guys, please double-check}.
+The sequential decision-making framework inherent in our MDP view of the DMN,
+replaces such a top-down generative design.
 Further,
 the hierarchical processing aspect from predictive coding
 is re-expressed in our account in form of
