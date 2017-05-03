@@ -464,7 +464,7 @@ nuclei group of the amygdala
 This amygdalar subregion has been proposed to
 continuously scan environmental input
 for biological significance assessment
-\citep{trust_attract}.
+\citep{amygdala_bzdok}.
 
 
 The putative role of the PMC in continuous information integration of
@@ -1437,16 +1437,16 @@ At each stage of neural processing,
 an internally generated prediction of aspects of environmental sensations is
 directly compared against the actual environmental input.
 A prediction error at one of the processing levels
-incurs plasticity changes of neuronal back projections
+incurs plasticity changes of neuronal projections
 (i.e., adapting model parameters)
 to allow for gradually improved future prediction of the environment.
 In this way,
 the predictive coding hypothesis offers explanations for
-the constructive, generative nature of sensory perception
-\citep{friston2010free} and
+the constructive, non-deterministic nature of sensory perception
+\citep{friston2010free, buzsaki2006rhythms} and
 the intimate relation of motor action to sensory expectations
 \citep{wolpert1995internal, kording2004bayesian}.
-Contextual sensorimotor integration of perception-action cycles
+Contextual integration of sensorimotor perception-action cycles
 may be maintained by top-down modulation
 using a-priori information about the environment.
 
@@ -1465,7 +1465,8 @@ a generative model of how perceived sensory cues arise in the
 world would be incorporated into
 the current neuronal wiring.
 Further,
-both accounts are plausibilized by neuroscientific evidence that suggest
+both functional accounts are plausibilized by
+neuroscientific evidence that suggest
 the human brain to be a ``statistical organ'' \citep{friston2014phantastic}
 with the biological purpose to
 generalize from the past to new experiences.
@@ -1473,34 +1474,38 @@ Neuroanatomically, axonal
 back projections indeed outnumber by far the axonal input projections
 existing in the monkey and probably also human brain
 \citep{salin1995corticocortical}.
+These many and diverse modulatory influences from higher cortical areas
+can inject prior knowledge
+at every stage of processing environmental information.
 Moreover,
 both accounts provide a parsimonious explanation why the
 human brain decreases processing load devoted to incoming information
-when the environment is predictable because the internal generative
-model only requires updating following descrepancies between
-environmental reality and its internal reinstantiation.
+when the environment is predictable.
+This is because the internal generative
+model only requires updates after descrepancies have occurred between
+environmental reality and its internally reinstantiated representation.
 Increased computation resources are however allocated
 when unknown stimuli or
 unexpected events are encountered by the organism.
-The predictive coding and formal account
+The predictive coding and MDP account
 naturally evoke a mechanism of brain plasticity in that
 neuronal wiring gets increasingly adapted
-when faced by unprecedented environmental challenges.
+when faced by unanticipated environmental challenges.
 
 
-While sensory experience is a generative process from both views,
+While sensory experience is a constructive process from both views,
 the predictive coding account frames
 sensory perception of the external world
 as a generative experience due to the modulatory top-down influence at
 various stages of sensory input processing.
-The sequential decision-making framework inherent in our MDP view of the DMN,
-replaces such a top-down generative design.
+This top-down generative design is replaced in our MDP view of the DMN
+by a sequential decision-making framework.
 Further,
 the hierarchical processing aspect from predictive coding
 is re-expressed in our account in form of
 nested prediction of probable upcoming actions, states, and rewards.
-Both accounts capture the consequences of action.
-The predictive coding account is typically explained without
+While both accounts capture the consequences of action,
+the predictive coding account is typically explained without
 explicit parameterization of the agent's horizon and
 has a tendency to be presented as emphasizing prediction about the
 immediate future.
@@ -1514,7 +1519,7 @@ of the Bellman equation.
 Finally,
 the process of adapting the neuronal connections
 for improved top-down modulation
-takes the concrete form of gradient computation and
+takes the concrete form of stochastic gradient computation and
 back-propagation in our MDP implementation.
 It is however important to note that
 the neurobiological plausibility of
@@ -1523,13 +1528,13 @@ the back-propagation procedure is controversal
 
 
 In sum,
-the present formal account may serve as a concrete implementation of
+the present MDP account of DMN function may serve as a concrete implementation of
 the long-standing predictive coding account from cognitive neuroscience.
 MDPs have the advantage of exposing an explicit
-mechanism for the horizon of future considerations or
-how the internal model of the world gets updated,
-and
-more explicitly reconciles sensory input processing and action consideration.
+mechanism for the horizon of future considerations and for
+how the internal representation of the world is updated,
+as well as
+more explicitly reconciles sensory input processing and action considerations.
 %
 Recasting DMN function in terms of MDPs therefore naturally incorporates
 a majority of aspects from the prediction coding hypothesis.
@@ -1542,20 +1547,20 @@ around forming logical associations and abstract analogies between
 experiences and conceptual knowledge derived from past behavior
 \citep{bar2007proactive, binder1999conceptual, constantinescu2016organizing}.
 Analogies might naturally tie incoming new sensory stimuli to
-explicit world knowledge (i.e., semantics) about the environment
+explicit world knowledge (i.e., semantics)
 \citep{bar2009proactive}.
-The encoding of complex environments could thus be facilitated
+The encoding of complex environmental features could thus be facilitated
 by association to similar states.
 %
-Going beyond meaning and concepts extracted from the world,
-semantic building blocks may provide the basis for
-mentally envisioning non-existing scenarios
-that would optimize behavior
-by constantly simulating possible future events
+Going beyond isolated meaning and concepts extracted from the world,
+semantic building blocks may need to get recombined to enable
+mentally envisioning non-existing scenarios.
+As such, semantic knowledge would be a prerequisite for optimizing behavior
+by constantly simulating possible future scenarios
 \citep{boyer2008evolutionary, binder2011neurobiology}.
 Such cognitive processes can afford
 the internal construction and elaboration of necessary information
-that is not presented in the surrounding environment
+that is not presented in the surrounding sensory environment
 by recombining building blocks of
 concept knowledge and episodic memories
 \citep{hassabis2009construction}.
@@ -1574,11 +1579,12 @@ episodic memory, language, problem solving,
 planning, estimating other people's thoughts, and spatial navigation
 represent neural processes that are likely to
 build on abstract world knowledge and logical associations
-for integrating the constituent elements in mental scene construction
+for integrating the constituent elements in rich and coherent mental scenes
 \citep{schacter2007remembering}.
 Such scene construction processes could contribute to interpreting the
 present and foretelling the future.
-Mental scene construction has been proposed
+Further,
+mental scene construction has been proposed
 to imply a distinction between
 engagement in the sensory environment
 and internally generated mind-wandering
@@ -1598,7 +1604,7 @@ both the semantic hypothesis and the present formal account based on MDPs
 expose mechanisms of how action considerations could be mentally explored.
 In both accounts,
 there is also no reason to assume that predictions of various
-levels of complexity, abstraction, timescale and purpose
+levels of complexity, abstraction, timescale, and purpose
 rely on mechanisms that are qualitatively different. This concurs with
 DMN activity increases across time, space, and content domains
 demonstrated in many neuroimaging studies
@@ -1610,14 +1616,11 @@ thinking \citep{hassabis2007patients}.
 While both semantic hypothesis and
 our formal account propose memory-based internally
 generated information for probabilistic mental models of action outcomes,
-MDPs render explicit the grounds on which the final action is
+MDPs render explicit the grounds on which an action is
 eventually chosen, namely, the estimated cumulative reward.
-\textbf{The learned
-estimations of value and action transitions drive
-stimulus processing and action choice in the present.}
-Additionally,
+In contrast to many versions of the semantic hypothesis,
 the MDPs naturally integrate the egocentric view
-(more related to current action, state and reward) and the
+(more related to current action, state, and reward) and the
 world view (more related to past and future actions, states, and rewards)
 on the world in a same optimization problem.
 Finally,
@@ -1633,7 +1636,7 @@ mental scene construction, the random and creative aspects of DMN function
 are explained in MDPs by the advantages of stochastic optimization.
 Our MDP account provides an algorithmic explanation in that
 stochasticity of the parameter space explored
-by the Monte Carlo solvers achieves better fine-tuning of the
+by Monte Carlo approximation achieves better fine-tuning of the
 action policies and estimation of expected reward outcomes.
 That is, the purposeful stochasticity of policy and value estimation
 in MDPs provides a candidate explanation for why humans
@@ -1647,7 +1650,7 @@ both of which are integral parts of MDP frameworks.
 
 \subsection{Sentinel hypothesis}
 The DMN regions have been associated with processing the
-experienced or expected relevance of environment stimuli
+experienced or expected relevance of environment cues
 \citep{montague2006imaging}.
 Processing self-relevant information was perhaps the first
 cognitive account that was proposed for DMN function
@@ -1716,16 +1719,16 @@ mind-wandering at daytime and dreams during sleep
 are rich in stories about people and
 the complex relationships between them.
 %
-In line with this, the DMN has been proposed to be specialzed in
+In line with this, the DMN has been proposed to be specialized in
 continuous processing of social information as a
 physiological baseline of human brain function
 \citep{schilbach2008minds}. This view was later challenged by observing
 analogues of the DMN in monkeys \citep{mantini2011default},
 cats \citep{popa2009contrasting},
 and rats \citep{lu2012rat}, three species with
-supposedly less advanced social-cognitive capacities.
+social-cognitive capacities that are supposedly less advanced than in humans.
 Rather than functional specificity for processing social information,
-the present formal account can parsimoniously incorporate
+the present MDP account can parsimoniously incorporate
 the dominance of social content in
 human mental activity
 as high value function estimates for information about humans
@@ -1746,9 +1749,12 @@ as a special case.
 \subsection{The free-energy principle and active inference}
 % \subsubsection{The theory}
 In Friston's free-energy principle (FEP) \citep{friston2010free,fristonAIorRL}, the brain is portrayed
-as biomechanical inference engine which must minimize the long-term average of surprise.
-Precursors of this theory can be traced back to \citep{dayan1995helmholtz} in which they introduced the so-called \textit{Helmholtz machine}, a hierarchical factorial \textit{directional deep belief-net (DBN)}. According to FEP's account, the goal of the brain is then to optimize over a generative model $G$ of sensations: to iteratively
-modify its internal representation $p_G(\z|\x)$ about objects in the world, their interactions and dynamics, etc., so as to minimize surprise when these representations are confronted with sensory input $\x$ during perception cycles. These is called the \textit{generative} model. FEP also postulates a dual model called the \textit{recognition} model,
+as biomechanical inference engine
+dedicated to minimizing the long-term average of surprise.
+Precursors of this theory can be traced back to \citep{dayan1995helmholtz} in which they introduced the so-called \textit{Helmholtz machine}, a hierarchical factorial \textit{directional deep belief-net (DBN)}. According to the FEP account,
+the goal of the brain is then to optimize over a generative model $G$ of sensations: to iteratively
+modify its internal representation $p_G(\z|\x)$ about objects in the world, their interactions and dynamics,
+so as to minimize surprise when these representations are confronted with sensory input $\x$ during perception cycles. These is called the \textit{generative} model. FEP also postulates a dual model called the \textit{recognition} model,
 which works in tandem with the generative model $p_R(\z|\x)$, to accomplish approximate inference. The recognition model dreams imaginary worlds $\z$,
 while the latter tries to generate sensations $\x$ which match these dreams!
 
@@ -1783,7 +1789,7 @@ for minimizing free-energy, VAEs can be efficiently trained via back-propagation
 On the surface, a common point between the FEP and our proposed RL-based framework
   is placing the minimization of a surprise signal at the core of brain function.
   Indeed in RL, surprise minimization is subsumed  by accurate prediction of
-  rewarding outcomes in the future. A ``free-energy'' agent is barely a biomechanical machine which has the tendency to resist undesired / harmful phase-transitions.
+  rewarding outcomes in the future. A ``free-energy'' agent is barely a biomechanical machine which has the tendency to resist undesired phase-transitions
   \citep{friston2010free,fristonAIorRL,ortega2013thermodynamics}. Such a theory cannot by itself,
   explain the emergence of strategic behavior inherent in humans (e.g.,  cite dark-room experiment).
 
