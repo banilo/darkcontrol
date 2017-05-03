@@ -1280,7 +1280,8 @@ of the neural processing hierarchy
 \subsubsection{Optimal control via stochastic gradient descent in the DMN}
 Efficient learning of the entire set of model parameters can effectively be achieved
 via stochastic \textit{gradient descent}, a first-order\footnote{ i.e using only differential information up to order 1.} algorithm for finding
-local minima of differentiable functions. Stochastic here that the true gradient is estimated from batches of training examples samples from the replay memory, the HC
+local minima of differentiable functions.
+Stochastic here means that the true gradient is estimated from batches of training examples samples from the replay memory, the HC
 
 % online stochastic gradient descent is used to minimize the variational objective
 % \eqref{eq:oracle}.
@@ -1292,7 +1293,9 @@ local minima of differentiable functions. Stochastic here that the true gradient
     \underbrace{\nabla_{\theta_{k}}\tilde{Q}(s, a|\theta_{k})}_{\text{aversion}}].
   \label{eq:oracle}
 \end{equation}
-Thus next action is taken to drive reward prediction errors \textemdash also known as \textit{regret}\textemdash percolate
+Thus, the next action is taken to drive reward prediction errors
+(or \textit{regret}) to
+percolate
 from lower to higher processing layers to modulate the choice of future actions .Over time (i.e., in the limit $k \rightarrow \infty$),
 the thus generated approximating sequence of
 $Q$-value functions provably
@@ -1307,20 +1310,20 @@ the above framework using a linear value approximator with feature encoding
 $\phi(s,a) = \delta_{(s,a)} =  \text{ point mass at }(s,a)$ on the grid
 $\mathcal S \times \mathcal A$, and so
 $$\nabla_{\theta}\tilde{Q}(s, a|\theta) = \phi(s, a) = \delta_{(s,a)}.$$
-Whence, the gradient update due to the sample $(s,a,r,s') \in \mathcal D$ is
+Hence, the gradient update due to the sample $(s,a,r,s') \in \mathcal D$ is
 $$\tilde{Q}(s, a) \leftarrow \tilde{Q}(s, a) + \alpha(y-\tilde{Q}(s, a)),$$
 the well-known TD update rule \citep{sutton1998reinforcement}.
 
 \subsubsection{Does the hippocampus subserve Monte-Carlo sampling?}
-In RL, Monte-Carlo simulation can be used to update the agent's belief state
+In RL, Monte-Carlo simulation is a common means to update the agent's belief state
 \citep{silver2010monte}.
-Such methods have scaling as a function of available data (i.e., sample complexity) that
-is determined only by the underlying difficulty of the MDP, rather than the size of the state space or observation space,
-which can be prohibitively large.
 Monte-Carlo simulation provides a simple method for evaluating the value of a state.
 They provide an effective mechanism both for tree search (of the considered
 action trajectories)
 and for belief state updates, breaking the curse of dimensionality and allowing much greater scalability than an RL agent without stochastic resampling procedures.
+Such methods have scaling as a function of available data (i.e., sample complexity) that
+is determined only by the underlying difficulty of the MDP, rather than the size of the state space or observation space,
+which can be prohibitively large.
 
 In the human brain,
 the HC could contribute to synthesizing imagined sequences of world states,
@@ -1337,9 +1340,10 @@ beyond the description of receptive fields. \textbf{XXX Elvis: rephrase last sen
 \subsection{Putting everything together}
 The DMN is today known to consistently increase in neural
   activity when humans engage in cognitive processes that are detached from
-  current sensory environment
+  the current sensory environment
   \citep{kenet2003spontaneously, fiser2004small, bzdok2013segregation}
-  and it was proposed to be situated at the top of the brain network hierarchy
+  and this network was proposed to be situated
+  at the top of the brain network hierarchy
   \citep{carhart2010default, margulies2016situating}.
   Its putative involvement in thinking about the past,
   the future, and hypothetical experiences
@@ -1369,7 +1373,8 @@ The DMN may subserve
 
 
 The HC may provide perturbed action-transition-state-reward samples
-  as batches of imagined, hypothesized, and recalled experience.
+  as batches of pseudo-experience
+  (i.e., imagined, hypothesized, and recalled mental scenarios).
   The small variations in these experience samplings allow searching
   a larger space of model parameters and possible experiences.
   Taken to its extreme, stochastic recombination of experience
