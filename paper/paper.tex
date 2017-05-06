@@ -587,7 +587,7 @@ Comparing to the dmPFC,
 the vmPFC probably subserves
 subjective value evaluation and
 risk estimation of relevant environmental stimuli.
-The ventromedial prefrontal DMN (\textbf{XXX Elvis: you mean ``... ventromedial prefrontal part of the DMN'' ?}) may
+The ventromedial prefrontal DMN may
 orchestrate adaptive behavior by bottom-up-driven
 processing of “what matters now”,
 probably drawing on sophisticated value representations
@@ -1148,7 +1148,7 @@ of an arbitrary $Q$-value function $Q: \mathcal S \times \mathcal A \rightarrow 
    \text{Bel}(Q)(s,a) &:=
    \mathbb E_{s' \sim p(s'|s,a)} [r(s,a) + \gamma \max_{a' \in \mathcal A}Q(s', a')]\\
    &= r(s,a) + \gamma\mathbb E_{s' \sim p(s'|s,a)} [\max_{a' \in \mathcal A}Q(s', a')]\\
-   &= \text{instantaneous reward} + \text{expected maximum reward thereafter}
+   &= \text{instantaneous reward} + \text{expected reward for acting greedily thereafter}
 %    \; \forall (s,a) \in \mathcal S \times \mathcal A
     % \\&=
     % \mathbb E_{s' \sim p(s'|s,a)} [r(s,a) + \gamma Q^*(s', \pi^*(s'))].
@@ -1293,7 +1293,7 @@ of the neural processing hierarchy
 Efficient learning of the entire set of model parameters can effectively be achieved
 via stochastic \textit{gradient descent}, a common solver algorithm for finding
 local minima based on the first derivate of the optimization objective.
-Stochastic here means that the true gradient is estimated from batches of training examples samples from the replay memory, the HC
+Stochastic here means that the true gradient is estimated from batches of training examples samples (in our case blocks of experience from the replay memory):
 
 % online stochastic gradient descent is used to minimize the variational objective
 % \eqref{eq:oracle}.
