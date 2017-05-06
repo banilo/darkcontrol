@@ -846,7 +846,7 @@ in an iterative trial-and-error fashion (Fig. \ref{fig:rl}).
 At a given moment, each taken \textit{action} $a$ triggers a change
 in the \textit{state} of the environment
 $s \rightarrow s'$, accompanied by environmental feedback signals as \textit{reward}
-$r = r(s, a)$ collected by the agent.
+$r = r(s, a,s')$ collected by the agent.
 If the collected reward outcome yields a negative value it can be
 more naturally interpreted as \textit{punishment}.
 In this view, the environment is partially controlled by
@@ -858,11 +858,10 @@ a particular action.
 
 
 The environment is generally taken as \textit{stochastic},
-that is, changing in random ways. In addition,
-the environment is only \textit{partially observed}
-in the sense that \textbf{XXX [Please Define without using the same words]}
-only part of the current state is observed by
-the agent \citep{starkweather2017dopamine}.
+that is, changing in random ways. In addition, the environment is only
+\textit{partially observable} in the sense only limited aspects of the environment's
+state are accessible to --or can be sensed by-- the agent's sensors.
+\citep{starkweather2017dopamine}.
 We assume that volatility of the environment
 is realistic in a computational model which sets out
 to explain DMN functions of the human brain.
@@ -1215,9 +1214,6 @@ The model
   Learning consists in starting from a given table and
   updating it during action choices,
   which take the agent to different table entries.
-
-  % \textbf{XXX Elvis to Elvis: clarify the notion of greed. Add a paragraph on the exploitation vs exploration dilemma, and end with a conclusion saying the DMN probably does epsilon-greedy
-  %   or softmax.}
 
 % \subsubsection{Bounded rationality}
 % $$\max_{a \in \mathcal A}\tilde{Q}(s, a|\theta)  \propto \lim_{T \rightarrow 0^+}\exp(\tilde{Q}(s,a|\theta)/T)$$
