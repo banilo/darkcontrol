@@ -1748,14 +1748,15 @@ as a special case.
 
 
 \subsection{The free-energy principle and active inference}
-% \subsubsection{The theory}
+\textbf{XXX Passage: Explain FEP and active inference}
 In Friston's free-energy principle (FEP) \citep{friston2010free,fristonAIorRL}, the brain is portrayed
 as biomechanical inference engine
 dedicated to minimizing the long-term average of surprise.
-Precursors of this theory can be traced back to \citep{dayan1995helmholtz} in which they introduced the so-called \textit{Helmholtz machine}, a hierarchical factorial \textit{directional deep belief-net (DBN)}. According to the FEP account,
+Precursors of this theory can be traced back to \citep{dayan1995helmholtz} in which they introduced the so-called \textit{Helmholtz machine}, a hierarchical factorial \textit{directional deep belief-net}. According to the FEP account,
 the goal of the brain is then to optimize over a generative model $G$ of sensations: to iteratively
 modify its internal representation $p_G(\z|\x)$ about objects in the world, their interactions and dynamics,
-so as to minimize surprise when these representations are confronted with sensory input $\x$ during perception cycles. These is called the \textit{generative} model. FEP also postulates a dual model called the \textit{recognition} model,
+so as to minimize surprise when these representations are confronted with sensory input $\x$ during perception cycles (i.e., the \textit{generative} model).
+The FEP also postulates a dual model called the \textit{recognition} model,
 which works in tandem with the generative model $p_R(\z|\x)$, to accomplish approximate inference. The recognition model dreams imaginary worlds $\z$,
 while the latter tries to generate sensations $\x$ which match these dreams!
 
@@ -1777,6 +1778,7 @@ namely the \text{free-energy} $F_G^R(\x)$ given by
 %   \caption{Variational autoencoders...}
 %   \label{fig:vae}
 % \end{figure}
+\textbf{XXX Passage: Explain the relation of FEP and active inference to our MDPs}
 The main algorithm for minimizing free-energy $F_G^R(\x)$ is the \textit{wake-sleep algorithm}
 \citep{dayan1995helmholtz}. As noted already in \citep{dayan1995helmholtz},
 a crucial drawback of the wake-sleep algorithm is that it postulates a pair forward (generation) and backward (recognition) models,
@@ -1834,7 +1836,7 @@ a number of previous experimental observations in the
 DMN by simple but non-trivial mechanisms.
 %
 From the view of a Markovian sequential decision process,
-human behavior unfolds by integrating reward outcomes from stored past events
+human behavior unfolds by integrating action outcomes from stored past events
 and extrapolation to
 upcoming events for guiding action choice in the present context.
 MDPs also provide a mathematical formalism how
@@ -1849,14 +1851,14 @@ as well as delay discounting and self-related prospection.
 Improvement of the internal world representation
 by injecting stochasticity in the recall of past
 actions and the estimation of action outcomes may explain why
-very accurate memories have been disfavored in human evolution
+highly accurate memories have been disfavored in human evolution
 and why human creativity might be adaptive.
 
 
 
 The proposed artificiale intelligence perspective
 on DMN biology is hence practically computable and
-yields falsifiable neuroscientific hypotheses.
+yields falsifiable neurobiological hypotheses.
 %
 Neuroscience experiments could be designed that operationalize
 the set of action, value, and state variables that govern
@@ -1864,7 +1866,7 @@ the behavior of intelligent RL systems.
 %
 At the least, we propose an alternative vocabulary to
 describe and interpret experimental findings in neuroscience studies
-on the DMN situated at top of the brain network hiearchy.
+on the DMN situated at top of the brain network hierarchy.
 %
 Ultimately,
 DMN activity may instantiate a holistic integration
