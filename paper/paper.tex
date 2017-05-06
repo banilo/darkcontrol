@@ -831,8 +831,7 @@ that are plausible to functionally intersect in the DMN.
 
 \begin{wrapfigure}{r}{.4\linewidth}
   \caption{\textbf{Reinforcement learning in a nutshell.} Given the current state of the environment,
-    the agent takes an action (by following some policy). This yields a reward and an observed
-    state transition of the environment. The process goes on until interrupted or a goal state is reached.}
+    the agent takes an action (by following some policy), receives a consequential reward and observes the next state. The process goes on until interrupted or a goal state is reached.}
   \centering
   \includegraphics[width=1.\linewidth]{rl.pdf}
   \label{fig:rl}
@@ -840,7 +839,7 @@ that are plausible to functionally intersect in the DMN.
 
 
 RL is a problem-solving technique in which,
-through repeated interactions with an unknown \textit{environment},
+through repeated interactions with an\textit{environment},
 an agent learns to reach goals and optimize reward signals
 in an iterative trial-and-error fashion (Fig. \ref{fig:rl}).
 At a given moment, each taken \textit{action} $a$ triggers a change
@@ -853,8 +852,8 @@ In this view, the environment is partially controlled by
 the action of the agent and the reward can be thought
 of as satisfaction \textemdash or aversion \textemdash accompanying the execution of
 an action.
-Action may be delayed to achieve substantial increases in expected reward
-that is expected to grow with time.
+% Action may be delayed to achieve substantial increases in expected reward
+% that is expected to grow with time.
 
 
 The environment is generally taken as \textit{stochastic},
@@ -964,28 +963,28 @@ an agent might represent such knowledge about the world as follows:
 \end{itemize}
 
 \begin{definition*}
-Mathematically, an MDP is simply a quintuplet $(\mathcal S, \mathcal A, r, p, \mu)$ where
+Mathematically, an MDP is simply a quintuplet $(\mathcal S, \mathcal A, r, p)$ where
 \begin{itemize}
 \item $\mathcal S$ is the set of states, such as $\mathcal S = \{\text{happy}, \text{sad}\}$.
-\item $p : \mathcal S \times \mathcal A \times \mathcal S \rightarrow [0, 1],\; (s,a,s') \mapsto p(s'|s,a)$,
-  the probability of moving to state $s'$ if action $a$ is taken from state $s$. In addition, one requires that such
-  transitions be Markovian. Consequently, the future states are independent of past states and only depend on the present.
 \item $\mathcal A$ is the set of actions, such as $\mathcal A = \{\text{read}, \text{run},
   \text{laugh}, \text{sympathize}, \text{empathize}\}.$
 \item $r : \mathcal S \times \mathcal A \rightarrow \mathbb R$ is the \textit{reward function},
-  so that $r(s, a)$ is the instant reward for taking action $a$ in state $s$.
-\item $\mu: \mathcal S \rightarrow [0, 1]$ is the prior probability on the states so that
-  $\mu(s)$ is the probability that the environment starts off in state $s$.
+   so that $r(s, a)$ is the instant reward for taking action $a$ in state $s$.
+% \item $\mu: \mathcal S \rightarrow [0, 1]$ is the prior probability on the states so that
+%   $\mu(s)$ is the probability that the environment starts off in state $s$.
+\item $p : \mathcal S \times \mathcal A \times \mathcal S \rightarrow [0, 1],\; (s,a,s') \mapsto p(s'|s,a)$,
+  the probability of moving to state $s'$ if action $a$ is taken from state $s$. In addition, one requires that such
+  transitions be Markovian. Consequently, the future states are independent of past states and only depend on the present state and action taken.
+
 \end{itemize}
 
 \end{definition*}
 
 
 \subsubsection{Accumulated rewards and policies}
-The behavior of the agent is governed by some kind of \textit{policy}.
-It maps states of the world to
-a set of candidate actions that can be performed given this state. Starting at time $t=0$,
-a policy $\pi$ generates a trajectory of action choices as follows:
+The behavior of the agent is governed by a \textit{policy}, which maps states of the world
+to probability distributions over actions. Starting at time $t=0$,
+followung a policy $\pi$ generates a trajectory of action choices as follows:
 \begin{eqnarray*}
   \begin{split}
     \textbf{choose action: }a_0 &\sim \pi(a|s_0)\\
@@ -1176,36 +1175,41 @@ triggered by another (possibly stochastic) behavioral policy.
 
 % \subsection{Learning in the DMN}
 \subsubsection{Value approximation and the policy matrix}
-%As already mentioned in the previous section, Q-learning optimizes over the class of
-% deterministic policies of the form \eqref{eq:qlearning}.
-At a time step $k-1$, the world is in a state $s \in \mathcal S$, and the agent greedily takes an
+As already mentioned in the previous section, Q-learning optimizes over the class of
+deterministic policies of the form \eqref{eq:qlearning}. State spaces may be extremely large,
+and tracking all possible states and actions may require excessive space.
+The need of maintaining an explicit table of
+states can be eliminated by instead using of an approximate $Q$-value function $\tilde{Q}(s,a|\theta)$
+by keeping track of an approximating parameter $\theta$ of much lower dimension than the number of states.
+At a time step, the world is in a state $s \in \mathcal S$, and the agent takes an
 action which it expects to be the most valuable on average, namely
 
 \begin{equation}
   \pi^{\text{greedy}}(s) = \argmax_{a \in \mathcal A}\tilde{Q}(s, a|\theta),
   \label{eq:policy}
 \end{equation}
-by querying an an approximate version $\tilde{Q}(s,a|\theta)$ of the $Q$-value function, parameterized
-by the tensor $\theta$. This defines a mapping from states directly to actions.
+This defines a mapping from states directly to actions.
 % $a \mapsto \tilde{Q}(a,s|\theta)$ of the $Q$-value function ``frozen'' at state $s$.
 For instance, a simple linear model with a kernel $\phi$ would be of the
 form $\tilde{Q}(s, a|\theta) = \phi(s,a)^T\theta$, where
 $\phi(s,a)$ would represent a high-level representation of the state-action pairs
-$(s,a)$, as recently proposed \citep{songNIPS2016}.
+$(s,a)$, as was done proposed \citep{songNIPS2016}, or a eural network as recently proposed by in the
+breakthrough works
+\citep{mnih2015,silver2016mastering} for playing complex games (atari, Go, etc.) at superhuman levels.
 %  and Parr et al. 2003 (JMLR)].
-In the DMN, the dmPFC would implement such a greedy lookup
+In the DMN, the dmPFC would implement such a hard-max lookup
 over the action space.
 The model
   parameters $\theta$ would correspond to synaptic weights and connection strengths between
-  brain regions. It is a time-varying neuronal program which dictates how to move from world states $s$ to actions $a$ via the greedy policy \eqref{eq:policy}.
+  brain regions. It is a time-varying neuronal program which dictates how to move from world states $s$ to actions $a$ via the hard-max policy \eqref{eq:policy}.
   The oracle Q-values $\tilde{Q}(s, a|\theta)$ tell the DMN the (expected) usefulness of taking an action a in state $s$.
   The DMN, and in particular its dmPFC node, could then contribute to the choice, at a given state $s$, of an action $a$ which maximizes this tabulated values. This mapping from states to actions is conventionally called \textit{policy matrix}.
   Learning consists in starting from a given table and
   updating it during action choices,
   which take the agent to different table entries.
 
-  \textbf{XXX Elvis to Elvis: clarify the notion of greed. Add a paragraph on the exploitation vs exploration dilemma, and end with a conclusion saying the DMN probably does epsilon-greedy
-    or softmax.}
+  % \textbf{XXX Elvis to Elvis: clarify the notion of greed. Add a paragraph on the exploitation vs exploration dilemma, and end with a conclusion saying the DMN probably does epsilon-greedy
+  %   or softmax.}
 
 % \subsubsection{Bounded rationality}
 % $$\max_{a \in \mathcal A}\tilde{Q}(s, a|\theta)  \propto \lim_{T \rightarrow 0^+}\exp(\tilde{Q}(s,a|\theta)/T)$$
@@ -1288,31 +1292,33 @@ Stochastic here means that the true gradient is estimated from batches of traini
 
 % \paragraph{Parameter update.}
 \begin{equation}
-  \delta \theta_{k} \propto -\nabla_{\theta_{k}}\mathcal L(\theta_{k})
-  = -\mathbb E_{(s, a, r, s') \sim \mathcal D}[\underbrace{(\tilde{Q}(s, a|\theta_{k}) - y_k)}_{\text{prediction error}}
-    \underbrace{\nabla_{\theta_{k}}\tilde{Q}(s, a|\theta_{k})}_{\text{aversion}}].
+  \delta= -\alpha_k \nabla_{\theta_{k}}\mathcal L(\theta_{k})
+  = -\alpha_k\mathbb E_{(s, a, r, s') \sim \mathcal D}[\underbrace{(\tilde{Q}(s, a|\theta_{k}) - y_k)}_{\text{prediction error}}
+    \underbrace{\nabla_{\theta_{k}}\tilde{Q}(s, a|\theta_{k})}_{\text{aversion}}],
   \label{eq:oracle}
 \end{equation}
+where the positive constants $\alpha_1, \alpha_2,\ldots$ are learning rates.
 Thus, the next action is taken to drive reward prediction errors
-(or \textit{regret}) to
-percolate
-from lower to higher processing layers to modulate the choice of future actions .Over time (i.e., in the limit $k \rightarrow \infty$),
-the thus generated approximating sequence of
-$Q$-value functions provably
+(or \textit{regret}) to percolate from lower to higher processing layers to modulate the
+choice of future actions. It is a standard result that under special conditions on the learning rates $\alpha_k$
+--namely that the sum $\sum_{k=0}^\infty\alpha_k$
+diverges while $\sum_{k=0}^\infty\alpha_k^2$ converges, over time (i.e., in the limit $k \rightarrow \infty$)
+the thus generated approximating sequence of $Q$-value functions
 % \footnote{The proof is standard and relies on the Banach Fixed-Point Theorem applied to the Bellman transform.}
-$\tilde{Q}(.,.|\theta_0) \rightarrow \tilde{Q}(.,.|\theta_1) \rightarrow \tilde{Q}(.,.|\theta_2) \rightarrow \ldots$
+$$\tilde{Q}(.,.|\theta_0) \rightarrow \tilde{Q}(.,.|\theta_1) \rightarrow \tilde{Q}(.,.|\theta_2) \rightarrow \ldots$$
 are attracted and absorbed by the optimal $Q$-value function $Q^*$ defined implicitly by the Bellman equation \eqref{eq:bellman}.
 
-One should note that most classical RL algorithms, including \textit{Temporal Difference (TD)}
-learning \citep{sutton1998reinforcement}, REINFORCE \citep{williams1992}, and SARSA can be
-cast in the general variational framework \eqref{eq:oracle}. For instance, TD corresponds to
-the above framework using a linear value approximator with feature encoding
-$\phi(s,a) = \delta_{(s,a)} =  \text{ point mass at }(s,a)$ on the grid
-$\mathcal S \times \mathcal A$, and so
-$$\nabla_{\theta}\tilde{Q}(s, a|\theta) = \phi(s, a) = \delta_{(s,a)}.$$
-Hence, the gradient update due to the sample $(s,a,r,s') \in \mathcal D$ is
-$$\tilde{Q}(s, a) \leftarrow \tilde{Q}(s, a) + \alpha(y-\tilde{Q}(s, a)),$$
-the well-known TD update rule \citep{sutton1998reinforcement}.
+% \paragraph{Link to classical reinforcement learning.}
+% One should note that most classical RL algorithms, including \textit{Temporal Difference (TD)}
+% learning \citep{sutton1998reinforcement}, REINFORCE \citep{williams1992}, and SARSA can be
+% cast in the general variational framework \eqref{eq:oracle}. For instance, TD corresponds to
+% the above framework using a linear value approximator with feature encoding
+% $\phi(s,a) = \delta_{(s,a)} =  \text{ point mass at }(s,a)$ on the grid
+% $\mathcal S \times \mathcal A$, and so
+% $$\nabla_{\theta}\tilde{Q}(s, a|\theta) = \phi(s, a) = \delta_{(s,a)}.$$
+% Hence, the gradient update due to the sample $(s,a,r,s') \in \mathcal D$ is
+% $$\tilde{Q}(s, a) \leftarrow \tilde{Q}(s, a) + \alpha(y-\tilde{Q}(s, a)),$$
+% the well-known TD update rule \citep{sutton1998reinforcement}.
 
 \subsubsection{Does the hippocampus subserve Monte-Carlo sampling?}
 In RL, Monte-Carlo simulation is a common means to update the agent's belief state
