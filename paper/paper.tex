@@ -934,10 +934,10 @@ This is performed alongside each transition in the state space of the environmen
 states, based on a set of observations and observation probabilities.
 This is a minimal set of assumptions that can be made about an environment,
 and is characteristic of so-called \textit{model-free RL}. Model-free RL has had great success in real-world problems including robotics
-\citep{abbeel2004,andrewng}, computer game play, \citep{mnih2015,silver2016mastering}, etc., just to name a few.
+\citep{ng2004,abbeel2004}, super-human play in complex games like Atari\citep{mnih2015} and Go\citep{silver2016mastering}, etc., just to name a few.
 We propose to use such a model as formal basis to model DMN function.
 
-Such a learning scheme can be plausibly realized in the human brain \citep{doherty2015structure}. Indeed,
+Model-free RL can be plausibly realized in the human brain \citep{doherty2015structure}. Indeed,
 a core property of human intelligence has been proposed to underly improvement
 of expected utility outcomes as a strategy for action choice in uncertain
 environments \citep{gershman2015computational}, a situation perfectly captured by the formalism of MDPs.
@@ -968,8 +968,8 @@ Mathematically, an MDP is simply a quintuplet $(\mathcal S, \mathcal A, r, p)$ w
 \item $\mathcal S$ is the set of states, such as $\mathcal S = \{\text{happy}, \text{sad}\}$.
 \item $\mathcal A$ is the set of actions, such as $\mathcal A = \{\text{read}, \text{run},
   \text{laugh}, \text{sympathize}, \text{empathize}\}.$
-\item $r : \mathcal S \times \mathcal A \rightarrow \mathbb R$ is the \textit{reward function},
-   so that $r(s, a)$ is the instant reward for taking action $a$ in state $s$.
+\item $r : \mathcal S \times \mathcal A \times \mathcal S \rightarrow \mathbb R$ is the \textit{reward function},
+   so that $r(s, a, s')$ is the instant reward for taking action $a$ in state $s$ followed by a state-transition $s \rightarrow s'$.
 % \item $\mu: \mathcal S \rightarrow [0, 1]$ is the prior probability on the states so that
 %   $\mu(s)$ is the probability that the environment starts off in state $s$.
 \item $p : \mathcal S \times \mathcal A \times \mathcal S \rightarrow [0, 1],\; (s,a,s') \mapsto p(s'|s,a)$,
@@ -988,12 +988,12 @@ followung a policy $\pi$ generates a trajectory of action choices as follows:
 \begin{eqnarray*}
   \begin{split}
     \textbf{choose action: }a_0 &\sim \pi(a|s_0)\\
-    \textbf{ observe transition: }s_1 &\sim p(s|s_0,a_0)\textbf{ and collect reward }R_0 = r(s_0, a_0)\\
+    \textbf{ observe transition: }s_1 &\sim p(s|s_0,a_0)\textbf{ and collect reward }R_0 = r(s_0, a_0, s_1)\\
     \textbf{choose action: }a_1 &\sim \pi(a|s_1)\\
-    \textbf{ observe transition: }s_2 &\sim p(s|s_1,a_1), \textbf{ and collect reward }R_1 = r(s_1, a_1)\\
+    \textbf{ observe transition: }s_2 &\sim p(s|s_1,a_1), \textbf{ and collect reward }R_1 = r(s_1, a_1,s_2)\\
     \vdots\\
     \textbf{choose action: }a_{t} &\sim \pi(a|s_{t})\\
-    \textbf{ observe transition: }s_{t+1} &\sim p(s|s_{t},a_{t}), \textbf{ and collect reward }R_{t} = r(s_{t}, a_{t})\\
+    \textbf{ observe transition: }s_{t+1} &\sim p(s|s_{t},a_{t}), \textbf{ and collect reward }R_{t} = r(s_{t}, a_{t},s_{t+1})\\
     \vdots
   \end{split}
 \end{eqnarray*}
@@ -1043,8 +1043,9 @@ A positive $\gamma$ can be seen as calibrating risk-seeking trait of the intelli
 that is, the behavioral predispositions related to trading longer delays for higher rewards.
 Such an agent puts relatively more emphasis on rewards expected in
 a longer-term future. 
-Precisely, rewards that are not expected to come within $\tau := 1/(1 - \gamma)$ time steps from the present point are disregarded.
-This reduces the variance of expected rewards accumulated across
+Precisely, rewards that are not expected to come within\footnote{\textbf{N.B.:} $\frac{1}{1-\gamma} = 1 + \gamma + \gamma^2 + \gamma^3 + \ldots$}
+$\tau := 1/(1 - \gamma)$
+time steps from the present point are disregarded. This reduces the variance of expected rewards accumulated across
 considered action cascades by limiting the depth of the search tree.
 Given that there is more uncertainty in the farsighted future,
 it is important to appreciate that a stochastic policy estimation
@@ -1202,8 +1203,9 @@ over the action space.
 The model
   parameters $\theta$ would correspond to synaptic weights and connection strengths between
   brain regions. It is a time-varying neuronal program which dictates how to move from world states $s$ to actions $a$ via the hard-max policy \eqref{eq:policy}.
-  The oracle Q-values $\tilde{Q}(s, a|\theta)$ tell the DMN the (expected) usefulness of taking an action a in state $s$.
-  The DMN, and in particular its dmPFC node, could then contribute to the choice, at a given state $s$, of an action $a$ which maximizes this tabulated values. This mapping from states to actions is conventionally called \textit{policy matrix}.
+  The approximating $Q$-value function $\tilde{Q}(s, a|\theta)$ would tell the DMN the (expected) usefulness of taking an action $a$ in state $s$.
+  The DMN, and in particular its dmPFC node, could then contribute to the choice, at a given state $s$, of an action $a$ which maximizes these approximate
+  $Q$-values. Such a mapping from states to actions is conventionally called \textit{policy matrix}\citep{mnih2015,silver2016mastering}.
   Learning consists in starting from a given table and
   updating it during action choices,
   which take the agent to different table entries.
@@ -1301,8 +1303,7 @@ where the positive constants $\alpha_1, \alpha_2,\ldots$ are learning rates.
 Thus, the next action is taken to drive reward prediction errors
 (or \textit{regret}) to percolate from lower to higher processing layers to modulate the
 choice of future actions. It is a standard result that under special conditions on the learning rates $\alpha_k$
---namely that the sum $\sum_{k=0}^\infty\alpha_k$
-diverges while $\sum_{k=0}^\infty\alpha_k^2$ converges, over time (i.e., in the limit $k \rightarrow \infty$)
+(namely that the sum $\sum_{k=0}^\infty\alpha_k$ diverges while $\sum_{k=0}^\infty\alpha_k^2$ converges) over time (i.e., in the limit $k \rightarrow \infty$)
 the thus generated approximating sequence of $Q$-value functions
 % \footnote{The proof is standard and relies on the Banach Fixed-Point Theorem applied to the Bellman transform.}
 $$\tilde{Q}(.,.|\theta_0) \rightarrow \tilde{Q}(.,.|\theta_1) \rightarrow \tilde{Q}(.,.|\theta_2) \rightarrow \ldots$$
@@ -1408,7 +1409,7 @@ The HC may provide perturbed action-transition-state-reward samples
   successful action choices and reward predictions in future states.
   As such,
   plasticity in the DMN arises naturally:
-  If an agent behaving optimally in a given environment moves
+  if an agent behaving optimally in a given environment moves
   to new, yet unexperienced environments, reward prediction errors will
   massively increase \textbf{Please check/simplify sentence}.
   This will lead to adaptation of the policy until the system converges to a
