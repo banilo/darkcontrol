@@ -1187,7 +1187,7 @@ At a time step, the world is in a state $s \in \mathcal S$, and the agent takes 
 action which it expects to be the most valuable on average, namely
 
 \begin{equation}
-  \pi^{\text{greedy}}(s) = \argmax_{a \in \mathcal A}\tilde{Q}(s, a|\theta),
+  \pi^{\text{hard-max}}(s) = \argmax_{a \in \mathcal A}\tilde{Q}(s, a|\theta),
   \label{eq:policy}
 \end{equation}
 This defines a mapping from states directly to actions.
@@ -1756,9 +1756,9 @@ as a special case.
 
 \subsection{The free-energy principle and active inference}
 \textbf{XXX Passage: Explain FEP and active inference}
-In Friston's free-energy principle (FEP) \citep{friston2010free,fristonAIorRL}, the brain is portrayed
+In Friston's free-energy principle (FEP) \citep{friston2010free} and active inference \citep{fristonAIorRL} theories, the brain is portrayed
 as biomechanical inference engine
-dedicated to minimizing the long-term average of surprise.
+dedicated to minimizing the long-term average of surprise: the log-likelihood of the observe sensory input. It does this by actively generating hypothetical explanations or predictions of its sensory input.
 Precursors of this theory can be traced back to \citep{dayan1995helmholtz} in which they introduced the so-called \textit{Helmholtz machine}, a hierarchical factorial \textit{directional deep belief-net}. According to the FEP account,
 the goal of the brain is then to optimize over a generative model $G$ of sensations: to iteratively
 modify its internal representation $p_G(\z|\x)$ about objects in the world, their interactions and dynamics,
@@ -1785,7 +1785,7 @@ namely the \text{free-energy} $F_G^R(\x)$ given by
 %   \caption{Variational autoencoders...}
 %   \label{fig:vae}
 % \end{figure}
-\textbf{XXX Passage: Explain the relation of FEP and active inference to our MDPs}
+
 The main algorithm for minimizing free-energy $F_G^R(\x)$ is the \textit{wake-sleep algorithm}
 \citep{dayan1995helmholtz}. As noted already in \citep{dayan1995helmholtz},
 a crucial drawback of the wake-sleep algorithm is that it postulates a pair forward (generation) and backward (recognition) models,
@@ -1794,14 +1794,20 @@ Thus the brain could not possibly be running such a algorithm, not even in princ
 \textit{variational auto-encoders (VAEs)} \citep{kingma2013auto} might provide an efficient alternative to the wake-sleep algorithm,
 as it overcomes the technical limits of the former, by using a reparametrization trick. For instance, unlike the wake-sleep algorithm
 for minimizing free-energy, VAEs can be efficiently trained via back-propagation of prediction errors.
+  
+\subsubsection{RL reinterpretation of FEP and active inference}  FEP and active inference can be reinterpreted in our model-free RL framework by postulating that the reward signal maximized by the DMN is the negative of surprisal, i.e the log-likehood of sensory the current priors the agent has about the world. This is worth writing down explicitly,
 
+\begin{equation}
+  r^{\text{FEP}} = \underbrace{\log (p_G)}_{-\text{FEP generative surprisal}}.
+    \end{equation}
 % \paragraph{Comparison to our proposed theory.}
-On the surface, a common point between the FEP and our proposed RL-based framework
-  is placing the minimization of a surprise signal at the core of brain function.
-  Indeed in RL, surprise minimization is subsumed  by accurate prediction of
-  rewarding outcomes in the future. A ``free-energy'' agent is barely a biomechanical machine which has the tendency to resist undesired phase-transitions
-  \citep{friston2010free,fristonAIorRL,ortega2013thermodynamics}. Such a theory cannot by itself,
-  explain the emergence of strategic behavior inherent in humans (e.g.,  cite dark-room experiment).
+% On the surface, a common point between the FEP and our proposed RL-based framework
+%   is placing the minimization of a surprise signal at the core of brain function.
+%   Indeed in RL, surprise minimization is subsumed  by accurate prediction of
+%   rewarding outcomes in the future. A ``free-energy'' agent is barely a biomechanical machine which has the tendency to resist undesired phase-transitions
+%   \citep{friston2010free,fristonAIorRL,ortega2013thermodynamics}.
+    Such a surprisal-based reinforcement learning scheme has been advocated for in \citep{schmidhuber2010,mohamed2015} under the equivalent framework of information compression.
+    However, we note that though relevant, minimization of surprisal alone is insufficient to explain intelligent behavior observed in humans and other ``intelligent'' animals. The dark-room experiment, for example, provides a formidable argument against in favor of the insufficiency of the FEP and active inference theories to explain intelligent behavior in humans: when a human is put in a dark room, they don't just sit down in a corner forever, what would be the FEP-optimal thing to do; they actively search for the light switch, and start exploring the depths of the room, possibly looking for food or the way out!
 
 % Friston's critic of RL \citep{fristonAIorRL} (he proposes ``active inference''): "This equation (equation 18) comes from the theory of dynamic programming,
 % pioneered in the 1950s by Richard Bellman and colleagues [2]. To
