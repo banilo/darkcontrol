@@ -587,7 +587,7 @@ Comparing to the dmPFC,
 the vmPFC probably subserves
 subjective value evaluation and
 risk estimation of relevant environmental stimuli.
-The ventromedial prefrontal DMN may
+The ventromedial prefrontal DMN (\textbf{XXX Elvis: you mean ``... ventromedial prefrontal part of the DMN'' ?}) may
 orchestrate adaptive behavior by bottom-up-driven
 processing of “what matters now”,
 probably drawing on sophisticated value representations
@@ -1148,7 +1148,7 @@ of an arbitrary $Q$-value function $Q: \mathcal S \times \mathcal A \rightarrow 
    \text{Bel}(Q)(s,a) &:=
    \mathbb E_{s' \sim p(s'|s,a)} [r(s,a) + \gamma \max_{a' \in \mathcal A}Q(s', a')]\\
    &= r(s,a) + \gamma\mathbb E_{s' \sim p(s'|s,a)} [\max_{a' \in \mathcal A}Q(s', a')]\\
-   &= \text{instantaneous reward} + \text{expected reward for acting greedily thereafter}
+   &= \text{instantaneous reward} + \text{expected maximum reward thereafter}
 %    \; \forall (s,a) \in \mathcal S \times \mathcal A
     % \\&=
     % \mathbb E_{s' \sim p(s'|s,a)} [r(s,a) + \gamma Q^*(s', \pi^*(s'))].
