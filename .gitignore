@@ -7,5 +7,4 @@
 *.aux
 *.bbl
 *.blg
-
-
+*.out

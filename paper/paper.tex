@@ -205,7 +205,7 @@
     \textbf{4} Institut Pasteur, Human Genetics and Cognitive Functions Unit, Paris, France\\
     \textbf{5} CNRS UMR 3571 Genes, Synapses and Cognition, Institut Pasteur, Paris, France\\
     \textbf{6} University Paris Diderot, Sorbonne Paris Cit\'e, Paris, France\\
-    \textbf{7} Centre de Bioinformatique, Biostatistique et Biologie Intégrative, Paris, France
+    \textbf{7} Centre de Bioinformatique, Biostatistique et Biologie Int\'egrative, Paris, France
 }
 
 \begin{abstract}
@@ -234,15 +234,16 @@ the previously proposed cognitive accounts on
 (2) semantic associations, and
 (3) a ``sentinel'' role.
 %
-A process model for the neural optimization of complex behavior in the DMN
+Moreover, this process model for the neural optimization of complex behavior in the DMN
 offers parsimonious explanations for
-recent experimental findings in animals and humans.
+recent experimental findings\suggestremove{ in animals and humans}.
 \end{abstract}
 
 % official NIPS keywords
 \textbf{\\keywords}: systems biology, mind-wandering, cognitive science,
 artificial intelligence,
 reinforcement learning
+\textbf{XXX: Maybe the keywords "systems biology" and "cognitive science" are too broad. I would also remove "reinforcement learning", which is already in the title. The keywords are the occasion to enhance reachability through web and bibliography search. What about "process model", "Markov decision processes", or "Bellman equation"?}
 % autonomous learning systems
 % \textbf{\\Get opinion from}: Danielle Bassett, Kai Vogeley, Mohammad Shakir,
 % Guillaume Dumas, Smallwood, Tenenbaum
@@ -364,12 +365,10 @@ maps environmental objects and events (i.e., states) to expected rewards.
 Switching between states reduces to a sequential processing model.
 Informed by outcomes of performed actions, neural computation reflected in
 DMN dynamics could be constantly adapted in feedback loops
-shaped by prediction error.
+shaped by prediction error. \textbf{XXX: "could be constantly adapted in feedback loops shaped by prediction error" => "are constantly shaped by prediction error through feedback loops"}
 Such an RL account of DMN function can naturally embed human behavior
 into the tension between exploitative action with immediate gains and
 exploratory action with longer-term gratification.
-
-
 
 We argue that DMN implication in many
 advanced cognitive processes in humans
@@ -905,7 +904,7 @@ based on a brain implementation of MCMC sampling
 \subsection{Markov decision processes}
 Model-free RL has had great success in real-world problems including robotics
 \citep{ng2004,abbeel2004},
-super-human performance in complex games like Atari\citep{mnih2015} and Go\citep{silver2016mastering}, etc., just to name a few.
+super-human performance in complex video games \citep{mnih2015} and Go\citep{silver2016mastering}, etc., just to name a few.
 We emphasize that the brain in general, and the DMN in particular,
 is a physical system governed by the laws of
 physics and can be formally described
@@ -1046,7 +1045,7 @@ setting $0 < \gamma < 1$ allows a learning process to arise.
 A positive $\gamma$ can be seen as calibrating risk-seeking trait of the intelligent agent,
 that is, the behavioral predispositions related to trading longer delays for higher rewards.
 Such an agent puts relatively more emphasis on rewards expected in
-a longer-term future. 
+a longer-term future.
 Precisely, rewards that are not expected to come within\footnote{\textbf{N.B.:} $\frac{1}{1-\gamma} = 1 + \gamma + \gamma^2 + \gamma^3 + \ldots$}
 $\tau := 1/(1 - \gamma)$
 time steps from the present point are disregarded. This reduces the variance of expected rewards accumulated across
@@ -1177,6 +1176,7 @@ triggered by another (possibly stochastic) behavioral policy.
 \begin{mdframed}
   \textbf{ Neural correlates of the Bellman equation in the DMN:}
   ...
+  \textbf{XXX Guillaume: I agree that this would be BIG!}
 \end{mdframed}
 
 % \subsection{Learning in the DMN}
@@ -1213,7 +1213,7 @@ The model
   $Q$-values. Such a mapping from states to actions is conventionally called \textit{policy matrix}\citep{mnih2015,silver2016mastering}.
   Learning consists in starting from a given table and
   updating it during action choices,
-  which take the agent to different table entries.
+  which take the agent to different table entries. \suggestadd{An additional layer of learning concerns the addition of new entries in the table (i.e. state and action). The framing of the policy matrix is not described here but could be supported by the formation of new attractor in the neural dynamics through synaptic epigenesis \citep{gisiger_acquisition_2005}.}
 
 % \subsubsection{Bounded rationality}
 % $$\max_{a \in \mathcal A}\tilde{Q}(s, a|\theta)  \propto \lim_{T \rightarrow 0^+}\exp(\tilde{Q}(s,a|\theta)/T)$$
@@ -1736,6 +1736,9 @@ analogues of the DMN in monkeys \citep{mantini2011default},
 cats \citep{popa2009contrasting},
 and rats \citep{lu2012rat}, three species with
 social-cognitive capacities that are supposedly less advanced than in humans.
+
+\suggestadd{The principal connectivity gradient in the cortex appears to be greatly expanded in humans compare to macaques, suggesting a phylogenetically conserved axis of cortical expansion with the DMN emerging at the extreme-end in humans \citep{margulies_situating_2016}. Neurocomputational models of dyadic whole brain demonstrated how the human connectivity topology, on top of facilitating processing at the intra-individual level, can explain our propensity to coordinate through sensorimotor loops with others at the inter-individual level \citep{dumas_anatomical_2012}.}
+
 Rather than functional specificity for processing social information,
 the present MDP account can parsimoniously incorporate
 the dominance of social content in
@@ -1795,7 +1798,7 @@ Thus the brain could not possibly be running such a algorithm, not even in princ
 \textit{variational auto-encoders (VAEs)} \citep{kingma2013auto} might provide an efficient alternative to the wake-sleep algorithm,
 as it overcomes the technical limits of the former, by using a reparametrization trick. For instance, unlike the wake-sleep algorithm
 for minimizing free-energy, VAEs can be efficiently trained via back-propagation of prediction errors.
-  
+
 \subsubsection{RL reinterpretation of FEP and active inference}  FEP and active inference can be reinterpreted in our model-free RL framework by postulating that the reward signal maximized by the DMN is the negative of surprisal, i.e the log-likehood of sensory the current priors the agent has about the world. This is worth writing down explicitly,
 
 \begin{equation}
@@ -1835,7 +1838,7 @@ for minimizing free-energy, VAEs can be efficiently trained via back-propagation
 \textbf{XXX: integrate aspects from Friston2014(Dropbox) on active inference}
 
 \section{Conclusion}
-What brain function could be important enough
+Which brain function could be important enough
 for the existence and survival of the human species
 to justify constantly high energy costs?
 MDPs motivate an attractive
