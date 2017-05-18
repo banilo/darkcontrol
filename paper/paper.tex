@@ -1800,7 +1800,7 @@ as a special case.
 \subsection{The free-energy principle and active inference}
 In Friston's free-energy principle (FEP) \citep{friston2010free} and active inference  (i.e action under the FEP) \citep{fristonAIorRL} theories, the brain is portrayed
 as biomechanical inference engine
-dedicated to minimizing the long-term average of surprise: the log-likelihood of the observed sensory input, or more precisely, an upper bound thereof. It does this by actively generating hypothetical explanations or predictions of its sensory input.
+dedicated to minimizing the long-term average of surprise: the log-likelihood of the observed sensory input --or more precisely, an upper bound thereof-- \textit{relative} to the expectations of, and the internal representations the brain has about the external world. It does this by actively generating hypothetical explanations or predictions of its sensory input.
 Precursors of this theory can be traced back to \citep{dayan1995helmholtz} in which they introduced the so-called \textit{Helmholtz machine}, a hierarchical factorial \textit{directional deep belief-net}. According to the FEP account,
 the goal of the brain is then to optimize over a generative model $G$ of sensations: to iteratively
 modify its internal representation $p_G(\z|\x)$ about objects in the world, their interactions and dynamics,
@@ -1829,7 +1829,7 @@ namely the \text{free-energy} $F_G^R(\x)$ given by
 % \end{figure}
 
 \subsubsection{Criticisms of the FEP}
-  Despite it's popularity, a number of critics about the FEP have surfaced over the years. We outline the main ones here.
+  Despite its popularity, a number of criticisms against the FEP have surfaced over the years. We outline the most notable ones here.
   
 \paragraph{The wake-sleep algorithm is not neurobiologically plausible.}
 The main algorithm for minimizing free-energy $F_G^R(\x)$ is the \textit{wake-sleep algorithm}
@@ -1842,17 +1842,18 @@ as it overcomes the technical limits of the former, by using a reparametrization
 for minimizing free-energy, VAEs can be efficiently trained via back-propagation of prediction errors.
 
 \paragraph{The ``dark room'' experiment.}
-Since the FEP postulates that all ongoing intelligent behavior in an organism is geared towards reaching the grand goal of minimizing surprisal, an organism which enters a \textit{dark room}\footnote{\textit{Dark} is used here as an allegory to indicate the complete absence of any \textit{external} sensory input.} would strive to remain there as its sensory input would be perfectly predictable in such a state \citep{darkroom2012}.
+Since the FEP postulates that all ongoing intelligent behavior in an organism is geared towards reaching the grand goal of minimizing surprisal, an organism which enters a \textit{dark room}\footnote{\textit{Dark} is used here as an allegory to indicate the complete absence of any \textit{external} sensory input.} (Fig. \ref{fig:darkroom}) would strive to remain there as its sensory input would be perfectly predictable in such a state \citep{darkroom2012}.
+However, such a tendency is definitely not what is observed, neither in humans nor in animals: if you get into a dark room,
 \begin{wrapfigure}{r}{.45\linewidth}
   \centering
   \includegraphics[width=1.\linewidth]{darkroom.jpg}
   \caption{\textbf{The \textit{dark room} experiment.} The adjective \textit{dark} is used as an allegory to indicate the complete absence of any \textit{external} sensory input.}  
   \label{fig:darkroom}
 \end{wrapfigure}
-However, this is definitely not what is observed, neither in humans nor in animals: if you get into a dark room, you try to figure out where the light switch is, so as to \textit{explore} this mysterious room, or simply get out of it! Defenders of the FEP have retaliated by advancing the `full package''\citep{darkroom2012}: FEP is multi-scale, and there would be a meta-scale at which the organism would
-be \textit{surprised} by such a \textit{lack of surprise}. According to this argument, a dark room is thus paradoxically, a state of extremely high surprise. Driven by the zeal to always diminish surprise, the FEP agent would eventually bootstrap itself out of such saddles, to explore more interesting corners of the environment. Recourse to this argument is essential equivalent to invoking a \textit{halting oracle}, which is problematic as it sucks up the problem the theory is trying to address in the first place.
+you try to figure out where the light switch is, so as to \textit{explore} this mysterious room, or simply get out of it! Defenders of the FEP have retaliated by advancing the `full package''\citep{darkroom2012}: FEP is multi-scale, and there would be a meta-scale at which the organism would
+be \textit{surprised} by such a \textit{lack of surprise}. According to this argument, a dark room is thus paradoxically, a state of extremely high surprise. Driven by the zeal to always diminish surprise, the FEP agent would eventually bootstrap itself out of such saddles, to explore more interesting corners of the environment. Recourse to this argument is equivalent to invoking a \textit{halting oracle}\citep{haltingoracle}, an arbitrarily powerful \textit{Turing machine} which can solve the \textit{halting problem} (an arbitrarily difficult computational problem which cannot be solved under any reasonable \textit{model of computation}, not even in principle!). But this is problematic as it sucks up the problem (that of decision-making and active agency) the theory is intends to elude in the first place.
 
-In contrast, operating under our RL-based theory, an organism would quickly notice that this dark room is a local minimum: hippocampal experience replay (see \ref{sec:self}) would set it and the organism would sample memories or fantasies of alternative situations in which there was reward to mine. Such considerations would artificially generate \textit{internal} sensory input and eventually let the organism to explore the room (for example look for and find the light switch), or simply leave the room. 
+In contrast, operating under our RL-based theory, an organism would quickly notice that this dark room is a local minimum. Indeed, hippocampal experience replay (see \ref{sec:self}) would set it and the organism would sample memories or fantasies of alternative situations in which there was reward to mine. Such considerations would artificially generate \textit{internal} sensory input for the DMN and eventually let the organism to explore the room, for example look for and find the light switch, or simply leave the room. 
 
 
 \subsubsection{RL reinterpretation of FEP and active inference}  FEP and active inference can be reinterpreted in our model-free RL framework by postulating that the reward signal maximized by the DMN is the negative of surprisal, i.e the log-likehood of sensory the current priors the agent has about the world. This is worth writing down explicitly,
