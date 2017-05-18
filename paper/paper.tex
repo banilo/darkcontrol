@@ -1382,10 +1382,8 @@ These simulations of experience batches
 would be used to update the value function, without ever looking inside the black box describing the model's dynamics \citep{lavilleon2015}.
 This would be a simple control algorithm by evaluating all legal actions and selecting the action with
 highest expected cumulative rewards.
-In MDPs, MCMC simulation provides an effective mechanism both for tree search and for belief-based state updates, breaking the curse of dimensionality and allowing much greater scalability than has previously been possible
-\textbf{XXX elvis: refs needed.}.
-Much recent work points to MCMC or stochastic sampling-based approximations as a unifying framework for understanding how Bayesian inference may work practically across all these levels, in minds, brains, and machines. \textbf{XXX elvis: refs needed in last sentence. Plus, should be really bring up Bayesian?} For sampling-based methods it is still scarce
-beyond the description of receptive fields. \textbf{XXX elvis: rephrase last sentence}
+In MDPs, MCMC simulation provides an effective mechanism both for tree search and for belief-based state updates, breaking the curse of dimensionality and allowing much greater scalability than has previously been possible \citep{silver2016mastering}.
+% Much recent work points to MCMC or stochastic sampling-based approximations as a unifying framework for understanding how Bayesian inference may work practically across all these levels, in minds, brains, and machines. \textbf{XXX elvis: refs needed in last sentence. Plus, should be really bring up Bayesian?}
 
 \subsection{Putting everything together}
 The DMN is today known to consistently increase in neural
