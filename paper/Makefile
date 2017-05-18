@@ -13,7 +13,7 @@ latex: clean
 	pdflatex ${PDFLATEX_OPTIONS} paper
 	# makeglossaries paper
 	pdflatex ${PDFLATEX_OPTIONS} paper
-	make clean
+	# make clean
 
 
 loTopdf:

@@ -241,8 +241,7 @@ recent experimental findings\suggestremove{ in animals and humans}.
 
 % official NIPS keywords
 \textbf{\\keywords}: systems biology, mind-wandering, cognitive science,
-artificial intelligence,
-reinforcement learning
+artificial intelligence, Markov decision process
 \textbf{XXX: Maybe the keywords "systems biology" and "cognitive science" are too broad. I would also remove "reinforcement learning", which is already in the title. The keywords are the occasion to enhance reachability through web and bibliography search. What about "process model", "Markov decision processes", or "Bellman equation"?}
 % autonomous learning systems
 % \textbf{\\Get opinion from}: Danielle Bassett, Kai Vogeley, Mohammad Shakir,
@@ -568,7 +567,7 @@ with fine-grained adjustment of contextual circumstances \citep{yoshida2010neura
 % persisting a behavioral plan versus switching the
 % environmental context in several lesion studies \citep{kolling2016value}.
 %
-\begin{wrapfigure}{r}{.5 0\linewidth}
+\begin{wrapfigure}{r}{.4\linewidth}
   \includegraphics[width=1.\linewidth]{fig_dmn.png}
   \centering
   \caption{\textbf{Morphological coupling between reward system and
@@ -843,15 +842,6 @@ estimation of instantaneous and expected delayed reward outcomes
 are key components of intelligent RL agents
 that are plausible to functionally intersect in the DMN.
 
-\begin{wrapfigure}{r}{.4\linewidth}
-  \caption{\textbf{Reinforcement learning in a nutshell.} Given the current state of the environment,
-    the agent takes an action by following some policy, receives a consequential reward and observes the next state. The process goes on until interrupted or a goal state is reached.}
-  \centering
-  \includegraphics[width=1.\linewidth]{rl.pdf}
-  \label{fig:rl}
-\end{wrapfigure}
-
-
 RL is a problem-solving technique in which,
 through repeated interactions with an\textit{environment},
 an agent learns to reach goals and optimize reward signals
@@ -869,7 +859,13 @@ a particular action.
 % Action may be delayed to achieve substantial increases in expected reward
 % that is expected to grow with time.
 
-
+\begin{wrapfigure}{r}{.4\linewidth}
+  \caption{\textbf{Reinforcement learning in a nutshell.} Given the current state of the environment,
+    the agent takes an action by following some policy, receives a consequential reward and observes the next state. The process goes on until interrupted or a goal state is reached.}
+  \centering
+  \includegraphics[width=1.\linewidth]{rl.pdf}
+  \label{fig:rl}
+\end{wrapfigure}
 The environment is generally taken as \textit{stochastic},
 that is, changing in random ways. In addition, the environment is only
 \textit{partially observable} in the sense that only limited aspects of the environment's
@@ -1188,8 +1184,9 @@ can unroll off-policy by observing state transitions
 triggered by another (possibly stochastic) behavioral policy.
 
 
+\begin{mdframed}
 % neuroscience of Bellman equation
-%\textbf{Neural correlates of the Bellman equation in the DMN:}
+\textbf{Neural correlates of the Bellman equation in the DMN:}
 Relating decomposition of consecutive action choices by the Bellman equation
 to neuroscience,
 specific neural activity in the dorsal prefrontal cortex (BA9)
@@ -1217,7 +1214,7 @@ Hence,
 the various advanced human mental abilities subserved by the DMN, such as
 planning and abstract reasoning, can be viewed to involve some form of
 action-decision branching to enable higher-order executive control.
-
+\end{mdframed}
 
 
 % \subsection{Learning in the DMN}
@@ -1259,7 +1256,8 @@ The model
 % \subsubsection{Bounded rationality}
 % $$\max_{a \in \mathcal A}\tilde{Q}(s, a|\theta)  \propto \lim_{T \rightarrow 0^+}\exp(\tilde{Q}(s,a|\theta)/T)$$
 
-\subsubsection{Self-training and the loss function}
+  \subsubsection{Self-training and the loss function}
+  \label{sec:self}
 Successful learning in brains and computer algorithms is not possible without a
 defined learning goal \textemdash the \textit{loss function}.
 The action $a$ chosen in state $s$ according to the policy matrix defined in
@@ -1383,9 +1381,9 @@ would be used to update the value function, without ever looking inside the blac
 This would be a simple control algorithm by evaluating all legal actions and selecting the action with
 highest expected cumulative rewards.
 In MDPs, MCMC simulation provides an effective mechanism both for tree search and for belief-based state updates, breaking the curse of dimensionality and allowing much greater scalability than has previously been possible
-\textbf{XXX: refs needed.}.
-Much recent work points to MCMC or stochastic sampling-based approximations as a unifying framework for understanding how Bayesian inference may work practically across all these levels, in minds, brains, and machines. \textbf{XXX: refs needed in last sentence. Plus, should be really bring up Bayesian?} For sampling-based methods it is still scarce
-beyond the description of receptive fields. \textbf{XXX: rephrase last sentence}
+\textbf{XXX elvis: refs needed.}.
+Much recent work points to MCMC or stochastic sampling-based approximations as a unifying framework for understanding how Bayesian inference may work practically across all these levels, in minds, brains, and machines. \textbf{XXX elvis: refs needed in last sentence. Plus, should be really bring up Bayesian?} For sampling-based methods it is still scarce
+beyond the description of receptive fields. \textbf{XXX elvis: rephrase last sentence}
 
 \subsection{Putting everything together}
 The DMN is today known to consistently increase in neural
@@ -1800,10 +1798,9 @@ as a special case.
 
 
 \subsection{The free-energy principle and active inference}
-\textbf{XXX Passage: Explain FEP and active inference}
-In Friston's free-energy principle (FEP) \citep{friston2010free} and active inference \citep{fristonAIorRL} theories, the brain is portrayed
+In Friston's free-energy principle (FEP) \citep{friston2010free} and active inference  (i.e action under the FEP) \citep{fristonAIorRL} theories, the brain is portrayed
 as biomechanical inference engine
-dedicated to minimizing the long-term average of surprise: the log-likelihood of the observe sensory input. It does this by actively generating hypothetical explanations or predictions of its sensory input.
+dedicated to minimizing the long-term average of surprise: the log-likelihood of the observed sensory input, or more precisely, an upper bound thereof. It does this by actively generating hypothetical explanations or predictions of its sensory input.
 Precursors of this theory can be traced back to \citep{dayan1995helmholtz} in which they introduced the so-called \textit{Helmholtz machine}, a hierarchical factorial \textit{directional deep belief-net}. According to the FEP account,
 the goal of the brain is then to optimize over a generative model $G$ of sensations: to iteratively
 modify its internal representation $p_G(\z|\x)$ about objects in the world, their interactions and dynamics,
@@ -1831,6 +1828,10 @@ namely the \text{free-energy} $F_G^R(\x)$ given by
 %   \label{fig:vae}
 % \end{figure}
 
+\subsubsection{Criticisms of the FEP}
+  Despite it's popularity, a number of critics about the FEP have surfaced over the years. We outline the main ones here.
+  
+\paragraph{The wake-sleep algorithm is not neurobiologically plausible.}
 The main algorithm for minimizing free-energy $F_G^R(\x)$ is the \textit{wake-sleep algorithm}
 \citep{dayan1995helmholtz}. As noted already in \citep{dayan1995helmholtz},
 a crucial drawback of the wake-sleep algorithm is that it postulates a pair forward (generation) and backward (recognition) models,
@@ -1839,6 +1840,20 @@ Thus the brain could not possibly be running such a algorithm, not even in princ
 \textit{variational auto-encoders (VAEs)} \citep{kingma2013auto} might provide an efficient alternative to the wake-sleep algorithm,
 as it overcomes the technical limits of the former, by using a reparametrization trick. For instance, unlike the wake-sleep algorithm
 for minimizing free-energy, VAEs can be efficiently trained via back-propagation of prediction errors.
+
+\paragraph{The ``dark room'' experiment.}
+Since the FEP postulates that all ongoing intelligent behavior in an organism is geared towards reaching the grand goal of minimizing surprisal, an organism which enters a \textit{dark room}\footnote{\textit{Dark} is used here as an allegory to indicate the complete absence of any \textit{external} sensory input.} would strive to remain there as its sensory input would be perfectly predictable in such a state \citep{darkroom2012}.
+\begin{wrapfigure}{r}{.45\linewidth}
+  \centering
+  \includegraphics[width=1.\linewidth]{darkroom.jpg}
+  \caption{\textbf{The \textit{dark room} experiment.} The adjective \textit{dark} is used as an allegory to indicate the complete absence of any \textit{external} sensory input.}  
+  \label{fig:darkroom}
+\end{wrapfigure}
+However, this is definitely not what is observed, neither in humans nor in animals: if you get into a dark room, you try to figure out where the light switch is, so as to \textit{explore} this mysterious room, or simply get out of it! Defenders of the FEP have retaliated by advancing the `full package''\citep{darkroom2012}: FEP is multi-scale, and there would be a meta-scale at which the organism would
+be \textit{surprised} by such a \textit{lack of surprise}. According to this argument, a dark room is thus paradoxically, a state of extremely high surprise. Driven by the zeal to always diminish surprise, the FEP agent would eventually bootstrap itself out of such saddles, to explore more interesting corners of the environment. Recourse to this argument is essential equivalent to invoking a \textit{halting oracle}, which is problematic as it sucks up the problem the theory is trying to address in the first place.
+
+In contrast, operating under our RL-based theory, an organism would quickly notice that this dark room is a local minimum: hippocampal experience replay (see \ref{sec:self}) would set it and the organism would sample memories or fantasies of alternative situations in which there was reward to mine. Such considerations would artificially generate \textit{internal} sensory input and eventually let the organism to explore the room (for example look for and find the light switch), or simply leave the room. 
+
 
 \subsubsection{RL reinterpretation of FEP and active inference}  FEP and active inference can be reinterpreted in our model-free RL framework by postulating that the reward signal maximized by the DMN is the negative of surprisal, i.e the log-likehood of sensory the current priors the agent has about the world. This is worth writing down explicitly,
 
@@ -1876,7 +1891,7 @@ for minimizing free-energy, VAEs can be efficiently trained via back-propagation
 %   \item This difficulty was removed in the 2010s by \citep{kingma2013auto}, an other groups, via a ``reparametrization trick''.
 %   \end{itemize}
 
-\textbf{XXX: integrate aspects from Friston2014(Dropbox) on active inference}
+% \textbf{XXX: integrate aspects from Friston2014(Dropbox) on active inference}
 
 \section{Conclusion}
 Which brain function could be important enough
