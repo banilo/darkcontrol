@@ -1251,7 +1251,9 @@ The model
   $Q$-values. Such a mapping from states to actions is conventionally called \textit{policy matrix}\citep{mnih2015,silver2016mastering}.
   Learning consists in starting from a given table and
   updating it during action choices,
-  which take the agent to different table entries. \suggestadd{An additional layer of learning concerns the addition of new entries in the table (i.e. state and action). The framing of the policy matrix is not described here but could be supported by the formation of new attractor in the neural dynamics through synaptic epigenesis \citep{gisiger_acquisition_2005}.}
+  which take the agent to different table entries. \suggestadd{An additional layer of learning concerns the addition of new entries in the table (i.e. state and action). The framing of the policy matrix is not described here but could be supported by synaptic epigenesis \citep{gisiger_acquisition_2005}. Indeed, the tuning of synaptic weights through learning can stabilize additional patterns of activity by
+creating new attractors in the neural dynamics landscape \citep{takeuchi_synaptic_2014}. Those attractors will then constrain both
+the number of factors taken into account by decision processes and the number of behaviors at reach by the agent \citep{wang_decision_2008}.}
 
 % \subsubsection{Bounded rationality}
 % $$\max_{a \in \mathcal A}\tilde{Q}(s, a|\theta)  \propto \lim_{T \rightarrow 0^+}\exp(\tilde{Q}(s,a|\theta)/T)$$
@@ -1776,7 +1778,8 @@ cats \citep{popa2009contrasting},
 and rats \citep{lu2012rat}, three species with
 social-cognitive capacities that are supposedly less advanced than in humans.
 
-\suggestadd{The principal connectivity gradient in the cortex appears to be greatly expanded in humans compare to macaques, suggesting a phylogenetically conserved axis of cortical expansion with the DMN emerging at the extreme-end in humans \citep{margulies_situating_2016}. Neurocomputational models of dyadic whole brain demonstrated how the human connectivity topology, on top of facilitating processing at the intra-individual level, can explain our propensity to coordinate through sensorimotor loops with others at the inter-individual level \citep{dumas_anatomical_2012}.}
+\suggestadd{The principal connectivity gradient in the cortex appears to be greatly expanded in humans compare to macaques, suggesting a phylogenetically conserved axis of cortical expansion with the DMN emerging at the extreme-end in humans \citep{margulies_situating_2016}. Neurocomputational models of dyadic whole brain demonstrated how the human connectivity topology, on top of facilitating processing at the intra-individual level, can explain our propensity to coordinate through sensorimotor loops with others at the inter-individual level \citep{dumas_anatomical_2012}. DMN is moreover largely overlapping with neural networks associated with higher level social cognition \citep{schilbach_introspective_2012}. For instance, the ventromedial prefrontal cortex, the posterior cingulate/precuneus, and the temporo-parietal junction (rTPJ) play together a key role in bridging the gap between self and other by
+integrating low-level embodied processes within higher level inference-based mentalizing \citep{lombardo_shared_2009}.}
 
 Rather than functional specificity for processing social information,
 the present MDP account can parsimoniously incorporate
@@ -1830,7 +1833,7 @@ namely the \text{free-energy} $F_G^R(\x)$ given by
 
 \subsubsection{Criticisms of the FEP}
   Despite its popularity, a number of criticisms against the FEP have surfaced over the years. We outline the most notable ones here.
-  
+
 \paragraph{The wake-sleep algorithm is not neurobiologically plausible.}
 The main algorithm for minimizing free-energy $F_G^R(\x)$ is the \textit{wake-sleep algorithm}
 \citep{dayan1995helmholtz}. As noted already in \citep{dayan1995helmholtz},
@@ -1847,13 +1850,13 @@ However, such a tendency is definitely not what is observed, neither in humans n
 \begin{wrapfigure}{r}{.45\linewidth}
   \centering
   \includegraphics[width=1.\linewidth]{darkroom.jpg}
-  \caption{\textbf{The \textit{dark room} experiment.} The adjective \textit{dark} is used as an allegory to indicate the complete absence of any \textit{external} sensory input.}  
+  \caption{\textbf{The \textit{dark room} experiment.} The adjective \textit{dark} is used as an allegory to indicate the complete absence of any \textit{external} sensory input.}
   \label{fig:darkroom}
 \end{wrapfigure}
 you try to figure out where the light switch is, so as to \textit{explore} this mysterious room, or simply get out of it! Defenders of the FEP have retaliated by advancing the `full package''\citep{darkroom2012}: FEP is multi-scale, and there would be a meta-scale at which the organism would
 be \textit{surprised} by such a \textit{lack of surprise}. According to this argument, a dark room is thus paradoxically, a state of extremely high surprise. Driven by the zeal to always diminish surprise, the FEP agent would eventually bootstrap itself out of such saddles, to explore more interesting corners of the environment. Recourse to this argument is equivalent to invoking a \textit{halting oracle}\citep{haltingoracle}, an arbitrarily powerful \textit{Turing machine} which can solve the \textit{halting problem} (an arbitrarily difficult computational problem which cannot be solved under any reasonable \textit{model of computation}, not even in principle!). But this is problematic as it sucks up the problem (that of decision-making and active agency) the theory intends to elude in the first place.
 
-In contrast, operating under our RL-based theory, an organism would quickly notice that this dark room is a local minimum. Indeed, hippocampal experience replay (see \ref{sec:self}) would set it and the organism would sample memories or fantasies of alternative situations in which there was reward to mine. Such considerations would artificially generate \textit{internal} sensory input for the DMN and eventually let the organism to explore the room, for example look for and find the light switch, or simply leave the room. 
+In contrast, operating under our RL-based theory, an organism would quickly notice that this dark room is a local minimum. Indeed, hippocampal experience replay (see \ref{sec:self}) would set it and the organism would sample memories or fantasies of alternative situations in which there was reward to mine. Such considerations would artificially generate \textit{internal} sensory input for the DMN and eventually let the organism to explore the room, for example look for and find the light switch, or simply leave the room.
 
 
 \subsubsection{RL reinterpretation of FEP and active inference}  FEP and active inference can be reinterpreted in our model-free RL framework by postulating that the reward signal maximized by the DMN is the negative of surprisal, i.e the log-likehood of sensory the current priors the agent has about the world. This is worth writing down explicitly,
