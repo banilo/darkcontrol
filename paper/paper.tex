@@ -236,7 +236,7 @@ the previously proposed cognitive accounts on
 %
 Moreover, this process model for the neural optimization of complex behavior in the DMN
 offers parsimonious explanations for
-recent experimental findings\suggestremove{ in animals and humans}.
+recent experimental findings in animals and humans.
 \end{abstract}
 
 % official NIPS keywords
@@ -1056,7 +1056,8 @@ A positive $\gamma$ can be seen as calibrating risk-seeking trait of the intelli
 that is, the behavioral predispositions related to trading longer delays for higher rewards.
 Such an agent puts relatively more emphasis on rewards expected in
 a longer-term future.
-Precisely, rewards that are not expected to come within\footnote{\textbf{N.B.:} $\frac{1}{1-\gamma} = 1 + \gamma + \gamma^2 + \gamma^3 + \ldots$}
+Precisely, rewards that are not expected to come within
+% \footnote{\textbf{N.B.:} $\frac{1}{1-\gamma} = 1 + \gamma + \gamma^2 + \gamma^3 + \ldots$}
 $\tau := 1/(1 - \gamma)$
 time steps from the present point are disregarded. This reduces the variance of expected rewards accumulated across
 considered action cascades by limiting the depth of the search tree.
@@ -1244,14 +1245,15 @@ breakthrough works
 In the DMN, the dmPFC would implement such a hard-max lookup
 over the action space.
 The model
-  parameters $\theta$ would correspond to synaptic weights and connection strengths between
-  brain regions. It is a time-varying neuronal program which dictates how to move from world states $s$ to actions $a$ via the hard-max policy \eqref{eq:policy}.
-  The approximating $Q$-value function $\tilde{Q}(s, a|\theta)$ would tell the DMN the (expected) usefulness of taking an action $a$ in state $s$.
-  The DMN, and in particular its dmPFC node, could then contribute to the choice, at a given state $s$, of an action $a$ which maximizes these approximate
-  $Q$-values. Such a mapping from states to actions is conventionally called \textit{policy matrix}\citep{mnih2015,silver2016mastering}.
-  Learning consists in starting from a given table and
-  updating it during action choices,
-  which take the agent to different table entries. \suggestadd{An additional layer of learning concerns the addition of new entries in the table (i.e. state and action). The framing of the policy matrix is not described here but could be supported by synaptic epigenesis \citep{gisiger_acquisition_2005}. Indeed, the tuning of synaptic weights through learning can stabilize additional patterns of activity by
+parameters $\theta$ would correspond to synaptic weights and connection strengths between
+brain regions. It is a time-varying neuronal program which dictates how to move from world states $s$ to actions $a$ via the hard-max policy \eqref{eq:policy}.
+The approximating $Q$-value function $\tilde{Q}(s, a|\theta)$ would tell the DMN the (expected) usefulness of taking an action $a$ in state $s$.
+The DMN, and in particular its dmPFC node, could then contribute to the choice, at a given state $s$, of an action $a$ which maximizes these approximate
+$Q$-values. Such a mapping from states to actions is conventionally called \textit{policy matrix}\citep{mnih2015,silver2016mastering}.
+Learning consists in starting from a given table and
+updating it during action choices,
+which take the agent to different table entries.
+An additional layer of learning concerns the addition of new entries in the table (i.e., state and action). The framing of the policy matrix is not described here but could be supported by synaptic epigenesis \citep{gisiger_acquisition_2005}. Indeed, the tuning of synaptic weights through learning can stabilize additional patterns of activity by
 creating new attractors in the neural dynamics landscape \citep{takeuchi_synaptic_2014}. Those attractors will then constrain both
 the number of factors taken into account by decision processes and the number of behaviors at reach by the agent \citep{wang_decision_2008}.}
 
@@ -1776,8 +1778,8 @@ cats \citep{popa2009contrasting},
 and rats \citep{lu2012rat}, three species with
 social-cognitive capacities that are supposedly less advanced than in humans.
 
-\suggestadd{The principal connectivity gradient in the cortex appears to be greatly expanded in humans compare to macaques, suggesting a phylogenetically conserved axis of cortical expansion with the DMN emerging at the extreme-end in humans \citep{margulies_situating_2016}. Neurocomputational models of dyadic whole brain demonstrated how the human connectivity topology, on top of facilitating processing at the intra-individual level, can explain our propensity to coordinate through sensorimotor loops with others at the inter-individual level \citep{dumas_anatomical_2012}. DMN is moreover largely overlapping with neural networks associated with higher level social cognition \citep{schilbach_introspective_2012}. For instance, the ventromedial prefrontal cortex, the posterior cingulate/precuneus, and the temporo-parietal junction (rTPJ) play together a key role in bridging the gap between self and other by
-integrating low-level embodied processes within higher level inference-based mentalizing \citep{lombardo_shared_2009}.}
+The principal connectivity gradient in the cortex appears to be greatly expanded in humans compare to macaques, suggesting a phylogenetically conserved axis of cortical expansion with the DMN emerging at the extreme-end in humans \citep{margulies_situating_2016}. Neurocomputational models of dyadic whole brain demonstrated how the human connectivity topology, on top of facilitating processing at the intra-individual level, can explain our propensity to coordinate through sensorimotor loops with others at the inter-individual level \citep{dumas_anatomical_2012}. DMN is moreover largely overlapping with neural networks associated with higher level social cognition \citep{schilbach_introspective_2012}. For instance, the ventromedial prefrontal cortex, the posterior cingulate/precuneus, and the temporo-parietal junction (rTPJ) play together a key role in bridging the gap between self and other by
+integrating low-level embodied processes within higher level inference-based mentalizing \citep{lombardo_shared_2009}.
 
 Rather than functional specificity for processing social information,
 the present MDP account can parsimoniously incorporate
@@ -1810,9 +1812,9 @@ and predict its sensory input.
 Precursors of this theory can be traced back to Dayan and colleagues \citep{dayan1995helmholtz}
 who introduced the \textit{Helmholtz machine}, a hierarchical factorial directional deep belief network. According to the FEP account,
 the goal of the brain is to optimize over a generative model $G$ of sensations: to iteratively
-modify its internal representation $p_G(\z|\x)$ about objects in the world, their interactions and dynamics. The model then allows
+modify its internal representation $p_G(\z|\x)$ of objects in the world, their interactions and dynamics. The model then allows
 to minimize surprise when these representations are confronted with sensory input $\x$ during action-perception cycles (i.e., the \textit{generative} model).
-The FEP also postulates a dual model called the \textit{recognition} model,
+The FEP also postulates a companion model called the \textit{recognition} model,
 which works in tandem with the generative model $p_R(\z|\x)$ to accomplish approximate inference. Put differently, the recognition model dreams imaginary worlds $\z$,
 while the generative model tries to produce sensations $\x$ which match these
 imagined mental scenarios.
@@ -1847,7 +1849,7 @@ The main algorithm for minimizing free-energy $F_G^R(\x)$ is the \textit{wake-sl
 a crucial drawback of the wake-sleep algorithm is that it postulates a pair
 of forward (generation) and backward (recognition) models that
 together do not correspond to optimization of (a bound of) the marginal likelihood.
-Thus, the brain is unlikely to implement a variant of the wake-sleep algorithm.
+Thus, the brain may therefore be unlikely to implement a variant of the wake-sleep algorithm.
 We note that the recent theory of
 \textit{variational auto-encoders} (VAEs) \citep{kingma2013auto} might provide an efficient alternative to the wake-sleep algorithm. This is because VAEs
 overcome a number of the technical limits of the wake-sleep algorithm
@@ -1884,7 +1886,7 @@ In contrast, an organism operating under our RL-based theory would readily
 identify the visual-input-free room as a local minimum. Indeed, hippocampal experience replay (see \ref{sec:self}) would serve to sample memories or fantasies of alternative situations
 with reward structure. Such artificially generated \textit{internal} sensory input
 subserved by the DMN can entice the organism to explore the room,
-for instance by looking for and using the light switch or simply leaving the room.
+for instance by looking for and using the light switch or simply finding the room exit.
 
 
 
