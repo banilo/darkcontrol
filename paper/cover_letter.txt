@@ -1,0 +1,43 @@
+                                                                        Elvis Dohmatob,
+							     Parietal Team, INRIA /CEA,
+							    Université de Paris-saclay,
+							                        France.
+
+
+Editors,
+Plus Computational Biology
+
+Please see enclosed, our manuscript entitled "Dark Control: A Unified Account of Default
+Mode Function by Control Theory and Reinforcement Learning", to be considered for
+publication in your journal.
+
+In this opinion paper, we argue that the components of the DMN (default-mode network)
+constitute sufficient neurobiological substrates to implement, in principle, a
+complete reinforcement-learning (RL) agent for decision-making. Our research is at
+the crossroads of the now encyclopedic literature on the DMN and the recent
+resurgence of RL as a distinguished method for active-learning in uncertain
+environments environments (not the least of which is the recent super-human behavior
+of DeepMind's RL-based program in the highly complex and strategic game of Go),
+subject to very limited modeling assumptions.
+
+We begin by presenting a concise sythesis of the known neurobiology orgainisation of
+the DMN, precisely postulating the would-be function of each component thereof:
+posteromedial cortex for global monitoring and information integration; the prefrontal
+cortex for action consideration and stimulus-value association; the hippocampus for
+memory, space, and experience replay; and the right/left TPJ for prediction
+error-signaling and world semantics.
+
+The key ideas in contemporary RL theory are recalled and dymistified: actions, rewards,
+discounting, expected cumulative future rewards, Bellman backups, Q-learning, experience
+replay, value approximation, etc. A clear correspondence between the different DMN nodes
+and their integration on one hand, and the components of an RL agent on the other hand,
+then emerges clearly. Thus the DMN would implement a RL algorithm responsible for the
+core of decision-making mechanisms in the brain. This would in particular explain the
+high metabolism observed in the DMN, which has largely remained unexplained.
+This paper opens of rich avenue for studying the DMN objectively.
+
+While looking forward to hearing from you, we thank you plentifully for your time
+and consideration.
+
+Yours sincerely,
+Elvis Dohmatob, Guillaum Dumas, Danilo Bzdok
