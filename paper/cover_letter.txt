@@ -16,15 +16,13 @@ constitute sufficient neurobiological substrates to implement, in principle, a
 complete reinforcement-learning (RL) agent for decision-making. Our research is at
 the crossroads of the now encyclopedic literature on the DMN and the recent
 resurgence of RL as a distinguished method for active-learning in uncertain
-environments (not the least of which is the recent super-human behavior
-of DeepMind's RL-based program in the highly complex and strategic game of Go),
-subject to very limited modeling assumptions.
+environments, subject to very limited modeling assumptions.
 
 We begin by presenting a concise synthesis of the known neurobiology organisation of
 the DMN, precisely postulating the would-be function of each component thereof:
 posteromedial cortex for global monitoring and information integration; the prefrontal
-cortex for action consideration and stimulus-value association; the hippocampus for
-memory, space, and experience replay; and the right/left TPJ for prediction
+cortex (PFC) for action consideration and stimulus-value association; the hippocampus
+(HC) for memory, space, and experience replay; and the right/left TPJ for prediction
 error-signaling and world semantics.
 
 The key ideas in contemporary RL theory are recalled and dymistified: actions, rewards,
@@ -35,6 +33,12 @@ then emerges clearly. Thus the DMN would implement a RL algorithm responsible fo
 core of decision-making mechanisms in the brain. This would in particular explain the
 high metabolism observed in the DMN, which has largely remained unexplained.
 This paper opens of rich avenue for studying the DMN objectively.
+
+In preliminary experiments, we investigated the morphological coupling between the
+reward system and the DMN. Results on 9,932 human subjects from the UKBioBank show
+significant (R^2 = .12 +/-.002) coupling of inter-subject differences in the the volume
+of the nucleus accumbens (NAc) --thought to encode instanteneous reward-- with that of
+the dmPFC and the HC.
 
 While looking forward to hearing from you, we thank you plentifully for your time
 and consideration.
