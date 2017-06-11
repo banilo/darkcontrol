@@ -16,7 +16,7 @@ constitute sufficient neurobiological substrates to implement, in principle, a
 complete reinforcement-learning (RL) agent for decision-making. Our research is at
 the crossroads of the now encyclopedic literature on the DMN and the recent
 resurgence of RL as a distinguished method for active-learning in uncertain
-environments environments (not the least of which is the recent super-human behavior
+environments (not the least of which is the recent super-human behavior
 of DeepMind's RL-based program in the highly complex and strategic game of Go),
 subject to very limited modeling assumptions.
 
