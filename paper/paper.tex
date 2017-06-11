@@ -1465,7 +1465,7 @@ The HC may provide perturbed action-transition-state-reward samples
 %   ok, gotta think about the model-free / model-based reconsiliation
 % \end{itemize}
 
-\section{Relation to existing cognitive accounts on default mode function}
+\section{Relation to existing functional accounts}
 \subsection{Predictive coding hypothesis}
 Predictive coding mechanisms
 \citep{clark2013whatever, friston2008hierarchical}
@@ -1801,26 +1801,26 @@ as a special case.
 
 \subsection{The free-energy principle and active inference}
 % INTRO
-According to the free-energy principle (FEP) and
-active inference theories \citep{friston2010free, fristonAIorRL},
+According to theories of the free-energy principle (FEP) and
+active inference \citep{friston2010free, fristonAIorRL},
 the brain corresponds to
-a biomechanical inference engine. It is
-dedicated to minimizing the long-term average of surprise: the log-likelihood of the observed sensory input --or more precisely, an upper bound thereof-- \textit{relative} to the expectations about the external world derived from the brain's internal representations. The brain
+a biomechanical reasoning engine. It is
+dedicated to minimizing the long-term average of surprise: the log-likelihood of the observed sensory input --more precisely, an upper bound thereof-- \textit{relative} to the expectations about the external world derived from internal representations. The brain
 would continuously generate hypothetical explanations of the world
 and predict its sensory input.
-Precursors of this theory can be traced back to Dayan and colleagues \citep{dayan1995helmholtz}
+Precursors of this interpretation can be traced back to Dayan and colleagues \citep{dayan1995helmholtz}
 who introduced the \textit{Helmholtz machine}, a hierarchical factorial directional deep belief network. According to the FEP account,
 the goal of the brain is to optimize over a generative model $G$ of sensations: to iteratively
 modify its internal representation $p_G(\z|\x)$ of objects in the world, their interactions and dynamics. The model then allows
 to minimize surprise when these representations are confronted with sensory input $\x$ during action-perception cycles (i.e., the \textit{generative} model).
-The FEP also postulates a companion model called the \textit{recognition} model,
+The FEP also proposes a companion model called the \textit{recognition} model,
 which works in tandem with the generative model $p_R(\z|\x)$ to accomplish approximate inference. Put differently, the recognition model dreams imaginary worlds $\z$,
-while the generative model tries to produce sensations $\x$ which match these
+while the generative model tries to produce sensory sensations $\x$ which match these
 imagined mental scenarios.
 Howewer, surprise is challenging to optimize numerically
 because we need to sum over all hidden causes of the sensations.
 Instead, FEP therefore minimizes an upper-bound of surprise,
-namely the \text{free-energy} $F_G^R(\x)$ given by
+namely the \text{free energy} $F_G^R(\x)$ given by
 
   \begin{equation}
     \begin{split}
@@ -1842,35 +1842,37 @@ namely the \text{free-energy} $F_G^R(\x)$ given by
 
 % CRITICISM
 Despite its popularity, criticism against the FEP has arisen over the years,
-some of which we outline in the following.
-The main algorithm for minimizing free-energy $F_G^R(\x)$ is the \textit{wake-sleep algorithm}
-\citep{dayan1995helmholtz}. As previously noted \citep{dayan1995helmholtz},
-a crucial drawback of the wake-sleep algorithm is that it postulates a pair
+some of which outlined in the following.
+The main algorithm for minimizing free energy $F_G^R(\x)$ is the \textit{wake-sleep algorithm}
+\citep{dayan1995helmholtz}. As these authors noted,
+a crucial drawback of the wake-sleep algorithm is that it involves a pair
 of forward (generation) and backward (recognition) models that
 together do not correspond to optimization of (a bound of) the marginal likelihood.
-Thus, the brain may therefore be unlikely to implement a variant of the wake-sleep algorithm.
-We note that the recent theory of
-\textit{variational auto-encoders} (VAEs) \citep{kingma2013auto} might provide an efficient alternative to the wake-sleep algorithm. This is because VAEs
+The brain may therefore be unlikely to implement a variant of the wake-sleep algorithm.
+The recent theory of
+\textit{variational auto-encoders} (VAEs) \citep{kingma2013auto} might provide an efficient alternative to the wake-sleep algorithm. VAEs
 overcome a number of the technical limits of the wake-sleep algorithm
 by using a reparametrization trick. For instance, unlike the wake-sleep algorithm
-for minimizing free-energy, VAEs can be efficiently trained via back-propagation of prediction errors.
+for minimizing free energy, VAEs can be efficiently trained via back-propagation of prediction errors.
 
 
 
-Since FEP-based theories \citep{friston2010free,fristonAIorRL} conceptualize ongoing behavior
+Since theories based on the FEP \citep{friston2010free,fristonAIorRL}
+conceptualize ongoing behavior
 in an organism to be geared towards the surprise-minimizing goal,
 an organism entering a dark room
 % \footnote{\textit{Dark} is used here as an allegory to indicate the complete absence of any \textit{external} sensory input.}
 (Fig. \ref{fig:darkroom}) would strive to remain in this location
 because its sensory inputs are perfectly predictable
-in this environmental state \citep{darkroom2012}.
+given the environmental state \citep{darkroom2012}.
 However, such a behavioral tendency is
 seldom observed in animals or humans in the real world: In a dark room,
 \begin{wrapfigure}{r}{.45\linewidth}
   \centering
   \includegraphics[width=1.\linewidth]{darkroom.jpg}
   \caption{\textbf{The dark room experiment.} An intelligent agent situated
-  in a closed space is used as a thought experiment for the complete absence
+  in a light-deprived closed space can be used
+  as a thought experiment for the complete absence
   of external sensory input.}
   \label{fig:darkroom}
 \end{wrapfigure}
@@ -1879,23 +1881,25 @@ its surroundings or leave it.
 Defenders of the FEP have retorted by advancing the ``full package'' \citep{darkroom2012}:
 FEP is proposed to be multi-scale and there would be a meta-scale at which the organism would
 be \textit{surprised} by such a \textit{lack of surprise}. According to this argument, a dark room would paradoxically correspond to a state of particularly high surprise.
-Driven by surprise-minimization objective, the FEP agent would eventually bootstrap itself out of such saddles to explore more interesting parts of the environment.
+Driven by surprise-minimization objective, the FEP agent would eventually bootstrap itself out of such saddle points to explore more interesting parts of the environment.
 % Recourse to this argument is equivalent to invoking a \textit{halting oracle}\citep{haltingoracle}, an arbitrarily powerful machine which can solve the \textit{halting problem} (an arbitrarily difficult computational problem which cannot be solved under any reasonable \textit{model of computation}, not even in principle!). But this is problematic as it sucks up the problem (that of decision-making and active agency) the theory intends to elude in the first place.
 In contrast, an organism operating under our RL-based theory would readily
-identify the visual-input-free room as a local minimum. Indeed, hippocampal experience replay (see \ref{sec:self}) would serve to sample memories or fantasies of alternative situations
+identify the visual-input-deprived room as a local minimum. Indeed, hippocampal experience replay (see \ref{sec:self}) would serve to sample memories or fantasies of alternative situations
 with reward structure. Such artificially generated \textit{internal} sensory input
 subserved by the DMN can entice the organism to explore the room,
 for instance by looking for and using the light switch or simply finding the room exit.
 
 
 
-Finally, we note that FEP and active inference can be recast in our model-free RL framework.
-This becomes possible by postulating that the reward signal maximized by the DMN is
-the negative surprise,
-that is, the log-likehood of sensory the current priors the agent has about the world. More explicitly, this corresponds to
+Finally, we note that FEP and active inference can be reframed in terms of
+our model-free RL framework.
+This becomes possible by recasting the reward signal maximized by the DMN to 
+correspond to negative surprise,
+that is, the log-likehood of current sensory priors
+the agent has about the world. More explicitly, this corresponds to
 
 \begin{equation}
-  r^{\text{FEP}} = \underbrace{\log (p_G)}_{-\text{FEP generative surprisal}}.
+  r^{\text{FEP}} = \underbrace{\log (p_G)}_{-\text{FEP generative surprise}}.
     \end{equation}
 % \paragraph{Comparison to our proposed theory.}
 % On the surface, a common point between the FEP and our proposed RL-based framework
@@ -1903,9 +1907,11 @@ that is, the log-likehood of sensory the current priors the agent has about the 
 %   Indeed in RL, surprise minimization is subsumed  by accurate prediction of
 %   rewarding outcomes in the future. A ``free-energy'' agent is barely a biomechanical machine which has the tendency to resist undesired phase-transitions
 %   \citep{friston2010free,fristonAIorRL,ortega2013thermodynamics}.
-Such a surprisal-based reinforcement learning scheme has previously been advocated \citep{schmidhuber2010,mohamed2015} under the equivalent framework of information compression.
-Nevertheless, minimization of surprise alone
-may be insufficient to explain behavior observed in humans and other intelligent animals.
+Such a surprise-guided reinforcement learning scheme has previously been advocated
+under the equivalent framework of information compression \citep{schmidhuber2010,mohamed2015}.
+Nevertheless, minimization of surprise quantities alone
+may be insufficient to explain
+the diversity of behaviors observed in humans and other intelligent animals.
 % The dark-room experiment, for example, provides a formidable argument against in favor of the insufficiency of the FEP and active inference theories to explain intelligent behavior in humans: when a human is put in a dark room, they don't just sit down in a corner forever, what would be the FEP-optimal thing to do; they actively search for the light switch, and start exploring the depths of the room, possibly looking for food or the way out!
 
 % Friston's critic of RL \citep{fristonAIorRL} (he proposes ``active inference''): "This equation (equation 18) comes from the theory of dynamic programming,
