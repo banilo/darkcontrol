@@ -20,7 +20,7 @@ environments environments (not the least of which is the recent super-human beha
 of DeepMind's RL-based program in the highly complex and strategic game of Go),
 subject to very limited modeling assumptions.
 
-We begin by presenting a concise sythesis of the known neurobiology orgainisation of
+We begin by presenting a concise synthesis of the known neurobiology organisation of
 the DMN, precisely postulating the would-be function of each component thereof:
 posteromedial cortex for global monitoring and information integration; the prefrontal
 cortex for action consideration and stimulus-value association; the hippocampus for
@@ -40,4 +40,4 @@ While looking forward to hearing from you, we thank you plentifully for your tim
 and consideration.
 
 Yours sincerely,
-Elvis Dohmatob, Guillaum Dumas, Danilo Bzdok
+Elvis Dohmatob, Guillaume Dumas, Danilo Bzdok

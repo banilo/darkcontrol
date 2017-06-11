@@ -918,7 +918,7 @@ based on a brain implementation of MCMC sampling
 Model-free RL has had great success in many real-world problems,
 including robotics \citep{ng2004,abbeel2004},
 super-human performance in complex video games \citep{mnih2015},
-and strategic board games \citep{silver2016mastering}.
+and strategic board games like the breakthrough results upon recently on the game of Go \citep{silver2016mastering}, considered to be a golden benchmark problem in artificial intelligence.
 We emphasize that the brain in general, and the DMN in particular,
 is a physical system governed by the laws of
 physics and can be formally described
@@ -944,19 +944,20 @@ An MDP operationalizes a sequential decision process
 in which it is assumed that environment dynamics are determined by a Markov process,
 but the agent cannot directly observe the underlying state.
 Instead, the agent tries to optimize a \textit{subjective} reward
-signal (i.e., is likely to be different for another agent in the same state).
-This is performed alongside each transition in the state space of the environment
- and maintains a probability distribution over the set of possible
-states.
-% , based on a set of observations and observation probabilities.
-This is a minimal set of assumptions that can be made about an environment.
+signal (i.e., is likely to be different for another agent in the same state),
+by maintaining probability distributions over actions according to their expected utility.
+% This is performed alongside each transition in the state space of the environment
+%  and maintains a probability distribution over the set of possible
+% states.
+% % , based on a set of observations and observation probabilities.
+This is a minimal set of assumptions that can be made about an environment faced by an agent engaged in active learning.
 
 
 
 Model-free RL can be plausibly realized in the human brain \citep{doherty2015structure}. Indeed,
-a core property of human intelligence has been proposed to underlie improvement
+it has been proposed \citep{gershman2015computational} that a core property of human intelligence  underlie improvement
 of expected utility outcomes as a strategy for action choice in uncertain
-environments \citep{gershman2015computational}, a situation perfectly captured by the formalism of MDPs.
+environments, a situation perfectly captured by the formalism of MDPs.
 It has also long been proposed \citep{dayan2008decision} that there
 is a rather direct mapping of model-free RL learning algorithms
 onto aspects of the brain.
@@ -1018,9 +1019,6 @@ following a policy $\pi$ generates a trajectory of action choices as follows:
 We assume time-invariance
 in that we expect the dynamics of the process
 to be equivalent over sufficiently long time windows of equal length (i.e., stationarity).
-
-
-
 Since an action executed in the present moment might have repercussions in the far future, it turns out that the
 quantity to optimize is not the instantaneous rewards $r(s, a)$, but a
 \textit{cumulative reward} estimate which takes into account expected reward
@@ -1229,7 +1227,7 @@ action-decision branching to enable higher-order executive control.
 \subsubsection{Value approximation and the policy matrix}
 As already mentioned in the previous section, Q-learning optimizes over the class of
 deterministic policies of the form \eqref{eq:qlearning}. State spaces may be extremely large,
-and tracking all possible states and actions may require excessive
+and tracking all possible states and actions may require prohibitively excessive
 computation and memory resources.
 The need of maintaining an explicit table of
 states can be eliminated by instead using of an approximate $Q$-value function $\tilde{Q}(s,a|\theta)$
@@ -1254,13 +1252,13 @@ seminal investigations
 In the DMN, the dmPFC would implement such a hard-max lookup
 over the action space.
 The model
-parameters $\theta$ would correspond to synaptic weights and connection strengths between
+parameters $\theta$ would correspond to synaptic weights and connection strengths within and between
 brain regions. It is a time-varying neuronal program which dictates how to move from world states $s$ to actions $a$ via the hard-max policy \eqref{eq:policy}.
 The approximating $Q$-value function $\tilde{Q}(s, a|\theta)$ would tell the DMN the (expected) usefulness of taking an action $a$ in state $s$.
 The DMN, and in particular its dmPFC node, could then contribute to the choice, at a given state $s$, of an action $a$ which maximizes these approximate
 $Q$-values.
-It is this mapping from states to actions that is conventionally called
-policy matrix \citep{mnih2015,silver2016mastering}.
+This mapping from states to actions that is conventionally called
+\textit{policy matrix} \citep{mnih2015,silver2016mastering}.
 Learning consists in starting from a given table and
 updating it during action choices,
 which take the agent to different table entries.
@@ -1288,9 +1286,6 @@ and is recorded in replay memory buffer \textemdash
 which we hypothesize to be subserved by the
 HC \textemdash, possibly discarding the oldest entries to make space:
 $\mathcal D \leftarrow \text{append}(\mathcal D, e)$.
-
-
-
 At time step $k$, the agent seeks an update $\theta_{k} \leftarrow \theta_{k-1} + \delta \theta_{k}$ of the parameters for its approximate model of the $Q$-value function. This warrants a learning process
 and definition of a loss function.
 % \subsubsection{Stochastic gradient in the DMN via experience replay}
@@ -1345,8 +1340,8 @@ of the neural processing hierarchy
 
 \subsubsection{Optimal control via stochastic gradient descent in the DMN}
 Efficient learning of the entire set of model parameters can effectively be achieved
-via stochastic \textit{gradient descent}, a common solver algorithm for finding
-local minima based on the first derivate of the optimization objective.
+via stochastic \textit{gradient descent}, a universal algorithm for finding
+local minima based on the first derivative of the optimization objective.
 Stochastic here means that the true gradient is estimated from batches of training examples samples,
 which, in our case, corresponds to blocks of experience from the replay memory:
 
@@ -1363,8 +1358,7 @@ which, in our case, corresponds to blocks of experience from the replay memory:
 where the positive constants $\alpha_1, \alpha_2,\ldots$ are learning rates.
 Thus, the next action is taken to drive reward prediction errors
 to percolate from lower to higher processing layers to modulate the
-choice of future actions. It is a standard result that under special conditions on the learning rates $\alpha_k$
-(namely that the sum $\sum_{k=0}^\infty\alpha_k$ diverges while $\sum_{k=0}^\infty\alpha_k^2$ converges) over time (i.e., in the limit $k \rightarrow \infty$)
+choice of future actions. It is a standard result that under special conditions on the learning rates $\alpha_k$ --namely that the learning rates are neither too large nor too small, or more precisely that the sum $\sum_{k=0}^\infty\alpha_k$ diverges while $\sum_{k=0}^\infty\alpha_k^2$--
 the thus generated approximating sequence of $Q$-value functions
 % \footnote{The proof is standard and relies on the Banach Fixed-Point Theorem applied to the Bellman transform.}
 $$\tilde{Q}(.,.|\theta_0) \rightarrow \tilde{Q}(.,.|\theta_1) \rightarrow \tilde{Q}(.,.|\theta_2) \rightarrow \ldots$$
@@ -1883,9 +1877,7 @@ overcome a number of the technical limits of the wake-sleep algorithm
 by using a reparametrization trick. For instance, unlike the wake-sleep algorithm
 for minimizing free energy, VAEs can be efficiently trained via back-propagation of prediction errors.
 
-
-
-Since theories based on the FEP \citep{friston2010free,fristonAIorRL}
+On another front, since theories based on the FEP \citep{friston2010free,fristonAIorRL}
 conceptualize ongoing behavior
 in an organism to be geared towards the surprise-minimizing goal,
 an organism entering a dark room
@@ -1895,20 +1887,20 @@ because its sensory inputs are perfectly predictable
 given the environmental state \citep{darkroom2012}.
 However, such a behavioral tendency is
 seldom observed in animals or humans in the real world: In a dark room,
-\begin{wrapfigure}{r}{.45\linewidth}
-  \centering
-  \includegraphics[width=1.\linewidth]{darkroom.jpg}
-  \caption{\textbf{The dark room experiment.} An intelligent agent situated
-  in a light-deprived closed space can be used
-  as a thought experiment for the complete absence
-  of external sensory input.}
-  \label{fig:darkroom}
-\end{wrapfigure}
 intelligent agents would search for light sources to \textit{explore}
 its surroundings or leave it.
 Defenders of the FEP have retorted by advancing the ``full package'' \citep{darkroom2012}:
 FEP is proposed to be multi-scale and there would be a meta-scale at which the organism would
 be \textit{surprised} by such a \textit{lack of surprise}. According to this argument, a dark room would paradoxically correspond to a state of particularly high surprise.
+\begin{wrapfigure}{r}{.4\linewidth}
+  \caption{\textbf{The dark room experiment.} An intelligent agent situated
+  in a light-deprived closed space can be used
+  as a thought experiment for the complete absence
+  of external sensory input.}
+  \label{fig:darkroom}  
+  \centering
+  \includegraphics[width=1.\linewidth]{darkroom_resized.png}
+\end{wrapfigure}
 Driven by surprise-minimization objective, the FEP agent would eventually bootstrap itself out of such saddle points to explore more interesting parts of the environment.
 % Recourse to this argument is equivalent to invoking a \textit{halting oracle}\citep{haltingoracle}, an arbitrarily powerful machine which can solve the \textit{halting problem} (an arbitrarily difficult computational problem which cannot be solved under any reasonable \textit{model of computation}, not even in principle!). But this is problematic as it sucks up the problem (that of decision-making and active agency) the theory intends to elude in the first place.
 In contrast, an organism operating under our RL-based theory would inevitably
@@ -1917,18 +1909,16 @@ with reward structure. Such artificially generated \textit{internal} sensory inp
 subserved by the DMN can entice the organism to explore the room,
 for instance by looking for and using the light switch or simply finding the room exit.
 
-
-
 Finally, we note that FEP and active inference can be reframed in terms of
 our model-free RL framework.
-This becomes possible by recasting the reward signal maximized by the DMN to 
+This becomes possible by recasting the Q-value function (i.e expected long-term reward) maximized by the DMN to 
 correspond to negative surprise,
 that is, the log-likehood of current sensory priors
 the agent has about the world. More explicitly, this corresponds to
 
-\begin{equation}
-  r^{\text{FEP}} = \underbrace{\log (p_G)}_{-\text{FEP generative surprise}}.
-    \end{equation}
+\begin{eqnarray*}
+  -Q^{\text{FEP}} \sim \underbrace{\log (p_G)}_{\text{FEP generative surprise}}.
+    \end{eqnarray*}
 % \paragraph{Comparison to our proposed theory.}
 % On the surface, a common point between the FEP and our proposed RL-based framework
 %   is placing the minimization of a surprise signal at the core of brain function.
@@ -1938,8 +1928,7 @@ the agent has about the world. More explicitly, this corresponds to
 Such a surprise-guided reinforcement learning scheme has previously been advocated
 under the equivalent framework of information compression \citep{schmidhuber2010,mohamed2015}.
 Nevertheless, minimization of surprise quantities alone
-may be insufficient to explain
-the diversity of behaviors observed in humans and other intelligent animals.
+may be insufficient to explain the diversity of behaviors observed in humans and other intelligent animals.
 % The dark-room experiment, for example, provides a formidable argument against in favor of the insufficiency of the FEP and active inference theories to explain intelligent behavior in humans: when a human is put in a dark room, they don't just sit down in a corner forever, what would be the FEP-optimal thing to do; they actively search for the light switch, and start exploring the depths of the room, possibly looking for food or the way out!
 
 % Friston's critic of RL \citep{fristonAIorRL} (he proposes ``active inference''): "This equation (equation 18) comes from the theory of dynamic programming,
