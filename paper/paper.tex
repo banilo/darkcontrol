@@ -565,6 +565,10 @@ with fine-grained adjustment of contextual circumstances \citep{yoshida2010neura
 % persisting a behavioral plan versus switching the
 % environmental context in several lesion studies \citep{kolling2016value}.
 %
+Such highly abstract neural computations necessarily rely on the
+construction of probabilistic internal information drawing from
+memory recall, mental scene elaboration processes,
+and stored knowledge of world regularities.
 \begin{wrapfigure}{r}{.4\linewidth}
   \includegraphics[width=1.\linewidth]{fig_dmn.png}
   \centering
@@ -577,10 +581,6 @@ with fine-grained adjustment of contextual circumstances \citep{yoshida2010neura
   }
   \label{fig:dmn}
 \end{wrapfigure}
-Such highly abstract neural computations necessarily rely on the
-construction of probabilistic internal information drawing from
-memory recall, mental scene elaboration processes,
-and stored knowledge of world regularities.
 %
 Moreover,
 in a computational neuroimaging experiment,
@@ -1190,7 +1190,10 @@ can unroll off-policy by observing state transitions
 triggered by another (possibly stochastic) behavioral policy.
 
 
+\pagebreak[4]
 \begin{mdframed}
+\hspace{2mm}
+\vspace{2mm}
 % neuroscience of Bellman equation
 \textbf{Neural correlates of the Bellman equation in the DMN:}
 Relating decomposition of consecutive action choices by the Bellman equation
@@ -1795,11 +1798,13 @@ and rats \citep{lu2012rat}, three species with
 social-cognitive capacities that are supposedly less advanced than in humans.
 
 
-% Further,
-% the principal connectivity gradient in the cortex appears to be greatly expanded in humans compared to monkeys, suggesting a phylogenetically conserved axis of cortical expansion with the DMN emerging at the extreme end in humans \citep{margulies_situating_2016}. Neurocomputational models of dyadic whole-brain dynamics
-% demonstrated how the human connectivity topology, on top of facilitating processing at the intra-individual level, can explain our propensity to coordinate through sensorimotor loops with others at the inter-individual level \citep{dumas_anatomical_2012}.
-% The DMN is moreover largely overlapping with neural networks associated with higher level social cognition \citep{schilbach_introspective_2012}. For instance, the ventromedial prefrontal cortex, the posterior cingulate/precuneus, and the temporo-parietal junction (rTPJ) play together a key role in bridging the gap between self and other by
-% integrating low-level embodied processes within higher level inference-based mentalizing \citep{lombardo_shared_2009}.
+Further,
+the principal connectivity gradient in the cortex appears to be greatly expanded in humans compared to monkeys, suggesting a phylogenetically conserved axis of cortical expansion with the DMN emerging at the extreme end in humans \citep{margulies_situating_2016}. Neurocomputational models of dyadic whole-brain dynamics
+demonstrated how the human connectivity topology, on top of facilitating processing at the intra-individual level, can explain our propensity to coordinate through sensorimotor loops with others at the inter-individual level \citep{dumas_anatomical_2012}.
+The DMN is moreover largely overlapping with neural networks associated with higher level social cognition \citep{schilbach_introspective_2012}. For instance, the vmPFC,
+PMC, and RTPJ
+together play a key role in bridging the gap between self and other by
+integrating low-level embodied processes within higher level inference-based mentalizing \citep{lombardo_shared_2009}.
 
 
 Rather than functional specificity for processing social information,
@@ -1884,14 +1889,6 @@ an organism entering a dark room
 % \footnote{\textit{Dark} is used here as an allegory to indicate the complete absence of any \textit{external} sensory input.}
 (Fig. \ref{fig:darkroom}) would strive to remain in this location
 because its sensory inputs are perfectly predictable
-given the environmental state \citep{darkroom2012}.
-However, such a behavioral tendency is
-seldom observed in animals or humans in the real world: In a dark room,
-intelligent agents would search for light sources to \textit{explore}
-its surroundings or leave it.
-Defenders of the FEP have retorted by advancing the ``full package'' \citep{darkroom2012}:
-FEP is proposed to be multi-scale and there would be a meta-scale at which the organism would
-be \textit{surprised} by such a \textit{lack of surprise}. According to this argument, a dark room would paradoxically correspond to a state of particularly high surprise.
 \begin{wrapfigure}{r}{.4\linewidth}
   \caption{\textbf{The dark room experiment.} An intelligent agent situated
   in a light-deprived closed space can be used
@@ -1901,6 +1898,14 @@ be \textit{surprised} by such a \textit{lack of surprise}. According to this arg
   \centering
   \includegraphics[width=1.\linewidth]{darkroom_resized.png}
 \end{wrapfigure}
+given the environmental state \citep{darkroom2012}.
+However, such a behavioral tendency is
+seldom observed in animals or humans in the real world: In a dark room,
+intelligent agents would search for light sources to \textit{explore}
+its surroundings or leave it.
+Defenders of the FEP have retorted by advancing the ``full package'' \citep{darkroom2012}:
+FEP is proposed to be multi-scale and there would be a meta-scale at which the organism would
+be \textit{surprised} by such a \textit{lack of surprise}. According to this argument, a dark room would paradoxically correspond to a state of particularly high surprise.
 Driven by surprise-minimization objective, the FEP agent would eventually bootstrap itself out of such saddle points to explore more interesting parts of the environment.
 % Recourse to this argument is equivalent to invoking a \textit{halting oracle}\citep{haltingoracle}, an arbitrarily powerful machine which can solve the \textit{halting problem} (an arbitrarily difficult computational problem which cannot be solved under any reasonable \textit{model of computation}, not even in principle!). But this is problematic as it sucks up the problem (that of decision-making and active agency) the theory intends to elude in the first place.
 In contrast, an organism operating under our RL-based theory would inevitably
