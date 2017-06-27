@@ -846,8 +846,7 @@ that are plausible to functionally intersect in the DMN.
 
 RL is a problem-solving technique in which,
 through repeated interactions with an \textit{environment},
-an agent learns to reach goals and optimize reward signals
-in an iterative trial-and-error fashion (Fig. \ref{fig:rl}).
+an agent learns to reach goals and optimize reward signals occasionally emitted by the environment, in an iterative trial-and-error fashion (Fig. \ref{fig:rl}).
 At a given moment, each taken \textit{action} $a$ triggers a change
 in the \textit{state} of the environment
 $s \rightarrow s'$, accompanied by environmental feedback signals as \textit{reward}
@@ -857,7 +856,7 @@ more naturally interpreted as \textit{punishment}.
 In this view, the environment is partially controlled by
 the action of the agent and the reward can be thought
 of as satisfaction \textemdash or aversion \textemdash accompanying the execution of
-a particular action.
+a particular action.  Thus the agent learns behaviors.
 % Action may be delayed to achieve substantial increases in expected reward
 % that is expected to grow with time.
 
@@ -1170,11 +1169,9 @@ The Bellman equation \eqref{eq:bellman} is a temporal consistency equation which
 a dynamic decomposition of optimal behavior by dividing the $Q$-value function into the immediate
 reward and the discounted rewards of the upcoming states.
 The optimal Q-value operator $Q^*$ is a fixed point for this equation.
-As a consequence of this decomposition, the complicated dynamic programming
-problem \eqref{eq:qlearning}
+As a consequence of this decomposition, the complicated problem \eqref{eq:qlearning}
 is broken down into simpler sub-problems at different time points.
-Indeed,
-exploitation of hierarchical structure in action considerations
+Indeed, exploitation of hierarchical structure in action considerations
 has previously been related to the medial prefrontal part of the DMN
 \citep{koechlin1999role, braver2002role}.
 Using the Bellman equation, each state can be associated with a certain value
@@ -1879,7 +1876,7 @@ The recent theory of
 \textit{variational auto-encoders} (VAEs) \citep{kingma2013auto} might provide an efficient alternative to the wake-sleep algorithm. VAEs
 overcome a number of the technical limits of the wake-sleep algorithm
 by using a reparametrization trick. For instance, unlike the wake-sleep algorithm
-for minimizing free energy, VAEs can be efficiently trained via back-propagation of prediction errors.
+for minimizing free energy, VAEs can be efficiently trained via back-propagation of prediction errors. Most importantly, the reparametrization trick allows for a drastic reduction in the variance of the in estimates of the model's gradients, leading to effective learning, something which was not possible in wake-sleep\citep{dayan1995helmholtz}. The details of this trick can be found in \citep{kingma2013auto}.
 
 On another front, since theories based on the FEP \citep{friston2010free,fristonAIorRL}
 conceptualize ongoing behavior
