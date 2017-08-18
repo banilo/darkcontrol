@@ -988,8 +988,8 @@ Thus there are two environments: the external environment, and the internal envi
 The interesting thing is that with this rethinking, the organism can have a perception-action loop even in the absence of external stimulus.
 This is called curiosity...
 
-\begin{mdframed}
-\paragraph*{Why MDPS ?} At this point, it is righteous to question the applicability of MPDs as a model for something as complex as human behavior.
+% \begin{mdframed}
+\paragraph*{Why MDPs ?} At this point, it is righteous to question the applicability of MPDs as a model for something as complex as human behavior.
 Indeed a critique could argue that Markov chains are state-machines without memory. These may describe insects, or other behaviorally primitive beings like ATM machines, insects, etc., but won't be sufficient to describe human beings, as for example, human behavior is heavily influenced not only by the current state but by past states as well (memory).
 
 \paragraph*{Answer:}
@@ -1009,10 +1009,16 @@ This adds the capacity for memory, since then, the next state depends not only o
 
 \item Also, it should be noted that MDPs have been successfully used as neural model for animal behavior. One can mention ~\citep{Rao2010} (random dots), ~\citep{Valton2011} (mal-adaptive decision-making in a rat version of a gambling task) just to name a few.
 
-\item Successes in AI/ML: \citep{ng2004,abbeel2004,mnih2015,silver2016mastering,pritzel2017neural}
-  
+\item Successes in AI/ML:
+  \begin{itemize}
+    \item Robotics: \citep{ng2004,abbeel2004}
+    \item Games and other: ~\citep{mnih2015,silver2016mastering,pritzel2017neural}
+\end{itemize}      
+
+  \item Algorithmic trading. In financial trading, the main actions which the agent (human or computer acting on behalf of a human operator) must execute strategically are: sell (sell a given quantity of a commodity), buy (by a given quantity of a commodity), do nothing. According to how the market responds, a definite gain / loss is recorded as a consequence of the executed action, perhaps with some delay. Over the years, research in algorithmic trading has identified MDPs as a powerful framework for modelling this behavioral process  ~\citep{brazdil2017,yang15,yang14,yang12,dempster2006,hult2010}, for which dynamic-programming based algorithms can be employed to produce numerical solutions. ~\citep{abergel2017} is an excellent reference with the mathematical details on how MDPs work in finance.
+ 
 \end{itemize}
-\end{mdframed}
+% \end{mdframed}
 
 
 \subsubsection{Accumulated rewards and policies}
