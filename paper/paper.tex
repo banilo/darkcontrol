@@ -220,11 +220,12 @@ Many research streams support an evolutionarily adaptive role in
 envisioning experience to anticipate the future.
 
 
-In the present manuscript, we propose a \textit{process model}
-that attempts to explain \textit{how} the DMN may implement
+The present paper proposes a \textit{process model}
+that tries to explain \textit{how}
+the DMN may implement
 continuous evaluation and prediction of the environment to guide behavior.
 %
-We first review the rich literature on the DMN and recognize that the DMN contains the sufficient neuro-biological substrates to implement a full-blown reinforcement-learning agent, at least in principle. DMN function is then recast in mathematical terms of
+DMN function is recast in mathematical terms of
 control theory and reinforcement learning based on Markov decision processes.
 %
 We argue that our formal account of DMN function naturally accommodates as special cases
@@ -391,8 +392,31 @@ This idea is invigorated by empirical evidence from
 neuroscience experiments \citep{kording2004bayesian, fiser2004small}.
 The present paper proposes a
 process model that satisfies this contention.
+We also contribute to the discussion of DMN function
+by providing some of the first empirical evidence that
+morphological variability in DMN nodes
+is linked to the reward circuitry (Fig. 2).
+Finally, we detail how our process model relates
+to previous accounts of DMN function and
+we derive explicit hypotheses to be tested in future neuroscience
+experiments (Box 1).
 
 
+\begin{mdframed}
+\hspace{2mm}
+\vspace{2mm}
+\textbf{BOX 1: Hypotheses for testing the MDP account of DMN function}
+
+\begin{enumerate}
+\item Experiment (Humans): We hypothesize a functional relationship between the DMN closely associated with the occurrence of stimulus-independent thoughts and the reward circuitry. During an iterative neuroeconomic two-player game, fMRI signals in the DMN could be used to predict reward-related signals in the nucleus accumbens across trials in a continuous learning paradigms. We expect that the more DMN activity is measured to be increased, supposedly the higher the tendency for stimulus-independent thoughts, and the more the fMRI signals in the reward circuits should be independent of the reward context
+in the sensory environment.
+
+\item Experiment (Humans): We hypothesize a functional dissociation between computations for behavioral policy versus adapting stimulus-value associations as these are probably implemented in different subsystems of the DMN. We first expect that fMRI signals in the right temporo-parietal junction can predict behavioral changes caused by adaptation in the action choice tendencies (policy matrix) related to non-value-related prediction error. Second, fMRI signals in the ventromedial prefrontal cortex should predict behavioral changes caused by adaptation in value estimation (value matrix) due to reward-related stimulus-value association. We finally predict that fMRI signals in the posteromedial cortex, as a potential global information integrator, is able to predict shifts in overt behavior based on previous adaptations in policy or value estimation.
+
+\item Experiment (Animals): We hypothesize that experience replay for browsing problem solutions subserved by the DMN is necessary for choice behavior in mice. Hippocampal single-cell recordings have shown that neural patterns during experimental choice behavior are reiterated during sleep and before make analogous choices in the future. Necessity of the DMN, in addition to the hippocampus, for “mind-searching” actions during choice behavior can be demonstrated by causal dysruption of DMN nodes, such as circumscribed brain lesion or optogenetic intervention in the inferior parietal and prefrontal cortices.
+
+\end{enumerate}
+\end{mdframed}
 
 
 \section{Known neurobiological properties of the default mode network}
@@ -460,7 +484,8 @@ nuclei group of the amygdala
 This amygdalar subregion has been proposed to
 continuously scan environmental input
 for biological relevance assessment
-\citep{Averbeck2017,amygdala_bzdok}.
+\citep{amygdala_bzdok}.
+
 
 The putative role of the PMC in continuous abstract integration of
 environmental relevance
@@ -515,14 +540,11 @@ in animals and humans
 
 
 
-Consequently, the PMC may contribute to overall DMN function by
-``altering behavior in response to unexpected change''
-\citep{pearson2011posterior}.
-This DMN node probably
-monitors sudden and gradual environmental changes in subjective outcomes
-of action choices for integration
+Consequently, the PMC may contribute to overall DMN function
+by monitoring the subjective outcomes
+of possible actions and integrating that information
 with memory and perspective frames
-to improve short- and longer-term behavioral agendas.
+into short- and longer-term behavioral agendas.
 Estimated value, that differs across individuals, probably enriches
 statistical assessment of the environment
 to map and predict delayed reward opportunities in the future.
@@ -574,7 +596,7 @@ and stored knowledge of world regularities.
   \includegraphics[width=1.\linewidth]{fig_dmn.png}
   \centering
   \caption{\textbf{Morphological coupling between reward system and
-  default mode network.} Based on 9,932 human subjects from the UK Biobank, inter-individual differences in left NAc volume ($R^2=0.11 \pm 0.02$) and right NAc volume ($R^2=0.14 \pm 0.02$) could be predicted from volume in the DMN nodes. These out-of-sample generalization performances were obtained from support vector regression applied to normalized node volumes in the DMN in a 10-fold cross-validation procedure. 
+  default mode network.} Based on 9,932 human subjects from the UK Biobank, inter-individual differences in left NAc volume ($R^2=0.11+/-0.02$) and right NAc volume ($R^2=0.14+/-0.02$) could be predicted from volume in the DMN nodes. These out-of-sample generalization performances were obtained from support vector regression applied to normalized node volumes in the DMN in a 10-fold cross-validation procedure. 
   Consistent for the left and right reward system, NAc volume in a given subject is
   positively coupled with the vmPFC and HC.
   Code and data for reproduction and visualization:
@@ -848,7 +870,8 @@ that are plausible to functionally intersect in the DMN.
 
 RL is a problem-solving technique in which,
 through repeated interactions with an \textit{environment},
-an agent learns to reach goals and optimize reward signals occasionally emitted by the environment, in an iterative trial-and-error fashion (Fig. \ref{fig:rl}).
+an agent learns to reach goals and optimize reward signals
+in an iterative trial-and-error fashion (Fig. \ref{fig:rl}).
 At a given moment, each taken \textit{action} $a$ triggers a change
 in the \textit{state} of the environment
 $s \rightarrow s'$, accompanied by environmental feedback signals as \textit{reward}
@@ -858,22 +881,15 @@ more naturally interpreted as \textit{punishment}.
 In this view, the environment is partially controlled by
 the action of the agent and the reward can be thought
 of as satisfaction \textemdash or aversion \textemdash accompanying the execution of
-a particular action.  Thus the agent learns behaviors.
+a particular action.
 % Action may be delayed to achieve substantial increases in expected reward
 % that is expected to grow with time.
-
-\begin{wrapfigure}{r}{.35\linewidth}
-  \caption{\textbf{Reinforcement learning in a nutshell.} Given the current state of the environment,
-    the agent takes an action by following some policy, receives a consequential reward and observes the next state. The process goes on until interrupted or a goal state is reached.}
-  \centering
-  \includegraphics[width=1.\linewidth]{rl.pdf}
-  \label{fig:rl}
-\end{wrapfigure}
 
 The environment is generally taken as \textit{stochastic},
 that is, changing in random ways. In addition, the environment is only
 \textit{partially observable} in the sense that only limited aspects of the environment's
-state are accessible to the agent's sensory perception~\citep{starkweather2017dopamine,o2006making,o2006making}.
+state are accessible to the agent's sensory perception.
+\citep{starkweather2017dopamine}.
 We assume that volatility of the environment
 is realistic in a computational model which sets out
 to explain DMN functions of the human brain.
@@ -900,6 +916,14 @@ in the tension between exploitative action with immediate gains and
 explorative action with longer-term reward outcomes
 \citep{dayan2008decision}.
 
+\begin{wrapfigure}{r}{.3\linewidth}
+  \caption{\textbf{Reinforcement learning in a nutshell.} Given the current state of the environment,
+    the agent takes an action by following some policy, receives a consequential reward and observes the next state. The process goes on until interrupted or a goal state is reached.}
+  \centering
+  \includegraphics[width=1.\linewidth]{rl.pdf}
+  \label{fig:rl}
+\end{wrapfigure}
+
 In short, DMN implication in a diversity of
 particularly advanced cognitive processes
 can be parsimoniously explained as probabilistic mental
@@ -911,11 +935,28 @@ may be solved by a stochastic approximation
 based on a brain implementation of MCMC sampling
 \citep{tenenbaum2011grow}.
 
+
+
 \subsection{Markov decision processes}
 Model-free RL has had great success in many real-world problems,
 including robotics \citep{ng2004,abbeel2004},
 super-human performance in complex video games \citep{mnih2015},
 and strategic board games like the breakthrough results upon recently on the game of Go \citep{silver2016mastering}, considered to be a golden benchmark problem in artificial intelligence.
+We emphasize that the brain in general, and the DMN in particular,
+is a physical system governed by the laws of
+physics and can be formally described
+by Markov processes at a sufficiently coarse scale.
+It has indeed been previously proposed \citep{tegmark2016improved} that
+any system obeying the laws of classical physics can be accurately modeled as a Markov process as long as the time
+step is sufficiently short.
+% , defining $s(t)$, the state at time $t$, as the position in state space.
+The process has $memory$ if the next state depends not only on the current state
+but also on a finite number of past states.
+Rational probabilistic planning can be reformulated
+as a standard memoryless Markov process by simply expanding the
+definition of the state $s$ to include experience episodes of the past.
+
+
 In artificial intelligence and machine learning, a popular computational model for
 multi-step decision processes in such an environment are
 \textit{Markov decision processes} (MDPs) \citep{sutton1998reinforcement}.
@@ -933,6 +974,8 @@ by maintaining probability distributions over actions according to their expecte
 % states.
 % % , based on a set of observations and observation probabilities.
 This is a minimal set of assumptions that can be made about an environment faced by an agent engaged in active learning.
+
+
 
 Model-free RL can be plausibly realized in the human brain \citep{doherty2015structure}. Indeed,
 it has been proposed \citep{gershman2015computational} that a core property of human intelligence  underlie improvement
@@ -977,48 +1020,6 @@ Mathematically, an MDP is simply a quintuplet $(\mathcal S, \mathcal A, r, p)$ w
 \end{itemize}
 
 \end{definition*}
-
-\paragraph*{Interlude: Rethinking the Action-State-Reward model of RL.}
-Barto proposes to decouple extrinsic rewards (i.e generated by the external environment) from intrinsic reward (generated from withing the "organism")
-biologically, extrinsic rewards would correspond to so-called "sensations"
-while intrinsic rewards would correspond to "reward signals".
-
-Thus there are two environments: the external environment, and the internal environment built-into the "organism". The organism takes high-level DECISIONS (the DMN can confortably sit here!) which act on the internal environment (this environment probably corresponds to low-level subsystems like motor, etc.) which then transform theses  into ACTIONS executed in the external environment. The external environment generates sensations which get mapped into reward signals (via the internal environment), etc.
-
-The interesting thing is that with this rethinking, the organism can have a perception-action loop even in the absence of external stimulus.
-This is called curiosity...
-
-% \begin{mdframed}
-\paragraph*{Why MDPs ?} At this point, it is righteous to question the applicability of MPDs as a model for something as complex as human behavior.
-Indeed a critique could argue that Markov chains are state-machines without memory. These may describe insects, or other behaviorally primitive beings like ATM machines, insects, etc., but won't be sufficient to describe human beings, as for example, human behavior is heavily influenced not only by the current state but by past states as well (memory).
-
-\paragraph*{Answer:}
-\begin{itemize}
-  \item First, let us emphasize that the brain in general, and the DMN in particular,
-is a physical system governed by the laws of
-physics and can be formally described
-by Markov processes at a sufficiently coarse scale.
-It has indeed been previously proposed \citep{tegmark2016improved} that
-any system obeying the laws of classical physics can be accurately modeled as a Markov process as long as the time
-step is sufficiently short.
-
-\item Rational probabilistic planning can be reformulated
-as a standard memory Markov process by simply expanding the
-definition of the state $s$ to include experience episodes of the past.
-This adds the capacity for memory, since then, the next state depends not only on the current state but also on a finite number of past states. This is precisely what partially observable MDPs do ~\citep{starkweather2017dopamine,o2006making}.
-
-\item Also, it should be noted that MDPs have been successfully used as neural model for animal behavior. One can mention ~\citep{Rao2010} (random dots), ~\citep{Valton2011} (mal-adaptive decision-making in a rat version of a gambling task) just to name a few.
-
-\item Successes in AI/ML:
-  \begin{itemize}
-    \item Robotics: \citep{ng2004,abbeel2004}
-    \item Games and other: ~\citep{mnih2015,silver2016mastering,pritzel2017neural}
-\end{itemize}      
-
-  \item Algorithmic trading. In financial trading, the main actions which the agent (human or computer acting on behalf of a human operator) must execute strategically are: sell (sell a given quantity of a commodity), buy (by a given quantity of a commodity), do nothing. According to how the market responds, a definite gain / loss is recorded as a consequence of the executed action, perhaps with some delay. Over the years, research in algorithmic trading has identified MDPs as a powerful framework for modelling this behavioral process  ~\citep{brazdil2017,yang15,yang14,yang12,dempster2006,hult2010}, for which dynamic-programming based algorithms can be employed to produce numerical solutions. ~\citep{abergel2017} is an excellent reference with the mathematical details on how MDPs work in finance.
- 
-\end{itemize}
-% \end{mdframed}
 
 
 \subsubsection{Accumulated rewards and policies}
@@ -1193,9 +1194,11 @@ The Bellman equation \eqref{eq:bellman} is a temporal consistency equation which
 a dynamic decomposition of optimal behavior by dividing the $Q$-value function into the immediate
 reward and the discounted rewards of the upcoming states.
 The optimal Q-value operator $Q^*$ is a fixed point for this equation.
-As a consequence of this decomposition, the complicated problem \eqref{eq:qlearning}
+As a consequence of this decomposition, the complicated dynamic programming
+problem \eqref{eq:qlearning}
 is broken down into simpler sub-problems at different time points.
-Indeed, exploitation of hierarchical structure in action considerations
+Indeed,
+exploitation of hierarchical structure in action considerations
 has previously been related to the medial prefrontal part of the DMN
 \citep{koechlin1999role, braver2002role}.
 Using the Bellman equation, each state can be associated with a certain value
@@ -1215,7 +1218,7 @@ triggered by another (possibly stochastic) behavioral policy.
 \hspace{2mm}
 \vspace{2mm}
 % neuroscience of Bellman equation
-\textbf{Neural correlates of the Bellman equation in the DMN:}
+\textbf{Box 2: Neural correlates of the Bellman equation in the DMN}
 Relating decomposition of consecutive action choices by the Bellman equation
 to neuroscience,
 specific neural activity in the dorsal prefrontal cortex (BA9)
@@ -1416,7 +1419,7 @@ actions and rewards \citep{aronov2017, chao2017interaction, boyer2008evolutionar
 These simulations of experience batches
 would be used to update the value function, without ever looking inside the black box describing the model's dynamics \citep{lavilleon2015}.
 This would be a simple control algorithm by evaluating all legal actions and selecting the action with
-highest expected cumulative rewards.As a result, quick-to-learn instance-based control policies serve as a rough approximation while a slower more generalisable decision-making system system is trained up~\citep{pritzel2017neural,lengyel2008hippocampal}.
+highest expected cumulative rewards.
 In MDPs, MCMC simulation provides an effective mechanism both for tree search and for belief-based state updates, breaking the curse of dimensionality and allowing much greater scalability than has previously been possible \citep{silver2016mastering}.
 % Much recent work points to MCMC or stochastic sampling-based approximations as a unifying framework for understanding how Bayesian inference may work practically across all these levels, in minds, brains, and machines. \textbf{XXX elvis: refs needed in last sentence. Plus, should be really bring up Bayesian?}
 
@@ -1867,14 +1870,14 @@ imagined mental scenarios.
 Howewer, surprise is challenging to optimize numerically
 because we need to sum over all hidden causes of the sensations.
 Instead, FEP therefore minimizes an upper-bound of surprise,
-namely the \text{free energy} $F_G^R(\x) := \langle \log p_G(., \x) \rangle_{p_R(. |\x)} - \langle \log p_R(. |\x))\rangle_{p_R(. |\x)}$ given by
+namely the \text{free energy} $F_G^R(\x)$ given by
 
   \begin{equation}
     \begin{split}
       \text{generative surprise } &:= -\log(p_G(\x)) = F_G(\x) \\
       &=\underbrace{F^R_G(\x)}_{\text{accuracy}} - \underbrace{D_{KL}(P_R(.|\x) || P_G(.|\x))}_{\text{complexity}} \\
       &\le F^R_G(\x),
-      \text{ with equality if }p_R(\z|\x) = p_G(\z|\x)\text{ for all } \z.
+      \text{ with equality if }p_R(\z|\x) = p_G(\z|\x)\text{ for all } \z
     \end{split}
   \end{equation}
 
@@ -1900,7 +1903,7 @@ The recent theory of
 \textit{variational auto-encoders} (VAEs) \citep{kingma2013auto} might provide an efficient alternative to the wake-sleep algorithm. VAEs
 overcome a number of the technical limits of the wake-sleep algorithm
 by using a reparametrization trick. For instance, unlike the wake-sleep algorithm
-for minimizing free energy, VAEs can be efficiently trained via back-propagation of prediction errors. Most importantly, the reparametrization trick allows for a drastic reduction in the variance of the in estimates of the model's gradients, leading to effective learning, something which was not possible in wake-sleep\citep{dayan1995helmholtz}. The details of this trick can be found in \citep{kingma2013auto}.
+for minimizing free energy, VAEs can be efficiently trained via back-propagation of prediction errors.
 
 On another front, since theories based on the FEP \citep{friston2010free,fristonAIorRL}
 conceptualize ongoing behavior
@@ -2049,348 +2052,348 @@ for continued refinement of the organism's fate.
 \bibliography{refs}
 
 
-\appendix
-
-\begin{remark}
-  Given a system $(\mathcal S, \mathcal A, r, p, \mu)$ satisfying all the axioms for an MDP
-  except the Markov property, we can always transform it into an MDP by considering a compounded
-  version of the states
-  $$S_t \leftarrow (S_0,A_0,R_0,S_1,A_1,S_2\ldots,S_t,A_{t-1},R_{t-1},S_{t})$$ made of the system's
-  history up to an including time $t$.
-\end{remark}
-
-\section{Free-energy principles!}
-The so-called free-energy principle in its present form (including notions like ``generative density'', ``recognition density'', etc.) can be traced back to works of Dayan \& Hinton \citep{dayan1995helmholtz} in which they introduced the so-called \textit{Helmholtz machine}, a hierarchical factorial directional deep belief-net (DBN).
-In this subsection, we will develop from first-principles, the bare-bones minimalistic ideas needed to build a free-energy principle for general decision-making. This ideas were first developed by Hinton et al. in the early 90s in building their Helmholtz machine. Theories like Friston's free-energy principle and active-inference will then emerge as particular instances of this general framework, with particular design choises. For instance, the Friston theory axiomatizes that the brain uses a (problematic, as it implicitly assumes that posterior of each hidden unit is factorial) wake-sleep algorithm to train the underlying Helmholtz machine, etc.
-
+% \appendix
+% 
+% \begin{remark}
+%   Given a system $(\mathcal S, \mathcal A, r, p, \mu)$ satisfying all the axioms for an MDP
+%   except the Markov property, we can always transform it into an MDP by considering a compounded
+%   version of the states
+%   $$S_t \leftarrow (S_0,A_0,R_0,S_1,A_1,S_2\ldots,S_t,A_{t-1},R_{t-1},S_{t})$$ made of the system's
+%   history up to an including time $t$.
+% \end{remark}
+% 
+% \section{More on RL in the brain}
+% \subsection{Does hippocampal replay equal inverse reinforcement-learning?}
+% %\begin{mdframed}
+%   Given the trace $s_0,a_0,s_1,\ldots,$ of an optimal agent's strategy $\pi^*$ in
+%   an MDP (called a \textit{teacher's demonstration}), can we figure out what is the
+%   (instantaneous) reward function $r: \mathcal S \times \mathcal \mathcal A
+%   \rightarrow \mathbb R$ that the agent is optimizing over a prescribed class of reward functions
+%   (e.g., linear rewards $r(s,a) \equiv \theta^T\phi(s,a)$)?
+%   For instance, given traces of motor actions from an adult to grab a cup on a table,
+%   can an observing child figure out what ``langragian'' functional is being minimized by the former?
+%   How? Can they reproduce this optimal behavior?
+% %\end{mdframed}
+% Such questions are of course pertinent to our decision-making theory for the DMN.
+% In the general artificial case, the problem has been extensively studied and partially solved by
+% \citep{abbeel2004}. They are also been rigorously studied in general optimal control literature under the name
+% ``inverse optimal control'', but in model-based certain (where the physical dynamics are known, etc.)...
+% 
+% IRL is is suited for problems in which it's hard to define what the reward function could be
+% (e.g.,  car-driving, drone maneuvering, etc.) ...
+% 
+% \section{Free-energy principles!}
+% The so-called free-energy principle in its present form (including notions like ``generative density'', ``recognition density'', etc.) can be traced back to works of Dayan \& Hinton \citep{dayan1995helmholtz} in which they introduced the so-called \textit{Helmholtz machine}, a hierarchical factorial directional deep belief-net (DBN).
+% In this subsection, we will develop from first-principles, the bare-bones minimalistic ideas needed to build a free-energy principle for general decision-making. This ideas were first developed by Hinton et al. in the early 90s in building their Helmholtz machine. Theories like Friston's free-energy principle and active-inference will then emerge as particular instances of this general framework, with particular design choises. For instance, the Friston theory axiomatizes that the brain uses a (problematic, as it implicitly assumes that posterior of each hidden unit is factorial) wake-sleep algorithm to train the underlying Helmholtz machine, etc.
+% 
+% % \begin{mdframed}
+% %   Though our presentation of free-energy principles is thermodynamic in flavor, a completely equivalent
+% %   information-theoretic formulation is of course possible, simply by exploiting the information-theoretic interpretation of entropy.
+% % \end{mdframed}
+% 
+% \subsection{Helmholtz free-energy and the generative model}
+% \begin{table}[H]
+%   \begin{tabular}{p{2cm}|p{11cm}}
+%          \hline
+%          \textbf{symbol}    & \textbf{description}  \\ \hline
+%          $\langle X\rangle_p$ & Expectation (a.k.a average, a.k.a mean value) of the
+%          random quantity $X$ w.r.t to the probability density $p$, formally defined by $\langle E\rangle_p := \sum_{z}p(z)X(z)$.\\ \hline
+%          $\mathcal H(p)$ & Information-theoretic entropy of a probability density $p$, formally defined by $\mathcal H(p) := -\sum_{z}p(z)\log(p(z))$,
+%           with the usual convention $0 \log(0) := 0$.\\ \hline
+%          $D_{KL}(q||p)$ & The Kullback-Leibler divergence between the probability densities $q$ and $p$ respectively, formally defined by $D_{KL}(q||p) := \sum_{z}q(z)\log(q(z)/p(z))$.\\ \hline
+%              $\x$ & Observations. In Friston's free-energy principle this has a decomposition in to two terms: the brain's internal state $b$ and sensory inputs $s$, i.e., $\x = (s, b).$ \\ \hline
+%              $\z$ & Hidden variables. This should be understood as the unobservable states of the external environment (to which the brain is trying to adapt by learning).\\ \hline
+%              $p_G(.|\x)$ & Generative density for ...\\ \hline
+%          $p_R(.|\x)$ & Recognition density for ... Does some kind of predictive coding (?).\\ \hline
+%          $F_G(\x)$ & Helmholtz free-energy for a model $p_G$ of generating the observation $\x$. This measures the surprise incured upon observing $\x$ generated by the model $G$.\\ \hline
+%          $F^R_G(\x)$ & Variational Helmholtz free-energy from model $G$
+%           to $R$.  Note that $F^G_G = F_G$.\\ \hline
+%   \end{tabular}
+%   \caption{Table of notations.}
+% \end{table}
+% Our starting point will be to build an approximation $p_G$ for the true density $p$ of the observations, so that this approximate density corresponds to the partition function of thermodynamic system. So,
+% \begin{eqnarray}
+%   \begin{split}
+%     \text{generative surprise } &= -\log(p_G(\x)) = -\log(p_G(\x)) \times 1 = -\log(P_G(\x))\sum_{\z}p_G(\z |\x)\\
+%     &= -\sum_{\z}p_G(\z, \x)\log(p_G(\x))
+%     =-\sum_{\z}p_G(\z |\x)\log(p_G(\z, \x)/p_G(\z|\x))\\
+%     &= \sum_{\z}p_G(\z |\x)\log(p_G(\z|\x))-\sum_{\z}p_G(\z |\x)\log  (p_G(\z, \x))\\
+%     &= -\langle \log  (p_G(., \x)) \rangle_{p_G(. |\x)} - \mathcal H(p_G(. |\x))\\
+%     &= \langle E_G(., \x) \rangle_{p_G(. |\x)} - \mathcal H(p_G(. |\x))
+%   \end{split}
+%   \label{eq:helm}
+% \end{eqnarray}
+% where $E_G(\z, \x)$ is the energy at \textit{macrostate} $\z$ of a fictive thermodynamic system defined by setting
+% \begin{equation}
+%   E_G(\z, \x) := -\log(p_G(\z, \x)),
+%   \label{eq:gibbs}
+% \end{equation}
+% %% In the above, the variable $\z$ is a hidden variable, and can / should be interpreted as the unobservable state of the external world.
+% The last quantity in \eqref{eq:helm} is nothing but \textit{Helmholtz free-energy} (at unit temperature!), defined formally by
+% \begin{equation}
+%   F_G(\x) := \langle E_G(., \x) \rangle_{p_G(. |\x)} - \mathcal H(p_G(. |\x)).
+% \end{equation}
+% %% , modelled as the physical system for which $p_G(\z|\x)$ dictates the occupation probabilities of macrostates $\z$
+% Thus,
+% \begin{fact}
+%   Generative surprise and generative Helmholtz free-energy are different views on exactly the same object.
+% \end{fact}
+% 
+% The goal of the brain is then to optimize over the generative model $G$: to iteratively or analytically modify the generative density $p_G(.|\x)$, so as to minimize surprise. It turns out that a direct attempt to attack this optimization problem by gradient descent on the free-energy $F_G(\x)$ is furtile: the parameter update steps are not ``very clean'', and require rather cumbersome and heavy computations. A workaround is then to introduce a second density $p_R(.|\x)$ called a \textit{recognition} density to work in tandem with the generative density $p_G(.|\x)$, as a trick for doing approximate inference. The former dreams / fantacizes whilst the latter tries to generate sensations which match these dreams! This primal-dual idea, first proposed in Hinton et al. 1995, is at the heart of the general free-energy principle that we will introduce shortly.
+% 
+% \subsection{Variational Helmholtz free-energy and the bottom-up recognition sub-model}
+% In this subsection, we will present an insightful upper bound for the generative surprise (i.e., generate Helmholtz free-energy), called the \textit{variational} (Helmholtz) free-energy. As an avant-gout of what is to come shorty, let's just note that the well-known \textit{free-energy principle} is simply a workaround whereby the minimization surprise (intractable) is replaced with the  minimization a carefully chosen upper bound thereof.
+% 
+% Invoking \eqref{eq:gibbs} and applying Bayes rule, we get the Gibbs
+% distribution
+% \begin{equation}
+%   p_G(\z|\x) = \frac{p_G(\z|\x)}{p_G(\x)} = \frac{\exp(-E_G(\z, \x))}{Z_G(\x)} = \frac{\exp(-E_G(\z, \x))}{Z_G(\x)},
+% \end{equation}
+% where $Z_G(\x) := \log(p_G(\x)) = \sum_{\z'}\exp(-E_G(\z',\x))$, the normalizing \textit{partition function} for the model \ref{eq:gibbs}.
+% Whence, for any macrostate $\z$, we have $p_G(\x) = Z_G(\x) = \exp(-E_G(\z, \x)) / p_G(\z|\x)$, and so it holds that
+% \begin{equation}
+% F_G(\x)\overset{\eqref{eq:helm}}{=} -\log(p_G(\x)) = -\log(Z_G(\x)) = E_G(\z, \x) + \log(p_G(\z|\x)).
+% \end{equation}
+% Now, in the above equation, the LHS only depends on the generative model $G$ and the data point $\x$:
+% it doesn't depend on the hidden variable $\z$, etc. So, taking expectations w.r.t an arbitrary
+% density\footnote{conditioning in $P_R(.|\x)$ is because this density is selected from a world in which the sensory inputs and internal brain
+%   state vector $\x$ is assumed already observed.} $p_R(.|\x)$ yields
+% \begin{equation}
+%   \begin{split}
+%     F_G(\x) &= -\log(Z_G(\x)) = \langle E_G(., \x)\rangle_{P_R(.|\x)} + \sum_{\z}p_R(\z|\x)\log(p_G(\z|\x))\\
+%     &= \langle E_G(., \x)\rangle_{P_R(.|\x)} - \mathcal H(p_R(.|\x)) - \sum_{\z}p_R(\z|\x)\log(p_R(\z|\x)/p_G(\z|\x))\\
+%     &= F^R_G(\x) - D_{KL}(P_R(.|\x) || P_G(.|\x)),
+%   \end{split}
+%   \label{eq:fe}
+% \end{equation}
+% where $F^R_G(\x)$ is the \textit{variational} Helmholtz free-energy from $R$ to $G$ defined by
+% \begin{equation}
+%   F^R_G(\x) := \langle E_G(., \x)\rangle_{P_R(.|\x)} - \mathcal H(p_R(.|\x))
+% \end{equation}
+% and $D_{KL}(P_R(.|\x) || P_G(.|\x))$ is the Kullback-Leibler divergence between the $p_R(.|\x)$ and the generative density $p_G(.|\x)$. Note that $F^G_G = F_G$.
+% 
+% \subsection{A general free-energy principle}
+% We can resume the situation as follows\footnote{Where we have used the fact that KL divergence is always nonnegative.}:
 % \begin{mdframed}
-%   Though our presentation of free-energy principles is thermodynamic in flavor, a completely equivalent
-%   information-theoretic formulation is of course possible, simply by exploiting the information-theoretic interpretation of entropy.
+% \begin{equation}
+%   \begin{split}
+%     \text{generative surprise } &:= -\log(p_G(\x)) = F_G(\x) \\
+%     &=\underbrace{F^R_G(\x)}_{\text{accuracy}} - \underbrace{D_{KL}(P_R(.|\x) || P_G(.|\x))}_{\text{complexity}} \\
+%     &\le F^R_G(\x),
+%     \text{ with equality if }p_R(\z|\x) = p_G(\z|\x)\text{ for all } \z
+%     \end{split}
+% \end{equation}
 % \end{mdframed}
+% %% In fact, we have the following theorem
+% %% \begin{theorem}
+% %%   It holds that
+% %%   $$
+% %%   \text{Minimal generative surprise = minimal (Helmholtz) variational free-energy},$$
+% %%   i.e
+% %%   \begin{equation}
+% %%     \min_{G}F_G(\x) = \min_{G,R}F^R_G(\x)
+% %%     \end{equation}
+% %% \end{theorem}
+% 
+% \subsection{Helmholtz machines and the wake-sleep algorithm}
+% % \begin{mdframed}
+%   \textbf{Assumption:} In both generative and recognition components of the network, there is conditional independence of  neurons in the same layer, given the data (i.e., input from lower more primitive layers). Precisely
+% $$
+% p_G(\z^{(l)}|\x) = \Pi_{k=1}^{h_l}p_G(\z_k^{(l)} | \x),\hspace{1cm}
+% p_R(\z^{(l)}|\x) = \Pi_{k=1}^{h_l}p_R(\z_k^{(l)} |\x)
+% $$
+% % \end{mdframed}
+% 
+% \subsection{Friston's active-inference and agency}
+% \label{sec:friston}
+% This is nothing but an application of the Dayan's wake-sleep algorithm for training a Helmholtz machine model of the brain...
+% 
+% The following critics can be made:
+% \begin{itemize}
+%   \item
+%     As noted by Dayan et al. (\textit{Variants of Helmholtz machines}), the inter-neuronal intra-layer independence assumption which is at the center of the HM becomes severely problematic as it is agnostic to the known organization of cortical layers...
+%   \item A drawback of the wake-sleep algorithm is that it requires a concurrent models (generative and recognitiion), which together do not correspond to optimization of (a bound of) the marginal likelihood (because of the incorrect KL used therein, etc.).
+%   \item Also, note that the wake-sleep algorithm doesn't do backprop! This is due to
+%     technical difficulty in getting derivatives of loss function w.r.t
+%     recognition weights $\W^R$).
+%   \item This difficulty was removed in the 2010s by \citep{kingma2013auto}, an other groups, via a ``reparametrization trick''.
+%     \end{itemize}
+% 
+% 
+% \subsection{Minimizing free-energy via backprop: variational auto-encoders}
+% 
+% % \subsection{Free-energy minimization via variational auto-encoders}
+% \label{sec:vae}
+% Here, we present a way to alleviate some conceptual and computational issues with the
+% free-energy framework presented thus far, by using the recent \textit{variational auto-encoder} (VAE) theory \citep{kingma2013auto}. Define the data-dependent
+% auxiliary random function
+% \begin{eqnarray}
+%   f_{G,R}(., \x) :\z \mapsto \log(p_G(\z,\x)) - \log(p_R(\z|\x)).
+% \end{eqnarray}
+% Then we can rewrite the
+% variational free-energy as
+% \begin{eqnarray*}
+%   \begin{split}
+%     F_G^R(\x) &:= \langle E_G(., \x) \rangle_{p_R(. |\x)} - \mathcal H(p_R(. |\x)) = \langle E_G(., \x) + \log(p_R(.|\x))\rangle_{P_R(.|\x)}\\
+%     &=\langle -\log(p_G(.,\x)) + \log(p_R(.|\x))\rangle_{P_R(.|\x)}\\
+%     &= -\langle f_{G,R}\rangle_{P_R(.|\x)} \approx -\frac{1}{M}\sum_{m=1}^Mf_{G,R}(\z^{(m)}), \text{ with }\z^{(1)},\ldots,\z^{(M)} \sim p_R(.|\x), \text{ and }M \rightarrow \infty.
+%     \end{split}
+% \end{eqnarray*}
+% 
+% \begin{mdframed}
+%   \textbf{Problem:} How do we sample from the recognition density $p_R(.|\x)$ in such a way that the sampling process is differentiable w.r.t the weights of the recognition network $\W^R$ ?
+% \end{mdframed}
+% 
+% % \begin{figure}[!tb]
+% %   \centering
+% %   \includegraphics[width=.8\linewidth]{vae.pdf}
+% %   \caption{Variational autoencoders...}
+% %   \label{fig:vae}
+% % \end{figure}
+% 
+% \paragraph{Solution: the reparametrization trick.}
+% \begin{itemize}
+% \item Choose $\epsilon \sim p_{\text{noise}}$ (noise distribution, independent of $\W^R$!)
+% \item Set $\z = g(\W^{R}, \x, \epsilon)$, where $g$ is an appropriate class $\mathcal C^1$ function
+%   \begin{itemize}
+%   \item results in a sample $\z \sim p_R(.|\x)$, from the correct
+%     posterior
+%     \end{itemize}
+% \end{itemize}
+% The mapping $g$ should be taught of as a ``blurring'' function which produces noisy versions $\z$,
+% called \textit{sensations}, of the true world state $\x$.
+% The result is a scheme for training DBNs via good-old backprop!
+% Refer to Fig. vae.pdf.
+% % \ref{fig:vae}.
+% Some examples of the reparametrization trick for a number of
+% choices of the posterior distribution are given in Tab. \ref{tab:rptrick}.
+% 
+% \begin{table}[H]
+%   \begin{tabular}{p{1.7cm}|p{1.5cm}|p{1.9cm}|p{2.1cm}|p{5cm}}
+%          \hline
+%          Posterior & $p_R(.|\x)$ & noise & $g(\W^R,\x,\epsilon)$ & Also \\ \hline
+%          Normal & $\mathcal N(\mu,\sigma)$ & $\epsilon \sim \mathcal N(0, 1)$ & $\mu + \sigma \odot \epsilon$ & Location-scale family: Laplace, Elliptical,
+%          Student’s t, Logistic, Uniform, Triangular, \ldots \\ \hline
+%          Exponential & $\mathcal \exp(\lambda)$ & $\epsilon \sim \mathcal U([0, 1))$ & $-\log(1-\epsilon)/\lambda$ & Invertible CDF: Cauchy, Logistic, Rayleigh, Pareta, Weibull, Reciprocal, Gompert, Gumbel, Erlan, ... \\ \hline
+%          Other & $\log\mathcal N(\mu,\sigma)$ & $\epsilon \sim \mathcal N(0, 1)$ & $\exp(\mu + \sigma \odot \epsilon)$ & Gamma, Dirichlet, Beta, Chi-squared, F, ... \\ \hline
+%   \end{tabular}
+%   \caption{Reparametrization trick \citep{kingma2013auto} for a variety of models.}
+%   \label{tab:rptrick}
+% \end{table}
 
-\subsection{Helmholtz free-energy and the generative model}
-\begin{table}[H]
-  \begin{tabular}{p{2cm}|p{11cm}}
-         \hline
-         \textbf{symbol}    & \textbf{description}  \\ \hline
-         $\langle X\rangle_p$ & Expectation (a.k.a average, a.k.a mean value) of the
-         random quantity $X$ w.r.t to the probability density $p$, formally defined by $\langle E\rangle_p := \sum_{z}p(z)X(z)$.\\ \hline
-         $\mathcal H(p)$ & Information-theoretic entropy of a probability density $p$, formally defined by $\mathcal H(p) := -\sum_{z}p(z)\log(p(z))$,
-          with the usual convention $0 \log(0) := 0$.\\ \hline
-         $D_{KL}(q||p)$ & The Kullback-Leibler divergence between the probability densities $q$ and $p$ respectively, formally defined by $D_{KL}(q||p) := \sum_{z}q(z)\log(q(z)/p(z))$.\\ \hline
-             $\x$ & Observations. In Friston's free-energy principle this has a decomposition in to two terms: the brain's internal state $b$ and sensory inputs $s$, i.e., $\x = (s, b).$ \\ \hline
-             $\z$ & Hidden variables. This should be understood as the unobservable states of the external environment (to which the brain is trying to adapt by learning).\\ \hline
-             $p_G(.|\x)$ & Generative density for ...\\ \hline
-         $p_R(.|\x)$ & Recognition density for ... Does some kind of predictive coding (?).\\ \hline
-         $F_G(\x)$ & Helmholtz free-energy for a model $p_G$ of generating the observation $\x$. This measures the surprise incured upon observing $\x$ generated by the model $G$.\\ \hline
-         $F^R_G(\x)$ & Variational Helmholtz free-energy from model $G$
-          to $R$.  Note that $F^G_G = F_G$.\\ \hline
-  \end{tabular}
-  \caption{Table of notations.}
-\end{table}
-Our starting point will be to build an approximation $p_G$ for the true density $p$ of the observations, so that this approximate density corresponds to the partition function of thermodynamic system. So,
-\begin{eqnarray}
-  \begin{split}
-    \text{generative surprise } &= -\log(p_G(\x)) = -\log(p_G(\x)) \times 1 = -\log(P_G(\x))\sum_{\z}p_G(\z |\x)\\
-    &= -\sum_{\z}p_G(\z, \x)\log(p_G(\x))
-    =-\sum_{\z}p_G(\z |\x)\log(p_G(\z, \x)/p_G(\z|\x))\\
-    &= \sum_{\z}p_G(\z |\x)\log(p_G(\z|\x))-\sum_{\z}p_G(\z |\x)\log  (p_G(\z, \x))\\
-    &= -\langle \log  (p_G(., \x)) \rangle_{p_G(. |\x)} - \mathcal H(p_G(. |\x))\\
-    &= \langle E_G(., \x) \rangle_{p_G(. |\x)} - \mathcal H(p_G(. |\x))
-  \end{split}
-  \label{eq:helm}
-\end{eqnarray}
-where $E_G(\z, \x)$ is the energy at \textit{macrostate} $\z$ of a fictive thermodynamic system defined by setting
-\begin{equation}
-  E_G(\z, \x) := -\log(p_G(\z, \x)),
-  \label{eq:gibbs}
-\end{equation}
-%% In the above, the variable $\z$ is a hidden variable, and can / should be interpreted as the unobservable state of the external world.
-The last quantity in \eqref{eq:helm} is nothing but \textit{Helmholtz free-energy} (at unit temperature!), defined formally by
-\begin{equation}
-  F_G(\x) := \langle E_G(., \x) \rangle_{p_G(. |\x)} - \mathcal H(p_G(. |\x)).
-\end{equation}
-%% , modelled as the physical system for which $p_G(\z|\x)$ dictates the occupation probabilities of macrostates $\z$
-Thus,
-\begin{fact}
-  Generative surprise and generative Helmholtz free-energy are different views on exactly the same object.
-\end{fact}
+%% For fixed $p_G(.|\x)$, the optimal choice for $p_R(.|\x)$ is given analytically by
+%% \begin{equation}
+%%   p_R(\z|\x) \propto p_G(\z|\x)\exp(-\Delta E_{G \rightarrow R}(\z, \x)).
+%% \end{equation}
 
-The goal of the brain is then to optimize over the generative model $G$: to iteratively or analytically modify the generative density $p_G(.|\x)$, so as to minimize surprise. It turns out that a direct attempt to attack this optimization problem by gradient descent on the free-energy $F_G(\x)$ is furtile: the parameter update steps are not ``very clean'', and require rather cumbersome and heavy computations. A workaround is then to introduce a second density $p_R(.|\x)$ called a \textit{recognition} density to work in tandem with the generative density $p_G(.|\x)$, as a trick for doing approximate inference. The former dreams / fantacizes whilst the latter tries to generate sensations which match these dreams! This primal-dual idea, first proposed in Hinton et al. 1995, is at the heart of the general free-energy principle that we will introduce shortly.
+%% \subsection{A thermodynamic model for bounded rationality, aka robust
+%%   optimality}
+%% \begin{itemize}
+%%   \item Recall that an agent is said to have \textit{bounded rationality} if they must take into account the cost of finding solutions to problems, and not just the utility of the final state.
+%%   \item For example, consider an agent that must operate under a limited lifetime and/or computation cost.
+%%   \item This is in contrast to agents with \textit{unbounded rationality} considered in classical game theory.
+%%     \end{itemize}
+%% The material presented is a revisit of \citep{braun2011path}. See also \citep{ortega2013thermodynamics}
+%% \paragraph{Utility functions and conjugate pairs.}
+%%   Let $(\Omega, \mathcal F, P)$ be a probablity space. A function $U: \mathcal F \rightarrow \mathbb R$ is said to be a \textit{utility function} for this space if the conditional utility $U(A|B) := U(A \cap B) - U(B)$ has the following propertites:
+%%   \begin{itemize}
+%%   \item additivity: $U(A_1 \cap A_2 | B) = U(A_1|B) + U(A_2|B)$, for all events $A_1, A_2, B \in \mathcal F$.
+%%   \item statistic: there exists a function $f_{U} :\mathbb R_+ \rightarrow \mathbb R$ such that $U(A|B) = f(P(A|B))$, for all events
+%%     $A,B \in \mathcal F$.
+%%   \item monotonicity: $f_{U}$ is strictly increasing.
+%%     \end{itemize}
 
-\subsection{Variational Helmholtz free-energy and the bottom-up recognition sub-model}
-In this subsection, we will present an insightful upper bound for the generative surprise (i.e., generate Helmholtz free-energy), called the \textit{variational} (Helmholtz) free-energy. As an avant-gout of what is to come shorty, let's just note that the well-known \textit{free-energy principle} is simply a workaround whereby the minimization surprise (intractable) is replaced with the  minimization a carefully chosen upper bound thereof.
-
-Invoking \eqref{eq:gibbs} and applying Bayes rule, we get the Gibbs
-distribution
-\begin{equation}
-  p_G(\z|\x) = \frac{p_G(\z,\x)}{p_G(\x)} = \frac{\exp(-E_G(\z, \x))}{Z_G(\x)} = \frac{\exp(-E_G(\z, \x))}{Z_G(\x)},
-\end{equation}
-where $Z_G(\x) := \log(p_G(\x)) = \sum_{\z'}\exp(-E_G(\z',\x))$, the normalizing \textit{partition function} for the model \ref{eq:gibbs}.
-Whence, for any macrostate $\z$, we have $p_G(\x) = Z_G(\x) = \exp(-E_G(\z, \x)) / p_G(\z|\x)$, and so it holds that
-\begin{equation}
-F_G(\x)\overset{\eqref{eq:helm}}{=} -\log(p_G(\x)) = -\log(Z_G(\x)) = E_G(\z, \x) + \log(p_G(\z|\x)).
-\end{equation}
-Now, in the above equation, the LHS only depends on the generative model $G$ and the data point $\x$:
-it doesn't depend on the hidden variable $\z$, etc. So, taking expectations w.r.t an arbitrary
-density\footnote{conditioning in $P_R(.|\x)$ is because this density is selected from a world in which the sensory inputs and internal brain
-  state vector $\x$ is assumed already observed.} $p_R(.|\x)$ yields
-\begin{equation}
-  \begin{split}
-    F_G(\x) &= -\log(Z_G(\x)) = \langle E_G(., \x)\rangle_{P_R(.|\x)} + \sum_{\z}p_R(\z|\x)\log(p_G(\z|\x))\\
-    &= \langle E_G(., \x)\rangle_{P_R(.|\x)} - \mathcal H(p_R(.|\x)) - \sum_{\z}p_R(\z|\x)\log(p_R(\z|\x)/p_G(\z|\x))\\
-    &= F^R_G(\x) - D_{KL}(P_R(.|\x) || P_G(.|\x)),
-  \end{split}
-  \label{eq:fe}
-\end{equation}
-where $F^R_G(\x)$ is the \textit{variational} Helmholtz free-energy from $R$ to $G$ defined by
-\begin{equation}
-  F^R_G(\x) := \langle E_G(., \x)\rangle_{P_R(.|\x)} - \mathcal H(p_R(.|\x))
-\end{equation}
-and $D_{KL}(P_R(.|\x) || P_G(.|\x))$ is the Kullback-Leibler divergence between the $p_R(.|\x)$ and the generative density $p_G(.|\x)$. Note that $F^G_G = F_G$.
-
-\subsection{A general free-energy principle}
-We can resume the situation as follows\footnote{Where we have used the fact that KL divergence is always nonnegative.}:
-\begin{mdframed}
-\begin{equation}
-  \begin{split}
-    \text{generative surprise } &:= -\log(p_G(\x)) = F_G(\x) \\
-    &=\underbrace{F^R_G(\x)}_{\text{accuracy}} - \underbrace{D_{KL}(P_R(.|\x) || P_G(.|\x))}_{\text{complexity}} \\
-    &\le F^R_G(\x),
-    \text{ with equality if }p_R(\z|\x) = p_G(\z|\x)\text{ for all } \z
-    \end{split}
-\end{equation}
-\end{mdframed}
-%% In fact, we have the following theorem
 %% \begin{theorem}
-%%   It holds that
-%%   $$
-%%   \text{Minimal generative surprise = minimal (Helmholtz) variational free-energy},$$
-%%   i.e
+%%   The only functions $f: \mathbb R_+ \rightarrow \mathbb R$ which is such that $U(A|B) \equiv f(P(A|B))$ any probability space $(\Omega, \mathcal F, P)$ and utility function $U$ thereupon are of the form
 %%   \begin{equation}
-%%     \min_{G}F_G(\x) = \min_{G,R}F^R_G(\x)
-%%     \end{equation}
+%%     f = \alpha \log(.),
+%%     \label{eq:boltzmann}
+%%   \end{equation}
+%%   where $\alpha > 0$.
 %% \end{theorem}
 
-\subsection{Helmholtz machines and the wake-sleep algorithm}
-% \begin{mdframed}
-  \textbf{Assumption:} In both generative and recognition components of the network, there is conditional independence of  neurons in the same layer, given the data (i.e., input from lower more primitive layers). Precisely
-$$
-p_G(\z^{(l)}|\x) = \Pi_{k=1}^{h_l}p_G(\z_k^{(l)} | \x),\hspace{1cm}
-p_R(\z^{(l)}|\x) = \Pi_{k=1}^{h_l}p_R(\z_k^{(l)} |\x)
-$$
-% \end{mdframed}
+%% \textbf{XXX: equation \eqref{eq:boltzmann} above looks like Boltzmann's formula (on his gravestone...)!}
 
-\subsection{Friston's active-inference and agency}
-\label{sec:friston}
-This is nothing but an application of the Dayan's wake-sleep algorithm for training a Helmholtz machine model of the brain...
-
-The following critics can be made:
-\begin{itemize}
-  \item
-    As noted by Dayan et al. (\textit{Variants of Helmholtz machines}), the inter-neuronal intra-layer independence assumption which is at the center of the HM becomes severely problematic as it is agnostic to the known organization of cortical layers...
-  \item A drawback of the wake-sleep algorithm is that it requires a concurrent models (generative and recognitiion), which together do not correspond to optimization of (a bound of) the marginal likelihood (because of the incorrect KL used therein, etc.).
-  \item Also, note that the wake-sleep algorithm doesn't do backprop! This is due to
-    technical difficulty in getting derivatives of loss function w.r.t
-    recognition weights $\W^R$).
-  \item This difficulty was removed in the 2010s by \citep{kingma2013auto}, an other groups, via a ``reparametrization trick''.
-    \end{itemize}
+%% Such $U$ and $P$ are said to form a \textit{conjugate pair} at temperature $\alpha$.
 
 
-\subsection{Minimizing free-energy via backprop: variational auto-encoders}
+%% \paragraph{Example.}
+%% Given a utility function $U$ on a probability space $(\Omega, \mathcal F, *)$, the \textit{Gibbs measure} at temperature $\alpha > 0$ and energy levels $(-U(\omega))_{\omega \in \Omega}$ is defined to be the probability measure (on thesame measurable space)
+%%   \begin{equation}
+%%     P(\omega) = \frac{1}{Z_{U}(\alpha)}\exp\left(\frac{1}{\alpha}U(\omega)\right), \; \forall \omega \in \Omega,
+%%   \end{equation}
+%%   where
 
-% \subsection{Free-energy minimization via variational auto-encoders}
-\label{sec:vae}
-Here, we present a way to alleviate some conceptual and computational issues with the
-free-energy framework presented thus far, by using the recent \textit{variational auto-encoder} (VAE) theory \citep{kingma2013auto}. Define the data-dependent
-auxiliary random function
-\begin{eqnarray}
-  f_{G,R}(., \x) :\z \mapsto \log(p_G(\z,\x)) - \log(p_R(\z|\x)).
-\end{eqnarray}
-Then we can rewrite the
-variational free-energy as
-\begin{eqnarray*}
-  \begin{split}
-    F_G^R(\x) &:= \langle E_G(., \x) \rangle_{p_R(. |\x)} - \mathcal H(p_R(. |\x)) = \langle E_G(., \x) + \log(p_R(.|\x))\rangle_{P_R(.|\x)}\\
-    &=\langle -\log(p_G(.,\x)) + \log(p_R(.|\x))\rangle_{P_R(.|\x)}\\
-    &= -\langle f_{G,R}\rangle_{P_R(.|\x)} \approx -\frac{1}{M}\sum_{m=1}^Mf_{G,R}(\z^{(m)}), \text{ with }\z^{(1)},\ldots,\z^{(M)} \sim p_R(.|\x), \text{ and }M \rightarrow \infty.
-    \end{split}
-\end{eqnarray*}
+%%   \begin{equation}
+%%     Z_{U}(\alpha) := \sum_{\omega \in \Omega}\exp\left(\frac{1}{\alpha}U(\omega)\right)
+%%   \end{equation}
+%%   is a normalization constant called the \textit{partition function} of $U$.
+%%   It's not hard to see that $U$ and the $P$ above form a conjugate pair.
 
-\begin{mdframed}
-  \textbf{Problem:} How do we sample from the recognition density $p_R(.|\x)$ in such a way that the sampling process is differentiable w.r.t the weights of the recognition network $\W^R$ ?
-\end{mdframed}
+%%   \paragraph{Free-utility functional.}
+%%     Let $(U, P)$ be a conjugate pair at temperature $\alpha > 0$  on a measurable space $(\Omega, \mathcal F)$. Given another probability measure $P'$ on the same space, define it's \textit{free utility} as
+%%     \begin{equation}
+%%       J(P'|U, P) = \langle U \rangle_{P'} + \alpha \mathcal H(P'),
+%%     \label{eq:free_u}
+%%     \end{equation}
+%%     where
+%%     \begin{equation}
+%%       \mathcal H(P') := \langle \log(P') \rangle_{P'} := -\sum_{\omega \in \Omega}P'(\omega)\log(P'(\omega))
+%%     \end{equation}
+%%     is the \textit{entropy} of $P'$ (measured in the Naperian base $e \approx 2.73$). It's not difficult to establish the upper bound
+%%   \begin{equation}
+%%     J(P'|U) \le J(P|U) = \sum_{\omega \in \Omega}U(\omega) =: U(\Omega).
+%%   \end{equation}
+%%   In particular, if $P$ is the Gibbs measure at temperature $\alpha$ corresponding to $U$, then the upper bound above reduces to the \textit{log-partition function}
+%%   \begin{equation}
+%%     J(P'|U) \le U(\Omega) = -\alpha \log(Z_{U}(\alpha)).
+%%     \end{equation}
 
-% \begin{figure}[!tb]
-%   \centering
-%   \includegraphics[width=.8\linewidth]{vae.pdf}
-%   \caption{Variational autoencoders...}
-%   \label{fig:vae}
-% \end{figure}
+%%   \paragraph{The free-energy / utility principle (of Friston ?).}
+%%   We are now in shape to introduce the notion of free-energy for model transitions, and a variational principle for optimizing it. Consider thus an initial system described by a conjugate pair $(U_{\text{ini}}, P_{\text{ini}})$ at temperature $\alpha > 0$. We want to transform this to a new model by adding constraints represented by the utility function $\Delta U$.  The resulting system has final utility $U_{\text{fin}} = U_{\text{ini}} + \Delta U$. The difference in free-utility is then
+%%   \begin{equation}
+%%     \Delta J_{(U_{\text{ini}}, P_{\text{ini}}) \rightarrow P_{\text{fin}}} := J_{\text{fin}} - J_{\text{ini}} = \underbrace{\langle \Delta U\rangle_{P_{\text{fin}}}}_{\textbf{accuracy}} -  \underbrace{\alpha D_{\text{KL}}(P_{\text{ini}}\|P_{\text{fin}})}_{\textbf{complexity}},
+%%     \label{eq:free}
+%%   \end{equation}
+%%   where
+%%   \begin{equation}
+%%     D_{\text{KL}}(P_{\text{fin}}\|P_{\text{ini}}) := \langle \log(\P_{\text{fin}}/\P_{\text{ini}})\rangle_{\P_{\text{fin}}} := \sum_{\omega \in \Omega}\P_{\text{fin}}(\omega)\log(\P_{\text{fin}}(\omega)/\P_{\text{ini}}(\omega))
+%%   \end{equation}
+%%   is the Kullback-Leibler divergence, and represents the information cost (measured in energy units) of changing the initial system.
+%% In the above formula, we've extensively used the fact that $(U_{\text{ini}}, P_{\text{ini}})$ is a congugate pair and so $U_{\text{ini}}(\omega) \equiv \alpha \log(P_{\text{ini}}(\omega))$ by virtue of \eqref{eq:boltzmann}.
+%%   The two terms in \eqref{eq:free} (accuracy or expected gain in utility, and the complexity of the transition) can be viewed as dertiminants of bounded rational decision-making. They formalize
+%% a trade-off between an expected utility $\Delta U$ (first term) and
+%% the information cost of transforming Pi
+%% into $P_{\text{fin}}$ (second
+%% term). In this interpretation $P_{\text{ini}}$ represents an initial choice
+%% probability or policy, which includes the special case of the
+%% uniform distribution where the decision-maker has initially no
+%% preferences between the different choices. The probability measure $P_{\text{fin}}$ is the final choice probability that we are looking for since it
+%% considers the utility constraint U∗
+%% that we want to optimize. We can then formulate a variational principle for bounded rationality in the probabilities $P_{\text{fin}}(\omega)$
+%% \begin{equation}
+%% P^*_{\text{fin}} := \underset{P_{\text{fin}}}{\text{argmax }} \Delta J_{(U_{\text{ini}}, P_{\text{ini}}) \rightarrow P_{\text{fin}}}
+%%   \end{equation}
 
-\paragraph{Solution: the reparametrization trick.}
-\begin{itemize}
-\item Choose $\epsilon \sim p_{\text{noise}}$ (noise distribution, independent of $\W^R$!)
-\item Set $\z = g(\W^{R}, \x, \epsilon)$, where $g$ is an appropriate class $\mathcal C^1$ function
-  \begin{itemize}
-  \item results in a sample $\z \sim p_R(.|\x)$, from the correct
-    posterior
-    \end{itemize}
-\end{itemize}
-The mapping $g$ should be taught of as a ``blurring'' function which produces noisy versions $\z$,
-called \textit{sensations}, of the true world state $\x$.
-The result is a scheme for training DBNs via good-old backprop!
-Refer to Fig. vae.pdf.
-% \ref{fig:vae}.
-Some examples of the reparametrization trick for a number of
-choices of the posterior distribution are given in Tab. \ref{tab:rptrick}.
+%% By differentiating the RHS of \eqref{eq:free} w.r.t $P_{\text{fin}}$ and setting to zero, we obtain the closed-form solution
 
-\begin{table}[H]
-  \begin{tabular}{p{1.7cm}|p{1.5cm}|p{1.9cm}|p{2.1cm}|p{5cm}}
-         \hline
-         Posterior & $p_R(.|\x)$ & noise & $g(\W^R,\x,\epsilon)$ & Also \\ \hline
-         Normal & $\mathcal N(\mu,\sigma)$ & $\epsilon \sim \mathcal N(0, 1)$ & $\mu + \sigma \odot \epsilon$ & Location-scale family: Laplace, Elliptical,
-         Student’s t, Logistic, Uniform, Triangular, \ldots \\ \hline
-         Exponential & $\mathcal \exp(\lambda)$ & $\epsilon \sim \mathcal U([0, 1))$ & $-\log(1-\epsilon)/\lambda$ & Invertible CDF: Cauchy, Logistic, Rayleigh, Pareta, Weibull, Reciprocal, Gompert, Gumbel, Erlan, ... \\ \hline
-         Other & $\log\mathcal N(\mu,\sigma)$ & $\epsilon \sim \mathcal N(0, 1)$ & $\exp(\mu + \sigma \odot \epsilon)$ & Gamma, Dirichlet, Beta, Chi-squared, F, ... \\ \hline
-  \end{tabular}
-  \caption{Reparametrization trick \citep{kingma2013auto} for a variety of models.}
-  \label{tab:rptrick}
-\end{table}
+%% \begin{equation}
+%%   P^*_{\text{fin}}(\omega) \propto P_{\text{ini}}(\omega)\exp\left(\frac{1}{\alpha}\Delta U(\omega)\right).
+%% \end{equation}
 
-For fixed $p_G(.|\x)$, the optimal choice for $p_R(.|\x)$ is given analytically by
-\begin{equation}
-  p_R(\z|\x) \propto p_G(\z|\x)\exp(-\Delta E_{G \rightarrow R}(\z, \x)).
-\end{equation}
+%% Two limit cases are worth considering.
+%% \begin{itemize}
+%% \item \textbf{Low-temperature regime $\alpha \approx 0$:} Here $\Delta J_{(U_{\text{ini}}, P_{\text{ini}}) \rightarrow P_{\text{fin}}} \approx \langle \Delta U\rangle_{P'_{\text{fin}}}$, and so it's optimal to take
+%%   $$P^*_{\text{fin}}(\omega) \equiv \text{dirac}(\omega - \omega^*) = \begin{cases}1, &\mbox{if }\omega = \omega^*,\\0, &\mbox{ otherwise,}\end{cases}$$
+%%   where $\omega^* := \argmax_{\omega \in \Omega}U(\omega)$. This corresponds to unbounded rational decision-making, in which the cost of transition / problem-solving is completely disregarded.
+%%   \item \textbf{High-temperature regime $\alpha \rightarrow +\infty$:} In this limiting case, it's optimal to take $P^*_{\text{fin}}(\omega) \equiv P_{\text{ini}}(\omega)$, i.e the change is so costly that it's optimal to maintain the current choice probabilities.
+%% \end{itemize}
 
-\subsection{A thermodynamic model for bounded rationality, aka robust
-  optimality}
-\begin{itemize}
-  \item Recall that an agent is said to have \textit{bounded rationality} if they must take into account the cost of finding solutions to problems, and not just the utility of the final state.
-  \item For example, consider an agent that must operate under a limited lifetime and/or computation cost.
-  \item This is in contrast to agents with \textit{unbounded rationality} considered in classical game theory.
-    \end{itemize}
-The material presented is a revisit of \citep{braun2011path}. See also \citep{ortega2013thermodynamics}
-\paragraph{Utility functions and conjugate pairs.}
-  Let $(\Omega, \mathcal F, P)$ be a probablity space. A function $U: \mathcal F \rightarrow \mathbb R$ is said to be a \textit{utility function} for this space if the conditional utility $U(A|B) := U(A \cap B) - U(B)$ has the following propertites:
-  \begin{itemize}
-  \item additivity: $U(A_1 \cap A_2 | B) = U(A_1|B) + U(A_2|B)$, for all events $A_1, A_2, B \in \mathcal F$.
-  \item statistic: there exists a function $f_{U} :\mathbb R_+ \rightarrow \mathbb R$ such that $U(A|B) = f(P(A|B))$, for all events
-    $A,B \in \mathcal F$.
-  \item monotonicity: $f_{U}$ is strictly increasing.
-    \end{itemize}
-
-\begin{theorem}
-  The only functions $f: \mathbb R_+ \rightarrow \mathbb R$ which is such that $U(A|B) \equiv f(P(A|B))$ any probability space $(\Omega, \mathcal F, P)$ and utility function $U$ thereupon are of the form
-  \begin{equation}
-    f = \alpha \log(.),
-    \label{eq:boltzmann}
-  \end{equation}
-  where $\alpha > 0$.
-\end{theorem}
-
-\textbf{XXX: equation \eqref{eq:boltzmann} above looks like Boltzmann's formula (on his gravestone...)!}
-
-Such $U$ and $P$ are said to form a \textit{conjugate pair} at temperature $\alpha$.
+%% To conclude this section, let's note that \citep{braun2011path} show how their free-energy framework (on paths) links with the well-known Hamilton-Jacobi-Bellman optimal control framework. For example, one can re-derive the Linear Quadratic Gaussian (LQG) controller, which is a generalization of the LQR in \eqref{eq:hj}...
 
 
-\paragraph{Example.}
-Given a utility function $U$ on a probability space $(\Omega, \mathcal F, *)$, the \textit{Gibbs measure} at temperature $\alpha > 0$ and energy levels $(-U(\omega))_{\omega \in \Omega}$ is defined to be the probability measure (on thesame measurable space)
-  \begin{equation}
-    P(\omega) = \frac{1}{Z_{U}(\alpha)}\exp\left(\frac{1}{\alpha}U(\omega)\right), \; \forall \omega \in \Omega,
-  \end{equation}
-  where
-
-  \begin{equation}
-    Z_{U}(\alpha) := \sum_{\omega \in \Omega}\exp\left(\frac{1}{\alpha}U(\omega)\right)
-  \end{equation}
-  is a normalization constant called the \textit{partition function} of $U$.
-  It's not hard to see that $U$ and the $P$ above form a conjugate pair.
-
-  \paragraph{Free-utility functional.}
-    Let $(U, P)$ be a conjugate pair at temperature $\alpha > 0$  on a measurable space $(\Omega, \mathcal F)$. Given another probability measure $P'$ on the same space, define it's \textit{free utility} as
-    \begin{equation}
-      J(P'|U, P) = \langle U \rangle_{P'} + \alpha \mathcal H(P'),
-    \label{eq:free_u}
-    \end{equation}
-    where
-    \begin{equation}
-      \mathcal H(P') := \langle \log(P') \rangle_{P'} := -\sum_{\omega \in \Omega}P'(\omega)\log(P'(\omega))
-    \end{equation}
-    is the \textit{entropy} of $P'$ (measured in the Naperian base $e \approx 2.73$). It's not difficult to establish the upper bound
-  \begin{equation}
-    J(P'|U) \le J(P|U) = \sum_{\omega \in \Omega}U(\omega) =: U(\Omega).
-  \end{equation}
-  In particular, if $P$ is the Gibbs measure at temperature $\alpha$ corresponding to $U$, then the upper bound above reduces to the \textit{log-partition function}
-  \begin{equation}
-    J(P'|U) \le U(\Omega) = -\alpha \log(Z_{U}(\alpha)).
-    \end{equation}
-
-  \paragraph{The free-energy / utility principle (of Friston ?).}
-  We are now in shape to introduce the notion of free-energy for model transitions, and a variational principle for optimizing it. Consider thus an initial system described by a conjugate pair $(U_{\text{ini}}, P_{\text{ini}})$ at temperature $\alpha > 0$. We want to transform this to a new model by adding constraints represented by the utility function $\Delta U$.  The resulting system has final utility $U_{\text{fin}} = U_{\text{ini}} + \Delta U$. The difference in free-utility is then
-  \begin{equation}
-    \Delta J_{(U_{\text{ini}}, P_{\text{ini}}) \rightarrow P_{\text{fin}}} := J_{\text{fin}} - J_{\text{ini}} = \underbrace{\langle \Delta U\rangle_{P_{\text{fin}}}}_{\textbf{accuracy}} -  \underbrace{\alpha D_{\text{KL}}(P_{\text{ini}}\|P_{\text{fin}})}_{\textbf{complexity}},
-    \label{eq:free}
-  \end{equation}
-  where
-  \begin{equation}
-    D_{\text{KL}}(P_{\text{fin}}\|P_{\text{ini}}) := \langle \log(\P_{\text{fin}}/\P_{\text{ini}})\rangle_{\P_{\text{fin}}} := \sum_{\omega \in \Omega}\P_{\text{fin}}(\omega)\log(\P_{\text{fin}}(\omega)/\P_{\text{ini}}(\omega))
-  \end{equation}
-  is the Kullback-Leibler divergence, and represents the information cost (measured in energy units) of changing the initial system.
-In the above formula, we've extensively used the fact that $(U_{\text{ini}}, P_{\text{ini}})$ is a congugate pair and so $U_{\text{ini}}(\omega) \equiv \alpha \log(P_{\text{ini}}(\omega))$ by virtue of \eqref{eq:boltzmann}.
-  The two terms in \eqref{eq:free} (accuracy or expected gain in utility, and the complexity of the transition) can be viewed as dertiminants of bounded rational decision-making. They formalize
-a trade-off between an expected utility $\Delta U$ (first term) and
-the information cost of transforming Pi
-into $P_{\text{fin}}$ (second
-term). In this interpretation $P_{\text{ini}}$ represents an initial choice
-probability or policy, which includes the special case of the
-uniform distribution where the decision-maker has initially no
-preferences between the different choices. The probability measure $P_{\text{fin}}$ is the final choice probability that we are looking for since it
-considers the utility constraint U∗
-that we want to optimize. We can then formulate a variational principle for bounded rationality in the probabilities $P_{\text{fin}}(\omega)$
-\begin{equation}
-P^*_{\text{fin}} := \underset{P_{\text{fin}}}{\text{argmax }} \Delta J_{(U_{\text{ini}}, P_{\text{ini}}) \rightarrow P_{\text{fin}}}
-  \end{equation}
-
-By differentiating the RHS of \eqref{eq:free} w.r.t $P_{\text{fin}}$ and setting to zero, we obtain the closed-form solution
-
-\begin{equation}
-  P^*_{\text{fin}}(\omega) \propto P_{\text{ini}}(\omega)\exp\left(\frac{1}{\alpha}\Delta U(\omega)\right).
-\end{equation}
-
-Two limit cases are worth considering.
-\begin{itemize}
-\item \textbf{Low-temperature regime $\alpha \approx 0$:} Here $\Delta J_{(U_{\text{ini}}, P_{\text{ini}}) \rightarrow P_{\text{fin}}} \approx \langle \Delta U\rangle_{P'_{\text{fin}}}$, and so it's optimal to take
-  $$P^*_{\text{fin}}(\omega) \equiv \text{dirac}(\omega - \omega^*) = \begin{cases}1, &\mbox{if }\omega = \omega^*,\\0, &\mbox{ otherwise,}\end{cases}$$
-  where $\omega^* := \argmax_{\omega \in \Omega}U(\omega)$. This corresponds to unbounded rational decision-making, in which the cost of transition / problem-solving is completely disregarded.
-  \item \textbf{High-temperature regime $\alpha \rightarrow +\infty$:} In this limiting case, it's optimal to take $P^*_{\text{fin}}(\omega) \equiv P_{\text{ini}}(\omega)$, i.e the change is so costly that it's optimal to maintain the current choice probabilities.
-\end{itemize}
-
-To conclude this section, let's note that \citep{braun2011path} show how their free-energy framework (on paths) links with the well-known Hamilton-Jacobi-Bellman optimal control framework. For example, one can re-derive the Linear Quadratic Gaussian (LQG) controller, which is a generalization of the LQR in \eqref{eq:hj}...
-
-
-\subsection{GANs and other likelihood-free methods}
-\ldots
-
-\section{More on RL in the brain}
-\subsection{Does hippocampal replay equal inverse reinforcement-learning?}
-%\begin{mdframed}
-  Given the trace $s_0,a_0,s_1,\ldots,$ of an optimal agent's strategy $\pi^*$ in
-  an MDP (called a \textit{teacher's demonstration}), can we figure out what is the
-  (instantaneous) reward function $r: \mathcal S \times \mathcal \mathcal A
-  \rightarrow \mathbb R$ that the agent is optimizing over a prescribed class of reward functions
-  (e.g., linear rewards $r(s,a) \equiv \theta^T\phi(s,a)$)?
-  For instance, given traces of motor actions from an adult to grab a cup on a table,
-  can an observing child figure out what ``langragian'' functional is being minimized by the former?
-  How? Can they reproduce this optimal behavior?
-%\end{mdframed}
-Such questions are of course pertinent to our decision-making theory for the DMN.
-In the general artificial case, the problem has been extensively studied and partially solved by
-\citep{abbeel2004}. They are also been rigorously studied in general optimal control literature under the name
-``inverse optimal control'', but in model-based certain (where the physical dynamics are known, etc.)...
-
-IRL is is suited for problems in which it's hard to define what the reward function could be
-(e.g.,  car-driving, drone maneuvering, etc.) ...
+% \subsection{GANs and other likelihood-free methods}
+% \ldots
 
 
 \end{document}
