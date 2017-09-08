@@ -219,7 +219,6 @@ an overarching function.
 Many research streams support an evolutionarily adaptive role in
 envisioning experience to anticipate the future.
 
-
 The present paper proposes a \textit{process model}
 that tries to explain \textit{how}
 the DMN may implement
@@ -596,7 +595,7 @@ and stored knowledge of world regularities.
   \includegraphics[width=1.\linewidth]{fig_dmn.png}
   \centering
   \caption{\textbf{Morphological coupling between reward system and
-  default mode network.} Based on 9,932 human subjects from the UK Biobank, inter-individual differences in left NAc volume ($R^2=0.11+/-0.02$) and right NAc volume ($R^2=0.14+/-0.02$) could be predicted from volume in the DMN nodes. These out-of-sample generalization performances were obtained from support vector regression applied to normalized node volumes in the DMN in a 10-fold cross-validation procedure. 
+  default mode network.} Based on 9,932 human subjects from the UK Biobank, inter-individual differences in left NAc volume ($R^2=0.11+/-0.02$) and right NAc volume ($R^2=0.14+/-0.02$) could be predicted from volume in the DMN nodes. These out-of-sample generalization performances were obtained from support vector regression applied to normalized node volumes in the DMN in a 10-fold cross-validation procedure.
   Consistent for the left and right reward system, NAc volume in a given subject is
   positively coupled with the vmPFC and HC.
   Code and data for reproduction and visualization:
@@ -1202,7 +1201,7 @@ exploitation of hierarchical structure in action considerations
 has previously been related to the medial prefrontal part of the DMN
 \citep{koechlin1999role, braver2002role}.
 Using the Bellman equation, each state can be associated with a certain value
-to guide action towards a preferred state, thus improving on the 
+to guide action towards a preferred state, thus improving on the
 current action policy of the agent.
 % It is a fixed-point equation for the deterministic policy $\pi$.
 Note that in \eqref{eq:bellman} the random sampling
@@ -1368,7 +1367,7 @@ of the neural processing hierarchy
 Efficient learning of the entire set of model parameters can effectively be achieved
 via stochastic \textit{gradient descent}, a universal algorithm for finding
 local minima based on the first derivative of the optimization objective.
-Stochastic here means that the true gradient is estimated from batches of training examples samples,
+Stochastic here means that the true gradient is estimated from batches of training samples,
 which, in our case, corresponds to blocks of experience from the replay memory:
 
 % online stochastic gradient descent is used to minimize the variational objective
@@ -1505,7 +1504,18 @@ new steady state of optimal action decisions in a volatile world.
 %   ok, gotta think about the model-free / model-based reconsiliation
 % \end{itemize}
 
+\begin{figure}[!h]
+  \includegraphics[width=.9\linewidth]{VennDiagram-2017-09-08.pdf}
+  \caption{\textbf{Where does Markov Decision Process fit in the theoretical landscape?}}
+  This Venn diagram summarizes the relationship between four existing accounts of DMN: in blue colors, the Free Energy Principle \& Predictive Coding, more related to the ”How” DMN works, and in yellow, the Sentinel \& the Semantic hypotheses, more related to "What" DMN does. Our account of DMN by Markov Decision Process is at the intersection of those accounts and thus corresponds to a "Process model" meaning a model of both "How" and "What" a process occur; here the mental processes and how it relate to observed behavior. For each account, 4 icons describe the core concepts of Time horizon, Neural plasticity, Hierarchy, and Behavioral goal. The "Time horizon" should be understood as a weighting of the expected future outcomes shorter to longer terms into present decision making. Then, "online monitoring" of the environment means detecting and processing salient cues in the sensory environment. The "Predictive Coding" is understood here as the joint minimization of feedforward prediction error and feedback modulation to optimize neural processing; there is thus no notion of an agent with behavioral goal.}
+  \label{fig:VennDiagram}
+\end{figure}
+
+
+
+
 \section{Relation to existing accounts}
+
 \subsection{Predictive coding hypothesis}
 Predictive coding mechanisms
 \citep{clark2013whatever, friston2008hierarchical}
@@ -1518,7 +1528,7 @@ Feed-forward sensory processing is constantly calibrated by
 top-down modulation from more multi-sensory and associative brain regions
 further away from primary sensory cortical regions.
 The dynamic interplay between cortical processing levels
-may enable learning about world aspects by reconciling
+may enable learning about aspects of the world by reconciling
 gaps between fresh sensory input and expectations computed
 based on stored prior information.
 At each stage of neural processing,
@@ -1568,7 +1578,7 @@ can inject prior knowledge
 at every stage of processing environmental information.
 %
 Moreover,
-both accounts provide a parsimonious explanation why the
+both accounts provide a parsimonious explanation for why the
 human brain's processing load devoted to incoming information decreases
 when the environment becomes predictable.
 This is because the internal generative
@@ -1592,7 +1602,7 @@ This generative top-down design is replaced in our MDP view of the DMN
 by a sequential decision-making framework.
 Further,
 the hierarchical processing aspect from predictive coding
-is re-expressed in our account in form of
+is re-expressed in our account in the form of
 nested prediction of probable upcoming actions, states, and outcomes.
 While both accounts capture the consequences of action,
 the predictive coding account is typically explained without
@@ -1613,7 +1623,7 @@ takes the concrete form of stochastic gradient computation and
 back-propagation in our MDP implementation.
 It is however important to note that
 the neurobiological plausibility of
-the back-propagation procedure is controversal
+the back-propagation procedure is controversial
 \citep{goodfellow2016deep}.
 
 
@@ -1655,7 +1665,7 @@ that is not presented in the surrounding sensory environment
 by recombining building blocks of
 concept knowledge and episodic memories
 \citep{hassabis2009construction}.
-Indeed, in aging humans, remembering the past and imaging the future
+Indeed, in aging humans, remembering the past and imagining the future
 equally decreased in the level of detail and were associated with
 concurrent deficits in forming and integrating relationships between
 items \citep{addis2008age, spreng2006temporal}.
@@ -1667,7 +1677,7 @@ Further,
 % %
 % Cognitive aspects of egocentric-allocentric switching
 episodic memory, language, problem solving,
-planning, estimating other others' thoughts, and spatial navigation
+planning, estimating others' thoughts, and spatial navigation
 represent neural processes that are likely to
 build on abstract world knowledge and logical associations
 for integrating the constituent elements in rich and coherent mental scenes
@@ -1796,7 +1806,7 @@ environmental stimuli especially important for humans are frequently of
 social nature. This is probably unsurprising
 given that
 the complexity of the social systems
-is a likely to be a human-defining property
+is likely to be a human-defining property
 \citep{tomasello2009cultural}.
 According to the ``social brain hypothesis'',
 the human brain has especially been shaped for
@@ -1892,7 +1902,7 @@ namely the \text{free energy} $F_G^R(\x)$ given by
 
 % CRITICISM
 Despite its popularity, criticism against the FEP has arisen over the years,
-some of which outlined in the following.
+some of which is outlined in the following.
 The main algorithm for minimizing free energy $F_G^R(\x)$ is the \textit{wake-sleep algorithm}
 \citep{dayan1995helmholtz}. As these authors noted,
 a crucial drawback of the wake-sleep algorithm is that it involves a pair
@@ -1902,7 +1912,7 @@ The brain may therefore be unlikely to implement a variant of the wake-sleep alg
 The recent theory of
 \textit{variational auto-encoders} (VAEs) \citep{kingma2013auto} might provide an efficient alternative to the wake-sleep algorithm. VAEs
 overcome a number of the technical limits of the wake-sleep algorithm
-by using a reparametrization trick. For instance, unlike the wake-sleep algorithm
+by using a reparametrization maneuver. For instance, unlike the wake-sleep algorithm
 for minimizing free energy, VAEs can be efficiently trained via back-propagation of prediction errors.
 
 On another front, since theories based on the FEP \citep{friston2010free,fristonAIorRL}
@@ -1917,7 +1927,7 @@ because its sensory inputs are perfectly predictable
   in a light-deprived closed space can be used
   as a thought experiment for the complete absence
   of external sensory input.}
-  \label{fig:darkroom}  
+  \label{fig:darkroom}
   \centering
   \includegraphics[width=1.\linewidth]{darkroom_resized.png}
 \end{wrapfigure}
@@ -1939,7 +1949,7 @@ for instance by looking for and using the light switch or simply finding the roo
 
 Finally, we note that FEP and active inference can be reframed in terms of
 our model-free RL framework.
-This becomes possible by recasting the Q-value function (i.e expected long-term reward) maximized by the DMN to 
+This becomes possible by recasting the Q-value function (i.e expected long-term reward) maximized by the DMN to
 correspond to negative surprise,
 that is, the log-likehood of current sensory priors
 the agent has about the world. More explicitly, this corresponds to
@@ -1988,7 +1998,7 @@ Which brain function could be important enough
 for the existence and survival of the human species
 to justify constantly high energy costs?
 MDPs motivate an attractive
-formal account how the human association cortex
+formal account of how the human association cortex
 might implement multi-sensory representation and control of the environment to
 optimize the organism's interaction with the world.
 % by obtaining reward and avoiding pain.
@@ -2004,7 +2014,7 @@ MDPs also provide a mathematical formalism how
 opportunity in the environment can be recursively exploited
 when confronted with challenging decisions.
 %
-This functional interpretation may be well compatible with the DMN's
+This functional interpretation may well be compatible with the DMN's
 poorly understood involvement across
 autobiographical memory recall, problem solving,
 abstract reasoning, social cognition,
@@ -2053,7 +2063,7 @@ for continued refinement of the organism's fate.
 
 
 % \appendix
-% 
+%
 % \begin{remark}
 %   Given a system $(\mathcal S, \mathcal A, r, p, \mu)$ satisfying all the axioms for an MDP
 %   except the Markov property, we can always transform it into an MDP by considering a compounded
@@ -2061,7 +2071,7 @@ for continued refinement of the organism's fate.
 %   $$S_t \leftarrow (S_0,A_0,R_0,S_1,A_1,S_2\ldots,S_t,A_{t-1},R_{t-1},S_{t})$$ made of the system's
 %   history up to an including time $t$.
 % \end{remark}
-% 
+%
 % \section{More on RL in the brain}
 % \subsection{Does hippocampal replay equal inverse reinforcement-learning?}
 % %\begin{mdframed}
@@ -2078,19 +2088,19 @@ for continued refinement of the organism's fate.
 % In the general artificial case, the problem has been extensively studied and partially solved by
 % \citep{abbeel2004}. They are also been rigorously studied in general optimal control literature under the name
 % ``inverse optimal control'', but in model-based certain (where the physical dynamics are known, etc.)...
-% 
+%
 % IRL is is suited for problems in which it's hard to define what the reward function could be
 % (e.g.,  car-driving, drone maneuvering, etc.) ...
-% 
+%
 % \section{Free-energy principles!}
 % The so-called free-energy principle in its present form (including notions like ``generative density'', ``recognition density'', etc.) can be traced back to works of Dayan \& Hinton \citep{dayan1995helmholtz} in which they introduced the so-called \textit{Helmholtz machine}, a hierarchical factorial directional deep belief-net (DBN).
 % In this subsection, we will develop from first-principles, the bare-bones minimalistic ideas needed to build a free-energy principle for general decision-making. This ideas were first developed by Hinton et al. in the early 90s in building their Helmholtz machine. Theories like Friston's free-energy principle and active-inference will then emerge as particular instances of this general framework, with particular design choises. For instance, the Friston theory axiomatizes that the brain uses a (problematic, as it implicitly assumes that posterior of each hidden unit is factorial) wake-sleep algorithm to train the underlying Helmholtz machine, etc.
-% 
+%
 % % \begin{mdframed}
 % %   Though our presentation of free-energy principles is thermodynamic in flavor, a completely equivalent
 % %   information-theoretic formulation is of course possible, simply by exploiting the information-theoretic interpretation of entropy.
 % % \end{mdframed}
-% 
+%
 % \subsection{Helmholtz free-energy and the generative model}
 % \begin{table}[H]
 %   \begin{tabular}{p{2cm}|p{11cm}}
@@ -2138,12 +2148,12 @@ for continued refinement of the organism's fate.
 % \begin{fact}
 %   Generative surprise and generative Helmholtz free-energy are different views on exactly the same object.
 % \end{fact}
-% 
+%
 % The goal of the brain is then to optimize over the generative model $G$: to iteratively or analytically modify the generative density $p_G(.|\x)$, so as to minimize surprise. It turns out that a direct attempt to attack this optimization problem by gradient descent on the free-energy $F_G(\x)$ is furtile: the parameter update steps are not ``very clean'', and require rather cumbersome and heavy computations. A workaround is then to introduce a second density $p_R(.|\x)$ called a \textit{recognition} density to work in tandem with the generative density $p_G(.|\x)$, as a trick for doing approximate inference. The former dreams / fantacizes whilst the latter tries to generate sensations which match these dreams! This primal-dual idea, first proposed in Hinton et al. 1995, is at the heart of the general free-energy principle that we will introduce shortly.
-% 
+%
 % \subsection{Variational Helmholtz free-energy and the bottom-up recognition sub-model}
 % In this subsection, we will present an insightful upper bound for the generative surprise (i.e., generate Helmholtz free-energy), called the \textit{variational} (Helmholtz) free-energy. As an avant-gout of what is to come shorty, let's just note that the well-known \textit{free-energy principle} is simply a workaround whereby the minimization surprise (intractable) is replaced with the  minimization a carefully chosen upper bound thereof.
-% 
+%
 % Invoking \eqref{eq:gibbs} and applying Bayes rule, we get the Gibbs
 % distribution
 % \begin{equation}
@@ -2171,7 +2181,7 @@ for continued refinement of the organism's fate.
 %   F^R_G(\x) := \langle E_G(., \x)\rangle_{P_R(.|\x)} - \mathcal H(p_R(.|\x))
 % \end{equation}
 % and $D_{KL}(P_R(.|\x) || P_G(.|\x))$ is the Kullback-Leibler divergence between the $p_R(.|\x)$ and the generative density $p_G(.|\x)$. Note that $F^G_G = F_G$.
-% 
+%
 % \subsection{A general free-energy principle}
 % We can resume the situation as follows\footnote{Where we have used the fact that KL divergence is always nonnegative.}:
 % \begin{mdframed}
@@ -2194,7 +2204,7 @@ for continued refinement of the organism's fate.
 % %%     \min_{G}F_G(\x) = \min_{G,R}F^R_G(\x)
 % %%     \end{equation}
 % %% \end{theorem}
-% 
+%
 % \subsection{Helmholtz machines and the wake-sleep algorithm}
 % % \begin{mdframed}
 %   \textbf{Assumption:} In both generative and recognition components of the network, there is conditional independence of  neurons in the same layer, given the data (i.e., input from lower more primitive layers). Precisely
@@ -2203,11 +2213,11 @@ for continued refinement of the organism's fate.
 % p_R(\z^{(l)}|\x) = \Pi_{k=1}^{h_l}p_R(\z_k^{(l)} |\x)
 % $$
 % % \end{mdframed}
-% 
+%
 % \subsection{Friston's active-inference and agency}
 % \label{sec:friston}
 % This is nothing but an application of the Dayan's wake-sleep algorithm for training a Helmholtz machine model of the brain...
-% 
+%
 % The following critics can be made:
 % \begin{itemize}
 %   \item
@@ -2218,10 +2228,10 @@ for continued refinement of the organism's fate.
 %     recognition weights $\W^R$).
 %   \item This difficulty was removed in the 2010s by \citep{kingma2013auto}, an other groups, via a ``reparametrization trick''.
 %     \end{itemize}
-% 
-% 
+%
+%
 % \subsection{Minimizing free-energy via backprop: variational auto-encoders}
-% 
+%
 % % \subsection{Free-energy minimization via variational auto-encoders}
 % \label{sec:vae}
 % Here, we present a way to alleviate some conceptual and computational issues with the
@@ -2239,18 +2249,18 @@ for continued refinement of the organism's fate.
 %     &= -\langle f_{G,R}\rangle_{P_R(.|\x)} \approx -\frac{1}{M}\sum_{m=1}^Mf_{G,R}(\z^{(m)}), \text{ with }\z^{(1)},\ldots,\z^{(M)} \sim p_R(.|\x), \text{ and }M \rightarrow \infty.
 %     \end{split}
 % \end{eqnarray*}
-% 
+%
 % \begin{mdframed}
 %   \textbf{Problem:} How do we sample from the recognition density $p_R(.|\x)$ in such a way that the sampling process is differentiable w.r.t the weights of the recognition network $\W^R$ ?
 % \end{mdframed}
-% 
+%
 % % \begin{figure}[!tb]
 % %   \centering
 % %   \includegraphics[width=.8\linewidth]{vae.pdf}
 % %   \caption{Variational autoencoders...}
 % %   \label{fig:vae}
 % % \end{figure}
-% 
+%
 % \paragraph{Solution: the reparametrization trick.}
 % \begin{itemize}
 % \item Choose $\epsilon \sim p_{\text{noise}}$ (noise distribution, independent of $\W^R$!)
@@ -2267,7 +2277,7 @@ for continued refinement of the organism's fate.
 % % \ref{fig:vae}.
 % Some examples of the reparametrization trick for a number of
 % choices of the posterior distribution are given in Tab. \ref{tab:rptrick}.
-% 
+%
 % \begin{table}[H]
 %   \begin{tabular}{p{1.7cm}|p{1.5cm}|p{1.9cm}|p{2.1cm}|p{5cm}}
 %          \hline
