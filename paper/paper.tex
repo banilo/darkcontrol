@@ -565,9 +565,6 @@ dmPFC function may be closer to a
 potentially subserves the de-novo construction and manipulation
 of meaning representations instructed by stored semantics and memories
 \citep{bzdok2013segregation}.
-
-
-
 The dmPFC may subserve inference, representation, and assessment
 of one's own and other individuals' action considerations.
 Generally,
@@ -592,18 +589,6 @@ Such highly abstract neural computations necessarily rely on the
 construction of probabilistic internal information drawing from
 memory recall, mental scene elaboration processes,
 and stored knowledge of world regularities.
-\begin{wrapfigure}{r}{.4\linewidth}
-  \includegraphics[width=1.\linewidth]{fig_dmn.png}
-  \centering
-  \caption{\textbf{Morphological coupling between reward system and
-  default mode network.} Based on 9,932 human subjects from the UK Biobank, inter-individual differences in left NAc volume ($R^2=0.11+/-0.02$) and right NAc volume ($R^2=0.14+/-0.02$) could be predicted from volume in the DMN regions. These out-of-sample generalization performances were obtained from support vector regression applied to normalized region volumes in the DMN in a 10-fold cross-validation procedure.
-  Consistent for the left and right reward system, NAc volume in a given subject is
-  positively coupled with the vmPFC and HC.
-  Code and data for reproduction and visualization:
-  \url{www.github.com/banilo/to_be_added_later}.
-  }
-  \label{fig:dmn}
-\end{wrapfigure}
 %
 Moreover,
 in a computational neuroimaging experiment,
@@ -612,8 +597,6 @@ action choices that were considered but not actually executed,
 whereas ventromedial PFC (vmPFC) activity
 processed especially value outcomes of actions actually performed on the environment
 \citep{nicolle2012agent}.
-
-
 
 
 Comparing to the dmPFC,
@@ -644,6 +627,26 @@ from dopaminergic neurotransmitter pathways
 that not only channel action towards basic survival needs but also
 enable more abstract reward processings, and thus perhaps RL,
 in humans \citep{doherty2015structure}.
+
+% \begin{wrapfigure}{r}{.4\linewidth}
+\begin{figure}[!htbp]
+  \begin{minipage}[c]{0.63\textwidth}  
+    \includegraphics[width=.8\linewidth]{fig_dmn.png}
+  \end{minipage}
+  \hspace{-4em}
+  \begin{minipage}[c]{0.4\textwidth}  
+    \caption{\textbf{Morphological coupling between reward system and
+        default mode network.} Based on 9,932 human subjects from the UK Biobank, inter-individual differences in left NAc volume ($R^2=0.11 \pm 0.02$) and right NAc volume ($R^2=0.14 \pm 0.02$) could be predicted from volume in the DMN regions. These out-of-sample generalization performances were obtained from support vector regression applied to normalized region volumes in the DMN in a 10-fold cross-validation procedure.
+      Consistent for the left and right reward system, NAc volume in a given subject is
+  positively coupled with the vmPFC and HC.
+  Code and data for reproduction and visualization:
+  \url{www.github.com/banilo/to_be_added_later}.
+  }
+  \label{fig:dmn}
+\end{minipage}
+% \end{wrapfigure}
+\end{figure}
+
 Consistently, diffusion MRI tractography in humans and monkeys
 \citep{croxson2005quantitative}
 quantified the NAc to
@@ -668,17 +671,11 @@ Such a ``cognitive map'' of the action space was argued to encode
 the current task state even when states are unobservable from
 the sensory environment.
 
-
-
-
 \subsection{The hippocampus: memory, space, and experience replay}
 The DMN midline has close functional links
 with the HC in the medial temporal lobe \citep{vincet2006, shannon2013morning} \textemdash
 a region long known to be involved in
 memory operations and spatial navigation in animals and humans.
-
-
-
 While the HC
 is traditionally believed to allow recalling past experience,
 there is now increasing evidence for an important role
@@ -693,6 +690,7 @@ hippocampal damage is
 not only associated with an impairment in re-experiencing the past (i.e., amnesia),
 but also imagination dedicated to one's own future and
 imagination of experiences more broadly \citep{hassabis2007patients}.
+
 Mental scenes created by neurological patients with HC lesion exposed a lack of
 spatial integrity, richness in detail, and overall coherence.
 %
@@ -737,9 +735,6 @@ probably contribute to advanced cognitive processes that require
 re-experiencing or newly constructed mental scenarios,
 such as in recalling autobiographical memory episodes
 \citep{hassabis2007patients}.
-
-
-
 Thus, the HC probably orchestrates re-experience of environmental aspects for
 consolidations based on re-enactment and for integration into
 rich mental scene construction \citep{deuker2016event, bird2010establishing}.
@@ -916,14 +911,6 @@ in the tension between exploitative action with immediate gains and
 explorative action with longer-term reward outcomes
 \citep{dayan2008decision}.
 
-\begin{wrapfigure}{r}{.3\linewidth}
-  \caption{\textbf{Reinforcement learning in a nutshell.} Given the current state of the environment,
-    the agent takes an action by following some policy, receives a consequential reward and observes the next state. The process goes on until interrupted or a goal state is reached.}
-  \centering
-  \includegraphics[width=1.\linewidth]{rl.pdf}
-  \label{fig:rl}
-\end{wrapfigure}
-
 In short, DMN implication in a diversity of
 particularly advanced cognitive processes
 can be parsimoniously explained as probabilistic mental
@@ -934,8 +921,6 @@ Such a purposeful optimization objective
 may be solved by a stochastic approximation
 based on a brain implementation of MCMC sampling
 \citep{tenenbaum2011grow}.
-
-
 
 \subsection{Markov decision processes}
 Model-free RL has had great success in many real-world problems,
@@ -956,6 +941,13 @@ Rational probabilistic planning can be reformulated
 as a standard memoryless Markov process by simply expanding the
 definition of the state $s$ to include experience episodes of the past.
 
+\begin{wrapfigure}{r}{.35\linewidth}
+  \caption{\textbf{Reinforcement learning in a nutshell.} Given the current state of the environment,
+    the agent takes an action by following some policy, receives a consequential reward and observes the next state. The process goes on until interrupted or a goal state is reached.}
+  \centering
+  \includegraphics[width=1.\linewidth]{rl.pdf}
+  \label{fig:rl}
+\end{wrapfigure}
 
 In artificial intelligence and machine learning, a popular computational model for
 multi-step decision processes in such an environment are
@@ -1509,8 +1501,9 @@ new steady state of optimal action decisions in a volatile world.
 
 \begin{figure}[!h]
   \includegraphics[width=.9\linewidth]{VennDiagram-2017-09-08.pdf}
-  \caption{\textbf{Where does Markov Decision Process fit in the theoretical landscape?}}
-  This Venn diagram summarizes the relationship between four existing accounts of DMN: in blue colors, the Free Energy Principle \& Predictive Coding, more related to the ”How” DMN works, and in yellow, the Sentinel \& the Semantic hypotheses, more related to "What" DMN does. Our account of DMN by Markov Decision Process is at the intersection of those accounts and thus corresponds to a "Process model" meaning a model of both "How" and "What" a process occur; here the mental processes and how it relate to observed behavior. For each account, 4 icons describe the core concepts of Time horizon, Neural plasticity, Hierarchy, and Behavioral goal. The "Time horizon" should be understood as a weighting of the expected future outcomes shorter to longer terms into present decision making. Then, "online monitoring" of the environment means detecting and processing salient cues in the sensory environment. The "Predictive Coding" is understood here as the joint minimization of feedforward prediction error and feedback modulation to optimize neural processing; there is thus no notion of an agent with behavioral goal.}
+  \caption{\textbf{Where does Markov Decision Process fit in the theoretical landscape?}
+  This Venn diagram summarizes the relationship between four existing accounts of DMN: in blue colors, the Free Energy Principle \& Predictive Coding, more related to the ”How” DMN works, and in yellow, the Sentinel \& the Semantic hypotheses, more related to "What" DMN does. Our account of DMN by Markov Decision Process is at the intersection of those accounts and thus corresponds to a "Process model" meaning a model of both "How" and "What" a process occur; here the mental processes and how it relate to observed behavior. For each account, 4 icons describe the core concepts of Time horizon, Neural plasticity, Hierarchy, and Behavioral goal. The "Time horizon" should be understood as a weighting of the expected future outcomes shorter to longer terms into present decision making. Then, "online monitoring" of the environment means detecting and processing salient cues in the sensory environment. The "Predictive Coding" is understood here as the joint minimization of feedforward prediction error and feedback modulation to optimize neural processing; there is thus no notion of an agent with behavioral goal.
+  }
   \label{fig:VennDiagram}
 \end{figure}
 
@@ -1871,6 +1864,15 @@ a biomechanical reasoning engine. It is
 dedicated to minimizing the long-term average of surprise: the log-likelihood of the observed sensory input --more precisely, an upper bound thereof-- \textit{relative} to the expectations about the external world derived from internal representations. The brain
 would continuously generate hypothetical explanations of the world
 and predict its sensory input.
+\begin{wrapfigure}{r}{.45\linewidth}
+  \caption{\textbf{The dark room experiment.} An intelligent agent situated
+  in a light-deprived closed space can be used
+  as a thought experiment for the complete absence
+  of external sensory input.}
+  \label{fig:darkroom}
+  \centering
+  \includegraphics[width=1.\linewidth]{darkroom_resized.png}
+\end{wrapfigure}
 Precursors of this interpretation can be traced back to Dayan and colleagues \citep{dayan1995helmholtz}
 who introduced the \textit{Helmholtz machine}, a hierarchical factorial directional deep belief network. According to the FEP account,
 the goal of the brain is to optimize over a generative model $G$ of sensations: to iteratively
@@ -1880,7 +1882,8 @@ The FEP also proposes a companion model called the \textit{recognition} model,
 which works in tandem with the generative model $p_R(\z|\x)$ to accomplish approximate inference. Put differently, the recognition model dreams imaginary worlds $\z$,
 while the generative model tries to produce sensory sensations $\x$ which match these
 imagined mental scenarios.
-Howewer, surprise is challenging to optimize numerically
+
+However, surprise is challenging to optimize numerically
 because we need to sum over all hidden causes of the sensations.
 Instead, FEP therefore minimizes an upper-bound of surprise,
 namely the \text{free energy} $F_G^R(\x)$ given by
@@ -1925,20 +1928,12 @@ an organism entering a dark room
 % \footnote{\textit{Dark} is used here as an allegory to indicate the complete absence of any \textit{external} sensory input.}
 (Fig. \ref{fig:darkroom}) would strive to remain in this location
 because its sensory inputs are perfectly predictable
-\begin{wrapfigure}{r}{.4\linewidth}
-  \caption{\textbf{The dark room experiment.} An intelligent agent situated
-  in a light-deprived closed space can be used
-  as a thought experiment for the complete absence
-  of external sensory input.}
-  \label{fig:darkroom}
-  \centering
-  \includegraphics[width=1.\linewidth]{darkroom_resized.png}
-\end{wrapfigure}
 given the environmental state \citep{darkroom2012}.
 However, such a behavioral tendency is
 seldom observed in animals or humans in the real world: In a dark room,
 intelligent agents would search for light sources to \textit{explore}
 its surroundings or leave it.
+
 Defenders of the FEP have retorted by advancing the ``full package'' \citep{darkroom2012}:
 FEP is proposed to be multi-scale and there would be a meta-scale at which the organism would
 be \textit{surprised} by such a \textit{lack of surprise}. According to this argument, a dark room would paradoxically correspond to a state of particularly high surprise.
