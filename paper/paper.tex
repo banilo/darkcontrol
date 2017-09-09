@@ -1498,7 +1498,7 @@ new steady state of optimal action decisions in a volatile world.
 % \end{itemize}
 
 \begin{figure}[!h]
-  \includegraphics[width=.9\linewidth]{VennDiagram-2017-09-08.pdf}
+  \includegraphics[width=1\linewidth]{VennDiagram-2017-09-08.pdf}
   \caption{\textbf{Where does Markov Decision Process fit in the theoretical landscape?}
   This Venn diagram summarizes the relationship between four existing accounts of DMN: in blue colors, the Free Energy Principle \& Predictive Coding, more related to the ”How” DMN works, and in yellow, the Sentinel \& the Semantic hypotheses, more related to "What" DMN does. Our account of DMN by Markov Decision Process is at the intersection of those accounts and thus corresponds to a "Process model" meaning a model of both "How" and "What" a process occur; here the mental processes and how it relate to observed behavior. For each account, 4 icons describe the core concepts of Time horizon, Neural plasticity, Hierarchy, and Behavioral goal. The "Time horizon" should be understood as a weighting of the expected future outcomes shorter to longer terms into present decision making. Then, "online monitoring" of the environment means detecting and processing salient cues in the sensory environment. The "Predictive Coding" is understood here as the joint minimization of feedforward prediction error and feedback modulation to optimize neural processing; there is thus no notion of an agent with behavioral goal.
   }
@@ -1856,45 +1856,41 @@ as a special case.
 \subsection{The free-energy principle and active inference}
 % INTRO
 According to theories of the free-energy principle (FEP) and
-active inference \citep{friston2010free, fristonAIorRL},
+active inference \citep{friston2010free, fristonAIorRL} (see also \citep{dayan1995helmholtz}),
 the brain corresponds to
 a biomechanical reasoning engine. It is
 dedicated to minimizing the long-term average of surprise: the log-likelihood of the observed sensory input --more precisely, an upper bound thereof-- \textit{relative} to the expectations about the external world derived from internal representations. The brain
 would continuously generate hypothetical explanations of the world
 and predict its sensory input.
-\begin{wrapfigure}{r}{.45\linewidth}
-  \caption{\textbf{The dark room experiment.} An intelligent agent situated
-  in a light-deprived closed space can be used
-  as a thought experiment for the complete absence
-  of external sensory input.}
-  \label{fig:darkroom}
-  \centering
-  \includegraphics[width=1.\linewidth]{darkroom_resized.png}
-\end{wrapfigure}
-Precursors of this interpretation can be traced back to Dayan and colleagues \citep{dayan1995helmholtz}
-who introduced the \textit{Helmholtz machine}, a hierarchical factorial directional deep belief network. According to the FEP account,
-the goal of the brain is to optimize over a generative model $G$ of sensations: to iteratively
-modify its internal representation $p_G(\z|\x)$ of objects in the world, their interactions and dynamics. The model then allows
-to minimize surprise when these representations are confronted with sensory input $\x$ during action-perception cycles (i.e., the \textit{generative} model).
-The FEP also proposes a companion model called the \textit{recognition} model,
-which works in tandem with the generative model $p_R(\z|\x)$ to accomplish approximate inference. Put differently, the recognition model dreams imaginary worlds $\z$,
-while the generative model tries to produce sensory sensations $\x$ which match these
-imagined mental scenarios.
-
+% Precursors of this interpretation can be traced back to Dayan and colleagues \citep{dayan1995helmholtz}
+% who introduced the \textit{Helmholtz machine}, a hierarchical factorial directional deep belief network. According to the FEP account,
+% the goal of the brain is to optimize over a generative model $G$ of sensations: to iteratively
+% modify its internal representation $p_G(\z|\x)$ of objects in the world, their interactions and dynamics. The model then allows
+% to minimize surprise when these representations are confronted with sensory input $\x$ during action-perception cycles (i.e., the \textit{generative} model).
+% The FEP also proposes a companion model called the \textit{recognition} model $p_R(\z|\x)$,
+% which works in tandem with the generative model to accomplish approximate inference. Put differently, the recognition model dreams imaginary worlds $\z$,
+% while the generative model tries to produce sensory sensations $\x \sim p_G(\x|\z)$ which match these
+% imagined mental scenarios.
 However, surprise is challenging to optimize numerically
-because we need to sum over all hidden causes of the sensations.
-Instead, FEP therefore minimizes an upper-bound of surprise,
-namely the \text{free energy} $F_G^R(\x)$ given by
+because we need to sum over all hidden causes $\z$ of the sensations (an intractable problem).
+Instead, FEP therefore minimizes an upper-bound on surprise given by
 
-  \begin{equation}
-    \begin{split}
-      \text{generative surprise } &:= -\log(p_G(\x)) = F_G(\x) \\
-      &=\underbrace{F^R_G(\x)}_{\text{accuracy}} - \underbrace{D_{KL}(P_R(.|\x) || P_G(.|\x))}_{\text{complexity}} \\
-      &\le F^R_G(\x),
-      \text{ with equality if }p_R(\z|\x) = p_G(\z|\x)\text{ for all } \z
-    \end{split}
-  \end{equation}
-
+\begin{equation}
+  \begin{split}
+    \text{generative surprise } &:= -\log(p_G(\x)) = F_G(\x) \\
+    &=\underbrace{F^R_G(\x)}_{\text{accuracy}} - \underbrace{\operatorname{{KL}}(p_R(\z|\x) || p_G(\z|\x))}_{\text{complexity}} \\
+    &\le F^R_G(\x),
+    \text{ with equality if }p_R(\z|\x) = p_G(\z|\x)\text{ for all } \z.
+  \end{split}
+\end{equation}
+where
+\begin{equation}
+  F_G^R(\x) := \langle -\log(p_G(\z, \x))\rangle_{p_R(\z|\x)} - \mathcal H(p_R(\z|\x))
+\end{equation}
+is the \textit{free energy}.
+Here, $\langle . \rangle$ is the \textit{expectation} operator, $\mathcal H$ is the \textit{entropy} functional while $\operatorname{KL}(.|.)$ is the usual \textit{Kullback-Leibler (KL) divergence},
+which is a measure of how different two probability distributions are. In this framework, the goal of the agent is then to iterative refine the generative model $p_G$ and the recognition model $p_R$ so as to minimize the free energy $F_G^R(\x)$ over sensory input $\x$.
+% The optimization procedure proposed by the authors derives from the \textit{wake-sleep algorithm} \citep{dayan1995helmholtz}.
 % \begin{figure}[!tb]
 %   \centering
 %   \includegraphics[width=.8\linewidth]{vae.pdf}
@@ -1903,20 +1899,21 @@ namely the \text{free energy} $F_G^R(\x)$ given by
 % \end{figure}
 
 
-
 % CRITICISM
+\paragraph{Main criticisms.}
 Despite its popularity, criticism against the FEP has arisen over the years,
 some of which is outlined in the following.
 The main algorithm for minimizing free energy $F_G^R(\x)$ is the \textit{wake-sleep algorithm}
 \citep{dayan1995helmholtz}. As these authors noted,
 a crucial drawback of the wake-sleep algorithm is that it involves a pair
 of forward (generation) and backward (recognition) models that
-together do not correspond to optimization of (a bound of) the marginal likelihood.
+together do not correspond to optimization of (a bound of) the marginal likelihood,
+because KL divergence is not symmetric in its arguments.
 The brain may therefore be unlikely to implement a variant of the wake-sleep algorithm.
 The recent theory of
 \textit{variational auto-encoders} (VAEs) \citep{kingma2013auto} might provide an efficient alternative to the wake-sleep algorithm. VAEs
 overcome a number of the technical limits of the wake-sleep algorithm
-by using a reparametrization maneuver. For instance, unlike the wake-sleep algorithm
+by using a reparametrization maneuver, which makes it possible to do differential calculus on random sampling procedures without exploding variance. As a result, unlike the wake-sleep algorithm
 for minimizing free energy, VAEs can be efficiently trained via back-propagation of prediction errors.
 
 On another front, since theories based on the FEP \citep{friston2010free,fristonAIorRL}
@@ -1931,10 +1928,21 @@ However, such a behavioral tendency is
 seldom observed in animals or humans in the real world: In a dark room,
 intelligent agents would search for light sources to \textit{explore}
 its surroundings or leave it.
-
 Defenders of the FEP have retorted by advancing the ``full package'' \citep{darkroom2012}:
 FEP is proposed to be multi-scale and there would be a meta-scale at which the organism would
 be \textit{surprised} by such a \textit{lack of surprise}. According to this argument, a dark room would paradoxically correspond to a state of particularly high surprise.
+\begin{wrapfigure}{r}{.37\linewidth}
+  \centering
+  \includegraphics[width=1.\linewidth]{darkroom_resized.png}
+  \caption{\textbf{The dark room experiment.} An intelligent agent situated
+    in a light-deprived closed space can be used
+    as a thought experiment for the complete absence
+    of external sensory input.
+    % The free-energy principle theory paradoxally predicts that such an agent would remain quietly in this room, such it perfectly predict all sensory input from such an environment.
+    % However such behavior is not observed in humans or any animals: the agent would strive to leave such an environment in search of more ``interesting'' worlds.
+  }
+  \label{fig:darkroom}
+\end{wrapfigure}
 Driven by surprise-minimization objective, the FEP agent would eventually bootstrap itself out of such saddle points to explore more interesting parts of the environment.
 % Recourse to this argument is equivalent to invoking a \textit{halting oracle}\citep{haltingoracle}, an arbitrarily powerful machine which can solve the \textit{halting problem} (an arbitrarily difficult computational problem which cannot be solved under any reasonable \textit{model of computation}, not even in principle!). But this is problematic as it sucks up the problem (that of decision-making and active agency) the theory intends to elude in the first place.
 In contrast, an organism operating under our RL-based theory would inevitably
@@ -2120,7 +2128,7 @@ for continued refinement of the organism's fate.
 % Our starting point will be to build an approximation $p_G$ for the true density $p$ of the observations, so that this approximate density corresponds to the partition function of thermodynamic system. So,
 % \begin{eqnarray}
 %   \begin{split}
-%     \text{generative surprise } &= -\log(p_G(\x)) = -\log(p_G(\x)) \times 1 = -\log(P_G(\x))\sum_{\z}p_G(\z |\x)\\
+%     \text{generative surprise } &= -\log(p_G(\x)) = -\log(p_G(\x)) \times 1 = -\log(p_G(\x))\sum_{\z}p_G(\z |\x)\\
 %     &= -\sum_{\z}p_G(\z, \x)\log(p_G(\x))
 %     =-\sum_{\z}p_G(\z |\x)\log(p_G(\z, \x)/p_G(\z|\x))\\
 %     &= \sum_{\z}p_G(\z |\x)\log(p_G(\z|\x))-\sum_{\z}p_G(\z |\x)\log  (p_G(\z, \x))\\
@@ -2162,21 +2170,21 @@ for continued refinement of the organism's fate.
 % \end{equation}
 % Now, in the above equation, the LHS only depends on the generative model $G$ and the data point $\x$:
 % it doesn't depend on the hidden variable $\z$, etc. So, taking expectations w.r.t an arbitrary
-% density\footnote{conditioning in $P_R(.|\x)$ is because this density is selected from a world in which the sensory inputs and internal brain
+% density\footnote{conditioning in $p_R(.|\x)$ is because this density is selected from a world in which the sensory inputs and internal brain
 %   state vector $\x$ is assumed already observed.} $p_R(.|\x)$ yields
 % \begin{equation}
 %   \begin{split}
-%     F_G(\x) &= -\log(Z_G(\x)) = \langle E_G(., \x)\rangle_{P_R(.|\x)} + \sum_{\z}p_R(\z|\x)\log(p_G(\z|\x))\\
-%     &= \langle E_G(., \x)\rangle_{P_R(.|\x)} - \mathcal H(p_R(.|\x)) - \sum_{\z}p_R(\z|\x)\log(p_R(\z|\x)/p_G(\z|\x))\\
-%     &= F^R_G(\x) - D_{KL}(P_R(.|\x) || P_G(.|\x)),
+%     F_G(\x) &= -\log(Z_G(\x)) = \langle E_G(., \x)\rangle_{p_R(.|\x)} + \sum_{\z}p_R(\z|\x)\log(p_G(\z|\x))\\
+%     &= \langle E_G(., \x)\rangle_{p_R(.|\x)} - \mathcal H(p_R(.|\x)) - \sum_{\z}p_R(\z|\x)\log(p_R(\z|\x)/p_G(\z|\x))\\
+%     &= F^R_G(\x) - D_{KL}(p_R(.|\x) || p_G(.|\x)),
 %   \end{split}
 %   \label{eq:fe}
 % \end{equation}
 % where $F^R_G(\x)$ is the \textit{variational} Helmholtz free-energy from $R$ to $G$ defined by
 % \begin{equation}
-%   F^R_G(\x) := \langle E_G(., \x)\rangle_{P_R(.|\x)} - \mathcal H(p_R(.|\x))
+%   F^R_G(\x) := \langle E_G(., \x)\rangle_{p_R(.|\x)} - \mathcal H(p_R(.|\x))
 % \end{equation}
-% and $D_{KL}(P_R(.|\x) || P_G(.|\x))$ is the Kullback-Leibler divergence between the $p_R(.|\x)$ and the generative density $p_G(.|\x)$. Note that $F^G_G = F_G$.
+% and $D_{KL}(p_R(.|\x) || p_G(.|\x))$ is the Kullback-Leibler divergence between the $p_R(.|\x)$ and the generative density $p_G(.|\x)$. Note that $F^G_G = F_G$.
 %
 % \subsection{A general free-energy principle}
 % We can resume the situation as follows\footnote{Where we have used the fact that KL divergence is always nonnegative.}:
@@ -2184,7 +2192,7 @@ for continued refinement of the organism's fate.
 % \begin{equation}
 %   \begin{split}
 %     \text{generative surprise } &:= -\log(p_G(\x)) = F_G(\x) \\
-%     &=\underbrace{F^R_G(\x)}_{\text{accuracy}} - \underbrace{D_{KL}(P_R(.|\x) || P_G(.|\x))}_{\text{complexity}} \\
+%     &=\underbrace{F^R_G(\x)}_{\text{accuracy}} - \underbrace{D_{KL}(p_R(.|\x) || p_G(.|\x))}_{\text{complexity}} \\
 %     &\le F^R_G(\x),
 %     \text{ with equality if }p_R(\z|\x) = p_G(\z|\x)\text{ for all } \z
 %     \end{split}
@@ -2240,9 +2248,9 @@ for continued refinement of the organism's fate.
 % variational free-energy as
 % \begin{eqnarray*}
 %   \begin{split}
-%     F_G^R(\x) &:= \langle E_G(., \x) \rangle_{p_R(. |\x)} - \mathcal H(p_R(. |\x)) = \langle E_G(., \x) + \log(p_R(.|\x))\rangle_{P_R(.|\x)}\\
-%     &=\langle -\log(p_G(.,\x)) + \log(p_R(.|\x))\rangle_{P_R(.|\x)}\\
-%     &= -\langle f_{G,R}\rangle_{P_R(.|\x)} \approx -\frac{1}{M}\sum_{m=1}^Mf_{G,R}(\z^{(m)}), \text{ with }\z^{(1)},\ldots,\z^{(M)} \sim p_R(.|\x), \text{ and }M \rightarrow \infty.
+%     F_G^R(\x) &:= \langle E_G(., \x) \rangle_{p_R(. |\x)} - \mathcal H(p_R(. |\x)) = \langle E_G(., \x) + \log(p_R(.|\x))\rangle_{p_R(.|\x)}\\
+%     &=\langle -\log(p_G(.,\x)) + \log(p_R(.|\x))\rangle_{p_R(.|\x)}\\
+%     &= -\langle f_{G,R}\rangle_{p_R(.|\x)} \approx -\frac{1}{M}\sum_{m=1}^Mf_{G,R}(\z^{(m)}), \text{ with }\z^{(1)},\ldots,\z^{(M)} \sim p_R(.|\x), \text{ and }M \rightarrow \infty.
 %     \end{split}
 % \end{eqnarray*}
 %
