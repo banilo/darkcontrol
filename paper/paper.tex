@@ -402,10 +402,8 @@ experiments (Box 1).
 
 
 \begin{mdframed}
-\hspace{2mm}
-\vspace{2mm}
-\textbf{BOX 1: Hypotheses for testing the MDP account of DMN function}
-
+  \textbf{Box 1: Hypotheses for testing the MDP account of DMN function}
+  \vspace{1em}
 \begin{enumerate}
 \item Experiment (Humans): We hypothesize a functional relationship between the DMN closely associated with the occurrence of stimulus-independent thoughts and the reward circuitry. During an iterative neuroeconomic two-player game, fMRI signals in the DMN could be used to predict reward-related signals in the nucleus accumbens across trials in a continuous learning paradigms. We expect that the more DMN activity is measured to be increased, supposedly the higher the tendency for stimulus-independent thoughts, and the more the fMRI signals in the reward circuits should be independent of the reward context
 in the sensory environment.
@@ -932,20 +930,19 @@ by Markov processes at a sufficiently coarse scale.
 It has indeed been previously proposed \citep{tegmark2016improved} that
 any system obeying the laws of classical physics can be accurately modeled as a Markov process as long as the time
 step is sufficiently short.
+\begin{wrapfigure}{l}{.4\linewidth}
+  \centering  
+  \includegraphics[width=1.\linewidth]{rl.pdf}
+  \caption{\textbf{Reinforcement learning in a nutshell.} Given the current state of the environment,
+    the agent takes an action by following some policy, receives a consequential reward and observes the next state. The process goes on until interrupted or a goal state is reached.}
+  \label{fig:rl}
+\end{wrapfigure}
 % , defining $s(t)$, the state at time $t$, as the position in state space.
 The process has $memory$ if the next state depends not only on the current state
 but also on a finite number of past states.
 Rational probabilistic planning can be reformulated
 as a standard memoryless Markov process by simply expanding the
 definition of the state $s$ to include experience episodes of the past.
-
-\begin{wrapfigure}{r}{.35\linewidth}
-  \caption{\textbf{Reinforcement learning in a nutshell.} Given the current state of the environment,
-    the agent takes an action by following some policy, receives a consequential reward and observes the next state. The process goes on until interrupted or a goal state is reached.}
-  \centering
-  \includegraphics[width=1.\linewidth]{rl.pdf}
-  \label{fig:rl}
-\end{wrapfigure}
 
 In artificial intelligence and machine learning, a popular computational model for
 multi-step decision processes in such an environment are
@@ -1180,6 +1177,7 @@ of an arbitrary $Q$-value function $Q: \mathcal S \times \mathcal A \rightarrow 
     % \mathbb E_{s' \sim p(s'|s,a)} [r(s,a) + \gamma Q^*(s', \pi^*(s'))].
     \end{split}
   \end{equation}
+  
 The Bellman equation \eqref{eq:bellman} is a temporal consistency equation which provides
 a dynamic decomposition of optimal behavior by dividing the $Q$-value function into the immediate
 reward and the discounted rewards of the upcoming states.
@@ -1202,14 +1200,12 @@ This aspect of the learning process
 can unroll off-policy by observing state transitions
 triggered by another (possibly stochastic) behavioral policy.
 
-
-\pagebreak[4]
 \begin{mdframed}
-\hspace{2mm}
-\vspace{2mm}
 % neuroscience of Bellman equation
-\textbf{Box 2: Neural correlates of the Bellman equation in the DMN}
-Relating decomposition of consecutive action choices by the Bellman equation
+  \textbf{Box 2: Neural correlates of the Bellman equation in the DMN}
+  \vspace{1em}
+  
+\hspace{-1.5em}Relating decomposition of consecutive action choices by the Bellman equation
 to neuroscience,
 specific neural activity in the dorsal prefrontal cortex (BA9)
 was linked to processing ``goal-tree sequences''
