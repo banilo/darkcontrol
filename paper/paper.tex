@@ -138,7 +138,7 @@
 
 \title{Dark Control:\\
        A Unified Account of Default Mode Function\\
-       by Control Theory and Reinforcement Learning}
+       by Markov Decision Processes}
 
 \newcommand{\fix}{\marginpar{FIX}}
 \newcommand{\new}{\marginpar{NEW}}
@@ -224,8 +224,8 @@ that tries to explain \textit{how}
 the DMN may implement
 continuous evaluation and prediction of the environment to guide behavior.
 %
-DMN function is recast in mathematical terms of
-control theory and reinforcement learning based on Markov decision processes.
+DMN function is recast in terms of
+control theory and reinforcement learning by basing it on Markov decision processes.
 %
 We argue that our formal account of DMN function naturally accommodates as special cases
 the previously proposed cognitive accounts on
@@ -292,7 +292,8 @@ cortex'' \citep{carhart2010default}.
 
 
 \subsection{Towards a formal account of default mode function: higher-order control of the organism}
-The human DMN is responsible for extended parts of the baseline neural activity,
+The network nodes that compose the human DMN
+are responsible for extended parts of the baseline neural activity,
 which typically decreases when engaged in psychological experiments
 \citep{raichle_baseline}.
 The standard mode of
@@ -393,7 +394,7 @@ The present paper proposes a
 process model that satisfies this contention.
 We also contribute to the discussion of DMN function
 by providing some of the first empirical evidence that
-morphological variability in DMN nodes
+morphological variability in DMN regions
 is linked to the reward circuitry (Fig. 2).
 Finally, we detail how our process model relates
 to previous accounts of DMN function and
@@ -412,7 +413,7 @@ in the sensory environment.
 
 \item Experiment (Humans): We hypothesize a functional dissociation between computations for behavioral policy versus adapting stimulus-value associations as these are probably implemented in different subsystems of the DMN. We first expect that fMRI signals in the right temporo-parietal junction can predict behavioral changes caused by adaptation in the action choice tendencies (policy matrix) related to non-value-related prediction error. Second, fMRI signals in the ventromedial prefrontal cortex should predict behavioral changes caused by adaptation in value estimation (value matrix) due to reward-related stimulus-value association. We finally predict that fMRI signals in the posteromedial cortex, as a potential global information integrator, is able to predict shifts in overt behavior based on previous adaptations in policy or value estimation.
 
-\item Experiment (Animals): We hypothesize that experience replay for browsing problem solutions subserved by the DMN is necessary for choice behavior in mice. Hippocampal single-cell recordings have shown that neural patterns during experimental choice behavior are reiterated during sleep and before make analogous choices in the future. Necessity of the DMN, in addition to the hippocampus, for “mind-searching” actions during choice behavior can be demonstrated by causal dysruption of DMN nodes, such as circumscribed brain lesion or optogenetic intervention in the inferior parietal and prefrontal cortices.
+\item Experiment (Animals): We hypothesize that experience replay for browsing problem solutions subserved by the DMN is necessary for choice behavior in mice. Hippocampal single-cell recordings have shown that neural patterns during experimental choice behavior are reiterated during sleep and before make analogous choices in the future. Necessity of the DMN, in addition to the hippocampus, for “mind-searching” actions during choice behavior can be demonstrated by causal dysruption of DMN regions, such as circumscribed brain lesion or optogenetic intervention in the inferior parietal and prefrontal cortices.
 
 \end{enumerate}
 \end{mdframed}
@@ -421,7 +422,7 @@ in the sensory environment.
 \section{Known neurobiological properties of the default mode network}
 We begin by a neurobiological deconstruction of the DMN
 based on experimental findings in the neuroscience literature.
-This walkthrough across each node of the DMN will
+This walkthrough across each region of the DMN will
 outline the individual functional profiles,
 paving the way for their algorithmic interpretation
 in our formal account (section 3).
@@ -454,7 +455,7 @@ the PMC matures relatively late (i.e., myelination) during postnatal development
 \citep{goldman1987development}, which is generally considered to
 be a sign of evolutionary sophistication.
 %
-This DMN node has long been speculated to
+This DMN region has long been speculated to
 reflect constant computation of
 environmental statistics and its internal representation
 as an inner ``mind's eye'' \citep{cavanna2006precuneus, leech_pcc2014}.
@@ -503,7 +504,7 @@ Further, single-cell recordings in the monkey PMC
 demonstrated this brain region's sensitivity to
 subjective target utility \citep{mccoy2005risk} and integration
 across individual decision-making instances \citep{pearson2009neurons}.
-This DMN node encoded the
+This DMN region encoded the
 preference for or aversion to options with uncertain reward outcomes
 and its spiking activity was more associated with
 subjectively perceived relevance of a chosen object
@@ -595,7 +596,7 @@ and stored knowledge of world regularities.
   \includegraphics[width=1.\linewidth]{fig_dmn.png}
   \centering
   \caption{\textbf{Morphological coupling between reward system and
-  default mode network.} Based on 9,932 human subjects from the UK Biobank, inter-individual differences in left NAc volume ($R^2=0.11+/-0.02$) and right NAc volume ($R^2=0.14+/-0.02$) could be predicted from volume in the DMN nodes. These out-of-sample generalization performances were obtained from support vector regression applied to normalized node volumes in the DMN in a 10-fold cross-validation procedure.
+  default mode network.} Based on 9,932 human subjects from the UK Biobank, inter-individual differences in left NAc volume ($R^2=0.11+/-0.02$) and right NAc volume ($R^2=0.14+/-0.02$) could be predicted from volume in the DMN regions. These out-of-sample generalization performances were obtained from support vector regression applied to normalized region volumes in the DMN in a 10-fold cross-validation procedure.
   Consistent for the left and right reward system, NAc volume in a given subject is
   positively coupled with the vmPFC and HC.
   Code and data for reproduction and visualization:
@@ -629,7 +630,7 @@ Quantitative lesion findings across 344 human individuals confirmed
 a substantial impairment in value-based action choice
 \citep{glascher2012lesion}.
 Indeed,
-this DMN node is preferentially connected with reward-related and limbic regions.
+this DMN region is preferentially connected with reward-related and limbic regions.
 The vmPFC is well known to have direct connections
 with the NAc
 in axonal tracing studies in monkeys \citep{haber1995orbital}.
@@ -726,7 +727,7 @@ featured re-occurrence directly after experimental trials
 as well as directly before upcoming experimental trials \citep{diba2007forward}.
 Similar spiking patterns in hippocampal neurons during rest and sleep
 have been proposed to be critical in communicating local information
-to the neocortex for long-term storage, potentially also in the nodes of the DMN.
+to the neocortex for long-term storage, potentially also in the regions of the DMN.
 Moreover, in mice, invasively triggering spatial experience recall
 in the HC during sleep
 has been demonstrated to subsequently alter action choice during wakefulness
@@ -774,7 +775,7 @@ It is probably central for
 action initiation during goal-directed psychological tasks and for
 sensorimotor behavior by integrating multi-sensory attention
 \citep{corbetta2002control}.
-Involvement of this DMN node was repeatedly reported in
+Involvement of this DMN region was repeatedly reported in
 multi-step action execution \citep{hartmann2005takes},
 visuo-proprioceptive conflict \citep{Balslev2005}, and
 detection of environmental changes across
@@ -791,7 +792,7 @@ jakobs2009effects}.
 Additionally, neural activity in the RTPJ has been proposed to reflect
 stimulus-driven attentional reallocation to
 self-relevant and unexpected sources of information
-as a ‘‘circuit breaker’’ that recalibrates control and maintenance brain networks
+as a ‘‘circuit breaker’’ that recalibrates functional control of brain networks
 \citep{bzdok2013tpj, corbettashul2008}.
 % (Bzdok et al., 2013; Corbetta et al., 2008).
 Indeed, neurological patients with RTPJ damage have particular difficulties
@@ -856,9 +857,9 @@ into ongoing action, planning, and problem solving.
 
 
 
-\section{Reinforcement learning: a process model for DMN function}
+\section{Reinforcement learning control: a process model for DMN function}
 We now argue the outlined neurobiological properties
-of the DMN nodes
+of the DMN regions
 to be sufficient for implementing all components
 of a full-fledged RL system.
 Recalling past experience, considering candidate actions,
@@ -1056,7 +1057,7 @@ This random variable\footnote{Random as it depends both on the environment's dyn
 following an action policy $\pi$.
 %
 Note that value buffering may be realized in the vmPFC.
-This DMN node has direct connections to
+This DMN region has direct connections to
 to the NAc, known to be involved in reward evaluation.
 
 
@@ -1238,7 +1239,7 @@ the prefrontal DMN to subserve
 ``processes related to the management and monitoring of sub-goals while maintaining information in working memory''.
 %
 Moreover,
-neurological patients with lesions in this DMN node were reported
+neurological patients with lesions in this DMN region were reported
 to be impaired in aspects of realizing ``multiple sub-goal scheduling''
 \citep{burgess2000cognitive}.
 Hence,
@@ -1289,9 +1290,9 @@ updating it during action choices,
 which take the agent to different table entries.
 
 
-An additional layer of learning concerns the addition of new entries in the table (i.e., state and action). The framing of the policy matrix is not described here but could be supported by synaptic epigenesis \citep{gisiger_acquisition_2005}. Indeed, the tuning of synaptic weights through learning can stabilize additional patterns of activity by
-creating new attractors in the neural dynamics landscape \citep{takeuchi_synaptic_2014}. Those attractors will then constrain both
-the number of factors taken into account by decision processes and the number of behaviors at reach by the agent \citep{wang_decision_2008}.
+% An additional layer of learning concerns the addition of new entries in the table (i.e., state and action). The framing of the policy matrix is not described here but could be supported by synaptic epigenesis \citep{gisiger_acquisition_2005}. Indeed, the tuning of synaptic weights through learning can stabilize additional patterns of activity by
+% creating new attractors in the neural dynamics landscape \citep{takeuchi_synaptic_2014}. Those attractors will then constrain both
+% the number of factors taken into account by decision processes and the number of behaviors at reach by the agent \citep{wang_decision_2008}.
 
 % \subsubsection{Bounded rationality}
 % $$\max_{a \in \mathcal A}\tilde{Q}(s, a|\theta)  \propto \lim_{T \rightarrow 0^+}\exp(\tilde{Q}(s,a|\theta)/T)$$
@@ -1425,9 +1426,11 @@ In MDPs, MCMC simulation provides an effective mechanism both for tree search an
 \subsection{Putting everything together}
 The DMN is today known to consistently increase in neural
   activity when humans engage in cognitive processes that are detached from
-  the current sensory environment
-  and this network was proposed to be situated
-  at the top of the brain network hierarchy
+  the current sensory environment. Additionally,
+  this network was proposed to be situated
+  at the top of the brain network hierarchy, with 
+  the subordinate salience and dorsal attention network in the middle and
+  the unimodal sensory cortices at the bottom
   \citep{carhart2010default, margulies2016situating}.
   Its putative involvement in thinking about the past,
   hypothetical experiences, and the future
