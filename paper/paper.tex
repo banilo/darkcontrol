@@ -1899,7 +1899,8 @@ the brain corresponds to
 a biomechanical reasoning engine. It is
 dedicated to minimizing the long-term average of surprise: the log-likelihood of the observed sensory input --more precisely, an upper bound thereof-- \textit{relative} to the expectations about the external world derived from internal representations. The brain
 would continuously generate hypothetical explanations of the world
-and predict its sensory input.
+and predict its sensory input $\bf{x}$ (analogous to the state-action $(s, a)$ pair in an MDP
+framework).
 % Precursors of this interpretation can be traced back to Dayan and colleagues \citep{dayan1995helmholtz}
 % who introduced the \textit{Helmholtz machine}, a hierarchical factorial directional deep belief network. According to the FEP account,
 % the goal of the brain is to optimize over a generative model $G$ of sensations: to iteratively
@@ -1916,7 +1917,7 @@ Instead, FEP therefore minimizes an upper-bound on surprise given by
 \begin{equation}
   \begin{split}
     \text{generative surprise } &:= -\log(p_G(\x)) = F_G(\x) \\
-    &=\underbrace{F^R_G(\x)}_{\text{accuracy}} - \underbrace{\operatorname{{KL}}(p_R(\z|\x) || p_G(\z|\x))}_{\text{complexity}} \\
+    &=\underbrace{F^R_G(\x)}_{\text{accuracy}} - \underbrace{\operatorname{{KL}}(p_R(\z|\x) \| p_G(\z|\x))}_{\text{complexity}} \\
     &\le F^R_G(\x),
     \text{ with equality if }p_R(\z|\x) = p_G(\z|\x)\text{ for all } \z.
   \end{split}
@@ -1926,8 +1927,13 @@ where
   F_G^R(\x) := \langle -\log(p_G(\z, \x))\rangle_{p_R(\z|\x)} - \mathcal H(p_R(\z|\x))
 \end{equation}
 is the \textit{free energy}.
-Here, $\langle . \rangle$ is the \textit{expectation} operator, $\mathcal H$ is the \textit{entropy} functional while $\operatorname{KL}(.|.)$ is the usual \textit{Kullback-Leibler (KL) divergence},
-which is a measure of how different two probability distributions are. In this framework, the goal of the agent is then to iterative refine the generative model $p_G$ and the recognition model $p_R$ so as to minimize the free energy $F_G^R(\x)$ over sensory input $\x$.
+Here, the angular brackets denote the expectation of the joint negative log-likelihood $-\log(p_G(\z, \x))$ w.r.t the recognition density $p_R(\z|\x)$, $\mathcal H$ is the \textit{entropy} functional defined by $\mathcal H(p) := -\sum_{\z}p(\z)\log(p(\z)$, while $\operatorname{KL}(.\|.)$ is the usual \textit{Kullback-Leibler (KL) divergence} defined by $\operatorname{KL}(p\|q) := \sum_{z}p(\z)\log(p(\z)/q(\z))$,
+which is a measure of how different two probability distributions are. In this framework, the goal of the agent is then to iteratively refine the generative model $p_G$ and the recognition model $p_R$ (i.e two Bayesian belief nets) so as to minimize the free energy $F_G^R(\x)$ over sensory input $\x$. $F^R_G(x)$ is low just in case
+\begin{itemize}
+\item  $p_R(\z|\x)$ puts a lot of mass on configurations $(\z,\x)$ which are $p_G$-likely, % (i.e the sensation $\x$ is likely caused by $\z$)
+  and
+\item $p_R(\z|\x)$ as uniform as possible (i.e have high entropy), so as not to concentrate its mass only on a small subset of possible causes for the sensation $\x$.
+  \end{itemize}
 % The optimization procedure proposed by the authors derives from the \textit{wake-sleep algorithm} \citep{dayan1995helmholtz}.
 % \begin{figure}[!tb]
 %   \centering
@@ -1997,7 +2003,7 @@ that is, the log-likehood of current sensory priors
 the agent has about the world. More explicitly, this corresponds to
 
 \begin{eqnarray*}
-  -Q^{\text{FEP}} \sim \underbrace{\log (p_G)}_{\text{FEP generative surprise}}.
+  -Q^{\text{FEP}} \approx \underbrace{F^R_G(\x)}_{\text{negative free energy}} \approx \underbrace{-\log (p_G)}_{\text{FEP generative surprise}}.
     \end{eqnarray*}
 % \paragraph{Comparison to our proposed theory.}
 % On the surface, a common point between the FEP and our proposed RL-based framework
@@ -2006,7 +2012,7 @@ the agent has about the world. More explicitly, this corresponds to
 %   rewarding outcomes in the future. A ``free-energy'' agent is barely a biomechanical machine which has the tendency to resist undesired phase-transitions
 %   \citep{friston2010free,fristonAIorRL,ortega2013thermodynamics}.
 Such a surprise-guided reinforcement learning scheme has previously been advocated
-under the equivalent framework of information compression \citep{schmidhuber2010,mohamed2015}.
+under the equivalent framework of energy-based reinforcement-learning ~\citep{sallans2004,elfwing2016free} and information compression \citep{schmidhuber2010,mohamed2015}.
 Nevertheless, minimization of surprise quantities alone
 may be insufficient to explain the diversity of behaviors observed in humans and other intelligent animals.
 % The dark-room experiment, for example, provides a formidable argument against in favor of the insufficiency of the FEP and active inference theories to explain intelligent behavior in humans: when a human is put in a dark room, they don't just sit down in a corner forever, what would be the FEP-optimal thing to do; they actively search for the light switch, and start exploring the depths of the room, possibly looking for food or the way out!
