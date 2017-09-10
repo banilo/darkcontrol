@@ -1894,7 +1894,7 @@ as a special case.
 \subsection{The free-energy principle and active inference}
 % INTRO
 According to theories of the \textit{free-energy principle} (FEP) and
-active inference \citep{friston2010free, fristonAIorRL} (see also \citep{dayan1995helmholtz}),
+\textit{active inference} \citep{friston2010free, fristonAIorRL} (see also \citep{dayan1995helmholtz}),
 the brain corresponds to
 a biomechanical reasoning engine. It is
 dedicated to minimizing the long-term average of surprise: the log-likelihood of the observed sensory input --more precisely, an upper bound thereof-- \textit{relative} to the expectations about the external world derived from internal representations. The brain
@@ -1927,12 +1927,15 @@ where
   F_G^R(\x) := \langle -\log(p_G(\z, \x))\rangle_{p_R(\z|\x)} - \mathcal H(p_R(\z|\x))
 \end{equation}
 is the \textit{free energy}.
-Here, the angular brackets denote the expectation of the joint negative log-likelihood $-\log(p_G(\z, \x))$ w.r.t the recognition density $p_R(\z|\x)$, $\mathcal H$ is the \textit{entropy} functional defined by $\mathcal H(p) := -\sum_{\z}p(\z)\log(p(\z)$, while $\operatorname{KL}(.\|.)$ is the usual \textit{Kullback-Leibler (KL) divergence} defined by $\operatorname{KL}(p\|q) := \sum_{z}p(\z)\log(p(\z)/q(\z))$,
-which is a measure of how different two probability distributions are. In this framework, the goal of the agent is then to iteratively refine the generative model $p_G$ and the recognition model $p_R$ (i.e two Bayesian belief nets) so as to minimize the free energy $F_G^R(\x)$ over sensory input $\x$. $F^R_G(x)$ is low just in case
+Here, the angular brackets denote the \textit{expectation} of the joint negative log-likelihood $-\log(p_G(\z, \x))$ w.r.t the recognition density $p_R(\z|\x)$, $\mathcal H$ is the \textit{entropy} functional defined by $\mathcal H(p) := -\sum_{\z}p(\z)\log(p(\z)$, while $\operatorname{KL}(.\|.)$ is the usual \textit{Kullback-Leibler (KL) divergence} (also known as \textit{relative entropy}) defined by $\operatorname{KL}(p\|q) := \sum_{z}p(\z)\log(p(\z)/q(\z)) \ge 0$,
+which is a measure of how different two probability distributions are. In this framework, the goal of the agent is then to iteratively refine the generative model $p_G$ and the recognition model $p_R$ (i.e two Bayesian belief nets) so as to minimize the free energy $F_G^R(\x)$ over sensory input $\x$.
+
+Importantly, one notes that $F^R_G(x)$ is low just in case:
 \begin{itemize}
 \item  $p_R(\z|\x)$ puts a lot of mass on configurations $(\z,\x)$ which are $p_G$-likely, % (i.e the sensation $\x$ is likely caused by $\z$)
-  and
-\item $p_R(\z|\x)$ as uniform as possible (i.e have high entropy), so as not to concentrate its mass only on a small subset of possible causes for the sensation $\x$.
+  \textbf{and}
+\item $p_R(\z|\x)$ is as uniform as possible (i.e have high entropy), so as not to concentrate
+  all its mass on a small subset of possible causes for the sensation $\x$.
   \end{itemize}
 % The optimization procedure proposed by the authors derives from the \textit{wake-sleep algorithm} \citep{dayan1995helmholtz}.
 % \begin{figure}[!tb]
