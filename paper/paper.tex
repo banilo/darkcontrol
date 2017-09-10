@@ -627,11 +627,11 @@ in humans \citep{doherty2015structure}.
 
 % \begin{wrapfigure}{r}{.4\linewidth}
 \begin{figure}[!htbp]
-  \begin{minipage}[c]{0.63\textwidth}  
+  \begin{minipage}[c]{0.63\textwidth}
     \includegraphics[width=.8\linewidth]{fig_dmn.png}
   \end{minipage}
   \hspace{-4em}
-  \begin{minipage}[c]{0.4\textwidth}  
+  \begin{minipage}[c]{0.4\textwidth}
     \caption{\textbf{Morphological coupling between reward system and
         default mode network.} Based on 9,932 human subjects from the UK Biobank, inter-individual differences in left NAc volume ($R^2=0.11 \pm 0.02$) and right NAc volume ($R^2=0.14 \pm 0.02$) could be predicted from volume in the DMN regions. These out-of-sample generalization performances were obtained from support vector regression applied to normalized region volumes in the DMN in a 10-fold cross-validation procedure.
       Consistent for the left and right reward system, NAc volume in a given subject is
@@ -931,7 +931,7 @@ It has indeed been previously proposed \citep{tegmark2016improved} that
 any system obeying the laws of classical physics can be accurately modeled as a Markov process as long as the time
 step is sufficiently short.
 \begin{wrapfigure}{l}{.4\linewidth}
-  \centering  
+  \centering
   \includegraphics[width=1.\linewidth]{rl.pdf}
   \caption{\textbf{Reinforcement learning in a nutshell.} Given the current state of the environment,
     the agent takes an action by following some policy, receives a consequential reward and observes the next state. The process goes on until interrupted or a goal state is reached.}
@@ -1043,10 +1043,10 @@ This adds the capacity for memory, since then, the next state depends not only o
   \begin{itemize}
     \item Robotics: \citep{ng2004,abbeel2004}
     \item Games and other: ~\citep{mnih2015,silver2016mastering,pritzel2017neural}
-\end{itemize}      
+\end{itemize}
 
   \item Algorithmic trading. In financial trading, the main actions which the agent (human or computer acting on behalf of a human operator) must execute strategically are: sell (sell a given quantity of a commodity), buy (by a given quantity of a commodity), do nothing. According to how the market responds, a definite gain / loss is recorded as a consequence of the executed action, perhaps with some delay. Over the years, research in algorithmic trading has identified MDPs as a powerful framework for modelling this behavioral process  ~\citep{brazdil2017,yang15,yang14,yang12,dempster2006,hult2010}, for which dynamic-programming based algorithms can be employed to produce numerical solutions. ~\citep{abergel2017} is an excellent reference with the mathematical details on how MDPs work in finance.
- 
+
 \end{itemize}
 
 
@@ -1218,7 +1218,7 @@ of an arbitrary $Q$-value function $Q: \mathcal S \times \mathcal A \rightarrow 
     % \mathbb E_{s' \sim p(s'|s,a)} [r(s,a) + \gamma Q^*(s', \pi^*(s'))].
     \end{split}
   \end{equation}
-  
+
 The Bellman equation \eqref{eq:bellman} is a temporal consistency equation which provides
 a dynamic decomposition of optimal behavior by dividing the $Q$-value function into the immediate
 reward and the discounted rewards of the upcoming states.
@@ -1245,7 +1245,7 @@ triggered by another (possibly stochastic) behavioral policy.
 % neuroscience of Bellman equation
   \textbf{Box 2: Neural correlates of the Bellman equation in the DMN}
   \vspace{1em}
-  
+
 \hspace{-1.5em}Relating decomposition of consecutive action choices by the Bellman equation
 to neuroscience,
 specific neural activity in the dorsal prefrontal cortex (BA9)
@@ -1455,7 +1455,7 @@ The DMN is today known to consistently increase in neural
   activity when humans engage in cognitive processes that are detached from
   the current sensory environment. Additionally,
   this network was proposed to be situated
-  at the top of the brain network hierarchy, with 
+  at the top of the brain network hierarchy, with
   the subordinate salience and dorsal attention network in the middle and
   the unimodal sensory cortices at the bottom
   \citep{carhart2010default, margulies2016situating}.
@@ -1537,7 +1537,8 @@ new steady state of optimal action decisions in a volatile world.
 \begin{figure}[!h]
   \includegraphics[width=1\linewidth]{VennDiagram-2017-09-08.pdf}
   \caption{\textbf{Where does Markov Decision Process fit in the theoretical landscape?}
-  This Venn diagram summarizes the relationship between four existing accounts of DMN: in blue colors, the Free Energy Principle \& Predictive Coding, more related to the ”How” DMN works, and in yellow, the Sentinel \& the Semantic hypotheses, more related to "What" DMN does. Our account of DMN by Markov Decision Process is at the intersection of those accounts and thus corresponds to a "Process model" meaning a model of both "How" and "What" a process occur; here the mental processes and how it relate to observed behavior. For each account, 4 icons describe the core concepts of Time horizon, Neural plasticity, Hierarchy, and Behavioral goal. The "Time horizon" should be understood as a weighting of the expected future outcomes shorter to longer terms into present decision making. Then, "online monitoring" of the environment means detecting and processing salient cues in the sensory environment. The "Predictive Coding" is understood here as the joint minimization of feedforward prediction error and feedback modulation to optimize neural processing; there is thus no notion of an agent with behavioral goal.
+  This Venn diagram summarizes the relationship between four existing accounts of DMN: in blue colors, the Free Energy Principle \& Predictive Coding, more related to the ”How” DMN works, and in yellow, the Sentinel \& the Semantic hypotheses, more related to "What" DMN does. Our account of DMN by Markov Decision Process is at the intersection of those accounts and thus corresponds to a "Process model" meaning a model of both "How" and "What" a process occur.
+  % ; here the mental processes and how it relate to observed behavior. For each account, 4 icons describe the core concepts of Time horizon, Neural plasticity, Hierarchy, and Behavioral goal. The "Time horizon" should be understood as a weighting of the expected future outcomes shorter to longer terms into present decision making. Then, "online monitoring" of the environment means detecting and processing salient cues in the sensory environment. The "Predictive Coding" is understood here as the joint minimization of feedforward prediction error and feedback modulation to optimize neural processing; there is thus no notion of an agent with behavioral goal.
   }
   \label{fig:VennDiagram}
 \end{figure}
@@ -1566,7 +1567,7 @@ At each stage of neural processing,
 an internally generated prediction of aspects of environmental sensations is
 directly compared against the actual environmental input.
 A prediction error at one of the processing levels
-incurs plasticity changes of neuronal projections
+induces plasticity changes of neuronal projections
 (i.e., adapting model parameters)
 to allow for gradually improved future prediction of the environment.
 In this way,
@@ -1594,7 +1595,7 @@ a generative model of how perceived sensory cues arise in the
 world would be incorporated into
 the current neuronal wiring.
 Further,
-both functional accounts are plausibilized by
+both functional accounts are supported by
 neuroscientific evidence that suggest
 the human brain to be a ``statistical organ'' \citep{friston2014phantastic}
 with the biological purpose to
