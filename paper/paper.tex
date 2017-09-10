@@ -1998,15 +1998,16 @@ with reward structure. Such artificially generated \textit{internal} sensory inp
 subserved by the DMN can entice the organism to explore the room,
 for instance by looking for and using the light switch or simply finding the room exit.
 
-Finally, we note that FEP and active inference can be reframed in terms of
+\paragraph{Links between FEP and RL.}
+We note that FEP and active inference can be reframed in terms of
 our model-free RL framework.
 This becomes possible by recasting the Q-value function (i.e expected long-term reward) maximized by the DMN to
 correspond to negative surprise,
 that is, the log-likehood of current sensory priors
-the agent has about the world. More explicitly, this corresponds to
+the agent has about the world. More explicitly, this corresponds to using free-energy as a Q-value approximator for the MDP, i.e
 
 \begin{eqnarray*}
-  -Q^{\text{FEP}} \approx \underbrace{F^R_G(\x)}_{\text{negative free energy}} \approx \underbrace{-\log (p_G)}_{\text{FEP generative surprise}}.
+  -Q \approx \underbrace{F^R_G(\x)}_{\text{negative free energy}} \approx \underbrace{-\log (p_G)}_{\text{FEP generative surprise}}.
     \end{eqnarray*}
 % \paragraph{Comparison to our proposed theory.}
 % On the surface, a common point between the FEP and our proposed RL-based framework
@@ -2015,7 +2016,7 @@ the agent has about the world. More explicitly, this corresponds to
 %   rewarding outcomes in the future. A ``free-energy'' agent is barely a biomechanical machine which has the tendency to resist undesired phase-transitions
 %   \citep{friston2010free,fristonAIorRL,ortega2013thermodynamics}.
 Such a surprise-guided reinforcement learning scheme has previously been advocated
-under the equivalent framework of energy-based reinforcement-learning\footnote{These methods assume that the posterior distribution  of the hidden states $\z$ given the visible states $\x$ factorizes, leading to so-called RBMs --\textit{Restricted Boltzmann machines}. One notes, that even with these simplifications, such a model can be very hard to train.} ~\citep{sallans2004,elfwing2016free} and information compression \citep{schmidhuber2010,mohamed2015}.
+under the equivalent framework of energy-based reinforcement-learning\footnote{These methods assume that the posterior distribution  of the hidden states $\z$ given the visible states $\x$ factorizes, leading to so-called RBMs --\textit{Restricted Boltzmann Machines}. One notes, that even with these simplifications, such a model can be very hard to train.} ~\citep{sallans2004,elfwing2016free} and information compression \citep{schmidhuber2010,mohamed2015}.
 Nevertheless, minimization of surprise quantities alone
 may be insufficient to explain the diversity of behaviors observed in humans and other intelligent animals.
 % The dark-room experiment, for example, provides a formidable argument against in favor of the insufficiency of the FEP and active inference theories to explain intelligent behavior in humans: when a human is put in a dark room, they don't just sit down in a corner forever, what would be the FEP-optimal thing to do; they actively search for the light switch, and start exploring the depths of the room, possibly looking for food or the way out!
