@@ -1893,7 +1893,7 @@ as a special case.
 
 \subsection{The free-energy principle and active inference}
 % INTRO
-According to theories of the free-energy principle (FEP) and
+According to theories of the \textit{free-energy principle} (FEP) and
 active inference \citep{friston2010free, fristonAIorRL} (see also \citep{dayan1995helmholtz}),
 the brain corresponds to
 a biomechanical reasoning engine. It is
@@ -1948,9 +1948,9 @@ which is a measure of how different two probability distributions are. In this f
 Despite its popularity, criticism against the FEP has arisen over the years,
 some of which is outlined in the following.
 The main algorithm for minimizing free energy $F_G^R(\x)$ is the \textit{wake-sleep algorithm}
-\citep{dayan1995helmholtz}. As these authors noted,
-a crucial drawback of the wake-sleep algorithm is that it involves a pair
-of forward (generation) and backward (recognition) models that
+\citep{dayan1995helmholtz}. As these P. Dayan and G. Hinton  noted,
+a crucial drawback of the wake-sleep algorithm (and therefore of theories like the FEP \citep{friston2010free} based on it) is that it involves a pair
+of forward (generation) and backward (recognition) models $p_G$ and $p_R$ respectively that
 together do not correspond to optimization of (a bound of) the marginal likelihood,
 because KL divergence is not symmetric in its arguments.
 The brain may therefore be unlikely to implement a variant of the wake-sleep algorithm.
@@ -2012,7 +2012,7 @@ the agent has about the world. More explicitly, this corresponds to
 %   rewarding outcomes in the future. A ``free-energy'' agent is barely a biomechanical machine which has the tendency to resist undesired phase-transitions
 %   \citep{friston2010free,fristonAIorRL,ortega2013thermodynamics}.
 Such a surprise-guided reinforcement learning scheme has previously been advocated
-under the equivalent framework of energy-based reinforcement-learning ~\citep{sallans2004,elfwing2016free} and information compression \citep{schmidhuber2010,mohamed2015}.
+under the equivalent framework of energy-based reinforcement-learning\footnote{These methods assume that the posterior distribution  of the hidden states $\z$ given the visible states $\x$ factorizes, leading to so-called RBMs --\textit{Restricted Boltzmann machines}. One notes, that even with these simplifications, such a model can be very hard to train.} ~\citep{sallans2004,elfwing2016free} and information compression \citep{schmidhuber2010,mohamed2015}.
 Nevertheless, minimization of surprise quantities alone
 may be insufficient to explain the diversity of behaviors observed in humans and other intelligent animals.
 % The dark-room experiment, for example, provides a formidable argument against in favor of the insufficiency of the FEP and active inference theories to explain intelligent behavior in humans: when a human is put in a dark room, they don't just sit down in a corner forever, what would be the FEP-optimal thing to do; they actively search for the light switch, and start exploring the depths of the room, possibly looking for food or the way out!
