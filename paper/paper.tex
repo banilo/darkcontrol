@@ -934,13 +934,13 @@ by Markov processes at a sufficiently coarse scale.
 It has indeed been previously proposed \citep{tegmark2016improved} that
 any system obeying the laws of classical physics can be accurately modeled as a Markov process as long as the time
 step is sufficiently short.
-\begin{wrapfigure}{l}{1.\linewidth}
+\begin{figure}[!h]
   \centering
   \includegraphics[width=1.\linewidth]{rl2.pdf}
   \caption{\textbf{Reinforcement learning in a nutshell.} Given the current state of the environment,
     the agent takes an action by following the policy matrix as updated by the Bellman equation. The agent receives a consequential reward and observes the next state. The process goes on until interrupted or a goal state is reached.}
   \label{fig:rl}
-\end{wrapfigure}
+\end{figure}
 % , defining $s(t)$, the state at time $t$, as the position in state space.
 The process has $memory$ if the next state depends not only on the current state
 but also on a finite number of past states.
