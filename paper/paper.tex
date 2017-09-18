@@ -274,7 +274,7 @@ important role in sustaining conscious awareness \citep{horovitz2009decoupling}.
 This \textit{dark matter of brain physiology}
 \citep{raichle2006brain} begs the question
 of the biological purpose underlying DMN activity.
-Despite observation in MEG of similar large-scale networks of co-varying spontaneous activity \citep{de2010temporal,brookes2011investigating,baker2014fast}, the link between the fMRI BOLD signal and population-level neural activity is still unclear. If those frequency-specific electrophysiological correlations are proposed as complementary to those observed with BOLD \citep{hipp2015bold}, their link to DMN remains challenging \citep{maldjian2014graph}.
+Despite observation of similar large-scale networks of co-varying spontaneous activity in MEG investigations \citep{de2010temporal,brookes2011investigating,baker2014fast}, the link between the fMRI BOLD signal and population-level neural activity is still unclear. If those frequency-specific electrophysiological correlations are proposed as complementary to those observed with BOLD \citep{hipp2015bold}, their role in DMN function remains challenging \citep{maldjian2014graph}.
 
 
 What has early been described as the ``stream of consciousness''
@@ -321,7 +321,7 @@ yet sometimes useful thoughts
 %
 Gaining insight into DMN function is
 particularly challenging because
-this network appears to
+this brain network appears to
 simultaneously modulate perception-action cycles in the present
 and to support mental travel
 across time, space, and content domains
@@ -351,10 +351,10 @@ the more the ongoing executed task is unknown and unpracticed,
 the less stimulus-independent thoughts occur
 \citep{filler1973daydreaming, teasdale1995stimulus, christoff2016mind}.
 Conversely,
-it is known that, the more the world is easy to predict,
+it has been empirically shown that, the more the world is easy to predict,
 the more human mental activity
 becomes detached from the actual sensory environment
-\citep{antrobus1966studies, pope1978regulation}.
+\citep{antrobus1966studies, pope1978regulation, mason2007, weiss2006}.
 Without requiring explicit awareness,
 these ``offline'' processes may contribute
 to optimizing control of the organism.
@@ -385,7 +385,7 @@ seemingly arbitrary dreams during sleep
 may provide blocks of pseudo-experience to iteratively
 optimize the behavior of the organism.
 
-Evidence from computional modeling of human behavior \citep{kording2004bayesian} and cell recording experiments in ferrets \citep{fiser2004small} suggest that
+Evidence from computational modeling of human behavior \citep{kording2004bayesian} and cell recording experiments in ferrets \citep{fiser2004small} suggest that
 the human brain is largely dedicated to
 ``the development and maintenance of [a]
 probabilistic model of anticipated events''
@@ -403,8 +403,8 @@ experiments (Box 1).
 
 
 \begin{mdframed}
-  \textbf{Box 1: Hypotheses for testing the MDP account of DMN function}
   \vspace{1em}
+  \textbf{Box 1: Hypotheses for testing the MDP account of DMN function}
 \begin{enumerate}
 \item Experiment (Humans): We hypothesize a functional relationship between the DMN closely associated with the occurrence of stimulus-independent thoughts and the reward circuitry. During an iterative neuroeconomic two-player game, fMRI signals in the DMN could be used to predict reward-related signals in the nucleus accumbens across trials in a continuous learning paradigms. We expect that the more DMN activity is measured to be increased, supposedly the higher the tendency for stimulus-independent thoughts, and the more the fMRI signals in the reward circuits should be independent of the reward context
 in the sensory environment.
@@ -638,7 +638,7 @@ in humans \citep{doherty2015structure}.
         default mode network.} Based on 9,932 human subjects from the UK Biobank, inter-individual differences in left NAc volume ($R^2=0.11 \pm 0.02$) and right NAc volume ($R^2=0.14 \pm 0.02$) could be predicted from volume in the DMN regions. These out-of-sample generalization performances were obtained from support vector regression applied to normalized region volumes in the DMN in a 10-fold cross-validation procedure.
       Consistent for the left and right reward system, NAc volume in a given subject is
       positively coupled with the vmPFC and HC. The colors are indicative of the (\textcolor{red}{red} = positive,
-      \textcolor{blue}{blue} = negative) and size (the lighter the higher) of the regression coefficients.
+      \textcolor{blue}{blue} = negative) and relative importance (the lighter the higher) of the regression coefficients.
   Code and data for reproduction and visualization:
   \url{www.github.com/banilo/to_be_added_later}.
   }
@@ -1237,10 +1237,10 @@ triggered by another (possibly stochastic) behavioral policy.
 
 \begin{mdframed}
 % neuroscience of Bellman equation
+  \vspace{2em}
   \textbf{Box 2: Neural correlates of the Bellman equation in the DMN}
-  \vspace{1em}
-
-\hspace{-1.5em}Relating decomposition of consecutive action choices by the Bellman equation
+% \hspace{-1.5em}
+Relating decomposition of consecutive action choices by the Bellman equation
 to neuroscience,
 specific neural activity in the dorsal prefrontal cortex (BA9)
 was linked to processing ``goal-tree sequences''
@@ -1955,6 +1955,18 @@ overcome a number of the technical limits of the wake-sleep algorithm
 by using a reparametrization maneuver, which makes it possible to do differential calculus on random sampling procedures without exploding variance. As a result, unlike the wake-sleep algorithm
 for minimizing free energy, VAEs can be efficiently trained via back-propagation of prediction errors.
 
+\begin{wrapfigure}{r}{.37\linewidth}
+  \centering
+  \includegraphics[width=1.\linewidth]{darkroom_resized.png}
+  \caption{\textbf{The dark room experiment.} An intelligent agent situated
+  in a light-deprived closed space can be used
+  as a thought experiment for the complete absence
+  of external sensory input.
+  % The free-energy principle theory paradoxally predicts that such an agent would remain quietly in this room, such it perfectly predict all sensory input from such an environment.
+  % However such behavior is not observed in humans or any animals: the agent would strive to leave such an environment in search of more ``interesting'' worlds.
+  }
+  \label{fig:darkroom}
+\end{wrapfigure}
 On another front, since theories based on the FEP \citep{friston2010free,fristonAIorRL}
 conceptualize ongoing behavior
 in an organism to be geared towards the surprise-minimizing goal,
@@ -1970,18 +1982,6 @@ its surroundings or leave it.
 Defenders of the FEP have retorted by advancing the ``full package'' \citep{darkroom2012}:
 FEP is proposed to be multi-scale and there would be a meta-scale at which the organism would
 be \textit{surprised} by such a \textit{lack of surprise}. According to this argument, a dark room would paradoxically correspond to a state of particularly high surprise.
-\begin{wrapfigure}{r}{.37\linewidth}
-  \centering
-  \includegraphics[width=1.\linewidth]{darkroom_resized.png}
-  \caption{\textbf{The dark room experiment.} An intelligent agent situated
-    in a light-deprived closed space can be used
-    as a thought experiment for the complete absence
-    of external sensory input.
-    % The free-energy principle theory paradoxally predicts that such an agent would remain quietly in this room, such it perfectly predict all sensory input from such an environment.
-    % However such behavior is not observed in humans or any animals: the agent would strive to leave such an environment in search of more ``interesting'' worlds.
-  }
-  \label{fig:darkroom}
-\end{wrapfigure}
 Driven by surprise-minimization objective, the FEP agent would eventually bootstrap itself out of such saddle points to explore more interesting parts of the environment.
 % Recourse to this argument is equivalent to invoking a \textit{halting oracle}\citep{haltingoracle}, an arbitrarily powerful machine which can solve the \textit{halting problem} (an arbitrarily difficult computational problem which cannot be solved under any reasonable \textit{model of computation}, not even in principle!). But this is problematic as it sucks up the problem (that of decision-making and active agency) the theory intends to elude in the first place.
 In contrast, an organism operating under our RL-based theory would inevitably
