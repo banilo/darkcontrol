@@ -1943,18 +1943,12 @@ Importantly, one notes that $F^R_G(x)$ is low just in case:
 Despite its popularity, criticism against the FEP has arisen over the years,
 some of which is outlined in the following.
 The main algorithm for minimizing free energy $F_G^R(\x)$ is the \textit{wake-sleep algorithm}
-\citep{dayan1995helmholtz}. As these P. Dayan and G. Hinton  noted,
+\citep{dayan1995helmholtz}. As P. Dayan and G. Hinton  noted,
 a crucial drawback of the wake-sleep algorithm (and therefore of theories like the FEP \citep{friston2010free} based on it) is that it involves a pair
 of forward (generation) and backward (recognition) models $p_G$ and $p_R$ respectively that
 together do not correspond to optimization of (a bound of) the marginal likelihood,
 because KL divergence is not symmetric in its arguments.
-The brain may therefore be unlikely to implement a variant of the wake-sleep algorithm.
-The recent theory of
-\textit{variational auto-encoders} (VAEs) \citep{kingma2013auto} might provide an efficient alternative to the wake-sleep algorithm. VAEs
-overcome a number of the technical limits of the wake-sleep algorithm
-by using a reparametrization maneuver, which makes it possible to do differential calculus on random sampling procedures without exploding variance. As a result, unlike the wake-sleep algorithm
-for minimizing free energy, VAEs can be efficiently trained via back-propagation of prediction errors.
-
+The brain is therefore unlikely to implement the wake-sleep algorithm or a variant thereof.
 \begin{wrapfigure}{r}{.37\linewidth}
   \centering
   \includegraphics[width=1.\linewidth]{darkroom_resized.png}
@@ -1967,6 +1961,13 @@ for minimizing free energy, VAEs can be efficiently trained via back-propagation
   }
   \label{fig:darkroom}
 \end{wrapfigure}
+
+The recent theory of
+\textit{variational auto-encoders} (VAEs) \citep{kingma2013auto} might provide an efficient alternative to the wake-sleep algorithm. VAEs
+overcome a number of the technical limits of the wake-sleep algorithm
+by using a reparametrization maneuver, which makes it possible to do differential calculus on random sampling procedures without exploding variance. As a result, unlike the wake-sleep algorithm
+for minimizing free energy, VAEs can be efficiently trained via back-propagation of prediction errors.
+
 On another front, since theories based on the FEP \citep{friston2010free,fristonAIorRL}
 conceptualize ongoing behavior
 in an organism to be geared towards the surprise-minimizing goal,
@@ -1978,7 +1979,7 @@ given the environmental state \citep{darkroom2012}.
 However, such a behavioral tendency is
 seldom observed in animals or humans in the real world: In a dark room,
 intelligent agents would search for light sources to \textit{explore}
-its surroundings or leave it.
+the surroundings or leave the exit the room.
 Defenders of the FEP have retorted by advancing the ``full package'' \citep{darkroom2012}:
 FEP is proposed to be multi-scale and there would be a meta-scale at which the organism would
 be \textit{surprised} by such a \textit{lack of surprise}. According to this argument, a dark room would paradoxically correspond to a state of particularly high surprise.
