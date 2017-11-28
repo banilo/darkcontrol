@@ -1012,36 +1012,36 @@ Mathematically, an MDP is simply a quintuplet $(\mathcal S, \mathcal A, r, p)$ w
 \end{itemize}
 
 \end{definition*}
-
-\paragraph*{Why MDPs ?} At this point, it is righteous to question the applicability of MPDs as a model for something as complex as human behavior.
-Indeed a critique could argue that Markov chains are state-machines without memory. These may describe insects, or other behaviorally primitive beings like ATM machines, insects, etc., but won't be sufficient to describe human beings, as for example, human behavior is heavily influenced not only by the current state but by past states as well (memory).
-
-\paragraph*{Answer:}
-\begin{itemize}
-  \item First, let us emphasize that the brain in general, and the DMN in particular,
-is a physical system governed by the laws of
-physics and can be formally described
-by Markov processes at a sufficiently coarse scale.
-It has indeed been previously proposed \citep{tegmark2016improved} that
-any system obeying the laws of classical physics can be accurately modeled as a Markov process as long as the time
-step is sufficiently short.
-
-\item Rational probabilistic planning can be reformulated
+Rational probabilistic planning can be reformulated
 as a standard memory Markov process by simply expanding the
 definition of the state $s$ to include experience episodes of the past.
 This adds the capacity for memory, since then, the next state depends not only on the current state but also on a finite number of past states. This is precisely what partially observable MDPs do ~\citep{starkweather2017dopamine,o2006making}.
 
-\item Also, it should be noted that MDPs have been successfully used as neural model for animal behavior. One can mention ~\citep{Rao2010} (random dots), ~\citep{Valton2011} (mal-adaptive decision-making in a rat version of a gambling task) just to name a few.
 
-\item Successes in AI/ML:
-  \begin{itemize}
-    \item Robotics: \citep{ng2004,abbeel2004}
-    \item Games and other: ~\citep{mnih2015,silver2016mastering,pritzel2017neural}
-\end{itemize}
+\paragraph*{Why MDPs ?} One may wonder whether MDP models are applicable to something as complex as human behavior. For instance, financial trading is largely a manifestation of strategic decision-making of interacting human agents. According to how the market responds, the agent incurs definite gain or loss as environmental feedback of the executed financial actions. Recent research on automatizing market exchanges by algorithmic trading has successfully used MDPs as a framework for modeling these sophisticated behavioral process  ~\citep{brazdil2017,yang15,yang14,yang12,dempster2006,hult2010}. ~\citep{abergel2017} is an excellent reference with the mathematical details on how MDPs can be readily exploited in the financial world.
+%
+MDPs have also been effective as a behavioral model in robotics \citep{ng2004,abbeel2004} and in challenging multistep strategy games ~\citep{mnih2015,silver2016mastering,pritzel2017neural}.
+%
+As such, we aim to expand MDPs as a useful model from "online" decision-making to the realms of "offline" mental operations most associated with the DMN.
 
-  \item Algorithmic trading. In financial trading, the main actions which the agent (human or computer acting on behalf of a human operator) must execute strategically are: sell (sell a given quantity of a commodity), buy (by a given quantity of a commodity), do nothing. According to how the market responds, a definite gain / loss is recorded as a consequence of the executed action, perhaps with some delay. Over the years, research in algorithmic trading has identified MDPs as a powerful framework for modelling this behavioral process  ~\citep{brazdil2017,yang15,yang14,yang12,dempster2006,hult2010}, for which dynamic-programming based algorithms can be employed to produce numerical solutions. ~\citep{abergel2017} is an excellent reference with the mathematical details on how MDPs work in finance.
 
-\end{itemize}
+% Indeed a critique could argue that Markov chains are state-machines without memory. These may describe insects, or other behaviorally primitive beings like ATM machines, insects, etc., but won't be sufficient to describe human beings, as for example, human behavior is heavily influenced not only by the current state but by past states as well (memory).
+
+% \paragraph*{Answer:}
+% \begin{itemize}
+%   \item First, let us emphasize that the brain in general, and the DMN in particular,
+% is a physical system governed by the laws of
+% physics and can be formally described
+% by Markov processes at a sufficiently coarse scale.
+% It has indeed been previously proposed \citep{tegmark2016improved} that
+% any system obeying the laws of classical physics can be accurately modeled as a Markov process as long as the time
+% step is sufficiently short.
+
+
+
+
+
+% \end{itemize}
 
 
 \subsubsection{Accumulated rewards and policies}
@@ -2009,7 +2009,9 @@ the agent has about the world. More explicitly, this corresponds to using free-e
 %   rewarding outcomes in the future. A ``free-energy'' agent is barely a biomechanical machine which has the tendency to resist undesired phase-transitions
 %   \citep{friston2010free,fristonAIorRL,ortega2013thermodynamics}.
 Such a surprise-guided reinforcement learning scheme has previously been advocated
-under the equivalent framework of energy-based reinforcement-learning\footnote{These methods assume that the posterior distribution  of the hidden states $\z$ given the visible states $\x$ factorizes, leading to so-called RBMs --\textit{Restricted Boltzmann Machines}. One notes, that even with these simplifications, such a model can be very hard to train.} ~\citep{sallans2004,elfwing2016free} and information compression \citep{schmidhuber2010,mohamed2015}.
+under the equivalent framework of energy-based reinforcement-learning
+% \footnote{These methods assume that the posterior distribution  of the hidden states $\z$ given the visible states $\x$ factorizes, leading to so-called RBMs --\textit{Restricted Boltzmann Machines}. One notes, that even with these simplifications, such a model can be very hard to train.}
+~\citep{sallans2004,elfwing2016free} and information compression \citep{schmidhuber2010,mohamed2015}.
 Nevertheless, minimization of surprise quantities alone
 may be insufficient to explain the diversity of behaviors observed in humans and other intelligent animals.
 % The dark-room experiment, for example, provides a formidable argument against in favor of the insufficiency of the FEP and active inference theories to explain intelligent behavior in humans: when a human is put in a dark room, they don't just sit down in a corner forever, what would be the FEP-optimal thing to do; they actively search for the light switch, and start exploring the depths of the room, possibly looking for food or the way out!
