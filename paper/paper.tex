@@ -924,8 +924,7 @@ based on a brain implementation of MCMC sampling
 \citep{tenenbaum2011grow}.
 
 \subsection{Markov decision processes}
-Model-free RL has had great success in many real-world problems,
-including robotics \citep{ng2004,abbeel2004},
+Reinforcement learning (RL) has had great success in many real-world problems, including robotics \citep{ng2004,abbeel2004},
 super-human performance in complex video games \citep{mnih2015},
 and strategic board games like the breakthrough results upon recently on the game of Go \citep{silver2016mastering}, considered to be a golden benchmark problem in artificial intelligence.
 We emphasize that the brain in general, and the DMN in particular,
@@ -967,34 +966,6 @@ by maintaining probability distributions over actions according to their expecte
 % % , based on a set of observations and observation probabilities.
 This is a minimal set of assumptions that can be made about an environment faced by an agent engaged in active learning.
 
-
-
-Model-free RL can be plausibly realized in the human brain \citep{doherty2015structure}. Indeed,
-it has been proposed \citep{gershman2015computational} that a core property of human intelligence  underlie improvement
-of expected utility outcomes as a strategy for action choice in uncertain
-environments, a situation perfectly captured by the formalism of MDPs.
-It has also long been proposed \citep{dayan2008decision} that there
-is a rather direct mapping of model-free RL learning algorithms
-onto aspects of the brain.
-The neurotransmitter dopamine could serve
-as a ``teaching signal'' to better estimate value associations
-and action policies by controlling
-synaptic plasticity in the reward-processing circuitry, including the NAc.
-In contrast, \textit{model-based RL} would start off with some mechanistic assumptions about the dynamics of the world.
-These can be assumptions about the physical laws governing the agent's environment or constraints on the state space and transitions between states.
-% For instance, if a rat in a maze knows
-% that standing still will produce no change in the environment, and in particular will not eventually lead to finding the food.
-%
-
-In our adopted model-free RL framework,
-an agent might represent such knowledge about the world as follows:
-\begin{itemize}
-\item $r(s, \text{``stand still''}) = 0$ if $s$ does not correspond to a location
-offering relevant resources.
-\item $p(s'|s,\text{``stand still''}) = 1$ if $s'=s$ and $0$ otherwise.
-\item etc.
-\end{itemize}
-
 \begin{definition*}
 Mathematically, an MDP is simply a quintuplet $(\mathcal S, \mathcal A, r, p)$ where
 \begin{itemize}
@@ -1008,15 +979,13 @@ Mathematically, an MDP is simply a quintuplet $(\mathcal S, \mathcal A, r, p)$ w
 \item $p : \mathcal S \times \mathcal A \times \mathcal S \rightarrow [0, 1],\; (s,a,s') \mapsto p(s'|s,a)$,
   the probability of moving to state $s'$ if action $a$ is taken from state $s$. In addition, one requires that such
   transitions be Markovian. Consequently, the future states are independent of past states and only depend on the present state and action taken.
-
 \end{itemize}
-
 \end{definition*}
+
 Rational probabilistic planning can be reformulated
 as a standard memory Markov process by simply expanding the
 definition of the state $s$ to include experience episodes of the past.
 This adds the capacity for memory, since then, the next state depends not only on the current state but also on a finite number of past states. This is precisely what partially observable MDPs do ~\citep{starkweather2017dopamine,o2006making}.
-
 
 \paragraph*{Why MDPs ?} One may wonder whether MDP models are applicable to something as complex as human behavior. For instance, financial trading is largely a manifestation of strategic decision-making of interacting human agents. According to how the market responds, the agent incurs definite gain or loss as environmental feedback of the executed financial actions. Recent research on automatizing market exchanges by algorithmic trading has successfully used MDPs as a framework for modeling these sophisticated behavioral process  ~\citep{brazdil2017,yang15,yang14,yang12,dempster2006,hult2010}. ~\citep{abergel2017} is an excellent reference with the mathematical details on how MDPs can be readily exploited in the financial world.
 %
@@ -1039,10 +1008,38 @@ As such, we aim to expand MDPs as a useful model from "online" decision-making t
 
 
 
-
-
 % \end{itemize}
 
+
+\paragraph*{Towards Model-free reinforcement learning for the DMN.}
+Model-free RL can be plausibly realized in the human brain \citep{doherty2015structure}. Indeed,
+it has been proposed \citep{gershman2015computational} that a core property of human intelligence  underlie improvement
+of expected utility outcomes as a strategy for action choice in uncertain
+environments, a situation perfectly captured by the formalism of MDPs.
+It has also long been proposed \citep{dayan2008decision} that there
+is a rather direct mapping of model-free RL learning algorithms
+onto aspects of the brain.
+The neurotransmitter dopamine could serve
+as a ``teaching signal'' to better estimate value associations
+and action policies by controlling
+synaptic plasticity in the reward-processing circuitry, including the NAc.
+In contrast, \textit{model-based RL} would start off with some mechanistic assumptions about the dynamics of the world.
+These can be assumptions about the physical laws governing the agent's environment or constraints on the state space, transition probabilities between states,
+reward contingencies, etc.
+% For instance, if a rat in a maze knows
+% that standing still will produce no change in the environment, and in particular will not eventually lead to finding the food.
+An agent might represent such knowledge about the world as follows:
+\begin{itemize}
+\item $r(s, \text{``stand still''}) = 0$ if $s$ does not correspond to a location
+offering relevant resources.
+\item $p(s'|s,\text{``stand still''}) = 1$ if $s'=s$ and $0$ otherwise.
+\item etc.
+\end{itemize}
+% Model-based assumes knowledge of the environment in terms of the transition probabilities between states, the reward contingencies for state-action pairs, or any form of representation of the environment.
+Such knowledge can of course be partly learned from the environment: the agent learns a model for the world alongside learning to make optimal decisions using this model. These methods learn what the effect is going to be of taking an particular action in a particular state. The result is an estimate of the underlying MDP which can then be either solved exactly or approximately, depending on the setting and what is feasible. The main problem then is to "connect the dots", by using dynamic programming --for example.
+
+
+In contrast, model-free methods require no knowledge of the environment (transition probabilities, identities of sensory input, etc.) or representation thereof, and the agent learns which state-action pairs lead to reward through sampling the world in trial-and-error manner, and predicting long-run reward aggregates, using prediction error as an incentive. In so doing, such methods ultimately learn both a policy and  implicit representations of the world / environment. This is what algorithms TD learning~\citep{sutton1998reinforcement}. In terms of number of states, model-based RL scales better than model-free RL; in terms of the time horizon, model-free RL scales better~\citep{strehl2006}. Drawing from a vast literature, we will show that the DMN contains sufficient neurobiological hardware to implement model-free RL, at least in principle.
 
 \subsubsection{Accumulated rewards and policies}
 The behavior of the agent is governed by a \textit{policy}, which maps states of the world
@@ -1273,7 +1270,7 @@ action-decision branching to enable higher-order executive control.
 % \subsection{Learning in the DMN}
 \subsubsection{Value approximation and the policy matrix}
 \label{sec:policymat}
-As already mentioned in the previous section, Q-learning optimizes over the class of
+As already mentioned in the previous section, Q-learning~\citep{watkins92} optimizes over the class of
 deterministic policies of the form \eqref{eq:qlearning}. State spaces may be extremely large,
 and tracking all possible states and actions may require prohibitively excessive
 computation and memory resources.
@@ -1373,13 +1370,12 @@ finding the model parameters $\theta_{k}$ which minimize the following mean-squa
 \end{equation}
 where $y_k$ is defined in \eqref{eq:bellman}.
 % \textbf{We still may need to explain y in the formula with one sentence.}
-A recently proposed, practically successful alternative approach
-\citep{mnih2015,silver2016mastering} is to learn this
+A recently proposed, practically successful alternative approach is to learn this
 representation using an artificial deep neural-network model, leading to the
-so-called \textit{deep Q-learning} family of methods which
-This is the current state-of-the-art in RL research.
+so-called \textit{deep Q-learning}~\citep{mnih2015,silver2016mastering} family of methods which
+is the current state-of-the-art in RL research.
 The set of model parameters $\theta$ that instantiate the non-linear interactions
-between layers of the artifical neural network
+between layers of the artificial neural network
 may find a neurobiological correspondence in the adaptive strengths of axonal
 connections between neurons from the different levels
 of the neural processing hierarchy
@@ -1425,8 +1421,8 @@ are attracted and absorbed by the optimal $Q$-value function $Q^*$ defined impli
 % the well-known TD update rule \citep{sutton1998reinforcement}.
 
 \subsubsection{Does the hippocampus subserve MCMC sampling?}
-In RL, MCMC simulation is a common means to update the agent's belief state
-\citep{silver2010monte}.
+In RL, MCMC simulation is a common means to update the agent's belief state.
+% \citep{silver2010monte}.
 MCMC simulation provides a simple method for evaluating the value of a state.
 They provide an effective mechanism both for tree search (of the considered
 action trajectories)
