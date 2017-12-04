@@ -1366,6 +1366,10 @@ connections between neurons from the different levels
 of the neural processing hierarchy
 \citep{mesulam1998sensation, taylor2015global}.
 
+\paragraph*{Self-training may introduce bias. How to alleviate it ?}
+As pointed out by one of the reviewers, self-training may introduce bias due to information shortage caused by the absence of external stimulus (task).
+ way to solve this issue is to use importance sampling as was done in ~\citep{schaul2015} and ~\citep{hessel2017}, to replay more often state-transitions from which there is more to learn. New transitions are inserted into the replay buffer with maximum priority, providing a bias towards recent transitions. Such an insertion bias would help counter-balance the bias introduced by the information shortage caused by the absence of external stimulus (task). Also, ~\citep{hessel2017} noticed that such prioritized replay reduces the data-complexity and the agent can start learning much sooner than conventionally.
+
 
 \subsubsection{Optimal control via stochastic gradient descent in the DMN}
 Efficient learning of the entire set of model parameters can effectively be achieved
