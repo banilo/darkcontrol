@@ -974,7 +974,8 @@ but also on a finite number of past states.
 Rational probabilistic planning can thus be reformulated
 as a standard memoryless Markov process by simply expanding the
 definition of the state $s$ to include experience episodes of the past.
-This adds the capacity for memory, since then, the next state depends not only on the current state but also on a finite number of past states. This is precisely what partially observable MDPs do ~\citep{starkweather2017dopamine,o2006making}.
+This adds the capacity for memory, since then, the next state depends not only on the current state but also on a finite number of past states. This is precisely what Partially Observable MDPs (POMDPs) do ~\citep{starkweather2017dopamine,o2006making}.
+Nevertheless, this mathematical procedure in POMDPs only accounts for implicit $memory$. Since the current paper is aiming at both plausibility at the behavioral and neural level, we will address later in the paper how our model captures the neurophysiological constraints of the DMN and can also account for the explicit part of $memory$ from a human agent perspective.
 
 \paragraph*{Why MDPs ?} One may wonder whether MDP models are applicable to something as complex as human behavior. For instance, financial trading is largely a manifestation of strategic decision-making of interacting human agents. According to how the market responds, the agent incurs definite gain or loss as environmental feedback of the executed financial actions. Recent research on automatizing market exchanges by algorithmic trading has successfully used MDPs as a framework for modeling these sophisticated behavioral process  ~\citep{brazdil2017,yang15,yang14,yang12,dempster2006,hult2010}. ~\citep{abergel2017} is an excellent reference with the mathematical details on how MDPs can be readily exploited in the financial world.
 %
