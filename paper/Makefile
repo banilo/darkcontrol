@@ -14,7 +14,9 @@ latex: clean
 	# makeglossaries paper
 	pdflatex ${PDFLATEX_OPTIONS} paper
 	# make clean
-
+	rm -f *neurobiological_and_rl_overview_DMN.pdf
+	rm -f *neurobiological_overview_DMN.pdf
+	rm -f *table_equivalence.pdf
 
 loTopdf:
 	unoconv -f pdf *.odp
