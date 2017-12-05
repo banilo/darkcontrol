@@ -351,7 +351,7 @@ the more the ongoing executed task is unknown and unpracticed,
 the less stimulus-independent thoughts occur
 \citep{filler1973daydreaming, teasdale1995stimulus, christoff2016mind}.
 Conversely,
-it has been empirically shown that, the more the world is easy to predict,
+it has been empirically shown that, the more the world is easy to foresee,
 the more human mental activity
 becomes detached from the actual sensory environment
 \citep{antrobus1966studies, pope1978regulation, mason2007, weiss2006}.
@@ -399,7 +399,13 @@ is linked to the reward circuitry (Fig. 2).
 Finally, we detail how our process model relates
 to previous accounts of DMN function and
 we derive explicit hypotheses to be tested in future neuroscience
-experiments (Box 1).
+experiments (Box 2).
+At this stage, it is important to clarify how different levels of observation
+are at play in the current account. A process model is not solely intended to 
+capture behavior of the agent but also the neurocomputational specifics of the agent.
+In the following, we will use the word ``inference`` when describing the formal aspects
+of the statistical model, the word ``prediction`` when discussing the neural implementation,
+and words like ``forecast`` or ``forsee`` when refering to the behavior of the agent.
 
 
 \section{Known neurobiological properties of the default mode network}
@@ -669,7 +675,7 @@ in constructing mental models in general
 boyer2008evolutionary}.
 Its recursive anatomical architecture
 may be specifically designed to allow reconstructing
-entire episodes of experience from memory fragments.
+entire sequences of experience from memory fragments.
 Indeed,
 hippocampal damage is
 not only associated with an impairment in re-experiencing the past (i.e., amnesia),
@@ -908,6 +914,14 @@ may be solved by a stochastic approximation
 based on a brain implementation of MCMC sampling
 \citep{tenenbaum2011grow}.
 
+\begin{figure}[!h]
+  \centering
+  \includegraphics[width=1.\linewidth]{rl2.pdf}
+  \caption{\textbf{Reinforcement learning in a nutshell.} Given the current state of the environment,
+    the agent takes an action by following the policy matrix as updated by the Bellman equation. The agent receives a consequential reward and observes the next state. The process goes on until interrupted or a goal state is reached.}
+  \label{fig:rl}
+\end{figure}
+
 \subsection{Markov decision processes}
 Reinforcement learning (RL) has had great success in many real-world problems, including robotics \citep{ng2004,abbeel2004},
 super-human performance in complex video games \citep{mnih2015},
@@ -919,13 +933,7 @@ by Markov processes at a sufficiently coarse scale.
 It has indeed been previously proposed \citep{tegmark2016improved} that
 any system obeying the laws of classical physics can be accurately modeled as a Markov process as long as the time
 step is sufficiently short.
-\begin{figure}[!h]
-  \centering
-  \includegraphics[width=1.\linewidth]{rl2.pdf}
-  \caption{\textbf{Reinforcement learning in a nutshell.} Given the current state of the environment,
-    the agent takes an action by following the policy matrix as updated by the Bellman equation. The agent receives a consequential reward and observes the next state. The process goes on until interrupted or a goal state is reached.}
-  \label{fig:rl}
-\end{figure}
+
 % , defining $s(t)$, the state at time $t$, as the position in state space.
 The process has $memory$ if the next state depends not only on the current state
 but also on a finite number of past states.
