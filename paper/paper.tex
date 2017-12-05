@@ -934,13 +934,6 @@ It has indeed been previously proposed \citep{tegmark2016improved} that
 any system obeying the laws of classical physics can be accurately modeled as a Markov process as long as the time
 step is sufficiently short.
 
-% , defining $s(t)$, the state at time $t$, as the position in state space.
-The process has $memory$ if the next state depends not only on the current state
-but also on a finite number of past states.
-Rational probabilistic planning can be reformulated
-as a standard memoryless Markov process by simply expanding the
-definition of the state $s$ to include experience episodes of the past.
-
 In artificial intelligence and machine learning, a popular computational model for
 multi-step decision processes in such an environment are
 \textit{Markov decision processes} (MDPs) \citep{sutton1998reinforcement}.
@@ -975,8 +968,11 @@ Mathematically, an MDP is simply a quintuplet $(\mathcal S, \mathcal A, r, p)$ w
 \end{itemize}
 \end{definition*}
 
-Rational probabilistic planning can be reformulated
-as a standard memory Markov process by simply expanding the
+% , defining $s(t)$, the state at time $t$, as the position in state space.
+The process has $memory$ if the next state depends not only on the current state
+but also on a finite number of past states.
+Rational probabilistic planning can thus be reformulated
+as a standard memoryless Markov process by simply expanding the
 definition of the state $s$ to include experience episodes of the past.
 This adds the capacity for memory, since then, the next state depends not only on the current state but also on a finite number of past states. This is precisely what partially observable MDPs do ~\citep{starkweather2017dopamine,o2006making}.
 
