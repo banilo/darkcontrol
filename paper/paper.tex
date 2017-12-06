@@ -216,7 +216,7 @@ Its highest energy consumption compared to other brain networks and
 its intimate coupling with conscious awareness are both pointing to
 an overarching function.
 %
-Many research streams support an evolutionarily adaptive role in
+Many research streams speak in favor of an evolutionarily adaptive role in
 envisioning experience to anticipate the future.
 In the present work, we propose a \textit{process model}
 that tries to explain \textit{how}
@@ -276,7 +276,8 @@ important role in sustaining conscious awareness \citep{horovitz2009decoupling}.
 This \textit{dark matter of brain physiology}
 \citep{raichle2006brain} begs the question
 of the biological purpose underlying DMN activity.
-Despite observation of similar large-scale networks of co-varying spontaneous activity in MEG investigations \citep{de2010temporal,brookes2011investigating,baker2014fast}, the link between the fMRI BOLD signal and population-level neural activity is still unclear. If those frequency-specific electrophysiological correlations are proposed as complementary to those observed with BOLD \citep{hipp2015bold}, their role in DMN function remains challenging \citep{maldjian2014graph}.
+Despite observation of similar large-scale networks of co-varying spontaneous activity
+in electrophysiological investigations \citep{de2010temporal,brookes2011investigating,baker2014fast}, the link between the fMRI BOLD signal and population-level neural activity is still unclear. If those frequency-specific electrophysiological correlations are proposed as complementary to those observed with BOLD \citep{hipp2015bold}, their role in DMN function remains elusive \citep{maldjian2014graph}.
 
 
 What has early been described as the ``stream of consciousness''
@@ -298,7 +299,7 @@ cortex'' \citep{carhart2010default}.
 \subsection{Towards a formal account of default mode function: higher-order control of the organism}
 The network nodes that compose the human DMN
 are responsible for extended parts of the baseline neural activity,
-which typically decreases when engaged in psychological experiments
+which typically decreases when engaged in controlled psychological experiments
 \citep{raichle_baseline}.
 The standard mode of
 neural information maintenance and manipulation has
@@ -381,28 +382,28 @@ advanced cognitive processes in humans
 can be recast as prediction error minimization
 based on probabilistic mental simulations
 - ``covert forms of action and perception'' \citep{pezzulo2011grounding} -,
-thus maximizing action outcome across multiple time scales.
+thus maximizing action outcomes across multiple time scales.
 Such a purposeful optimization objective
 may be solved by a stochastic approximation
-based on a brain implementation of Markov Chain Monte Carlo (MCMC) sampling
-\citep{tenenbaum2011grow}.
-Even necessarily imperfect memory recall,
+based on a brain implementation of Markov Chain Monte Carlo (MCMC) sampling.
+Even (unavoidably) imperfect memory recall,
 random day-time mind-wandering, and
 seemingly arbitrary dreams during sleep
-may provide blocks of pseudo-experience to iteratively
+may provide randomly sampled blocks of pseudo-experience instrumental to iteratively
 optimize the behavior of the organism.
 
 Evidence from computational modeling of human behavior \citep{kording2004bayesian} and cell recording experiments in ferrets \citep{fiser2004small} suggest that
-the human brain is largely dedicated to
+the brain is largely dedicated to
 ``the development and maintenance of [a]
 probabilistic model of anticipated events''
 \citep{raichle2005intrinsic}.
 The present paper proposes a
-process model that satisfies this contention.
+process model that satisfies this previously proposed contention.
 We also contribute to the discussion of DMN function
 by providing some of the first empirical evidence that
 morphological variability in DMN regions
-is linked to the reward circuitry (Fig. 2).
+is linked to the reward circuitry (Fig. 2),
+thus linking two literatures with currently scarce cross-references.
 Finally, we detail how our process model relates
 to previous accounts of DMN function and
 we derive explicit hypotheses to be tested in future neuroscience
@@ -410,16 +411,16 @@ experiments (Box 2).
 At this stage, it is important to clarify how different levels of observation
 are at play in the current account. A process model is not solely intended to 
 capture behavior of the agent but also the neurocomputational specifics of the agent.
-In the following, we will use the word ``inference`` when describing the formal aspects
-of the statistical model, the word ``prediction`` when discussing the neural implementation,
-and words like ``forecast`` or ``forsee`` when refering to the behavior of the agent.
+In the following, we will use the word ``inference'' when describing the formal aspects
+of the statistical model, the word ``prediction'' when discussing the neural implementation,
+and words like ``forecast'' or ``forsee'' when refering to the behavior of the agent.
 
 
 \section{Known neurobiological properties of the default mode network}
 \label{sec:nodes}
 We begin by a neurobiological deconstruction of the DMN
 based on experimental findings in the neuroscience literature.
-This walkthrough across each region of the DMN will
+This walkthrough across main regions of the DMN will
 outline the individual functional profiles,
 paving the way for their algorithmic interpretation
 in our formal account (section 3).
@@ -436,11 +437,11 @@ in our formal account (section 3).
 The midline structures of the human DMN,
 including the posteromedial cortex (PMC) and
 the medial prefrontal cortex (mPFC),
-are probably responsible for the highest turn-over
+are probably responsible for highest turn-overs
 of energy consumption \citep{raichle2001pnas, raichle_baseline}.
 These metabolic characteristics go hand-in-hand with
-neuroimaging analyses that suggested the PMC and mPFC to
-potentially represent the functional backbone of the DMN
+neuroimaging findings that suggested the PMC and mPFC to
+potentially represent the functional core of the DMN
 \citep{andrews2010, hagmann2008mapping}.
 
 
@@ -459,17 +460,17 @@ as an inner ``mind's eye'' \citep{cavanna2006precuneus, leech_pcc2014}.
 For instance, B\'alint's syndrome is a neurological disorder of conscious
 awareness that results from medial damage in the parietal cortex
 \citep{balint1909seelenlahmung}.
-Neurological patients are plagued by an
-inability to combine various individual features of the visual
+Such neurological patients are plagued by an
+inability to bind various individual features of the visual
 environment into an integrated whole (i.e., simultanagnosia)
 as well as an inability to direct action towards
 currently unattended environmental objects
 (i.e., optic ataxia).
-This can be viewed as a high-level impairment in gathering
+This dysfunction can be viewed as a high-level impairment in gathering
 information about alternative objects (i.e., exploration) as well as
 leveraging these environmental opportunities (i.e., exploitation).
 Congruently,
-the human PMC was coupled in two functional connectivity analyses
+the human PMC was coupled in two different functional connectivity analyses
 \citep{bzdok2015subspecialization}
 with the amygdala, involved in significance evaluation, and
 the nucleus accumbens (NAc), involved in reward evaluation.
@@ -481,7 +482,7 @@ nuclei group of the amygdala
 This amygdalar subregion has been proposed to
 continuously scan environmental input
 for biological relevance assessment
-\citep{amygdala_bzdok}.
+\citep{amygdala_bzdok, ghods2009fundamental, baxter2002amygdala}.
 
 
 The putative role of the PMC in continuous abstract integration of
@@ -503,11 +504,11 @@ subjective target utility \citep{mccoy2005risk} and integration
 across individual decision-making instances \citep{pearson2009neurons}.
 This DMN region encoded the
 preference for or aversion to options with uncertain reward outcomes
-and its spiking activity was more associated with
+and its neural spiking activity was more associated with
 subjectively perceived relevance of a chosen object
 than by its actual value,
 based on an ``internal currency of value'' \citep{mccoy2005risk}.
-In fact, direct stimulation of PMC neurons
+In fact, direct stimulation of PMC neurons in monkeys
 promoted exploratory actions,
 which would otherwise be shunned \citep{hayden2008stim}.
 Graded changes in firing rates of PMC neurons
@@ -530,8 +531,8 @@ in animals and humans
 \citep{vann2009does}.
 Regarding perspective frames, the retrosplenial subregion of the PMC has been
 proposed to mediate between the organism's egocentric
-(i.e., focused on sensory environment) and
-allocentric (i.e., focused on world knowledge) viewpoints
+(i.e., focused on external sensory environment) and
+allocentric (i.e., focused on internal world knowledge) viewpoints
 in animals and humans
 \citep{epstein2008parahippocampal, burgess2008spatial, valiquette2007different}.
 
@@ -542,7 +543,7 @@ by monitoring the subjective outcomes
 of possible actions and integrating that information
 with memory and perspective frames
 into short- and longer-term behavioral agendas.
-Estimated value, that differs across individuals, might enrich
+Estimated value, found to differs across individuals, might enrich
 statistical assessment of the environment
 to map and predict delayed reward opportunities in the future.
 In doing so, the PMC may continuously adapt the organism to changes
@@ -558,11 +559,11 @@ across time, space, and content domains to
 exert top-level control on behavior.
 Comparing to the PMC, however,
 dmPFC function may be closer to a
-``mental sketchpad'' \citep{goldman1996prefrontal}, as it
+``mental sketchpad'' \citep{goldman1996prefrontal}, as this DMN part
 potentially subserves the de-novo construction and manipulation
 of meaning representations instructed by stored semantics and memories
 \citep{bzdok2013segregation}.
-The dmPFC may subserve inference, representation, and assessment
+The dmPFC may subserve representation and assessment
 of one's own and other individuals' action considerations.
 Generally,
 neurological patients with tissue damage in the prefrontal cortex
@@ -575,8 +576,8 @@ outcomes of these predictions.
 Neural activity in the dmPFC indeed explained the performance decline
 of inferring other peoples' thoughts in aging humans \citep{moran2012social}.
 Certain dmPFC neurons in macaque monkeys exhibited a preference
-for processing others', rather than own, behavior
-with fine-grained adjustment of contextual circumstances \citep{yoshida2010neural}.
+for processing others', rather than own, action
+with fine-grained adjustment of contextual aspects \citep{yoshida2010neural}.
 % In fact, the spatially neighboring dorsal anterior cingulate cortex
 % has also been linked to computing values and efforts of
 % persisting a behavioral plan versus switching the
@@ -597,10 +598,10 @@ with fine-grained adjustment of contextual circumstances \citep{yoshida2010neura
 
 
 Comparing to the dmPFC,
-the vmPFC probably subserves
+the vmPFC is probably more specifically devoted to
 subjective value evaluation and
 risk estimation of relevant environmental stimuli
-(see Fig. \ref{fig:neurobiological_overview_DMN} and \ref{fig:dmn}).
+(Fig. \ref{fig:neurobiological_overview_DMN} and \ref{fig:dmn}).
 The ventromedial prefrontal DMN may
 subserve adaptive behavior by bottom-up-driven
 processing of “what matters now”,
@@ -618,7 +619,7 @@ Congruently, the gray-matter volume of the vmPFC and NAc
 correlated with indices of value-guided behavior and reward attitudes
 in humans
 \citep{lebreton2009automatic}.
-NAc activity is thought to reflect reward prediction signals
+NAc activity is further thought to reflect reward prediction signals
 from dopaminergic neurotransmitter pathways
 \citep{schultz1998predictive}
 that not only channel action towards basic survival needs but also
@@ -637,8 +638,8 @@ in humans \citep{doherty2015structure}.
       Consistent for the left and right reward system, NAc volume in a given subject is
       positively coupled with the vmPFC and HC. The colors are indicative of the (\textcolor{red}{red} = positive,
       \textcolor{blue}{blue} = negative) and relative importance (the lighter the higher) of the regression coefficients.
-  Code and data for reproduction and visualization:
-  \url{www.github.com/banilo/to_be_added_later}.
+  Code for reproduction and visualization:
+  \url{www.github.com/banilo/darkcontrol_PCB2018}.
   }
   \label{fig:dmn}
 \end{minipage}
@@ -649,8 +650,9 @@ Consistently, diffusion MRI tractography in humans and monkeys
 \citep{croxson2005quantitative}
 quantified the NAc to
 be more connected to the vmPFC than dmPFC in both species.
-Two different functional connectivity analyses in humans also strongly connected
-the vmPFC with the NAc, hippocampus (HC),
+Two different functional connectivity analyses in humans also revealed
+strong vmPFC connections
+with the NAc, hippocampus (HC),
 and PMC \citep{bzdok2015subspecialization}.
 %
 In line with these connectivity findings in animals and humans,
@@ -661,10 +663,10 @@ as a bioregulatory disposition influencing cognition
 and decision making.
 In neuroeconomic studies of human decision making,
 the vmPFC consistently reflects an individual’s subjective
-value estimates
-\citep{behrens2008associative}.
-This may be why performance within and across participants
-was related to state encoding in the vmPFC \citep{Schuck2016}.
+value predictions
+\citep{behrens2008associative},
+which may also explain why performance within and across participants
+was reported to relate to state encoding in the vmPFC \citep{Schuck2016}.
 Such a ``cognitive map'' of the action space was argued to encode
 the current task state even when states are unobservable from
 the sensory environment.
@@ -1352,15 +1354,7 @@ the would-be $Q$-value for the state-action pair $(s,a)$ as predicted by the Bel
 \end{equation}
 with the prediction of a parametrized regression model $(s,a)
 \mapsto \tilde{Q}(s, a|\theta_{k-1})$.
-From a neurobiological perspective,
-experience replay can be manifested as the re-occurrence of
-neuron spiking sequences that have also occurred during specific prior actions
-and environmental states.
-%, but the replay has a much faster time scale.
-The HC is a strong candidate to contribute to such a mechanism
-because neuroscience experiments have repeatedly indicated
-in rats, mice, cats, rabbits, songbirds, and
-monkeys \citep{buhry2011,nokia2010,dave2000,skaggs2007}.
+From a neurobiological perspective, experience replay can be manifested as the re-occurrence of neuron spiking sequences that have also occurred during specific prior actions and environmental states. The HC is a strong candidate for contributing to such neural reinstantiation of behavioral episodes as neuroscience experiments have repeatedly indicated in rats, mice, cats, rabbits, songbirds, and monkeys \citep{buhry2011,nokia2010,dave2000,skaggs2007}.
 
 At the current step $k$, computing an optimal parameter update then corresponds to
 finding the model parameters $\theta_{k}$ which minimize the following mean-squared loss function
@@ -1471,7 +1465,9 @@ the unimodal sensory cortices at the bottom
 Its putative involvement in thinking about the past,
 hypothetical experiences, and the future
 appears to tie in with the implicit computation of
-action and state cascades as a function of what happened in the past.
+action and state cascades as a function of
+experienced events and collected feedback from the past.
+
 A policy matrix encapsulates the repertoire of possible actions
 on the world given a current state.
 The policy matrix encodes the probabilites of
