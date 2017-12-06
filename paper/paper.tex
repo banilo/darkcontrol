@@ -1060,7 +1060,7 @@ modeling this accumulation is the time-discounted cumulative reward% function
   G^\pi = \sum_{t=0}^{\infty}\gamma^{t}R_t = R_0 + \gamma R_1 + \gamma^2 R_2 + \ldots + \gamma^tR_t + \ldots
 \end{equation}
 This random variable\footnote{Random as it depends both on the environment's dynamic and the
-  policy $\pi$ being played (which can be stochastic).}  measures the cumulative reward of
+  policy $\pi$ being played (which can be stochastic). The exponential delay discounting function used here refere to the usual formulation in the field of reinforcement learning but psychological experiments may also reveal other discounting regimes \citep{green2004discounting}}  measures the cumulative reward of
 following an action policy $\pi$.
 %
 Note that value buffering may be realized in the vmPFC.
