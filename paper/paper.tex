@@ -384,8 +384,7 @@ based on probabilistic mental simulations
 thus maximizing action outcome across multiple time scales.
 Such a purposeful optimization objective
 may be solved by a stochastic approximation
-based on a brain implementation of Markov Chain Monte Carlo (MCMC) sampling
-\citep{tenenbaum2011grow}.
+based on a brain implementation of Markov Chain Monte Carlo (MCMC) sampling.
 Even necessarily imperfect memory recall,
 random day-time mind-wandering, and
 seemingly arbitrary dreams during sleep
@@ -407,12 +406,7 @@ Finally, we detail how our process model relates
 to previous accounts of DMN function and
 we derive explicit hypotheses to be tested in future neuroscience
 experiments (Box 2).
-At this stage, it is important to clarify how different levels of observation
-are at play in the current account. A process model is not solely intended to 
-capture behavior of the agent but also the neurocomputational specifics of the agent.
-In the following, we will use the word ``inference`` when describing the formal aspects
-of the statistical model, the word ``prediction`` when discussing the neural implementation,
-and words like ``forecast`` or ``forsee`` when refering to the behavior of the agent.
+At this stage, we emphasize the importance of differentiating which levels of observation are at play in the present account. A process model is not solely intended to capture behavior of the agent, such as cognitive accounts of DMN function, but also the neurocomputational specifics of the agent. Henceforth, we will use ``inference`` when describing aspects of the statistical model, ``prediction`` when referring to the neurobiological implementation, and words like ``forecast`` or ``forsee`` when referring to the behavior of the agent.
 
 
 \section{Known neurobiological properties of the default mode network}
@@ -918,8 +912,7 @@ to calibrate action trajectories for
 reward outcome maximization at different time scales.
 Such a purposeful optimization objective
 may be solved by a stochastic approximation
-based on a brain implementation of MCMC sampling
-\citep{tenenbaum2011grow}.
+based on a brain implementation of MCMC sampling.
 
 \begin{figure}[!h]
   \centering
@@ -976,13 +969,8 @@ Mathematically, an MDP is simply a quintuplet $(\mathcal S, \mathcal A, r, p)$ w
 \end{definition*}
 
 % , defining $s(t)$, the state at time $t$, as the position in state space.
-The process has $memory$ if the next state depends not only on the current state
-but also on a finite number of past states.
-Rational probabilistic planning can thus be reformulated
-as a standard memoryless Markov process by simply expanding the
-definition of the state $s$ to include experience episodes of the past.
-This adds the capacity for memory, since then, the next state depends not only on the current state but also on a finite number of past states. This is precisely what Partially Observable MDPs (POMDPs) do ~\citep{starkweather2017dopamine,o2006making}.
-Nevertheless, this mathematical procedure in POMDPs only accounts for implicit $memory$. Since the current paper is aiming at both plausibility at the behavioral and neural level, we will address later in the paper how our model captures the neurophysiological constraints of the DMN and can also account for the explicit part of $memory$ from a human agent perspective.
+The process has $memory$ if the next state depends not only on the current state but also on a finite number of past states. Rational probabilistic planning can thus be reformulated as a standard memoryless Markov process by simply expanding the definition of the state $s$ to include experience episodes of the past. This adds the capacity for memory, since then, the next state depends not only on the current state but also on a finite number of past states. This is precisely what Partially Observable MDPs (POMDPs) aim to realize ~\citep{starkweather2017dopamine,o2006making}.
+Nevertheless, this mathematical property in POMDPs mostly accounts for implicit $memory$. Since the current paper is focused on both plausibility at the behavioral and neurobiological level, we will address below how our model captures the neurophysiological constraints of the DMN and can also account for the explicit part of $memory$ characteristic for human agents.
 
 \paragraph*{Why MDPs ?} One may wonder whether MDP models are applicable to something as complex as human behavior. For instance, financial trading is largely a manifestation of strategic decision-making of interacting human agents. According to how the market responds, the agent incurs definite gain or loss as environmental feedback of the executed financial actions. Recent research on automatizing market exchanges by algorithmic trading has successfully used MDPs as a framework for modeling these sophisticated behavioral process  ~\citep{brazdil2017,yang15,yang14,yang12,dempster2006,hult2010}. ~\citep{abergel2017} is an excellent reference with the mathematical details on how MDPs can be readily exploited in the financial world.
 %
@@ -1452,8 +1440,7 @@ This is because expected consequences of action choices can be well evaluated al
 % Much recent work points to MCMC or stochastic sampling-based approximations as a unifying framework for understanding how Bayesian inference may work practically across all these levels, in minds, brains, and machines. \textbf{XXX elvis: refs needed in last sentence. Plus, should be really bring up Bayesian?}
 
 \paragraph*{On implicit and explicit memory in the current model.}
-Markov Processes are memoryless but this is possible mathematically to artificially insert the previous states of such model into the current state. While this may partially account for implicit memory at the behavioral level, it does not explain the underlying implementation at the neurophysiological level nor accounts for the explicit part of memory.
-The implicit memory-based processing is already present in our MDP account of DMN function; it occurs in 3 three different forms: a) the action policy, b) the value function $\textemdash$as both of these are a result/product of the past$\textemdash$ and c) the deep architecture with many non-linear links in the hierarchical connections as realized by biological neural networks. Indeed, we reason about the brain has deep neural networks that present an implicit form of information compression obtained from life experience. This memory traces are implicitly stored in the neural machinery and can be retrieve as a form of Knowledge by simulation of action rather than accessed as a stored explicit representation \citep{pezzulo2011grounding}. The neural processes in the hippocampus can be seen as MCMC sampling from a formal statistical level but those memory recall are also the basis for scene construction processes across time-scales such as in the semantic hypothesis \citep{schacter2007remembering,Axelrod2017}. In a complementary way, neural encoding of reward information is not limited to value but incorporates specific information about the identity of the reward outcome, the predictive stimulus, or the action necessary to obtain the reward \citep{kahnt2017decade}.
+Markov Processes are memoryless but this it is mathematically feasible to insert the previous states of such model into the current state. While this may partially account for implicit memory at the behavioral level, it may not explain the underlying implementation at the neurophysiological level nor accounts for the explicit part of memory. Implicit memory-based processing arises in our MDP account of DMN function in three different forms: successive updates of a) the action policy and b) the value function, both being products of the past and c) the deep non-linear links in the hierarchical connections realized by biological neural networks. Indeed, we reason about the brain has deep neural networks that present an implicit form of information compression obtained from life experience. Such memory traces are implicitly stored in the neural machinery and can be retrieve as a form of knowledge during simulation of action rather than accessed as a stored explicit representation \citep{pezzulo2011grounding}. The neural processes in the hippocampus can be seen as MCMC sampling from a formal statistical level but those memory recall are also the basis for scene construction processes across time-scales such as in the semantic hypothesis \citep{schacter2007remembering,Axelrod2017}.
 
 \subsection{Putting everything together}
 The DMN is today known to consistently increase in neural
