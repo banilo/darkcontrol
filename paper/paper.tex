@@ -1998,6 +1998,14 @@ overcome a number of the technical limits of the wake-sleep algorithm
 by using a reparametrization maneuver, which makes it possible to do differential calculus on random sampling procedures without exploding variance. As a result, unlike the wake-sleep algorithm
 for minimizing free energy, VAEs can be efficiently trained via back-propagation of prediction errors.
 
+On another front, since theories based on the FEP \citep{friston2010free,fristonAIorRL}
+conceptualize ongoing behavior
+in an organism to be geared towards the surprise-minimizing goal,
+an organism entering a dark room
+% \footnote{\textit{Dark} is used here as an allegory to indicate the complete absence of any \textit{external} sensory input.}
+(Fig. \ref{fig:darkroom}) would strive to remain in this location
+because its sensory inputs are perfectly predictable
+given the environmental state \citep{darkroom2012}.
 \begin{wrapfigure}{r}{.37\linewidth}
   \centering
   \includegraphics[width=1.\linewidth]{darkroom_resized.png}
@@ -2010,18 +2018,8 @@ for minimizing free energy, VAEs can be efficiently trained via back-propagation
   }
   \label{fig:darkroom}
 \end{wrapfigure}
-
-On another front, since theories based on the FEP \citep{friston2010free,fristonAIorRL}
-conceptualize ongoing behavior
-in an organism to be geared towards the surprise-minimizing goal,
-an organism entering a dark room
-% \footnote{\textit{Dark} is used here as an allegory to indicate the complete absence of any \textit{external} sensory input.}
-(Fig. \ref{fig:darkroom}) would strive to remain in this location
-because its sensory inputs are perfectly predictable
-given the environmental state \citep{darkroom2012}.
-However, such a behavioral tendency is
-seldom observed in animals or humans in the real world: In a dark room,
-intelligent agents would search for light sources to \textit{explore}
+However, such a behavior is seldom observed in animals or humans in the
+real world: In a dark room, intelligent agents would search for light sources to \textit{explore}
 the surroundings or leave the exit the room.
 Defenders of the FEP have retorted by advancing the ``full package'' \citep{darkroom2012}:
 FEP is proposed to be multi-scale and there would be a meta-scale at which the organism would
