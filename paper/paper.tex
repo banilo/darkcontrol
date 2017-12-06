@@ -223,8 +223,10 @@ that tries to explain \textit{how}
 the DMN may implement
 continuous evaluation and prediction of the environment to guide behavior.
 %
-DMN function is recast in terms of
-control theory and reinforcement learning by basing it on Markov decision processes.
+% DMN function is recast in terms of
+% control theory and reinforcement learning by basing it on Markov decision processes.
+%
+Specifically, we answer the question whether the neurobiological properties of the default mode network collectively provide the computational building blocks necessary for a Markov Decision Process.
 %
 We argue that our formal account of DMN function naturally accommodates as special cases
 the previously proposed cognitive accounts on
@@ -340,6 +342,10 @@ reinforcement learning (RL).
 An intelligent agent improves the interaction with the environment
 by continuously updating its computation of value estimates and action predispositions
 through integration of feedback outcomes.
+That is, ``[agents], with their actions, modify the environment and in doing so partially determine their next stimuli, in particular stimuli that are necessary for triggering the next action''
+\citep{pezzulo2011grounding}.
+Agents with other behavioral policies therefore sample different
+distributions of action-perception trajectories \citep{ghavamzadeh2015bayesian}.
 Henceforth,
 \textit{control} refers to the influence that an agent exerts when interacting
 with the environment to reach preferred states.
@@ -373,7 +379,8 @@ exploratory action with longer-term gratification.
 We argue that DMN implication in many
 advanced cognitive processes in humans
 can be recast as prediction error minimization
-based on probabilistic mental simulations,
+based on probabilistic mental simulations
+- ``covert forms of action and perception'' \citep{pezzulo2011grounding} -,
 thus maximizing action outcome across multiple time scales.
 Such a purposeful optimization objective
 may be solved by a stochastic approximation
@@ -1002,7 +1009,8 @@ As such, we aim to expand MDPs as a useful model from "online" decision-making t
 
 
 \paragraph*{Towards Model-free reinforcement learning for the DMN.}
-Model-free RL can be plausibly realized in the human brain \citep{doherty2015structure}. Indeed,
+Model-free RL can be plausibly realized in the human brain \citep{doherty2015structure, daw2014algorithmic}.
+Indeed,
 it has been proposed \citep{gershman2015computational} that a core property of human intelligence  underlie improvement
 of expected utility outcomes as a strategy for action choice in uncertain
 environments, a situation perfectly captured by the formalism of MDPs.
@@ -1242,9 +1250,13 @@ As such,
 ``cognitive branching'' operations for nested processing of behavioral strategies
 are likely to
 entail secondary reallocation of attention and working-memory resources.
-Further neuroimaging experiments \citep{braver2002role} corroborated
+Further neuroimaging experiments corroborated
 the prefrontal DMN to subserve
-``processes related to the management and monitoring of sub-goals while maintaining information in working memory''.
+``processes related to the management and monitoring of sub-goals while
+maintaining information in working memory''
+\citep{braver2002role}
+and to functionally couple with the hippocampus conditioned by ``deep versus shallow planning''
+\citep{kaplan2017neural}.
 %
 Moreover,
 neurological patients with lesions in this DMN region were reported
@@ -1415,7 +1427,8 @@ are attracted and absorbed by the optimal $Q$-value function $Q^*$ defined impli
 % the well-known TD update rule \citep{sutton1998reinforcement}.
 
 \subsubsection{Does the hippocampus subserve MCMC sampling?}
-In RL, MCMC simulation is a common means to update the agent's belief state.
+In RL, MCMC simulation is a common means to update the agent's belief state
+by stochastic sampling around states and possible transitions \citep{daw2014algorithmic}.
 % \citep{silver2010monte}.
 MCMC simulation provides a simple method for evaluating the value of a state.
 They provide an effective mechanism both for tree search (of the considered
@@ -1430,9 +1443,12 @@ the HC could contribute to synthesizing imagined sequences of world states,
 actions and rewards \citep{aronov2017, chao2017interaction, boyer2008evolutionary}.
 These simulations of experience batches
 would be used to update the value function, without ever looking inside the black box describing the model's dynamics \citep{lavilleon2015}.
+A neuroimaging experiment in humans for instance identified hippocampal signals that specifically preceded upcoming choice performance in prospective planning in new environments
+\citep{kaplan2017neural}.
 This would be a simple control algorithm by evaluating all legal actions and selecting the action with
 highest expected cumulative rewards.
 In MDPs, MCMC simulation provides an effective mechanism both for tree search and for belief-based state updates, breaking the curse of dimensionality and allowing much greater scalability than has previously been possible \citep{silver2016mastering}.
+This is because expected consequences of action choices can be well evaluated although only a subset of the states are actually considered \citep{daw2014algorithmic}.
 % Much recent work points to MCMC or stochastic sampling-based approximations as a unifying framework for understanding how Bayesian inference may work practically across all these levels, in minds, brains, and machines. \textbf{XXX elvis: refs needed in last sentence. Plus, should be really bring up Bayesian?}
 
 \paragraph*{On implicit and explicit memory in the current model.}
@@ -1441,21 +1457,25 @@ The implicit memory-based processing is already present in our MDP account of DM
 
 \subsection{Putting everything together}
 The DMN is today known to consistently increase in neural
-  activity when humans engage in cognitive processes that are detached from
-  the current sensory environment. Additionally,
-  this network was proposed to be situated
-  at the top of the brain network hierarchy, with
-  the subordinate salience and dorsal attention network in the middle and
-  the unimodal sensory cortices at the bottom
-  \citep{carhart2010default, margulies2016situating}.
-  Its putative involvement in thinking about the past,
-  hypothetical experiences, and the future
-  appears to tie in with the implicit computation of
-  action and state cascades as a function of what happened in the past.
-  A policy matrix encapsulates the repertoire of possible actions
-    on the world given a current state.
-    The policy matrix encodes the probabilites of
-    choosing actions to be executed in a certain situation.
+activity when humans engage in cognitive processes that are relatively detached from
+the current sensory environment.
+
+The more familiar and predictable the current environment, the more resources remain for allocating DMN activity to MDP processes extending beyond the present time and sensory context. In line with this perspective, DMN engagement was shown to heighten and relate to effective behavioral responses in the practiced phase of a demanding cognitive flexibility task, as compared to acquisition phase when participants learned context-specific rules. This involvement in automated decision-making lead the authors to propose an ``autopilot'' role for the DMN \citep{vatansever2017pnas}, which may contribute to optimizing control of the organism in general. Among all DMN nodes, the RTPJ has probably a most evident role as network-switching relay calibrating between processing of environment-engaged versus internally generated information \citep{downar2000multimodal, golland2006extrinsic, bzdok2013tpj}.
+
+Additionally,
+this network was proposed to be situated
+at the top of the brain network hierarchy, with
+the subordinate salience and dorsal attention network in the middle and
+the unimodal sensory cortices at the bottom
+\citep{carhart2010default, margulies2016situating}.
+Its putative involvement in thinking about the past,
+hypothetical experiences, and the future
+appears to tie in with the implicit computation of
+action and state cascades as a function of what happened in the past.
+A policy matrix encapsulates the repertoire of possible actions
+on the world given a current state.
+The policy matrix encodes the probabilites of
+choosing actions to be executed in a certain situation.
 The DMN may subserve
   constant exploration of possible action trajectories and
   nested estimaton of their
@@ -1489,6 +1509,11 @@ a human has however never actually encountered (i.e., d\'{e}j\`{a} vu effect).
 While such a situation may not have been experienced in the physical world,
 the DMN may have previously stochastically generated, evaluated, and adapted to
 such a randomly synthesized situation.
+Generated representations arguably are ``internally manipulable,
+and can be used for attempting actions internally,
+before or instead of acting in the external reality,
+and in diverse goal and sensory contexts, i.e. even outside the context in which they were learned''
+\citep{pezzulo2011grounding}.
 In the absence of environmental input and feedback
 (e.g., mind-wandering or sleep),
 mental scene construction allows for pseudo-experiencing possible
@@ -1721,6 +1746,8 @@ represent neural processes that are likely to
 build on abstract world knowledge and logical associations
 for integrating the constituent elements in rich and coherent mental scenes
 \citep{schacter2007remembering}.
+``[P]redictions and simulations are not only automatically elicited by external events but can be endogenously generated when needed. [...] The mechanism of access via simulation could be a widespread method for accessing and producing knowledge, and represents a valid alternative to the traditional idea of storage and retrieval''
+\citep{pezzulo2011grounding}.
 Such scene construction processes could contribute to interpreting the
 present and foretelling the future.
 Further,
