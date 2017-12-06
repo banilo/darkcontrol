@@ -291,7 +291,7 @@ are responsible for higher-order control of human behavior.
 Our functional account follows the notion of
 ``a hierarchy of brain systems with
 the DMN at the top and the salience and dorsal attention systems
-at intermediate levels, above thalamic and unimodal sensory
+at intermediate levels, above thalamic and primary sensory
 cortex'' \citep{carhart2010default}.
 
 
@@ -339,7 +339,7 @@ expected futures to optimize behavioral performance.
 Formally, a particularly attractive framework
 to describe, quantify, and predict intelligent systems, such as the brain,
 is proposed to be the combination of control theory and
-reinforcement learning (RL).
+reinforcement learning (RL). 
 An intelligent agent improves the interaction with the environment
 by continuously updating its computation of value estimates and action predispositions
 through integration of feedback outcomes.
@@ -373,6 +373,8 @@ maps environmental objects and events (i.e., states) to expected rewards.
 Switching between states reduces to a sequential processing model.
 Informed by outcomes of performed actions, neural computation reflected in
 DMN dynamics could be constantly shaped by prediction error through feedback loops.
+This computational account of DMN will be described in the mathematical framework of Markov Decision Processes (MDPs). MDPs indeed address specifically the case of decision making in stochastic context with reward feedback.
+
 Such an RL account of DMN function can naturally embed human behavior
 into the tension between exploitative action with immediate gains and
 exploratory action with longer-term gratification.
@@ -387,6 +389,7 @@ Such a purposeful optimization objective
 may be solved by a stochastic approximation
 based on a brain implementation of Markov Chain Monte Carlo (MCMC) sampling.
 Even (unavoidably) imperfect memory recall,
+Even necessarily imperfect memory recall,
 random day-time mind-wandering, and
 seemingly arbitrary dreams during sleep
 may provide randomly sampled blocks of pseudo-experience instrumental to iteratively
@@ -408,12 +411,7 @@ Finally, we detail how our process model relates
 to previous accounts of DMN function and
 we derive explicit hypotheses to be tested in future neuroscience
 experiments (Box 2).
-At this stage, it is important to clarify how different levels of observation
-are at play in the current account. A process model is not solely intended to 
-capture behavior of the agent but also the neurocomputational specifics of the agent.
-In the following, we will use the word ``inference'' when describing the formal aspects
-of the statistical model, the word ``prediction'' when discussing the neural implementation,
-and words like ``forecast'' or ``forsee'' when refering to the behavior of the agent.
+At this stage, we emphasize the importance of differentiating which levels of observation are at play in the present account. A process model is not solely intended to capture behavior of the agent, such as cognitive accounts of DMN function, but also the neurocomputational specifics of the agent. Henceforth, we will use ``inference`` when describing aspects of the statistical model, ``prediction`` when referring to the neurobiological implementation, and words like ``forecast`` or ``forsee`` when referring to the behavior of the agent.
 
 
 \section{Known neurobiological properties of the default mode network}
@@ -920,8 +918,7 @@ to calibrate action trajectories for
 reward outcome maximization at different time scales.
 Such a purposeful optimization objective
 may be solved by a stochastic approximation
-based on a brain implementation of MCMC sampling
-\citep{tenenbaum2011grow}.
+based on a brain implementation of MCMC sampling.
 
 \begin{figure}[!h]
   \centering
@@ -978,13 +975,8 @@ Mathematically, an MDP is simply a quintuplet $(\mathcal S, \mathcal A, r, p)$ w
 \end{definition*}
 
 % , defining $s(t)$, the state at time $t$, as the position in state space.
-The process has $memory$ if the next state depends not only on the current state
-but also on a finite number of past states.
-Rational probabilistic planning can thus be reformulated
-as a standard memoryless Markov process by simply expanding the
-definition of the state $s$ to include experience episodes of the past.
-This adds the capacity for memory, since then, the next state depends not only on the current state but also on a finite number of past states. This is precisely what Partially Observable MDPs (POMDPs) do ~\citep{starkweather2017dopamine,o2006making}.
-Nevertheless, this mathematical procedure in POMDPs only accounts for implicit $memory$. Since the current paper is aiming at both plausibility at the behavioral and neural level, we will address later in the paper how our model captures the neurophysiological constraints of the DMN and can also account for the explicit part of $memory$ from a human agent perspective.
+The process has $memory$ if the next state depends not only on the current state but also on a finite number of past states. Rational probabilistic planning can thus be reformulated as a standard memoryless Markov process by simply expanding the definition of the state $s$ to include experience episodes of the past. This adds the capacity for memory, since then, the next state depends not only on the current state but also on a finite number of past states. This is precisely what Partially Observable MDPs (POMDPs) aim to realize ~\citep{starkweather2017dopamine,o2006making}.
+Nevertheless, this mathematical property in POMDPs mostly accounts for implicit $memory$. Since the current paper is focused on both plausibility at the behavioral and neurobiological level, we will address below how our model captures the neurophysiological constraints of the DMN and can also account for the explicit part of $memory$ characteristic for human agents.
 
 \paragraph*{Why MDPs ?} One may wonder whether MDP models are applicable to something as complex as human behavior. For instance, financial trading is largely a manifestation of strategic decision-making of interacting human agents. According to how the market responds, the agent incurs definite gain or loss as environmental feedback of the executed financial actions. Recent research on automatizing market exchanges by algorithmic trading has successfully used MDPs as a framework for modeling these sophisticated behavioral process  ~\citep{brazdil2017,yang15,yang14,yang12,dempster2006,hult2010}. ~\citep{abergel2017} is an excellent reference with the mathematical details on how MDPs can be readily exploited in the financial world.
 %
@@ -1072,7 +1064,7 @@ modeling this accumulation is the time-discounted cumulative reward% function
   G^\pi = \sum_{t=0}^{\infty}\gamma^{t}R_t = R_0 + \gamma R_1 + \gamma^2 R_2 + \ldots + \gamma^tR_t + \ldots
 \end{equation}
 This random variable\footnote{Random as it depends both on the environment's dynamic and the
-  policy $\pi$ being played (which can be stochastic).}  measures the cumulative reward of
+  policy $\pi$ being played (which can be stochastic). The exponential delay discounting function used here refere to the usual formulation in the field of reinforcement learning but psychological experiments may also reveal other discounting regimes \citep{green2004discounting}}  measures the cumulative reward of
 following an action policy $\pi$.
 %
 Note that value buffering may be realized in the vmPFC.
@@ -1446,8 +1438,7 @@ This is because expected consequences of action choices can be well evaluated al
 % Much recent work points to MCMC or stochastic sampling-based approximations as a unifying framework for understanding how Bayesian inference may work practically across all these levels, in minds, brains, and machines. \textbf{XXX elvis: refs needed in last sentence. Plus, should be really bring up Bayesian?}
 
 \paragraph*{On implicit and explicit memory in the current model.}
-Markov Processes are memoryless but this is possible mathematically to artificially insert the previous states of such model into the current state. While this may partially account for implicit memory at the behavioral level, it does not explain the underlying implementation at the neurophysiological level nor accounts for the explicit part of memory.
-The implicit memory-based processing is already present in our MDP account of DMN function; it occurs in 3 three different forms: a) the action policy, b) the value function $\textemdash$as both of these are a result/product of the past$\textemdash$ and c) the deep architecture with many non-linear links in the hierarchical connections as realized by biological neural networks. Indeed, we reason about the brain has deep neural networks that present an implicit form of information compression obtained from life experience. This memory traces are implicitly stored in the neural machinery and can be retrieve as a form of Knowledge by simulation of action rather than accessed as a stored explicit representation \citep{pezzulo2011grounding}. The neural processes in the hippocampus can be seen as MCMC sampling from a formal statistical level but those memory recall are also the basis for scene construction processes across time-scales such as in the semantic hypothesis \citep{schacter2007remembering,Axelrod2017}. In a complementary way, neural encoding of reward information is not limited to value but incorporates specific information about the identity of the reward outcome, the predictive stimulus, or the action necessary to obtain the reward \citep{kahnt2017decade}.
+Markov Processes are memoryless but this it is mathematically feasible to insert the previous states of such model into the current state. While this may partially account for implicit memory at the behavioral level, it may not explain the underlying implementation at the neurophysiological level nor accounts for the explicit part of memory. Implicit memory-based processing arises in our MDP account of DMN function in three different forms: successive updates of a) the action policy and b) the value function, both being products of the past and c) the deep non-linear links in the hierarchical connections realized by biological neural networks. Indeed, we reason about the brain has deep neural networks that present an implicit form of information compression obtained from life experience. Such memory traces are implicitly stored in the neural machinery and can be retrieve as a form of knowledge during simulation of action rather than accessed as a stored explicit representation \citep{pezzulo2011grounding}. The neural processes in the hippocampus can be seen as MCMC sampling from a formal statistical level but those memory recall are also the basis for scene construction processes across time-scales such as in the semantic hypothesis \citep{schacter2007remembering,Axelrod2017}.
 
 \subsection{Putting everything together}
 The DMN is today known to consistently increase in neural
@@ -1460,7 +1451,7 @@ Additionally,
 this network was proposed to be situated
 at the top of the brain network hierarchy, with
 the subordinate salience and dorsal attention network in the middle and
-the unimodal sensory cortices at the bottom
+the primary sensory cortices at the bottom
 \citep{carhart2010default, margulies2016situating}.
 Its putative involvement in thinking about the past,
 hypothetical experiences, and the future
@@ -1476,7 +1467,7 @@ The DMN may subserve
   constant exploration of possible action trajectories and
   nested estimaton of their
   cumulative reward outcomes. Implicit computation of future choices
-  provides an explanation for the
+  provides a potential explanation for the
   evolutionary emergence and practical usefulness of
   mind-wandering at day-time and dreams during sleep
   in humans.
@@ -1554,13 +1545,13 @@ in the sensory environment.
 
 \item Experiment (Humans): We hypothesize a functional dissociation between computations for behavioral policy versus adapting stimulus-value associations as these are conceivably implemented in different subsystems of the DMN. We first expect that fMRI signals in the right temporo-parietal junction can predict behavioral changes caused by adaptation in the action choice tendencies (policy matrix) related to non-value-related prediction error. Second, fMRI signals in the ventromedial prefrontal cortex should predict behavioral changes caused by adaptation in value estimation (value matrix) due to reward-related stimulus-value association. We finally predict that fMRI signals in the posteromedial cortex, as a potential global information integrator, is able to predict shifts in overt behavior based on previous adaptations in policy or value estimation.
 
-\item Experiment (Animals): We hypothesize that experience replay for browsing problem solutions subserved by the DMN is necessary for choice behavior in mice. Hippocampal single-cell recordings have shown that neural patterns during experimental choice behavior are reiterated during sleep and before make analogous choices in the future. Necessity of the DMN, in addition to the hippocampus, for “mind-searching” actions during choice behavior can be demonstrated by causal disruption of DMN regions, such as circumscribed brain lesion or optogenetic intervention in the inferior parietal and prefrontal cortices.
+\item Experiment (Animals): We hypothesize that experience replay for browsing problem solutions subserved by the DMN is necessary for choice behavior in mice. Hippocampal single-cell recordings have shown that neural patterns during experimental choice behavior are reiterated during sleep and before making analogous choices in the future. Necessity of the DMN, in addition to the hippocampus, for “mind-searching” actions during choice behavior can be demonstrated by causal disruption of DMN regions, such as circumscribed brain lesion or optogenetic intervention in the inferior parietal and prefrontal cortices.
 
-\item Experiment (Humans): We hypotherize that time horizon should be modulated by different factors such as age, stress, and impulsivity. Using a temporal discounting task, we can measure how the time horizon could be affected at the behavioral level, and then trace back its potential representation at the neural level. Experimental design can be between groups (by age or with a impulsive population like chronic gamblers or drug addicts), or within group using a stress. 
+\item Experiment (Humans): We hypothesize that the relevant time horizon is modulated by various factors such as organism age, acute stress, and time-enduring impulsivity traits. Using a temporal discounting experiment, it can be measured how the time horizon could be affected at the behavioral level, and then trace back its potential representation at the neural level. The experiment can be designed to examine between-group (by age or with a impulsive population like chronic gamblers or drug addicts) and within group effects using a stress; and brought in context with the participant’s age and impulsivity tendencies.
 
 % To exam-ine this question, Fellows and Farah (2005) investigated the effects of dorsolateral frontal (DLF) and ventromedial frontal (VMF) lobe damage on two aspects of temporal foresight—namely, temporal discounting and the futuretime perspective (measuredby an adaptation of Wallace’s [1956] list of future life events).
 
-\item Experiment (Animals): how synaptic epigenesis between DMN nodes can form a neural correlate of the policy matrix update? % Simulations:
+\item Experiment (Humans \& Animals): An additional layer of learning concerns the addition of new entries in the table (i.e., state and action). The framing of the policy matrix is not described here but could be supported by synaptic epigenesis \citep{gisiger_acquisition_2005}. Indeed, the tuning of synaptic weights through learning can stabilize additional patterns of activity by creating new attractors in the neural dynamics landscape \citep{takeuchi_synaptic_2014}. Those attractors will then constrain both the number of factors taken into account by decision processes and the number of behaviors at reach by the agent \citep{wang_decision_2008}. To probe this aspects, we propose two experiments probing how synaptic epigenesis forms a neural correlate of the policy matrix update: one in human, investigating the changes of functional connectivity between DMN nodes following a temporal discounting experiment; the second in rodents, directly testing with anterograde tracing how homolog regions of the DMN present increased synaptic changes compare to other brain regions.
 
 \end{enumerate}
 \end{mdframed}
@@ -1994,6 +1985,14 @@ overcome a number of the technical limits of the wake-sleep algorithm
 by using a reparametrization maneuver, which makes it possible to do differential calculus on random sampling procedures without exploding variance. As a result, unlike the wake-sleep algorithm
 for minimizing free energy, VAEs can be efficiently trained via back-propagation of prediction errors.
 
+On another front, since theories based on the FEP \citep{friston2010free,fristonAIorRL}
+conceptualize ongoing behavior
+in an organism to be geared towards the surprise-minimizing goal,
+an organism entering a dark room
+% \footnote{\textit{Dark} is used here as an allegory to indicate the complete absence of any \textit{external} sensory input.}
+(Fig. \ref{fig:darkroom}) would strive to remain in this location
+because its sensory inputs are perfectly predictable
+given the environmental state \citep{darkroom2012}.
 \begin{wrapfigure}{r}{.37\linewidth}
   \centering
   \includegraphics[width=1.\linewidth]{darkroom_resized.png}
@@ -2006,18 +2005,8 @@ for minimizing free energy, VAEs can be efficiently trained via back-propagation
   }
   \label{fig:darkroom}
 \end{wrapfigure}
-
-On another front, since theories based on the FEP \citep{friston2010free,fristonAIorRL}
-conceptualize ongoing behavior
-in an organism to be geared towards the surprise-minimizing goal,
-an organism entering a dark room
-% \footnote{\textit{Dark} is used here as an allegory to indicate the complete absence of any \textit{external} sensory input.}
-(Fig. \ref{fig:darkroom}) would strive to remain in this location
-because its sensory inputs are perfectly predictable
-given the environmental state \citep{darkroom2012}.
-However, such a behavioral tendency is
-seldom observed in animals or humans in the real world: In a dark room,
-intelligent agents would search for light sources to \textit{explore}
+However, such a behavior is seldom observed in animals or humans in the
+real world: In a dark room, intelligent agents would search for light sources to \textit{explore}
 the surroundings or leave the exit the room.
 Defenders of the FEP have retorted by advancing the ``full package'' \citep{darkroom2012}:
 FEP is proposed to be multi-scale and there would be a meta-scale at which the organism would
