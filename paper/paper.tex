@@ -351,8 +351,6 @@ Henceforth,
 \textit{control} refers to the influence that an agent exerts when interacting
 with the environment to reach preferred states.
 
-
-
 Psychologically,
 the more the ongoing executed task is unknown and unpracticed,
 the less stimulus-independent thoughts occur
@@ -1033,7 +1031,11 @@ offering relevant resources.
 Such knowledge can of course be partly learned from the environment: the agent learns a model for the world alongside learning to make optimal decisions using this model. These methods learn what the effect is going to be of taking an particular action in a particular state. The result is an estimate of the underlying MDP which can then be either solved exactly or approximately, depending on the setting and what is feasible. The main problem then is to "connect the dots", by using dynamic programming --for example.
 
 
-In contrast, model-free methods require no knowledge of the environment (transition probabilities, identities of sensory input, etc.) or representation thereof, and the agent learns which state-action pairs lead to reward through sampling the world in trial-and-error manner, and predicting long-run reward aggregates, using prediction error as an incentive. In so doing, such methods ultimately learn both a policy and  implicit representations of the world / environment. This is what algorithms TD learning~\citep{sutton1998reinforcement}. In terms of number of states, model-based RL scales better than model-free RL; in terms of the time horizon, model-free RL scales better~\citep{strehl2006}. Drawing from a vast literature, we will show that the DMN contains sufficient neurobiological hardware to implement model-free RL, at least in principle.
+In contrast, model-free methods require no knowledge of the environment (transition probabilities, identities of sensory input, etc.) or representation thereof, and the agent learns which state-action pairs lead to reward through sampling the world in trial-and-error manner, and predicting long-run reward aggregates, using prediction error as an incentive. In so doing, such methods ultimately learn both a policy and  implicit representations of the world / environment. This is what algorithms TD learning~\citep{sutton1998reinforcement}.
+The distinction outlined above between model-free and model-based RL is similar to ~\citep{dayan2014}.
+
+In terms of number of states, model-based RL scales better than model-free RL; in terms of the time horizon, model-free RL scales better~\citep{strehl2006}. Drawing from a vast literature, we will show that the DMN contains sufficient neurobiological hardware to implement model-free RL, at least in principle.
+
 
 \subsubsection{Accumulated rewards and policies}
 The behavior of the agent is governed by a \textit{policy}, which maps states of the world
