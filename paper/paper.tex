@@ -636,7 +636,7 @@ in humans \citep{doherty2015structure}.
       Consistent for the left and right reward system, NAc volume in a given subject is
       positively coupled with the vmPFC and HC. The colors are indicative of the (\textcolor{red}{red} = positive,
       \textcolor{blue}{blue} = negative) and relative importance (the lighter the higher) of the regression coefficients.
-  Code for reproduction and visualization:
+  The code for reproduction and visualization:
   \url{www.github.com/banilo/darkcontrol_PCB2018}.
   }
   \label{fig:dmn}
@@ -684,9 +684,9 @@ Its recursive anatomical architecture
 may be specifically designed to allow reconstructing
 entire sequences of experience from memory fragments.
 Indeed,
-hippocampal damage is
+hippocampal damage was
 not only associated with an impairment in re-experiencing the past (i.e., amnesia),
-but also imagination dedicated to one's own future and
+but also forecasting of one's own future and
 imagination of experiences more broadly \citep{hassabis2007patients}.
 
 Mental scenes created by neurological patients with HC lesion exposed a lack of
@@ -703,7 +703,7 @@ such as in planning navigational trajectories
 \citep{pfeiffer2013hippocampal} and
 memory consolidation of choice relevance \citep{lavilleon2015}.
 Congruently,
-London taxi drivers, humans with high performance in spatial navigation,
+London taxi drivers, humans with high performance in forecasting spatial navigation,
 were shown to exhibit increased gray-matter volume in the
 HC \citep{maguire2000navigation}.
 
@@ -720,10 +720,10 @@ have been shown to be re-enacted spontaneously during
 quiet wakefulness and sleep \citep{hartley2014space, o2010play}.
 Moreover, neuronal spike sequences measured in hippocampal place cells of rats
 featured re-occurrence directly after experimental trials
-as well as directly before upcoming experimental trials \citep{diba2007forward}.
+as well as directly before (prediction of) upcoming experimental trials \citep{diba2007forward}.
 Similar spiking patterns in hippocampal neurons during rest and sleep
 have been proposed to be critical in communicating local information
-to the neocortex for long-term storage, potentially also in the regions of the DMN.
+to the neocortex for long-term storage, potentially including DMN regions.
 Moreover, in mice, invasively triggering spatial experience recall
 in the HC during sleep
 has been demonstrated to subsequently alter action choice during wakefulness
@@ -751,23 +751,24 @@ The DMN emerges with its midline structures early in human development
 the right and left TPJs may become fully integrated into this major brain
 network only after birth.
 The TPJs are known to exhibit hemispheric differences
-based on microanatomical properties and gyrification patterns
+based on microanatomical properties and cortical gyrification patterns
 \citep{seghier2013angular}.
 Globally, neuroscientific investigations on hemispheric functional specialization
-have highlighted the right versus left cerebral hemisphere as dominant for
-attentional versus semantic functions
+have highlighted the right cerebral hemisphere as dominant for attentional functions
+and the left side for semantic functions
 \citep{seghier2013angular, bzdok2013tpj, bzdok2016left,
 stephan2007mechanisms}.
 
 
 
-The TPJ in the right-hemispheric DMN (RTPJ)
+The TPJ in the right hemisphere (RTPJ)
 has been shown to be closely related to
 multi-sensory prediction and prediction error signaling.
-It is central for action initiation during goal-directed psychological tasks and for
+This DMN region is probably central for
+action initiation during goal-directed psychological tasks and for
 sensorimotor behavior by integrating multi-sensory attention
 \citep{corbetta2002control}.
-Involvement of this DMN region was repeatedly reported in
+Its involvement was repeatedly reported in
 multi-step action execution \citep{hartmann2005takes},
 visuo-proprioceptive conflict \citep{Balslev2005}, and
 detection of environmental changes across
@@ -777,8 +778,8 @@ Direct electrical stimulation of the human
 RTPJ during neurosurgery was associated with altered perception
 and stimulus awareness \citep{blanke2002neuropsychology}.
 %
-It was argued that the RTPJ encodes actions and ensuing outcomes,
-without necessarily relating those to value estimation
+It was argued that the RTPJ encodes actions and predicted outcomes,
+without necessarily relating these neural processes to value estimation
 \citep{liljeholm2013neural, hamilton2008action,
 jakobs2009effects}.
 Additionally, neural activity in the RTPJ has been proposed to reflect
@@ -790,7 +791,7 @@ as a ‘‘circuit breaker’’ that recalibrates functional control of brain n
 Indeed, neurological patients with RTPJ damage have particular difficulties
 with multi-step actions \citep{hartmann2005takes}.
 In the face of large discrepancies between actual and previously predicted
-environmental events the RTPJ acts as a potential switch between
+environmental events, the RTPJ acts as a potential switch between
 externally-oriented mind sets focussed on the
 sensory environment and internally-oriented mind sets focussed
 on mental scene construction.
@@ -805,7 +806,7 @@ to, instead, deal with unexpected environmental stimuli and events.
 
 
 
-The TPJ in the left-hemispheric DMN (LTPJ),
+The left TPJ of the DMN (LTPJ),
 in turn, has a close relationship to Wernicke's area
 involved in semantic processes, such as in spoken and written language.
 Neurological patients with damage in Wernicke's area
@@ -816,11 +817,11 @@ preserves natural rhythm and normal syntax, yet the
 voiced sentences lack meaning (i.e., aphasia).
 Abstracting from speech interpretations in linguistics
 and neuropsychology,
-the LTPJ mediates access to and integration of world knowledge,
+the LTPJ appears to mediate access to and binding of world knowledge,
 such as required during action considerations
 \citep{binder2011neurobiology, seghier2013angular}.
 Consistent with this view,
-LTPJ damage in humans also entails problems in recognizing
+LTPJ damage in humans also entailed problems in recognizing
 others' pantomimed action towards objects
 without obvious relation to processing explicit language content
 \citep{varney1987locus}.
@@ -834,14 +835,15 @@ verbalized thought (``language of the mind'') was closely related to the LTPJ
 in a pattern analysis of brain volume
 \citep{geva2011neural}.
 Further,
-episodic memory recall and mental imagery strongly draw on
+episodic memory recall and mental imagery to forecast future events strongly draw on
 re-assembling world knowledge.
 Isolated building blocks of world structure get rebuilt
 in internally constructed mental scenarios that
 guide present action choice,
-weigh hypothetical possibilities, and forecast future events.
+weigh hypothetical possibilities, and forecast event outcomes.
 %
-The LTPJ may hence facilitate the automated environmental predictions
+Neural processes in the LTPJ may hence
+contribute to the automated predictions of the environment
 by incorporating experience-derived building blocks of world regularities
 into ongoing action, planning, and problem solving.
 % world -> policy matrix driven computation
@@ -1346,7 +1348,7 @@ the would-be $Q$-value for the state-action pair $(s,a)$ as predicted by the Bel
 \end{equation}
 with the prediction of a parametrized regression model $(s,a)
 \mapsto \tilde{Q}(s, a|\theta_{k-1})$.
-From a neurobiological perspective, experience replay can be manifested as the re-occurrence of neuron spiking sequences that have also occurred during specific prior actions and environmental states. The HC is a strong candidate for contributing to such neural reinstantiation of behavioral episodes as neuroscience experiments have repeatedly indicated in rats, mice, cats, rabbits, songbirds, and monkeys \citep{buhry2011,nokia2010,dave2000,skaggs2007}.
+From a neurobiological perspective, experience replay can be manifested as the re-occurrence of neuron spiking sequences that have also been measured during specific prior actions and environmental states. The HC is a strong candidate for contributing to such neural reinstantiation of behavioral episodes as neuroscience experiments have repeatedly indicated in rats, mice, cats, rabbits, songbirds, and monkeys \citep{buhry2011,nokia2010,dave2000,skaggs2007}.
 
 At the current step $k$, computing an optimal parameter update then corresponds to
 finding the model parameters $\theta_{k}$ which minimize the following mean-squared loss function
