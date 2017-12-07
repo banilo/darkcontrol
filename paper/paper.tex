@@ -864,9 +864,9 @@ RL is an area of machine learning concerned with learning optimal behavioral thr
 with an \textit{environment}, the goal being to maximize some notion of \textit{cumulative reward}.
 The optimal behavior typically
 takes the future into account, as some rewards could be \textit{delayed}.
-Through repeated interactions with the environment,
+Through repeated action on and feedback from the environment,
 the agent learns to reach goals and optimize reward signals
-in an iterative trial-and-error fashion (Fig. \ref{fig:rl}).
+in a trial-and-error fashion (Fig. \ref{fig:rl}).
 At a given moment, each taken \textit{action} $a$ triggers a change
 in the \textit{state} of the environment
 $s \rightarrow s'$, accompanied by environmental feedback signals as \textit{reward}
@@ -883,7 +883,7 @@ a particular action.
 The environment is generally taken as \textit{stochastic},
 that is, changing in random ways. In addition, the environment is only
 \textit{partially observable} in the sense that only limited aspects of the environment's
-state are accessible to the agent's sensory perception.
+state are accessible to the agent's sensory perception
 \citep{starkweather2017dopamine}.
 We assume that volatility of the environment
 is realistic in a computational model which sets out
@@ -912,26 +912,26 @@ explorative action with longer-term reward outcomes
 \citep{dayan2008decision}.
 In short, DMN implication in a diversity of
 particularly advanced cognitive processes
-can be parsimoniously explained as probabilistic mental
-scene of experience simulations coupled with prediction error minimization
+can be parsimoniously explained as instantiating probabilistic mental
+simulations of experience coupled with prediction error minimization
 to calibrate action trajectories for
 reward outcome maximization at different time scales.
 Such a purposeful optimization objective
-may be solved by a stochastic approximation
+may be subserved by a stochastic approximation
 based on a brain implementation of MCMC sampling.
 
 \begin{figure}[!h]
   \centering
   \includegraphics[width=1.\linewidth]{rl2.pdf}
   \caption{\textbf{Reinforcement learning in a nutshell.} Given the current state of the environment,
-    the agent takes an action by following the policy matrix as updated by the Bellman equation. The agent receives a consequential reward and observes the next state. The process goes on until interrupted or a goal state is reached.}
+    the agent takes an action by following the policy matrix as updated by the Bellman equation. The agent receives a triggered reward and observes the next state. The process goes on until interrupted or a goal state is reached.}
   \label{fig:rl}
 \end{figure}
 
 \subsection{Markov decision processes}
-Reinforcement learning (RL) has had great success in many real-world problems, including robotics \citep{ng2004,abbeel2004},
-super-human performance in complex video games \citep{mnih2015},
-and strategic board games like the breakthrough results upon recently on the game of Go \citep{silver2016mastering}, considered to be a golden benchmark problem in artificial intelligence.
+Reinforcement learning (RL) has had considerable success in modeling many real-world problems, including super-human performance in complex video games \citep{mnih2015},
+robotics \citep{ng2004,abbeel2004},
+and strategic board games like the breakthrough results upon recently on the game of Go \citep{silver2016mastering} considered to be a milestone benchmark in artificial intelligence.
 We emphasize that the brain in general, and the DMN in particular,
 is a physical system governed by the laws of
 physics and can be formally described
@@ -950,13 +950,13 @@ An MDP operationalizes a sequential decision process
 in which it is assumed that environment dynamics are determined by a Markov process,
 but the agent cannot directly observe the underlying state.
 Instead, the agent tries to optimize a \textit{subjective} reward
-signal (i.e., is likely to be different for another agent in the same state),
+signal (i.e., likely to be different for another agent in the same state),
 by maintaining probability distributions over actions according to their expected utility.
 % This is performed alongside each transition in the state space of the environment
 %  and maintains a probability distribution over the set of possible
 % states.
 % % , based on a set of observations and observation probabilities.
-This is a minimal set of assumptions that can be made about an environment faced by an agent engaged in active learning.
+This is a minimal set of assumptions that can be made about an environment faced by an agent engaged in interactive learning.
 
 \begin{definition*}
 Mathematically, an MDP is simply a quintuplet $(\mathcal S, \mathcal A, r, p)$ where
@@ -978,7 +978,7 @@ Mathematically, an MDP is simply a quintuplet $(\mathcal S, \mathcal A, r, p)$ w
 The process has $memory$ if the next state depends not only on the current state but also on a finite number of past states. Rational probabilistic planning can thus be reformulated as a standard memoryless Markov process by simply expanding the definition of the state $s$ to include experience episodes of the past. This adds the capacity for memory, since then, the next state depends not only on the current state but also on a finite number of past states. This is precisely what Partially Observable MDPs (POMDPs) aim to realize ~\citep{starkweather2017dopamine,o2006making}.
 Nevertheless, this mathematical property in POMDPs mostly accounts for implicit $memory$. Since the current paper is focused on both plausibility at the behavioral and neurobiological level, we will address below how our model captures the neurophysiological constraints of the DMN and can also account for the explicit part of $memory$ characteristic for human agents.
 
-\paragraph*{Why MDPs ?} One may wonder whether MDP models are applicable to something as complex as human behavior. For instance, financial trading is largely a manifestation of strategic decision-making of interacting human agents. According to how the market responds, the agent incurs definite gain or loss as environmental feedback of the executed financial actions. Recent research on automatizing market exchanges by algorithmic trading has successfully used MDPs as a framework for modeling these sophisticated behavioral process  ~\citep{brazdil2017,yang15,yang14,yang12,dempster2006,hult2010}. ~\citep{abergel2017} is an excellent reference with the mathematical details on how MDPs can be readily exploited in the financial world.
+\paragraph*{Why MDPs ?} One may wonder whether MDP models are applicable to something as complex as human behavior. For instance, financial trading is largely a manifestation of strategic decision-making of interacting human agents. According to how the market responds, the agent incurs definite gain or loss as environmental feedback of the executed financial actions. Recent research on automatizing market exchanges by algorithmic trading has successfully used MDPs as a framework for modeling these sophisticated behavioral process  ~\citep{brazdil2017,yang15,yang14,yang12,dempster2006,hult2010, abergel2017}.
 %
 MDPs have also been effective as a behavioral model in robotics \citep{ng2004,abbeel2004} and in challenging multistep strategy games ~\citep{mnih2015,silver2016mastering,pritzel2017neural}.
 %
@@ -1005,12 +1005,12 @@ As such, we aim to expand MDPs as a useful model from "online" decision-making t
 \paragraph*{Towards Model-free reinforcement learning for the DMN.}
 Model-free RL can be plausibly realized in the human brain \citep{doherty2015structure, daw2014algorithmic}.
 Indeed,
-it has been proposed \citep{gershman2015computational} that a core property of human intelligence  underlie improvement
+it has been proposed \citep{gershman2015computational} that a core property of human intelligence is the improvement
 of expected utility outcomes as a strategy for action choice in uncertain
 environments, a situation perfectly captured by the formalism of MDPs.
 It has also long been proposed \citep{dayan2008decision} that there
-is a rather direct mapping of model-free RL learning algorithms
-onto aspects of the brain.
+can be a direct mapping between model-free RL learning algorithms
+and aspects of the brain.
 The neurotransmitter dopamine could serve
 as a ``teaching signal'' to better estimate value associations
 and action policies by controlling
@@ -1028,8 +1028,7 @@ offering relevant resources.
 \item etc.
 \end{itemize}
 % Model-based assumes knowledge of the environment in terms of the transition probabilities between states, the reward contingencies for state-action pairs, or any form of representation of the environment.
-Such knowledge can of course be partly learned from the environment: the agent learns a model for the world alongside learning to make optimal decisions using this model. These methods learn what the effect is going to be of taking an particular action in a particular state. The result is an estimate of the underlying MDP which can then be either solved exactly or approximately, depending on the setting and what is feasible. The main problem then is to "connect the dots", by using dynamic programming --for example.
-
+Such knowledge can be partly extracted from the environment: the agent learns a model for the world alongside learning to make optimal decisions based on this model. These methods learn what the effect is going to be of taking a particular action in a particular state. The result is an estimate of the underlying MDP which can then be either solved exactly or approximately, depending on the setting and what is feasible.
 
 In contrast, model-free methods require no knowledge of the environment (transition probabilities, identities of sensory input, etc.) or representation thereof, and the agent learns which state-action pairs lead to reward through sampling the world in trial-and-error manner, and predicting long-run reward aggregates, using prediction error as an incentive. In so doing, such methods ultimately learn both a policy and  implicit representations of the world / environment. This is what algorithms TD learning~\citep{sutton1998reinforcement}.
 The distinction outlined above between model-free and model-based RL is similar to ~\citep{dayan2014}.
@@ -1039,9 +1038,9 @@ In terms of number of states, model-based RL scales better than model-free RL; i
 
 \subsubsection{Accumulated rewards and policies}
 The behavior of the agent is governed by a \textit{policy}, which maps states of the world
-to probability distributions over actions.
+to probability distributions over candidate actions.
 Starting at time $t=0$,
-following a policy $\pi$ generates a trajectory of action choices as follows:
+following a policy $\pi$ generates a trajectory of action choices:
 \begin{eqnarray*}
   \begin{split}
     \textbf{choose action: }a_0 &\sim \pi(a|s_0)\\
@@ -2078,18 +2077,18 @@ for the existence and survival of the human species
 to justify constantly high energy costs?
 MDPs motivate an attractive
 formal account of how the human association cortex
-might implement multi-sensory representation and control of the environment to
-optimize the organism's interaction with the world.
+can be thought to implement multi-sensory representation and decision making to
+optimize the organism's intervention on the world.
 % by obtaining reward and avoiding pain.
-This idealized process model explains
-a number of previous experimental observations in the
+This idealized process model accommodates
+a number of previous observations from neuroscience experiments on the
 DMN by simple but non-trivial mechanisms.
 %
 From the view of a Markovian sequential decision process,
-human behavior unfolds by integrating action outcomes from policy matrix (mapping from states to actions which maximize expected cumulative reward; see subsection \ref{sec:policymat})
+human behavior unfolds by inferring cumulative reward outcomes from hypothetical action cascades
 % stored past events
-and extrapolation to
-upcoming events for guiding action choice in the present context.
+and extrapolation from past experience to
+upcoming events for guiding behavior in the present.
 MDPs also provide a mathematical formalism how
 opportunity in the environment can be recursively exploited
 when confronted with challenging decisions.
@@ -2098,31 +2097,35 @@ This functional interpretation may well be compatible with the DMN's
 poorly understood involvement across
 autobiographical memory recall, problem solving,
 abstract reasoning, social cognition,
-as well as delay discounting and self-related prospection.
+as well as delay discounting and self prospection into the future.
+%
 Improvement of the internal world representation
 by injecting stochasticity into the recall of past
 actions and the estimation of action outcomes may explain why
 highly accurate memories have been disfavored in human evolution
-and why human creativity might be adaptive.
+and why human creativity may be adaptive.
 
 
 
+
+A major hurdle in explaining DMN activity from brain-imaging studies has been its very similar engagement across time scales: thinking about the past (e.g., autobiographical memory), thinking about hypothetical presents (e.g., daytime mind-wandering), and thinking about future scenarios (e.g., delay discounting). The MDP account of DMN function offers a natural integration of these a-priori diverging mental processes into a common framework.
+%
 It is an important feature of the proposed artificial intelligence perspective
 on DMN biology that it is practically computable and
-yields falsifiable neuroscientific hypotheses.
+proposes neuroscientific hypotheses that can be put to the test in future research.
 %
-Neuroscience experiments could be designed that operationalize
-the set of action, value, and state variables that govern
+Neuroscience experiments on the DMN should be designed that operationalize
+the set of action, value, and state variables governing
 the behavior of intelligent RL agents.
 %
 At the least, we propose an alternative vocabulary to
 describe, contextualize, and interpret experimental findings in neuroscience studies
-on the DMN.
+on higher-level cognition.
 %
 Ultimately,
 DMN activity may instantiate a holistic integration
 ranging from real experience over purposeful dreams to anticipated futures
-for continued refinement of the organism's fate. Indeed, a major hurdle in explaining DMN activity from brain-imaging studies has been its very similar engagement across time scales: thinking about the past (e.g., autobiographical memory), thinking about hypothetical presents (e.g., dreams during sleep or daytime mind-wandering), and thinking about future scenarios (e.g., prospection or delay discounting). The MDP account of DMN function offers a natural integration of these a-priori diverging mental processes into a common framework. % It is this feature of our functional view that we underline in the referred sentence.
+for continued refinement of the organism's fate.
 
 
 
