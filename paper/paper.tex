@@ -226,7 +226,8 @@ continuous evaluation and prediction of the environment to guide behavior.
 % DMN function is recast in terms of
 % control theory and reinforcement learning by basing it on Markov decision processes.
 %
-Specifically, we answer the question whether the neurobiological properties of the default mode network collectively provide the computational building blocks necessary for a Markov Decision Process.
+Specifically, we answer the question whether the neurobiological properties of the DMN
+collectively provide the computational building blocks necessary for a Markov Decision Process.
 %
 We argue that our formal account of DMN function naturally accommodates as special cases
 the previously proposed cognitive accounts on
@@ -373,10 +374,11 @@ Informed by outcomes of performed actions, neural computation reflected in
 DMN dynamics could be constantly shaped by prediction error through feedback loops.
 This computational account of DMN will be described in the mathematical framework of Markov Decision Processes (MDPs). MDPs indeed address specifically the case of decision making in stochastic context with reward feedback.
 
+
+
 Such an RL account of DMN function can naturally embed human behavior
 into the tension between exploitative action with immediate gains and
 exploratory action with longer-term gratification.
-
 We argue that DMN implication in many
 advanced cognitive processes in humans
 can be recast as prediction error minimization
@@ -392,6 +394,8 @@ random day-time mind-wandering, and
 seemingly arbitrary dreams during sleep
 may provide randomly sampled blocks of pseudo-experience instrumental to iteratively
 optimize the behavior of the organism.
+
+
 
 Evidence from computational modeling of human behavior \citep{kording2004bayesian} and cell recording experiments in ferrets \citep{fiser2004small} suggest that
 the brain is largely dedicated to
@@ -1447,25 +1451,22 @@ Markov Processes are memoryless but this it is mathematically feasible to insert
 The DMN is today known to consistently increase in neural
 activity when humans engage in cognitive processes that are relatively detached from
 the current sensory environment.
+The more familiar and predictable the current environment, the more brain resources may remain for allocating DMN activity to MDP processes extending beyond the present time and sensory context. In line with this perspective, DMN engagement was shown to heighten and relate to effective behavioral responses in the practiced phase of a demanding cognitive flexibility task, as compared to acquisition phase when participants learned context-specific rules. This involvement in automated decision-making has led the authors to propose an ``autopilot'' role for the DMN \citep{vatansever2017pnas}, which may contribute to optimizing control of the organism in general. Among all DMN nodes, the RTPJ is perhaps the most evident candidate for a network-switching relay that calibrates between processing of environment-engaged versus internally generated information \citep{downar2000multimodal, golland2006extrinsic, bzdok2013tpj}.
 
-The more familiar and predictable the current environment, the more resources remain for allocating DMN activity to MDP processes extending beyond the present time and sensory context. In line with this perspective, DMN engagement was shown to heighten and relate to effective behavioral responses in the practiced phase of a demanding cognitive flexibility task, as compared to acquisition phase when participants learned context-specific rules. This involvement in automated decision-making lead the authors to propose an ``autopilot'' role for the DMN \citep{vatansever2017pnas}, which may contribute to optimizing control of the organism in general. Among all DMN nodes, the RTPJ has probably a most evident role as network-switching relay calibrating between processing of environment-engaged versus internally generated information \citep{downar2000multimodal, golland2006extrinsic, bzdok2013tpj}.
 
 Additionally,
-this network was proposed to be situated
+the DMN was proposed to be situated
 at the top of the brain network hierarchy, with
 the subordinate salience and dorsal attention network in the middle and
 the primary sensory cortices at the bottom
 \citep{carhart2010default, margulies2016situating}.
-Its putative involvement in thinking about the past,
-hypothetical experiences, and the future
+Its putative involvement in thinking about 
+hypothetical experiences and future outcomes
 appears to tie in with the implicit computation of
 action and state cascades as a function of
 experienced events and collected feedback from the past.
-
-A policy matrix encapsulates the repertoire of possible actions
-on the world given a current state.
-The policy matrix encodes the probabilites of
-choosing actions to be executed in a certain situation.
+A policy matrix encapsulates the choice probabilities of action repertoire
+on the world given a current situation (i.e., state).
 The DMN may subserve
   constant exploration of possible action trajectories and
   nested estimaton of their
@@ -1487,7 +1488,7 @@ The DMN may subserve
 The HC may contribute to generation of
 perturbed action-transition-state-reward samples
 as batches of pseudo-experience
-(i.e., imagined, hypothesized, and recalled mental scenarios).
+(i.e., recalled, hypothesized, and forecasted mental scenarios).
 The small variations in these experience samplings allow searching
 a larger space of model parameters and possible experiences.
 Taken to its extreme, stochastic recombination of experience
@@ -1498,23 +1499,21 @@ An explanation is thus offered for experiencing seemingly familiar situations th
 a human has however never actually encountered (i.e., d\'{e}j\`{a} vu effect).
 While such a situation may not have been experienced in the physical world,
 the DMN may have previously stochastically generated, evaluated, and adapted to
-such a randomly synthesized situation.
+such a randomly synthesized event.
 Generated representations arguably are ``internally manipulable,
 and can be used for attempting actions internally,
 before or instead of acting in the external reality,
 and in diverse goal and sensory contexts, i.e. even outside the context in which they were learned''
 \citep{pezzulo2011grounding}.
-In the absence of environmental input and feedback
+In the context of scarce environmental input and feedback
 (e.g., mind-wandering or sleep),
-mental scene construction allows for pseudo-experiencing possible
+mental scene construction allows pseudo-experiencing possible
 future scenarios and action outcomes.
-Our formal account of DMN function
-thus acknowledges the unavoidable stochasticity of
-computation in neural systems \citep{faisal2008noise}.
+
 
 
 From the perspective of a model-free RL agent,
-\textit{prediction} in the human brain reduces to
+prediction in the DMN reduces to
 generalization of
 policy and value computations from sampled experiences to
 successful action choices and reward predictions in future states.
@@ -1541,7 +1540,7 @@ new steady state of optimal action decisions in a volatile world.
 
 \begin{mdframed}
   \vspace{1em}
-  \textbf{Box 2: Hypotheses for testing the MDP account of DMN function}
+  \textbf{Box 2: Future studies for testing the MDP account of DMN function}
 \begin{enumerate}
 \item Experiment (Humans): We hypothesize a functional relationship between the DMN closely associated with the occurrence of stimulus-independent thoughts and the reward circuitry. During an iterative neuroeconomic two-player game, fMRI signals in the DMN could be used to predict reward-related signals in the nucleus accumbens across trials in a continuous learning paradigm. We expect that the more DMN activity is measured to be increased, supposedly the higher the tendency for stimulus-independent thoughts, and the more the fMRI signals in the reward circuits should be independent of the reward context
 in the sensory environment.
