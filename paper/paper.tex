@@ -292,7 +292,7 @@ are responsible for higher-order control of human behavior.
 Our functional account follows the notion of
 ``a hierarchy of brain systems with
 the DMN at the top and the salience and dorsal attention systems
-at intermediate levels, above thalamic and primary sensory
+at intermediate levels, above thalamic and unimodal sensory
 cortex'' \citep{carhart2010default}.
 
 
@@ -372,7 +372,7 @@ maps environmental objects and events (i.e., states) to expected rewards.
 Switching between states reduces to a sequential processing model.
 Informed by outcomes of performed actions, neural computation reflected in
 DMN dynamics could be constantly shaped by prediction error through feedback loops.
-This computational account of DMN will be described in the mathematical framework of Markov Decision Processes (MDPs). MDPs indeed address specifically the case of decision making in stochastic context with reward feedback.
+The present computational account of DMN function will be described in the mathematical framework of Markov Decision Processes (MDP). MDPs specifically formalize decision making in stochastic contexts with reward feedback.
 
 
 
@@ -946,7 +946,7 @@ step is sufficiently short.
 
 In artificial intelligence and machine learning, a popular computational model for
 multi-step decision processes in such an environment are
-\textit{Markov decision processes} (MDPs) \citep{sutton1998reinforcement}.
+MDPs \citep{sutton1998reinforcement}.
 % For the remainder of this paper, for the sake of simplicity
 % we use the abbreviation ``MDP'' to refer to the special case
 % of \textit{Partially Observable Markov Decision Processes}.
@@ -1070,8 +1070,12 @@ modeling this accumulation is the time-discounted cumulative reward% function
   \label{eq:cumr}
   G^\pi = \sum_{t=0}^{\infty}\gamma^{t}R_t = R_0 + \gamma R_1 + \gamma^2 R_2 + \ldots + \gamma^tR_t + \ldots
 \end{equation}
-This random variable\footnote{Random as it depends both on the environment's dynamic and the
-  policy $\pi$ being played (which can be stochastic). The exponential delay discounting function used here refere to the usual formulation in the field of reinforcement learning but psychological experiments may also reveal other discounting regimes \citep{green2004discounting}}  measures the cumulative reward of
+This random variable
+
+  \footnote{Random as it depends both on the environment's dynamics and the
+  policy $\pi$ being executed. The exponential delay discounting function used here refers to the usual formulation in the field of reinforcement learning, although psychological experiments may also reveal other discounting regimes \citep{green2004discounting}}
+
+measures the cumulative reward of
 following an action policy $\pi$.
 %
 Note that value buffering may be realized in the vmPFC.
