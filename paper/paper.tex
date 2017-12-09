@@ -194,7 +194,7 @@
 
 \begin{document}
 
-\author{Elvis Dohmatob\textsuperscript{1,2}, Guillaume Dumas\textsuperscript{4,5,6,7}, Danilo Bzdok\textsuperscript{1,2,3}
+\author{Elvis Dohmatob\textsuperscript{1,2}, Guillaume Dumas\textsuperscript{5,6,7,8}, Danilo Bzdok\textsuperscript{1,2,3,4}
 }
 
 \maketitle
@@ -202,10 +202,11 @@
     \textbf{1} INRIA, Parietal Team, Saclay, France\\
     \textbf{2} Neurospin, CEA, Gif-sur-Yvette, France\\
     \textbf{3} Department of Psychiatry, Psychotherapy and Psychosomatics, RWTH Aachen University, Aachen, Germany\\
-    \textbf{4} Institut Pasteur, Human Genetics and Cognitive Functions Unit, Paris, France\\
-    \textbf{5} CNRS UMR 3571 Genes, Synapses and Cognition, Institut Pasteur, Paris, France\\
-    \textbf{6} University Paris Diderot, Sorbonne Paris Cit\'e, Paris, France\\
-    \textbf{7} Centre de Bioinformatique, Biostatistique et Biologie Int\'egrative, Paris, France
+    \textbf{4} JARA-BRAIN, J\"ulich-Aachen Research Alliance, Germany\\
+    \textbf{5} Institut Pasteur, Human Genetics and Cognitive Functions Unit, Paris, France\\
+    \textbf{6} CNRS UMR 3571 Genes, Synapses and Cognition, Institut Pasteur, Paris, France\\
+    \textbf{7} University Paris Diderot, Sorbonne Paris Cit\'e, Paris, France\\
+    \textbf{8} Centre de Bioinformatique, Biostatistique et Biologie Int\'egrative, Paris, France
 }
 
 \begin{abstract}
@@ -380,11 +381,11 @@ Such an RL account of DMN function can naturally embed human behavior
 into the tension between exploitative action with immediate gains and
 exploratory action with longer-term gratification.
 We argue that DMN implication in many
-advanced cognitive processes in humans
+of the most advanced human capacities
 can be recast as prediction error minimization
-based on probabilistic mental simulations
+informed by internally generated probabilistic simulations
 - ``covert forms of action and perception'' \citep{pezzulo2011grounding} -,
-thus maximizing action outcomes across multiple time scales.
+allowing maximization of action outcomes across multiple time-scales.
 Such a purposeful optimization objective
 may be solved by a stochastic approximation
 based on a brain implementation of Markov Chain Monte Carlo (MCMC) sampling.
@@ -428,7 +429,7 @@ in our formal account (section 3).
 \begin{figure}[!h]
   \includegraphics[width=.9\linewidth]{neurobiological_overview_DMN.pdf}
   \caption{\textbf{Default mode network: key functions.}
-  Neurobiological overview of the DMN with its major constituent nodes and
+  Neurobiological overview of the DMN with its major constituent parts and
   the associated functional roles relevant in our functional interpretation.}
   \label{fig:neurobiological_overview_DMN}
 \end{figure}
@@ -440,7 +441,7 @@ the medial prefrontal cortex (mPFC),
 are probably responsible for highest turn-overs
 of energy consumption \citep{raichle2001pnas, raichle_baseline}.
 These metabolic characteristics go hand-in-hand with
-neuroimaging findings that suggested the PMC and mPFC to
+brain-imaging findings that suggested the PMC and mPFC to
 potentially represent the functional core of the DMN
 \citep{andrews2010, hagmann2008mapping}.
 
@@ -589,7 +590,7 @@ with fine-grained adjustment of contextual aspects \citep{yoshida2010neural}.
 % and stored knowledge of world regularities.
 % %
 % Moreover,
-% in a computational neuroimaging experiment,
+% in a computational brain-imaging experiment,
 % dorsomedial PFC activity preferentially processed the consequences of
 % action choices that were considered but not actually executed,
 % whereas ventromedial PFC (vmPFC) activity
@@ -854,7 +855,7 @@ into ongoing action, planning, and problem solving.
 
 
 \section{Reinforcement learning control: a process model for DMN function}
-We now argue the outlined neurobiological properties
+We argue the outlined neurobiological properties
 of the DMN regions
 to be sufficient for implementing all components
 of a full-fledged reinforcement-learning (RL) system.
@@ -864,30 +865,34 @@ estimation of instantaneous and expected delayed reward outcomes
 are key components of intelligent RL agents
 that are plausible to functionally intersect in the DMN.
 
-RL is an area of machine learning concerned with learning optimal behavioral through interactions
-with an \textit{environment}, the goal being to maximize some notion of \textit{cumulative reward}.
+
+
+RL is an area of machine learning concerned with searching optimal behavioral strategies through interactions
+with an \textit{environment} with the goal to maximize some \textit{cumulative reward}.
 The optimal behavior typically
-takes the future into account, as some rewards could be \textit{delayed}.
+takes the future into account as some rewards could be \textit{delayed}.
 Through repeated action on and feedback from the environment,
-the agent learns to reach goals and optimize reward signals
+the agent learns how to reach goals and continuously improve the collection of reward signals
 in a trial-and-error fashion (Fig. \ref{fig:rl}).
 At a given moment, each taken \textit{action} $a$ triggers a change
 in the \textit{state} of the environment
 $s \rightarrow s'$, accompanied by environmental feedback signals as \textit{reward}
-$r = r(s, a,s')$ collected by the agent.
+$r = r(s, a,s')$ obtained by the agent.
 If the collected reward outcome yields a negative value it can be
 more naturally interpreted as \textit{punishment}.
-In this view, the environment is partially controlled by
+In this setting, the environment is partially controlled by
 the action of the agent and the reward can be thought
-of as satisfaction \textemdash or aversion \textemdash accompanying the execution of
+of as satisfaction \textemdash or aversion \textemdash that accompany the execution of
 a particular action.
 % Action may be delayed to achieve substantial increases in expected reward
 % that is expected to grow with time.
 
+
+
 The environment is generally taken as \textit{stochastic},
 that is, changing in random ways. In addition, the environment is only
 \textit{partially observable} in the sense that only limited aspects of the environment's
-state are accessible to the agent's sensory perception
+state are accessible to the agent's sensory input
 \citep{starkweather2017dopamine}.
 We assume that volatility of the environment
 is realistic in a computational model which sets out
@@ -915,11 +920,11 @@ in the tension between exploitative action with immediate gains and
 explorative action with longer-term reward outcomes
 \citep{dayan2008decision}.
 In short, DMN implication in a diversity of
-particularly advanced cognitive processes
-can be parsimoniously explained as instantiating probabilistic mental
+particularly sophisticated human behaviors
+can be parsimoniously explained as instantiating probabilistic
 simulations of experience coupled with prediction error minimization
 to calibrate action trajectories for
-reward outcome maximization at different time scales.
+reward outcome maximization at different time-scales.
 Such a purposeful optimization objective
 may be subserved by a stochastic approximation
 based on a brain implementation of MCMC sampling.
@@ -932,8 +937,11 @@ based on a brain implementation of MCMC sampling.
   \label{fig:rl}
 \end{figure}
 
+
+
+
 \subsection{Markov decision processes}
-Reinforcement learning (RL) has had considerable success in modeling many real-world problems, including super-human performance in complex video games \citep{mnih2015},
+RL has had considerable success in modeling many real-world problems, including super-human performance in complex video games \citep{mnih2015},
 robotics \citep{ng2004,abbeel2004},
 and strategic board games like the breakthrough results upon recently on the game of Go \citep{silver2016mastering} considered to be a milestone benchmark in artificial intelligence.
 % We emphasize that the brain in general, and the DMN in particular,
@@ -964,7 +972,7 @@ This is a minimal set of assumptions that can be made about an environment faced
 \begin{definition*}
 Mathematically, an MDP is simply a quintuplet $(\mathcal S, \mathcal A, r, p)$ where
 \begin{itemize}
-\item $\mathcal S$ is the set of states, such as $\mathcal S = \{\text{happy}, \text{sad}\}$.
+\item $\mathcal S$ is the set of states, such as $\mathcal S = \{\text{happy}, \text{sad}, \text{puzzeled}\}$.
 \item $\mathcal A$ is the set of actions, such as $\mathcal A = \{\text{read}, \text{run},
   \text{laugh}, \text{sympathize}, \text{empathize}\}.$
 \item $r : \mathcal S \times \mathcal A \times \mathcal S \rightarrow \mathbb R$ is the \textit{reward function},
@@ -978,15 +986,15 @@ Mathematically, an MDP is simply a quintuplet $(\mathcal S, \mathcal A, r, p)$ w
 \end{definition*}
 
 % , defining $s(t)$, the state at time $t$, as the position in state space.
-The process has $memory$ if the next state depends not only on the current state but also on a number of past states. Rational probabilistic planning can thus be reformulated as a standard memoryless Markov process by simply expanding the definition of the state $s$ to include experience episodes of the past. This adds the capacity for memory to the model because the next state then depends not only on the current situation but also on previously experienced events, which is the motivation behind Partially Observable MDPs (POMDPs)
+The process has $memory$ if the subsequent state depends not only on the current state but also on a number of past states. Rational probabilistic planning can thus be reformulated as a standard memoryless Markov process by simply expanding the definition of the state $s$ to include experience episodes of the past. This extension adds the capacity for memory to the model because the next state then depends not only on the current situation but also on previously experienced events, which is the motivation behind Partially Observable MDPs (POMDPs)
 \citep{starkweather2017dopamine,o2006making}.
 Nevertheless, this mathematical property of POMDPs mostly accounts for implicit $memory$. Since the current paper is concerned with plausibility at the behavioral and neurobiological level, we will address below how our account can accommodate the neurophysiological constraints of the DMN and the explicit $memory$ characteristics of human agents.
 
-\paragraph*{Why MDPs ?} One may wonder whether MDP models are applicable to something as complex as human behavior. For instance, financial trading is largely a manifestation of strategic decision-making of interacting human agents. According to how the market responds, the agent incurs definite gain or loss as environmental feedback of the executed financial actions. Recent research on automatizing market exchanges by algorithmic trading has successfully used MDPs as a framework for modeling these sophisticated behavioral process  ~\citep{brazdil2017,yang15,yang14,yang12,dempster2006,hult2010, abergel2017}.
+\paragraph*{Why Markov Decision Processes?} One may wonder whether MDP models are applicable to something as complex as human behavior. For instance, financial trading is largely a manifestation of strategic decision-making of interacting human agents. According to how the market responds, the agent incurs gain or loss as environmental feedback of the executed financial actions. Recent research on automatizing market exchanges by algorithmic trading has successfully used MDPs as a framework for modeling these elaborate behavioral dynamics  ~\citep{brazdil2017,yang15,yang14,yang12,dempster2006,hult2010, abergel2017}.
 %
 MDPs have also been effective as a behavioral model in robotics \citep{ng2004,abbeel2004} and in challenging multistep strategy games ~\citep{mnih2015,silver2016mastering,pritzel2017neural}.
 %
-As such, we aim to expand MDPs as a useful model from "online" decision-making to the realms of "offline" mental operations most associated with the DMN.
+As such, we aim to expand MDP applications as a useful model from "online" decision-making to the realms of "offline" behaviors most associated with the DMN.
 
 
 % Indeed a critique could argue that Markov chains are state-machines without memory. These may describe insects, or other behaviorally primitive beings like ATM machines, insects, etc., but won't be sufficient to describe human beings, as for example, human behavior is heavily influenced not only by the current state but by past states as well (memory).
@@ -1006,7 +1014,7 @@ As such, we aim to expand MDPs as a useful model from "online" decision-making t
 % \end{itemize}
 
 
-\paragraph*{Towards Model-free reinforcement learning for the DMN.}
+\paragraph*{Towards model-free reinforcement learning for the DMN.}
 Model-free RL can be plausibly realized in the human brain \citep{doherty2015structure, daw2014algorithmic}.
 Indeed,
 it has been proposed \citep{gershman2015computational} that a core property of human intelligence is the improvement
@@ -1016,7 +1024,7 @@ It has also long been proposed \citep{dayan2008decision} that there
 can be a direct mapping between model-free RL learning algorithms
 and aspects of the brain.
 The neurotransmitter dopamine could serve
-as a ``teaching signal'' to better estimate value associations
+as a 'teaching signal' to better estimate value associations
 and action policies by controlling
 synaptic plasticity in the reward-processing circuitry, including the NAc.
 In contrast, \textit{model-based RL} would start off with some mechanistic assumptions about the dynamics of the world.
@@ -1032,9 +1040,9 @@ offering relevant resources.
 \item etc.
 \end{itemize}
 % Model-based assumes knowledge of the environment in terms of the transition probabilities between states, the reward contingencies for state-action pairs, or any form of representation of the environment.
-Such knowledge can be partly extracted from the environment: the agent learns a model of the world while learning to take optimal decisions based on this model. These methods learn what the effect is going to be of taking a particular action in a particular state. The result is an estimate of the underlying MDP which can then be either solved exactly or approximately, depending on the setting and what is feasible.
+Such knowledge can be partly extracted from the environment: the agent infers a model of the world while learning to take optimal decisions based on the current representation of the environment. These methods learn what the effect is going to be of taking a particular action in a particular state. The result is an estimate of the underlying MDP which can then be either solved exactly or approximately, depending on the setting and what is feasible.
 
-In contrast, model-free methods require no particular knowledge of the environment (transition probabilities, types of sensory input, etc.) or representation thereof. The agent learns which state-action pairs lead to reward through sampling the world in a trial-and-error manner and infers longer-term reward aggregates using environmental feedback information as an incentive. In so doing, model-free agents ultimately learn both an action policy and an implicit representations of the world. Our distinction between model-free and model-based RL is hence similar to previous views \citep{dayan2014}.
+In contrast, model-free methods require no prespecified knowledge of the environment (transition probabilities, types of sensory input, etc.) or representation thereof. The agent infers which state-action pairs lead to reward through sampling the world in a trial-and-error manner and derives longer-term reward aggregates using environmental feedback information as an incentive. In so doing, model-free agents ultimately learn both an action policy and an implicit representations of the world. This distinction between model-free and model-based RL is similar to previous views \citep{dayan2014}.
 
 % In terms of number of states, model-based RL scales better than model-free RL; in terms of the time horizon, model-free RL scales better~\citep{strehl2006}. Drawing from a vast literature, we will show that the DMN contains sufficient neurobiological hardware to implement model-free RL, at least in principle.
 
@@ -1065,14 +1073,14 @@ quantity to optimize is not the instantaneous rewards $r(s, a)$, but a
 \textit{cumulative reward} estimate which takes into account expected reward
 from action choices in the future.
 A common approach to
-modeling this accumulation is the time-discounted cumulative reward% function
+modeling this gathered outcome is the time-discounted cumulative reward% function
 \begin{equation}
   \label{eq:cumr}
   G^\pi = \sum_{t=0}^{\infty}\gamma^{t}R_t = R_0 + \gamma R_1 + \gamma^2 R_2 + \ldots + \gamma^tR_t + \ldots
 \end{equation}
 This random variable
   \footnote{Random as it depends both on the environment's dynamics and the
-  policy $\pi$ being executed. The exponential delay discounting function used here refers to the usual formulation in the field of reinforcement learning, although psychological experiments may also reveal other discounting regimes \citep{green2004discounting}}
+  policy $\pi$ being executed. The exponential delay discounting function used here refers to the usual formulation in the field of reinforcement learning, although psychological experiments may also reveal other discounting regimes \citep{green2004discounting}.}
 measures the cumulative reward of
 following an action policy $\pi$.
 %
@@ -1082,7 +1090,7 @@ to the NAc, known to be involved in reward evaluation.
 
 
 
-The goal of the RL agent is then to update this action policy in order
+The goal of the RL agent is then to successively update this action policy in order
 to maximize $G^\pi$ on average (cf. below). In \eqref{eq:cumr},
 the definition of cumulative reward $G^\pi$,
 the constant $\gamma$ $(0 \le \gamma < 1$) is the \textit{reward discount factor},
@@ -1091,7 +1099,7 @@ On the one hand,
 setting $\gamma = 0$ yields perfectly hedonistic behavior.
 An agent with such a shortsighted time horizon is exclusively
 concerned with immediate rewards.
-This is however not compatible with coordinated planning of long-term goal that is
+This is however not compatible with coordinated planning of longer-term agendas that is
 potentially subserved by neural activity in the DMN.
 % \footnote{In which case we can take $T \rightarrow +\infty$, provided the reward function $r$ is bounded.}.
 % The reward discount factor
@@ -1101,14 +1109,16 @@ A positive $\gamma$ can be seen as calibrating risk-seeking trait of the intelli
 that is, the behavioral predispositions related to trading longer delays
 for higher reward outcomes.
 Such an agent puts relatively more emphasis on rewards expected in
-a longer-term future.
-More specifically,
+a more distant future.
+Concretely,
 rewards that are not expected to come within
 % \footnote{\textbf{N.B.:} $\frac{1}{1-\gamma} = 1 + \gamma + \gamma^2 + \gamma^3 + \ldots$}
 $\tau := 1/(1 - \gamma)$
-time steps from the present point are disregarded. This reduces the variance of expected rewards accumulated across
+time steps from the present point are ignored.
+The complexity reduction by time discounting
+alleviates the variance of expected rewards accumulated across
 considered action cascades by limiting the depth of the search tree.
-Given that there is more uncertainty in the farsighted future,
+Given that there is more uncertainty in the far future,
 it is important to appreciate that a stochastic policy estimation
 is more advantageous in many RL settings.
 % For instance, a deterministic strategy in playing rock-paper-scissors can
@@ -1136,9 +1146,9 @@ For the brain,
 $Q^{\pi}(s, a)$ defined in \eqref{eq:qval} provides the subjective
 utility of executing a specific action.
 It thus answers the question
-``What is the expected utility of taking action $a$ in this situation ?''.
+``What is the expected utility of choosing action $a$, and its ramifications, in this situation?''.
 $Q^{\pi}(s,a)$ offers a formalization of optimal behavior that
-may well capture processing aspects of the DMN in human agents.
+may well capture such processing aspects subserved by the DMN in human agents.
 
 % One can also define the state-value function
 
@@ -1188,7 +1198,7 @@ The learning goal is to approach the
 policy $\pi^*$ as close as possible, that is to \text{solve} the MDP.
 Note that \eqref{eq:qlearning} presents merely a definition and
 does not lend itself as a candidate schema
-for solving MDPs with even moderately-sized action and state spaces
+for solving MDPs with even moderately sized action and state spaces
 (i.e., intractability).
 % where $\tilde{Q}(s, a)$ is the current estimate of the state-action value
 % table.
@@ -1215,7 +1225,7 @@ The Bellman equation \eqref{eq:bellman} is a temporal consistency equation which
 a dynamic decomposition of optimal behavior by dividing the $Q$-value function into the immediate
 reward and the discounted rewards of the upcoming states.
 The optimal Q-value operator $Q^*$ is a fixed point for this equation.
-As a consequence of this decomposition, the complicated dynamic programming
+As a consequence of this outcome stratification, the complicated dynamic programming
 problem \eqref{eq:qlearning}
 is broken down into simpler sub-problems at different time points.
 Indeed,
@@ -1239,10 +1249,10 @@ triggered by another (possibly stochastic) behavioral policy.
   \textbf{Box 1: Neural correlates of the Bellman equation in the DMN}
 % \hspace{-1.5em}
 Relating decomposition of consecutive action choices by the Bellman equation
-to neuroscience,
+to neuroscientific insights,
 specific neural activity in the dorsal prefrontal cortex (BA9)
 was linked to processing ``goal-tree sequences''
-in human neuroimaging experiments
+in human brain-imaging experiments
 \citep{koechlin1999role, koechlin2000dissociating}.
 Sub-goal exploration may require multi-task switching
 between cognitive processes
@@ -1253,7 +1263,7 @@ As such,
 ``cognitive branching'' operations for nested processing of behavioral strategies
 are likely to
 entail secondary reallocation of attention and working-memory resources.
-Further neuroimaging experiments corroborated
+Further brain-imaging experiments corroborated
 the prefrontal DMN to subserve
 ``processes related to the management and monitoring of sub-goals while
 maintaining information in working memory''
@@ -1266,7 +1276,7 @@ neurological patients with lesions in this DMN region were reported
 to be impaired in aspects of realizing ``multiple sub-goal scheduling''
 \citep{burgess2000cognitive}.
 Hence,
-the various advanced human mental abilities subserved by the DMN, such as
+the various advanced human abilities subserved by the DMN, such as
 planning and abstract reasoning, can be viewed to involve some form of
 action-decision branching to enable higher-order executive control.
 \end{mdframed}
@@ -1276,7 +1286,7 @@ action-decision branching to enable higher-order executive control.
 \subsubsection{Value approximation and the policy matrix}
 \label{sec:policymat}
 As already mentioned in the previous section, Q-learning~\citep{watkins92} optimizes over the class of
-deterministic policies of the form \eqref{eq:qlearning}. State spaces may be extremely large,
+deterministic policies of the form \eqref{eq:qlearning}. State spaces may be extremely large
 and tracking all possible states and actions may require prohibitively excessive
 computation and memory resources.
 The need of maintaining an explicit table of
@@ -1286,7 +1296,7 @@ At a given time step, the world is in a state $s \in \mathcal S$, and the agent 
 action which it expects to be the most valuable on average, namely
 
 \begin{equation}
-  \pi^{\text{hard-max}}(s) = \argmax_{a \in \mathcal A}\tilde{Q}(s, a|\theta),
+  \pi^{\text{hard-max}}(s) = \argmax_{a \in \mathcal A}\tilde{Q}(s, a|\theta).
   \label{eq:policy}
 \end{equation}
 This defines a mapping from states directly to actions.
@@ -1304,8 +1314,8 @@ over the action space.
 The model
 parameters $\theta$ would correspond to synaptic weights and connection strengths within and between
 brain regions. It is a time-varying neuronal program which dictates how to move from world states $s$ to actions $a$ via the hard-max policy \eqref{eq:policy}.
-The approximating $Q$-value function $\tilde{Q}(s, a|\theta)$ would tell the DMN the (expected) usefulness of taking an action $a$ in state $s$.
-The DMN, and in particular its dmPFC node, could then contribute to the choice, at a given state $s$, of an action $a$ which maximizes these approximate
+The approximating $Q$-value function $\tilde{Q}(s, a|\theta)$ would inform the DMN with the (expected) usefulness of choosing an action $a$ in state $s$.
+The DMN, and in particular its dmPFC part, could then contribute to the choice, at a given state $s$, of an action $a$ which maximizes the approximate
 $Q$-values.
 This mapping from states to actions that is conventionally called
 \textit{policy matrix} \citep{mnih2015,silver2016mastering}.
@@ -1323,7 +1333,7 @@ which take the agent to different table entries.
 
   \subsubsection{Self-training and the loss function}
   \label{sec:self}
-Successful learning in brains and computer algorithms is not possible without a
+Successful learning in brains and computer algorithms may not be possible without a
 defined learning goal \textemdash the \textit{loss function}.
 The action $a$ chosen in state $s$ according to the policy matrix defined in
 \eqref{eq:policy} yields a reward $r$ collected by the agent,
@@ -1353,7 +1363,7 @@ the would-be $Q$-value for the state-action pair $(s,a)$ as predicted by the Bel
 \begin{equation}
   y_k := y_k(s,a,s') =  r + \gamma \max_{a'} \tilde{Q}(s', a'|\theta_{k-1}),
 \end{equation}
-with the prediction of a parametrized regression model $(s,a)
+with the estimation of a parametrized regression model $(s,a)
 \mapsto \tilde{Q}(s, a|\theta_{k-1})$.
 From a neurobiological perspective, experience replay can be manifested as the re-occurrence of neuron spiking sequences that have also been measured during specific prior actions and environmental states. The HC is a strong candidate for contributing to such neural reinstantiation of behavioral episodes as neuroscience experiments have repeatedly indicated in rats, mice, cats, rabbits, songbirds, and monkeys \citep{buhry2011,nokia2010,dave2000,skaggs2007}.
 
@@ -1365,10 +1375,10 @@ finding the model parameters $\theta_{k}$ which minimize the following mean-squa
   = \mathbb E_{(s, a, r, s') \sim \mathcal D}\left[\frac{1}{2}(\tilde{Q}(s, a|\theta_{k}) - y_k)^2\right],
   \label{eq:oracle}
 \end{equation}
-where $y_k$ is defined in \eqref{eq:bellman}.
+where $y_k$ is obtained from \eqref{eq:bellman}.
 % \textbf{We still may need to explain y in the formula with one sentence.}
-A recently proposed, practically successful alternative approach is, to learn this
-representation using an artificial deep neural-network model, leading to the
+A recently proposed, practically successful alternative approach is to learn this
+representation using an artificial deep neural-network model. This approach leads to the
 so-called \textit{deep Q-learning}~\citep{mnih2015,silver2016mastering} family of methods which
 is the current state-of-the-art in RL research.
 The set of model parameters $\theta$ that instantiate the non-linear interactions
@@ -1380,15 +1390,15 @@ of the neural processing hierarchy
 
 \paragraph*{A note on bias in self-training.}
 Some bias may be introduced by self-training due to information shortage caused by the absence of external stimulation.
- One way to address this issue is using importance sampling to replay especially those state-transitions from which there is more to learn \citep{schaul2015, hessel2017}. New transitions are inserted into the replay buffer with maximum priority, thus shifting emphasis to more recent transitions. Such insertion strategy would help counter-balance the bias introduced by the information shortage incurred by absent external input. Other authors noticed \citep{hessel2017} that such prioritized replay reduces the data complexity and the agent shows faster increases in learning performance.
+ One way to address this issue is using importance sampling to replay especially those state-transitions from which there is more to learn for the agent \citep{schaul2015, hessel2017}. New transitions are inserted into the replay buffer with maximum priority, thus shifting emphasis to more recent transitions. Such insertion strategy would help counterbalance the bias introduced by the information shortage incurred by absent external input. Other authors noticed \citep{hessel2017} that such prioritized replay reduces the data complexity and the agent shows faster increases in learning performance.
 
 
 \subsubsection{Optimal control via stochastic gradient descent in the DMN}
 Efficient learning of the entire set of model parameters can effectively be achieved
 via stochastic \textit{gradient descent}, a universal algorithm for finding
 local minima based on the first derivative of the optimization objective.
-Stochastic here means that the true gradient is estimated from batches of training samples,
-which, in our case, corresponds to blocks of experience from the replay memory:
+Stochastic here means that the gradient is estimated from batches of training samples,
+which here corresponds to blocks of experience from the replay memory:
 
 % online stochastic gradient descent is used to minimize the variational objective
 % \eqref{eq:oracle}.
@@ -1401,9 +1411,9 @@ which, in our case, corresponds to blocks of experience from the replay memory:
   \label{eq:oracle}
 \end{equation}
 where the positive constants $\alpha_1, \alpha_2,\ldots$ are learning rates.
-Thus, the next action is taken to drive reward prediction errors
+Thus, the subsequent action is taken to drive reward prediction errors
 to percolate from lower to higher processing layers to modulate the
-choice of future actions. It is a standard result that under special conditions on the learning rates $\alpha_k$ --namely that the learning rates are neither too large nor too small, or more precisely that the sum $\sum_{k=0}^\infty\alpha_k$ diverges while $\sum_{k=0}^\infty\alpha_k^2$--
+choice of future actions. It is known that under special conditions on the learning rates $\alpha_k$ --namely that the learning rates are neither too large nor too small, or more precisely that the sum $\sum_{k=0}^\infty\alpha_k$ diverges while $\sum_{k=0}^\infty\alpha_k^2$--
 the thus generated approximating sequence of $Q$-value functions
 % \footnote{The proof is standard and relies on the Banach Fixed-Point Theorem applied to the Bellman transform.}
 $$\tilde{Q}(.,.|\theta_0) \rightarrow \tilde{Q}(.,.|\theta_1) \rightarrow \tilde{Q}(.,.|\theta_2) \rightarrow \ldots$$
@@ -1423,10 +1433,10 @@ are attracted and absorbed by the optimal $Q$-value function $Q^*$ defined impli
 
 \subsubsection{Does the hippocampus subserve MCMC sampling?}
 In RL, MCMC simulation is a common means to update the agent's belief state
-by stochastic sampling around states and possible transitions \citep{daw2014algorithmic}.
+based on stochastic sampling around states and possible transitions \citep{daw2014algorithmic}.
 % \citep{silver2010monte}.
 MCMC simulation provides a simple method for evaluating the value of a state.
-They provide an effective mechanism both for tree search (of the considered
+This inference procedure provides an effective mechanism both for tree search (of the considered
 action trajectories)
 and for belief state updates, breaking the curse of dimensionality and allowing much greater scalability than an RL agent without stochastic resampling procedures.
 Such methods have scaling as a function of available data (i.e., sample complexity) that
@@ -1437,8 +1447,8 @@ In the human brain,
 the HC could contribute to synthesizing imagined sequences of world states,
 actions and rewards \citep{aronov2017, chao2017interaction, boyer2008evolutionary}.
 These simulations of experience batches
-would be used to update the value function, without ever looking inside the black box describing the model's dynamics \citep{lavilleon2015}.
-A neuroimaging experiment in humans for instance identified hippocampal signals that specifically preceded upcoming choice performance in prospective planning in new environments
+would be used to update the value function, without ever looking inside the black box describing the model's dynamics.
+A brain-imaging experiment in humans for instance identified hippocampal signals that specifically preceded upcoming choice performance in prospective planning in new environments
 \citep{kaplan2017neural}.
 This would be a simple control algorithm by evaluating all legal actions and selecting the action with
 highest expected cumulative rewards.
@@ -1447,13 +1457,13 @@ This is because expected consequences of action choices can be well evaluated al
 % Much recent work points to MCMC or stochastic sampling-based approximations as a unifying framework for understanding how Bayesian inference may work practically across all these levels, in minds, brains, and machines. \textbf{XXX elvis: refs needed in last sentence. Plus, should be really bring up Bayesian?}
 
 \paragraph*{A note on implicit and explicit memory.}
-While Markov Processes are usually memoryless, it is mathematically feasible to incorporate the previous states of such model into the current state. This extension may partially account for implicit memory at the behavioral level, but may not explain the underlying neurobiological implementation or accommodate explicit memory. Implicit memory-based processing arises in our MDP account of DMN function in several different forms: successive updates of a) the action policy and the value function, both being products of the past, as well as b) the deep non-linear relationships within the hierarchical connections of biological neural networks. The brain's adaptive synaptic connections can be thought as deep neural networks affording an implicit form of information compression of life experience. Such memory traces are stored in the neural machinery and can be implicitly retrieve as a form of knowledge during simulation of action rather than accessed as a stored explicit representation \citep{pezzulo2011grounding}. c) Certain neural processes in the hippocampus can be seen as some type of MCMC sampling for memory recall, which can also be a basis for mental imagery across time-scales \citep{schacter2007remembering,Axelrod2017}.
+While Markov processes are usually memoryless, it is mathematically feasible to incorporate the previous states of such model into the current state. This extension may partially account for implicit memory at the behavioral level, but may not explain the underlying neurobiological implementation or accommodate explicit memory. Implicit memory-based processing arises in our MDP account of DMN function in several different forms: successive updates of a) the action policy and the value function, both being products of the past, as well as b) the deep non-linear relationships within the hierarchical connections of biological neural networks. The brain's adaptive synaptic connections can be thought as a deep neural-network architecture affording an implicit form of information compression of life experience. Such memory traces are stored in the neural machinery and can be implicitly retrieved as a form of knowledge during simulation of action rather than accessed as a stored explicit representation \citep{pezzulo2011grounding}. c) Certain neural processes in the hippocampus can be seen as some type of MCMC sampling for memory recall, which can also be a basis for probabilistic simulations across time-scales \citep{schacter2007remembering,Axelrod2017}.
 
 \subsection{Putting everything together}
 The DMN is today known to consistently increase in neural
 activity when humans engage in cognitive processes that are relatively detached from
 the current sensory environment.
-The more familiar and predictable the current environment, the more brain resources may remain for allocating DMN activity to MDP processes extending beyond the present time and sensory context. In line with this perspective, DMN engagement was shown to heighten and relate to effective behavioral responses in the practiced phase of a demanding cognitive flexibility task, as compared to acquisition phase when participants learned context-specific rules. This involvement in automated decision-making has led the authors to propose an ``autopilot'' role for the DMN \citep{vatansever2017pnas}, which may contribute to optimizing control of the organism in general. Among all DMN nodes, the RTPJ is perhaps the most evident candidate for a network-switching relay that calibrates between processing of environment-engaged versus internally generated information \citep{downar2000multimodal, golland2006extrinsic, bzdok2013tpj}.
+The more familiar and predictable the current environment, the more brain resources may remain for allocating DMN activity to MDP processes extending beyond the present time and sensory context. In line with this perspective, DMN engagement was shown to heighten and relate to effective behavioral responses in the practiced phase of a demanding cognitive flexibility task, as compared to acquisition phase when participants learned context-specific rules. This involvement in automated decision-making has led the authors to propose an ``autopilot'' role for the DMN \citep{vatansever2017pnas}, which may contribute to optimizing control of the organism in general. Among all parts of the DMN, the RTPJ is perhaps the most evident candidate for a network-switching relay that calibrates between processing of environment-engaged versus internally generated information \citep{downar2000multimodal, golland2006extrinsic, bzdok2013tpj}.
 
 
 Additionally,
@@ -1467,10 +1477,10 @@ hypothetical experiences and future outcomes
 appears to tie in with the implicit computation of
 action and state cascades as a function of
 experienced events and collected feedback from the past.
-A policy matrix encapsulates the choice probabilities of action repertoire
+A policy matrix encapsulates the choice probabilities of possible actions
 on the world given a current situation (i.e., state).
 The DMN may subserve
-  constant exploration of possible action trajectories and
+  constant exploration of candidate action trajectories and
   nested estimaton of their
   cumulative reward outcomes. Implicit computation of future choices
   provides a potential explanation for the
@@ -1480,17 +1490,17 @@ The DMN may subserve
 \begin{figure}[!h]
   \includegraphics[width=.9\linewidth]{neurobiological_and_rl_overview_DMN.pdf}
   \caption{\textbf{Default mode network:
-  neurobiological implementation of reinforcement learning.}
-  Overview of how the constituent nodes of the DMN (refer to section \ref{sec:nodes}) may
+  possible neurobiological implementation of reinforcement learning.}
+  Overview of how the constituent regions of the DMN (refer to section \ref{sec:nodes}) may
   map onto computational components necessary for an RL agent.}
   \label{fig:rl_process_chart}
 \end{figure}
 
 
-The HC may contribute to generation of
+The HC may contribute to generating
 perturbed action-transition-state-reward samples
 as batches of pseudo-experience
-(i.e., recalled, hypothesized, and forecasted mental scenarios).
+(i.e., recalled, hypothesized, and forecasted scenarios).
 The small variations in these experience samplings allow searching
 a larger space of model parameters and possible experiences.
 Taken to its extreme, stochastic recombination of experience
@@ -1562,8 +1572,8 @@ new steady state of optimal action decisions in a volatile world.
 
 \begin{figure}[!h]
   \includegraphics[width=1\linewidth]{VennDiagram-2017-09-08.pdf}
-  \caption{\textbf{Situating Markov Decision Processes among other accounts of default mode function}
-  This Venn diagram summarizes the relationship between four existing explanations of the functional role of the DMN and our present account. Viewing empirical findings in the DMN from the MDP viewpoint incorporates important aspects of the free energy principle, predictive coding, sentinal hypothesis, and semantic hypothesis.
+  \caption{\textbf{Situating Markov Decision Processes among other accounts of default mode function.}
+  The Venn diagram summarizes the relationship between four previously proposed explanations for the functional role of the DMN and our present account. Viewing empirical findings in the DMN from the MDP viewpoint incorporates important aspects of the free energy principle, predictive coding, sentinal hypothesis, and semantic hypothesis.
   The MDP account may reconcile several strengths of these functional accounts in a process model that simultaneously acknowledges environmental input and behavioral choices as well as the computational and algorithmic properties (How? and What?) underlying higher-order control of the organism.}
   \label{fig:VennDiagram}
 \end{figure}
@@ -1759,10 +1769,10 @@ both the semantic hypothesis and the present formal account based on MDPs
 expose mechanisms of how action considerations could be explored.
 In both accounts,
 there is also little reason to assume that contemplating alternative realities of various
-levels of complexity, abstraction, timescale, and purpose
+levels of complexity, abstraction, time-scale, and purpose
 rely on mechanisms that are qualitatively different. This interpretation concurs with
 DMN activity increases across time, space, and content domains
-demonstrated in many neuroimaging studies
+demonstrated in many brain-imaging studies
 \citep{spreng2009common, laird2009, bzdok2012morality, binder2009}.
 Further, the semantic hypothesis
 and MDP account offer explanations why HC damage does
@@ -1851,7 +1861,7 @@ This horizon of the agent
 is expressed in the $\gamma$ parameter in the MDP account.
 We thus provide answers for the currently unsettled question why the involvement
 of the same neurobiological brain circuit (i.e., DMN) has been documented
-for specific task performances and baseline "house-keeping" functions.
+for specific task performances and baseline 'house-keeping' functions.
 
 
 
@@ -2078,7 +2088,7 @@ for the existence and survival of the human species
 to justify constantly high energy costs?
 MDPs motivate an attractive
 formal account of how the human association cortex
-can be thought to implement multi-sensory representation and decision making to
+can be thought to implement multi-sensory representation and high-level decision-making to
 optimize the organism's intervention on the world.
 % by obtaining reward and avoiding pain.
 This idealized process model accommodates
@@ -2090,8 +2100,8 @@ human behavior unfolds by inferring cumulative reward outcomes from hypothetical
 % stored past events
 and extrapolation from past experience to
 upcoming events for guiding behavior in the present.
-MDPs also provide a mathematical formalism how
-opportunity in the environment can be recursively exploited
+MDPs also provide a formalism how
+opportunity in the environment can be deconstructed, evaluated, and exploited
 when confronted with challenging interdependent decisions.
 %
 This functional interpretation may well be compatible with the DMN's
@@ -2109,7 +2119,7 @@ and why human creativity may be adaptive.
 
 
 
-A major hurdle in understanding DMN activity from cognitive brain-imaging studies has been its similar neural engagement in different time scales: thinking about the past (e.g., autobiographical memory), thinking about hypothetical presents (e.g., daytime mind-wandering), and thinking about predicted scenarios (e.g., delay discounting).
+A major hurdle in understanding DMN activity from cognitive brain-imaging studies has been its similar neural engagement in different time-scales: thinking about the past (e.g., autobiographical memory), thinking about hypothetical presents (e.g., daytime mind-wandering), and thinking about anticipated scenarios (e.g., delay discounting).
 The MDP account of DMN function offers a natural integration of a-priori diverging neural processes into a common framework.
 %
 It is an important advantage of the proposed artificial intelligence perspective
@@ -2125,7 +2135,7 @@ describe, contextualize, and interpret experimental findings in neuroscience stu
 on higher-level cognition.
 %
 Ultimately,
-neural processes in the DMN may instantiate a holistic integration
+neural processes in the DMN may realize a holistic integration
 ranging from real experience over purposeful dreams to predicted futures
 to continuously refine the organism's fate.
 
