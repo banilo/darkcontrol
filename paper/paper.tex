@@ -230,7 +230,7 @@ Specifically, we answer the question whether the neurobiological properties of t
 collectively provide the computational building blocks necessary for a Markov Decision Process.
 %
 We argue that our formal account of DMN function naturally accommodates as special cases
-the previously proposed cognitive accounts on
+the previously proposed functional accounts on
 (1) predictive coding,
 (2) semantic associations, and
 (3) a ``sentinel'' role.
@@ -412,7 +412,7 @@ thus linking two literatures with currently scarce cross-references.
 Finally, we detail how our process model relates
 to previous accounts of DMN function and
 we derive explicit hypotheses to be tested in future neuroscience
-experiments (Box 2).
+experiments.
 At this stage, we emphasize the importance of differentiating which levels of observation are at play in the present account. A process model is not solely intended to capture behavior of the agent, such as cognitive accounts of DMN function, but also the neurocomputational specifics of the agent. Henceforth, we will use ``inference`` when describing aspects of the statistical model, ``prediction`` when referring to the neurobiological implementation, and words like ``forecast`` or ``forsee`` when referring to the behavior of the agent.
 
 
@@ -1032,12 +1032,12 @@ offering relevant resources.
 \item etc.
 \end{itemize}
 % Model-based assumes knowledge of the environment in terms of the transition probabilities between states, the reward contingencies for state-action pairs, or any form of representation of the environment.
-Such knowledge can be partly extracted from the environment: the agent learns a model for the world alongside learning to make optimal decisions based on this model. These methods learn what the effect is going to be of taking a particular action in a particular state. The result is an estimate of the underlying MDP which can then be either solved exactly or approximately, depending on the setting and what is feasible.
+Such knowledge can be partly extracted from the environment: the agent learns a model of the world while learning to take optimal decisions based on this model. These methods learn what the effect is going to be of taking a particular action in a particular state. The result is an estimate of the underlying MDP which can then be either solved exactly or approximately, depending on the setting and what is feasible.
 
-In contrast, model-free methods require no knowledge of the environment (transition probabilities, identities of sensory input, etc.) or representation thereof, and the agent learns which state-action pairs lead to reward through sampling the world in trial-and-error manner, and predicting long-run reward aggregates, using prediction error as an incentive. In so doing, such methods ultimately learn both a policy and  implicit representations of the world / environment. This is what algorithms TD learning~\citep{sutton1998reinforcement}.
-The distinction outlined above between model-free and model-based RL is similar to ~\citep{dayan2014}.
+In contrast, model-free methods require no particular knowledge of the environment (transition probabilities, types of sensory input, etc.) or representation thereof. The agent learns which state-action pairs lead to reward through sampling the world in a trial-and-error manner and infers longer-term reward aggregates using environmental feedback information as an incentive. In so doing, model-free agents ultimately learn both an action policy and an implicit representations of the world. Our distinction between model-free and model-based RL is hence similar to previous views \citep{dayan2014}.
 
-In terms of number of states, model-based RL scales better than model-free RL; in terms of the time horizon, model-free RL scales better~\citep{strehl2006}. Drawing from a vast literature, we will show that the DMN contains sufficient neurobiological hardware to implement model-free RL, at least in principle.
+% In terms of number of states, model-based RL scales better than model-free RL; in terms of the time horizon, model-free RL scales better~\citep{strehl2006}. Drawing from a vast literature, we will show that the DMN contains sufficient neurobiological hardware to implement model-free RL, at least in principle.
+
 
 
 \subsubsection{Accumulated rewards and policies}
@@ -1071,10 +1071,8 @@ modeling this accumulation is the time-discounted cumulative reward% function
   G^\pi = \sum_{t=0}^{\infty}\gamma^{t}R_t = R_0 + \gamma R_1 + \gamma^2 R_2 + \ldots + \gamma^tR_t + \ldots
 \end{equation}
 This random variable
-
   \footnote{Random as it depends both on the environment's dynamics and the
   policy $\pi$ being executed. The exponential delay discounting function used here refers to the usual formulation in the field of reinforcement learning, although psychological experiments may also reveal other discounting regimes \citep{green2004discounting}}
-
 measures the cumulative reward of
 following an action policy $\pi$.
 %
@@ -1380,9 +1378,9 @@ connections between neurons from the different levels
 of the neural processing hierarchy
 \citep{mesulam1998sensation, taylor2015global}.
 
-\paragraph*{Self-training may introduce bias. How to alleviate it ?}
-As pointed out by one of the reviewers, self-training may introduce bias due to information shortage caused by the absence of external stimulus (task).
- way to solve this issue is to use importance sampling as was done in ~\citep{schaul2015} and ~\citep{hessel2017}, to replay more often state-transitions from which there is more to learn. New transitions are inserted into the replay buffer with maximum priority, providing a bias towards recent transitions. Such an insertion bias would help counter-balance the bias introduced by the information shortage caused by the absence of external stimulus (task). Also, ~\citep{hessel2017} noticed that such prioritized replay reduces the data-complexity and the agent can start learning much sooner than conventionally.
+\paragraph*{A note on bias in self-training.}
+Some bias may be introduced by self-training due to information shortage caused by the absence of external stimulation.
+ One way to address this issue is using importance sampling to replay especially those state-transitions from which there is more to learn \citep{schaul2015, hessel2017}. New transitions are inserted into the replay buffer with maximum priority, thus shifting emphasis to more recent transitions. Such insertion strategy would help counter-balance the bias introduced by the information shortage incurred by absent external input. Other authors noticed \citep{hessel2017} that such prioritized replay reduces the data complexity and the agent shows faster increases in learning performance.
 
 
 \subsubsection{Optimal control via stochastic gradient descent in the DMN}
@@ -1544,20 +1542,19 @@ new steady state of optimal action decisions in a volatile world.
 
 \begin{mdframed}
   \vspace{1em}
-  \textbf{Box 2: Future studies for testing the MDP account of DMN function}
+  \textbf{Box 2: Proposed studies for testing the MDP account of DMN function}
 \begin{enumerate}
-\item Experiment (Humans): We hypothesize a functional relationship between the DMN closely associated with the occurrence of stimulus-independent thoughts and the reward circuitry. During an iterative neuroeconomic two-player game, fMRI signals in the DMN could be used to predict reward-related signals in the nucleus accumbens across trials in a continuous learning paradigm. We expect that the more DMN activity is measured to be increased, supposedly the higher the tendency for stimulus-independent thoughts, and the more the fMRI signals in the reward circuits should be independent of the reward context
-in the sensory environment.
+\item Experiment (Humans): We hypothesize a functional relationship between the DMN closely associated with the occurrence of stimulus-independent thoughts and the reward circuitry. During an iterative neuroeconomic two-player game, fMRI signals in the DMN could be used to predict reward-related signals in the nucleus accumbens across trials in a continuous learning paradigm. We expect that the more DMN activity is measured to be increased, supposedly the higher the tendency for stimulus-independent thoughts, the more the fMRI signals in the reward circuits should be independent of the reward context in the current sensory environment.
 
-\item Experiment (Humans): We hypothesize a functional dissociation between computations for behavioral policy versus adapting stimulus-value associations as these are conceivably implemented in different subsystems of the DMN. We first expect that fMRI signals in the right temporo-parietal junction can predict behavioral changes caused by adaptation in the action choice tendencies (policy matrix) related to non-value-related prediction error. Second, fMRI signals in the ventromedial prefrontal cortex should predict behavioral changes caused by adaptation in value estimation (value matrix) due to reward-related stimulus-value association. We finally predict that fMRI signals in the posteromedial cortex, as a potential global information integrator, is able to predict shifts in overt behavior based on previous adaptations in policy or value estimation.
+\item Experiment (Humans): We hypothesize a functional dissociation between computations pertaining to action policy versus adapting stimulus-value associations as we expect implementation in different subsystems of the DMN. First, we expect that fMRI signals in the right temporo-parietal junction relate to behavioral changes subsequent to adaptation in the action choice tendencies (policy matrix) involved in non-value-related prediction error. Second, fMRI signals in the ventromedial prefrontal cortex should relate to behavioral changes following adaptation in value estimation (value matrix) due to reward-related stimulus-value association. We finally expect that fMRI signals in the posteromedial cortex, as a potential global information integrator, are related to shifts in overt behavior based on previous adaptations in both policy or value estimation.
 
-\item Experiment (Animals): We hypothesize that experience replay for browsing problem solutions subserved by the DMN is necessary for choice behavior in mice. Hippocampal single-cell recordings have shown that neural patterns during experimental choice behavior are reiterated during sleep and before making analogous choices in the future. Necessity of the DMN, in addition to the hippocampus, for “mind-searching” actions during choice behavior can be demonstrated by causal disruption of DMN regions, such as circumscribed brain lesion or optogenetic intervention in the inferior parietal and prefrontal cortices.
+\item Experiment (Animals): We hypothesize that experience replay for browsing problem solutions subserved by the DMN is contributing to choice behavior in mice. Hippocampal single-cell recordings have shown that neural patterns during experimental choice behavior are reiterated during sleep and before making analogous choices in the future. Necessity of cortical DMN regions, in addition to the hippocampus, for “mind-searching” candidate actions during choice behavior can be experimentally corroborated by causal disruption of DMN regions, such as by circumscribed brain lesion or optogenetic intervention in the inferior parietal and prefrontal cortices.
 
-\item Experiment (Humans): We hypothesize that the relevant time horizon is modulated by various factors such as organism age, acute stress, and time-enduring impulsivity traits. Using a temporal discounting experiment, it can be measured how the time horizon could be affected at the behavioral level, and then trace back its potential representation at the neural level. The experiment can be designed to examine between-group (by age or with a impulsive population like chronic gamblers or drug addicts) and within group effects using a stress; and brought in context with the participant’s age and impulsivity tendencies.
+\item Experiment (Humans): We hypothesize that the relevant time horizon is modulated by various factors such as age, acute stress and time-enduring impulsivity traits. Using a temporal discounting experiment, it can be quantified how the time horizon is affected at the behavioral level and then traced-back to its corresponding neural representation. Such experimental investigation can be designed to examine between-group and within-group effects (e.g., impulsive population like chronic gamblers or drug addicts); and brought in context with the participant’s age and personality traits.
 
 % To exam-ine this question, Fellows and Farah (2005) investigated the effects of dorsolateral frontal (DLF) and ventromedial frontal (VMF) lobe damage on two aspects of temporal foresight—namely, temporal discounting and the futuretime perspective (measuredby an adaptation of Wallace’s [1956] list of future life events).
 
-\item Experiment (Humans \& Animals): An additional layer of learning concerns the addition of new entries in the table (i.e., state and action). The framing of the policy matrix is not described here but could be supported by synaptic epigenesis \citep{gisiger_acquisition_2005}. Indeed, the tuning of synaptic weights through learning can stabilize additional patterns of activity by creating new attractors in the neural dynamics landscape \citep{takeuchi_synaptic_2014}. Those attractors will then constrain both the number of factors taken into account by decision processes and the number of behaviors at reach by the agent \citep{wang_decision_2008}. To probe this aspects, we propose two experiments probing how synaptic epigenesis forms a neural correlate of the policy matrix update: one in human, investigating the changes of functional connectivity between DMN nodes following a temporal discounting experiment; the second in rodents, directly testing with anterograde tracing how homolog regions of the DMN present increased synaptic changes compare to other brain regions.
+\item Experiment (Humans \& Animals): An additional layer of learning concerns the addition of new entries in the state and action spaces. Extension of the action repertoire could be biologically realized by synaptic epigenesis \citep{gisiger_acquisition_2005}. Indeed, the tuning of synaptic weights through learning can stabilize additional patterns of activity by creating new attractors in the neural dynamics landscape \citep{takeuchi_synaptic_2014}. Those attractors can then constrain both the number of factors taken into account by decision processes and the possible behaviors of the agent \citep{wang_decision_2008}. To examine this potential higher-level mechanism, we propose to probe how synaptic epigenesis is related to neural correlates underlying policy matrix updates: in humans the changes of functional connectivity between DMN regions can be investigated following a temporal discounting experiment and in monkeys or rodents anterograde tracing can be used to study how homolog regions of the DMN present increased synaptic changes compare to other parts of the brain.
 
 \end{enumerate}
 \end{mdframed}
@@ -1586,31 +1583,31 @@ top-down modulation from more multi-sensory and associative brain regions
 further away from primary sensory cortical regions.
 The dynamic interplay between cortical processing levels
 may enable learning about aspects of the world by reconciling
-gaps between fresh sensory input and expectations computed
+gaps between fresh sensory input and predictions computed
 based on stored prior information.
 At each stage of neural processing,
-an internally generated prediction of aspects of environmental sensations is
+an internally generated expectation of aspects of environmental sensations is
 directly compared against the actual environmental input.
 A prediction error at one of the processing levels
 induces plasticity changes of neuronal projections
-(i.e., adapting model parameters)
+% (i.e., adapting model parameters)
 to allow for gradually improved future prediction of the environment.
 In this way,
 the predictive coding hypothesis offers explanations for
 the constructive, non-deterministic nature of sensory perception
 \citep{friston2010free, buzsaki2006rhythms} and
-the intimate relation of motor action to sensory expectations
+the intimate relation of motor movement to sensory expectations
 \citep{wolpert1995internal, kording2004bayesian}.
 Contextual integration of sensorimotor perception-action cycles
 may be maintained by top-down modulation
-using a-priori information about the environment.
+using internally generated information about the environment.
 
 
 
 In short, predictive coding processes
 conceptualize updates of the internal representation of the environment
 to best accommodate and prepare the organism
-for processing the constant influx of sensory stimulation and
+for processing the constant influx of sensory stimuli and
 performing action on the environment.
 There are hence a number of common properties
 between the predictive coding account
@@ -1626,10 +1623,10 @@ the human brain to be a ``statistical organ'' \citep{friston2014phantastic}
 with the biological purpose to
 generalize from the past to new experiences.
 Neuroanatomically, axonal
-back projections indeed outnumber by far the axonal input projections
-existing in the monkey and probably also human brain
+back projections indeed outnumber by far the axonal connections mediating feedforward input processing
+in the monkey brain and probably also in humans
 \citep{salin1995corticocortical}.
-These many and diverse modulatory influences
+These many and diverse top-down modulations
 from higher onto downstream cortical areas
 can inject prior knowledge
 at every stage of processing environmental information.
@@ -1689,18 +1686,17 @@ recasting DMN function in terms of MDPs therefore naturally incorporates
 a majority of aspects from the prediction coding hypothesis.
 The present MDP account of DMN function may therefore
 serve as a concrete implementation of
-predictive coding ideas from cognitive neuroscience.
+predictive coding ideas.
 MDPs have the advantage of exposing an explicit
-mechanism for the horizon of future considerations and for
+mechanisms for controlling the horizon of future considerations and for
 how the internal representation of the world is updated,
-as well as
-why certain predictions may be more relevant to the agent than others.
+as well as why certain predictions may be more relevant to the agent than others.
 
 
 
 
 \subsection{Semantic hypothesis}
-Another frequently proposed cognitive account to explain DMN function revolves
+This frequently proposed cognitive account to explain DMN function revolves
 around forming logical associations and abstract analogies between
 experiences and conceptual knowledge derived from past behavior
 \citep{bar2007proactive, binder1999conceptual, constantinescu2016organizing}.
@@ -1712,13 +1708,13 @@ by association to known similar states.
 %
 Going beyond isolated meaning and concepts extracted from the world,
 semantic building blocks may need to get recombined to enable
-mental imagery of non-existing scenarios.
-As such, semantic knowledge would be a prerequisite for optimizing behavior
+mental imagery to (fore)see never-experienced scenarios.
+As such, semantic knowledge would be an important ingredient for optimizing behavior
 by constantly simulating possible future scenarios
 \citep{boyer2008evolutionary, binder2011neurobiology}.
 Such cognitive processes can afford
 the internal construction and elaboration of necessary information
-that is not presented in the surrounding sensory environment
+that is not presented in the immediate sensory environment
 by recombining building blocks of
 concept knowledge and episodic memories
 \citep{hassabis2009construction}.
@@ -1739,12 +1735,11 @@ represent neural processes that are likely to
 build on abstract world knowledge and logical associations
 for integrating the constituent elements in rich and coherent mental scenes
 \citep{schacter2007remembering}.
-``[P]redictions and simulations are not only automatically elicited by external events but can be endogenously generated when needed. [...] The mechanism of access via simulation could be a widespread method for accessing and producing knowledge, and represents a valid alternative to the traditional idea of storage and retrieval''
+``[Foresight] and simulations are not only automatically elicited by external events but can be endogenously generated when needed. [...] The mechanism of access via simulation could be a widespread method for accessing and producing knowledge, and represents a valid alternative to the traditional idea of storage and retrieval''
 \citep{pezzulo2011grounding}.
-Such scene construction processes could contribute to interpreting the
-present and foretelling the future.
-Further,
-mental scene construction has been proposed
+Such mental scene-construction processes could contribute to interpreting the
+present and foreseeing the future.
+Further, mental scene imagery has been proposed
 to imply a distinction between
 engagement in the sensory environment
 and internally generated mind-wandering
@@ -1753,7 +1748,7 @@ These investigators stated that
 ``A computational model [...] will probably require a form of
 regulation by which perception of the current world is suppressed
 while simulation of possible alternatives are constructed,
-followed by a return to perception of the present.''.
+followed by a return to perception of the present''.
 % The semantic hypothesis is for instance supported by evidence in animals that
 % could learn a \textit{cognitive map of the environment}
 % and exploit it later for other means \citep{tolman1948cognitive}.
@@ -1761,21 +1756,21 @@ followed by a return to perception of the present.''.
 
 In comparison,
 both the semantic hypothesis and the present formal account based on MDPs
-expose mechanisms of how action considerations could be mentally explored.
+expose mechanisms of how action considerations could be explored.
 In both accounts,
-there is also no reason to assume that predictions of various
+there is also little reason to assume that contemplating alternative realities of various
 levels of complexity, abstraction, timescale, and purpose
-rely on mechanisms that are qualitatively different. This concurs with
+rely on mechanisms that are qualitatively different. This interpretation concurs with
 DMN activity increases across time, space, and content domains
 demonstrated in many neuroimaging studies
 \citep{spreng2009common, laird2009, bzdok2012morality, binder2009}.
 Further, the semantic hypothesis
-and MDP account provide explanations why HC damage does
-not only impair recalling memories, but also hypothetical and future
-thinking \citep{hassabis2007patients}.
+and MDP account offer explanations why HC damage does
+not only impair recalling past events, but also imagining hypothetical and future
+scenarios \citep{hassabis2007patients}.
 While both semantic hypothesis and
-our formal account propose memory-based internally
-generated information for probabilistic mental models of action outcomes,
+our formal account propose memory-enabled, internally
+generated information for probabilistic representation of action outcomes,
 MDPs render explicit the grounds on which an action is
 eventually chosen, namely, the estimated cumulative reward.
 In contrast to many versions of the semantic hypothesis,
@@ -1784,11 +1779,11 @@ the MDPs naturally integrate the egocentric view
 world view (more related to past and future actions, states, and rewards)
 on the world in a same optimization problem.
 Finally,
-the semantic account of DMN function does not offer
-a mechanistic explanation \textit{how}
-explicit world knowledge and semantic analogies thereof
-lead to prediction of future actions and states.
-The semantic hypothesis does also not explain why memory recall
+the semantic account of DMN function does not provide
+suffcient explanation of \textit{how}
+explicit world knowledge and logical analogies thereof
+lead to foresight of future actions and states.
+The semantic hypothesis does also not fully explain why memory recall
 for scene construction in humans is typically fragmentary and noisy
 instead of accurate and reliable.
 In contrast to existing accounts on semantics and
@@ -1797,8 +1792,8 @@ are explained in MDPs by the advantages of stochastic optimization.
 Our MDP account provides an algorithmic explanation in that
 stochasticity of the parameter space exploration
 by MCMC approximation achieves better fine-tuning of the
-action policies and estimation of expected reward outcomes.
-That is, the purposeful stochasticity of policy and value estimation
+action policies and inference of expected reward outcomes.
+That is, the purposeful stochasticity of policy and value updates
 in MDPs provides a candidate explanation for why humans
 have evolved imperfect noisy memories
 as the more advantageous adaptation.
@@ -1809,11 +1804,11 @@ both of which are integral parts of the MDP interpretation of DMN function.
 
 
 \subsection{Sentinel hypothesis}
-The DMN regions have been associated with processing the
+Regions of the DMN have been proposed to process the
 experienced or expected relevance of environment cues
 \citep{montague2006imaging}.
 Processing self-relevant information was perhaps the first
-cognitive account that was proposed for DMN function
+functional account that was proposed for the DMN
 \citep{gusnard2001medial, raichle2001pnas}.
 Since then,
 many investigators have speculated that neural activity in the DMN
@@ -1828,12 +1823,12 @@ have however seldom detailed
 the mechanisms of
 how attention and memory resources are exactly reallocated when
 encountering a self-relevant environmental stimulus.
-However,
+Instead,
 in the present MDP account,
 promising action trajectories
 are recursively explored by the human DMN. Conversely,
 certain branches of candidate action trajectories
-are detected to be less worthy to become mentally explored.
+are detected to be less worthy to get explored.
 This mechanism, expressed by the Bellman equation,
 directly implies stratified allocation of attention and working memory load
 over relevant cues and events in the environment.
@@ -1846,23 +1841,23 @@ in task-unconstrained mind-wandering \citep{smith2009, bzdok2016formal}.
 Both environment-detached and environment-engaged
 cognitive processes may entail DMN recruitment
 if real or imagined experience is processed, manipulated, and
-used for predictions.
-During tasks,
+used in service of organism control.
+During active engagement in tasks,
 the policy and value estimates may be
 updated to optimize especially short-term action.
-At rest, these parameter updates may
+At passive rest, these parameter updates may
 improve especially mid- and long-term action.
 This horizon of the agent
 is expressed in the $\gamma$ parameter in the MDP account.
 We thus provide answers for the currently unsettled question why the involvement
 of the same neurobiological brain circuit (i.e., DMN) has been documented
-for specific task performances and baseline house-keeping functions.
+for specific task performances and baseline "house-keeping" functions.
 
 
 
 In particular,
-environmental stimuli are especially important for humans are frequently of
-social nature. This is not surprising
+environmental cues that are especially important for humans are frequently of
+social nature. This may not be surprising
 given that
 the complexity of the social systems
 is likely to be a human-defining property
@@ -1873,29 +1868,28 @@ forming and maintaining increasingly complex
 social systems,
 which allows solving ecological problems by means of social relationships
 \citep{whiten1988machiavellian}.
-Indeed, social topics amounted to roughly
-two thirds of human everyday communication \citep{dunbar1997human},
-while
-mind-wandering at daytime and dreams during sleep
-are rich in stories about people and
-the complex relationships between them.
+In fact, social topics probably amount to roughly
+two thirds of human everyday communication \citep{dunbar1997human}.
+Mind-wandering at daytime and dreams during sleep
+are also rich in stories about people and
+the complex interactions between them.
 %
-In line with this, the DMN was argued to be specialized in
+In line with this, DMN activity was advocated to be specialized in
 continuous processing of social information as a
 physiological baseline of human brain function
 \citep{schilbach2008minds}. This view was later challenged by observing
 analogues of the DMN in monkeys \citep{mantini2011default},
 cats \citep{popa2009contrasting},
 and rats \citep{lu2012rat}, three species with
-social-cognitive capacities that are supposedly less advanced than in humans.
+social capacities that are supposedly less advanced than in humans.
 
 
 Further,
-the principal connectivity gradient in the cortex appears to be greatly expanded in humans compared to monkeys, suggesting a phylogenetically conserved axis of cortical expansion with the DMN emerging at the extreme end in humans \citep{margulies_situating_2016}. Neurocomputational models of dyadic whole-brain dynamics
+the principal connectivity gradient in the cortex appears to be greatly expanded in humans compared to monkeys, suggesting a phylogenetically conserved axis of cortical expansion with the DMN emerging at the extreme end in humans \citep{margulies_situating_2016}. Computational models of dyadic whole-brain dynamics
 demonstrated how the human connectivity topology, on top of facilitating processing at the intra-individual level, can explain our propensity to coordinate through sensorimotor loops with others at the inter-individual level \citep{dumas_anatomical_2012}.
-The DMN is moreover largely overlapping with neural networks associated with higher level social cognition \citep{schilbach_introspective_2012}. For instance, the vmPFC,
+The DMN is moreover largely overlapping with neural networks associated with higher-level social processes \citep{schilbach_introspective_2012}. For instance, the vmPFC,
 PMC, and RTPJ
-together play a key role in bridging the gap between self and other by
+together may play a key role in bridging the gap between self and other by
 integrating low-level embodied processes within higher level inference-based mentalizing \citep{lombardo_shared_2009}.
 
 
@@ -1921,10 +1915,10 @@ as a special case.
 \subsection{The free-energy principle and active inference}
 % INTRO
 According to theories of the \textit{free-energy principle} (FEP) and
-\textit{active inference} \citep{friston2010free, fristonAIorRL} (see also \citep{dayan1995helmholtz}),
+\textit{active inference} \citep{friston2010free, fristonAIorRL,dayan1995helmholtz},
 the brain corresponds to
 a biomechanical reasoning engine. It is
-dedicated to minimizing the long-term average of surprise: the log-likelihood of the observed sensory input --more precisely, an upper bound thereof-- \textit{relative} to the expectations about the external world derived from internal representations. The brain
+dedicated to minimizing the long-term average of surprise: the log-likelihood of the observed sensory input --more precisely, an upper bound thereof-- relative to the expectations about the external world derived from internal representations. The brain
 would continuously generate hypothetical explanations of the world
 and predict its sensory input $\bf{x}$ (analogous to the state-action $(s, a)$ pair in an MDP
 framework).
@@ -1955,9 +1949,9 @@ where
 \end{equation}
 is the \textit{free energy}.
 Here, the angular brackets denote the \textit{expectation} of the joint negative log-likelihood $-\log(p_G(\z, \x))$ w.r.t the recognition density $p_R(\z|\x)$, $\mathcal H$ is the \textit{entropy} functional defined by $\mathcal H(p) := -\sum_{\z}p(\z)\log(p(\z)$, while $\operatorname{KL}(.\|.)$ is the usual \textit{Kullback-Leibler (KL) divergence} (also known as \textit{relative entropy}) defined by $\operatorname{KL}(p\|q) := \sum_{z}p(\z)\log(p(\z)/q(\z)) \ge 0$,
-which is a measure of how different two probability distributions are. In this framework, the goal of the agent is then to iteratively refine the generative model $p_G$ and the recognition model $p_R$ (i.e two Bayesian belief nets) so as to minimize the free energy $F_G^R(\x)$ over sensory input $\x$.
+which is a measure of how different two probability distributions are. In this framework, the goal of the agent is then to iteratively refine the generative model $p_G$ and the recognition model $p_R$ so as to minimize the free energy $F_G^R(\x)$ over sensory input $\x$.
 
-Importantly, one notes that $F^R_G(x)$ is low just in case:
+Importantly, $F^R_G(x)$ gets low in the following cases:
 \begin{itemize}
 \item  $p_R(\z|\x)$ puts a lot of mass on configurations $(\z,\x)$ which are $p_G$-likely, % (i.e the sensation $\x$ is likely caused by $\z$)
   \textbf{and}
@@ -1975,28 +1969,32 @@ Importantly, one notes that $F^R_G(x)$ is low just in case:
 
 % CRITICISM
 % \paragraph{Main criticisms.}
-Despite its popularity, criticism against the FEP has arisen over the years,
+Despite its popularity, criticism against the FEP has been voiced over the years,
 some of which is outlined in the following.
 The main algorithm for minimizing free energy $F_G^R(\x)$ is the \textit{wake-sleep algorithm}
-\citep{dayan1995helmholtz}. As P. Dayan and G. Hinton themselves noted,
-a crucial drawback of the wake-sleep algorithm (and therefore of theories like the FEP \citep{friston2010free} based on it) is that it involves a pair
-of forward (generation) and backward (recognition) models $p_G$ and $p_R$ respectively that
-together do not correspond to optimization of (a bound of) the marginal likelihood,
+\citep{dayan1995helmholtz}. As these authors noted,
+a crucial drawback of the wake-sleep algorithm (and therefore of theories like the FEP \citep{friston2010free}) is that it involves a pair
+of forward (generation) and backward (recognition) models $p_G$ and $p_R$ that
+together does not correspond to optimization of (a bound of) the marginal likelihood
 because KL divergence is not symmetric in its arguments.
-The brain is therefore unlikely to implement the wake-sleep algorithm or a variant thereof.
 
-The recent theory of
-\textit{variational auto-encoders} (VAEs) \citep{kingma2013auto} might provide an efficient alternative to the wake-sleep algorithm. VAEs
+
+
+These considerations render the brain less likely to implement the wake-sleep algorithm or a variant thereof. More recently,
+\textit{variational auto-encoders} (VAEs) \citep{kingma2013auto} emerged that may provide an efficient alternative to the wake-sleep algorithm. VAEs
 overcome a number of the technical limits of the wake-sleep algorithm
 by using a reparametrization maneuver, which makes it possible to do differential calculus on random sampling procedures without exploding variance. As a result, unlike the wake-sleep algorithm
 for minimizing free energy, VAEs can be efficiently trained via back-propagation of prediction errors.
 
-On another front, since theories based on the FEP \citep{friston2010free,fristonAIorRL}
+
+
+The difference between the FEP and the MDP account may be further clarified by a thought experiment.
+Since theories based on the FEP \citep{friston2010free,fristonAIorRL}
 conceptualize ongoing behavior
 in an organism to be geared towards the surprise-minimizing goal,
 an organism entering a dark room
 % \footnote{\textit{Dark} is used here as an allegory to indicate the complete absence of any \textit{external} sensory input.}
-(Fig. \ref{fig:darkroom}) would strive to remain in this location
+(Fig. \ref{fig:darkroom}) would remain trapped in this location
 because its sensory inputs are perfectly predictable
 given the environmental state \citep{darkroom2012}.
 \begin{wrapfigure}{r}{.37\linewidth}
@@ -2011,27 +2009,27 @@ given the environmental state \citep{darkroom2012}.
   }
   \label{fig:darkroom}
 \end{wrapfigure}
-However, such a behavior is seldom observed in animals or humans in the
-real world: In a dark room, intelligent agents would search for light sources to \textit{explore}
-the surroundings or leave the exit the room.
+However, such a behavior is seldom observed in humans in the
+real world. In a dark room, the intelligent agents would search for light sources by explore
+the surroundings or aim to exit the room.
 Defenders of the FEP have retorted by advancing the ``full package'' \citep{darkroom2012}:
 FEP is proposed to be multi-scale and there would be a meta-scale at which the organism would
-be \textit{surprised} by such a \textit{lack of surprise}. According to this argument, a dark room would paradoxically correspond to a state of particularly high surprise.
-Driven by surprise-minimization objective, the FEP agent would eventually bootstrap itself out of such saddle points to explore more interesting parts of the environment.
+be \textit{surprised} by such a \textit{lack of surprise}. According to this argument, a dark room would paradoxically correspond to a state of particularly high relevance.
+Driven by the surprise-minimization objective, the FEP agent would eventually bootstrap itself out of such saddle points to explore more interesting parts of the environment.
 % Recourse to this argument is equivalent to invoking a \textit{halting oracle}\citep{haltingoracle}, an arbitrarily powerful machine which can solve the \textit{halting problem} (an arbitrarily difficult computational problem which cannot be solved under any reasonable \textit{model of computation}, not even in principle!). But this is problematic as it sucks up the problem (that of decision-making and active agency) the theory intends to elude in the first place.
 In contrast, an organism operating under our RL-based theory would inevitably
-identify the sensory-stimulus-deprived room as a local minimum. Indeed, hippocampal experience replay (see \ref{sec:self}) would serve to sample memories or fantasies of alternative situations
+identify the sensory-stimulus-deprived room as a local minimum. Indeed, hippocampal experience replay (see \ref{sec:self}) could serve to sample memories or fantasies of alternative situations
 with reward structure. Such artificially generated \textit{internal} sensory input
 subserved by the DMN can entice the organism to explore the room,
-for instance by looking for and using the light switch or simply finding the room exit.
+for instance by looking for and using the light switch or finding the room exit.
 
 % \paragraph{Links between FEP and RL.}
-We note that FEP and active inference can be reframed in terms of
+We finally note that FEP and active inference can be reframed in terms of
 our model-free RL framework.
-This becomes possible by recasting the Q-value function (i.e expected long-term reward) maximized by the DMN to
+This becomes possible by recasting the Q-value function (i.e., expected long-term reward) maximized by the DMN to
 correspond to negative surprise,
 that is, the log-likehood of current sensory priors
-the agent has about the world. More explicitly, this corresponds to using free-energy as a Q-value approximator for the MDP, i.e
+the agent has about the world. More explicitly, this corresponds to using free-energy as a Q-value approximator for the MDP such that
 
 \begin{eqnarray*}
   -Q \approx \underbrace{F^R_G(\x)}_{\text{negative free energy}} \approx \underbrace{-\log (p_G)}_{\text{FEP generative surprise}}.
@@ -2042,12 +2040,12 @@ the agent has about the world. More explicitly, this corresponds to using free-e
 %   Indeed in RL, surprise minimization is subsumed  by accurate prediction of
 %   rewarding outcomes in the future. A ``free-energy'' agent is barely a biomechanical machine which has the tendency to resist undesired phase-transitions
 %   \citep{friston2010free,fristonAIorRL,ortega2013thermodynamics}.
-Such a surprise-guided reinforcement learning scheme has previously been advocated
-under the equivalent framework of energy-based reinforcement-learning
+Such a surprise-guided RL scheme has previously been advocated
+under the equivalent framework of energy-based RL
 % \footnote{These methods assume that the posterior distribution  of the hidden states $\z$ given the visible states $\x$ factorizes, leading to so-called RBMs --\textit{Restricted Boltzmann Machines}. One notes, that even with these simplifications, such a model can be very hard to train.}
 ~\citep{sallans2004,elfwing2016free} and information compression \citep{schmidhuber2010,mohamed2015}.
 Nevertheless, minimization of surprise quantities alone
-may be insufficient to explain the diversity of behaviors observed in humans and other intelligent animals.
+may be insufficient to explain the diversity of behaviors that humans and other intelligent animals can perform.
 % The dark-room experiment, for example, provides a formidable argument against in favor of the insufficiency of the FEP and active inference theories to explain intelligent behavior in humans: when a human is put in a dark room, they don't just sit down in a corner forever, what would be the FEP-optimal thing to do; they actively search for the light switch, and start exploring the depths of the room, possibly looking for food or the way out!
 
 % Friston's critic of RL \citep{fristonAIorRL} (he proposes ``active inference''): "This equation (equation 18) comes from the theory of dynamic programming,
@@ -2087,7 +2085,7 @@ This idealized process model accommodates
 a number of previous observations from neuroscience studies on the
 DMN by simple but non-trivial mechanisms.
 %
-From the view of a Markovian sequential decision process,
+Viewed as a Markovian sequential decision process,
 human behavior unfolds by inferring cumulative reward outcomes from hypothetical action cascades
 % stored past events
 and extrapolation from past experience to
@@ -2104,14 +2102,14 @@ as well as delay discounting and self prospection into the future.
 %
 Improvement of the internal world representation
 by injecting stochasticity into the recall of past
-actions and the estimation of action outcomes may explain why
+actions and inference of action outcomes may explain why
 highly accurate memories have been disfavored in human evolution
 and why human creativity may be adaptive.
 
 
 
 
-A major hurdle in understanding DMN activity from cognitive neuroscienceå studies has been its similar engagement across time scales: thinking about the past (e.g., autobiographical memory), thinking about hypothetical presents (e.g., daytime mind-wandering), and thinking about predicted scenarios (e.g., delay discounting).
+A major hurdle in understanding DMN activity from cognitive brain-imaging studies has been its similar neural engagement in different time scales: thinking about the past (e.g., autobiographical memory), thinking about hypothetical presents (e.g., daytime mind-wandering), and thinking about predicted scenarios (e.g., delay discounting).
 The MDP account of DMN function offers a natural integration of a-priori diverging neural processes into a common framework.
 %
 It is an important advantage of the proposed artificial intelligence perspective
