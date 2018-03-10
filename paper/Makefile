@@ -5,18 +5,14 @@ PDFLATEX_OPTIONS="-shell-escape -interaction=nonstopmode -file-line-error"
 all: clean loTopdf latex
 
 
-latex: clean
-        # pdfcrop -margin 5 vae.pdf vae.pdf
+latex:
+  # pdfcrop -margin 5 vae.pdf vae.pdf
 	pdflatex ${PDFLATEX_OPTIONS} paper
 	bibtex -terse paper
 	pdflatex ${PDFLATEX_OPTIONS} paper
 	pdflatex ${PDFLATEX_OPTIONS} paper
 	# makeglossaries paper
 	pdflatex ${PDFLATEX_OPTIONS} paper
-	# make clean
-	rm -f *neurobiological_and_rl_overview_DMN.pdf
-	rm -f *neurobiological_overview_DMN.pdf
-	rm -f *table_equivalence.pdf
 
 loTopdf:
 	unoconv -f pdf *.odp
@@ -41,3 +37,6 @@ clean:
 	rm -f *.synctex.gz
 	rm -f *.log *.lot *.aux *.bbl *.blg
 	rm -f *.fdb_latexmk
+	rm -f *neurobiological_and_rl_overview_DMN.pdf
+	rm -f *neurobiological_overview_DMN.pdf
+	rm -f *table_equivalence.pdf

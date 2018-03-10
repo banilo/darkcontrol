@@ -136,9 +136,10 @@
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-\title{Dark Control:\\
-       Towards a Unified Account of Default Mode Function\\
-       by Markov Decision Processes}
+% \title{Dark Control:\\
+%        Towards a Unified Account of Default Mode Function\\
+%        by Markov Decision Processes}
+\title{The Default Mode Network is a Reinforcement Learning Agent!}
 
 \newcommand{\fix}{\marginpar{FIX}}
 \newcommand{\new}{\marginpar{NEW}}
@@ -338,10 +339,8 @@ a human \textit{agent} faced with the choice of the next actions
 and guided by outcomes
 of really happened, hypothetically imagined, and
 expected futures to optimize behavioral performance.
-Formally, a particularly attractive framework
-to describe, quantify, and predict intelligent systems, such as the brain,
-is proposed to be the combination of control theory and
-reinforcement learning (RL). 
+Formally, we propose reinforcement learning to be a particularly attractive framework
+to describe, quantify, DMN function and the brain.
 An intelligent agent improves the interaction with the environment
 by continuously updating its computation of value estimates and action predispositions
 through integration of feedback outcomes.
@@ -926,7 +925,7 @@ to calibrate action trajectories for
 reward outcome maximization at different time-scales.
 Such a purposeful optimization objective
 may be subserved by a stochastic approximation
-based on a brain implementation of MCMC sampling.
+based on a brain implementation of Monte Carlo sampling.
 
 \begin{figure}[!h]
   \centering
@@ -989,11 +988,18 @@ The process has $memory$ if the subsequent state depends not only on the current
 \citep{starkweather2017dopamine,o2006making}.
 Nevertheless, this mathematical property of POMDPs mostly accounts for implicit $memory$. Since the current paper is concerned with plausibility at the behavioral and neurobiological level, we will address below how our account can accommodate the neurophysiological constraints of the DMN and the explicit $memory$ characteristics of human agents.
 
-\paragraph*{Why Markov Decision Processes?} One may wonder whether MDP models are applicable to something as complex as human behavior. For instance, financial trading is largely a manifestation of strategic decision-making of interacting human agents. According to how the market responds, the agent incurs gain or loss as environmental feedback of the executed financial actions. Recent research on automatizing market exchanges by algorithmic trading has successfully used MDPs as a framework for modeling these elaborate behavioral dynamics  ~\citep{brazdil2017,yang15,yang14,yang12,dempster2006,hult2010, abergel2017}.
+\paragraph*{Why Markov Decision Processes?} One may wonder whether MDP models
+are applicable to something as complex as human behavior. The success of such
+models in diverse domains are numerous. For instance, financial trading is largely a manifestation of strategic decision-making of interacting human agents. According to how the market responds, the agent incurs gain or loss as environmental feedback of the executed financial actions. Recent research on automatizing market exchanges by algorithmic trading has successfully used MDPs as a framework for modeling these elaborate behavioral dynamics  ~\citep{brazdil2017,yang15,yang14,yang12,dempster2006,hult2010, abergel2017}.
 %
-MDPs have also been effective as a behavioral model in robotics \citep{ng2004,abbeel2004} and in challenging multistep strategy games ~\citep{mnih2015,silver2016mastering,pritzel2017neural}.
-%
-As such, we aim to expand MDP applications as a useful model from "online" decision-making to the realms of "offline" behaviors most associated with the DMN.
+MDPs have also been effective as a behavioral model in robotics
+\citep{ng2004,abbeel2004} and in challenging multistep strategy games
+~\citep{mnih2015,silver2016mastering,pritzel2017neural}. An even recent work~\citep{robinowitz2018}
+develops an MDP-based Theory of Mind for learning agents (the \textit{ToM-Net}).
+The idea is to use-meta learning (learning-to-learn) to build strong priors
+about the behavior of of a population of other agents.
+
+% As such, we aim to expand MDP applications as a useful model from "online" decision-making to the realms of "offline" behaviors most associated with the DMN.
 
 
 % Indeed a critique could argue that Markov chains are state-machines without memory. These may describe insects, or other behaviorally primitive beings like ATM machines, insects, etc., but won't be sufficient to describe human beings, as for example, human behavior is heavily influenced not only by the current state but by past states as well (memory).
@@ -1013,7 +1019,7 @@ As such, we aim to expand MDP applications as a useful model from "online" decis
 % \end{itemize}
 
 
-\paragraph*{Towards model-free reinforcement learning for the DMN.}
+\paragraph*{Reinforcement learning in the brain.}
 Model-free RL can be plausibly realized in the human brain \citep{doherty2015structure, daw2014algorithmic}.
 Indeed,
 it has been proposed \citep{gershman2015computational} that a core property of human intelligence is the improvement
@@ -1041,7 +1047,7 @@ offering relevant resources.
 % Model-based assumes knowledge of the environment in terms of the transition probabilities between states, the reward contingencies for state-action pairs, or any form of representation of the environment.
 Such knowledge can be partly extracted from the environment: the agent infers a model of the world while learning to take optimal decisions based on the current representation of the environment. These methods learn what the effect is going to be of taking a particular action in a particular state. The result is an estimate of the underlying MDP which can then be either solved exactly or approximately, depending on the setting and what is feasible.
 
-In contrast, model-free methods require no prespecified knowledge of the environment (transition probabilities, types of sensory input, etc.) or representation thereof. The agent infers which state-action pairs lead to reward through sampling the world in a trial-and-error manner and derives longer-term reward aggregates using environmental feedback information as an incentive. In so doing, model-free agents ultimately learn both an action policy and an implicit representations of the world. This distinction between model-free and model-based RL is similar to previous views \citep{dayan2014}.
+% In contrast, model-free methods require no pre-specified knowledge of the environment (transition probabilities, types of sensory input, etc.) or representation thereof. The agent infers which state-action pairs lead to reward through sampling the world in a trial-and-error manner and derives longer-term reward aggregates using environmental feedback information as an incentive. In so doing, model-free agents ultimately learn both an action policy and an implicit representations of the world. This distinction between model-free and model-based RL is similar to previous views \citep{dayan2014}.
 
 % In terms of number of states, model-based RL scales better than model-free RL; in terms of the time horizon, model-free RL scales better~\citep{strehl2006}. Drawing from a vast literature, we will show that the DMN contains sufficient neurobiological hardware to implement model-free RL, at least in principle.
 
@@ -1430,11 +1436,10 @@ are attracted and absorbed by the optimal $Q$-value function $Q^*$ defined impli
 % $$\tilde{Q}(s, a) \leftarrow \tilde{Q}(s, a) + \alpha(y-\tilde{Q}(s, a)),$$
 % the well-known TD update rule \citep{sutton1998reinforcement}.
 
-\subsubsection{Does the hippocampus subserve MCMC sampling?}
-In RL, MCMC simulation is a common means to update the agent's belief state
-based on stochastic sampling around states and possible transitions \citep{daw2014algorithmic}.
-% \citep{silver2010monte}.
-MCMC simulation provides a simple method for evaluating the value of a state.
+\subsubsection{Does the hippocampus subserve Monte Carlo sampling?}
+In RL, Monte Carlo simulation is a common means to update the agent's belief state
+based on stochastic sampling around states and possible transitions \citep{daw2014algorithmic,silver2010monte}.
+Monte Carlo simulation provides a simple method for evaluating the value of a state.
 This inference procedure provides an effective mechanism both for tree search (of the considered
 action trajectories)
 and for belief state updates, breaking the curse of dimensionality and allowing much greater scalability than an RL agent without stochastic resampling procedures.
@@ -1451,12 +1456,29 @@ A brain-imaging experiment in humans for instance identified hippocampal signals
 \citep{kaplan2017neural}.
 This would be a simple control algorithm by evaluating all legal actions and selecting the action with
 highest expected cumulative rewards.
-In MDPs, MCMC simulation provides an effective mechanism both for tree search and for belief-based state updates, breaking the curse of dimensionality and allowing much greater scalability than has previously been possible \citep{silver2016mastering}.
+In MDPs, MC simulation provides an effective mechanism both for tree search and for belief-based state updates, breaking the curse of dimensionality and allowing much greater scalability than has previously been possible \citep{silver2016mastering}.
 This is because expected consequences of action choices can be well evaluated although only a subset of the states are actually considered \citep{daw2014algorithmic}.
 % Much recent work points to MCMC or stochastic sampling-based approximations as a unifying framework for understanding how Bayesian inference may work practically across all these levels, in minds, brains, and machines. \textbf{XXX elvis: refs needed in last sentence. Plus, should be really bring up Bayesian?}
 
 \paragraph*{A note on implicit and explicit memory.}
-While Markov processes are usually memoryless, it is mathematically feasible to incorporate the previous states of such model into the current state. This extension may partially account for implicit memory at the behavioral level, but may not explain the underlying neurobiological implementation or accommodate explicit memory. Implicit memory-based processing arises in our MDP account of DMN function in several different forms: successive updates of a) the action policy and the value function, both being products of the past, as well as b) the deep non-linear relationships within the hierarchical connections of biological neural networks. The brain's adaptive synaptic connections can be thought as a deep neural-network architecture affording an implicit form of information compression of life experience. Such memory traces are stored in the neural machinery and can be implicitly retrieved as a form of knowledge during simulation of action rather than accessed as a stored explicit representation \citep{pezzulo2011grounding}. c) Certain neural processes in the hippocampus can be seen as some type of MCMC sampling for memory recall, which can also be a basis for probabilistic simulations across time-scales \citep{schacter2007remembering,Axelrod2017}.
+While Markov processes are usually memoryless, it is mathematically feasible to
+incorporate the previous states of such model into the current state. This
+extension may partially account for implicit memory at the behavioral level, but
+may not explain the underlying neurobiological implementation or accommodate
+explicit memory. Implicit memory-based processing arises in our MDP account of
+DMN function in several different forms: successive updates of a) the action
+policy and the value function, both being products of the past, as well as b)
+the deep non-linear relationships within the hierarchical connections of
+biological neural networks. The brain's adaptive synaptic connections can be
+thought as a deep neural-network architecture affording an implicit form of
+information compression of life experience. Such memory traces are stored in the
+neural machinery and can be implicitly retrieved as a form of knowledge during
+simulation of action rather than accessed as a stored explicit representation
+\citep{pezzulo2011grounding}. c) Certain neural processes in the hippocampus can
+be seen as some type of Monte Carlo sampling for memory recall, which can also
+be a basis for probabilistic simulations across time-scales
+\citep{schacter2007remembering,Axelrod2017}.
+
 
 \subsection{Putting everything together}
 The DMN is today known to consistently increase in neural
@@ -1800,7 +1822,7 @@ mental scene construction, the random and creative aspects of DMN function
 are explained in MDPs by the advantages of stochastic optimization.
 Our MDP account provides an algorithmic explanation in that
 stochasticity of the parameter space exploration
-by MCMC approximation achieves better fine-tuning of the
+by Monte Carlo approximation achieves better fine-tuning of the
 action policies and inference of expected reward outcomes.
 That is, the purposeful stochasticity of policy and value updates
 in MDPs provides a candidate explanation for why humans
@@ -2003,21 +2025,24 @@ conceptualize ongoing behavior
 in an organism to be geared towards the surprise-minimizing goal,
 an organism entering a dark room
 % \footnote{\textit{Dark} is used here as an allegory to indicate the complete absence of any \textit{external} sensory input.}
-(Fig. \ref{fig:darkroom}) would remain trapped in this location
+
+% (Fig. \ref{fig:darkroom})
+
+would remain trapped in this location
 because its sensory inputs are perfectly predictable
 given the environmental state \citep{darkroom2012}.
-\begin{wrapfigure}{r}{.37\linewidth}
-  \centering
-  \includegraphics[width=1.\linewidth]{darkroom_resized.png}
-  \caption{\textbf{The dark room experiment.} An intelligent agent situated
-  in a light-deprived closed space is used
-  as a thought experiment for the complete absence
-  of external sensory input.
-  % The free-energy principle theory paradoxally predicts that such an agent would remain quietly in this room, such it perfectly predict all sensory input from such an environment.
-  % However such behavior is not observed in humans or any animals: the agent would strive to leave such an environment in search of more ``interesting'' worlds.
-  }
-  \label{fig:darkroom}
-\end{wrapfigure}
+% \begin{wrapfigure}{r}{.37\linewidth}
+%   \centering
+%   \includegraphics[width=1.\linewidth]{darkroom_resized.png}
+%   \caption{\textbf{The dark room experiment.} An intelligent agent situated
+%   in a light-deprived closed space is used
+%   as a thought experiment for the complete absence
+%   of external sensory input.
+%   % The free-energy principle theory paradoxally predicts that such an agent would remain quietly in this room, such it perfectly predict all sensory input from such an environment.
+%   % However such behavior is not observed in humans or any animals: the agent would strive to leave such an environment in search of more ``interesting'' worlds.
+%   }
+%   \label{fig:darkroom}
+% \end{wrapfigure}
 However, such a behavior is seldom observed in humans in the
 real world. In a dark room, the intelligent agents would search for light sources by explore
 the surroundings or aim to exit the room.
