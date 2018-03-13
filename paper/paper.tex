@@ -139,7 +139,7 @@
 % \title{Dark Control:\\
 %        Towards a Unified Account of Default Mode Function\\
 %        by Markov Decision Processes}
-\title{The Default Mode Network is a Reinforcement Learning Agent!}
+\title{Dark Control: The Default Mode Network as a Reinforcement Learning Agent}
 
 \newcommand{\fix}{\marginpar{FIX}}
 \newcommand{\new}{\marginpar{NEW}}
@@ -228,10 +228,11 @@ continuous evaluation and prediction of the environment to guide behavior.
 % DMN function is recast in terms of
 % control theory and reinforcement learning by basing it on Markov decision processes.
 %
-Specifically, we answer the question whether the neurobiological properties of the DMN
-collectively provide the computational building blocks necessary for a Markov Decision Process.
+The main purpose of the DMN, we argue,
+may be to perform optimization based on Markov Decision Processes
+through vicarious trial and error.
 %
-We argue that our formal account of DMN function naturally accommodates as special cases
+Our formal account of DMN function naturally accommodates as special cases
 previous interpretations based on
 (1) predictive coding,
 (2) semantic associations, and
@@ -387,7 +388,7 @@ informed by internally generated probabilistic simulations
 allowing maximization of action outcomes across multiple time-scales.
 Such a purposeful optimization objective
 may be solved by a stochastic approximation
-based on a brain implementation of Markov Chain Monte Carlo (MCMC) sampling.
+based on a brain implementation of Monte Carlo sampling.
 Even necessarily imperfect memory recall,
 random day-time mind-wandering, and
 seemingly arbitrary dreams during sleep
@@ -413,6 +414,10 @@ to previous accounts of DMN function and
 we derive explicit hypotheses to be tested in future neuroscience
 experiments.
 At this stage, we emphasize the importance of differentiating which levels of observation are at play in the present account. A process model is not solely intended to capture behavior of the agent, such as cognitive accounts of DMN function, but also the neurocomputational specifics of the agent. Henceforth, we will use ``inference`` when describing aspects of the statistical model, ``prediction`` when referring to the neurobiological implementation, and words like ``forecast`` or ``forsee`` when referring to the behavior of the agent.
+%
+Notably, our account does not claim that the brain or neural activity in the DMN are completely identical with reinforcement learning algorithms. Rather, we advocate feedback-based learning strategies as an attractive alternative perspective
+to understand DMN function.
+
 
 
 \section{Known neurobiological properties of the default mode network}
@@ -856,7 +861,7 @@ into ongoing action, planning, and problem solving.
 We argue the outlined neurobiological properties
 of the DMN regions
 to be sufficient for implementing all components
-of a full-fledged reinforcement-learning (RL) system.
+of a full-fledged reinforcement learning (RL) system.
 Recalling past experience, considering candidate actions,
 random sampling of possible experiences, as well as
 estimation of instantaneous and expected delayed reward outcomes
@@ -989,14 +994,15 @@ The process has $memory$ if the subsequent state depends not only on the current
 Nevertheless, this mathematical property of POMDPs mostly accounts for implicit $memory$. Since the current paper is concerned with plausibility at the behavioral and neurobiological level, we will address below how our account can accommodate the neurophysiological constraints of the DMN and the explicit $memory$ characteristics of human agents.
 
 \paragraph*{Why Markov Decision Processes?} One may wonder whether MDP models
-are applicable to something as complex as human behavior. The success of such
-models in diverse domains are numerous. For instance, financial trading is largely a manifestation of strategic decision-making of interacting human agents. According to how the market responds, the agent incurs gain or loss as environmental feedback of the executed financial actions. Recent research on automatizing market exchanges by algorithmic trading has successfully used MDPs as a framework for modeling these elaborate behavioral dynamics  ~\citep{brazdil2017,yang15,yang14,yang12,dempster2006,hult2010, abergel2017}.
+are applicable to something as complex as human behavior. This class of
+reinforcement-learning models has had numerous successes in diverse domains. For instance, financial trading is largely a manifestation of strategic decision-making of interacting human agents. According to how the market responds, the agent incurs gain or loss as environmental feedback of the executed financial actions. Recent research on automatizing market exchanges by algorithmic trading has effectively deployed MDPs as a framework for modeling these elaborate behavioral dynamics  ~\citep{brazdil2017,yang15,yang14,yang12,dempster2006,hult2010, abergel2017}.
 %
 MDPs have also been effective as a behavioral model in robotics
 \citep{ng2004,abbeel2004} and in challenging multistep strategy games
 ~\citep{mnih2015,silver2016mastering,pritzel2017neural}. An even recent work~\citep{robinowitz2018}
-develops an MDP-based Theory of Mind for learning agents (the \textit{ToM-Net}).
-The idea is to use-meta learning (learning-to-learn) to build strong priors
+develops an MDP-based reasoning about future behavior
+of other agents (the \textit{ToM-Net}).
+The idea is to use meta-learning (learning to learn) to build strong priors
 about the behavior of of a population of other agents.
 
 % As such, we aim to expand MDP applications as a useful model from "online" decision-making to the realms of "offline" behaviors most associated with the DMN.
@@ -1020,19 +1026,20 @@ about the behavior of of a population of other agents.
 
 
 \paragraph*{Reinforcement learning in the brain.}
-Model-free RL can be plausibly realized in the human brain \citep{doherty2015structure, daw2014algorithmic}.
+RL can be plausibly realized in the human brain \citep{doherty2015structure, daw2014algorithmic}.
 Indeed,
 it has been proposed \citep{gershman2015computational} that a core property of human intelligence is the improvement
 of expected utility outcomes as a strategy for action choice in uncertain
 environments, a situation perfectly captured by the formalism of MDPs.
 It has also long been proposed \citep{dayan2008decision} that there
-can be a direct mapping between model-free RL learning algorithms
-and aspects of the brain.
+can be a mapping between algorithmic aspects
+underlying model-free and model-based RL learning
+and neurobiological aspects underlying brain function.
 The neurotransmitter dopamine could serve
 as a 'teaching signal' to better estimate value associations
-and action policies by controlling
+and action policies by modulating
 synaptic plasticity in the reward-processing circuitry, including the NAc.
-In contrast, \textit{model-based RL} would start off with some mechanistic assumptions about the dynamics of the world.
+In contrast, model-based RL would start off with some mechanistic assumptions about the dynamics of the world.
 These can be assumptions about the physical laws governing the agent's environment or constraints on the state space, transition probabilities between states,
 reward contingencies, etc.
 % For instance, if a rat in a maze knows
@@ -1116,9 +1123,9 @@ for higher reward outcomes.
 Such an agent puts relatively more emphasis on rewards expected in
 a more distant future.
 Concretely,
-rewards that are not expected to come within
+rewards that are not expected to occur only within
 % \footnote{\textbf{N.B.:} $\frac{1}{1-\gamma} = 1 + \gamma + \gamma^2 + \gamma^3 + \ldots$}
-$\tau := 1/(1 - \gamma)$
+a very large number of
 time steps from the present point are ignored.
 The complexity reduction by time discounting
 alleviates the variance of expected rewards accumulated across
@@ -1454,7 +1461,8 @@ These simulations of experience batches
 would be used to update the value function, without ever looking inside the black box describing the model's dynamics.
 A brain-imaging experiment in humans for instance identified hippocampal signals that specifically preceded upcoming choice performance in prospective planning in new environments
 \citep{kaplan2017neural}.
-This would be a simple control algorithm by evaluating all legal actions and selecting the action with
+It would be a simple strategy to evaluate
+all legal actions and selecting the action with
 highest expected cumulative rewards.
 In MDPs, MC simulation provides an effective mechanism both for tree search and for belief-based state updates, breaking the curse of dimensionality and allowing much greater scalability than has previously been possible \citep{silver2016mastering}.
 This is because expected consequences of action choices can be well evaluated although only a subset of the states are actually considered \citep{daw2014algorithmic}.
@@ -1484,7 +1492,7 @@ be a basis for probabilistic simulations across time-scales
 The DMN is today known to consistently increase in neural
 activity when humans engage in cognitive processes that are relatively detached from
 the current sensory environment.
-The more familiar and predictable the current environment, the more brain resources may remain for allocating DMN activity to MDP processes extending beyond the present time and sensory context. In line with this perspective, DMN engagement was shown to heighten and relate to effective behavioral responses in the practiced phase of a demanding cognitive flexibility task, as compared to acquisition phase when participants learned context-specific rules. This involvement in automated decision-making has led the authors to propose an ``autopilot'' role for the DMN \citep{vatansever2017pnas}, which may contribute to optimizing control of the organism in general. Among all parts of the DMN, the RTPJ is perhaps the most evident candidate for a network-switching relay that calibrates between processing of environment-engaged versus internally generated information \citep{downar2000multimodal, golland2006extrinsic, bzdok2013tpj}.
+The more familiar and predictable the current environment, the more brain resources may remain for allocating DMN activity to MDP processes extending beyond the present time and sensory context. In line with this perspective, DMN engagement was shown to heighten and relate to effective behavioral responses in the practiced phase of a demanding cognitive flexibility task, as compared to acquisition phase when participants learned context-specific rules. This involvement in automated decision-making has led the authors to propose an ``autopilot'' role for the DMN \citep{vatansever2017pnas}, which may contribute to optimizing intervention of the organism on the world in general. Among all parts of the DMN, the RTPJ is perhaps the most evident candidate for a network-switching relay that calibrates between processing of environment-engaged versus internally generated information \citep{downar2000multimodal, golland2006extrinsic, bzdok2013tpj}.
 
 
 Additionally,
@@ -1545,7 +1553,7 @@ future scenarios and action outcomes.
 
 
 
-From the perspective of a model-free RL agent,
+From the perspective of a RL agent,
 prediction in the DMN reduces to
 generalization of
 policy and value computations from sampled experiences to
@@ -1581,7 +1589,9 @@ new steady state of optimal action decisions in a volatile world.
 
 \item Experiment (Animals): We hypothesize that experience replay for browsing problem solutions subserved by the DMN is contributing to choice behavior in mice. Hippocampal single-cell recordings have shown that neural patterns during experimental choice behavior are reiterated during sleep and before making analogous choices in the future. Necessity of cortical DMN regions, in addition to the hippocampus, for “mind-searching” candidate actions during choice behavior can be experimentally corroborated by causal disruption of DMN regions, such as by circumscribed brain lesion or optogenetic intervention in the inferior parietal and prefrontal cortices.
 
-\item Experiment (Humans): We hypothesize that the relevant time horizon is modulated by various factors such as age, acute stress and time-enduring impulsivity traits. Using a temporal discounting experiment, it can be quantified how the time horizon is affected at the behavioral level and then traced-back to its corresponding neural representation. Such experimental investigation can be designed to examine between-group and within-group effects (e.g., impulsive population like chronic gamblers or drug addicts); and brought in context with the participant’s age and personality traits.
+\item Experiment (Humans): We hypothesize that the relevant time horizon is modulated by various factors such as age, acute stress and time-enduring impulsivity traits
+\citep{luksys2009stress, haushofer2014psychology}.
+Using a temporal discounting experiment, it can be quantified how the time horizon is affected at the behavioral level and then traced-back to its corresponding neural representation. Such experimental investigation can be designed to examine between-group and within-group effects (e.g., impulsive population like chronic gamblers or drug addicts); and brought in context with the participant’s age and personality traits.
 
 % To exam-ine this question, Fellows and Farah (2005) investigated the effects of dorsolateral frontal (DLF) and ventromedial frontal (VMF) lobe damage on two aspects of temporal foresight—namely, temporal discounting and the futuretime perspective (measuredby an adaptation of Wallace’s [1956] list of future life events).
 
@@ -1719,7 +1729,7 @@ The present MDP account of DMN function may therefore
 serve as a concrete implementation of
 predictive coding ideas.
 MDPs have the advantage of exposing an explicit
-mechanisms for controlling the horizon of future considerations and for
+mechanisms for modulating the horizon of future considerations and for
 how the internal representation of the world is updated,
 as well as why certain predictions may be more relevant to the agent than others.
 
@@ -2059,7 +2069,7 @@ for instance by looking for and using the light switch or finding the room exit.
 
 % \paragraph{Links between FEP and RL.}
 We finally note that FEP and active inference can be reframed in terms of
-our model-free RL framework.
+our RL framework.
 This becomes possible by recasting the Q-value function (i.e., expected long-term reward) maximized by the DMN to
 correspond to negative surprise,
 that is, the log-likehood of current sensory priors
