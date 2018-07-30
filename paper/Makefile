@@ -2,7 +2,7 @@
 
 PDFLATEX_OPTIONS="-shell-escape -interaction=nonstopmode -file-line-error"
 
-all: clean latex
+all: clean loTopdf latex clean
 
 
 latex:
@@ -14,8 +14,8 @@ latex:
 	# makeglossaries paper
 	pdflatex ${PDFLATEX_OPTIONS} paper
 
-#loTopdf:
-#	unoconv -f pdf *.odp
+loTopdf:
+	unoconv -f pdf *.odp
 
 
 clean:
@@ -38,3 +38,4 @@ clean:
 	rm -f *.log *.lot *.aux *.bbl *.blg
 	rm -f *.fdb_latexmk
 	rm -f *table_equivalence.pdf
+	rm -f neurobiological_*.pdf
