@@ -279,16 +279,24 @@ important role in sustaining conscious awareness \citep{horovitz2009decoupling}.
 
 This \textit{dark matter of brain physiology}
 \citep{raichle2006brain} begs the question
-of the biological purpose underlying DMN activity.
-Despite observation of similar large-scale networks of co-varying spontaneous activity
-in electrophysiological investigations \citep{de2010temporal,brookes2011investigating,baker2014fast}, the link between the fMRI BOLD signal and population-level neural activity is still unclear. If those frequency-specific electrophysiological correlations are proposed as complementary to those observed with BOLD \citep{hipp2015bold}, their role in DMN function remains elusive \citep{maldjian2014graph}.
-
-
+of the biological purpose underlying DMN activity,
+which however still remains elusive at the electrophysiological level
+\citep{de2010temporal,brookes2011investigating,baker2014fast}.
+% the link between the fMRI BOLD signal and population-level neural activity is still unclear. If those frequency-specific electrophysiological correlations are proposed as complementary to those observed with BOLD \citep{hipp2015bold}, their role in DMN function remains elusive \citep{maldjian2014graph}.
 What has early been described as the ``stream of consciousness''
 in psychology \citep{james1890principles}
 found a potential neurobiological manifestation
 in the DMN
 \citep{shul1997, raichle2001pnas}.
+%
+Axonal tracing injection in such parts of the association cortex in monkeys
+were shown to resemble connectivity links between nodes of the human
+DMN (see here for details on anatomical connections: \citep{randy2008}).
+Additionally, myelination patterns of axon connections were found to finish
+particularly late in these cortical areas \citep{flechsig1920}, often believed to suggest
+sophistication of subserved neural processes
+\citep{Sowell2003, Yakovlev1967}.
+%
 We propose that this set of some of the most advanced regions in
 the association cortex \citep{mesulam1998sensation, margulies2016situating}
 are responsible for higher-order control of human behavior.
@@ -423,17 +431,33 @@ to understand DMN function.
 \section{Known neurobiological properties of the default mode network}
 \label{sec:nodes}
 We begin by a neurobiological deconstruction of the DMN
-based on experimental findings in the neuroscience literature.
-This walkthrough across main regions of the DMN will
-outline the individual functional profiles,
+based on integrating experimental findings in the neuroscience literature
+from different species.
+This walkthrough across main functional zones of the DMN
+(i.e., de-emphasizing their precise anatomical properties)
+will outline the individual functional profiles with the goal of
 paving the way for their algorithmic interpretation
 in our formal account (section 3).
+As our focus will be on major \textit{functional} zones of the DMN,
+please see elsewhere for excellent surveys on their \textit{anatomical}
+boundaries and connectivity patterns \citep{randy2008, binder2009, seghier2013angular}.
+
 
 \begin{figure}[!h]
   \includegraphics[width=.9\linewidth]{neurobiological_overview_DMN.pdf}
   \caption{\textbf{Default mode network: key functions.}
   Neurobiological overview of the DMN with its major constituent parts and
-  the associated functional roles relevant in our functional interpretation.}
+  the associated functional roles relevant in our functional interpretation.
+  The blue horizontal line indicates the cytoarchitectonic border between the
+  more dorsal BA9 and the more ventral BA10 (Brodmann, 1909).
+  %
+  Axonal tracing in monkeys and diffusion tractography in humans suggested
+  that the NAc of the reward circuitry has monosynaptic fiber connections
+  to the vmPFC \citep{haber1995, croxson2005quantitative}. Evaluation of
+  propagated value information and triggered affective states encoded
+  in the vmPFC may then feed into the functionally connected partner nodes of
+  the DMN, such as the dmPFC and PMC \citep{andrews2010, bzdok2013segregation}.
+  }
   \label{fig:neurobiological_overview_DMN}
 \end{figure}
 %
@@ -462,17 +486,22 @@ reflect constant computation of
 environmental statistics and its internal representation
 as an inner ``mind's eye'' \citep{cavanna2006precuneus, leech_pcc2014}.
 For instance, B\'alint's syndrome is a neurological disorder of conscious
-awareness that results from medial damage in the parietal cortex
-\citep{balint1909seelenlahmung}.
+awareness that can result from tissue damage in the posterior medial cortex
+\citep{balint1909seelenlahmung, randy2008}.
 Such neurological patients are plagued by an
 inability to bind various individual features of the visual
 environment into an integrated whole (i.e., simultanagnosia)
 as well as an inability to direct action towards
 currently unattended environmental objects
 (i.e., optic ataxia).
+%
+Scanning complex scenes is impaired in that statistic or moving objects in the
+environment may be invisible or disappear in the subject perception of the
+patient \citep{mesulam_book, blumenfeld_book}.
+%
 This dysfunction can be viewed as a high-level impairment in gathering
 information about alternative objects (i.e., exploration) as well as
-leveraging these environmental opportunities (i.e., exploitation).
+using these environmental opportunities towards a behavioral goal (i.e., exploitation).
 Congruently,
 the human PMC was coupled in two different functional connectivity analyses
 \citep{bzdok2015subspecialization}
@@ -550,7 +579,7 @@ into short- and longer-term behavioral agendas.
 Estimated value, found to differs across individuals, might enrich
 statistical assessment of the environment
 to map and predict delayed reward opportunities in the future.
-In doing so, the PMC may continuously adapt the organism to changes
+Viewed from a RL perspective, the PMC may continuously adapt the organism to changes
 in both the external environment and its internal representation
 to enable strategic behavior.
 
@@ -568,7 +597,8 @@ potentially subserves the de-novo construction and manipulation
 of meaning representations instructed by stored semantics and memories
 \citep{bzdok2013segregation}.
 The dmPFC may subserve representation and assessment
-of one's own and other individuals' action considerations.
+of one's own and other individuals' action considerations - a necessary
+component of a full-blown RL agent.
 Generally,
 neurological patients with tissue damage in the prefrontal cortex
 are known to struggle with
@@ -637,10 +667,10 @@ in humans \citep{doherty2015structure}.
   \end{minipage}
   \hspace{-4em}
   \begin{minipage}[c]{0.45\textwidth}
-    \caption{\textbf{Morphological coupling between reward system and
-        default mode network.} Based on 9,932 human subjects from the UK Biobank, inter-individual differences in left NAc volume ($R^2=0.11 \pm 0.02$) and right NAc volume ($R^2=0.14 \pm 0.02$) could be predicted from volume in the DMN regions. These out-of-sample generalization performances were obtained from support vector regression applied to normalized region volumes in the DMN in a 10-fold cross-validation procedure.
+    \caption{\textbf{Predictive structural association between reward system and
+        default mode network.} Reward tasks \citep{doherty2015structure} and neural processign in the DMN \citep{randy2008}, often call task-negative, have been studied so far in largely separate niches of the neuroscience literature. A currently underappreciated link is however suggested here based on 9,932 human subjects from the UK Biobank, inter-individual differences in left NAc volume ($R^2=0.11 \pm 0.02$ [standard deviation across cross-validation folds]) and right NAc volume ($R^2=0.14 \pm 0.02$) could be predicted from (z-scored) volume in the DMN regions. These out-of-sample generalizations reflect the expected performance in yet-to-be observed individuals obtained from linear support vector regression applied to normalized region volumes in the DMN in a 10-fold cross-validation procedure \citep{hastie}.
       Consistent for the left and right reward system, NAc volume in a given subject is
-      positively coupled with the vmPFC and HC. The colors are indicative of the (\textcolor{red}{red} = positive,
+      positively coupled with the vmPFC and HC. The congruence of our structural association results for both NAc targets speaks to the robustness of our pattern-prediction findings. The opposite relation of the left and right TPJ to the NAc appears to reflect a repeatedly recognized hemispheric asymmetry with respect to functional implications \citep{seghier2013angular}, impairments in neurological patients \citep{corbetta2000}, different types of connectivity \citep{uddin_tpj, caspers2011} as well as micro- and macroanatomy \citep{caspers2006, caspers2008}. The colors are indicative of the (\textcolor{red}{red} = positive,
       \textcolor{blue}{blue} = negative) and relative importance (the lighter the higher) of the regression coefficients.
   The code for reproduction and visualization:
   \url{www.github.com/banilo/darkcontrol_2018}.
@@ -677,7 +707,8 @@ the sensory environment.
 
 \subsection{The hippocampus: memory, space, and experience replay}
 The DMN midline has close functional links
-with the HC in the medial temporal lobe \citep{vincet2006, shannon2013morning} \textemdash
+with the HC \citep{henceforth implying to include also parahippocampal regions}
+in the medial temporal lobe \citep{vincet2006, shannon2013morning} \textemdash
 a region long known to be involved in
 memory operations and spatial navigation in animals and humans.
 While the HC
@@ -739,7 +770,7 @@ conceivably contribute to advanced cognitive processes that require
 re-experiencing or newly constructed mental scenarios,
 such as in recalling autobiographical memory episodes
 \citep{hassabis2007patients}.
-Thus, the HC would orchestrate re-experience of environmental aspects for
+Within a RL framework, the HC could thus orchestrate re-experience of environmental aspects for
 consolidations based on re-enactment and for integration into
 rich mental scene construction \citep{deuker2016event, bird2010establishing}.
 As such, the HC may impact
@@ -767,9 +798,11 @@ stephan2007mechanisms}.
 
 
 
-The TPJ in the right hemisphere (RTPJ)
-has been shown to be closely related to
-multi-sensory prediction and prediction error signaling.
+The TPJ in the right hemisphere (RTPJ) denotes a broad functional zone with
+varying anatomical nomenclature \citep{marstpj2011, seghier2010, seghier2013angular}
+that has been shown to be closely related to
+multi-sensory prediction and prediction error signaling
+\citep{downar2000multimodal, vetter2011, shulman2010, shulman2007}.
 This DMN region is probably central for
 action initiation during goal-directed psychological tasks and for
 sensorimotor behavior by integrating multi-sensory attention
@@ -805,7 +838,8 @@ For instance, temporally induced RTPJ damage in humans diminished the
 impact of predicted intentions of other individuals
 \citep{young2010disruption},
 a capacity believed to be enabled by the DMN.
-The RTPJ might hence be an important relay that shifts away
+Viewed from a RL account,
+the RTPJ might reflect an important relay that shifts away
 from the ‘‘internally directed’’ baseline processes
 to, instead, deal with unexpected environmental stimuli and events.
 % (TODO: slow endogeneous changes in state transitions by the policy and value matrices)
@@ -813,8 +847,10 @@ to, instead, deal with unexpected environmental stimuli and events.
 
 
 The left TPJ of the DMN (LTPJ),
-in turn, has a close relationship to Wernicke's area
-involved in semantic processes, such as in spoken and written language.
+in turn, may have a functional relationship to Wernicke's area
+involved in semantic processes \citep{blumenfeld_book} and has
+been described as ``a temporoparietal transmodal gateway for language''
+by some investigators \citep{mesulam_book}.
 Neurological patients with damage in Wernicke's area
 have a major impairment of language comprehension
 when listening to others or reading a book.
@@ -848,7 +884,8 @@ in internally constructed mental scenarios that
 guide present action choice,
 weigh hypothetical possibilities, and forecast event outcomes.
 %
-Neural processes in the LTPJ may hence
+As a candidate component of a RL agent,
+neural processes in the LTPJ may
 contribute to the automated predictions of the environment
 by incorporating experience-derived building blocks of world regularities
 into ongoing action, planning, and problem solving.
@@ -1492,7 +1529,16 @@ be a basis for probabilistic simulations across time-scales
 The DMN is today known to consistently increase in neural
 activity when humans engage in cognitive processes that are relatively detached from
 the current sensory environment.
-The more familiar and predictable the current environment, the more brain resources may remain for allocating DMN activity to MDP processes extending beyond the present time and sensory context. In line with this perspective, DMN engagement was shown to heighten and relate to effective behavioral responses in the practiced phase of a demanding cognitive flexibility task, as compared to acquisition phase when participants learned context-specific rules. This involvement in automated decision-making has led the authors to propose an ``autopilot'' role for the DMN \citep{vatansever2017pnas}, which may contribute to optimizing intervention of the organism on the world in general. Among all parts of the DMN, the RTPJ is perhaps the most evident candidate for a network-switching relay that calibrates between processing of environment-engaged versus internally generated information \citep{downar2000multimodal, golland2006extrinsic, bzdok2013tpj}.
+The more familiar and predictable the current environment, the more brain resources may remain for allocating DMN activity to MDP processes extending beyond the present time and sensory context.
+%
+This speculation receives quantitative support in that connectional links between
+nodes of the DMN have been reported to be more consistent and reliable than
+functional couplings within any other macroscopical networks \citep{shehz2009}.
+As such, random-sampling-related baseline evaluation of possibilities and
+events may be subserved by the DMN and get partly suspended when novelty in
+the external environment is encountered or immediate action is required.
+%
+In line with this perspective, DMN engagement was shown to heighten and relate to effective behavioral responses in the practiced phase of a demanding cognitive flexibility task, as compared to acquisition phase when participants learned context-specific rules. This involvement in automated decision-making has led the authors to propose an ``autopilot'' role for the DMN \citep{vatansever2017pnas}, which may contribute to optimizing intervention of the organism on the world in general. Among all parts of the DMN, the RTPJ is perhaps the most evident candidate for a network-switching relay that calibrates between processing of environment-engaged versus internally generated information \citep{downar2000multimodal, golland2006extrinsic, bzdok2013tpj}.
 
 
 Additionally,
@@ -1521,7 +1567,15 @@ The DMN may subserve
   \caption{\textbf{Default mode network:
   possible neurobiological implementation of reinforcement learning.}
   Overview of how the constituent regions of the DMN (refer to section \ref{sec:nodes}) may
-  map onto computational components necessary for an RL agent.}
+  map onto computational components necessary for an RL agent.
+  %
+  Axonal tracing in monkeys and diffusion tractography in humans suggested
+  that the NAc of the reward circuitry has monosynaptic fiber connections
+  to the vmPFC \citep{haber1995, croxson2005quantitative}. Evaluation of
+  propagated value information and triggered affective states encoded
+  in the vmPFC may then feed into the functionally connected partner nodes of
+  the DMN, such as the dmPFC and PMC \citep{andrews2010, bzdok2013segregation}.
+}
   \label{fig:rl_process_chart}
 \end{figure}
 
@@ -2120,17 +2174,23 @@ may be insufficient to explain the diversity of behaviors that humans and other 
 Which brain function could be important enough
 for the existence and survival of the human species
 to justify constantly high energy costs?
+While previous experiments on the DMN frequently set out to investigate
+\textit{what} its subserved function may be,
+we have proposed a way of reasoning
+\textit{how} this major network may do what it is doing.
+%
 MDPs motivate an attractive
 formal account of how the human association cortex
 can be thought to implement multi-sensory representation and high-level decision-making to
-optimize the organism's intervention on the world.
+optimize the organism's behavioral strategies.
 % by obtaining reward and avoiding pain.
 This idealized process model accommodates
 a number of previous observations from neuroscience studies on the
 DMN by simple but non-trivial mechanisms.
 %
 Viewed as a Markovian sequential decision process,
-human behavior unfolds by inferring cumulative reward outcomes from hypothetical action cascades
+human behavior unfolds by inferring expected reward outcomes
+from hypothetical action cascades
 % stored past events
 and extrapolation from past experience to
 upcoming events for guiding behavior in the present.
@@ -2138,13 +2198,13 @@ MDPs also provide a formalism how
 opportunity in the environment can be deconstructed, evaluated, and exploited
 when confronted with challenging interdependent decisions.
 %
-This functional interpretation may well be compatible with the DMN's
+This abstract process interpretation may well be compatible with the DMN's
 poorly understood involvement across
 autobiographical memory recall, problem solving,
 abstract reasoning, social cognition,
-as well as delay discounting and self prospection into the future.
+as well as delay discounting and self-prospection into the future.
 %
-Improvement of the internal world representation
+For instance, improvement of the internal world representation
 by injecting stochasticity into the recall of past
 actions and inference of action outcomes may explain why
 highly accurate memories have been disfavored in human evolution
@@ -2153,14 +2213,15 @@ and why human creativity may be adaptive.
 
 
 
-A major hurdle in understanding DMN activity from cognitive brain-imaging studies has been its similar neural engagement in different time-scales: thinking about the past (e.g., autobiographical memory), thinking about hypothetical presents (e.g., daytime mind-wandering), and thinking about anticipated scenarios (e.g., delay discounting).
-The MDP account of DMN function offers a natural integration of a-priori diverging neural processes into a common framework.
+A major hurdle in guessing DMN function from cognitive brain-imaging studies has been its similar neural engagement in different time-scales: thinking about the past (e.g., autobiographical memory retrieval), thinking about hypothetical presents (e.g., daytime mind-wandering), and
+anticipating scenarios yet to come (e.g., delay discounting).
+The MDP account of DMN activity offers a natural integration of a-priori diverging neural processes into a common framework.
 %
 It is an important advantage of the proposed artificial intelligence perspective
 on DMN biology that it is practically computable and
 readily motivates neuroscientific hypotheses that can be put to the test in future research.
 %
-Neuroscience experiments on the DMN should be designed that operationalize
+Future neuroscience experiments on the DMN should operationalize
 the set of action, value, and state variables governing
 the behavior of intelligent RL agents.
 %
@@ -2169,10 +2230,9 @@ describe, contextualize, and interpret experimental findings in neuroscience stu
 on higher-level cognition.
 %
 Ultimately,
-neural processes in the DMN may realize a holistic integration
+neural processes in the DMN may realize a brain-wide information integration
 ranging from real experience over purposeful dreams to predicted futures
-to continuously refine the organism's fate.
-
+to continuously refine the organism's intervention on the world.
 
 
 
