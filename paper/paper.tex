@@ -345,15 +345,16 @@ across time, space, and content domains
 
 The present work adopts the perspective of
 a human \textit{agent} faced with the choice of the next actions
-and guided by outcomes
-of really happened, hypothetically imagined, and
-expected futures to optimize behavioral performance.
-Formally, we propose reinforcement learning to be a particularly attractive framework
-to describe, quantify, DMN function and the brain.
+and guided by outcomes to optimize behavioral performance. These outcomes
+can be experienced, hypothetically imagined, or simply future expectations.
+Formally, we propose reinforcement learning as a particularly attractive framework
+for describing and quantifying the DMN function.
 An intelligent agent improves the interaction with the environment
 by continuously updating its computation of value estimates and action predispositions
 through integration of feedback outcomes.
-That is, ``[agents], with their actions, modify the environment and in doing so partially determine their next stimuli, in particular stimuli that are necessary for triggering the next action''
+That is, ``[agents], with their actions, modify the environment and in doing so
+partially determine their next stimuli, in particular stimuli that are necessary
+for triggering the next action''
 \citep{pezzulo2011grounding}.
 Agents with other behavioral policies therefore sample different
 distributions of action-perception trajectories \citep{ghavamzadeh2015bayesian}.
@@ -1105,23 +1106,25 @@ following a policy $\pi$ generates a trajectory of action choices:
 \begin{eqnarray*}
   \begin{split}
     \textbf{choose action: }a_0 &\sim \pi(a|s_0)\\
-    \textbf{ observe transition: }s_1 &\sim p(s|s_0,a_0)\textbf{ and collect reward }R_0 = r(s_0, a_0, s_1)\\
+    \textbf{ observe transition: }s_1 &\sim p(s|s_0,a_0)\textbf{ and collect
+      reward }R_0 = r(s_0, a_0, s_1)\\
     \textbf{choose action: }a_1 &\sim \pi(a|s_1)\\
-    \textbf{ observe transition: }s_2 &\sim p(s|s_1,a_1), \textbf{ and collect reward }R_1 = r(s_1, a_1,s_2)\\
+    \textbf{ observe transition: }s_2 &\sim p(s|s_1,a_1), \textbf{ and collect
+      reward }R_1 = r(s_1, a_1,s_2)\\
     \vdots\\
     \textbf{choose action: }a_{t} &\sim \pi(a|s_{t})\\
-    \textbf{ observe transition: }s_{t+1} &\sim p(s|s_{t},a_{t}), \textbf{ and collect reward }R_{t} = r(s_{t}, a_{t},s_{t+1})\\
+    \textbf{ observe transition: }s_{t+1} &\sim p(s|s_{t},a_{t}), \textbf{ and
+      collect reward }R_{t} = r(s_{t}, a_{t},s_{t+1})\\
     \vdots
   \end{split}
 \end{eqnarray*}
 We assume time-invariance
 in that we expect the dynamics of the process
 to be equivalent over sufficiently long time windows of equal length (i.e., stationarity).
-Since an action executed in the present moment might have repercussions in the far future, it turns out that the
-quantity to optimize is not the instantaneous rewards $r(s, a)$, but a
-\textit{cumulative reward} estimate which takes into account expected reward
-from action choices in the future.
-A common approach to
+Since an action executed in the present moment might have repercussions in the
+far future, it turns out that the quantity to optimize is not the instantaneous
+rewards $r(s, a)$, but a \textit{cumulative reward} estimate which takes into
+account expected reward from action choices in the future. A common approach to
 modeling this gathered outcome is the time-discounted cumulative reward% function
 \begin{equation}
   \label{eq:cumr}
@@ -1129,13 +1132,17 @@ modeling this gathered outcome is the time-discounted cumulative reward% functio
 \end{equation}
 This random variable
   \footnote{Random as it depends both on the environment's dynamics and the
-  policy $\pi$ being executed. The exponential delay discounting function used here refers to the usual formulation in the field of reinforcement learning, although psychological experiments may also reveal other discounting regimes \citep{green2004discounting}.}
+  policy $\pi$ being executed. The exponential delay discounting function used
+  here refers to the usual formulation in the field of reinforcement learning,
+  although psychological experiments may also reveal other discounting regimes
+  \citep{green2004discounting}.}
 measures the cumulative reward of
 following an action policy $\pi$.
 %
 Note that value buffering may be realized in the vmPFC.
-This DMN region has direct connections to
-to the NAc, known to be involved in reward evaluation.
+This DMN region has direct connections to the NAc, known to be involved in
+reward evaluation~\citep{carlezon2009}.
+
 
 
 
@@ -1395,10 +1402,12 @@ and is recorded in replay memory buffer \textemdash
 which we hypothesize to be subserved by the
 HC \textemdash, possibly discarding the oldest entries to make space:
 $\mathcal D \leftarrow \text{append}(\mathcal D, e)$.
-At time step $k$, the agent seeks an update $\theta_{k} \leftarrow \theta_{k-1} + \delta \theta_{k}$ of the parameters for its approximate model of the $Q$-value function. This warrants a learning process
-and definition of a loss function.
-% \subsubsection{Stochastic gradient in the DMN via experience replay}
-The Bellman equation \eqref{eq:bellman} provides a way to obtain such a loss function \eqref{eq:oracle} as we outline in the following.
+At time step $k$, the agent seeks an update $\theta_{k} \leftarrow \theta_{k-1}
++ \delta \theta_{k}$ of the parameters for its approximate model of the
+$Q$-value function. This warrants a learning process and definition of a loss
+function. % \subsubsection{Stochastic gradient in the DMN via experience replay}
+The Bellman equation \eqref{eq:bellman} provides a way to obtain such a loss
+function \eqref{eq:oracle} as we outline in the following.
 % A practically successful RL approach
 % needs ways to efficiently approximate the state-action value function
 % to allow for scaling to large state and action spaces.
@@ -1408,13 +1417,20 @@ Experience replay consists in sampling
 batches of experiences $e$
 $(s, a, r, s') \sim \mathcal D$ from the replay memory $\mathcal D$.
 The agent then tries to approximate
-the would-be $Q$-value for the state-action pair $(s,a)$ as predicted by the Bellman equation \eqref{eq:bellman}, namely
+the would-be $Q$-value for the state-action pair $(s,a)$ as predicted by the
+Bellman equation \eqref{eq:bellman}, namely
 \begin{equation}
   y_k := y_k(s,a,s') =  r + \gamma \max_{a'} \tilde{Q}(s', a'|\theta_{k-1}),
 \end{equation}
 with the estimation of a parametrized regression model $(s,a)
 \mapsto \tilde{Q}(s, a|\theta_{k-1})$.
-From a neurobiological perspective, experience replay can be manifested as the re-occurrence of neuron spiking sequences that have also been measured during specific prior actions and environmental states. The HC is a strong candidate for contributing to such neural reinstantiation of behavioral episodes as neuroscience experiments have repeatedly indicated in rats, mice, cats, rabbits, songbirds, and monkeys \citep{buhry2011,nokia2010,dave2000,skaggs2007}.
+From a neurobiological perspective, experience replay can be manifested as the
+re-occurrence of neuron spiking sequences that have also been measured during
+specific prior actions and environmental states. The HC is a strong candidate
+for contributing to such neural reinstantiation of behavioral episodes as
+neuroscience experiments have repeatedly indicated in rats, mice, cats, rabbits,
+songbirds, and monkeys \citep{buhry2011,nokia2010,dave2000,skaggs2007}. Refer to
+Fig. \ref{fig:rl_process_chart}.
 
 At the current step $k$, computing an optimal parameter update then corresponds to
 finding the model parameters $\theta_{k}$ which minimize the following mean-squared loss function
@@ -2257,7 +2273,8 @@ to continuously refine the organism's intervention on the world.
 \small
 % \bibliographystyle{splncs03}
 % \bibliographystyle{natbib}
-\bibliographystyle{plainnat}
+% \bibliographystyle{plainnat}
+\bibliographystyle{abbrvnat}
 \bibliography{refs}
 
 

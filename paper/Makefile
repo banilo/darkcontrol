@@ -15,7 +15,7 @@ latex:
 	pdflatex ${PDFLATEX_OPTIONS} paper
 
 loTopdf:
-	unoconv -f pdf *.odp
+	soffice --headless --convert-to pdf  *.odp
 
 
 clean:
