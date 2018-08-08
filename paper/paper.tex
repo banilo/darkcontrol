@@ -1311,45 +1311,6 @@ This aspect of the learning process
 can unroll off-policy by observing state transitions
 triggered by another (possibly stochastic) behavioral policy.
 
-\begin{mdframed}
-% neuroscience of Bellman equation
-  \vspace{2em}
-  \textbf{Box 1: Neural correlates of the Bellman equation in the DMN}
-% \hspace{-1.5em}
-Relating decomposition of consecutive action choices by the Bellman equation
-to neuroscientific insights,
-specific neural activity in the dorsal prefrontal cortex (BA9)
-was linked to processing ``goal-tree sequences''
-in human brain-imaging experiments
-\citep{koechlin1999role, koechlin2000dissociating}.
-Sub-goal exploration may require multi-task switching
-between cognitive processes
-as later parts of a solution
-frequently depend on respective earlier steps in a given solution path, which
-necessitates storage of expected intermediate outcomes.
-As such,
-``cognitive branching'' operations for nested processing of behavioral strategies
-are likely to
-entail secondary reallocation of attention and working-memory resources.
-Further brain-imaging experiments corroborated
-the prefrontal DMN to subserve
-``processes related to the management and monitoring of sub-goals while
-maintaining information in working memory''
-\citep{braver2002role}
-and to functionally couple with the hippocampus conditioned by ``deep versus shallow planning''
-\citep{kaplan2017neural}.
-%
-Moreover,
-neurological patients with lesions in this DMN region were reported
-to be impaired in aspects of realizing ``multiple sub-goal scheduling''
-\citep{burgess2000cognitive}.
-Hence,
-the various advanced human abilities subserved by the DMN, such as
-planning and abstract reasoning, can be viewed to involve some form of
-action-decision branching to enable higher-order executive control.
-\end{mdframed}
-
-
 % \subsection{Learning in the DMN}
 \subsubsection{Value approximation and the policy matrix}
 \label{sec:policymat}
@@ -1554,6 +1515,7 @@ be a basis for probabilistic simulations across time-scales
 
 
 \subsection{Putting everything together}
+\subsubsection{Consequences for the DMN function}
 The DMN is today known to consistently increase in neural
 activity when humans engage in cognitive processes that are relatively detached from
 the current sensory environment.
@@ -1661,26 +1623,64 @@ new steady state of optimal action decisions in a volatile world.
 % \end{itemize}
 
 
-\begin{mdframed}
-  \vspace{1em}
-  \textbf{Box 2: Proposed studies for testing the MDP account of DMN function}
-\begin{enumerate}
-\item Experiment (Humans): We hypothesize a functional relationship between the DMN closely associated with the occurrence of stimulus-independent thoughts and the reward circuitry. During an iterative neuroeconomic two-player game, fMRI signals in the DMN could be used to predict reward-related signals in the nucleus accumbens across trials in a continuous learning paradigm. We expect that the more DMN activity is measured to be increased, supposedly the higher the tendency for stimulus-independent thoughts, the more the fMRI signals in the reward circuits should be independent of the reward context in the current sensory environment.
+% \begin{mdframed}
+%   \vspace{1em}
+%   \textbf{Box 2: Proposed studies for testing the MDP account of DMN function}
+% \begin{enumerate}
 
-\item Experiment (Humans): We hypothesize a functional dissociation between computations pertaining to action policy versus adapting stimulus-value associations as we expect implementation in different subsystems of the DMN. First, we expect that fMRI signals in the right temporo-parietal junction relate to behavioral changes subsequent to adaptation in the action choice tendencies (policy matrix) involved in non-value-related prediction error. Second, fMRI signals in the ventromedial prefrontal cortex should relate to behavioral changes following adaptation in value estimation (value matrix) due to reward-related stimulus-value association. We finally expect that fMRI signals in the posteromedial cortex, as a potential global information integrator, are related to shifts in overt behavior based on previous adaptations in both policy or value estimation.
+\subsubsection{Experimental predictions}
+Following our process model of DMN, several empirical predictions can be drawn.
 
-\item Experiment (Animals): We hypothesize that experience replay for browsing problem solutions subserved by the DMN is contributing to choice behavior in mice. Hippocampal single-cell recordings have shown that neural patterns during experimental choice behavior are reiterated during sleep and before making analogous choices in the future. Necessity of cortical DMN regions, in addition to the hippocampus, for “mind-searching” candidate actions during choice behavior can be experimentally corroborated by causal disruption of DMN regions, such as by circumscribed brain lesion or optogenetic intervention in the inferior parietal and prefrontal cortices.
 
-\item Experiment (Humans): We hypothesize that the relevant time horizon is modulated by various factors such as age, acute stress and time-enduring impulsivity traits
+
+\textbf{Neural correlates of the Bellman equation in the DMN (Humans)}
+Relating decomposition of consecutive action choices by the Bellman equation
+to neuroscientific insights,
+specific neural activity in the dorsal prefrontal cortex (BA9)
+was linked to processing ``goal-tree sequences''
+in human brain-imaging experiments
+\citep{koechlin1999role, koechlin2000dissociating}.
+Sub-goal exploration may require multi-task switching
+between cognitive processes
+as later parts of a solution
+frequently depend on respective earlier steps in a given solution path, which
+necessitates storage of expected intermediate outcomes.
+As such,
+``cognitive branching'' operations for nested processing of behavioral strategies
+are likely to
+entail secondary reallocation of attention and working-memory resources.
+Further brain-imaging experiments corroborated
+the prefrontal DMN to subserve
+``processes related to the management and monitoring of sub-goals while
+maintaining information in working memory''
+\citep{braver2002role}
+and to functionally couple with the hippocampus conditioned by ``deep versus shallow planning''
+\citep{kaplan2017neural}.
+%
+Moreover,
+neurological patients with lesions in this DMN region were reported
+to be impaired in aspects of realizing ``multiple sub-goal scheduling''
+\citep{burgess2000cognitive}.
+Hence,
+the various advanced human abilities subserved by the DMN, such as
+planning and abstract reasoning, can be viewed to involve some form of
+action-decision branching to enable higher-order executive control.
+
+We hypothesize a functional dissociation between computations pertaining to action policy versus adapting stimulus-value associations as we expect implementation in different subsystems of the DMN. First, we expect that fMRI signals in the right temporo-parietal junction relate to behavioral changes subsequent to adaptation in the action choice tendencies (policy matrix) involved in non-value-related prediction error. Second, fMRI signals in the ventromedial prefrontal cortex should relate to behavioral changes following adaptation in value estimation (value matrix) due to reward-related stimulus-value association. We finally expect that fMRI signals in the posteromedial cortex, as a potential global information integrator, are related to shifts in overt behavior based on previous adaptations in both policy or value estimation.
+
+\textbf{Continuous learning paradigm (Humans)} We hypothesize a functional relationship between the DMN closely associated with the occurrence of stimulus-independent thoughts and the reward circuitry. During an iterative neuroeconomic two-player game, fMRI signals in the DMN could be used to predict reward-related signals in the nucleus accumbens across trials in a continuous learning paradigm. We expect that the more DMN activity is measured to be increased, supposedly the higher the tendency for stimulus-independent thoughts, the more the fMRI signals in the reward circuits should be independent of the reward context in the current sensory environment.
+
+\textbf{Temporal discounting experiment (Humans)} We hypothesize that the relevant time horizon is modulated by various factors such as age, acute stress and time-enduring impulsivity traits
 \citep{luksys2009stress, haushofer2014psychology}.
 Using a temporal discounting experiment, it can be quantified how the time horizon is affected at the behavioral level and then traced-back to its corresponding neural representation. Such experimental investigation can be designed to examine between-group and within-group effects (e.g., impulsive population like chronic gamblers or drug addicts); and brought in context with the participant’s age and personality traits.
-
 % To exam-ine this question, Fellows and Farah (2005) investigated the effects of dorsolateral frontal (DLF) and ventromedial frontal (VMF) lobe damage on two aspects of temporal foresight—namely, temporal discounting and the futuretime perspective (measuredby an adaptation of Wallace’s [1956] list of future life events).
 
-\item Experiment (Humans \& Animals): An additional layer of learning concerns the addition of new entries in the state and action spaces. Extension of the action repertoire could be biologically realized by synaptic epigenesis \citep{gisiger_acquisition_2005}. Indeed, the tuning of synaptic weights through learning can stabilize additional patterns of activity by creating new attractors in the neural dynamics landscape \citep{takeuchi_synaptic_2014}. Those attractors can then constrain both the number of factors taken into account by decision processes and the possible behaviors of the agent \citep{wang_decision_2008}. To examine this potential higher-level mechanism, we propose to probe how synaptic epigenesis is related to neural correlates underlying policy matrix updates: in humans the changes of functional connectivity between DMN regions can be investigated following a temporal discounting experiment and in monkeys or rodents anterograde tracing can be used to study how homolog regions of the DMN present increased synaptic changes compare to other parts of the brain.
+\textbf{Synaptic epigenesis and creation of new entry in policy matrix (Humans \& Animals)} An additional layer of learning concerns the addition of new entries in the state and action spaces. Extension of the action repertoire could be biologically realized by synaptic epigenesis \citep{gisiger_acquisition_2005}. Indeed, the tuning of synaptic weights through learning can stabilize additional patterns of activity by creating new attractors in the neural dynamics landscape \citep{takeuchi_synaptic_2014}. Those attractors can then constrain both the number of factors taken into account by decision processes and the possible behaviors of the agent \citep{wang_decision_2008}. To examine this potential higher-level mechanism, we propose to probe how synaptic epigenesis is related to neural correlates underlying policy matrix updates: in humans the changes of functional connectivity between DMN regions can be investigated following a temporal discounting experiment and in monkeys or rodents anterograde tracing can be used to study how homolog regions of the DMN present increased synapti\c changes compare to other parts of the brain.
 
-\end{enumerate}
-\end{mdframed}
+\textbf{Interplay with memory and “mind-searching” (Animals)} We hypothesize that experience replay for browsing problem solutions subserved by the DMN is contributing to choice behavior in mice. Hippocampal single-cell recordings have shown that neural patterns during experimental choice behavior are reiterated during sleep and before making analogous choices in the future. Necessity of cortical DMN regions, in addition to the hippocampus, for “mind-searching” candidate actions during choice behavior can be experimentally corroborated by causal disruption of DMN regions, such as by circumscribed brain lesion or optogenetic intervention in the inferior parietal and prefrontal cortices.
+
+% \end{enumerate}
+% \end{mdframed}
 
 
 \begin{figure}[!h]
