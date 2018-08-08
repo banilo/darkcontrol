@@ -346,9 +346,9 @@ across time, space, and content domains
 The present work adopts the perspective of
 a human \textit{agent} faced with the choice of the next actions
 and guided by outcomes to optimize behavioral performance. These outcomes
-can be experienced, hypothetically imagined, or simply future expectations.
+can be really experienced, hypothetically imagined, or simply expected in the future.
 Formally, we propose reinforcement learning as a particularly attractive framework
-for describing and quantifying the DMN function.
+for describing, containing, and quantifying the DMN function.
 An intelligent agent improves the interaction with the environment
 by continuously updating its computation of value estimates and action predispositions
 through integration of feedback outcomes.
@@ -1404,7 +1404,7 @@ HC \textemdash, possibly discarding the oldest entries to make space:
 $\mathcal D \leftarrow \text{append}(\mathcal D, e)$.
 At time step $k$, the agent seeks an update $\theta_{k} \leftarrow \theta_{k-1}
 + \delta \theta_{k}$ of the parameters for its approximate model of the
-$Q$-value function. This warrants a learning process and definition of a loss
+$Q$-value function. Step-by-step model parameter updates warrant a learning process and definition of a loss
 function. % \subsubsection{Stochastic gradient in the DMN via experience replay}
 The Bellman equation \eqref{eq:bellman} provides a way to obtain such a loss
 function \eqref{eq:oracle} as we outline in the following.
@@ -1426,7 +1426,7 @@ with the estimation of a parametrized regression model $(s,a)
 \mapsto \tilde{Q}(s, a|\theta_{k-1})$.
 From a neurobiological perspective, experience replay can be manifested as the
 re-occurrence of neuron spiking sequences that have also been measured during
-specific prior actions and environmental states. The HC is a strong candidate
+specific prior actions or environmental states. The HC is a strong candidate
 for contributing to such neural reinstantiation of behavioral episodes as
 neuroscience experiments have repeatedly indicated in rats, mice, cats, rabbits,
 songbirds, and monkeys \citep{buhry2011,nokia2010,dave2000,skaggs2007}. Refer to
