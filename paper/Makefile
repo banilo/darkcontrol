@@ -2,7 +2,7 @@
 
 PDFLATEX_OPTIONS="-shell-escape -interaction=nonstopmode -file-line-error"
 
-all: clean latex clean
+all: clean latex clean2
 
 
 latex:
@@ -38,3 +38,10 @@ clean:
 	rm -f *.synctex.gz
 	rm -f *.log *.lot *.aux *.bbl *.blg
 	rm -f *.fdb_latexmk
+
+clean2:
+	rm -f *.aux
+	rm -f *.bbl
+	rm -f *.blg
+	rm -f *.log
+	rm -f *.out
