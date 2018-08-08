@@ -1509,7 +1509,7 @@ be a basis for probabilistic simulations across time-scales
 
 
 \subsection{Putting everything together}
-\subsubsection{Consequences for the DMN function}
+
 The DMN is today known to consistently increase in neural
 activity when humans engage in cognitive processes that are relatively detached from
 the current sensory environment.
@@ -1546,88 +1546,9 @@ The DMN may subserve
   evolutionary emergence and practical usefulness of
   mind-wandering at day-time and dreams during sleep
   in humans.
-\begin{figure}[!h]
-  \includegraphics[width=.9\linewidth]{neurobiological_and_rl_overview_DMN.pdf}
-  \caption{\textbf{Default mode network:
-  possible neurobiological implementation of reinforcement learning.}
-  Overview of how the constituent regions of the DMN (refer to section \ref{sec:nodes}; blue horizontal dashed line indicates the border between BA9 and BA10) may
-  map onto computational components necessary for an RL agent.
-  %
-  Axonal tracing in monkeys and diffusion tractography in humans suggested
-  that the NAc of the reward circuitry has monosynaptic fiber connections
-  to the vmPFC \citep{haber1995, croxson2005quantitative}. Evaluation of
-  propagated value information and triggered affective states encoded
-  in the vmPFC may then feed into the functionally connected partner nodes of
-  the DMN, such as the dmPFC and PMC \citep{andrews2010, bzdok2013segregation}.
-}
-  \label{fig:rl_process_chart}
-\end{figure}
 
 
-The HC may contribute to generating
-perturbed action-transition-state-reward samples
-as batches of pseudo-experience
-(i.e., recalled, hypothesized, and forecasted scenarios).
-The small variations in these experience samplings allow searching
-a larger space of model parameters and possible experiences.
-Taken to its extreme, stochastic recombination of experience
-building blocks can further optimize the behavior of the RL agent
-by model learning from scenarios in the environment that the agent might
-only very rarely or never encounter.
-An explanation is thus offered for experiencing seemingly familiar situations that
-a human has however never actually encountered (i.e., d\'{e}j\`{a} vu effect).
-While such a situation may not have been experienced in the physical world,
-the DMN may have previously stochastically generated, evaluated, and adapted to
-such a randomly synthesized event.
-Generated representations arguably are ``internally manipulable,
-and can be used for attempting actions internally,
-before or instead of acting in the external reality,
-and in diverse goal and sensory contexts, i.e. even outside the context in which they were learned''
-\citep{pezzulo2011grounding}.
-In the context of scarce environmental input and feedback
-(e.g., mind-wandering or sleep),
-mental scene construction allows pseudo-experiencing possible
-future scenarios and action outcomes.
-
-
-
-From the perspective of a RL agent,
-prediction in the DMN reduces to
-generalization of
-policy and value computations from sampled experiences to
-successful action choices and reward predictions in future states.
-As such,
-plasticity in the DMN arises naturally.
-If an agent behaving optimally in a certain environment moves
-to new, yet unexperienced environment, reward prediction errors will
-largely increase.
-This feedback will lead to adaptation of policy considerations
-and value estimations until the intelligent system converges to a
-new steady state of optimal action decisions in a volatile world.
-
-
-
-% \paragraph*{Some notes:}
-% \begin{itemize}
-%   \item Actions are continuous, whilst states are continuous.
-%   \item The brain does backprop (see Hinton's recent talk at Stanford)
-%   \item model weights $\theta^Q$ should correspond to connections between neurons
-% \item humm, looks like such a knowledge would simply translate into constraints on the DqN weights $\theta^Q$ (... at least, part of such knowledge)
-%   ok, gotta think about the model-free / model-based reconsiliation
-% \end{itemize}
-
-
-% \begin{mdframed}
-%   \vspace{1em}
-%   \textbf{Box 2: Proposed studies for testing the MDP account of DMN function}
-% \begin{enumerate}
-
-\subsubsection{Experimental predictions}
-Following our process model of DMN, several empirical predictions can be drawn.
-
-
-
-\textbf{Neural correlates of the Bellman equation in the DMN (Humans)}
+\paragraph*{Neural correlates of the Bellman equation in the DMN (Humans)}
 Relating decomposition of consecutive action choices by the Bellman equation
 to neuroscientific insights,
 specific neural activity in the dorsal prefrontal cortex (BA9)
@@ -1662,19 +1583,110 @@ action-decision branching to enable higher-order executive control.
 
 We hypothesize a functional dissociation between computations pertaining to action policy versus adapting stimulus-value associations as we expect implementation in different subsystems of the DMN. First, we expect that fMRI signals in the right temporo-parietal junction relate to behavioral changes subsequent to adaptation in the action choice tendencies (policy matrix) involved in non-value-related prediction error. Second, fMRI signals in the ventromedial prefrontal cortex should relate to behavioral changes following adaptation in value estimation (value matrix) due to reward-related stimulus-value association. We finally expect that fMRI signals in the posteromedial cortex, as a potential global information integrator, are related to shifts in overt behavior based on previous adaptations in both policy or value estimation.
 
-\textbf{Continuous learning paradigm (Humans)} We hypothesize a functional relationship between the DMN closely associated with the occurrence of stimulus-independent thoughts and the reward circuitry. During an iterative neuroeconomic two-player game, fMRI signals in the DMN could be used to predict reward-related signals in the nucleus accumbens across trials in a continuous learning paradigm. We expect that the more DMN activity is measured to be increased, supposedly the higher the tendency for stimulus-independent thoughts, the more the fMRI signals in the reward circuits should be independent of the reward context in the current sensory environment.
+\paragraph*{Continuous learning paradigm (Humans)} We hypothesize a functional relationship between the DMN closely associated with the occurrence of stimulus-independent thoughts and the reward circuitry. During an iterative neuroeconomic two-player game, fMRI signals in the DMN could be used to predict reward-related signals in the nucleus accumbens across trials in a continuous learning paradigm. We expect that the more DMN activity is measured to be increased, supposedly the higher the tendency for stimulus-independent thoughts, the more the fMRI signals in the reward circuits should be independent of the reward context in the current sensory environment.
 
-\textbf{Temporal discounting experiment (Humans)} We hypothesize that the relevant time horizon is modulated by various factors such as age, acute stress and time-enduring impulsivity traits
+\paragraph*{Temporal discounting experiment (Humans)} We hypothesize that the relevant time horizon is modulated by various factors such as age, acute stress and time-enduring impulsivity traits
 \citep{luksys2009stress, haushofer2014psychology}.
 Using a temporal discounting experiment, it can be quantified how the time horizon is affected at the behavioral level and then traced-back to its corresponding neural representation. Such experimental investigation can be designed to examine between-group and within-group effects (e.g., impulsive population like chronic gamblers or drug addicts); and brought in context with the participant’s age and personality traits.
 % To exam-ine this question, Fellows and Farah (2005) investigated the effects of dorsolateral frontal (DLF) and ventromedial frontal (VMF) lobe damage on two aspects of temporal foresight—namely, temporal discounting and the futuretime perspective (measuredby an adaptation of Wallace’s [1956] list of future life events).
 
-\textbf{Synaptic epigenesis and creation of new entry in policy matrix (Humans \& Animals)} An additional layer of learning concerns the addition of new entries in the state and action spaces. Extension of the action repertoire could be biologically realized by synaptic epigenesis \citep{gisiger_acquisition_2005}. Indeed, the tuning of synaptic weights through learning can stabilize additional patterns of activity by creating new attractors in the neural dynamics landscape \citep{takeuchi_synaptic_2014}. Those attractors can then constrain both the number of factors taken into account by decision processes and the possible behaviors of the agent \citep{wang_decision_2008}. To examine this potential higher-level mechanism, we propose to probe how synaptic epigenesis is related to neural correlates underlying policy matrix updates: in humans the changes of functional connectivity between DMN regions can be investigated following a temporal discounting experiment and in monkeys or rodents anterograde tracing can be used to study how homolog regions of the DMN present increased synapti\c changes compare to other parts of the brain.
 
-\textbf{Interplay with memory and “mind-searching” (Animals)} We hypothesize that experience replay for browsing problem solutions subserved by the DMN is contributing to choice behavior in mice. Hippocampal single-cell recordings have shown that neural patterns during experimental choice behavior are reiterated during sleep and before making analogous choices in the future. Necessity of cortical DMN regions, in addition to the hippocampus, for “mind-searching” candidate actions during choice behavior can be experimentally corroborated by causal disruption of DMN regions, such as by circumscribed brain lesion or optogenetic intervention in the inferior parietal and prefrontal cortices.
 
-% \end{enumerate}
-% \end{mdframed}
+
+
+  
+\begin{figure}[!h]
+  \includegraphics[width=.9\linewidth]{neurobiological_and_rl_overview_DMN.pdf}
+  \caption{\textbf{Default mode network:
+  possible neurobiological implementation of reinforcement learning.}
+  Overview of how the constituent regions of the DMN (refer to section \ref{sec:nodes}; blue horizontal dashed line indicates the border between BA9 and BA10) may
+  map onto computational components necessary for an RL agent.
+  %
+  Axonal tracing in monkeys and diffusion tractography in humans suggested
+  that the NAc of the reward circuitry has monosynaptic fiber connections
+  to the vmPFC \citep{haber1995, croxson2005quantitative}. Evaluation of
+  propagated value information and triggered affective states encoded
+  in the vmPFC may then feed into the functionally connected partner nodes of
+  the DMN, such as the dmPFC and PMC \citep{andrews2010, bzdok2013segregation}.
+}
+  \label{fig:rl_process_chart}
+\end{figure}
+
+
+
+
+
+
+
+
+The HC may contribute to generating
+perturbed action-transition-state-reward samples
+as batches of pseudo-experience
+(i.e., recalled, hypothesized, and forecasted scenarios).
+The small variations in these experience samplings allow searching
+a larger space of model parameters and possible experiences.
+Taken to its extreme, stochastic recombination of experience
+building blocks can further optimize the behavior of the RL agent
+by model learning from scenarios in the environment that the agent might
+only very rarely or never encounter.
+An explanation is thus offered for experiencing seemingly familiar situations that
+a human has however never actually encountered (i.e., d\'{e}j\`{a} vu effect).
+While such a situation may not have been experienced in the physical world,
+the DMN may have previously stochastically generated, evaluated, and adapted to
+such a randomly synthesized event.
+Generated representations arguably are ``internally manipulable,
+and can be used for attempting actions internally,
+before or instead of acting in the external reality,
+and in diverse goal and sensory contexts, i.e. even outside the context in which they were learned''
+\citep{pezzulo2011grounding}.
+In the context of scarce environmental input and feedback
+(e.g., mind-wandering or sleep),
+mental scene construction allows pseudo-experiencing possible
+future scenarios and action outcomes.
+
+\paragraph*{Interplay with memory and “mind-searching” (Animals)} We hypothesize that experience replay for browsing problem solutions subserved by the DMN is contributing to choice behavior in mice. Hippocampal single-cell recordings have shown that neural patterns during experimental choice behavior are reiterated during sleep and before making analogous choices in the future. Necessity of cortical DMN regions, in addition to the hippocampus, for “mind-searching” candidate actions during choice behavior can be experimentally corroborated by causal disruption of DMN regions, such as by circumscribed brain lesion or optogenetic intervention in the inferior parietal and prefrontal cortices.
+
+
+
+
+
+
+
+From the perspective of a RL agent,
+prediction in the DMN reduces to
+generalization of
+policy and value computations from sampled experiences to
+successful action choices and reward predictions in future states.
+As such,
+plasticity in the DMN arises naturally.
+If an agent behaving optimally in a certain environment moves
+to new, yet unexperienced environment, reward prediction errors will
+largely increase.
+This feedback will lead to adaptation of policy considerations
+and value estimations until the intelligent system converges to a
+new steady state of optimal action decisions in a volatile world.
+
+\paragraph*{Synaptic epigenesis and creation of new entry in policy matrix (Humans \& Animals)} An additional layer of learning concerns the addition of new entries in the state and action spaces. Extension of the action repertoire could be biologically realized by synaptic epigenesis \citep{gisiger_acquisition_2005}. Indeed, the tuning of synaptic weights through learning can stabilize additional patterns of activity by creating new attractors in the neural dynamics landscape \citep{takeuchi_synaptic_2014}. Those attractors can then constrain both the number of factors taken into account by decision processes and the possible behaviors of the agent \citep{wang_decision_2008}. To examine this potential higher-level mechanism, we propose to probe how synaptic epigenesis is related to neural correlates underlying policy matrix updates: in humans the changes of functional connectivity between DMN regions can be investigated following a temporal discounting experiment and in monkeys or rodents anterograde tracing can be used to study how homolog regions of the DMN present increased synapti\c changes compare to other parts of the brain.
+
+
+
+
+
+% \paragraph*{Some notes:}
+% \begin{itemize}
+%   \item Actions are continuous, whilst states are continuous.
+%   \item The brain does backprop (see Hinton's recent talk at Stanford)
+%   \item model weights $\theta^Q$ should correspond to connections between neurons
+% \item humm, looks like such a knowledge would simply translate into constraints on the DqN weights $\theta^Q$ (... at least, part of such knowledge)
+%   ok, gotta think about the model-free / model-based reconsiliation
+% \end{itemize}
+
+
+% \begin{mdframed}
+%   \vspace{1em}
+%   \textbf{Box 2: Proposed studies for testing the MDP account of DMN function}
+% \begin{enumerate}
+
 
 
 \begin{figure}[!h]
