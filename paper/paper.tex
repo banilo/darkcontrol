@@ -228,11 +228,11 @@ continuous evaluation and prediction of the environment to guide behavior.
 % DMN function is recast in terms of
 % control theory and reinforcement learning by basing it on Markov decision processes.
 %
-The main purpose of the DMN, we argue,
-may be to perform optimization based on Markov Decision Processes
-through vicarious trial and error.
+The main purpose of DMN activity, we argue,
+may be to optimize action policies via value estimates
+based on Markov Decision Processes through vicarious trial and error.
 %
-Our formal account of DMN function naturally accommodates as special cases
+Our formal perspective on DMN function naturally accommodates as special cases
 previous interpretations based on
 (1) predictive coding,
 (2) semantic associations, and
@@ -279,7 +279,7 @@ important role in sustaining conscious awareness \citep{horovitz2009decoupling}.
 
 This \textit{dark matter of brain physiology}
 \citep{raichle2006brain} begs the question
-of the biological purpose underlying DMN activity,
+of the biological purpose underlying neural activity in the DMN,
 which however still remains elusive at the electrophysiological level
 \citep{de2010temporal,brookes2011investigating,baker2014fast}.
 % the link between the fMRI BOLD signal and population-level neural activity is still unclear. If those frequency-specific electrophysiological correlations are proposed as complementary to those observed with BOLD \citep{hipp2015bold}, their role in DMN function remains elusive \citep{maldjian2014graph}.
@@ -310,7 +310,7 @@ cortex'' \citep{carhart2010default}.
 
 \subsection{Towards a formal account of default mode function: higher-order control of the organism}
 The network nodes that compose the human DMN
-are responsible for extended parts of the baseline neural activity,
+are hubs of high baseline neural activity,
 which typically decreases when engaged in controlled psychological experiments
 \citep{raichle_baseline}.
 The standard mode of
@@ -343,12 +343,15 @@ across time, space, and content domains
 \citep{boyer2008evolutionary}.
 
 
-The present work adopts the perspective of
+
+We aim at proposing an alternative to reasoning about the DMN
+based on longstanding cognitive theory.
+The present work adopts the control-theoretical perspective of
 a human \textit{agent} faced with the choice of the next actions
 and guided by outcomes to optimize behavioral performance. These outcomes
 can be really experienced, hypothetically imagined, or simply expected in the future.
 Formally, we propose reinforcement learning as a particularly attractive framework
-for describing, containing, and quantifying the DMN function.
+for describing, containing, and quantifying the unknown function underlying DMN activity.
 An intelligent agent improves the interaction with the environment
 by continuously updating its computation of value estimates and action predispositions
 through integration of feedback outcomes.
@@ -394,20 +397,21 @@ of the most advanced human capacities
 can be recast as prediction error minimization
 informed by internally generated probabilistic simulations
 - ``covert forms of action and perception'' \citep{pezzulo2011grounding} -,
-allowing maximization of action outcomes across multiple time-scales.
+allowing maximization of action outcomes across different time scales.
 Such a purposeful optimization objective
 may be solved by a stochastic approximation
 based on a brain implementation of Monte Carlo sampling.
 Even necessarily imperfect memory recall,
 random day-time mind-wandering, and
 seemingly arbitrary dreams during sleep
-may provide randomly sampled blocks of pseudo-experience instrumental to iteratively
-optimize the behavior of the organism.
+may provide randomly sampled blocks of pseudo-experience  that are
+instrumental to iteratively
+optimize the behavioral agenda of the organism.
 
 
 
 Evidence from computational modeling of human behavior \citep{kording2004bayesian} and cell recording experiments in ferrets \citep{fiser2004small} suggest that
-the brain is largely dedicated to
+much of brain activity is dedicated to
 ``the development and maintenance of [a]
 probabilistic model of anticipated events''
 \citep{raichle2005intrinsic}.
@@ -418,14 +422,22 @@ by providing tentative evidence that
 variation of the grey-matter volume in DMN regions
 is linked to the reward circuitry (Fig. 2),
 thus linking two literatures with currently scarce cross-references.
-Finally, we detail how our process model relates
-to previous accounts of DMN function and
-we derive explicit hypotheses to be tested in future neuroscience
-experiments.
-At this stage, we emphasize the importance of differentiating which levels of observation are at play in the present account. A process model is not solely intended to capture behavior of the agent, such as cognitive accounts of DMN function, but also the neurocomputational specifics of the agent. Henceforth, we will use ``inference`` when describing aspects of the statistical model, ``prediction`` when referring to the neurobiological implementation, and words like ``forecast`` or ``forsee`` when referring to the behavior of the agent.
+Finally,
+we derive explicit hypotheses that could be tested in targeted neuroscience
+experiments in the future
+and
+we detail how our process model relates
+to previous cognitive and theoretical accounts of DMN function.
+
+
+
+Please appreciate the importance of differentiating which levels of observation are at play in the present account. A process model is not solely intended to capture behavior of the agent, such as cognitive accounts of DMN function, but also the neurocomputational specifics of the agent. Henceforth, we will use ``inference`` when referring to aspects of the statistical model, ``prediction`` when referring to the neurobiological implementation, and words like ``forecast`` or ``forsee`` when referring to the behavior of the agent.
 %
-Notably, our account does not claim that the brain or neural activity in the DMN are completely identical with reinforcement learning algorithms. Rather, we advocate feedback-based learning strategies as an attractive alternative perspective
-to understand DMN function.
+It is moreover important to note that
+our account does not claim that neural activity in the DMN in particular
+or the brain in general are identical with reinforcement learning algorithms.
+Rather, we advocate feedback-based learning strategies as an attractive alternative perspective
+to describe, quantify, and interpret DMN function in neuroscience research.
 
 
 
@@ -2068,15 +2080,16 @@ where
   F_G^R(\x) := \langle -\log(p_G(\z, \x))\rangle_{p_R(\z|\x)} - \mathcal H(p_R(\z|\x))
 \end{equation}
 is the \textit{free energy}.
-Here, the angular brackets denote the \textit{expectation} of the joint negative log-likelihood $-\log(p_G(\z, \x))$ w.r.t the recognition density $p_R(\z|\x)$, $\mathcal H$ is the \textit{entropy} functional defined by $\mathcal H(p) := -\sum_{\z}p(\z)\log(p(\z)$, while $\operatorname{KL}(.\|.)$ is the usual \textit{Kullback-Leibler (KL) divergence} (also known as \textit{relative entropy}) defined by $\operatorname{KL}(p\|q) := \sum_{z}p(\z)\log(p(\z)/q(\z)) \ge 0$,
-which is a measure of how different two probability distributions are. In this framework, the goal of the agent is then to iteratively refine the generative model $p_G$ and the recognition model $p_R$ so as to minimize the free energy $F_G^R(\x)$ over sensory input $\x$.
+Here, the angular brackets denote the \textit{expectation} of the joint negative log-likelihood $-\log(p_G(\z, \x))$ w.r.t the recognition density $p_R(\z|\x)$, $\mathcal H$ is the \textit{entropy} function defined by $\mathcal H(p) := -\sum_{\z}p(\z)\log(p(\z)$, while $\operatorname{KL}(.\|.)$ is the usual \textit{Kullback-Leibler (KL) divergence} (also known as \textit{relative entropy}) defined by $\operatorname{KL}(p\|q) := \sum_{z}p(\z)\log(p(\z)/q(\z)) \ge 0$,
+which is a measure of difference between two probability distributions. In this framework, the goal of the agent is to iteratively refine the generative model $p_G$ and the recognition model $p_R$ so as to minimize the free energy $F_G^R(\x)$ over sensory input $\x$.
 
 Importantly, $F^R_G(x)$ gets low in the following cases:
 \begin{itemize}
-\item  $p_R(\z|\x)$ puts a lot of mass on configurations $(\z,\x)$ which are $p_G$-likely, % (i.e the sensation $\x$ is likely caused by $\z$)
-  \textbf{and}
+\item  $p_R(\z|\x)$ puts a lot of mass on configurations $(\z,\x)$ which are $p_G$-likely
+% (i.e the sensation $\x$ is likely caused by $\z$)
+%  \textbf{and}
 \item $p_R(\z|\x)$ is as uniform as possible (i.e have high entropy), so as not to concentrate
-  all its mass on a small subset of possible causes for the sensation $\x$.
+  all its mass on a small subset of possible causes for the sensation $\x$
   \end{itemize}
 % The optimization procedure proposed by the authors derives from the \textit{wake-sleep algorithm} \citep{dayan1995helmholtz}.
 % \begin{figure}[!tb]
@@ -2090,7 +2103,7 @@ Importantly, $F^R_G(x)$ gets low in the following cases:
 % CRITICISM
 % \paragraph{Main criticisms.}
 Despite its popularity, criticism against the FEP has been voiced over the years,
-some of which is outlined in the following.
+which we allude to in the following.
 The main algorithm for minimizing free energy $F_G^R(\x)$ is the \textit{wake-sleep algorithm}
 \citep{dayan1995helmholtz}. As these authors noted,
 a crucial drawback of the wake-sleep algorithm (and therefore of theories like the FEP \citep{friston2010free}) is that it involves a pair
@@ -2136,14 +2149,16 @@ However, such a behavior is seldom observed in humans in the
 real world. In a dark room, the intelligent agents would search for light sources by explore
 the surroundings or aim to exit the room.
 Defenders of the FEP have retorted by advancing the ``full package'' \citep{darkroom2012}:
-FEP is proposed to be multi-scale and there would be a meta-scale at which the organism would
-be \textit{surprised} by such a \textit{lack of surprise}. According to this argument, a dark room would paradoxically correspond to a state of particularly high relevance.
+FEP is framed as being multi-scale, and there would be one scale at which
+the organism would
+be \textit{surprised} by a \textit{lack of surprise}.
+One may object that a dark room would paradoxically correspond to a state of particularly high relevance.
 Driven by the surprise-minimization objective, the FEP agent would eventually bootstrap itself out of such saddle points to explore more interesting parts of the environment.
 % Recourse to this argument is equivalent to invoking a \textit{halting oracle}\citep{haltingoracle}, an arbitrarily powerful machine which can solve the \textit{halting problem} (an arbitrarily difficult computational problem which cannot be solved under any reasonable \textit{model of computation}, not even in principle!). But this is problematic as it sucks up the problem (that of decision-making and active agency) the theory intends to elude in the first place.
 In contrast, an organism operating under our RL-based theory would inevitably
 identify the sensory-stimulus-deprived room as a local minimum. Indeed, hippocampal experience replay (see \ref{sec:self}) could serve to sample memories or fantasies of alternative situations
-with reward structure. Such artificially generated \textit{internal} sensory input
-subserved by the DMN can entice the organism to explore the room,
+with reward structure. Such artificially generated \textit{internal} sensory input,
+potentially subserved by the DMN, could then entice the organism to explore the room,
 for instance by looking for and using the light switch or finding the room exit.
 
 % \paragraph{Links between FEP and RL.}
@@ -2152,7 +2167,7 @@ our RL framework.
 This becomes possible by recasting the Q-value function (i.e., expected long-term reward) maximized by the DMN to
 correspond to negative surprise,
 that is, the log-likehood of current sensory priors
-the agent has about the world. More explicitly, this corresponds to using free-energy as a Q-value approximator for the MDP such that
+the agent has about the world. More explicitly, this corresponds to using free-energy as a Q-value approximator for the MDP in the following way:
 
 \begin{eqnarray*}
   -Q \approx \underbrace{F^R_G(\x)}_{\text{negative free energy}} \approx \underbrace{-\log (p_G)}_{\text{FEP generative surprise}}.
