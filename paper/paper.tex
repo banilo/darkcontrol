@@ -795,14 +795,14 @@ ongoing perception of and action on the environment
 \subsection{The right and left TPJ: prediction error signaling and world semantics}
 The DMN emerges with its midline structures early in human development
 \citep{doria2010}, while
-the right and left TPJs may become fully integrated into this major brain
+the right and left TPJs may become fully functionally integrated into this major brain
 network only after birth.
 The TPJs are known to exhibit hemispheric differences
 based on microanatomical properties and cortical gyrification patterns
 \citep{seghier2013angular}.
-Globally, neuroscientific investigations on hemispheric functional specialization
-have highlighted the right cerebral hemisphere as dominant for attentional functions
-and the left side for semantic functions
+In general, neuroscientific investigations on hemispheric functional specialization
+have highlighted the right cerebral hemisphere as more dominant for attentional functions
+and the left side more for semantic functions
 \citep{seghier2013angular, bzdok2013tpj, bzdok2016left,
 stephan2007mechanisms}.
 
@@ -819,7 +819,9 @@ sensorimotor behavior by integrating multi-sensory attention
 \citep{corbetta2002control}.
 Its involvement was repeatedly reported in
 multi-step action execution \citep{hartmann2005takes},
-visuo-proprioceptive conflict \citep{Balslev2005}, and
+visuo-proprioceptive conflict \citep{Balslev2005},
+spatial reorienting \citep{corbetta2000},
+and
 detection of environmental changes across
 visual, auditory, or tactile stimulation
 \citep{downar2000multimodal}.
@@ -831,14 +833,14 @@ It was argued that the RTPJ encodes actions and predicted outcomes,
 without necessarily relating these neural processes to value estimation
 \citep{liljeholm2013neural, hamilton2008action,
 jakobs2009effects}.
-Additionally, neural activity in the RTPJ has been proposed to reflect
+More specifically, neural activity in the RTPJ has been proposed to reflect
 stimulus-driven attentional reallocation to
 self-relevant and unexpected sources of information
 as a ‘‘circuit breaker’’ that recalibrates functional control of brain networks
 \citep{bzdok2013tpj, corbettashul2008}.
 % (Bzdok et al., 2013; Corbetta et al., 2008).
-Indeed, neurological patients with RTPJ damage have particular difficulties
-with multi-step actions \citep{hartmann2005takes}.
+% Indeed, neurological patients with RTPJ damage have particular difficulties
+% with multi-step actions \citep{hartmann2005takes}.
 In the face of large discrepancies between actual and previously predicted
 environmental events, the RTPJ acts as a potential switch between
 externally-oriented mind sets focussed on the
@@ -861,7 +863,7 @@ in turn, may have a functional relationship to Wernicke's area
 involved in semantic processes \citep{blumenfeld_book} and has
 been described as ``a temporoparietal transmodal gateway for language''
 by some investigators \citep{mesulam_book}.
-Neurological patients with damage in Wernicke's area
+Neurological patients with damage in this region
 have a major impairment of language comprehension
 when listening to others or reading a book.
 Patient speech
@@ -974,7 +976,7 @@ particularly sophisticated human behaviors
 can be parsimoniously explained as instantiating probabilistic
 simulations of experience coupled with prediction error minimization
 to calibrate action trajectories for
-reward outcome maximization at different time-scales.
+reward outcome maximization at different time scales.
 Such a purposeful optimization objective
 may be subserved by a stochastic approximation
 based on a brain implementation for Monte Carlo sampling of events and outcomes.
@@ -982,8 +984,8 @@ based on a brain implementation for Monte Carlo sampling of events and outcomes.
 \begin{figure}[!h]
   \centering
   \includegraphics[width=1.\linewidth]{POMDP_Fig.pdf}
-  \caption{\textbf{Illustration of Partially Observable Markov Decision Process (POMDP).} Given the current state of the environment,
-    the agent takes an action by following the policy matrix as updated by the Bellman equation. The agent receives a triggered reward and observes the next state. The process goes on until interrupted or a goal state is reached.}
+  \caption{\textbf{Illustration of a Partially Observable Markov Decision Process (POMDP).} Given the current state of the environment,
+    the agent takes an action by following the policy matrix, which is iteratively updated by the Bellman equation. The agent receives a triggered reward and observes the next state. The process goes on until interrupted or a goal state is reached.}
   \label{fig:rl}
 \end{figure}
 
@@ -1046,9 +1048,10 @@ reinforcement-learning models has had numerous successes in diverse domains. For
 %
 MDPs have also been effective as a behavioral model in robotics
 \citep{ng2004,abbeel2004} and in challenging multistep strategy games
-~\citep{mnih2015,silver2016mastering,pritzel2017neural}. An even recent work~\citep{robinowitz2018}
-develops an MDP-based reasoning about future behavior
-of other agents (the \textit{ToM-Net}).
+~\citep{mnih2015,silver2016mastering,pritzel2017neural}. 
+More recent work has
+developped an MDP-based way of reasoning about future behavior
+of other agents \citep{robinowitz2018}.
 The idea is to use meta-learning (learning to learn) to build strong priors
 about the behavior of of a population of other agents.
 
@@ -1075,7 +1078,8 @@ about the behavior of of a population of other agents.
 \paragraph*{Reinforcement learning in the brain.}
 RL can be plausibly realized in the human brain \citep{doherty2015structure, daw2014algorithmic}.
 Indeed,
-it has been proposed \citep{gershman2015computational} that a core property of human intelligence is the improvement
+previous authors have proposed
+\citep{gershman2015computational} that a core property of human intelligence is the improvement
 of expected utility outcomes as a strategy for action choice in uncertain
 environments, a situation perfectly captured by the formalism of MDPs.
 It has also long been proposed \citep{dayan2008decision} that there
@@ -1127,7 +1131,7 @@ following a policy $\pi$ generates a trajectory of action choices:
     \vdots
   \end{split}
 \end{eqnarray*}
-We assume time-invariance
+We assume time invariance
 in that we expect the dynamics of the process
 to be equivalent over sufficiently long time windows of equal length (i.e., stationarity).
 Since an action executed in the present moment might have repercussions in the
@@ -1148,9 +1152,9 @@ This random variable
 measures the cumulative reward of
 following an action policy $\pi$.
 %
-Note that value buffering may be realized in the vmPFC.
-This DMN region has direct connections to the NAc, known to be involved in
-reward evaluation~\citep{carlezon2009}.
+Note that value buffering may be realized in the vmPFC by virtue of
+this region's connections to the NAc of the reward sytem
+\citep{carlezon2009}.
 
 
 
@@ -1507,7 +1511,7 @@ neural machinery and can be implicitly retrieved as a form of knowledge during
 simulation of action rather than accessed as a stored explicit representation
 \citep{pezzulo2011grounding}. c) Certain neural processes in the hippocampus can
 be seen as some type of Monte Carlo sampling for memory recall, which can also
-be a basis for probabilistic simulations across time-scales
+be a basis for probabilistic simulations across time scales
 \citep{schacter2007remembering,Axelrod2017}.
 
 
@@ -1896,7 +1900,7 @@ both the semantic hypothesis and the present formal account based on MDPs
 expose mechanisms of how action considerations could be explored.
 In both accounts,
 there is also little reason to assume that contemplating alternative realities of various
-levels of complexity, abstraction, time-scale, and purpose
+levels of complexity, abstraction, time scale, and purpose
 rely on mechanisms that are qualitatively different. This interpretation concurs with
 DMN activity increases across time, space, and content domains
 demonstrated in many brain-imaging studies
@@ -2262,7 +2266,7 @@ and why human creativity may be adaptive.
 
 
 
-A major hurdle in guessing DMN function from cognitive brain-imaging studies has been its similar neural engagement in different time-scales: thinking about the past (e.g., autobiographical memory retrieval), thinking about hypothetical presents (e.g., daytime mind-wandering), and
+A major hurdle in guessing DMN function from cognitive brain-imaging studies has been its similar neural engagement in different time scales: thinking about the past (e.g., autobiographical memory retrieval), thinking about hypothetical presents (e.g., daytime mind-wandering), and
 anticipating scenarios yet to come (e.g., delay discounting).
 The MDP account of DMN activity offers a natural integration of a-priori diverging neural processes into a common framework.
 %
