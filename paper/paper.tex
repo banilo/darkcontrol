@@ -214,9 +214,9 @@
 The default mode network (DMN) is believed to subserve the
 baseline mental activity in humans.
 %
-Its highest energy consumption compared to other brain networks and
+Its higher energy consumption compared to other brain networks and
 its intimate coupling with conscious awareness are both pointing to
-an overarching function.
+an unknown overarching function.
 %
 Many research streams speak in favor of an evolutionarily adaptive role in
 envisioning experience to anticipate the future.
@@ -229,8 +229,9 @@ continuous evaluation and prediction of the environment to guide behavior.
 % control theory and reinforcement learning by basing it on Markov decision processes.
 %
 The main purpose of DMN activity, we argue,
-may be to optimize action policies via value estimates
-based on Markov Decision Processes through vicarious trial and error.
+may be described by Markov Decision Processes
+that optimize action policies via value estimates
+based through vicarious trial and error.
 %
 Our formal perspective on DMN function naturally accommodates as special cases
 previous interpretations based on
@@ -365,7 +366,7 @@ Henceforth,
 \textit{control} refers to the influence that an agent exerts when interacting
 with the environment to reach preferred states.
 
-Psychologically,
+At the psychological level,
 the more the ongoing executed task is unknown and unpracticed,
 the less stimulus-independent thoughts occur
 \citep{filler1973daydreaming, teasdale1995stimulus, christoff2016mind}.
@@ -376,12 +377,12 @@ becomes detached from the actual sensory environment
 \citep{antrobus1966studies, pope1978regulation, mason2007, weiss2006}.
 Without requiring explicit awareness,
 these ``offline'' processes may contribute
-to optimizing control of the organism.
+to optimizing control of the organism in general.
 We formalize
 a \textit{policy matrix} to capture the space of possible actions that
 the agent can perform
 on the environment given the current state. A \textit{value function}
-maps environmental objects and events (i.e., states) to expected rewards.
+maps environmental objects and events (i.e., states) to expected reward outcomes.
 Switching between states reduces to a sequential processing model.
 Informed by outcomes of performed actions, neural computation reflected in
 DMN dynamics could be constantly shaped by prediction error through feedback loops.
@@ -389,7 +390,7 @@ The present computational account of DMN function will be described in the mathe
 
 
 
-Such an RL account of DMN function can naturally embed human behavior
+Such a RL perspective on DMN function can naturally embed human behavior
 into the tension between exploitative action with immediate gains and
 exploratory action with longer-term gratification.
 We argue that DMN implication in many
@@ -437,7 +438,7 @@ It is moreover important to note that
 our account does not claim that neural activity in the DMN in particular
 or the brain in general are identical with reinforcement learning algorithms.
 Rather, we advocate feedback-based learning strategies as an attractive alternative perspective
-to describe, quantify, and interpret DMN function in neuroscience research.
+to describe, quantify, and interpret research findings on the DMN.
 
 
 
@@ -488,7 +489,7 @@ potentially represent the functional core of the DMN
 
 Normal and disturbed metabolic fluctuations in the
 human PMC have been closely related to
-changes of conscious awareness \citep{cavanna2006precuneus}.
+changes of conscious awareness \citep{cavanna2006precuneus, leech_pcc2014}.
 Indeed,
 the PMC matures relatively late (i.e., myelination) during postnatal development in monkeys
 \citep{goldman1987development}, which is generally considered to
@@ -599,13 +600,13 @@ to enable strategic behavior.
 
 \subsection{The prefrontal cortex: action consideration and stimulus-value association}
 Analogous to the PMC,
-the dorsomedial PFC (dmPFC) of the DMN is believed to subserve
+the dorsomedial PFC (dmPFC, related to BA9) of the DMN is believed to subserve
 multi-sensory processes
 across time, space, and content domains to
 exert top-level control on behavior.
 Comparing to the PMC, however,
 dmPFC function may be closer to a
-``mental sketchpad'' \citep{goldman1996prefrontal}, as this DMN part
+``mental sketchpad'' \citep{goldman1996prefrontal}. This DMN part
 potentially subserves the de-novo construction and manipulation
 of meaning representations instructed by stored semantics and memories
 \citep{bzdok2013segregation}.
@@ -645,7 +646,7 @@ with fine-grained adjustment of contextual aspects \citep{yoshida2010neural}.
 
 
 Comparing to the dmPFC,
-the vmPFC is probably more specifically devoted to
+the ventromedial PFC (vmPFC, related to BA10) is probably more specifically devoted to
 subjective value evaluation and
 risk estimation of relevant environmental stimuli
 (Fig. \ref{fig:neurobiological_overview_DMN} and \ref{fig:dmn}).
@@ -678,7 +679,7 @@ in humans \citep{doherty2015structure}.
   
   \includegraphics[width=.75\linewidth]{fig_dmn.png}
   \caption{\textbf{Predictive structural association between reward system and
-      DMN.} Reward tasks \citep{doherty2015structure} and neural processign in the DMN \citep{randy2008}, often call task-negative, have been studied so far in largely separate niches of the neuroscience literature. A currently underappreciated link is however suggested here based on 9,932 human subjects from the UK Biobank, inter-individual differences in left NAc volume ($R^2=0.11 \pm 0.02$ [standard deviation across cross-validation folds]) and right NAc volume ($R^2=0.14 \pm 0.02$) could be predicted from (z-scored) volume in the DMN regions. These out-of-sample generalizations reflect the expected performance in yet-to-be observed individuals obtained from linear support vector regression applied to normalized region volumes in the DMN in a 10-fold cross-validation procedure \citep{hastie}.
+      DMN nodes.} Reward tasks \citep{doherty2015structure} and neural processing in the DMN \citep{randy2008}, often considered task-negative, have been studied so far in largely separate niches of the neuroscience literature. A currently underappreciated link is however suggested here based on 9,932 human subjects from the UK Biobank, inter-individual differences in left NAc volume ($R^2=0.11 \pm 0.02$ [standard deviation across cross-validation folds]) and right NAc volume ($R^2=0.14 \pm 0.02$) could be predicted from (z-scored) volume in the DMN regions. These out-of-sample generalizations reflect the expected performance in yet-to-be observed individuals obtained from linear support vector regression applied to normalized region volumes in the DMN in a 10-fold cross-validation procedure \citep{hastie}.
     Consistent for the left and right reward system, NAc volume in a given subject is
     positively coupled with the vmPFC and HC. The congruence of our structural association results for both NAc targets speaks to the robustness of our pattern-prediction findings. The opposite relation of the left and right TPJ to the NAc appears to reflect a repeatedly recognized hemispheric asymmetry with respect to functional implications \citep{seghier2013angular}, impairments in neurological patients \citep{corbetta2000}, different types of connectivity \citep{uddin_tpj, caspers2011} as well as micro- and macroanatomy \citep{caspers2006, caspers2008}. The colors are indicative of the (\textcolor{red}{red} = positive,
     \textcolor{blue}{blue} = negative) and relative importance (the lighter the higher) of the regression coefficients.
@@ -705,10 +706,12 @@ and decision making.
 In neuroeconomic studies of human decision making,
 the vmPFC consistently reflects an individual’s subjective
 value predictions
-\citep{behrens2008associative},
-which may also explain why performance within and across participants
+\citep{behrens2008associative}. This finding
+may also explain why performance within and across participants
 was reported to relate to state encoding in the vmPFC \citep{Schuck2016}.
-Such a ``cognitive map'' of the action space was argued to encode
+Such a ``cognitive map'' of the action space - an integral part of a RL
+agent -
+was argued to encode
 the current task state even when states are unobservable from
 the sensory environment.
 
@@ -780,7 +783,7 @@ such as in recalling autobiographical memory episodes
 Within a RL framework, the HC could thus orchestrate re-experience of environmental aspects for
 consolidations based on re-enactment and for integration into
 rich mental scene construction \citep{deuker2016event, bird2010establishing}.
-As such, the HC may impact
+In this way, the HC may impact
 ongoing perception of and action on the environment
 \citep{maguire2016, lavilleon2015}.
 % (TODO: relate to self-play in deepmind Go).
@@ -974,7 +977,7 @@ to calibrate action trajectories for
 reward outcome maximization at different time-scales.
 Such a purposeful optimization objective
 may be subserved by a stochastic approximation
-based on a brain implementation of Monte Carlo sampling.
+based on a brain implementation for Monte Carlo sampling of events and outcomes.
 
 \begin{figure}[!h]
   \centering
@@ -1469,7 +1472,7 @@ based on stochastic sampling around states and possible transitions \citep{daw20
 Monte Carlo simulation provides a simple method for evaluating the value of a state.
 This inference procedure provides an effective mechanism both for tree search (of the considered
 action trajectories)
-and for belief state updates, breaking the curse of dimensionality and allowing much greater scalability than an RL agent without stochastic resampling procedures.
+and for belief state updates, breaking the curse of dimensionality and allowing much greater scalability than a RL agent without stochastic resampling procedures.
 Such methods have scaling as a function of available data (i.e., sample complexity) that
 is determined only by the underlying difficulty of the MDP, rather than the size of the state space or observation space,
 which can be prohibitively large.
@@ -1600,7 +1603,7 @@ Using a temporal discounting experiment, it can be quantified how the time horiz
   \caption{\textbf{Default mode network:
   possible neurobiological implementation of reinforcement learning.}
   Overview of how the constituent regions of the DMN (refer to section \ref{sec:nodes}; blue horizontal dashed line indicates the border between BA9 and BA10) may
-  map onto computational components necessary for an RL agent.
+  map onto computational components necessary for a RL agent.
   %
   Axonal tracing in monkeys and diffusion tractography in humans suggested
   that the NAc of the reward circuitry has monosynaptic fiber connections
