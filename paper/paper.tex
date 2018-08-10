@@ -920,9 +920,9 @@ that are plausible to functionally intersect in the DMN.
 
 
 RL is an area of machine learning concerned with searching optimal behavioral strategies through interactions
-with an \textit{environment} with the goal to maximize some \textit{cumulative reward}.
+with an \textit{environment} with the goal to maximize the \textit{cumulative reward} over time.
 The optimal behavior typically
-takes the future into account as some rewards could be \textit{delayed}.
+takes the future into account as certain rewards could be \textit{delayed}.
 Through repeated action on and feedback from the environment,
 the agent learns how to reach goals and continuously improve the collection of reward signals
 in a trial-and-error fashion (Fig. \ref{fig:rl}).
@@ -932,7 +932,7 @@ $s \rightarrow s'$, accompanied by environmental feedback signals as \textit{rew
 $r = r(s, a,s')$ obtained by the agent.
 If the collected reward outcome yields a negative value it can be
 more naturally interpreted as \textit{punishment}.
-In this setting, the environment is partially controlled by
+The environment be partly controlled by
 the action of the agent and the reward can be thought
 of as satisfaction \textemdash or aversion \textemdash that accompany the execution of
 a particular action.
@@ -966,7 +966,7 @@ to explain DMN functions of the human brain.
 % in the tension between exploitative action with immediate gains and
 % explorative action with longer-term reward schedules
 % \citep{dayan2008decision}.
-We argue that a functional account of the DMN based on RL
+We argue that an abstract description of DMN activity based on RL
 can naturally embed human behavior
 in the tension between exploitative action with immediate gains and
 explorative action with longer-term reward outcomes
@@ -993,9 +993,7 @@ based on a brain implementation for Monte Carlo sampling of events and outcomes.
 
 
 \subsection{Markov decision processes}
-RL has had considerable success in modeling many real-world problems, including super-human performance in complex video games \citep{mnih2015},
-robotics \citep{ng2004,abbeel2004},
-and strategic board games like the breakthrough results upon recently on the game of Go \citep{silver2016mastering} considered to be a milestone benchmark in artificial intelligence.
+% RL has had considerable success in modeling complex decision-making problems,
 % We emphasize that the brain in general, and the DMN in particular,
 % is a physical system governed by the laws of
 % physics and can be formally described
@@ -1004,7 +1002,7 @@ and strategic board games like the breakthrough results upon recently on the gam
 % any system obeying the laws of classical physics can be accurately modeled as a Markov process as long as the time
 % step is sufficiently short.
 In artificial intelligence and machine learning, a popular computational model for
-multi-step decision processes in such an environment are
+multi-step decision processes are
 MDPs \citep{sutton1998reinforcement}.
 % For the remainder of this paper, for the sake of simplicity
 % we use the abbreviation ``MDP'' to refer to the special case
@@ -1013,7 +1011,8 @@ An MDP operationalizes a sequential decision process
 in which it is assumed that environment dynamics are determined by a Markov process,
 but the agent cannot directly observe the underlying state.
 Instead, the agent tries to optimize a \textit{subjective} reward
-signal (i.e., likely to be different for another agent in the same state),
+signal (i.e., likely to be different for another agent in the same state
+and possibly driven by neural processing in the vmPFC)
 by maintaining probability distributions over actions according to their expected utility.
 % This is performed alongside each transition in the state space of the environment
 %  and maintains a probability distribution over the set of possible
@@ -1052,8 +1051,8 @@ MDPs have also been effective as a behavioral model in robotics
 More recent work has
 developped an MDP-based way of reasoning about future behavior
 of other agents \citep{robinowitz2018}.
-The idea is to use meta-learning (learning to learn) to build strong priors
-about the behavior of of a population of other agents.
+The idea is to use meta-learning (i.e., learning to learn) to build strong priors
+about the behavior of a population of other agents.
 
 % As such, we aim to expand MDP applications as a useful model from "online" decision-making to the realms of "offline" behaviors most associated with the DMN.
 
@@ -1076,23 +1075,24 @@ about the behavior of of a population of other agents.
 
 
 \paragraph*{Reinforcement learning in the brain.}
-RL can be plausibly realized in the human brain \citep{doherty2015structure, daw2014algorithmic}.
+RL has been argued to be a biologically plausible mechanism in the human brain
+\citep{doherty2015structure, daw2014algorithmic}.
 Indeed,
 previous authors have proposed
 \citep{gershman2015computational} that a core property of human intelligence is the improvement
 of expected utility outcomes as a strategy for action choice in uncertain
-environments, a situation perfectly captured by the formalism of MDPs.
+environments, a situation captured by the formalism of MDPs.
 It has also long been proposed \citep{dayan2008decision} that there
 can be a mapping between algorithmic aspects
 underlying model-free and model-based RL learning
 and neurobiological aspects underlying brain function.
 The neurotransmitter dopamine could serve
-as a 'teaching signal' to better estimate value associations
+as a 'teaching signal' to guide estimation of value associations
 and action policies by modulating
 synaptic plasticity in the reward-processing circuitry, including the NAc.
 In contrast, model-based RL would start off with some mechanistic assumptions about the dynamics of the world.
-These can be assumptions about the physical laws governing the agent's environment or constraints on the state space, transition probabilities between states,
-reward contingencies, etc.
+These assumptions could relate to the
+physical laws governing the agent's environment, constraints on the state space, transition probabilities between states, or reward contingencies.
 % For instance, if a rat in a maze knows
 % that standing still will produce no change in the environment, and in particular will not eventually lead to finding the food.
 An agent might represent such knowledge about the world as follows:
@@ -1144,7 +1144,7 @@ modeling this gathered outcome is the time-discounted cumulative reward% functio
   G^\pi = \sum_{t=0}^{\infty}\gamma^{t}R_t = R_0 + \gamma R_1 + \gamma^2 R_2 + \ldots + \gamma^tR_t + \ldots
 \end{equation}
 This random variable
-  \footnote{Random as it depends both on the environment's dynamics and the
+  \footnote{The reward outcome is random as it depends both on the environment's dynamics and the
   policy $\pi$ being executed. The exponential delay discounting function used
   here refers to the usual formulation in the field of reinforcement learning,
   although psychological experiments may also reveal other discounting regimes
@@ -1214,10 +1214,10 @@ $s$, chooses action $a$, and then follows the policy $\pi$ to select future acti
 For the brain,
 $Q^{\pi}(s, a)$ defined in \eqref{eq:qval} provides the subjective
 utility of executing a specific action.
-It thus answers the question
+In this way, we can answer the question
 ``What is the expected utility of choosing action $a$, and its ramifications, in this situation?''.
 $Q^{\pi}(s,a)$ offers a formalization of optimal behavior that
-may well capture such processing aspects subserved by the DMN in human agents.
+may well capture processing aspects such as subserved by the DMN in human agents.
 
 % One can also define the state-value function
 
@@ -1268,7 +1268,7 @@ policy $\pi^*$ as close as possible, that is to \text{solve} the MDP.
 Note that \eqref{eq:qlearning} presents merely a definition and
 does not lend itself as a candidate schema
 for solving MDPs with even moderately sized action and state spaces
-(i.e., intractability).
+(i.e., computational intractability).
 % where $\tilde{Q}(s, a)$ is the current estimate of the state-action value
 % table.
 Fortunately, the \textit{Bellman equation} \citep{sutton1998reinforcement} provides a fixed-point relation which defines $Q^*$ implicitly via a sampling procedure, without querying the entire space of policies, with the form
@@ -1318,7 +1318,8 @@ triggered by another (possibly stochastic) behavioral policy.
 As already mentioned in the previous section, Q-learning~\citep{watkins92} optimizes over the class of
 deterministic policies of the form \eqref{eq:qlearning}. State spaces may be extremely large
 and tracking all possible states and actions may require prohibitively excessive
-computation and memory resources.
+computation and memory resources, perhaps reflect in the especially high metabolic
+turn-over of the posterior medial DMN (PMC).
 The need of maintaining an explicit table of
 states can be eliminated by instead using of an approximate $Q$-value function $\tilde{Q}(s,a|\theta)$
 by keeping track of an approximating parameter $\theta$ of much lower dimension than the number of states.
@@ -1335,8 +1336,8 @@ For instance, a simple linear model with a kernel $\phi$ would be of the
 form $\tilde{Q}(s, a|\theta) = \phi(s,a)^T\theta$, where
 $\phi(s,a)$ would represent a high-level representation of the state-action pairs
 $(s,a)$, as was previously proposed \citep{songNIPS2016},
-or artificial neural-network models as demonstrated in recent
-seminal investigations
+or artificial neural-network models as demonstrated in 
+seminal machine-learning models
 \citep{mnih2015,silver2016mastering} for playing complex games (atari, Go, etc.) at super-human levels.
 %  and Parr et al. 2003 (JMLR)].
 In the DMN, the dmPFC would implement such a hard-max lookup
@@ -1350,7 +1351,7 @@ $Q$-values.
 This mapping from states to actions that is conventionally called
 \textit{policy matrix} \citep{mnih2015,silver2016mastering}.
 Learning consists in starting from a given table and
-updating it during action choices,
+updating it during action choices, potentially reflected in neural processing in the PMC,
 which take the agent to different table entries.
 
 
@@ -1477,7 +1478,7 @@ Monte Carlo simulation provides a simple method for evaluating the value of a st
 This inference procedure provides an effective mechanism both for tree search (of the considered
 action trajectories)
 and for belief state updates, breaking the curse of dimensionality and allowing much greater scalability than a RL agent without stochastic resampling procedures.
-Such methods have scaling as a function of available data (i.e., sample complexity) that
+Such methods scale as a function of available data (i.e., sample complexity) that
 is determined only by the underlying difficulty of the MDP, rather than the size of the state space or observation space,
 which can be prohibitively large.
 
@@ -1497,15 +1498,16 @@ This is because expected consequences of action choices can be well evaluated al
 
 \paragraph*{A note on implicit and explicit memory.}
 While Markov processes are usually memoryless, it is mathematically feasible to
-incorporate the previous states of such model into the current state. This
-extension may partially account for implicit memory at the behavioral level, but
+incorporate a set of previous states of such model into the current state. This
+extension may partly account for implicit memory at the behavioral level, but
 may not explain the underlying neurobiological implementation or accommodate
 explicit memory. Implicit memory-based processing arises in our MDP account of
 DMN function in several different forms: successive updates of a) the action
 policy and the value function, both being products of the past, as well as b)
 the deep non-linear relationships within the hierarchical connections of
-biological neural networks. The brain's adaptive synaptic connections can be
-thought as a deep neural-network architecture affording an implicit form of
+biological neural networks (especially in the association cortex).
+The brain's adaptive synaptic connections can be
+viewed as a deep neural-network architecture affording an implicit form of
 information compression of life experience. Such memory traces are stored in the
 neural machinery and can be implicitly retrieved as a form of knowledge during
 simulation of action rather than accessed as a stored explicit representation
@@ -1515,7 +1517,7 @@ be a basis for probabilistic simulations across time scales
 \citep{schacter2007remembering,Axelrod2017}.
 
 
-\subsection{Putting everything together}
+\subsection{Putting everything together: hypotheses for future studies}
 
 The DMN is today known to consistently increase in neural
 activity when humans engage in cognitive processes that are relatively detached from
@@ -1525,8 +1527,8 @@ The more familiar and predictable the current environment, the more brain resour
 This speculation receives quantitative support in that connectional links between
 nodes of the DMN have been reported to be more consistent and reliable than
 functional couplings within any other macroscopical networks \citep{shehz2009}.
-As such, random-sampling-related baseline evaluation of possibilities and
-events may be subserved by the DMN and get partly suspended when novelty in
+As such, random-sampling-related baseline evaluation of action possibilities and
+their consequences may be subserved by the DMN and get partly suspended when novelty in
 the external environment is encountered or immediate action is required.
 %
 In line with this perspective, DMN engagement was shown to heighten and relate to effective behavioral responses in the practiced phase of a demanding cognitive flexibility task, as compared to acquisition phase when participants learned context-specific rules. This involvement in automated decision-making has led the authors to propose an ``autopilot'' role for the DMN \citep{vatansever2017pnas}, which may contribute to optimizing intervention of the organism on the world in general. Among all parts of the DMN, the RTPJ is perhaps the most evident candidate for a network-switching relay that calibrates between processing of environment-engaged versus internally generated information \citep{downar2000multimodal, golland2006extrinsic, bzdok2013tpj}.
@@ -1594,7 +1596,7 @@ We hypothesize a functional dissociation between computations pertaining to acti
 
 \paragraph*{Temporal discounting experiment (Humans)} We hypothesize that the relevant time horizon is modulated by various factors such as age, acute stress and time-enduring impulsivity traits
 \citep{luksys2009stress, haushofer2014psychology}.
-Using a temporal discounting experiment, it can be quantified how the time horizon is affected at the behavioral level and then traced-back to its corresponding neural representation. Such experimental investigation can be designed to examine between-group and within-group effects (e.g., impulsive population like chronic gamblers or drug addicts); and brought in context with the participant’s age and personality traits.
+Using a temporal discounting experiment, it can be quantified how the time horizon is affected at the behavioral level and then traced back to its corresponding neural representation. Such experimental investigation can be designed to examine between-group and within-group effects (e.g., impulsive population like chronic gamblers or drug addicts); and brought in context with the participant’s age and personality traits.
 % To exam-ine this question, Fellows and Farah (2005) investigated the effects of dorsolateral frontal (DLF) and ventromedial frontal (VMF) lobe damage on two aspects of temporal foresight—namely, temporal discounting and the futuretime perspective (measuredby an adaptation of Wallace’s [1956] list of future life events).
 
 
@@ -1634,8 +1636,8 @@ The small variations in these experience samplings allow searching
 a larger space of model parameters and possible experiences.
 Taken to its extreme, stochastic recombination of experience
 building blocks can further optimize the behavior of the RL agent
-by model learning from scenarios in the environment that the agent might
-only very rarely or never encounter.
+by learning from scenarios in the environment that the agent might
+encounter only very rarely or never.
 An explanation is thus offered for experiencing seemingly familiar situations that
 a human has however never actually encountered (i.e., d\'{e}j\`{a} vu effect).
 While such a situation may not have been experienced in the physical world,
@@ -1673,7 +1675,7 @@ This feedback will lead to adaptation of policy considerations
 and value estimations until the intelligent system converges to a
 new steady state of optimal action decisions in a volatile world.
 
-\paragraph*{Synaptic epigenesis and creation of new entry in policy matrix (Humans \& Animals)} An additional layer of learning concerns the addition of new entries in the state and action spaces. Extension of the action repertoire could be biologically realized by synaptic epigenesis \citep{gisiger_acquisition_2005}. Indeed, the tuning of synaptic weights through learning can stabilize additional patterns of activity by creating new attractors in the neural dynamics landscape \citep{takeuchi_synaptic_2014}. Those attractors can then constrain both the number of factors taken into account by decision processes and the possible behaviors of the agent \citep{wang_decision_2008}. To examine this potential higher-level mechanism, we propose to probe how synaptic epigenesis is related to neural correlates underlying policy matrix updates: in humans the changes of functional connectivity between DMN regions can be investigated following a temporal discounting experiment and in monkeys or rodents anterograde tracing can be used to study how homolog regions of the DMN present increased synapti\c changes compare to other parts of the brain.
+\paragraph*{Synaptic epigenesis and creation of new entry in policy matrix (Humans \& Animals)} An additional layer of learning concerns the addition of new entries in the state and action spaces. Extension of the action repertoire could be biologically realized by synaptic epigenesis \citep{gisiger_acquisition_2005}. Indeed, the tuning of synaptic weights through learning can stabilize additional patterns of activity by creating new attractors in the neural dynamics landscape \citep{takeuchi_synaptic_2014}. Those attractors can then constrain both the number of factors taken into account by decision processes and the possible behaviors of the agent \citep{wang_decision_2008}. To examine this potential higher-level mechanism, we propose to probe how synaptic epigenesis is related to neural correlates underlying policy matrix updates: in humans the changes of functional connectivity between DMN regions can be investigated following a temporal discounting experiment and in monkeys or rodents anterograde tracing can be used to study how homolog regions of the DMN present increased synaptic changes compare to other parts of the brain.
 
 
 
