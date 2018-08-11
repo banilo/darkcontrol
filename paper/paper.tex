@@ -1128,7 +1128,8 @@ account expected reward from action choices in the future. A common approach to
 modeling this gathered outcome is the time-discounted cumulative reward% function
 \begin{equation}
   \label{eq:cumr}
-  G^\pi = \sum_{t=0}^{\infty}\gamma^{t}R_t = R_0 + \gamma R_1 + \gamma^2 R_2 + \ldots + \gamma^tR_t + \ldots
+  G^\pi = \sum_{t=0}^{\infty}\gamma^{t}R_t =
+  R_0 + \gamma R_1 + \gamma^2 R_2 + \ldots + \gamma^tR_t + \ldots
 \end{equation}
 This random variable
   \footnote{Random as it depends both on the environment's dynamics and the
@@ -1141,7 +1142,7 @@ following an action policy $\pi$.
 %
 Note that value buffering may be realized in the vmPFC.
 This DMN region has direct connections to the NAc, known to be involved in
-reward evaluation~\citep{carlezon2009}.
+reward evaluation~\citep{carlezon2009,haber1995,croxson2005quantitative}.
 
 
 
